@@ -476,7 +476,7 @@
 				},
 
 				t2: function() {
-					var r = !!this.element.canPlayType && this.canPlayType('audio/mpeg3;');
+					var r = !!this.element.canPlayType && this.canPlayType('audio/mpeg;');
 					this.section.setItem('MP3 codec support', r)
 					return r ? 2 : 0;
 				},
@@ -488,7 +488,7 @@
 				},
 
 				t4: function() {
-					var r = !!this.element.canPlayType && this.canPlayType('audio/x-m4a;');
+					var r = !!this.element.canPlayType && (this.canPlayType('audio/x-m4a;') || this.canPlayType('audio/aac;'));
 					this.section.setItem('AAC codec support', r)
 					return r ? 2 : 0;
 				},
