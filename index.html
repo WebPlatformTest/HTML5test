@@ -731,6 +731,22 @@
 					var r = 0; for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
+				getStyle: function(elem, name) {
+				    if (elem.style[name]) {
+				        return elem.style[name];
+				    } else if (elem.currentStyle) {
+				        return elem.currentStyle[name];
+				    }
+				    else if (document.defaultView && document.defaultView.getComputedStyle) {
+				        name = name.replace(/([A-Z])/g, "-$1");
+				        name = name.toLowerCase();
+				        s = document.defaultView.getComputedStyle(elem, "");
+				        return s && s.getPropertyValue(name);
+				    } else {
+				        return null;
+				    }
+				},
+				
 				t1: function() {
 					var section = this.results.getSection('Section elements', 'http://www.w3.org/TR/html5/semantics.html#sections');
 					var elements = 'section nav article aside hgroup header footer'.split(' ');
@@ -738,9 +754,11 @@
 					
 					for (var e in elements) {
 						var element = document.createElement(elements[e]);
-						var r = element.toString() == '[object HTMLElement]';
+						document.body.appendChild(element);
+						var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block';
 						if (r) score++;
 						section.setItem('<code>' + elements[e] + '</code> element', r);
+						document.body.removeChild(element);
 					}
 					
 					section.setScore(score, 7);
@@ -753,9 +771,11 @@
 					
 					for (var e in elements) {
 						var element = document.createElement(elements[e]);
-						var r = element.toString() == '[object HTMLElement]';
+						document.body.appendChild(element);
+						var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block';
 						if (r) score++;
 						section.setItem('<code>' + elements[e] + '</code> element', r);
+						document.body.removeChild(element);
 					}
 					
 					section.setScore(score, 2);
@@ -763,15 +783,35 @@
 
 				t3: function() {
 					var section = this.results.getSection('Text-level semantic elements', 'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics');
-					var elements = 'mark ruby rt rp'.split(' ');
 					var score = 0;
+
+					var element = document.createElement('mark');
+					document.body.appendChild(element);
+					var r = element.toString() == '[object HTMLElement]' && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)');
+					if (r) score++;
+					section.setItem('<code>mark</code> element', r);
+					document.body.removeChild(element);
 					
-					for (var e in elements) {
-						var element = document.createElement(elements[e]);
-						var r = element.toString() == '[object HTMLElement]';
-						if (r) score++;
-						section.setItem('<code>' + elements[e] + '</code> element', r);
-					}
+					var container = document.createElement('div');
+					document.body.appendChild(container);
+					container.innerHTML = "<ruby id='ruby'><rp id='rp'></rp><rt id='rt'></rt></ruby>";
+
+					var element = document.getElementById('ruby');
+					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby';
+					if (r) score++;
+					section.setItem('<code>ruby</code> element', r);					
+
+					var element = document.getElementById('rt');
+					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby-text';
+					if (r) score++;
+					section.setItem('<code>rt</code> element', r);	
+
+					var element = document.getElementById('rp');
+					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'hidden';
+					if (r) score++;
+					section.setItem('<code>rp</code> element', r);	
+					
+					document.body.removeChild(container);
 					
 					var element = document.createElement('time');
 					var r = element.toString() == '[object HTMLTimeElement]';
