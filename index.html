@@ -697,6 +697,13 @@
 				
 				t1: function() {
 					var r = !!window.openDatabase;
+					if (r) {
+						var db = window.openDatabase();
+						if (!db || typeof db.mutable != 'undefined') {
+							r = false;
+						}
+					}
+					
 					this.section.setItem('Web SQL Database', r)
 					return r ? 3 : 0;
 				}
