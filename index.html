@@ -800,7 +800,7 @@
 			function testElements (results) { this.initialize(results) }			
 			testElements.prototype = {
 				name: 	'Elements',
-				count: 	3,
+				count: 	4,
 				
 				initialize: function(results) {
 					this.results = results;
@@ -824,6 +824,15 @@
 				},
 				
 				t1: function() {
+					var section = this.results.getSection('Elements', 'http://www.w3.org/TR/html5/semantics.html#sections');
+					var element = document.createElement('div');
+					element.setAttribute('data-test', 'test');
+					var r = 'dataset' in element;
+					section.setItem('Embedding custom non-visible data', r);	
+					section.setScore(r ? 5 : 0, 5);
+				},
+				
+				t2: function() {
 					var section = this.results.getSection('Section elements', 'http://www.w3.org/TR/html5/semantics.html#sections');
 					var elements = 'section nav article aside hgroup header footer'.split(' ');
 					var score = 0;
@@ -840,7 +849,7 @@
 					section.setScore(score, 7);
 				},
 
-				t2: function() {
+				t3: function() {
 					var section = this.results.getSection('Grouping content elements', 'http://www.w3.org/TR/html5/semantics.html#grouping-content');
 					var elements = 'figure figcaption'.split(' ');
 					var score = 0;
@@ -857,7 +866,7 @@
 					section.setScore(score, 2);
 				},
 
-				t3: function() {
+				t4: function() {
 					var section = this.results.getSection('Text-level semantic elements', 'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics');
 					var score = 0;
 
