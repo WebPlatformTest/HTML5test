@@ -686,8 +686,8 @@
 			testDatabase.prototype = {
 				name: 	'Databases',
 				url:    'http://dev.w3.org/html5/webdatabase/',
-				count: 	1,
-				max:    3,
+				count: 	2,
+				max:    13,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name, this.url);
@@ -706,6 +706,19 @@
 					
 					this.section.setItem('Web SQL Database', r)
 					return r ? 3 : 0;
+				},
+				
+				t2: function() {
+					var r = !!window.openDatabase;
+					if (r) {
+						var db = window.openDatabase();
+						if (!db || typeof db.mutable != 'boolean') {
+							r = false;
+						}
+					}
+					
+					this.section.setItem('WebSimpleDB', r)
+					return r ? 10 : 0;
 				}
 			};
 			
