@@ -344,7 +344,7 @@
 			test.prototype = {
 				suites: [ 
 					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testStorage, testElements, testForm, testInteraction ] },
-					{ title: 'Related specifications', sections: [ testGeolocation, testDatabase, testWorkers ] }
+					{ title: 'Related specifications', sections: [ testGeolocation, testMessaging, testDatabase, testWorkers ] }
 				],
 				
 				initialize: function(e) {					
@@ -719,6 +719,26 @@
 					
 					this.section.setItem('WebSimpleDB', r)
 					return r ? 10 : 0;
+				}
+			};
+			
+			function testMessaging (results) { this.initialize(results) }			
+			testMessaging.prototype = {
+				name: 	'Web Messaging',
+				url:    'http://dev.w3.org/html5/postmsg/',
+				count: 	1,
+				max:    5,
+								
+				initialize: function(results) {
+					this.section = results.getSection(this.name, this.url);
+					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
+					this.section.setScore(r, this.max);
+				},
+				
+				t1: function() {
+					var r = !!window.postMessage;
+					this.section.setItem('Cross-document messaging', r)
+					return r ? 5 : 0;
 				}
 			};
 			
