@@ -344,7 +344,7 @@
 			test.prototype = {
 				suites: [ 
 					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testStorage, testApplicationCache, testWorkers, testElements, testForm, testInteraction ] },
-					{ title: 'Related specifications', sections: [ testGeolocation ] }
+					{ title: 'Related specifications', sections: [ testGeolocation, testDatabase ] }
 				],
 				
 				initialize: function(e) {					
@@ -680,8 +680,8 @@
 			testApplicationCache.prototype = {
 				name: 	'Offline Web Applications',
 				url:    'http://www.w3.org/TR/html5/offline.html#offline',
-				count: 	2,
-				max:    11,
+				count: 	1,
+				max:    8,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name, this.url);
@@ -693,15 +693,29 @@
 					var r = !!window.applicationCache;
 					this.section.setItem('Application Cache', r)
 					return r ? 8 : 0;
-				},
+				}
+			};
 
-				t2: function() {
+			function testDatabase (results) { this.initialize(results) }			
+			testDatabase.prototype = {
+				name: 	'Databases',
+				url:    'http://dev.w3.org/html5/webdatabase/',
+				count: 	1,
+				max:    3,
+								
+				initialize: function(results) {
+					this.section = results.getSection(this.name, this.url);
+					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
+					this.section.setScore(r, this.max);
+				},
+				
+				t1: function() {
 					var r = !!window.openDatabase;
 					this.section.setItem('Web SQL Database', r)
 					return r ? 3 : 0;
 				}
 			};
-
+			
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
 				name: 	'Forms',
