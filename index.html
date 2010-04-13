@@ -911,8 +911,8 @@
 			testInteraction.prototype = {
 				name: 	'User interaction',
 				url:    'http://www.w3.org/TR/html5/interactive-elements.html#interactive-elements',
-				count: 	5,
-				max:    19,
+				count: 	6,
+				max:    24,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name, this.url);
@@ -955,6 +955,13 @@
 				t5: function() {
 					var r = !!window.undoManager;
 					this.section.setItem('Undo manager', r);
+					
+					return r ? 5 : 0;
+				},
+				
+				t6: function() {
+					var r = !!(window.history && history.pushState && history.popState);
+					this.section.setItem('Session history manager', r);
 					
 					return r ? 5 : 0;
 				}				
