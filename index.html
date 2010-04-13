@@ -71,6 +71,39 @@
 			#explaination p a {
 				color: #ddd;
 			}
+			
+			#development {
+				background: #eee;
+				margin: 30px 0;
+				padding: 20px 20px 10px 20px;
+				
+				-webkit-border-radius: 6px;
+				-moz-border-radius: 6px;
+				border-radius: 6px;	
+				
+				-webkit-box-shadow: 0px 0px 5px #222;
+				-moz-box-shadow: 0px 0px 5px #222;
+				box-shadow: 0px 0px 5px #222;
+
+				-moz-transform: rotate(2.5deg);  /* FF3.5+ */
+				-o-transform: rotate(2.5deg);  /* Opera 10.5 */
+				-webkit-transform: rotate(2.5deg);  /* Saf3.1+, Chrome */
+				filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.9990482215818578, M12=-0.043619387365336, M21=0.043619387365336, M22=0.9990482215818578); /* IE6,IE7 */
+				-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.9990482215818578, M12=-0.043619387365336, M21=0.043619387365336, M22=0.9990482215818578)"; /* IE8 */
+				zoom: 1;  						
+			}
+			#development h2 {
+				color: #88b038;
+				line-height: 100%;
+				font-size: 2.1em;
+				font-family: PusabRegular, Arial;
+			}
+			#development p {
+				color: #444;
+			}
+			#development p a {
+				color: #666;
+			}
 
 			#results p {
 				font-family: Arial, Helvetica, sans-serif;
@@ -279,16 +312,20 @@
 					missing. The maximum number of points that can be scored is 160 at this moment, but this is a moving goalpost.
 				</p>
 				
-				<p>
-					The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
-				</p>
+				<div id='development'>
+					<h2>Updated version coming soon!</h2>
+					<p>
+						The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
+					</p>
+				</div>
 				
 				<p> 
 					March 8, 2010 &ndash; version 0.9.
 				</p>
 
 				<p> 
-					The HTML5 test is created by <a href='http://rakaz.nl'>Niels Leenheer</a>.
+					The HTML5 test is created by Niels Leenheer.<br>
+					Visit my website at <a href='http://rakaz.nl'>rakaz.nl</a> or follow me on <a href='http://twitter.com/rakaz'>twitter</a>.
 				</p>
 			</div>
 		</div>		
@@ -838,7 +875,6 @@
 
 			function startTest() {
 				var t = new test('results');
-				pageTracker._trackEvent('Version 0.9', 'Results', 'Score', t.score);
 			}
 			
 		//-->
