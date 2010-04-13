@@ -136,6 +136,12 @@
 				margin: 0 0 1em;
 			}
 			
+			#results h4 {
+				font-size: 1.2em;
+				color: #aaa;
+				margin: 2em 0 0.5em;
+			}
+			
 			#results ul li {
 				position: relative;
 				
@@ -336,17 +342,22 @@
 		
 			function test (e) { this.initialize(e) }
 			test.prototype = {
-				tests: [ testDoctype, testCanvas, testVideo, testAudio, testGeolocation, testStorage, testApplicationCache, testWorkers, testElements, testForm, testInteraction ],
+				suites: [ 
+					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testStorage, testApplicationCache, testWorkers, testElements, testForm, testInteraction ] },
+					{ title: 'Related specifications', sections: [ testGeolocation ] }
+				],
 				
-				initialize: function(e) {
-					this.score = 0;
-					
+				initialize: function(e) {					
 					var r = new results(e);
-					for (t in this.tests) {
-						new (this.tests[t])(r);
+					
+					for (g in this.suites) {
+						r.createSuite(this.suites[g].title);
+											
+						for (t in this.suites[g].sections) {
+							new (this.suites[g].sections[t])(r);
+						}
 					}
 					
-					this.score = r.score;
 					r.done();
 				}
 			}
@@ -371,13 +382,21 @@
 					this.byline = document.createElement('h3');
 					this.byline.innerHTML = 'Out of ' + this.max;
 					this.container.appendChild(this.byline);
-					
-					this.list = document.createElement('ul');
-					this.container.appendChild(this.list);
 				},
 				
 				done: function() {
 					this.intro.innerHTML = 'Your browser scores';
+				},
+				
+				createSuite: function(t) {
+					if (t) {
+						var title = document.createElement('h4');
+						title.innerHTML = t;
+						this.container.appendChild(title);
+					}
+					
+					this.list = document.createElement('ul');
+					this.container.appendChild(this.list);
 				},
 				
 				getSection: function(name, url) {
@@ -385,7 +404,7 @@
 					this.sections.push(s);
 					return s;
 				},
-				
+
 				setScore: function(score, max) {
 					this.score += score;
 					this.max += max;
