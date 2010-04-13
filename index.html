@@ -343,7 +343,7 @@
 			function test (e) { this.initialize(e) }
 			test.prototype = {
 				suites: [ 
-					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testStorage, testApplicationCache, testWorkers, testElements, testForm, testInteraction ] },
+					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testStorage, testWorkers, testElements, testForm, testInteraction ] },
 					{ title: 'Related specifications', sections: [ testGeolocation, testDatabase ] }
 				],
 				
@@ -614,8 +614,8 @@
 			testStorage.prototype = {
 				name: 	'Storage',
 				url:    'http://dev.w3.org/html5/webstorage/',
-				count: 	2,
-				max:    8,
+				count: 	3,
+				max:    16,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name, this.url);
@@ -633,6 +633,12 @@
 					var r = 'localStorage' in window;
 					this.section.setItem('Local Storage', r)
 					return r ? 4 : 0;
+				},
+				
+				t3: function() {
+					var r = !!window.applicationCache;
+					this.section.setItem('Application Cache', r)
+					return r ? 8 : 0;
 				}
 			};
 
@@ -676,26 +682,6 @@
 				}
 			};
 			
-			function testApplicationCache (results) { this.initialize(results) }			
-			testApplicationCache.prototype = {
-				name: 	'Offline Web Applications',
-				url:    'http://www.w3.org/TR/html5/offline.html#offline',
-				count: 	1,
-				max:    8,
-								
-				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
-				},
-				
-				t1: function() {
-					var r = !!window.applicationCache;
-					this.section.setItem('Application Cache', r)
-					return r ? 8 : 0;
-				}
-			};
-
 			function testDatabase (results) { this.initialize(results) }			
 			testDatabase.prototype = {
 				name: 	'Databases',
