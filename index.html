@@ -378,8 +378,8 @@
 			function test (e) { this.initialize(e) }
 			test.prototype = {
 				suites: [ 
-					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testStorage, testElements, testForm, testInteraction ] },
-					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testDatabase, testWorkers ] }
+					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testOffline, testElements, testForm, testInteraction ] },
+					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers ] }
 				],
 				
 				initialize: function(e) {					
@@ -451,6 +451,9 @@
 
 			function section (parent, name, url) { this.initialize(parent, name, url) }
 			section.prototype = {
+				value: 		0,
+				max:        0, 
+
 				initialize: function(parent, name, url) {
 					this.parent = parent;
 					
@@ -511,9 +514,12 @@
 				},
 				
 				setScore: function(value, max) {
-					this.score.innerHTML = value + '/' + max;
+					this.value += value;
+					this.max += max;
+
+					this.score.innerHTML = this.value + '/' + this.max;
 					
-					var percent = parseInt(value / max * 100, 10);
+					var percent = parseInt(this.value / this.max * 100, 10);
 					switch (true) {
 						case percent == 0: 	this.score.className = 'none'; break;
 						case percent <= 25: this.score.className = 'badly'; break;
@@ -770,17 +776,41 @@
 				}
 			};
 		
-			function testStorage (results) { this.initialize(results) }			
-			testStorage.prototype = {
-				name: 	'Storage',
+			function testOffline (results) { this.initialize(results) }			
+			testOffline.prototype = {
+				name: 	'Offline web applications',
 				url:    'http://dev.w3.org/html5/webstorage/',
-				count: 	3,
-				max:    16,
+				count: 	1,
+				max:    8,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name, this.url);
 					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
 					this.section.setScore(r, this.max);
+				},
+				
+				t1: function() {
+					var r = !!window.applicationCache;
+					this.section.setItem('Application Cache', r)
+					return r ? 8 : 0;
+				}
+			};
+
+			function testStorage (results) { this.initialize(results) }			
+			testStorage.prototype = {
+				name: 	'Storage',
+				url:    'http://dev.w3.org/html5/webstorage/',
+				count: 	4,
+				max:    18,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name, this.url);
+					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
+					this.section.setScore(r, this.max);
+				},
+				
+				hasIndexedDB: function() {
+					return 'indexedDB' in window;
 				},
 				
 				t1: function() {
@@ -796,9 +826,15 @@
 				},
 				
 				t3: function() {
-					var r = !!window.applicationCache;
-					this.section.setItem('Application Cache', r)
-					return r ? 8 : 0;
+					var r = !!window.openDatabase;
+					this.section.setItem('Web SQL Database', r)
+					return r && !this.hasIndexedDB() ? 3 : 0;
+				},
+				
+				t4: function() {
+					var r = this.hasIndexedDB();
+					this.section.setItem('IndexedDB', r)
+					return r ? 10 : 0;
 				}
 			};
 
@@ -841,37 +877,7 @@
 					return r ? 4 : 0;
 				}
 			};
-			
-			function testDatabase (results) { this.initialize(results) }			
-			testDatabase.prototype = {
-				name: 	'Databases',
-				url:    'http://www.w3.org/TR/IndexedDB/',
-				count: 	2,
-				max:    10,
-								
-				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
-				},
-				
-				hasIndexedDB: function() {
-					return 'indexedDB' in window;
-				},
-				
-				t1: function() {
-					var r = !!window.openDatabase;
-					this.section.setItem('Web SQL Database', r)
-					return r && !this.hasIndexedDB() ? 3 : 0;
-				},
-				
-				t2: function() {
-					var r = this.hasIndexedDB();
-					this.section.setItem('IndexedDB', r)
-					return r ? 10 : 0;
-				}
-			};
-			
+						
 			function testCommunication (results) { this.initialize(results) }			
 			testCommunication.prototype = {
 				name: 	'Communication',
