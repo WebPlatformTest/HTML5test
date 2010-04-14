@@ -796,7 +796,8 @@
 
 				t3: function() {
 					var element = document.createElement('keygen');
-					var r = element.toString() == '[object HTMLKeygenElement]';
+					console.debug(element);
+					var r = element.toString() == '[object HTMLKeygenElement]' || element.childNodes.length;
 					this.section.setItem('<code>keygen</code> element', r);
 					
 					return r ? 1 : 0;
