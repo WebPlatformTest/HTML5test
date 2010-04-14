@@ -719,7 +719,7 @@
 			function testDatabase (results) { this.initialize(results) }			
 			testDatabase.prototype = {
 				name: 	'Databases',
-				url:    'http://dev.w3.org/html5/webdatabase/',
+				url:    'http://www.w3.org/TR/IndexedDB/',
 				count: 	2,
 				max:    10,
 								
@@ -729,39 +729,19 @@
 					this.section.setScore(r, this.max);
 				},
 				
-				hasWebSQL: function() {
-					var r = !!window.openDatabase;
-					if (r) {
-						var db = window.openDatabase();
-						if (!db || typeof db.mutable != 'undefined') {
-							r = false;
-						}
-					}
-					
-					return r;
-				},
-				
-				hasSimpleDB: function() {
-					var r = !!window.openDatabase;
-					if (r) {
-						var db = window.openDatabase();
-						if (!db || typeof db.mutable != 'boolean') {
-							r = false;
-						}
-					}
-					
-					return r;
+				hasIndexedDB: function() {
+					return 'indexedDB' in window;
 				},
 				
 				t1: function() {
-					var r = this.hasWebSQL();
+					var r = !!window.openDatabase;
 					this.section.setItem('Web SQL Database', r)
-					return r && !this.hasSimpleDB() ? 3 : 0;
+					return r && !this.hasIndexedDB() ? 3 : 0;
 				},
 				
 				t2: function() {
-					var r = this.hasSimpleDB();
-					this.section.setItem('WebSimpleDB', r)
+					var r = this.hasIndexedDB();
+					this.section.setItem('IndexedDB', r)
 					return r ? 10 : 0;
 				}
 			};
