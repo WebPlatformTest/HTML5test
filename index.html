@@ -687,7 +687,7 @@
 				name: 	'Databases',
 				url:    'http://dev.w3.org/html5/webdatabase/',
 				count: 	2,
-				max:    13,
+				max:    10,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name, this.url);
@@ -695,7 +695,7 @@
 					this.section.setScore(r, this.max);
 				},
 				
-				t1: function() {
+				hasWebSQL: function() {
 					var r = !!window.openDatabase;
 					if (r) {
 						var db = window.openDatabase();
@@ -704,11 +704,10 @@
 						}
 					}
 					
-					this.section.setItem('Web SQL Database', r)
-					return r ? 3 : 0;
+					return r;
 				},
 				
-				t2: function() {
+				hasSimpleDB: function() {
 					var r = !!window.openDatabase;
 					if (r) {
 						var db = window.openDatabase();
@@ -717,6 +716,17 @@
 						}
 					}
 					
+					return r;
+				},
+				
+				t1: function() {
+					var r = this.hasWebSQL();
+					this.section.setItem('Web SQL Database', r)
+					return r && !this.hasSimpleDB() ? 3 : 0;
+				},
+				
+				t2: function() {
+					var r = this.hasSimpleDB();
 					this.section.setItem('WebSimpleDB', r)
 					return r ? 10 : 0;
 				}
