@@ -216,6 +216,13 @@
 			#results ul li table td.container {
 				padding: 0;
 			}
+			#results ul li table tr.explaination th {
+				padding: 16px 0 6px;
+				font-size: 0.9em;
+				font-style: italic;
+				color: #666;
+				line-height: 140%;
+			}
 			#results ul li table th {
 				font-weight: normal;
 				text-align: left;
@@ -464,6 +471,19 @@
 					this.table.appendChild(this.body);
 				},
 				
+				setExplaination: function(explaination) {
+					var row = document.createElement('tr');
+					row.className = 'explaination';
+					this.body.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = explaination;
+					row.appendChild(head);
+
+					var cell = document.createElement('td');
+					row.appendChild(cell);									
+				},
+				
 				setItem: function(name, result) {
 					var row = document.createElement('tr');
 					this.body.appendChild(row);
@@ -564,7 +584,7 @@
 			testVideo.prototype = {
 				name: 	'Video',
 				url:    'http://www.w3.org/TR/html5/video.html#video',
-				count: 	3,
+				count: 	4,
 				max:    30,
 				
 				initialize: function(results) {
@@ -587,12 +607,18 @@
 				},
 
 				t2: function() {
+					this.section.setExplaination('HTML5 does not specify a required video codec. The following tests go beyond the requirements of the specification.')
+					return 0;
+				},
+					
+				t3: function() {
+					this.section.setExplaination
 					var r = !!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
 					this.section.setItem('H.264 codec support', r)
 					return r ? 5 : 0;
 				},
 
-				t3: function() {
+				t4: function() {
 					var r = !!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora, vorbis"');
 					this.section.setItem('Ogg Theora codec support', r)
 					return r ? 5 : 0;
@@ -603,7 +629,7 @@
 			testAudio.prototype = {
 				name: 	'Audio',
 				url:    'http://www.w3.org/TR/html5/video.html#audio',
-				count: 	5,
+				count: 	6,
 				max:    24,
 				
 				initialize: function(results) {
@@ -626,24 +652,29 @@
 				},
 
 				t2: function() {
+					this.section.setExplaination('HTML5 does not specify a required audio codec. The following tests go beyond the requirements of the specification.')
+					return 0;
+				},
+
+				t3: function() {
 					var r = !!this.element.canPlayType && this.canPlayType('audio/mpeg;');
 					this.section.setItem('MP3 codec support', r)
 					return r ? 2 : 0;
 				},
 
-				t3: function() {
+				t4: function() {
 					var r = !!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"');
 					this.section.setItem('Ogg Vorbis codec support', r)
 					return r ? 2 : 0;
 				},
 
-				t4: function() {
+				t5: function() {
 					var r = !!this.element.canPlayType && (this.canPlayType('audio/x-m4a;') || this.canPlayType('audio/aac;'));
 					this.section.setItem('AAC codec support', r)
 					return r ? 2 : 0;
 				},
 
-				t5: function() {
+				t6: function() {
 					var r = !!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"');
 					this.section.setItem('WAV codec support', r)
 					return r ? 2 : 0;
