@@ -487,17 +487,20 @@
 					row.appendChild(cell);									
 				},
 				
-				setItem: function(name, result) {
+				setItem: function(result) {
 					var row = document.createElement('tr');
 					this.body.appendChild(row);
 
 					var head = document.createElement('th');
-					head.innerHTML = name;
+					head.innerHTML = result.title;
 					row.appendChild(head);
 
 					var cell = document.createElement('td');
-					cell.innerHTML = result ? 'Yes': 'No'
+					cell.innerHTML = result.passed ? 'Yes': 'No'
 					row.appendChild(cell);
+
+					if (typeof result.award == 'undefined') result.award = result.value;
+					this.setScore(result.passed ? result.award : 0, result.value);					
 				},
 				
 				getGroup: function(name) {
@@ -533,6 +536,9 @@
 			
 			function group (parent, container, name) { this.initialize(parent, container, name) }
 			group.prototype = {
+				value: 		0,
+				max:        0, 
+
 				initialize: function(parent, container, name) {
 					this.parent = parent;
 					this.container = container;
@@ -565,40 +571,51 @@
 					this.table.appendChild(this.body);
 				},
 				
-				setItem: function(name, result) {
+				setItem: function(result) {
 					var row = document.createElement('tr');
 					this.body.appendChild(row);
 
 					var head = document.createElement('th');
-					head.innerHTML = name;
+					head.innerHTML = result.title;
 					row.appendChild(head);
 
 					var cell = document.createElement('td');
-					cell.innerHTML = result ? 'Yes': 'No'
+					cell.innerHTML = result.passed ? 'Yes': 'No'
 					row.appendChild(cell);
+
+					if (typeof result.award == 'undefined') result.award = result.value;
+					this.setScore(result.passed ? result.award : 0, result.value);					
 				},
 				
 				setScore: function(value, max) {
-					this.score.innerHTML = value + ' out of ' + max;
+					this.value += value;
+					this.max += max;
+
+					if (this.value == 0) 
+						this.score.innerHTML = 'No';						
+					else if (this.value == this.max) 
+						this.score.innerHTML = 'Yes';
+					else
+						this.score.innerHTML = this.value + ' out of ' + this.max;
+						
 					this.parent.setScore(value, max);
 				}				
 			}
+			
+			
 			
 			
 						
 			function testVideo (results) { this.initialize(results) }			
 			testVideo.prototype = {
 				name: 	'Video',
-				url:    'http://www.w3.org/TR/html5/video.html#video',
 				count: 	4,
-				max:    30,
 				
 				initialize: function(results) {
 					this.element = document.createElement('video');
 					
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				canPlayType: function(t) {
@@ -607,43 +624,44 @@
 				},
 				
 				t1: function() {
-					var r = !!this.element.canPlayType;
-					this.section.setItem('<code>video</code> element', r)
-					return r ? 20 : 0;
+					this.section.setItem({
+						title: 	'<code>video</code> element', 
+						passed:	!!this.element.canPlayType, 
+						value: 	20
+					});
 				},
 
 				t2: function() {
 					this.section.setExplaination('HTML5 does not specify a required video codec. The following tests go beyond the requirements of the specification.')
-					return 0;
 				},
 					
 				t3: function() {
-					this.section.setExplaination
-					var r = !!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
-					this.section.setItem('H.264 codec support', r)
-					return r ? 5 : 0;
+					this.section.setItem({
+						title: 	'H.264 codec support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'), 
+						value: 	5
+					});
 				},
 
 				t4: function() {
-					var r = !!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora, vorbis"');
-					this.section.setItem('Ogg Theora codec support', r)
-					return r ? 5 : 0;
+					this.section.setItem({
+						title: 	'Ogg Theora codec support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora, vorbis"'), 
+						value: 	5
+					});
 				}
 			};
 			
 			function testAudio (results) { this.initialize(results) }			
 			testAudio.prototype = {
 				name: 	'Audio',
-				url:    'http://www.w3.org/TR/html5/video.html#audio',
 				count: 	6,
-				max:    24,
 				
 				initialize: function(results) {
 					this.element = document.createElement('audio');
 					
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				canPlayType: function(t) {
@@ -652,58 +670,67 @@
 				},
 				
 				t1: function() {
-					var r = !!this.element.canPlayType;
-					this.section.setItem('<code>audio</code> element', r)
-					return r ? 16 : 0;
+					this.section.setItem({
+						title: 	'<code>audio</code> element', 
+						passed:	!!this.element.canPlayType, 
+						value: 	16
+					});
 				},
 
 				t2: function() {
 					this.section.setExplaination('HTML5 does not specify a required audio codec. The following tests go beyond the requirements of the specification.')
-					return 0;
 				},
 
 				t3: function() {
-					var r = !!this.element.canPlayType && this.canPlayType('audio/mpeg;');
-					this.section.setItem('MP3 codec support', r)
-					return r ? 2 : 0;
+					this.section.setItem({
+						title: 	'MP3 codec support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/mpeg;'), 
+						value: 	2
+					});
 				},
 
 				t4: function() {
-					var r = !!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"');
-					this.section.setItem('Ogg Vorbis codec support', r)
-					return r ? 2 : 0;
+					this.section.setItem({
+						title: 	'Ogg Vorbis support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"'), 
+						value: 	2
+					});
 				},
 
 				t5: function() {
-					var r = !!this.element.canPlayType && (this.canPlayType('audio/x-m4a;') || this.canPlayType('audio/aac;'));
-					this.section.setItem('AAC codec support', r)
-					return r ? 2 : 0;
+					this.section.setItem({
+						title: 	'AAC codec support', 
+						passed:	!!this.element.canPlayType && (this.canPlayType('audio/x-m4a;') || this.canPlayType('audio/aac;')), 
+						value: 	2
+					});
 				},
 
 				t6: function() {
-					var r = !!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"');
-					this.section.setItem('WAV codec support', r)
-					return r ? 2 : 0;
+					this.section.setItem({
+						title: 	'WAV codec support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"'), 
+						value: 	2
+					});
 				}
 			};
 			
 			function testGeolocation (results) { this.initialize(results) }			
 			testGeolocation.prototype = {
-				name: 	'Geolocation',
-				url:    'http://dev.w3.org/geo/api/spec-source.html',
+				name: 	'Geolocation',			
 				count: 	1,
-				max:    5,
 				
 				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
-					var r = !!navigator.geolocation;
-					this.section.setItem('Geolocation', r)
-					return r ? 5 : 0;
+					this.section.setItem({
+						title: 	'Geolocation', 
+						url:    'http://dev.w3.org/geo/api/spec-source.html',
+						passed:	!!navigator.geolocation, 
+						value: 	5
+					});
 				}
 			};
 
@@ -717,43 +744,46 @@
 				initialize: function(results) {
 					this.canvas = document.createElement('canvas');
 
-					this.section = results.getSection(this.name, this.url);
+					this.section = results.getSection(this.name);
 					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
 				},
 				
 				t1: function() {
-					var r = !!this.canvas.getContext;
-					this.section.setItem('<code>canvas</code> element', r)
-					return r ? 2 : 0;
+					this.section.setItem({
+						title: 	'<code>canvas</code> element', 
+						passed:	!!this.canvas.getContext, 
+						value: 	2
+					});
 				},
 
 				t2: function() {
-					var r = this.canvas.getContext && this.canvas.getContext('2d') == '[object CanvasRenderingContext2D]';
-					this.section.setItem('2D context', r)
-					return r ? 6 : 0;
+					this.section.setItem({
+						title: 	'2D context', 
+						url:    'http://www.w3.org/TR/2dcontext/',
+						passed:	this.canvas.getContext && this.canvas.getContext('2d') == '[object CanvasRenderingContext2D]', 
+						value: 	6
+					});
 				},
 
 				t3: function() {
-					var r = this.canvas.getContext && typeof this.canvas.getContext('2d').fillText == 'function';
-					this.section.setItem('Text', r)
-					return r ? 4 : 0;
+					this.section.setItem({
+						title: 	'Text', 
+						passed:	this.canvas.getContext && typeof this.canvas.getContext('2d').fillText == 'function', 
+						value: 	4
+					});
 				}
 			};
 		
 			function testWebGL (results) { this.initialize(results) }			
 			testWebGL.prototype = {
 				name: 	'WebGL',
-				url:    'https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/WebGL-spec.html',
 				count: 	1,
-				max:    10,
 				
 				initialize: function(results) {
 					this.canvas = document.createElement('canvas');
 
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
@@ -770,42 +800,46 @@
 			            } catch(e){	}
 			        }
        				
-       				this.section.setItem('3D context', r)
-					return r ? 10 : 0;
+ 					this.section.setItem({
+						title: 	'3D context', 
+						url:    'https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/WebGL-spec.html',
+						passed:	r, 
+						value: 	10
+					});
 				}
 			};
 		
 			function testOffline (results) { this.initialize(results) }			
 			testOffline.prototype = {
 				name: 	'Offline web applications',
-				url:    'http://dev.w3.org/html5/webstorage/',
 				count: 	1,
-				max:    8,
 				
 				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
-					var r = !!window.applicationCache;
-					this.section.setItem('Application Cache', r)
-					return r ? 8 : 0;
+					this.section.setItem({
+						title: 	'Application Cache', 
+						passed:	!!window.applicationCache, 
+						value: 	8
+					});
 				}
 			};
 
 			function testStorage (results) { this.initialize(results) }			
 			testStorage.prototype = {
 				name: 	'Storage',
-				url:    'http://dev.w3.org/html5/webstorage/',
 				count: 	5,
-				max:    18,
 				
 				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				hasWebSQLDatabase: function() {
+					return !!window.openDatabase;
 				},
 				
 				hasIndexedDB: function() {
@@ -813,190 +847,203 @@
 				},
 				
 				t1: function() {
-					var r = 'sessionStorage' in window;
-					this.section.setItem('Session Storage', r)
-					return r ? 4 : 0;
+					this.section.setItem({
+						title: 	'Session Storage', 
+						url:    'http://dev.w3.org/html5/webstorage/',
+						passed:	'sessionStorage' in window, 
+						value: 	4
+					});
 				},
 
 				t2: function() {
-					var r = 'localStorage' in window;
-					this.section.setItem('Local Storage', r)
-					return r ? 4 : 0;
+					this.section.setItem({
+						title: 	'Local Storage', 
+						url:    'http://dev.w3.org/html5/webstorage/',
+						passed:	'localStorage' in window, 
+						value: 	4
+					});
 				},
 				
 				t3: function() {
-					var r = this.hasIndexedDB();
-					this.section.setItem('IndexedDB', r)
-					return r ? 10 : 0;
+					this.section.setItem({
+						title: 	'IndexedDB', 
+						passed:	this.hasIndexedDB(), 
+						value: 	10
+					});
 				},
 				
 				t4: function() {
 					this.section.setExplaination('The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.')
-					return 0;
 				},
 					
 				t5: function() {
-					var r = !!window.openDatabase;
-					this.section.setItem('Web SQL Database', r)
-					return r && !this.hasIndexedDB() ? 3 : 0;
-				}
-				
+					this.section.setItem({
+						title: 	'Web SQL Database', 
+						passed:	this.hasWebSQLDatabase(), 
+						value: 	0,
+						award:  !this.hasIndexedDB() ? 3 : 0	/* only award points if IndexedDB is not implemented */
+					});
+				}			
 			};
 
 			function testWorkers (results) { this.initialize(results) }			
 			testWorkers.prototype = {
 				name: 	'Workers',
-				url:    'http://dev.w3.org/html5/workers/',
 				count: 	1,
-				max:    6,
 				
 				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
-					var r = !!window.Worker;
-					this.section.setItem('Web Workers', r)
-					return r ? 6 : 0;
+					this.section.setItem({
+						title: 	'Web Workers', 
+						url:    'http://dev.w3.org/html5/workers/',
+						passed:	!!window.Worker, 
+						value: 	6
+					});
 				}
 			};
 			
 			function testDoctype (results) { this.initialize(results) }			
 			testDoctype.prototype = {
 				name: 	'Doctype',
-				url:    'http://www.w3.org/TR/html5/syntax.html#the-doctype',
 				count: 	1,
-				max:    4,
 				
 				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
-					var r = document.compatMode == 'CSS1Compat';
-					this.section.setItem('<code>&lt;!DOCTYPE html&gt;</code> triggers standards mode', r);
-					return r ? 4 : 0;
+					this.section.setItem({
+						title: 	'<code>&lt;!DOCTYPE html&gt;</code> triggers standards mode', 
+						url:    'http://www.w3.org/TR/html5/syntax.html#the-doctype',
+						passed:	document.compatMode == 'CSS1Compat', 
+						value: 	4
+					});
 				}
 			};
 						
 			function testCommunication (results) { this.initialize(results) }			
 			testCommunication.prototype = {
 				name: 	'Communication',
-				url:    'http://dev.w3.org/html5/postmsg/',
 				count: 	2,
-				max:    15,
 								
 				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
-					var r = !!window.postMessage;
-					this.section.setItem('Cross-document messaging', r)
-					return r ? 5 : 0;
+					this.section.setItem({
+						title: 	'Cross-document messaging', 
+						url:    'http://dev.w3.org/html5/postmsg/',
+						passed:	!!window.postMessage, 
+						value: 	5
+					});
 				},
 				
 				t2: function() {
-					var r = 'WebSocket' in window;
-					this.section.setItem('WebSocket', r)
-					return r ? 10 : 0;
+					this.section.setItem({
+						title: 	'WebSocket', 
+						passed:	'WebSocket' in window, 
+						value: 	10
+					});
 				}
 			};			
 			
 			function testFiles (results) { this.initialize(results) }			
 			testFiles.prototype = {
 				name: 	'Files',
-				url:    'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
 				count: 	1,
-				max:    10,
 								
 				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
-					var r = 'FileReader' in window;
-					this.section.setItem('FileReader API', r)
-					return r ? 10 : 0;
+					this.section.setItem({
+						title: 	'FileReader API', 
+						url:    'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
+						passed:	'FileReader' in window, 
+						value: 	10
+					});
 				}
 			};
 			
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
 				name: 	'Forms',
-				url:    'http://www.w3.org/TR/html5/forms.html#forms',
 				count: 	3,
 				
 				initialize: function(results) {
 					this.field = document.createElement('input');
 					
-					this.section = results.getSection(this.name, this.url);
+					this.section = results.getSection(this.name);
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-					// this.section.setScore(r, this.max);
 				},
 				
 				t1: function() {
 					var group = this.section.getGroup('<code>input</code> element types');
 					var types = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
-					var score = 0;
 					
 					for (var t in types) {
 						this.field.setAttribute('type', types[t]);
-						var r = this.field.type != 'text';
-						if (r) score++;
-						group.setItem('<code>' + types[t] + '</code> type', r);
+						
+						group.setItem({
+							title: 	'<code>' + types[t] + '</code> type', 
+							passed:	this.field.type != 'text', 
+							value: 	1
+						});
 					}
-					
-					group.setScore(score, types.length);
 				},
 
 				t2: function() {
 					var group = this.section.getGroup('<code>input</code> element attributes');
 					var props = 'autocomplete autofocus list placeholder max min multiple pattern required step'.split(' ');
-					var score = 0;
-					
+						
 					for (var p in props) {
-        				var r = !!(props[p] in this.field);
-						if (r) score++;
-						group.setItem('<code>' + props[p] + '</code> attribute', r);
+ 						group.setItem({
+							title: 	'<code>' + props[p] + '</code> attribute', 
+							passed:	!!(props[p] in this.field), 
+							value: 	1
+						});
         			}
-        
-					group.setScore(score, props.length);
 				},
 
 				t3: function() {
 					var group = this.section.getGroup('Other form elements');
-					var score = 0;
 					
 					var element = document.createElement('keygen');
-					var r = element.toString() == '[object HTMLKeygenElement]' || element.childNodes.length;
-					if (r) score++;
-					group.setItem('<code>keygen</code> element', r);
+					group.setItem({
+						title: 	'<code>keygen</code> element', 
+						passed:	element.toString() == '[object HTMLKeygenElement]' || element.childNodes.length, 
+						value: 	1
+					});
 					
 					var element = document.createElement('output');
-					var r = element.toString() == '[object HTMLOutputElement]';
-					if (r) score++;
-					group.setItem('<code>output</code> element', r);
+					group.setItem({
+						title: 	'<code>output</code> element', 
+						passed:	element.toString() == '[object HTMLOutputElement]', 
+						value: 	1
+					});
 
 					var element = document.createElement('progress');
-					var r = element.toString() == '[object HTMLProgressElement]';
-					if (r) score++;
-					group.setItem('<code>progress</code> element', r);
+					group.setItem({
+						title: 	'<code>progress</code> element', 
+						passed:	element.toString() == '[object HTMLProgressElement]', 
+						value: 	1
+					});
 
 					var element = document.createElement('meter');
-					var r = element.toString() == '[object HTMLMeterElement]';
-					if (r) score++;
-					group.setItem('<code>meter</code> element', r);
-
-					group.setScore(score, 4);
+					group.setItem({
+						title: 	'<code>meter</code> element', 
+						passed:	element.toString() == '[object HTMLMeterElement]', 
+						value: 	1
+					});
 				}				
 			};
 			
@@ -1006,8 +1053,8 @@
 				count: 	4,
 				
 				initialize: function(results) {
-					this.section = results.getSection('Elements', 'http://www.w3.org/TR/html5/semantics.html#sections');
-					var r = 0; for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+					this.section = results.getSection('Elements');
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				getStyle: function(elem, name) {
@@ -1029,143 +1076,173 @@
 				t1: function() {
 					var element = document.createElement('div');
 					element.setAttribute('data-test', 'test');
-					var r = 'dataset' in element;
-					this.section.setItem('Embedding custom non-visible data', r);	
-					this.section.setScore(r ? 5 : 0, 5);
+					
+					this.section.setItem({
+						title: 	'Embedding custom non-visible data', 
+						passed:	'dataset' in element, 
+						value: 	5
+					});
 				},
 				
 				t2: function() {
 					var group = this.section.getGroup('Section elements');
 					var elements = 'section nav article aside hgroup header footer'.split(' ');
-					var score = 0;
 					
 					for (var e in elements) {
 						var element = document.createElement(elements[e]);
 						document.body.appendChild(element);
-						var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block';
-						if (r) score++;
-						group.setItem('<code>' + elements[e] + '</code> element', r);
+
+ 						group.setItem({
+							title: 	'<code>' + elements[e] + '</code> element', 
+							passed:	element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block', 
+							value: 	1
+						});
+
 						document.body.removeChild(element);
 					}
-					
-					group.setScore(score, 7);
 				},
 
 				t3: function() {
-					var group = this.section.getGroup('Grouping content elements'); //, 'http://www.w3.org/TR/html5/semantics.html#grouping-content');
+					var group = this.section.getGroup('Grouping content elements');
 					var elements = 'figure figcaption'.split(' ');
-					var score = 0;
 					
 					for (var e in elements) {
 						var element = document.createElement(elements[e]);
 						document.body.appendChild(element);
-						var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block';
-						if (r) score++;
-						group.setItem('<code>' + elements[e] + '</code> element', r);
+
+ 						group.setItem({
+							title: 	'<code>' + elements[e] + '</code> element', 
+							url:	'http://www.w3.org/TR/html5/semantics.html#grouping-content',
+							passed:	element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block', 
+							value: 	1
+						});
+
 						document.body.removeChild(element);
 					}
-					
-					group.setScore(score, 2);
 				},
 
 				t4: function() {
-					var group = this.section.getGroup('Text-level semantic elements'); //, 'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics');
-					var score = 0;
-
+					var group = this.section.getGroup('Text-level semantic elements');
+					
 					var element = document.createElement('mark');
 					document.body.appendChild(element);
-					var r = element.toString() == '[object HTMLElement]' && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)');
-					if (r) score++;
-					group.setItem('<code>mark</code> element', r);
+
+					group.setItem({
+						title: 	'<code>mark</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						passed:	element.toString() == '[object HTMLElement]' && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)'), 
+						value: 	1
+					});
+
 					document.body.removeChild(element);
 					
 					var container = document.createElement('div');
 					document.body.appendChild(container);
 					container.innerHTML = "<ruby id='ruby'><rp id='rp'></rp><rt id='rt'></rt></ruby>";
-
 					var element = document.getElementById('ruby');
-					var r = element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby';
-					if (r) score++;
-					group.setItem('<code>ruby</code> element', r);					
+
+					group.setItem({
+						title: 	'<code>ruby</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby', 
+						value: 	1
+					});
 
 					var element = document.getElementById('rt');
-					var r = element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby-text';
-					if (r) score++;
-					group.setItem('<code>rt</code> element', r);	
+
+					group.setItem({
+						title: 	'<code>rt</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby-text', 
+						value: 	1
+					});
 
 					var element = document.getElementById('rp');
-					var r = element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'hidden';
-					if (r) score++;
-					group.setItem('<code>rp</code> element', r);	
+
+					group.setItem({
+						title: 	'<code>rp</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'hidden', 
+						value: 	1
+					});
 					
 					document.body.removeChild(container);
 					
 					var element = document.createElement('time');
-					var r = element.toString() == '[object HTMLTimeElement]';
-					group.setItem('<code>time</code> element', r);
-					if (r) score++;
 
-					group.setScore(score, 5);
+					group.setItem({
+						title: 	'<code>time</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						passed:	element.toString() == '[object HTMLTimeElement]', 
+						value: 	1
+					});
 				}
 			};		
 			
 			function testInteraction (results) { this.initialize(results) }			
 			testInteraction.prototype = {
 				name: 	'User interaction',
-				url:    'http://www.w3.org/TR/html5/interactive-elements.html#interactive-elements',
 				count: 	6,
-				max:    24,
 				
 				initialize: function(results) {
-					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
 					var element = document.createElement('div');
-					var r = 'hidden' in element;
-					this.section.setItem('<code>hidden</code> attribute', r);
 					
-					return r ? 2 : 0;
+					this.section.setItem({
+						title: 	'<code>hidden</code> attribute', 
+						passed:	'hidden' in element, 
+						value: 	2
+					});
 				},
 				
 				t2: function() {
 					var element = document.createElement('div');
-					var r = !!element.scrollIntoView;
-					this.section.setItem('Scroll into view', r);
 					
-					return r ? 2 : 0;
+					this.section.setItem({
+						title: 	'Scroll into view', 
+						passed:	!!element.scrollIntoView, 
+						value: 	2
+					});
 				},
 
 				t3: function() {
 					var element = document.createElement('div');
-					var r = 'contentEditable' in element;
-					this.section.setItem('<code>contenteditable</code> attribute', r);
 					
-					return r ? 5 : 0;
+					this.section.setItem({
+						title: 	'<code>contenteditable</code> attribute', 
+						passed:	'contentEditable' in element, 
+						value: 	5
+					});
 				},
 				
 				t4: function() {
 					var element = document.createElement('div');
-					var r = 'draggable' in element;
-					this.section.setItem('Drag and drop', r);
 					
-					return r ? 5 : 0;
+					this.section.setItem({
+						title: 	'Drag and drop', 
+						passed:	'draggable' in element, 
+						value: 	5
+					});
 				},
 				
 				t5: function() {
-					var r = !!window.undoManager;
-					this.section.setItem('Undo manager', r);
-					
-					return r ? 5 : 0;
+					this.section.setItem({
+						title: 	'Undo manager', 
+						passed:	!!window.undoManager,
+						value: 	5
+					});
 				},
 				
 				t6: function() {
-					var r = !!(window.history && history.pushState && history.popState);
-					this.section.setItem('Session history manager', r);
-					
-					return r ? 5 : 0;
+					this.section.setItem({
+						title: 	'Session history manager', 
+						passed:	!!(window.history && history.pushState && history.popState), 
+						value: 	5
+					});
 				}				
 				
 			};
