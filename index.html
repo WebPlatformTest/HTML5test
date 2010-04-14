@@ -129,7 +129,7 @@
 				text-shadow: 0px 0px 5px #333;
 				text-transform: uppercase;
 				text-indent: 0.4em;
-				line-height: 40%;
+				line-height: 90%;
 				
 				margin: 0 0 1em;
 			}
@@ -199,6 +199,10 @@
 			}
 			#results ul li em.great {
 				color: #33af33;
+			}
+			#results ul li em span {
+				color: #aaa;
+				word-spacing: -0.4em;
 			}
 			
 			#results ul li table {
@@ -347,10 +351,11 @@
 				</p>
 				
 				<p>
-					The score is calculated by testing for the many new features of HTML5. Each feature is worth one or more points. In some cases the tests go beyond the specification. In the case of audio and video there is are also specific tests for codec support. In these cases the most points are awarded for supporting the first codec. Each additional codec it supports does result in a couple of bonus points. Apart from the main HTML5 working draft, 
+					The score is calculated by testing for the many new features of HTML5. Each feature is worth one or more points. In some cases the tests go beyond the specification. In the case of audio and video there is are also specific tests for codec support. 
+					In these cases points are awarded for supporting the first codec. Each additional codec it supports does result in bonus points, which are not counted towards the total score. Apart from the main HTML5 working draft, 
 					this test also awards points for supporting related drafts published by
 					the W3C, such as Geolocation, Web SQL Database, Web Workers and many more. In the future new tests will be added for the pieces of the specification that are currently still
-					missing. The maximum number of points that can be scored is 160 at this moment, but this is a moving goalpost.
+					missing. The maximum number of points that can be scored is <span id='total'>0</span> at this moment, but this is a moving goalpost.
 				</p>
 				
 				<div id='development'>
@@ -375,21 +380,21 @@
 		<script>
 		<!--
 		
-			function test (e) { this.initialize(e) }
+			function test (e, t) { this.initialize(e, t) }
 			test.prototype = {
 				suites: [ 
 					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testOffline, testElements, testForm, testInteraction ] },
 					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers ] }
 				],
 				
-				initialize: function(e) {					
-					var r = new results(e);
+				initialize: function(e, t) {					
+					var r = new results(e, t);
 					
 					for (g in this.suites) {
 						r.createSuite(this.suites[g].title);
 											
-						for (t in this.suites[g].sections) {
-							new (this.suites[g].sections[t])(r);
+						for (s in this.suites[g].sections) {
+							new (this.suites[g].sections[s])(r);
 						}
 					}
 					
@@ -397,13 +402,14 @@
 				}
 			}
 		
-			function results (e) { this.initialize(e) }
+			function results (e, t) { this.initialize(e, t) }
 			results.prototype = {
 				score: 		0,
+				bonus:		0,
 				max:        0, 
 				sections: 	[],
 				
-				initialize: function(e) {
+				initialize: function(e, t) {
 					this.container = document.getElementById(e);
 					
 					this.intro = document.createElement('p');
@@ -415,8 +421,10 @@
 					this.container.appendChild(this.counter);
 					
 					this.byline = document.createElement('h3');
-					this.byline.innerHTML = 'Out of ' + this.max;
+					this.byline.innerHTML = 'and ' + (this.bonus ? this.bonus : 'no') + ' bonus points';
 					this.container.appendChild(this.byline);
+					
+					this.total = document.getElementById(t);
 				},
 				
 				done: function() {
@@ -440,18 +448,21 @@
 					return s;
 				},
 
-				setScore: function(score, max) {
+				setScore: function(score, bonus, max) {
 					this.score += score;
+					this.bonus += bonus;
 					this.max += max;
 					
 					this.counter.innerHTML = this.score;
-					this.byline.innerHTML = 'Out of ' + this.max;
+					this.byline.innerHTML = 'and ' + (this.bonus ? this.bonus : 'no') + ' bonus points';
+					this.total.innerHTML = this.max;
 				}
 			}
 
 			function section (parent, name, url) { this.initialize(parent, name, url) }
 			section.prototype = {
 				value: 		0,
+				bonus:		0,
 				max:        0, 
 
 				initialize: function(parent, name, url) {
@@ -499,8 +510,10 @@
 					cell.innerHTML = result.passed ? 'Yes': 'No'
 					row.appendChild(cell);
 
+					if (typeof result.value == 'undefined') result.value = 0;
+					if (typeof result.bonus == 'undefined') result.bonus = 0;
 					if (typeof result.award == 'undefined') result.award = result.value;
-					this.setScore(result.passed ? result.award : 0, result.value);					
+					this.setScore(result.passed ? result.award : 0, result.bonus, result.value);					
 				},
 				
 				getGroup: function(name) {
@@ -515,11 +528,12 @@
 					return new group(this, container, name)
 				},
 				
-				setScore: function(value, max) {
+				setScore: function(value, bonus, max) {
 					this.value += value;
+					this.bonus += bonus;
 					this.max += max;
 
-					this.score.innerHTML = this.value + '/' + this.max;
+					this.score.innerHTML =  (this.bonus ? '<span>' + this.bonus + ' + </span>' : '') + (this.value == this.max ? this.value : this.value + '/' + this.max);
 					
 					var percent = parseInt(this.value / this.max * 100, 10);
 					switch (true) {
@@ -530,13 +544,14 @@
 						default:			this.score.className = 'great'; break;
 					}
 					
-					this.parent.setScore(value, max);
+					this.parent.setScore(value, bonus, max);
 				}
 			}
 			
 			function group (parent, container, name) { this.initialize(parent, container, name) }
 			group.prototype = {
 				value: 		0,
+				bonus:		0,
 				max:        0, 
 
 				initialize: function(parent, container, name) {
@@ -583,12 +598,15 @@
 					cell.innerHTML = result.passed ? 'Yes': 'No'
 					row.appendChild(cell);
 
+					if (typeof result.value == 'undefined') result.value = 0;
+					if (typeof result.bonus == 'undefined') result.bonus = 0;
 					if (typeof result.award == 'undefined') result.award = result.value;
-					this.setScore(result.passed ? result.award : 0, result.value);					
+					this.setScore(result.passed ? result.award : 0, result.bonus, result.value);					
 				},
 				
-				setScore: function(value, max) {
+				setScore: function(value, bonus, max) {
 					this.value += value;
+					this.bonus += bonus;
 					this.max += max;
 
 					if (this.value == 0) 
@@ -598,7 +616,7 @@
 					else
 						this.score.innerHTML = this.value + ' out of ' + this.max;
 						
-					this.parent.setScore(value, max);
+					this.parent.setScore(value, bonus, max);
 				}				
 			}
 			
@@ -613,6 +631,7 @@
 				
 				initialize: function(results) {
 					this.element = document.createElement('video');
+					this.codecs = 0;
 					
 					this.section = results.getSection(this.name);
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
@@ -627,28 +646,36 @@
 					this.section.setItem({
 						title: 	'<code>video</code> element', 
 						passed:	!!this.element.canPlayType, 
-						value: 	20
+						value: 	25
 					});
 				},
 
 				t2: function() {
-					this.section.setExplaination('HTML5 does not specify a required video codec. The following tests go beyond the requirements of the specification.')
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports more than one video codec bonus points are awarded.')
 				},
 					
 				t3: function() {
-					this.section.setItem({
+					var item = {
 						title: 	'H.264 codec support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'), 
-						value: 	5
-					});
+						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 5;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
 				},
 
 				t4: function() {
-					this.section.setItem({
+					var item = {
 						title: 	'Ogg Theora codec support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora, vorbis"'), 
-						value: 	5
-					});
+						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora, vorbis"')
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 5;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
 				}
 			};
 			
@@ -659,6 +686,7 @@
 				
 				initialize: function(results) {
 					this.element = document.createElement('audio');
+					this.codecs = 0;
 					
 					this.section = results.getSection(this.name);
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
@@ -678,39 +706,55 @@
 				},
 
 				t2: function() {
-					this.section.setExplaination('HTML5 does not specify a required audio codec. The following tests go beyond the requirements of the specification.')
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports more than one audio codec bonus points are awarded.')
 				},
 
 				t3: function() {
-					this.section.setItem({
+					var item = {
 						title: 	'MP3 codec support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/mpeg;'), 
-						value: 	2
-					});
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 2;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
 				},
 
 				t4: function() {
-					this.section.setItem({
+					var item = {
 						title: 	'Ogg Vorbis support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"'), 
-						value: 	2
-					});
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 2;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
 				},
 
 				t5: function() {
-					this.section.setItem({
+					var item = {
 						title: 	'AAC codec support', 
 						passed:	!!this.element.canPlayType && (this.canPlayType('audio/x-m4a;') || this.canPlayType('audio/aac;')), 
-						value: 	2
-					});
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 2;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
 				},
 
 				t6: function() {
-					this.section.setItem({
+					var item = {
 						title: 	'WAV codec support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"'), 
-						value: 	2
-					});
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 2;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
 				}
 			};
 			
@@ -1248,7 +1292,7 @@
 			};
 
 			function startTest() {
-				var t = new test('results');
+				var t = new test('results', 'total');
 			}
 			
 		//-->
