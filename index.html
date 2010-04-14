@@ -1043,17 +1043,17 @@
 					container.innerHTML = "<ruby id='ruby'><rp id='rp'></rp><rt id='rt'></rt></ruby>";
 
 					var element = document.getElementById('ruby');
-					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby';
+					var r = element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby';
 					if (r) score++;
 					group.setItem('<code>ruby</code> element', r);					
 
 					var element = document.getElementById('rt');
-					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby-text';
+					var r = element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby-text';
 					if (r) score++;
 					group.setItem('<code>rt</code> element', r);	
 
 					var element = document.getElementById('rp');
-					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'hidden';
+					var r = element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'hidden';
 					if (r) score++;
 					group.setItem('<code>rp</code> element', r);	
 					
