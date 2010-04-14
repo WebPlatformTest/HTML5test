@@ -146,7 +146,7 @@
 				position: relative;
 				
 				font-size: 1.1em;
-				padding: 4px 10px 6px;
+				padding: 4px 11px 6px;
 				margin: 0 0 1em;
 				background: #f0f0f0;
 				list-style-type: none;
@@ -208,11 +208,15 @@
 				margin: 3px 0 0;
 				line-height: 100%;
 				font-size: 0.70em;
+				border-spacing: 0;
 			}
 			#results ul li table th,
 			#results ul li table td {
-				padding: 5px 0;
+				padding: 6px 0;
 				vertical-align: bottom;
+			}
+			#results ul li table td.container {
+				padding: 0;
 			}
 			#results ul li table th {
 				font-weight: normal;
@@ -223,6 +227,31 @@
 			}
 			#results ul li table th code {
 				font-size: 1.2em;
+			}
+			#results ul li table table {
+				font-size: 1em;
+				margin: 0;
+			}
+			#results ul li table table.visible {
+				margin: 0 0 8px;
+			}
+			#results ul li table table thead th {
+				cursor: pointer;
+				padding-left: 20px;
+				background: url(images/triangle.png) left 7px no-repeat;
+			}
+			#results ul li table table.visible thead th {
+				padding-left: 20px;
+				background: url(images/triangle.png) left -18px no-repeat;
+			}
+			#results ul li table table tbody {
+				display: none;
+			}
+			#results ul li table table.visible tbody {
+				display: table-row-group;
+			}
+			#results ul li table table tbody th {
+				padding-left: 20px;
 			}
 			
 			#legend {
@@ -450,6 +479,18 @@
 					row.appendChild(cell);
 				},
 				
+				getGroup: function(name) {
+					var row = document.createElement ('tr');
+					this.body.appendChild(row);
+					
+					var container = document.createElement ('td');
+					container.colSpan = 2;
+					container.className = 'container';
+					row.appendChild(container)
+					
+					return new group(this, container, name)
+				},
+				
 				setScore: function(value, max) {
 					this.score.innerHTML = value + '/' + max;
 					
@@ -465,6 +506,61 @@
 					this.parent.setScore(value, max);
 				}
 			}
+			
+			function group (parent, container, name) { this.initialize(parent, container, name) }
+			group.prototype = {
+				initialize: function(parent, container, name) {
+					this.parent = parent;
+					this.container = container;
+					
+					this.table = document.createElement('table');
+					this.container.appendChild(this.table);
+
+					this.head = document.createElement('thead');
+					this.table.appendChild(this.head);
+
+					var row = document.createElement('tr');
+					var table = this.table;
+					row.onclick = function() {
+						if (table.className == 'visible') {
+							table.className = '';
+						} else {
+							table.className = 'visible';
+						}
+					};
+					this.head.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = name;
+					row.appendChild(head);
+
+					this.score = document.createElement('td');
+					row.appendChild(this.score);
+					
+					this.body = document.createElement('tbody');
+					this.table.appendChild(this.body);
+				},
+				
+				setItem: function(name, result) {
+					var row = document.createElement('tr');
+					this.body.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = name;
+					row.appendChild(head);
+
+					var cell = document.createElement('td');
+					cell.innerHTML = result ? 'Yes': 'No'
+					row.appendChild(cell);
+				},
+				
+				setScore: function(value, max) {
+					this.score.innerHTML = value + ' out of ' + max;
+					this.parent.setScore(value, max);
+				}				
+			}
+			
+			
 						
 			function testVideo (results) { this.initialize(results) }			
 			testVideo.prototype = {
@@ -873,6 +969,9 @@
 				count: 	4,
 				
 				initialize: function(results) {
+					this.section = results.getSection('Elements', 'http://www.w3.org/TR/html5/semantics.html#sections');
+	
+	
 					this.results = results;
 					var r = 0; for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
@@ -894,16 +993,15 @@
 				},
 				
 				t1: function() {
-					var section = this.results.getSection('Elements', 'http://www.w3.org/TR/html5/semantics.html#sections');
 					var element = document.createElement('div');
 					element.setAttribute('data-test', 'test');
 					var r = 'dataset' in element;
-					section.setItem('Embedding custom non-visible data', r);	
-					section.setScore(r ? 5 : 0, 5);
+					this.section.setItem('Embedding custom non-visible data', r);	
+					this.section.setScore(r ? 5 : 0, 5);
 				},
 				
 				t2: function() {
-					var section = this.results.getSection('Section elements', 'http://www.w3.org/TR/html5/semantics.html#sections');
+					var group = this.section.getGroup('Section elements');
 					var elements = 'section nav article aside hgroup header footer'.split(' ');
 					var score = 0;
 					
@@ -912,15 +1010,15 @@
 						document.body.appendChild(element);
 						var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block';
 						if (r) score++;
-						section.setItem('<code>' + elements[e] + '</code> element', r);
+						group.setItem('<code>' + elements[e] + '</code> element', r);
 						document.body.removeChild(element);
 					}
 					
-					section.setScore(score, 7);
+					group.setScore(score, 7);
 				},
 
 				t3: function() {
-					var section = this.results.getSection('Grouping content elements', 'http://www.w3.org/TR/html5/semantics.html#grouping-content');
+					var group = this.section.getGroup('Grouping content elements'); //, 'http://www.w3.org/TR/html5/semantics.html#grouping-content');
 					var elements = 'figure figcaption'.split(' ');
 					var score = 0;
 					
@@ -929,22 +1027,22 @@
 						document.body.appendChild(element);
 						var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block';
 						if (r) score++;
-						section.setItem('<code>' + elements[e] + '</code> element', r);
+						group.setItem('<code>' + elements[e] + '</code> element', r);
 						document.body.removeChild(element);
 					}
 					
-					section.setScore(score, 2);
+					group.setScore(score, 2);
 				},
 
 				t4: function() {
-					var section = this.results.getSection('Text-level semantic elements', 'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics');
+					var group = this.section.getGroup('Text-level semantic elements'); //, 'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics');
 					var score = 0;
 
 					var element = document.createElement('mark');
 					document.body.appendChild(element);
 					var r = element.toString() == '[object HTMLElement]' && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)');
 					if (r) score++;
-					section.setItem('<code>mark</code> element', r);
+					group.setItem('<code>mark</code> element', r);
 					document.body.removeChild(element);
 					
 					var container = document.createElement('div');
@@ -954,26 +1052,26 @@
 					var element = document.getElementById('ruby');
 					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby';
 					if (r) score++;
-					section.setItem('<code>ruby</code> element', r);					
+					group.setItem('<code>ruby</code> element', r);					
 
 					var element = document.getElementById('rt');
 					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby-text';
 					if (r) score++;
-					section.setItem('<code>rt</code> element', r);	
+					group.setItem('<code>rt</code> element', r);	
 
 					var element = document.getElementById('rp');
 					var r = element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'hidden';
 					if (r) score++;
-					section.setItem('<code>rp</code> element', r);	
+					group.setItem('<code>rp</code> element', r);	
 					
 					document.body.removeChild(container);
 					
 					var element = document.createElement('time');
 					var r = element.toString() == '[object HTMLTimeElement]';
-					section.setItem('<code>time</code> element', r);
+					group.setItem('<code>time</code> element', r);
 					if (r) score++;
 
-					section.setScore(score, 5);
+					group.setScore(score, 5);
 				}
 			};		
 			
