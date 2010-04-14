@@ -344,7 +344,7 @@
 			test.prototype = {
 				suites: [ 
 					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testStorage, testElements, testForm, testInteraction ] },
-					{ title: 'Related specifications', sections: [ testGeolocation, testMessaging, testDatabase, testWorkers ] }
+					{ title: 'Related specifications', sections: [ testGeolocation, testCommunication, testDatabase, testWorkers ] }
 				],
 				
 				initialize: function(e) {					
@@ -732,12 +732,12 @@
 				}
 			};
 			
-			function testMessaging (results) { this.initialize(results) }			
-			testMessaging.prototype = {
-				name: 	'Web Messaging',
+			function testCommunication (results) { this.initialize(results) }			
+			testCommunication.prototype = {
+				name: 	'Communication',
 				url:    'http://dev.w3.org/html5/postmsg/',
-				count: 	1,
-				max:    5,
+				count: 	2,
+				max:    15,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name, this.url);
@@ -749,6 +749,12 @@
 					var r = !!window.postMessage;
 					this.section.setItem('Cross-document messaging', r)
 					return r ? 5 : 0;
+				},
+				
+				t2: function() {
+					var r = 'WebSocket' in window;
+					this.section.setItem('WebSocket', r)
+					return r ? 10 : 0;
 				}
 			};
 			
@@ -796,7 +802,6 @@
 
 				t3: function() {
 					var element = document.createElement('keygen');
-					console.debug(element);
 					var r = element.toString() == '[object HTMLKeygenElement]' || element.childNodes.length;
 					this.section.setItem('<code>keygen</code> element', r);
 					
