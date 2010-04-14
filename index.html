@@ -344,7 +344,7 @@
 			test.prototype = {
 				suites: [ 
 					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testStorage, testElements, testForm, testInteraction ] },
-					{ title: 'Related specifications', sections: [ testGeolocation, testCommunication, testDatabase, testWorkers ] }
+					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testDatabase, testWorkers ] }
 				],
 				
 				initialize: function(e) {					
@@ -610,6 +610,40 @@
 				}
 			};
 		
+			function testWebGL (results) { this.initialize(results) }			
+			testWebGL.prototype = {
+				name: 	'WebGL',
+				url:    'https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/WebGL-spec.html',
+				count: 	1,
+				max:    10,
+				
+				initialize: function(results) {
+					this.canvas = document.createElement('canvas');
+
+					this.section = results.getSection(this.name, this.url);
+					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
+					this.section.setScore(r, this.max);
+				},
+				
+				t1: function() {
+					var element = document.createElement('canvas');
+					var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
+					var r = false;
+            
+			        for (var b = -1, len = contexts.length; ++b < len;) {
+			            try {
+			                if (element.getContext(contexts[b])) {
+			                	r = true;
+			                	break;
+			                };	
+			            } catch(e){	}
+			        }
+       				
+       				this.section.setItem('3D context', r)
+					return r ? 10 : 0;
+				}
+			};
+		
 			function testStorage (results) { this.initialize(results) }			
 			testStorage.prototype = {
 				name: 	'Storage',
@@ -754,6 +788,26 @@
 				t2: function() {
 					var r = 'WebSocket' in window;
 					this.section.setItem('WebSocket', r)
+					return r ? 10 : 0;
+				}
+			};			
+			
+			function testFiles (results) { this.initialize(results) }			
+			testFiles.prototype = {
+				name: 	'Files',
+				url:    'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
+				count: 	1,
+				max:    10,
+								
+				initialize: function(results) {
+					this.section = results.getSection(this.name, this.url);
+					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
+					this.section.setScore(r, this.max);
+				},
+				
+				t1: function() {
+					var r = 'FileReader' in window;
+					this.section.setItem('FileReader API', r)
 					return r ? 10 : 0;
 				}
 			};
