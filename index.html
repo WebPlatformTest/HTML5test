@@ -800,7 +800,7 @@
 			testStorage.prototype = {
 				name: 	'Storage',
 				url:    'http://dev.w3.org/html5/webstorage/',
-				count: 	4,
+				count: 	5,
 				max:    18,
 				
 				initialize: function(results) {
@@ -826,16 +826,22 @@
 				},
 				
 				t3: function() {
-					var r = !!window.openDatabase;
-					this.section.setItem('Web SQL Database', r)
-					return r && !this.hasIndexedDB() ? 3 : 0;
-				},
-				
-				t4: function() {
 					var r = this.hasIndexedDB();
 					this.section.setItem('IndexedDB', r)
 					return r ? 10 : 0;
+				},
+				
+				t4: function() {
+					this.section.setExplaination('The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.')
+					return 0;
+				},
+					
+				t5: function() {
+					var r = !!window.openDatabase;
+					this.section.setItem('Web SQL Database', r)
+					return r && !this.hasIndexedDB() ? 3 : 0;
 				}
+				
 			};
 
 			function testWorkers (results) { this.initialize(results) }			
