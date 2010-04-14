@@ -892,18 +892,18 @@
 			testForm.prototype = {
 				name: 	'Forms',
 				url:    'http://www.w3.org/TR/html5/forms.html#forms',
-				count: 	6,
-				max: 	27,
+				count: 	3,
 				
 				initialize: function(results) {
 					this.field = document.createElement('input');
 					
 					this.section = results.getSection(this.name, this.url);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-					this.section.setScore(r, this.max);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+					// this.section.setScore(r, this.max);
 				},
 				
 				t1: function() {
+					var group = this.section.getGroup('<code>input</code> element types');
 					var types = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
 					var score = 0;
 					
@@ -911,55 +911,51 @@
 						this.field.setAttribute('type', types[t]);
 						var r = this.field.type != 'text';
 						if (r) score++;
-						this.section.setItem('<code>' + types[t] + '</code> input type', r);
+						group.setItem('<code>' + types[t] + '</code> type', r);
 					}
 					
-					return score;
+					group.setScore(score, types.length);
 				},
 
 				t2: function() {
+					var group = this.section.getGroup('<code>input</code> element attributes');
 					var props = 'autocomplete autofocus list placeholder max min multiple pattern required step'.split(' ');
 					var score = 0;
 					
 					for (var p in props) {
         				var r = !!(props[p] in this.field);
 						if (r) score++;
-						this.section.setItem('<code>' + props[p] + '</code> input attribute', r);
+						group.setItem('<code>' + props[p] + '</code> attribute', r);
         			}
         
-					return score;
+					group.setScore(score, props.length);
 				},
 
 				t3: function() {
+					var group = this.section.getGroup('Other element');
+					var score = 0;
+					
 					var element = document.createElement('keygen');
 					var r = element.toString() == '[object HTMLKeygenElement]' || element.childNodes.length;
-					this.section.setItem('<code>keygen</code> element', r);
+					if (r) score++;
+					group.setItem('<code>keygen</code> element', r);
 					
-					return r ? 1 : 0;
-				},
-
-				t4: function() {
 					var element = document.createElement('output');
 					var r = element.toString() == '[object HTMLOutputElement]';
-					this.section.setItem('<code>output</code> element', r);
-					
-					return r ? 1 : 0;
-				},
+					if (r) score++;
+					group.setItem('<code>output</code> element', r);
 
-				t5: function() {
 					var element = document.createElement('progress');
 					var r = element.toString() == '[object HTMLProgressElement]';
-					this.section.setItem('<code>progress</code> element', r);
-					
-					return r ? 1 : 0;
-				},
+					if (r) score++;
+					group.setItem('<code>progress</code> element', r);
 
-				t6: function() {
 					var element = document.createElement('meter');
 					var r = element.toString() == '[object HTMLMeterElement]';
-					this.section.setItem('<code>meter</code> element', r);
-					
-					return r ? 1 : 0;
+					if (r) score++;
+					group.setItem('<code>meter</code> element', r);
+
+					group.setScore(score, 4);
 				}				
 			};
 			
@@ -970,9 +966,6 @@
 				
 				initialize: function(results) {
 					this.section = results.getSection('Elements', 'http://www.w3.org/TR/html5/semantics.html#sections');
-	
-	
-					this.results = results;
 					var r = 0; for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
