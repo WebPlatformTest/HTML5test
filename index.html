@@ -712,7 +712,7 @@
 				t3: function() {
 					var item = {
 						title: 	'MP3 codec support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('audio/mpeg;'), 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/mpeg;')
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 2;
@@ -724,7 +724,7 @@
 				t4: function() {
 					var item = {
 						title: 	'Ogg Vorbis support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"'), 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 2;
@@ -736,7 +736,7 @@
 				t5: function() {
 					var item = {
 						title: 	'AAC codec support', 
-						passed:	!!this.element.canPlayType && (this.canPlayType('audio/x-m4a;') || this.canPlayType('audio/aac;')), 
+						passed:	!!this.element.canPlayType && (this.canPlayType('audio/x-m4a;') || this.canPlayType('audio/aac;'))
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 2;
@@ -748,7 +748,7 @@
 				t6: function() {
 					var item = {
 						title: 	'WAV codec support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"'), 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 2;
