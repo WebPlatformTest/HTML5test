@@ -659,8 +659,7 @@
 				},
 				
 				canPlayType: function(t) {
-					var r = this.element.canPlayType(t)
-					return r == 'maybe' || r == 'probably';
+					return this.element.canPlayType(t) == 'probably';
 				},
 				
 				t1: function() {
@@ -678,8 +677,8 @@
 					
 				t3: function() {
 					var item = {
-						title: 	'H.264 codec support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
+						title: 	'H.264 support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E"')
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 5;
@@ -690,8 +689,8 @@
 
 				t4: function() {
 					var item = {
-						title: 	'Ogg Theora codec support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora, vorbis"')
+						title: 	'Ogg Theora support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 5;
@@ -715,8 +714,7 @@
 				},
 				
 				canPlayType: function(t) {
-					var r = this.element.canPlayType(t)
-					return r == 'maybe' || r == 'probably';
+					return this.element.canPlayType(t) == 'probably';
 				},
 				
 				t1: function() {
@@ -733,9 +731,21 @@
 				},
 
 				t3: function() {
+					var r = false;
+					if (this.element.canPlayType) {
+						var t = this.element.canPlayType('audio/mpeg; codecs="mp3"');
+						if (t == 'maybe') {
+							// We need to check if the browser really supports playing MP3s by loading one and seeing if the
+							// loadedmetadata event is triggered... but for now assume it does support it...
+							r = true;
+						} else if (t == 'probably') {
+							r = true;
+						}
+					}
+				
 					var item = {
-						title: 	'MP3 codec support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('audio/mpeg;')
+						title: 	'MP3 support', 
+						passed:	r
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 2;
@@ -758,8 +768,8 @@
 
 				t5: function() {
 					var item = {
-						title: 	'AAC codec support', 
-						passed:	!!this.element.canPlayType && (this.canPlayType('audio/x-m4a;') || this.canPlayType('audio/aac;'))
+						title: 	'AAC support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 2;
@@ -770,7 +780,7 @@
 
 				t6: function() {
 					var item = {
-						title: 	'WAV codec support', 
+						title: 	'PCM audio support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
 					};
 					
