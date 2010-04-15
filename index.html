@@ -160,19 +160,15 @@
 				background: #f0f0f0 -webkit-gradient(linear, left top, left 86, from(#e6e6e6), to(#f0f0f0), color-stop(0.5, #f6f6f6), color-stop(0.5, #d6d6d6));
 				background: #f0f0f0 -moz-linear-gradient(top, #e6e6e6, #f6f6f6 43px, #d6d6d6 43px, #f0f0f0);
 			}
-			#results ul li a {
+			#results ul li strong {
 				color: #000;
 				display: block;
 				width: 66%;
 				overflow: hidden;
 				white-space: nowrap;
 				font-weight: bold;
-				text-decoration: none;
 				text-overflow: ellipsis;
 				text-overflow: ellipsis-word;
-			}
-			#results ul li a:hover {
-				text-decoration: underline;
 			}
 			#results ul li em {
 				position: absolute;
@@ -236,6 +232,13 @@
 			}
 			#results ul li table th code {
 				font-size: 1.2em;
+			}
+			#results ul li table th a {
+				color: #000;
+				text-decoration: none;
+			}
+			#results ul li table th a:hover {
+				text-decoration: underline;
 			}
 			#results ul li table table {
 				font-size: 1em;
@@ -503,8 +506,17 @@
 					this.body.appendChild(row);
 
 					var head = document.createElement('th');
-					head.innerHTML = result.title;
 					row.appendChild(head);
+					
+					if (typeof result.url != 'undefined') {
+						var link = document.createElement('a');
+						link.href = result.url;
+						head.appendChild(link);
+						
+						link.innerHTML = result.title;
+					} else {
+						head.innerHTML = result.title;
+					}
 
 					var cell = document.createElement('td');
 					cell.innerHTML = result.passed ? 'Yes': 'No'
@@ -591,8 +603,17 @@
 					this.body.appendChild(row);
 
 					var head = document.createElement('th');
-					head.innerHTML = result.title;
 					row.appendChild(head);
+
+					if (typeof result.url != 'undefined') {
+						var link = document.createElement('a');
+						link.href = result.url;
+						head.appendChild(link);
+						
+						link.innerHTML = result.title;
+					} else {
+						head.innerHTML = result.title;
+					}
 
 					var cell = document.createElement('td');
 					cell.innerHTML = result.passed ? 'Yes': 'No'
@@ -645,6 +666,7 @@
 				t1: function() {
 					this.section.setItem({
 						title: 	'<code>video</code> element', 
+						url:	'http://www.w3.org/TR/html5/video.html#video',
 						passed:	!!this.element.canPlayType, 
 						value: 	25
 					});
@@ -700,6 +722,7 @@
 				t1: function() {
 					this.section.setItem({
 						title: 	'<code>audio</code> element', 
+						url:	'http://www.w3.org/TR/html5/video.html#audio',
 						passed:	!!this.element.canPlayType, 
 						value: 	16
 					});
@@ -795,6 +818,7 @@
 				t1: function() {
 					this.section.setItem({
 						title: 	'<code>canvas</code> element', 
+						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element',
 						passed:	!!this.canvas.getContext, 
 						value: 	2
 					});
@@ -812,6 +836,7 @@
 				t3: function() {
 					this.section.setItem({
 						title: 	'Text', 
+						url:	'http://www.w3.org/TR/2dcontext/#text',
 						passed:	this.canvas.getContext && typeof this.canvas.getContext('2d').fillText == 'function', 
 						value: 	4
 					});
@@ -866,6 +891,7 @@
 				t1: function() {
 					this.section.setItem({
 						title: 	'Application Cache', 
+						url:	'http://www.w3.org/TR/html5/offline.html#offline',
 						passed:	!!window.applicationCache, 
 						value: 	8
 					});
@@ -893,7 +919,7 @@
 				t1: function() {
 					this.section.setItem({
 						title: 	'Session Storage', 
-						url:    'http://dev.w3.org/html5/webstorage/',
+						url:    'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute',
 						passed:	'sessionStorage' in window, 
 						value: 	4
 					});
@@ -902,7 +928,7 @@
 				t2: function() {
 					this.section.setItem({
 						title: 	'Local Storage', 
-						url:    'http://dev.w3.org/html5/webstorage/',
+						url:    'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
 						passed:	'localStorage' in window, 
 						value: 	4
 					});
@@ -911,6 +937,7 @@
 				t3: function() {
 					this.section.setItem({
 						title: 	'IndexedDB', 
+						url:	'http://www.w3.org/TR/IndexedDB/',
 						passed:	this.hasIndexedDB(), 
 						value: 	10
 					});
@@ -923,6 +950,7 @@
 				t5: function() {
 					this.section.setItem({
 						title: 	'Web SQL Database', 
+						url:	'http://www.w3.org/TR/webdatabase/',
 						passed:	this.hasWebSQLDatabase(), 
 						value: 	0,
 						award:  !this.hasIndexedDB() ? 3 : 0	/* only award points if IndexedDB is not implemented */
@@ -943,7 +971,7 @@
 				t1: function() {
 					this.section.setItem({
 						title: 	'Web Workers', 
-						url:    'http://dev.w3.org/html5/workers/',
+						url:    'http://www.w3.org/TR/workers/',
 						passed:	!!window.Worker, 
 						value: 	6
 					});
@@ -992,6 +1020,7 @@
 				t2: function() {
 					this.section.setItem({
 						title: 	'WebSocket', 
+						url:	'http://www.w3.org/TR/websockets/',
 						passed:	'WebSocket' in window, 
 						value: 	10
 					});
@@ -1033,12 +1062,14 @@
 				t1: function() {
 					var group = this.section.getGroup('<code>input</code> element types');
 					var types = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
+					var states = 'text-state-and-search telephone url e-mail date-and-time date month week time local-date-and-time number range color'.split(' ');
 					
 					for (var t in types) {
 						this.field.setAttribute('type', types[t]);
 						
 						group.setItem({
-							title: 	'<code>' + types[t] + '</code> type', 
+							title: 	'<code>' + types[t] + '</code> type state', 
+							url:	'http://www.w3.org/TR/html5/forms.html#' + states[t] + '-state',
 							passed:	this.field.type != 'text', 
 							value: 	1
 						});
@@ -1052,6 +1083,7 @@
 					for (var p in props) {
  						group.setItem({
 							title: 	'<code>' + props[p] + '</code> attribute', 
+							url:	'http://www.w3.org/TR/html5/forms.html#the-' + props[p] + '-attribute',
 							passed:	!!(props[p] in this.field), 
 							value: 	1
 						});
@@ -1064,6 +1096,7 @@
 					var element = document.createElement('keygen');
 					group.setItem({
 						title: 	'<code>keygen</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
 						passed:	element.toString() == '[object HTMLKeygenElement]' || element.childNodes.length, 
 						value: 	1
 					});
@@ -1071,6 +1104,7 @@
 					var element = document.createElement('output');
 					group.setItem({
 						title: 	'<code>output</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-output-element',
 						passed:	element.toString() == '[object HTMLOutputElement]', 
 						value: 	1
 					});
@@ -1078,6 +1112,7 @@
 					var element = document.createElement('progress');
 					group.setItem({
 						title: 	'<code>progress</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-progress-element',
 						passed:	element.toString() == '[object HTMLProgressElement]', 
 						value: 	1
 					});
@@ -1085,6 +1120,7 @@
 					var element = document.createElement('meter');
 					group.setItem({
 						title: 	'<code>meter</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
 						passed:	element.toString() == '[object HTMLMeterElement]', 
 						value: 	1
 					});
@@ -1123,6 +1159,7 @@
 					
 					this.section.setItem({
 						title: 	'Embedding custom non-visible data', 
+						url:	'http://www.w3.org/TR/html5/dom.html#embedding-custom-non-visible-data',
 						passed:	'dataset' in element, 
 						value: 	5
 					});
@@ -1138,6 +1175,7 @@
 
  						group.setItem({
 							title: 	'<code>' + elements[e] + '</code> element', 
+							url:	'http://www.w3.org/TR/html5/semantics.html#the-' + elements[e] + '-element',
 							passed:	element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block', 
 							value: 	1
 						});
@@ -1156,7 +1194,7 @@
 
  						group.setItem({
 							title: 	'<code>' + elements[e] + '</code> element', 
-							url:	'http://www.w3.org/TR/html5/semantics.html#grouping-content',
+							url:	'http://www.w3.org/TR/html5/semantics.html#the-' + elements[e] + '-element',
 							passed:	element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block', 
 							value: 	1
 						});
@@ -1173,7 +1211,7 @@
 
 					group.setItem({
 						title: 	'<code>mark</code> element', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element',
 						passed:	element.toString() == '[object HTMLElement]' && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)'), 
 						value: 	1
 					});
@@ -1187,7 +1225,7 @@
 
 					group.setItem({
 						title: 	'<code>ruby</code> element', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element',
 						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby', 
 						value: 	1
 					});
@@ -1196,7 +1234,7 @@
 
 					group.setItem({
 						title: 	'<code>rt</code> element', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rt-element',
 						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby-text', 
 						value: 	1
 					});
@@ -1205,7 +1243,7 @@
 
 					group.setItem({
 						title: 	'<code>rp</code> element', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rp-element',
 						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'hidden', 
 						value: 	1
 					});
@@ -1216,7 +1254,7 @@
 
 					group.setItem({
 						title: 	'<code>time</code> element', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#text-level-semantics',
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-time-element',
 						passed:	element.toString() == '[object HTMLTimeElement]', 
 						value: 	1
 					});
@@ -1238,6 +1276,7 @@
 					
 					this.section.setItem({
 						title: 	'<code>hidden</code> attribute', 
+						url:	'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute',
 						passed:	'hidden' in element, 
 						value: 	2
 					});
@@ -1248,6 +1287,7 @@
 					
 					this.section.setItem({
 						title: 	'Scroll into view', 
+						url:	'http://www.w3.org/TR/html5/editing.html#scrolling-elements-into-view',
 						passed:	!!element.scrollIntoView, 
 						value: 	2
 					});
@@ -1258,6 +1298,7 @@
 					
 					this.section.setItem({
 						title: 	'<code>contenteditable</code> attribute', 
+						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
 						passed:	'contentEditable' in element, 
 						value: 	5
 					});
@@ -1268,6 +1309,7 @@
 					
 					this.section.setItem({
 						title: 	'Drag and drop', 
+						url:	'http://www.w3.org/TR/html5/editing.html#dnd',
 						passed:	'draggable' in element, 
 						value: 	5
 					});
@@ -1275,7 +1317,8 @@
 				
 				t5: function() {
 					this.section.setItem({
-						title: 	'Undo manager', 
+						title: 	'Undo history',
+						url:	'http://www.w3.org/TR/html5/editing.html#undo', 
 						passed:	!!window.undoManager,
 						value: 	5
 					});
@@ -1283,7 +1326,8 @@
 				
 				t6: function() {
 					this.section.setItem({
-						title: 	'Session history manager', 
+						title: 	'Session history', 
+						url:	'http://www.w3.org/TR/html5/history.html#history',
 						passed:	!!(window.history && history.pushState && history.popState), 
 						value: 	5
 					});
