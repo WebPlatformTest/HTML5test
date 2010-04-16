@@ -733,7 +733,7 @@
 				t3: function() {
 					var r = false;
 					if (this.element.canPlayType) {
-						var t = this.element.canPlayType('audio/mpeg; codecs="mp3"');
+						var t = this.element.canPlayType('audio/mpeg');
 						if (t == 'maybe') {
 							// We need to check if the browser really supports playing MP3s by loading one and seeing if the
 							// loadedmetadata event is triggered... but for now assume it does support it...
