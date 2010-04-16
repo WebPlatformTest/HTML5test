@@ -1163,6 +1163,16 @@
 				    }
 				},
 				
+				isBlock: function(element) {
+					return this.getStyle(element, 'display') == 'block';
+				},
+				
+				closesImplicitly: function(name) {
+					var foo = document.createElement('div');
+					foo.innerHTML = '<p><' + name + '></' + name + '>';
+					return foo.childNodes.length == 2;
+				},
+				
 				t1: function() {
 					var element = document.createElement('div');
 					element.setAttribute('data-test', 'test');
@@ -1186,7 +1196,7 @@
  						group.setItem({
 							title: 	'<code>' + elements[e] + '</code> element', 
 							url:	'http://www.w3.org/TR/html5/semantics.html#the-' + elements[e] + '-element',
-							passed:	element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block', 
+							passed:	element.toString() == '[object HTMLElement]' && this.isBlock(element) && this.closesImplicitly(elements[e]), 
 							value: 	1
 						});
 
@@ -1205,7 +1215,7 @@
  						group.setItem({
 							title: 	'<code>' + elements[e] + '</code> element', 
 							url:	'http://www.w3.org/TR/html5/semantics.html#the-' + elements[e] + '-element',
-							passed:	element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'block', 
+							passed:	element.toString() == '[object HTMLElement]' && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e])), 
 							value: 	1
 						});
 
