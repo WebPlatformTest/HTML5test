@@ -658,8 +658,15 @@
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
+				isIPhone: function() {
+    				return !!navigator.userAgent.match('iPhone OS');
+				},
+				
 				canPlayType: function(t) {
-					return this.element.canPlayType(t) == 'probably';
+					if (this.isIPhone())
+						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
+					else 
+						return this.element.canPlayType(t) == 'probably';
 				},
 				
 				t1: function() {
@@ -713,8 +720,15 @@
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
+				isIPhone: function() {
+    				return !!navigator.userAgent.match('iPhone OS');
+				},
+				
 				canPlayType: function(t) {
-					return this.element.canPlayType(t) == 'probably';
+					if (this.isIPhone())
+						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
+					else 
+						return this.element.canPlayType(t) == 'probably';
 				},
 				
 				t1: function() {
