@@ -648,7 +648,7 @@
 			function testVideo (results) { this.initialize(results) }			
 			testVideo.prototype = {
 				name: 	'Video',
-				count: 	4,
+				count: 	5,
 				
 				initialize: function(results) {
 					this.element = document.createElement('video');
@@ -684,6 +684,18 @@
 					
 				t3: function() {
 					var item = {
+						title: 	'MPEG-4 support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 5;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
+				},
+
+				t4: function() {
+					var item = {
 						title: 	'H.264 support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E"')
 					};
@@ -694,7 +706,7 @@
 					this.section.setItem(item);
 				},
 
-				t4: function() {
+				t5: function() {
 					var item = {
 						title: 	'Ogg Theora support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
@@ -1025,7 +1037,7 @@
 			function testCommunication (results) { this.initialize(results) }			
 			testCommunication.prototype = {
 				name: 	'Communication',
-				count: 	2,
+				count: 	3,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -1046,6 +1058,15 @@
 						title: 	'WebSocket', 
 						url:	'http://www.w3.org/TR/websockets/',
 						passed:	'WebSocket' in window, 
+						value: 	10
+					});
+				},
+				
+				t3: function() {
+					this.section.setItem({
+						title: 	'Server-Sent Events', 
+						url:	'http://www.w3.org/TR/eventsource/',
+						passed:	'EventSource' in window, 
 						value: 	10
 					});
 				}
