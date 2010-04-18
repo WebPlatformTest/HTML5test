@@ -1217,7 +1217,7 @@
 			function testElements (results) { this.initialize(results) }			
 			testElements.prototype = {
 				name: 	'Elements',
-				count: 	4,
+				count: 	7,
 				
 				initialize: function(results) {
 					this.section = results.getSection('Elements');
@@ -1258,7 +1258,7 @@
 						title: 	'Embedding custom non-visible data', 
 						url:	'http://www.w3.org/TR/html5/dom.html#embedding-custom-non-visible-data',
 						passed:	'dataset' in element, 
-						value: 	5
+						value: 	4
 					});
 				},
 				
@@ -1355,13 +1355,46 @@
 						passed:	element.toString() == '[object HTMLTimeElement]', 
 						value: 	1
 					});
+				},
+				
+				t5: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'<code>hidden</code> attribute', 
+						url:	'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute',
+						passed:	'hidden' in element, 
+						value: 	1
+					});
+				},
+				
+				t6: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'Scroll into view', 
+						url:	'http://www.w3.org/TR/html5/editing.html#scrolling-elements-into-view',
+						passed:	!!element.scrollIntoView, 
+						value: 	1
+					});
+				},
+
+				t7: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'<code>contenteditable</code> attribute', 
+						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
+						passed:	'contentEditable' in element, 
+						value: 	10
+					});
 				}
 			};		
 			
 			function testInteraction (results) { this.initialize(results) }			
 			testInteraction.prototype = {
 				name: 	'User interaction',
-				count: 	6,
+				count: 	3,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -1372,47 +1405,14 @@
 					var element = document.createElement('div');
 					
 					this.section.setItem({
-						title: 	'<code>hidden</code> attribute', 
-						url:	'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute',
-						passed:	'hidden' in element, 
-						value: 	2
+						title: 	'Drag and drop', 
+						url:	'http://www.w3.org/TR/html5/editing.html#dnd',
+						passed:	'draggable' in element, 
+						value: 	10
 					});
 				},
 				
 				t2: function() {
-					var element = document.createElement('div');
-					
-					this.section.setItem({
-						title: 	'Scroll into view', 
-						url:	'http://www.w3.org/TR/html5/editing.html#scrolling-elements-into-view',
-						passed:	!!element.scrollIntoView, 
-						value: 	2
-					});
-				},
-
-				t3: function() {
-					var element = document.createElement('div');
-					
-					this.section.setItem({
-						title: 	'<code>contenteditable</code> attribute', 
-						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
-						passed:	'contentEditable' in element, 
-						value: 	5
-					});
-				},
-				
-				t4: function() {
-					var element = document.createElement('div');
-					
-					this.section.setItem({
-						title: 	'Drag and drop', 
-						url:	'http://www.w3.org/TR/html5/editing.html#dnd',
-						passed:	'draggable' in element, 
-						value: 	5
-					});
-				},
-				
-				t5: function() {
 					this.section.setItem({
 						title: 	'Undo history',
 						url:	'http://www.w3.org/TR/html5/editing.html#undo', 
@@ -1421,7 +1421,7 @@
 					});
 				},
 				
-				t6: function() {
+				t3: function() {
 					this.section.setItem({
 						title: 	'Session history', 
 						url:	'http://www.w3.org/TR/html5/history.html#history',
