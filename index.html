@@ -250,6 +250,7 @@
 			}
 			#results ul li table td {
 				text-align: right;
+				white-space: nowrap;
 			}
 			#results ul li table th code {
 				font-size: 1.2em;
@@ -266,7 +267,7 @@
 				margin: 0;
 			}
 			#results ul li table table.visible {
-				margin: 0 0 8px;
+				margin: 0 0 12px;
 			}
 			#results ul li table table thead th {
 				cursor: pointer;
@@ -277,6 +278,11 @@
 				padding-left: 20px;
 				background: url(images/triangle.png) left -18px no-repeat;
 			}
+			#results ul li table table.visible thead th,
+			#results ul li table table.visible thead td {
+				border-bottom: 1px solid #ddd;
+			}
+
 			#results ul li table table tbody {
 				display: none;
 				font-size: 0.9em;
@@ -286,6 +292,20 @@
 			}
 			#results ul li table table tbody th {
 				padding-left: 20px;
+			}
+			#results .partially {
+				color: #888;
+			}
+			#results .check,
+			#results .ballot {
+				font-size: 1.2em;
+				margin: 0 0 0 6px;
+			}
+			#results .check {
+				color: #1c8c1d;
+			}
+			#results .ballot {
+				color: #853333;
 			}
 			
 			#legend {
@@ -548,7 +568,7 @@
 					}
 
 					var cell = document.createElement('td');
-					cell.innerHTML = result.passed ? 'Yes': 'No'
+					cell.innerHTML = result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>'
 					row.appendChild(cell);
 
 					if (typeof result.value == 'undefined') result.value = 0;
@@ -645,7 +665,7 @@
 					}
 
 					var cell = document.createElement('td');
-					cell.innerHTML = result.passed ? 'Yes': 'No'
+					cell.innerHTML = result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>'
 					row.appendChild(cell);
 
 					if (typeof result.value == 'undefined') result.value = 0;
@@ -660,11 +680,11 @@
 					this.max += max;
 
 					if (this.value == 0) 
-						this.score.innerHTML = 'No';						
+						this.score.innerHTML = 'No <span class="ballot">✘</span>';						
 					else if (this.value == this.max) 
-						this.score.innerHTML = 'Yes';
+						this.score.innerHTML = 'Yes <span class="check">✔</span>';
 					else
-						this.score.innerHTML = this.value + ' out of ' + this.max;
+						this.score.innerHTML = '<span class="partially">' + this.value + ' out of ' + this.max + '</span>';
 						
 					this.parent.setScore(value, bonus, max);
 				}				
