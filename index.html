@@ -1137,7 +1137,7 @@
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
 				name: 	'Forms',
-				count: 	3,
+				count: 	4,
 				
 				initialize: function(results) {
 					this.field = document.createElement('input');
@@ -1210,6 +1210,17 @@
 						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
 						passed:	element.toString() == '[object HTMLMeterElement]', 
 						value: 	1
+					});
+				},
+				
+				t4: function() {
+					var element = document.createElement('input');
+					
+					this.section.setItem({
+						title: 	'Form validation', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api',
+						passed:	'checkValidity' in element, 
+						value: 	6
 					});
 				}				
 			};
