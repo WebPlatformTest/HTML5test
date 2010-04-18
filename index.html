@@ -105,12 +105,17 @@
 
 			#results p {
 				font-family: Arial, Helvetica, sans-serif;
-				font-size: 2.2em;
-				letter-spacing: 0.1em;
-				color: #999;
+				color: #bbb;
 				text-transform: lowercase;
 				text-align: center;
-				line-height: 100%;
+				margin: 0 0 2em;
+			}
+			#results p.intro {
+				color: #999;
+				font-size: 2.2em;
+				letter-spacing: 0.1em;
+				line-height: 100%;			
+				margin: 0;
 			}
 
 			#results h2 {
@@ -131,7 +136,7 @@
 				text-indent: 0.4em;
 				line-height: 90%;
 				
-				margin: 0 0 1em;
+				margin: 0 0 0.4em;
 			}
 			
 			#results h4 {
@@ -416,18 +421,21 @@
 					this.container = document.getElementById(e);
 					
 					this.intro = document.createElement('p');
-					this.intro.innerHTML = 'Working...';
+					this.intro.className = 'intro';
 					this.container.appendChild(this.intro);
 					
 					this.counter = document.createElement('h2');
-					this.counter.innerHTML = this.score;
 					this.container.appendChild(this.counter);
 					
 					this.byline = document.createElement('h3');
-					this.byline.innerHTML = 'and ' + (this.bonus ? this.bonus : 'no') + ' bonus points';
 					this.container.appendChild(this.byline);
 					
+					this.maximum = document.createElement('p');
+					this.container.appendChild(this.maximum);
+					
 					this.total = document.getElementById(t);
+					
+					this.update();
 				},
 				
 				done: function() {
@@ -456,9 +464,14 @@
 					this.bonus += bonus;
 					this.max += max;
 					
+					this.update();
+				},
+				
+				update: function() {
 					this.counter.innerHTML = this.score;
 					this.byline.innerHTML = 'and ' + (this.bonus ? this.bonus : 'no') + ' bonus points';
-					this.total.innerHTML = this.max;
+					this.maximum.innerHTML = 'out of a total of ' + this.max + ' points';
+					this.total.innerHTML = this.max;				
 				}
 			}
 
