@@ -386,7 +386,7 @@
 			function test (e, t) { this.initialize(e, t) }
 			test.prototype = {
 				suites: [ 
-					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testOffline, testElements, testForm, testInteraction ] },
+					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testOffline, testElements, testForm, testInteraction, testMicrodata ] },
 					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers ] }
 				],
 				
@@ -1070,7 +1070,49 @@
 						value: 	10
 					});
 				}
-			};			
+			};		
+			
+			function testMicrodata (results) { this.initialize(results) }			
+			testMicrodata.prototype = {
+				name: 	'Microdata',
+				count: 	1,
+								
+				initialize: function(results) {
+					var container = document.createElement('div');
+					container.innerHTML = '<div id="microdataItem" itemscope itemtype="http://example.net/user"><p>My name is <span id="microdataProperty" itemprop="name">Elizabeth</span>.</p></div>';
+					document.body.appendChild(container);
+					
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+					
+					document.body.removeChild(container);
+				},
+				
+				t1: function() {
+					var item = document.getElementById('microdataItem');
+					var property = document.getElementById('microdataProperty');
+					var r = true;
+					
+					// Check the element that contains the property
+					r = r && !!('itemValue' in property) && property.itemValue == 'Elizabeth';	
+							
+					// Check the element that is the item
+					r = r && !!('properties' in item) && item.properties['name'][0].itemValue == 'Elizabeth';
+					
+					// Check the getItems method
+					if (!!document.getItems) {
+						var user = document.getItems('http://example.net/user')[0];
+						r = r && user.properties['name'][0].itemValue == 'Elizabeth';
+					}
+												
+					this.section.setItem({
+						title: 	'Microdata DOM API', 
+						url:    'http://www.w3.org/TR/microdata/',
+						passed:	r, 
+						value: 	10
+					});
+				}
+			};					
 			
 			function testFiles (results) { this.initialize(results) }			
 			testFiles.prototype = {
