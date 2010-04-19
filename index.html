@@ -447,8 +447,6 @@
 							new (this.suites[g].sections[s])(r);
 						}
 					}
-					
-					r.done();
 				}
 			}
 		
@@ -464,6 +462,7 @@
 					
 					this.intro = document.createElement('p');
 					this.intro.className = 'intro';
+					this.intro.innerHTML = 'Your browser scores';
 					this.container.appendChild(this.intro);
 					
 					this.counter = document.createElement('h2');
@@ -478,10 +477,6 @@
 					this.total = document.getElementById(t);
 					
 					this.update();
-				},
-				
-				done: function() {
-					this.intro.innerHTML = 'Your browser scores';
 				},
 				
 				createSuite: function(t) {
