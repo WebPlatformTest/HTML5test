@@ -1505,6 +1505,10 @@
 					  'Bonus points': r.bonus
 					};
 					
+					for (s in r.sections) {
+						_bTestResults[r.sections[s].name] = r.sections[s].value;
+					}
+									
 					// Beacon the results to Browserscope.
 					(function() {
 					  var _bTestKey = 'agt1YS1wcm9maWxlcnIMCxIEVGVzdBim13UM';
