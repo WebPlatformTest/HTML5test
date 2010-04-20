@@ -514,14 +514,16 @@
 				}
 			}
 
-			function section (parent, name, url) { this.initialize(parent, name, url) }
+			function section (parent, name) { this.initialize(parent, name) }
 			section.prototype = {
 				value: 		0,
 				bonus:		0,
-				max:        0, 
+				max:        0,
+				name:		'',
 
-				initialize: function(parent, name, url) {
+				initialize: function(parent, name) {
 					this.parent = parent;
+					this.name = name;
 					
 					this.container = document.createElement('li');
 					this.parent.list.appendChild(this.container);
