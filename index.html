@@ -430,14 +430,14 @@
 		<script>
 		<!--
 		
-			function test (e, t) { this.initialize(e, t) }
+			function test (e, t, c) { this.initialize(e, t, c) }
 			test.prototype = {
 				suites: [ 
 					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testElements, testForm, testInteraction, testMicrodata, testOffline ] },
 					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers ] }
 				],
 				
-				initialize: function(e, t) {					
+				initialize: function(e, t, c) {					
 					var r = new results(e, t);
 					
 					for (g in this.suites) {
@@ -447,6 +447,8 @@
 							new (this.suites[g].sections[s])(r);
 						}
 					}
+					
+					c(r);
 				}
 			}
 		
@@ -1494,7 +1496,27 @@
 			};
 
 			function startTest() {
-				var t = new test('results', 'total');
+				var t = new test('results', 'total', function(r) {
+				
+					_bTestResults = {
+					  'Total score': r.score,
+					  'Bonus points': r.bonus
+					};
+					
+					// Beacon the results to Browserscope.
+					(function() {
+					  var _bTestKey = '';
+					  var _bScript = document.createElement('script');
+					  _bScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
+					  _bScript.setAttribute('async', 'true');
+					  var scripts = document.getElementsByTagName('script');
+					  var lastScript = scripts[scripts.length - 1];
+					  lastScript.parentNode.insertBefore(_bScript, lastScript);
+					})();
+				});
+			}
+			
+			function None() {
 			}
 			
 		//-->
