@@ -918,7 +918,7 @@
 					this.section.setItem({
 						title: 	'2D context', 
 						url:    'http://www.w3.org/TR/2dcontext/',
-						passed:	this.canvas.getContext && this.canvas.getContext('2d') == '[object CanvasRenderingContext2D]', 
+						passed:	this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D, 
 						value: 	10
 					});
 				},
@@ -1238,7 +1238,7 @@
 					group.setItem({
 						title: 	'<code>keygen</code> element', 
 						url:	'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
-						passed:	element.toString() == '[object HTMLKeygenElement]' || element.childNodes.length, 
+						passed:	(typeof HTMLKeygenElement != 'undefined' && element instanceof HTMLKeygenElement) || element.childNodes.length, 
 						value: 	1
 					});
 					
@@ -1246,7 +1246,7 @@
 					group.setItem({
 						title: 	'<code>output</code> element', 
 						url:	'http://www.w3.org/TR/html5/forms.html#the-output-element',
-						passed:	element.toString() == '[object HTMLOutputElement]', 
+						passed:	typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
 						value: 	1
 					});
 
@@ -1254,7 +1254,7 @@
 					group.setItem({
 						title: 	'<code>progress</code> element', 
 						url:	'http://www.w3.org/TR/html5/forms.html#the-progress-element',
-						passed:	element.toString() == '[object HTMLProgressElement]', 
+						passed:	typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
 						value: 	1
 					});
 
@@ -1262,7 +1262,7 @@
 					group.setItem({
 						title: 	'<code>meter</code> element', 
 						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
-						passed:	element.toString() == '[object HTMLMeterElement]', 
+						passed:	typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
 						value: 	1
 					});
 				},
@@ -1338,7 +1338,7 @@
  						group.setItem({
 							title: 	'<code>' + elements[e] + '</code> element', 
 							url:	'http://www.w3.org/TR/html5/semantics.html#the-' + elements[e] + '-element',
-							passed:	element.toString() == '[object HTMLElement]' && this.isBlock(element) && this.closesImplicitly(elements[e]), 
+							passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && this.closesImplicitly(elements[e]), 
 							value: 	1
 						});
 
@@ -1357,7 +1357,7 @@
  						group.setItem({
 							title: 	'<code>' + elements[e] + '</code> element', 
 							url:	'http://www.w3.org/TR/html5/semantics.html#the-' + elements[e] + '-element',
-							passed:	element.toString() == '[object HTMLElement]' && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e])), 
+							passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e])), 
 							value: 	1
 						});
 
@@ -1374,7 +1374,7 @@
 					group.setItem({
 						title: 	'<code>mark</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element',
-						passed:	element.toString() == '[object HTMLElement]' && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)'), 
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)'), 
 						value: 	1
 					});
 
@@ -1388,7 +1388,7 @@
 					group.setItem({
 						title: 	'<code>ruby</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element',
-						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby', 
+						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby', 
 						value: 	1
 					});
 
@@ -1397,7 +1397,7 @@
 					group.setItem({
 						title: 	'<code>rt</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rt-element',
-						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'ruby-text', 
+						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby-text', 
 						value: 	1
 					});
 
@@ -1406,7 +1406,7 @@
 					group.setItem({
 						title: 	'<code>rp</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rp-element',
-						passed:	element && element.toString() == '[object HTMLElement]' && this.getStyle(element, 'display') == 'hidden', 
+						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'hidden', 
 						value: 	1
 					});
 					
@@ -1417,7 +1417,7 @@
 					group.setItem({
 						title: 	'<code>time</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-time-element',
-						passed:	element.toString() == '[object HTMLTimeElement]', 
+						passed:	typeof HTMLTimeElement != 'undefined' && element instanceof HTMLTimeElement, 
 						value: 	1
 					});
 				},
