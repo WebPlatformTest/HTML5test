@@ -423,6 +423,10 @@
 					The HTML5 test is created by Niels Leenheer.<br>
 					Visit my website at <a href='http://rakaz.nl'>rakaz.nl</a> or follow me on <a href='http://twitter.com/rakaz'>twitter</a>.
 				</p>
+				
+				<p>
+					<a href='http://sights.nl/en/'><img src='images/sights.png'></a>
+				</p>
 			</div>
 		</div>		
 		
@@ -520,7 +524,7 @@
 				bonus:		0,
 				max:        0,
 				name:		'',
-
+				
 				initialize: function(parent, name) {
 					this.parent = parent;
 					this.name = name;
@@ -540,6 +544,8 @@
 
 					this.body = document.createElement('tbody');
 					this.table.appendChild(this.body);
+					
+					this.items = [];
 				},
 				
 				setExplaination: function(explaination) {
@@ -579,7 +585,19 @@
 					if (typeof result.value == 'undefined') result.value = 0;
 					if (typeof result.bonus == 'undefined') result.bonus = 0;
 					if (typeof result.award == 'undefined') result.award = result.value;
-					this.setScore(result.passed ? result.award : 0, result.bonus, result.value);					
+					this.setScore(result.passed ? result.award : 0, result.bonus, result.value);	
+					
+					this.addItem(result);									
+				},
+				
+				addItem: function(result) {
+					var e = document.createElement('div');
+					e.innerHTML = result.title;
+				
+					this.items.push({
+						name:		e.innerText,
+						passed: 	result.passed
+					});				
 				},
 				
 				getGroup: function(name) {
@@ -677,6 +695,8 @@
 					if (typeof result.bonus == 'undefined') result.bonus = 0;
 					if (typeof result.award == 'undefined') result.award = result.value;
 					this.setScore(result.passed ? result.award : 0, result.bonus, result.value);					
+
+					this.parent.addItem(result);		
 				},
 				
 				setScore: function(value, bonus, max) {
@@ -1507,8 +1527,12 @@
 					
 					for (s in r.sections) {
 						_bTestResults[r.sections[s].name] = r.sections[s].value;
+						
+						for (i in r.sections[s].items) {
+							_bTestResults[r.sections[s].items[i].name] = r.sections[s].items[i].passed ? 1 : 0;
+						}
 					}
-									
+					
 					// Beacon the results to Browserscope.
 					(function() {
 					  var _bTestKey = 'agt1YS1wcm9maWxlcnIMCxIEVGVzdBim13UM';
@@ -1522,8 +1546,21 @@
 				});
 			}
 			
+			
+			/* Callback function from browserscope */
 			function None() {
+				var parameters = {}
+				
+				var items = window.location.search.substr(1).split('&');
+				for (i in items) { var item = items[i].split('='); parameters[item[0]] = item[1]; }
+				
+				/* Check for continue parameter and redirect if the source is browserscope */
+				if (parameters['continue'] && parameters['source'] && parameters['source'] == 'browserscope') {
+					window.location = parameters['continue'];
+				}
 			}
+			
+
 			
 		//-->
 		</script>
