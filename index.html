@@ -1253,7 +1253,15 @@
 
 				t3: function() {
 					var group = this.section.getGroup('Other form elements');
-					
+
+					var element = document.createElement('datalist');
+					group.setItem({
+						title: 	'<code>datalist</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-datalist-element',
+						passed:	(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
+						value: 	1
+					});
+
 					var element = document.createElement('keygen');
 					group.setItem({
 						title: 	'<code>keygen</code> element', 
