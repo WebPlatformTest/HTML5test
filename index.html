@@ -1029,8 +1029,8 @@
 		
 			function testOffline (results) { this.initialize(results) }			
 			testOffline.prototype = {
-				name: 	'Offline web applications',
-				count: 	1,
+				name: 	'Web applications',
+				count: 	3,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -1043,6 +1043,24 @@
 						url:	'http://www.w3.org/TR/html5/offline.html#offline',
 						passed:	!!window.applicationCache, 
 						value: 	10
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'Custom scheme handlers', 
+						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
+						passed:	!!window.navigator.registerProtocolHandler, 
+						value: 	2
+					});
+				},
+				
+				t3: function() {
+					this.section.setItem({
+						title: 	'Custom content handlers', 
+						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
+						passed:	!!window.navigator.registerContentHandler, 
+						value: 	2
 					});
 				}
 			};
