@@ -722,7 +722,7 @@
 			function testVideo (results) { this.initialize(results) }			
 			testVideo.prototype = {
 				name: 	'Video',
-				count: 	5,
+				count: 	7,
 				
 				initialize: function(results) {
 					this.element = document.createElement('video');
@@ -753,10 +753,28 @@
 				},
 
 				t2: function() {
+					this.section.setItem({
+						title: 	'Subtitle support', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/video.html#timed-tracks',
+						passed:	'track' in document.createElement('track'), 
+						value: 	5
+					});
+				},
+
+				t3: function() {
+					this.section.setItem({
+						title: 	'Poster image support', 
+						url:	'http://www.w3.org/TR/html5/video.html#video',
+						passed:	'poster' in this.element, 
+						value: 	2
+					});
+				},
+
+				t4: function() {
 					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports more than one video codec two bonus points are awarded for each additional codec.')
 				},
 					
-				t3: function() {
+				t5: function() {
 					var item = {
 						title: 	'MPEG-4 support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
@@ -768,7 +786,7 @@
 					this.section.setItem(item);
 				},
 
-				t4: function() {
+				t6: function() {
 					var item = {
 						title: 	'H.264 support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E"')
@@ -780,7 +798,7 @@
 					this.section.setItem(item);
 				},
 
-				t5: function() {
+				t7: function() {
 					var item = {
 						title: 	'Ogg Theora support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
