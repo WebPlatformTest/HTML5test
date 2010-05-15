@@ -1526,7 +1526,7 @@
 			function testInteraction (results) { this.initialize(results) }			
 			testInteraction.prototype = {
 				name: 	'User interaction',
-				count: 	3,
+				count: 	4,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -1560,8 +1560,16 @@
 						passed:	!!(window.history && history.pushState && history.popState), 
 						value: 	5
 					});
-				}				
+				},
 				
+				t4: function() {
+					this.section.setItem({
+						title: 	'Text selection', 
+						url:	'http://www.w3.org/TR/html5/editing.html#selection',
+						passed:	!!window.getSelection, 
+						value: 	5
+					});
+				}				
 			};
 
 			function startTest() {
