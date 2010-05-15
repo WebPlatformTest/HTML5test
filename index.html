@@ -437,7 +437,7 @@
 			function test (e, t, c) { this.initialize(e, t, c) }
 			test.prototype = {
 				suites: [ 
-					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testElements, testForm, testInteraction, testMicrodata, testOffline ] },
+					{ title: null, sections: [ testDoctype, testCanvas, testVideo, testAudio, testDevice, testElements, testForm, testInteraction, testMicrodata, testOffline ] },
 					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers ] }
 				],
 				
@@ -719,6 +719,27 @@
 			
 			
 						
+			function testDevice (results) { this.initialize(results) }			
+			testDevice.prototype = {
+				name: 	'Local devices',
+				count: 	1,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'<code>device</code> element', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/commands.html#devices',
+						passed:	'type' in document.createElement('device'), 
+						value: 	20
+					});
+				}
+			}
+
+
 			function testVideo (results) { this.initialize(results) }			
 			testVideo.prototype = {
 				name: 	'Video',
