@@ -1537,7 +1537,7 @@
 					(function() {
 					  var _bTestKey = 'agt1YS1wcm9maWxlcnIMCxIEVGVzdBim13UM';
 					  var _bScript = document.createElement('script');
-					  _bScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey;
+					  _bScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=_bBeaconComplete';
 					  _bScript.setAttribute('async', 'true');
 					  var scripts = document.getElementsByTagName('script');
 					  var lastScript = scripts[scripts.length - 1];
@@ -1548,7 +1548,7 @@
 			
 			
 			/* Callback function from browserscope */
-			function None() {
+			var _bBeaconComplete = function() {
 				var parameters = {}
 				
 				var items = window.location.search.substr(1).split('&');
@@ -1558,7 +1558,7 @@
 				if (parameters['continue'] && parameters['source'] && parameters['source'] == 'browserscope') {
 					window.location = parameters['continue'];
 				}
-			}
+			};
 			
 
 			
