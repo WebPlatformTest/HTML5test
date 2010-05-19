@@ -930,7 +930,7 @@
 			function testVideo (results) { this.initialize(results) }			
 			testVideo.prototype = {
 				name: 	'Video',
-				count: 	7,
+				count: 	8,
 				
 				initialize: function(results) {
 					this.element = document.createElement('video');
@@ -1016,13 +1016,25 @@
 					if (item.passed) this.codecs++;
 					
 					this.section.setItem(item);
+				},
+
+				t8: function() {
+					var item = {
+						title: 	'WebM support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp8"')
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 2;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
 				}
 			};
 			
 			function testAudio (results) { this.initialize(results) }			
 			testAudio.prototype = {
 				name: 	'Audio',
-				count: 	6,
+				count: 	7,
 				
 				initialize: function(results) {
 					this.element = document.createElement('audio');
@@ -1057,6 +1069,18 @@
 				},
 
 				t3: function() {
+					var item = {
+						title: 	'PCM audio support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 1;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
+				},
+
+				t4: function() {
 					var r = false;
 					if (this.element.canPlayType) {
 						var t = this.element.canPlayType('audio/mpeg');
@@ -1080,18 +1104,6 @@
 					this.section.setItem(item);
 				},
 
-				t4: function() {
-					var item = {
-						title: 	'Ogg Vorbis support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
-					};
-					
-					if (item.passed && this.codecs) item.bonus = 1;
-					if (item.passed) this.codecs++;
-					
-					this.section.setItem(item);
-				},
-
 				t5: function() {
 					var item = {
 						title: 	'AAC support', 
@@ -1106,8 +1118,20 @@
 
 				t6: function() {
 					var item = {
-						title: 	'PCM audio support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
+						title: 	'Ogg Vorbis support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
+					};
+					
+					if (item.passed && this.codecs) item.bonus = 1;
+					if (item.passed) this.codecs++;
+					
+					this.section.setItem(item);
+				},
+
+				t7: function() {
+					var item = {
+						title: 	'WebM support', 
+						passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
 					};
 					
 					if (item.passed && this.codecs) item.bonus = 1;
