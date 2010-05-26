@@ -909,31 +909,52 @@
 						bonus: 	passed ? 1 : 0
 					});
 				}
-			}
+			};
 			
 			
-									
-			function testDevice (results) { this.initialize(results) }			
-			testDevice.prototype = {
-				name: 	'Local devices',
-				count: 	1,
+			function testCanvas (results) { this.initialize(results) }			
+			testCanvas.prototype = {
+				name: 	'Canvas',
+				url:    'http://www.w3.org/TR/2dcontext/',
+				count: 	3,
+				max:    12,
 				
 				initialize: function(results) {
+					this.canvas = document.createElement('canvas');
+
 					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
 				},
 				
 				t1: function() {
 					this.section.setItem({
-						title: 	'<code>device</code> element', 
-						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/commands.html#devices',
-						passed:	'type' in document.createElement('device'), 
-						value: 	20
+						title: 	'<code>canvas</code> element', 
+						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element',
+						passed:	!!this.canvas.getContext, 
+						value: 	5
+					});
+				},
+
+				t2: function() {
+					this.section.setItem({
+						title: 	'2D context', 
+						url:    'http://www.w3.org/TR/2dcontext/',
+						passed:	this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D, 
+						value: 	10
+					});
+				},
+
+				t3: function() {
+					this.section.setItem({
+						title: 	'Text', 
+						url:	'http://www.w3.org/TR/2dcontext/#text',
+						passed:	this.canvas.getContext && typeof this.canvas.getContext('2d').fillText == 'function', 
+						value: 	5
 					});
 				}
-			}
+			};
 
-
+									
 			function testVideo (results) { this.initialize(results) }			
 			testVideo.prototype = {
 				name: 	'Video',
@@ -1028,6 +1049,7 @@
 					this.section.setItem(item);
 				}
 			};
+			
 			
 			function testAudio (results) { this.initialize(results) }			
 			testAudio.prototype = {
@@ -1128,9 +1150,10 @@
 				}
 			};
 			
-			function testGeolocation (results) { this.initialize(results) }			
-			testGeolocation.prototype = {
-				name: 	'Geolocation',			
+			
+			function testDevice (results) { this.initialize(results) }			
+			testDevice.prototype = {
+				name: 	'Local devices',
 				count: 	1,
 				
 				initialize: function(results) {
@@ -1140,408 +1163,15 @@
 				
 				t1: function() {
 					this.section.setItem({
-						title: 	'Geolocation', 
-						url:    'http://dev.w3.org/geo/api/spec-source.html',
-						passed:	!!navigator.geolocation, 
-						value: 	10
+						title: 	'<code>device</code> element', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/commands.html#devices',
+						passed:	'type' in document.createElement('device'), 
+						value: 	20
 					});
 				}
-			};
+			}
 
-			function testCanvas (results) { this.initialize(results) }			
-			testCanvas.prototype = {
-				name: 	'Canvas',
-				url:    'http://www.w3.org/TR/2dcontext/',
-				count: 	3,
-				max:    12,
-				
-				initialize: function(results) {
-					this.canvas = document.createElement('canvas');
 
-					this.section = results.getSection(this.name);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'<code>canvas</code> element', 
-						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element',
-						passed:	!!this.canvas.getContext, 
-						value: 	5
-					});
-				},
-
-				t2: function() {
-					this.section.setItem({
-						title: 	'2D context', 
-						url:    'http://www.w3.org/TR/2dcontext/',
-						passed:	this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D, 
-						value: 	10
-					});
-				},
-
-				t3: function() {
-					this.section.setItem({
-						title: 	'Text', 
-						url:	'http://www.w3.org/TR/2dcontext/#text',
-						passed:	this.canvas.getContext && typeof this.canvas.getContext('2d').fillText == 'function', 
-						value: 	5
-					});
-				}
-			};
-		
-			function testWebGL (results) { this.initialize(results) }			
-			testWebGL.prototype = {
-				name: 	'WebGL',
-				count: 	1,
-				
-				initialize: function(results) {
-					this.canvas = document.createElement('canvas');
-
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					var element = document.createElement('canvas');
-					var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
-					var r = false;
-            
-			        for (var b = -1, len = contexts.length; ++b < len;) {
-			            try {
-			                if (element.getContext(contexts[b])) {
-			                	r = true;
-			                	break;
-			                };	
-			            } catch(e){	}
-			        }
-       				
- 					this.section.setItem({
-						title: 	'3D context', 
-						url:    'https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/WebGL-spec.html',
-						passed:	r, 
-						value: 	10
-					});
-				}
-			};
-		
-			function testOffline (results) { this.initialize(results) }			
-			testOffline.prototype = {
-				name: 	'Web applications',
-				count: 	3,
-				
-				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'Application Cache', 
-						url:	'http://www.w3.org/TR/html5/offline.html#offline',
-						passed:	!!window.applicationCache, 
-						value: 	10
-					});
-				},
-				
-				t2: function() {
-					this.section.setItem({
-						title: 	'Custom scheme handlers', 
-						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
-						passed:	!!window.navigator.registerProtocolHandler, 
-						value: 	2
-					});
-				},
-				
-				t3: function() {
-					this.section.setItem({
-						title: 	'Custom content handlers', 
-						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
-						passed:	!!window.navigator.registerContentHandler, 
-						value: 	2
-					});
-				}
-			};
-
-			function testStorage (results) { this.initialize(results) }			
-			testStorage.prototype = {
-				name: 	'Storage',
-				count: 	5,
-				
-				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				hasWebSQLDatabase: function() {
-					return !!window.openDatabase;
-				},
-				
-				hasIndexedDB: function() {
-					return 'indexedDB' in window;
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'Session Storage', 
-						url:    'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute',
-						passed:	'sessionStorage' in window, 
-						value: 	5
-					});
-				},
-
-				t2: function() {
-					this.section.setItem({
-						title: 	'Local Storage', 
-						url:    'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
-						passed:	'localStorage' in window, 
-						value: 	5
-					});
-				},
-				
-				t3: function() {
-					this.section.setItem({
-						title: 	'IndexedDB', 
-						url:	'http://www.w3.org/TR/IndexedDB/',
-						passed:	this.hasIndexedDB(), 
-						value: 	10
-					});
-				},
-				
-				t4: function() {
-					this.section.setExplaination('The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.')
-				},
-					
-				t5: function() {
-					this.section.setItem({
-						title: 	'Web SQL Database', 
-						url:	'http://www.w3.org/TR/webdatabase/',
-						passed:	this.hasWebSQLDatabase(), 
-						value: 	0,
-						award:  !this.hasIndexedDB() ? 5 : 0	/* only award points if IndexedDB is not implemented */
-					});
-				}			
-			};
-
-			function testWorkers (results) { this.initialize(results) }			
-			testWorkers.prototype = {
-				name: 	'Workers',
-				count: 	1,
-				
-				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'Web Workers', 
-						url:    'http://www.w3.org/TR/workers/',
-						passed:	!!window.Worker, 
-						value: 	10
-					});
-				}
-			};
-			
-			function testCommunication (results) { this.initialize(results) }			
-			testCommunication.prototype = {
-				name: 	'Communication',
-				count: 	3,
-								
-				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'Cross-document messaging', 
-						url:    'http://dev.w3.org/html5/postmsg/',
-						passed:	!!window.postMessage, 
-						value: 	5
-					});
-				},
-				
-				t2: function() {
-					this.section.setItem({
-						title: 	'WebSocket', 
-						url:	'http://www.w3.org/TR/websockets/',
-						passed:	'WebSocket' in window, 
-						value: 	10
-					});
-				},
-				
-				t3: function() {
-					this.section.setItem({
-						title: 	'Server-Sent Events', 
-						url:	'http://www.w3.org/TR/eventsource/',
-						passed:	'EventSource' in window, 
-						value: 	10
-					});
-				}
-			};		
-			
-			function testMicrodata (results) { this.initialize(results) }			
-			testMicrodata.prototype = {
-				name: 	'Microdata',
-				count: 	1,
-								
-				initialize: function(results) {
-					var container = document.createElement('div');
-					container.innerHTML = '<div id="microdataItem" itemscope itemtype="http://example.net/user"><p>My name is <span id="microdataProperty" itemprop="name">Elizabeth</span>.</p></div>';
-					document.body.appendChild(container);
-					
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-					
-					document.body.removeChild(container);
-				},
-				
-				t1: function() {
-					var item = document.getElementById('microdataItem');
-					var property = document.getElementById('microdataProperty');
-					var r = true;
-					
-					// Check the element that contains the property
-					r = r && !!('itemValue' in property) && property.itemValue == 'Elizabeth';	
-							
-					// Check the element that is the item
-					r = r && !!('properties' in item) && item.properties['name'][0].itemValue == 'Elizabeth';
-					
-					// Check the getItems method
-					if (!!document.getItems) {
-						var user = document.getItems('http://example.net/user')[0];
-						r = r && user.properties['name'][0].itemValue == 'Elizabeth';
-					}
-												
-					this.section.setItem({
-						title: 	'Microdata', 
-						url:    'http://www.w3.org/TR/microdata/',
-						passed:	r, 
-						value: 	10
-					});
-				}
-			};					
-			
-			function testFiles (results) { this.initialize(results) }			
-			testFiles.prototype = {
-				name: 	'Files',
-				count: 	1,
-								
-				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'FileReader API', 
-						url:    'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
-						passed:	'FileReader' in window, 
-						value: 	10
-					});
-				}
-			};
-			
-			function testForm (results) { this.initialize(results) }			
-			testForm.prototype = {
-				name: 	'Forms',
-				count: 	4,
-				
-				initialize: function(results) {
-					this.field = document.createElement('input');
-					
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					var group = this.section.getGroup('<code>input</code> element types');
-					var types = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
-					var states = 'text-state-and-search telephone url e-mail date-and-time date month week time local-date-and-time number range color'.split(' ');
-					
-					for (var t in types) {
-						this.field.setAttribute('type', types[t]);
-						
-						group.setItem({
-							title: 	'<code>' + types[t] + '</code> type state', 
-							url:	'http://www.w3.org/TR/html5/forms.html#' + states[t] + '-state',
-							passed:	this.field.type != 'text', 
-							value: 	1
-						});
-					}
-				},
-
-				t2: function() {
-					var group = this.section.getGroup('<code>input</code> element attributes');
-					var props = 'autocomplete autofocus list placeholder max min multiple pattern required step'.split(' ');
-						
-					for (var p in props) {
- 						group.setItem({
-							title: 	'<code>' + props[p] + '</code> attribute', 
-							url:	'http://www.w3.org/TR/html5/forms.html#the-' + props[p] + '-attribute',
-							passed:	!!(props[p] in this.field), 
-							value: 	1
-						});
-        			}
-				},
-
-				t3: function() {
-					var group = this.section.getGroup('Other form elements');
-
-					var element = document.createElement('datalist');
-					group.setItem({
-						title: 	'<code>datalist</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-datalist-element',
-						passed:	(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
-						value: 	1
-					});
-
-					var element = document.createElement('keygen');
-					group.setItem({
-						title: 	'<code>keygen</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
-						passed:	(typeof HTMLKeygenElement != 'undefined' && element instanceof HTMLKeygenElement) || element.childNodes.length, 
-						value: 	1
-					});
-					
-					var element = document.createElement('output');
-					group.setItem({
-						title: 	'<code>output</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-output-element',
-						passed:	typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
-						value: 	1
-					});
-
-					var element = document.createElement('progress');
-					group.setItem({
-						title: 	'<code>progress</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-progress-element',
-						passed:	typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
-						value: 	1
-					});
-
-					var element = document.createElement('meter');
-					group.setItem({
-						title: 	'<code>meter</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
-						passed:	typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
-						value: 	1
-					});
-				},
-				
-				t4: function() {
-					var element = document.createElement('input');
-					
-					this.section.setItem({
-						title: 	'Form validation', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api',
-						passed:	'checkValidity' in element, 
-						value: 	10
-					});
-				}				
-			};
-			
 			function testElements (results) { this.initialize(results) }			
 			testElements.prototype = {
 				name: 	'Elements',
@@ -1719,6 +1349,107 @@
 				}
 			};		
 			
+			
+			function testForm (results) { this.initialize(results) }			
+			testForm.prototype = {
+				name: 	'Forms',
+				count: 	4,
+				
+				initialize: function(results) {
+					this.field = document.createElement('input');
+					
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					var group = this.section.getGroup('<code>input</code> element types');
+					var types = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
+					var states = 'text-state-and-search telephone url e-mail date-and-time date month week time local-date-and-time number range color'.split(' ');
+					
+					for (var t in types) {
+						this.field.setAttribute('type', types[t]);
+						
+						group.setItem({
+							title: 	'<code>' + types[t] + '</code> type state', 
+							url:	'http://www.w3.org/TR/html5/forms.html#' + states[t] + '-state',
+							passed:	this.field.type != 'text', 
+							value: 	1
+						});
+					}
+				},
+
+				t2: function() {
+					var group = this.section.getGroup('<code>input</code> element attributes');
+					var props = 'autocomplete autofocus list placeholder max min multiple pattern required step'.split(' ');
+						
+					for (var p in props) {
+ 						group.setItem({
+							title: 	'<code>' + props[p] + '</code> attribute', 
+							url:	'http://www.w3.org/TR/html5/forms.html#the-' + props[p] + '-attribute',
+							passed:	!!(props[p] in this.field), 
+							value: 	1
+						});
+        			}
+				},
+
+				t3: function() {
+					var group = this.section.getGroup('Other form elements');
+
+					var element = document.createElement('datalist');
+					group.setItem({
+						title: 	'<code>datalist</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-datalist-element',
+						passed:	(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
+						value: 	1
+					});
+
+					var element = document.createElement('keygen');
+					group.setItem({
+						title: 	'<code>keygen</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
+						passed:	(typeof HTMLKeygenElement != 'undefined' && element instanceof HTMLKeygenElement) || element.childNodes.length, 
+						value: 	1
+					});
+					
+					var element = document.createElement('output');
+					group.setItem({
+						title: 	'<code>output</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-output-element',
+						passed:	typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
+						value: 	1
+					});
+
+					var element = document.createElement('progress');
+					group.setItem({
+						title: 	'<code>progress</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-progress-element',
+						passed:	typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
+						value: 	1
+					});
+
+					var element = document.createElement('meter');
+					group.setItem({
+						title: 	'<code>meter</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
+						passed:	typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
+						value: 	1
+					});
+				},
+				
+				t4: function() {
+					var element = document.createElement('input');
+					
+					this.section.setItem({
+						title: 	'Form validation', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api',
+						passed:	'checkValidity' in element, 
+						value: 	10
+					});
+				}				
+			};
+
+
 			function testInteraction (results) { this.initialize(results) }			
 			testInteraction.prototype = {
 				name: 	'User interaction',
@@ -1767,6 +1498,291 @@
 					});
 				}				
 			};
+
+
+			function testMicrodata (results) { this.initialize(results) }			
+			testMicrodata.prototype = {
+				name: 	'Microdata',
+				count: 	1,
+								
+				initialize: function(results) {
+					var container = document.createElement('div');
+					container.innerHTML = '<div id="microdataItem" itemscope itemtype="http://example.net/user"><p>My name is <span id="microdataProperty" itemprop="name">Elizabeth</span>.</p></div>';
+					document.body.appendChild(container);
+					
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+					
+					document.body.removeChild(container);
+				},
+				
+				t1: function() {
+					var item = document.getElementById('microdataItem');
+					var property = document.getElementById('microdataProperty');
+					var r = true;
+					
+					// Check the element that contains the property
+					r = r && !!('itemValue' in property) && property.itemValue == 'Elizabeth';	
+							
+					// Check the element that is the item
+					r = r && !!('properties' in item) && item.properties['name'][0].itemValue == 'Elizabeth';
+					
+					// Check the getItems method
+					if (!!document.getItems) {
+						var user = document.getItems('http://example.net/user')[0];
+						r = r && user.properties['name'][0].itemValue == 'Elizabeth';
+					}
+												
+					this.section.setItem({
+						title: 	'Microdata', 
+						url:    'http://www.w3.org/TR/microdata/',
+						passed:	r, 
+						value: 	10
+					});
+				}
+			};					
+
+
+			function testOffline (results) { this.initialize(results) }			
+			testOffline.prototype = {
+				name: 	'Web applications',
+				count: 	3,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Application Cache', 
+						url:	'http://www.w3.org/TR/html5/offline.html#offline',
+						passed:	!!window.applicationCache, 
+						value: 	10
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'Custom scheme handlers', 
+						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
+						passed:	!!window.navigator.registerProtocolHandler, 
+						value: 	2
+					});
+				},
+				
+				t3: function() {
+					this.section.setItem({
+						title: 	'Custom content handlers', 
+						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
+						passed:	!!window.navigator.registerContentHandler, 
+						value: 	2
+					});
+				}
+			};
+
+
+			function testGeolocation (results) { this.initialize(results) }			
+			testGeolocation.prototype = {
+				name: 	'Geolocation',			
+				count: 	1,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Geolocation', 
+						url:    'http://dev.w3.org/geo/api/spec-source.html',
+						passed:	!!navigator.geolocation, 
+						value: 	10
+					});
+				}
+			};
+
+		
+			function testWebGL (results) { this.initialize(results) }			
+			testWebGL.prototype = {
+				name: 	'WebGL',
+				count: 	1,
+				
+				initialize: function(results) {
+					this.canvas = document.createElement('canvas');
+
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					var element = document.createElement('canvas');
+					var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
+					var r = false;
+            
+			        for (var b = -1, len = contexts.length; ++b < len;) {
+			            try {
+			                if (element.getContext(contexts[b])) {
+			                	r = true;
+			                	break;
+			                };	
+			            } catch(e){	}
+			        }
+       				
+ 					this.section.setItem({
+						title: 	'3D context', 
+						url:    'https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/WebGL-spec.html',
+						passed:	r, 
+						value: 	10
+					});
+				}
+			};
+		
+
+			function testCommunication (results) { this.initialize(results) }			
+			testCommunication.prototype = {
+				name: 	'Communication',
+				count: 	3,
+								
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Cross-document messaging', 
+						url:    'http://dev.w3.org/html5/postmsg/',
+						passed:	!!window.postMessage, 
+						value: 	5
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'WebSocket', 
+						url:	'http://www.w3.org/TR/websockets/',
+						passed:	'WebSocket' in window, 
+						value: 	10
+					});
+				},
+				
+				t3: function() {
+					this.section.setItem({
+						title: 	'Server-Sent Events', 
+						url:	'http://www.w3.org/TR/eventsource/',
+						passed:	'EventSource' in window, 
+						value: 	10
+					});
+				}
+			};		
+
+
+			function testFiles (results) { this.initialize(results) }			
+			testFiles.prototype = {
+				name: 	'Files',
+				count: 	1,
+								
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'FileReader API', 
+						url:    'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
+						passed:	'FileReader' in window, 
+						value: 	10
+					});
+				}
+			};
+			
+			
+			function testStorage (results) { this.initialize(results) }			
+			testStorage.prototype = {
+				name: 	'Storage',
+				count: 	5,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				hasWebSQLDatabase: function() {
+					return !!window.openDatabase;
+				},
+				
+				hasIndexedDB: function() {
+					return 'indexedDB' in window;
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Session Storage', 
+						url:    'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute',
+						passed:	'sessionStorage' in window, 
+						value: 	5
+					});
+				},
+
+				t2: function() {
+					this.section.setItem({
+						title: 	'Local Storage', 
+						url:    'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
+						passed:	'localStorage' in window, 
+						value: 	5
+					});
+				},
+				
+				t3: function() {
+					this.section.setItem({
+						title: 	'IndexedDB', 
+						url:	'http://www.w3.org/TR/IndexedDB/',
+						passed:	this.hasIndexedDB(), 
+						value: 	10
+					});
+				},
+				
+				t4: function() {
+					this.section.setExplaination('The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.')
+				},
+					
+				t5: function() {
+					this.section.setItem({
+						title: 	'Web SQL Database', 
+						url:	'http://www.w3.org/TR/webdatabase/',
+						passed:	this.hasWebSQLDatabase(), 
+						value: 	0,
+						award:  !this.hasIndexedDB() ? 5 : 0	/* only award points if IndexedDB is not implemented */
+					});
+				}			
+			};
+
+
+			function testWorkers (results) { this.initialize(results) }			
+			testWorkers.prototype = {
+				name: 	'Workers',
+				count: 	1,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Web Workers', 
+						url:    'http://www.w3.org/TR/workers/',
+						passed:	!!window.Worker, 
+						value: 	10
+					});
+				}
+			};
+			
+			
+			
+			
 
 			function startTest() {
 				var t = new test('results', 'total', function(r) {
