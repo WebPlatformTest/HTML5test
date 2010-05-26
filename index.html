@@ -941,7 +941,6 @@
 				
 				initialize: function(results) {
 					this.element = document.createElement('video');
-					this.codecs = 0;
 					
 					this.section = results.getSection(this.name);
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
@@ -986,7 +985,7 @@
 				},
 
 				t4: function() {
-					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports more than one video codec two bonus points are awarded for each additional codec.')
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more video codecs, two bonus points are awarded for each codec.')
 				},
 					
 				t5: function() {
@@ -995,9 +994,7 @@
 						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 2;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 2;					
 					this.section.setItem(item);
 				},
 
@@ -1007,9 +1004,7 @@
 						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E"')
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 2;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 2;					
 					this.section.setItem(item);
 				},
 
@@ -1019,9 +1014,7 @@
 						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 2;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 2;					
 					this.section.setItem(item);
 				},
 
@@ -1031,9 +1024,7 @@
 						passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp8"')
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 2;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 2;					
 					this.section.setItem(item);
 				}
 			};
@@ -1045,7 +1036,6 @@
 				
 				initialize: function(results) {
 					this.element = document.createElement('audio');
-					this.codecs = 0;
 					
 					this.section = results.getSection(this.name);
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
@@ -1072,7 +1062,7 @@
 				},
 
 				t2: function() {
-					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports more than one audio codec one bonus point is awarded for each additional codec.')
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more audio codecs, one bonus point is awarded for each codec.')
 				},
 
 				t3: function() {
@@ -1081,9 +1071,7 @@
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 1;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
 				},
 
@@ -1105,9 +1093,7 @@
 						passed:	r
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 1;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
 				},
 
@@ -1117,9 +1103,7 @@
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 1;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
 				},
 
@@ -1129,9 +1113,7 @@
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 1;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
 				},
 
@@ -1141,9 +1123,7 @@
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
 					};
 					
-					if (item.passed && this.codecs) item.bonus = 1;
-					if (item.passed) this.codecs++;
-					
+					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
 				}
 			};
