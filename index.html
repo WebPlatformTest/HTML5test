@@ -360,6 +360,32 @@
 			}			
 			
 			
+			.credits {
+				width: 250px;
+				position: relative;
+				background: #666;
+				margin: 40px 0;
+				padding: 10px 20px 10px 20px;
+				
+				-webkit-border-radius: 6px;
+				-moz-border-radius: 6px;
+				border-radius: 6px;	
+				
+				-webkit-box-shadow: 0px 0px 5px #222;
+				-moz-box-shadow: 0px 0px 5px #222;
+				box-shadow: 0px 0px 5px #222;
+			}
+			
+			.hosting {
+				position: absolute;
+				right: -120px;
+				top: 0px;
+				width: 100px;
+
+				color: #aaa;
+				font-size: 0.7em;
+			}
+			
 			@media (max-width: 480px) {
 				
 				.column {
@@ -426,14 +452,21 @@
 					May 28, 2010 - version 1.0
 				</p>
 
-				<p> 
-					The HTML5 test is created by Niels Leenheer.<br>
-					Visit my website at <a href='http://rakaz.nl'>rakaz.nl</a> or follow me on <a href='http://twitter.com/rakaz'>twitter</a>.
-				</p>
-				
-				<p>
-					<a href='http://sights.nl/en/'><img src='images/sights.png' alt='Sights'></a>
-				</p>
+				<div class='credits'>
+					<p> 
+						The HTML5 test is created by Niels Leenheer.<br>
+						Visit my website at <a href='http://rakaz.nl'>rakaz.nl</a> or follow me on <a href='http://twitter.com/rakaz'>twitter</a>.
+					</p>
+					
+					<p>
+						Thanks to Henri Sivonen for allowing me to reuse <a href='http://hsivonen.iki.fi/test/moz/detect-html5-parser.html'>his HTML5 parser tests</a> and all other contributors.
+					</p>
+					
+					<div class='hosting'>
+						Hosting provided by:<br><br>
+						<a href='http://sights.nl/en/'><img src='images/sights.png' alt='Sights'></a>
+					</div>
+				</div>
 			</div>
 		</div>		
 		
