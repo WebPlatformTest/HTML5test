@@ -106,6 +106,51 @@
 			#development p a {
 				color: #666;
 			}
+			
+			#updated {
+				float: right;
+				position: relative;
+				width: 200px;
+				font-size: 1.1em;
+				padding: 8px 11px 2px;
+				margin: 0 0 0.3em 10px;
+				background: #222;
+				list-style-type: none;
+				line-height: 220%;
+				-webkit-border-radius: 6px;
+				-moz-border-radius: 6px;
+				border-radius: 6px;
+				
+				line-height: 120%;
+				
+				-webkit-box-shadow: 0px 0px 5px #222;
+				-moz-box-shadow: 0px 0px 5px #222;
+				box-shadow: 0px 0px 5px #222;
+				
+				background: #222 -webkit-gradient(linear, left top, left bottom, from(#111), to(#222));
+				background: #222 -moz-linear-gradient(top, #111, #222);
+
+				-moz-transform: rotate(2.5deg);  
+				-o-transform: rotate(2.5deg); 
+				-webkit-transform: rotate(2.5deg); 
+				
+				opacity: 0.7;
+				text-align: center;
+			}
+			#updated:hover {
+				opacity: 1.0;
+			}
+			#updated h2 {
+				font-size: 0.9em;
+				color: #fff;
+			}
+			#updated p {
+				font-size: 0.7em;
+			}
+			#updated p a {
+				color: #fff;
+				text-decoration: none;
+			}
 
 			#results p {
 				font-family: Arial, Helvetica, sans-serif;
@@ -413,7 +458,6 @@
 				</h2>
 			</noscript>
 			
-			
 			<div id='results'></div>
 			
 			<ul id='legend'>
@@ -424,7 +468,17 @@
 				<li class='great'><span></span>Great</li>
 			</ul>
 			
+			
 			<div id='explaination'>
+				<div id='updated'>
+					<h2>
+						The HTML5 test has <br>been updated!
+					</h2>
+					<p>
+						<a href='http://rakaz.nl'>Read more about the changes</a>
+					</p>
+				</div>
+	
 				<p>
 					The HTML5 test score is only an indication of how well your browser supports the upcoming HTML5 standard and related specifications. 
 					It does not try to test all of the new features offered by HTML5, nor does it try to test the functionality of each feature it does detect. 
