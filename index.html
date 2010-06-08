@@ -1376,7 +1376,7 @@
 					this.section.setItem({
 						title: 	'<code>contenteditable</code> attribute', 
 						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
-						passed:	'contentEditable' in element, 
+						passed:	'isContentEditable' in element, 
 						value: 	10
 					});
 				}
@@ -1517,7 +1517,7 @@
 					this.section.setItem({
 						title: 	'Session history', 
 						url:	'http://www.w3.org/TR/html5/history.html#history',
-						passed:	!!(window.history && history.pushState && history.popState), 
+						passed:	!!(window.history && history.pushState), 
 						value: 	5
 					});
 				},
