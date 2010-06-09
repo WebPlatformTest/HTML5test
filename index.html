@@ -538,7 +538,7 @@
 			function test (e, t, c) { this.initialize(e, t, c) }
 			test.prototype = {
 				suites: [ 
-					{ title: null, sections: [ testParsing, testCanvas, testVideo, testAudio, testDevice, testElements, testForm, testInteraction, testMicrodata, testOffline ] },
+					{ title: null, sections: [ testParsing, testCanvas, testVideo, testAudio, testDevice, testElements, testForm, testInteraction, testMicrodata, testOffline, testSecurity ] },
 					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers ] }
 				],
 				
@@ -1671,6 +1671,27 @@
 						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
 						passed:	!!window.navigator.registerContentHandler, 
 						value: 	2
+					});
+				}
+			};
+
+
+			function testSecurity (results) { this.initialize(results) }			
+			testSecurity.prototype = {
+				name: 	'Security',
+				count: 	1,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Sandboxed <code>iframe</code>', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#attr-iframe-sandbox',
+						passed:	'sandbox' in document.createElement('iframe'), 
+						value: 	5
 					});
 				}
 			};
