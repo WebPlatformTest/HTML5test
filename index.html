@@ -1796,7 +1796,7 @@
 			function testFiles (results) { this.initialize(results) }			
 			testFiles.prototype = {
 				name: 	'Files',
-				count: 	1,
+				count: 	2,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -1808,6 +1808,15 @@
 						title: 	'FileReader API', 
 						url:    'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
 						passed:	'FileReader' in window, 
+						value: 	10
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'FileWriter API', 
+						url:    'http://www.w3.org/TR/file-writer-api/',
+						passed:	'FileWriter' in window, 
 						value: 	10
 					});
 				}
