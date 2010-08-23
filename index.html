@@ -1638,28 +1638,31 @@
 				t5: function() {
 					var selectors = "valid invalid optional required".split(" ");
 					var res = [false, false, false, false];
- 
-					this.field.setAttribute("type", "text");
-					document.body.appendChild(this.field);
-					if ("validity" in this.field && "setCustomValidity" in this.field) {
-						//:valid
-						res[0] = !!document.querySelector("#testFormInput:valid");
-						//:invalid
-						this.field.setCustomValidity("foo");
-						res[1] = !!document.querySelector("#testFormInput:invalid");
-						res[2] = !!document.querySelector("#testFormInput:optional");
-						this.field.setAttribute("required", "true");
-						res[3] = !!document.querySelector("#testFormInput:required");
-					}
-					document.body.removeChild(this.field);
- 
+ 					
+ 					if (!!document.querySelector) {
+						this.field.setAttribute("type", "text");
+						document.body.appendChild(this.field);
+						if ("validity" in this.field && "setCustomValidity" in this.field) {
+							//:valid
+							res[0] = !!document.querySelector("#testFormInput:valid");
+							//:invalid
+							this.field.setCustomValidity("foo");
+							res[1] = !!document.querySelector("#testFormInput:invalid");
+							res[2] = !!document.querySelector("#testFormInput:optional");
+							this.field.setAttribute("required", "true");
+							res[3] = !!document.querySelector("#testFormInput:required");
+						}
+						document.body.removeChild(this.field);
+ 					}
+ 					
 					var group = this.section.getGroup('CSS selectors integration');
  					for (var i = 0; i < selectors.length; i++) {
 						group.setItem({
 							title: 	'<code>:' + selectors[i] + '</code> selector', 
 							url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#selector-' + selectors[i],
 							passed:	res[i],
-							value: 	1
+							value: 	1,
+							custom:	!document.querySelector ? 'Unknown' : false
 						});
 					}
 				},
