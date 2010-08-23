@@ -1269,7 +1269,7 @@
 			function testElements (results) { this.initialize(results) }			
 			testElements.prototype = {
 				name: 	'Elements',
-				count: 	7,
+				count: 	8,
 				
 				initialize: function(results) {
 					this.section = results.getSection('Elements');
@@ -1410,6 +1410,35 @@
 				},
 				
 				t5: function() {
+					var group = this.section.getGroup('Interactive elements');
+
+					var element = document.createElement('details');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>details</code> element', 
+						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-details-element',
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && 'open' in element, 
+						value: 	1
+					});
+
+					document.body.removeChild(element);
+					
+					
+					var element = document.createElement('summary');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>summary</code> element', 
+						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element',
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement, 
+						value: 	1
+					});
+
+					document.body.removeChild(element);					
+				},
+
+				t6: function() {
 					var element = document.createElement('div');
 					
 					this.section.setItem({
@@ -1420,7 +1449,7 @@
 					});
 				},
 				
-				t6: function() {
+				t7: function() {
 					var element = document.createElement('div');
 					
 					this.section.setItem({
@@ -1431,7 +1460,7 @@
 					});
 				},
 
-				t7: function() {
+				t8: function() {
 					var element = document.createElement('div');
 					
 					this.section.setItem({
