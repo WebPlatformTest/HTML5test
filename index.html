@@ -1447,10 +1447,11 @@
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
 				name: 	'Forms',
-				count: 	4,
+				count: 	5,
 				
 				initialize: function(results) {
 					this.field = document.createElement('input');
+					this.field.id = "testFormInput";
 					
 					this.section = results.getSection(this.name);
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
@@ -1460,14 +1461,81 @@
 					var group = this.section.getGroup('<code>input</code> element types');
 					var types = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
 					var states = 'text-state-and-search telephone url e-mail date-and-time date month week time local-date-and-time number range color'.split(' ');
+					var res = [false, false, false, false, false, false, false, false, false, false, false, false, false];
+ 
+					// testing "search"
+					this.field.setAttribute('type', 'search');
+					res[0] = this.field.type == 'search';
+ 
+					// testing "tel"
+					this.field.setAttribute('type', 'tel');
+					res[1] = this.field.type == 'tel';
+ 
+					// test if the "validity" property is present
+					if ("validity" in this.field) {
+ 
+						// testing "url"
+						this.field.setAttribute('type', 'url');
+						this.field.value = "foo";
+						if (!this.field.validity.valid) {
+							this.field.value = "http://foo.org";
+							if (this.field.validity.valid) {
+								res[2] = true;
+							}
+						}
+ 
+						// testing "email"
+						this.field.setAttribute('type', 'email');
+						this.field.value = "foo";
+						if (!this.field.validity.valid) {
+							this.field.value = "foo@bar.org";
+							if (this.field.validity.valid) {
+								res[3] = true;
+							}
+						}
+ 
+						// testing datetime, date, month, week, timeand datetime-local
+						for (var i = 4; i <= 9; i++) {
+							this.field.setAttribute('type', types[i]);
+							this.field.value = "foobar";
+							if (this.field.value == "") {
+									res[i] = true;
+							}
+						}
+ 
+						// testing "number" and "range"
+						for (var i = 10; i <= 11; i++) {
+							this.field.setAttribute('type', types[i]);
+							this.field.value = "foo";
+							if (this.field.value != "foo") {
+								this.field.min = 40;
+								this.field.max = 50;
+								this.field.value = 100;
+								if (!this.field.validity.valid) {
+									this.field.value = 42;
+									if (this.field.validity.valid) {
+										this.field.value = "";
+										res[i] = true;
+									}
+								}
+							}
+						}
+ 
+						// testing "color"
+						this.field.setAttribute('type', 'color');
+						this.field.value = "foo";
+						if (!this.field.validity.valid && this.field.value == "#000000") {
+							res[12] = false;
+						}
+ 
+ 
+					}
 					
 					for (var t in types) {
-						this.field.setAttribute('type', types[t]);
-						
 						group.setItem({
 							title: 	'<code>' + types[t] + '</code> type state', 
 							url:	'http://www.w3.org/TR/html5/forms.html#' + states[t] + '-state',
-							passed:	this.field.type != 'text', 
+							passed:	res[t],
 							value: 	1
 						});
 					}
@@ -1485,6 +1553,36 @@
 							value: 	1
 						});
         			}
+
+					var form = document.createElement('form');
+					form.id = 't2form';
+					document.body.appendChild(form);
+					this.field.setAttribute('form', 't2form');
+					group.setItem({
+						title: 	'<code>form</code> attribute', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#attr-fae-form',
+						passed:	this.field.form == form,
+						value: 	1
+					});
+					document.body.removeChild(form);
+ 
+					var t2label = document.createElement("label");
+					t2label.setAttribute('for', 'testFormInput');
+					document.body.appendChild(t2label);
+					group.setItem({
+						title: 	'<code>labels</code> attribute', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-lfe-labels',
+						passed:	(!!this.field.labels && this.field.labels.length == 1 && this.field.labels[0] == t2label),
+						value: 	1
+					});
+ 
+					group.setItem({
+						title: 	'<code>control</code> attribute', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-label-control',
+						passed:	t2label.control == this.field,
+						value: 	1
+					});
+					document.body.removeChild(t2label);
 				},
 
 				t3: function() {
@@ -1532,6 +1630,37 @@
 				},
 				
 				t4: function() {
+					var selectors = "valid invalid optional required".split(" ");
+					var res = [false, false, false, false];
+ 
+					this.field.setAttribute("type", "text");
+					document.body.appendChild(this.field);
+					if ("validity" in this.field && "setCustomValidity" in this.field) {
+						//:valid
+						res[0] = !!document.querySelector("#testFormInput:valid");
+						//:invalid
+						this.field.setCustomValidity("foo");
+						res[1] = !!document.querySelector("#testFormInput:invalid");
+						res[2] = !!document.querySelector("#testFormInput:optional");
+						this.field.setAttribute("required", "true");
+						res[3] = !!document.querySelector("#testFormInput:required");
+						
+					}
+					document.body.removeChild(this.field);
+ 
+					var group = this.section.getGroup('CSS selectors integration');
+ 
+					for (var i = 0; i < selectors.length; i++) {
+						group.setItem({
+							title: 	'<code>:' + selectors[i] + '</code> selector', 
+							url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#selector-' + selectors[i],
+							passed:	res[i],
+							value: 	1
+						});
+					}
+				},
+				
+				t5: function() {
 					var element = document.createElement('input');
 					
 					this.section.setItem({
