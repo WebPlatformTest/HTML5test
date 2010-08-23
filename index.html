@@ -680,7 +680,7 @@
 					}
 
 					var cell = document.createElement('td');
-					cell.innerHTML = result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>'
+					cell.innerHTML = result.custom ? result.custom : (result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>')
 					row.appendChild(cell);
 
 					if (typeof result.value == 'undefined') result.value = 0;
@@ -789,7 +789,7 @@
 					}
 
 					var cell = document.createElement('td');
-					cell.innerHTML = result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>'
+					cell.innerHTML = result.custom ? result.custom : (result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>')
 					row.appendChild(cell);
 
 					if (typeof result.value == 'undefined') result.value = 0;
