@@ -1447,7 +1447,7 @@
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
 				name: 	'Forms',
-				count: 	5,
+				count: 	6,
 				
 				initialize: function(results) {
 					this.field = document.createElement('input');
@@ -1527,8 +1527,6 @@
 						if (!this.field.validity.valid && this.field.value == "#000000") {
 							res[12] = false;
 						}
- 
- 
 					}
 					
 					for (var t in types) {
@@ -1566,26 +1564,34 @@
 					});
 					document.body.removeChild(form);
  
-					var t2label = document.createElement("label");
-					t2label.setAttribute('for', 'testFormInput');
-					document.body.appendChild(t2label);
+					var label = document.createElement("label");
+					label.setAttribute('for', 'testFormInput');
+					document.body.appendChild(label);
 					group.setItem({
 						title: 	'<code>labels</code> attribute', 
 						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-lfe-labels',
-						passed:	(!!this.field.labels && this.field.labels.length == 1 && this.field.labels[0] == t2label),
+						passed:	(!!this.field.labels && this.field.labels.length == 1 && this.field.labels[0] == label),
 						value: 	1
 					});
- 
+					document.body.removeChild(label);
+ 				},
+
+				t3: function() {
+					var group = this.section.getGroup('<code>label</code> element attributes');
+
+					var label = document.createElement("label");
+					label.setAttribute('for', 'testFormInput');
+					document.body.appendChild(label);
 					group.setItem({
 						title: 	'<code>control</code> attribute', 
 						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-label-control',
-						passed:	t2label.control == this.field,
+						passed:	label.control == this.field,
 						value: 	1
 					});
-					document.body.removeChild(t2label);
+					document.body.removeChild(label);
 				},
 
-				t3: function() {
+				t4: function() {
 					var group = this.section.getGroup('Other form elements');
 
 					var element = document.createElement('datalist');
@@ -1629,7 +1635,7 @@
 					});
 				},
 				
-				t4: function() {
+				t5: function() {
 					var selectors = "valid invalid optional required".split(" ");
 					var res = [false, false, false, false];
  
@@ -1644,13 +1650,11 @@
 						res[2] = !!document.querySelector("#testFormInput:optional");
 						this.field.setAttribute("required", "true");
 						res[3] = !!document.querySelector("#testFormInput:required");
-						
 					}
 					document.body.removeChild(this.field);
  
 					var group = this.section.getGroup('CSS selectors integration');
- 
-					for (var i = 0; i < selectors.length; i++) {
+ 					for (var i = 0; i < selectors.length; i++) {
 						group.setItem({
 							title: 	'<code>:' + selectors[i] + '</code> selector', 
 							url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#selector-' + selectors[i],
@@ -1660,7 +1664,7 @@
 					}
 				},
 				
-				t5: function() {
+				t6: function() {
 					var element = document.createElement('input');
 					
 					this.section.setItem({
