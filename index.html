@@ -1630,16 +1630,23 @@
 
 				t3: function() {
 					var group = this.section.getGroup('<code>label</code> element attributes');
+					
+					var field = document.createElement('input');
+					field.id = "a";
+					document.body.appendChild(field);
 
 					var label = document.createElement("label");
-					label.setAttribute('for', 'testFormInput');
+					label.setAttribute('for', 'a');
 					document.body.appendChild(label);
+					
 					group.setItem({
 						title: 	'<code>control</code> attribute', 
 						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-label-control',
-						passed:	label.control == this.field,
+						passed:	label.control == field,
 						value: 	1
 					});
+					
+					document.body.removeChild(field);
 					document.body.removeChild(label);
 				},
 
