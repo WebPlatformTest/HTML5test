@@ -342,11 +342,11 @@
 			#results ul li table table tbody th {
 				padding-left: 20px;
 			}
-			#results .partially {
-				color: #888;
-			}
 			#results .check,
-			#results .ballot {
+			#results .ballot,
+			#results .partial,
+			#results .unknown {
+				color: #888;
 				font-size: 1.2em;
 				margin: 0 0 0 6px;
 			}
@@ -680,7 +680,14 @@
 					}
 
 					var cell = document.createElement('td');
-					cell.innerHTML = result.custom ? result.custom : (result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>')
+					if (result.custom) {
+						switch(result.custom) {
+							case 'unknown': cell.innerHTML = 'Unknown <span class="unknown">○</span>'; break;
+							case 'partial': cell.innerHTML = 'Partial <span class="partial">○</span>'; break;
+						}
+					} else {
+						cell.innerHTML = result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>';
+					}
 					row.appendChild(cell);
 
 					if (typeof result.value == 'undefined') result.value = 0;
@@ -789,7 +796,14 @@
 					}
 
 					var cell = document.createElement('td');
-					cell.innerHTML = result.custom ? result.custom : (result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>')
+					if (result.custom) {
+						switch(result.custom) {
+							case 'unknown': cell.innerHTML = 'Unknown <span class="unknown">○</span>'; break;
+							case 'partial': cell.innerHTML = 'Partial <span class="partial">○</span>'; break;
+						}
+					} else {
+						cell.innerHTML = result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>';
+					}
 					row.appendChild(cell);
 
 					if (typeof result.value == 'undefined') result.value = 0;
@@ -1490,6 +1504,14 @@
 					var group = this.section.getGroup('<code>input</code> element types');
 					var types = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
 					var states = 'text-state-and-search telephone url e-mail date-and-time date month week time local-date-and-time number range color'.split(' ');
+					
+					var minimal = [false, false, false, false, false, false, false, false, false, false, false, false, false];
+							
+					for (var t in types) {
+						this.field.setAttribute('type', types[t]);
+						minimal[t] = this.field.type != 'text';
+					}
+					
 					var res = [false, false, false, false, false, false, false, false, false, false, false, false, false];
  
 					// testing "search"
@@ -1563,7 +1585,8 @@
 							title: 	'<code>' + types[t] + '</code> type state', 
 							url:	'http://www.w3.org/TR/html5/forms.html#' + states[t] + '-state',
 							passed:	res[t],
-							value: 	1
+							value: 	1,
+							custom:	minimal[t] && !res[t] ? 'partial' : false
 						});
 					}
 				},
@@ -1691,7 +1714,7 @@
 							url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#selector-' + selectors[i],
 							passed:	res[i],
 							value: 	1,
-							custom:	!document.querySelector ? 'Unknown' : false
+							custom:	!document.querySelector ? 'unknown' : false
 						});
 					}
 				},
