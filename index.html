@@ -830,7 +830,9 @@
 				}				
 			}
 			
-			
+			var iOS = (function() {
+	   			return !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
+			})();			
 			
 			
 			function testParsing (results) { this.initialize(results) }			
@@ -1475,12 +1477,16 @@
 				},
 
 				t8: function() {
+					/*
+					 * NOTE: Despite having the attribute, contentEditable is not supported on the iPhone!
+					 */
+					 
 					var element = document.createElement('div');
 					
 					this.section.setItem({
 						title: 	'<code>contenteditable</code> attribute', 
 						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
-						passed:	'isContentEditable' in element, 
+						passed:	'isContentEditable' in element && !iOS, 
 						value: 	10
 					});
 				}
