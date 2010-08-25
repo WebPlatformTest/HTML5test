@@ -831,7 +831,7 @@
 			}
 			
 			var iOS = !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
-			var Andriod = !!navigator.userAgent.match('Andriod');
+			var Android = !!navigator.userAgent.match('Android');
 			
 			
 			function testParsing (results) { this.initialize(results) }			
@@ -1477,7 +1477,7 @@
 					this.section.setItem({
 						title: 	'<code>contenteditable</code> attribute', 
 						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
-						passed:	'isContentEditable' in element && !iOS && !Andriod, 
+						passed:	'isContentEditable' in element && !iOS && !Android, 
 						value: 	10
 					});
 				}
