@@ -1077,12 +1077,8 @@
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
-				isIPhone: function() {
-	   				return !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
-				},
-				
 				canPlayType: function(t) {
-					if (this.isIPhone())
+					if (iOS)
 						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
 					else 
 						return this.element.canPlayType(t) == 'probably';
@@ -1173,12 +1169,8 @@
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
-				isIPhone: function() {
-	   				return !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
-				},
-				
 				canPlayType: function(t) {
-					if (this.isIPhone())
+					if (iOS)
 						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
 					else 
 						return this.element.canPlayType(t) == 'probably';
