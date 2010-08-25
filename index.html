@@ -1417,6 +1417,15 @@
 						passed:	typeof HTMLTimeElement != 'undefined' && element instanceof HTMLTimeElement, 
 						value: 	1
 					});
+					
+					var element = document.createElement('wbr');
+
+					group.setItem({
+						title: 	'<code>wbr</code> element', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-wbr-element',
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement, 
+						value: 	1
+					});
 				},
 				
 				t5: function() {
