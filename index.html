@@ -1718,12 +1718,17 @@
 						value: 	1
 					});
 
-					var element = document.createElement('keygen');
+					var element = document.createElement('div');
+					element.innerHTML = '<keygen>';
+					element = element.firstChild;
+					element.childNodes.length
+					
 					group.setItem({
 						title: 	'<code>keygen</code> element', 
 						url:	'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
-						passed:	(typeof HTMLKeygenElement != 'undefined' && element instanceof HTMLKeygenElement) || element.childNodes.length, 
-						value: 	1
+						passed:	typeof HTMLKeygenElement != 'undefined' && element instanceof HTMLKeygenElement && 'challenge' in element && 'keytype' in element, 
+						value: 	1,
+						custom: element.childNodes.length ? 'partial' : false
 					});
 					
 					var element = document.createElement('output');
