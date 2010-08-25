@@ -1896,7 +1896,7 @@
 			function testSecurity (results) { this.initialize(results) }			
 			testSecurity.prototype = {
 				name: 	'Security',
-				count: 	1,
+				count: 	2,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -1908,6 +1908,15 @@
 						title: 	'Sandboxed <code>iframe</code>', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#attr-iframe-sandbox',
 						passed:	'sandbox' in document.createElement('iframe'), 
+						value: 	5
+					});
+				},
+				
+				t2: function() {
+					this.section.setItem({
+						title: 	'Seamless <code>iframe</code>', 
+						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#attr-iframe-seamless',
+						passed:	'seamless' in document.createElement('iframe'), 
 						value: 	5
 					});
 				}
