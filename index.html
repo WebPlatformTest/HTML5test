@@ -1309,6 +1309,10 @@
 					return foo.childNodes.length == 2;
 				},
 				
+				isHidden: function(element) {
+					return this.getStyle(element, 'display') == 'none';
+				},
+				
 				t1: function() {
 					var element = document.createElement('div');
 					element.setAttribute('data-test', 'test');
@@ -1374,41 +1378,44 @@
 
 					document.body.removeChild(element);
 					
+					
 					var container = document.createElement('div');
 					document.body.appendChild(container);
 					container.innerHTML = "<ruby id='ruby'><rp id='rp'></rp><rt id='rt'></rt></ruby>";
-					var element = document.getElementById('ruby');
-
+					var rubyElement = document.getElementById('ruby');
+					var rtElement = document.getElementById('rt');
+					var rpElement = document.getElementById('rp');
+					var rubyFullSupport = rubyElement && typeof HTMLElement != 'undefined' && rubyElement instanceof HTMLElement && this.getStyle(rubyElement, 'display') == 'ruby';
+					var rtFullSupport = rtElement && typeof HTMLElement != 'undefined' && rtElement instanceof HTMLElement && this.getStyle(rtElement, 'display') == 'ruby-text';
+					var rpFullSupport = rpElement && typeof HTMLElement != 'undefined' && rpElement instanceof HTMLElement && this.isHidden(rpElement);
+					var rubyPartialSupport = rubyElement && typeof HTMLElement != 'undefined' && rubyElement instanceof HTMLElement;
+					var rtPartialSupport = rtElement && typeof HTMLElement != 'undefined' && rtElement instanceof HTMLElement;
+					document.body.removeChild(container);					
+					
 					group.setItem({
 						title: 	'<code>ruby</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element',
-						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby', 
+						passed:	rubyFullSupport, 
 						value: 	1,
-						custom: element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement ? 'partial' : false
+						custom: !rubyFullSupport && rubyPartialSupport && rpFullSupport ? 'partial' : false
 					});
-
-					var element = document.getElementById('rt');
 
 					group.setItem({
 						title: 	'<code>rt</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rt-element',
-						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby-text', 
+						passed:	rtFullSupport, 
 						value: 	1,
-						custom: element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement ? 'partial' : false
+						custom: !rtFullSupport && rtPartialSupport && rpFullSupport ? 'partial' : false
 					});
-
-					var element = document.getElementById('rp');
 
 					group.setItem({
 						title: 	'<code>rp</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rp-element',
-						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'hidden', 
-						value: 	1,
-						custom: element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement ? 'partial' : false
+						passed:	rpFullSupport, 
+						value: 	1
 					});
 					
-					document.body.removeChild(container);
-					
+
 					var element = document.createElement('time');
 
 					group.setItem({
