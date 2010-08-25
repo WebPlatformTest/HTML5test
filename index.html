@@ -1490,7 +1490,7 @@
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
 				name: 	'Forms',
-				count: 	6,
+				count: 	7,
 				
 				initialize: function(results) {
 					this.field = document.createElement('input');
@@ -1611,13 +1611,17 @@
 						passed:	!!("list" in this.field) && (typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length,
 						value:	1
 					});
+				},
+				
+				t3: function() {
+					var group = this.section.getGroup('<code>input</code> element properties');		
 
 					var form = document.createElement('form');
 					form.id = 't2form';
 					document.body.appendChild(form);
 					this.field.setAttribute('form', 't2form');
 					group.setItem({
-						title: 	'<code>form</code> attribute', 
+						title: 	'<code>form</code> property', 
 						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#attr-fae-form',
 						passed:	this.field.form == form,
 						value: 	1
@@ -1627,7 +1631,7 @@
 					var props = 'formAction formEnctype formMethod formNoValidate formTarget'.split(' ');
 					for (var p in props) {
  						group.setItem({
-							title: 	'<code>' + props[p] + '</code> attribute', 
+							title: 	'<code>' + props[p] + '</code> property', 
 							url:	'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-' + props[p].toLowerCase(),
 							passed:	!!(props[p] in this.field), 
 							value: 	1
@@ -1638,7 +1642,7 @@
 					label.setAttribute('for', 'testFormInput');
 					document.body.appendChild(label);
 					group.setItem({
-						title: 	'<code>labels</code> attribute', 
+						title: 	'<code>labels</code> property', 
 						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-lfe-labels',
 						passed:	(!!this.field.labels && this.field.labels.length == 1 && this.field.labels[0] == label),
 						value: 	1
@@ -1646,8 +1650,8 @@
 					document.body.removeChild(label);
  				},
 
-				t3: function() {
-					var group = this.section.getGroup('<code>label</code> element attributes');
+				t4: function() {
+					var group = this.section.getGroup('<code>label</code> element properties');
 					
 					var field = document.createElement('input');
 					field.id = "a";
@@ -1658,7 +1662,7 @@
 					document.body.appendChild(label);
 					
 					group.setItem({
-						title: 	'<code>control</code> attribute', 
+						title: 	'<code>control</code> property', 
 						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-label-control',
 						passed:	label.control == field,
 						value: 	1
@@ -1668,7 +1672,7 @@
 					document.body.removeChild(label);
 				},
 
-				t4: function() {
+				t5: function() {
 					var group = this.section.getGroup('Other form elements');
 
 					var element = document.createElement('datalist');
@@ -1712,7 +1716,7 @@
 					});
 				},
 				
-				t5: function() {
+				t6: function() {
 					var selectors = "valid invalid optional required".split(" ");
 					var res = [false, false, false, false];
  					
@@ -1744,7 +1748,7 @@
 					}
 				},
 				
-				t6: function() {
+				t7: function() {
 					var element = document.createElement('input');
 					
 					this.section.setItem({
