@@ -1383,7 +1383,8 @@
 						title: 	'<code>ruby</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element',
 						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby', 
-						value: 	1
+						value: 	1,
+						custom: element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement ? 'partial' : false
 					});
 
 					var element = document.getElementById('rt');
@@ -1392,7 +1393,8 @@
 						title: 	'<code>rt</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rt-element',
 						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby-text', 
-						value: 	1
+						value: 	1,
+						custom: element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement ? 'partial' : false
 					});
 
 					var element = document.getElementById('rp');
@@ -1401,7 +1403,8 @@
 						title: 	'<code>rp</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rp-element',
 						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'hidden', 
-						value: 	1
+						value: 	1,
+						custom: element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement ? 'partial' : false
 					});
 					
 					document.body.removeChild(container);
