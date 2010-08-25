@@ -1599,7 +1599,7 @@
 
 				t2: function() {
 					var group = this.section.getGroup('<code>input</code> element attributes');
-					var props = 'autocomplete autofocus list placeholder max min multiple pattern required step'.split(' ');
+					var props = 'autocomplete autofocus placeholder max min multiple pattern required step'.split(' ');
 						
 					for (var p in props) {
  						group.setItem({
@@ -1609,6 +1609,14 @@
 							value: 	1
 						});
         			}
+        			
+					var element = document.createElement('datalist');
+					group.setItem({
+						title:	'<code>list</code> attribute',
+						url:	'http://www.w3.org/TR/html5/forms.html#the-list-attribute',
+						passed:	!!("list" in this.field) && (typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length,
+						value:	1
+					});
 
 					var form = document.createElement('form');
 					form.id = 't2form';
@@ -1621,7 +1629,17 @@
 						value: 	1
 					});
 					document.body.removeChild(form);
- 
+
+					var props = 'formAction formEnctype formMethod formNoValidate formTarget'.split(' ');
+					for (var p in props) {
+ 						group.setItem({
+							title: 	'<code>' + props[p] + '</code> attribute', 
+							url:	'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-' + props[p].toLowerCase(),
+							passed:	!!(props[p] in this.field), 
+							value: 	1
+						});
+					}
+
 					var label = document.createElement("label");
 					label.setAttribute('for', 'testFormInput');
 					document.body.appendChild(label);
