@@ -1276,7 +1276,7 @@
 			function testElements (results) { this.initialize(results) }			
 			testElements.prototype = {
 				name: 	'Elements',
-				count: 	8,
+				count: 	9,
 				
 				initialize: function(results) {
 					this.section = results.getSection('Elements');
@@ -1456,8 +1456,27 @@
 
 					document.body.removeChild(element);					
 				},
-
+				
 				t6: function() {
+					var group = this.section.getGroup('Dynamic markup insertion');
+					var element = document.createElement('div');
+
+					group.setItem({
+						title: 	'<code>outerHTML</code> property', 
+						url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#outerhtml',
+						passed:	!!('outerHTML' in element), 
+						value: 	1
+					});
+						
+					group.setItem({
+						title: 	'<code>insertAdjacentHTML</code> function', 
+						url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#dom-insertadjacenthtml',
+						passed:	!!('insertAdjacentHTML' in element), 
+						value: 	1
+					});
+				},
+
+				t7: function() {
 					var element = document.createElement('div');
 					
 					this.section.setItem({
@@ -1468,7 +1487,7 @@
 					});
 				},
 				
-				t7: function() {
+				t8: function() {
 					var element = document.createElement('div');
 					
 					this.section.setItem({
@@ -1479,7 +1498,7 @@
 					});
 				},
 
-				t8: function() {
+				t9: function() {
 					/*
 					 * NOTE: Despite having the attribute, contentEditable is not supported on the iPhone and Andriod!
 					 */
