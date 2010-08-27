@@ -1651,17 +1651,16 @@
 				t3: function() {
 					var group = this.section.getGroup('<code>input</code> element properties');		
 
-					var form = document.createElement('form');
-					form.id = 't2form';
-					document.body.appendChild(form);
-					this.field.setAttribute('form', 't2form');
+					var element = document.createElement('div');
+					document.body.appendChild(element);
+					element.innerHTML = '<form id="form"></form><input form="form">';
 					group.setItem({
 						title: 	'<code>form</code> property', 
 						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#attr-fae-form',
-						passed:	this.field.form == form,
+						passed:	element.lastChild.form == element.firstChild,
 						value: 	1
 					});
-					document.body.removeChild(form);
+					document.body.removeChild(element);
 
 					var props = 'formAction formEnctype formMethod formNoValidate formTarget'.split(' ');
 					for (var p in props) {
@@ -1720,15 +1719,13 @@
 
 					var element = document.createElement('div');
 					element.innerHTML = '<keygen>';
-					element = element.firstChild;
-					element.childNodes.length
 					
 					group.setItem({
 						title: 	'<code>keygen</code> element', 
 						url:	'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
-						passed:	typeof HTMLKeygenElement != 'undefined' && element instanceof HTMLKeygenElement && 'challenge' in element && 'keytype' in element, 
+						passed:	typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild, 
 						value: 	1,
-						custom: element.childNodes.length ? 'partial' : false
+						custom: element.childNodes && element.childNodes.length ? 'partial' : false
 					});
 					
 					var element = document.createElement('output');
