@@ -352,9 +352,13 @@
 			#results .ballot,
 			#results .partial,
 			#results .unknown {
+				display: inline-block;
+				
 				color: #888;
 				font-size: 1.2em;
 				margin: 0 0 0 6px;
+				width: 1em;
+				text-align: center;
 			}
 			#results .check {
 				color: #1c8c1d;
@@ -899,6 +903,47 @@
 			var iOS = !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
 			var Android = !!navigator.userAgent.match('Android');
 			
+			var isEventSupported = (function(){
+			  
+			  var TAGNAMES = {
+			    'select':'input','change':'input','input':'input',
+			    'submit':'form','reset':'form','forminput':'form','formchange':'form',
+			    'error':'img','load':'img','abort':'img'
+			  }
+			  
+			  function isEventSupported(eventName, element) {
+			
+			    element = element || document.createElement(TAGNAMES[eventName] || 'div');
+			    eventName = 'on' + eventName;
+			    
+			    // When using `setAttribute`, IE skips "unload", WebKit skips "unload" and "resize", whereas `in` "catches" those
+			    var isSupported = (eventName in element);
+			    
+			    if (!isSupported) {
+			      // if it has no `setAttribute` (i.e. doesn't implement Node interface), try generic element
+			      if (!element.setAttribute) {
+			        element = document.createElement('div');
+			      }
+			      if (element.setAttribute && element.removeAttribute) {
+			        element.setAttribute(eventName, '');
+			        isSupported = typeof element[eventName] == 'function';
+			
+			        // if property was created, "remove it" (by setting value to `undefined`)
+			        if (typeof element[eventName] != 'undefined') {
+			          element[eventName] = void 0;
+			        }
+			        element.removeAttribute(eventName);
+			      }
+			    }
+			    
+			    element = null;
+			    return isSupported;
+			  }
+			  return isEventSupported;
+			})();
+
+
+
 			
 			function testParsing (results) { this.initialize(results) }			
 			testParsing.prototype = {
@@ -1591,7 +1636,7 @@
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
 				name: 	'Forms',
-				count: 	7,
+				count: 	8,
 				
 				initialize: function(results) {
 					this.field = document.createElement('input');
@@ -1852,6 +1897,77 @@
 				},
 				
 				t7: function() {
+					var group = this.section.getGroup('Events');
+					var inputItem = group.setItem({
+						title: 	'<code>input</code> event for fields', 
+						passed:	isEventSupported('input'), 
+						value: 	2
+					});
+
+					var changeItem = group.setItem({
+						title: 	'<code>change</code> event for fields', 
+						passed:	isEventSupported('change'), 
+						value: 	2
+					});
+
+					var forminputItem = group.setItem({
+						title: 	'<code>forminput</code> event for forms', 
+						passed:	isEventSupported('forminput'), 
+						value: 	2
+					});
+
+					var formchangeItem = group.setItem({
+						title: 	'<code>formchange</code> event for forms', 
+						passed:	isEventSupported('formchange'), 
+						value: 	2
+					});					
+				
+					if (document.createEvent) {
+						var event = document.createEvent("KeyboardEvent");				
+						if (event.initKeyEvent) {
+							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
+	
+							var form = document.createElement('form');
+							var input = document.createElement('input');
+							form.appendChild(input);
+							document.body.appendChild(form);
+							
+							input.addEventListener('input', function() {
+								inputItem.update({
+									'passed': true
+								});
+							}, true);
+						
+							input.addEventListener('change', function() {
+								changeItem.update({
+									'passed': true
+								});
+							}, true);	
+												
+							form.addEventListener('forminput', function() {
+								forminputItem.update({
+									'passed': true
+								});
+							}, true);
+						
+							form.addEventListener('formchange', function() {
+								formchangeItem.update({
+									'passed': true
+								});
+							}, true);
+												
+			             	input.focus();
+			        		input.dispatchEvent(event);
+			                input.blur();
+						
+							window.setTimeout(function() {
+								document.body.removeChild(form);
+							}, 1000);
+						}
+					}
+				},
+				
+				t8: function() {
 					var element = document.createElement('input');
 					
 					this.section.setItem({
@@ -1860,7 +1976,7 @@
 						passed:	'checkValidity' in element, 
 						value: 	10
 					});
-				}				
+				}
 			};
 
 
