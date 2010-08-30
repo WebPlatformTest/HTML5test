@@ -559,12 +559,12 @@
 		
 			function results (e, t) { this.initialize(e, t) }
 			results.prototype = {
-				score: 		0,
-				bonus:		0,
-				max:        0, 
-				sections: 	[],
-				
 				initialize: function(e, t) {
+					this.items = [];
+					this.points = 0;
+					this.bonus = 0;
+					this.max = 0;
+				
 					this.container = document.getElementById(e);
 					
 					this.intro = document.createElement('p');
@@ -598,35 +598,41 @@
 				},
 				
 				getSection: function(name, url) {
-					var s = new section(this, name, url)
-					this.sections.push(s);
-					return s;
+					var i = new section(this, name, url)
+					this.items.push(i);
+					return i;
 				},
 
-				setScore: function(score, bonus, max) {
-					this.score += score;
-					this.bonus += bonus;
-					this.max += max;
-					
-					this.update();
-				},
-				
 				update: function() {
-					this.counter.innerHTML = this.score;
-					this.byline.innerHTML = 'and ' + (this.bonus ? this.bonus : 'no') + ' bonus point' + (this.bonus != 1 ? 's' : '');
-					this.maximum.innerHTML = 'out of a total of ' + this.max + ' points';
-					this.total.innerHTML = this.max;				
+					var points = 0;
+					var bonus = 0;
+					var max = 0;
+					
+					for (var i = 0; i < this.items.length; i++) {
+						points += this.items[i].getPoints();
+						bonus += this.items[i].getBonus();
+						max += this.items[i].getMaximum();	
+					}
+
+					this.counter.innerHTML = points;
+					this.byline.innerHTML = 'and ' + (bonus ? bonus : 'no') + ' bonus point' + (bonus != 1 ? 's' : '');
+					this.maximum.innerHTML = 'out of a total of ' + max + ' points';
+					this.total.innerHTML = max;				
+
+					this.points = points;
+					this.bonus = bonus;
+					this.max = max;
 				}
 			}
 
 			function section (parent, name) { this.initialize(parent, name) }
 			section.prototype = {
-				value: 		0,
-				bonus:		0,
-				max:        0,
-				name:		'',
-				
 				initialize: function(parent, name) {
+					this.items = [];
+					this.points = 0;
+					this.bonus = 0;
+					this.max = 0;
+				
 					this.parent = parent;
 					this.name = name;
 					
@@ -645,8 +651,6 @@
 
 					this.body = document.createElement('tbody');
 					this.table.appendChild(this.body);
-					
-					this.items = [];
 				},
 				
 				setExplaination: function(explaination) {
@@ -663,49 +667,12 @@
 				},
 				
 				setItem: function(result) {
-					var row = document.createElement('tr');
-					this.body.appendChild(row);
-
-					var head = document.createElement('th');
-					row.appendChild(head);
+					var i = new item(this, result);
+					this.items.push(i);
 					
-					if (typeof result.url != 'undefined') {
-						var link = document.createElement('a');
-						link.href = result.url;
-						head.appendChild(link);
-						
-						link.innerHTML = result.title;
-					} else {
-						head.innerHTML = result.title;
-					}
-
-					var cell = document.createElement('td');
-					if (result.custom) {
-						switch(result.custom) {
-							case 'unknown': cell.innerHTML = 'Unknown <span class="unknown">○</span>'; break;
-							case 'partial': cell.innerHTML = 'Partial <span class="partial">○</span>'; break;
-						}
-					} else {
-						cell.innerHTML = result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>';
-					}
-					row.appendChild(cell);
-
-					if (typeof result.value == 'undefined') result.value = 0;
-					if (typeof result.bonus == 'undefined') result.bonus = 0;
-					if (typeof result.award == 'undefined') result.award = result.value;
-					this.setScore(result.passed ? result.award : 0, result.bonus, result.value);	
+					this.update();
 					
-					this.addItem(result);									
-				},
-				
-				addItem: function(result) {
-					var e = document.createElement('div');
-					e.innerHTML = result.title;
-				
-					this.items.push({
-						name:		e.innerText,
-						passed: 	result.passed
-					});				
+					return i;
 				},
 				
 				getGroup: function(name) {
@@ -717,17 +684,24 @@
 					container.className = 'container';
 					row.appendChild(container)
 					
-					return new group(this, container, name)
+					var i = new group(this, container, name);
+					this.items.push(i);
+					return i;
 				},
 				
-				setScore: function(value, bonus, max) {
-					this.value += value;
-					this.bonus += bonus;
-					this.max += max;
-
-					this.score.innerHTML =  (this.bonus ? '<span>' + this.bonus + ' Bonus point' + (this.bonus != 1 ? 's' : '') + '</span>' : '') + (this.value == this.max ? this.value : this.value + '/' + this.max);
+				update: function() {
+					var points = 0;
+					var bonus = 0;
+					var max = 0;
 					
-					var percent = parseInt(this.value / this.max * 100, 10);
+					for (var i = 0; i < this.items.length; i++) {
+						points += this.items[i].getPoints();
+						bonus += this.items[i].getBonus();
+						max += this.items[i].getMaximum();	
+					}
+					
+					this.score.innerHTML =  (bonus ? '<span>' + bonus + ' Bonus point' + (bonus != 1 ? 's' : '') + '</span>' : '') + (points == max ? points : points + '/' + max);
+					var percent = parseInt(points / max * 100, 10);
 					switch (true) {
 						case percent == 0: 	this.score.className = 'none'; break;
 						case percent <= 30: this.score.className = 'badly'; break;
@@ -736,17 +710,34 @@
 						default:			this.score.className = 'great'; break;
 					}
 					
-					this.parent.setScore(value, bonus, max);
+					this.points = points;
+					this.bonus = bonus;
+					this.max = max;
+					
+					this.parent.update();
+				},
+				
+				getBonus: function() {
+					return this.bonus;
+				},
+				
+				getPoints: function() {
+					return this.points;
+				},
+				
+				getMaximum: function() {
+					return this.max;
 				}
 			}
 			
 			function group (parent, container, name) { this.initialize(parent, container, name) }
 			group.prototype = {
-				value: 		0,
-				bonus:		0,
-				max:        0, 
-
 				initialize: function(parent, container, name) {
+					this.items = [];
+					this.points = 0;
+					this.bonus = 0;
+					this.max = 0;
+				
 					this.parent = parent;
 					this.container = container;
 					
@@ -778,57 +769,126 @@
 					this.table.appendChild(this.body);
 				},
 				
-				setItem: function(result) {
-					var row = document.createElement('tr');
-					this.body.appendChild(row);
-
-					var head = document.createElement('th');
-					row.appendChild(head);
-
-					if (typeof result.url != 'undefined') {
-						var link = document.createElement('a');
-						link.href = result.url;
-						head.appendChild(link);
-						
-						link.innerHTML = result.title;
-					} else {
-						head.innerHTML = result.title;
+				update: function() {
+					var points = 0;
+					var bonus = 0;
+					var max = 0;
+					
+					for (var i = 0; i < this.items.length; i++) {
+						points += this.items[i].getPoints();
+						bonus += this.items[i].getBonus();
+						max += this.items[i].getMaximum();	
 					}
-
-					var cell = document.createElement('td');
-					if (result.custom) {
-						switch(result.custom) {
-							case 'unknown': cell.innerHTML = 'Unknown <span class="unknown">○</span>'; break;
-							case 'partial': cell.innerHTML = 'Partial <span class="partial">○</span>'; break;
-						}
-					} else {
-						cell.innerHTML = result.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>';
-					}
-					row.appendChild(cell);
-
-					if (typeof result.value == 'undefined') result.value = 0;
-					if (typeof result.bonus == 'undefined') result.bonus = 0;
-					if (typeof result.award == 'undefined') result.award = result.value;
-					this.setScore(result.passed ? result.award : 0, result.bonus, result.value);					
-
-					this.parent.addItem(result);		
-				},
-				
-				setScore: function(value, bonus, max) {
-					this.value += value;
-					this.bonus += bonus;
-					this.max += max;
-
-					if (this.value == 0) 
+					
+					if (points == 0) 
 						this.score.innerHTML = 'No <span class="ballot">✘</span>';						
-					else if (this.value == this.max) 
+					else if (points == max) 
 						this.score.innerHTML = 'Yes <span class="check">✔</span>';
 					else
-						this.score.innerHTML = '<span class="partially">' + this.value + ' out of ' + this.max + '</span>';
-						
-					this.parent.setScore(value, bonus, max);
+						this.score.innerHTML = '<span class="partially">' + points + ' out of ' + max + '</span>';
+					
+					this.points = points;
+					this.bonus = bonus;
+					this.max = max;
+					
+					this.parent.update();
+				},
+				
+				setItem: function(result) {
+					var i = new item(this, result);
+					this.items.push(i);
+					
+					this.update();
+					
+					return i;
+				},
+				
+				getBonus: function() {
+					return this.bonus;
+				},
+				
+				getPoints: function() {
+					return this.points;
+				},
+				
+				getMaximum: function() {
+					return this.max;
 				}				
 			}
+			
+			function item (parent, data) { this.initialize(parent, data) }
+			item.prototype = {
+				initialize: function(parent, data) {
+					this.parent = parent;
+				
+					var row = document.createElement('tr');
+					parent.body.appendChild(row);
+
+					this.head = document.createElement('th');
+					row.appendChild(this.head);
+					
+					this.cell = document.createElement('td');
+					row.appendChild(this.cell);
+					
+					this.data = data;
+					if (typeof this.data.value == 'undefined') this.data.value = 0;
+					if (typeof this.data.bonus == 'undefined') this.data.bonus = 0;
+					if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
+					
+					this.render();
+				},
+				
+				update: function(data) {
+					for (key in data) {
+						this.data[key] = data[key];
+					}
+
+					if (typeof this.data.value == 'undefined') this.data.value = 0;
+					if (typeof this.data.bonus == 'undefined') this.data.bonus = 0;
+					if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
+					
+					this.render();
+
+					this.parent.update();
+				},
+					
+				render: function() {
+					if (typeof this.data.url != 'undefined') {
+						this.head.innerHTML = '<a href="' + this.data.url + '">' + this.data.title + '</a>';
+					} else {
+						this.head.innerHTML = this.data.title;
+					}
+
+					if (this.data.custom) {
+						switch(this.data.custom) {
+							case 'unknown': this.cell.innerHTML = 'Unknown <span class="unknown">○</span>'; break;
+							case 'partial': this.cell.innerHTML = 'Partial <span class="partial">○</span>'; break;
+						}
+					} else {
+						this.cell.innerHTML = this.data.passed ? 'Yes <span class="check">✔</span>': 'No <span class="ballot">✘</span>';
+					}
+				},
+				
+				getBonus: function() {
+					return this.data.bonus;
+				},
+				
+				getPoints: function() {
+					return this.data.passed ? this.data.award : 0;
+				},
+				
+				getMaximum: function() {
+					return this.data.value;
+				}
+			}
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			var iOS = !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
 			var Android = !!navigator.userAgent.match('Android');
