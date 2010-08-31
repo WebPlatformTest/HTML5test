@@ -1747,67 +1747,88 @@
 				initialize: function(results) {
 					this.field = document.createElement('input');
 					this.field.id = "testFormInput";
-					this.field.type = 'text';
-					document.body.appendChild(this.field);
-					
-					/* Make sure our field is position absolutely for CSS style comparison */
-					this.field.style.position = 'absolute';
-					this.field.style.top = '0px';
-					this.field.style.left = '0px';
-					
-					this.baseline = getRenderedStyle(this.field);
-					
+										
 					this.section = results.getSection(this.name);
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				createInput: function(type) {
+					var field = document.createElement('input');
+					document.body.appendChild(field);
+					
+					try {
+						field.setAttribute('type', type);
+					} catch(e) {
+					}
+					
+					/* Make sure our field is position absolutely for CSS style comparison */
+					field.style.position = 'absolute';
+					field.style.top = '0px';
+					field.style.left = '0px';
+					
+					return field;
+				},
+				
+				removeInput: function(e) {
+					document.body.removeChild(e);
 				},
 				
 				t1: function() {
 					this.section.setTitle('Field types') 
 					
+					var field = this.createInput('text');
+					var baseline = getRenderedStyle(field);
+					this.removeInput(field);
+					
+					
 					
 					/* input type=search */
 					
 					var group = this.section.getGroup('<code>input type=search</code>');
-					this.field.setAttribute('type', 'search');
+					var field = this.createInput('search');
 					
 					group.setItem({
 						title: 		'Minimal element support', 
-						passed:		this.field.type == 'search',
+						passed:		field.type == 'search',
 						value: 		2
 					});
+					
+					this.removeInput(field);
 					
 					
 					/* input type=tel */
 					
 					var group = this.section.getGroup('<code>input type=tel</code>');
-					this.field.setAttribute('type', 'tel');
+					var field = this.createInput('tel');
 					
 					group.setItem({
 						title: 		'Minimal element support', 
-						passed:		this.field.type == 'tel',
+						passed:		field.type == 'tel',
 						value: 		2
 					});
+					
+					this.removeInput(field);
 					
 					
 					/* input type=url */
 					
 					var group = this.section.getGroup('<code>input type=url</code>');
-					this.field.setAttribute('type', 'url');
-															
+					var field = this.createInput('url');
+					
 					var validation = false;
-					if ('validity' in this.field) {
+					if ('validity' in field) {
 						validation = true;
 						
-						this.field.value = "foo";
-						validation &= !this.field.validity.valid
+						field.value = "foo";
+						validation &= !field.validity.valid
 								
-						this.field.value = "http://foo.org";
-						validation &= this.field.validity.valid
+						field.value = "http://foo.org";
+						validation &= field.validity.valid
 					}
 					
 					group.setItem({
 						title: 		'Minimal element support', 
-						passed:		this.field.type == 'url',
+						passed:		field.type == 'url',
 						value: 		2,
 						required:	true
 					});
@@ -1817,27 +1838,29 @@
 						passed:		validation,
 						required:	true
 					});
+					
+					this.removeInput(field);
 					
 					
 					/* input type=email */
 					
 					var group = this.section.getGroup('<code>input type=email</code>');
-					this.field.setAttribute('type', 'email');
+					var field = this.createInput('email');
 															
 					var validation = false;
-					if ('validity' in this.field) {
+					if ('validity' in field) {
 						validation = true;
 						
-						this.field.value = "foo";
-						validation &= !this.field.validity.valid
+						field.value = "foo";
+						validation &= !field.validity.valid
 	
-						this.field.value = "foo@bar.org";
-						validation &= this.field.validity.valid
+						field.value = "foo@bar.org";
+						validation &= field.validity.valid
 					}
 					
 					group.setItem({
 						title: 		'Minimal element support', 
-						passed:		this.field.type == 'email',
+						passed:		field.type == 'email',
 						value: 		2,
 						required:	true
 					});
@@ -1847,6 +1870,8 @@
 						passed:		validation,
 						required:	true
 					});
+					
+					this.removeInput(field);
 					
 					
 					/* input type=datetime, date, month, week, time and datetime-local */
@@ -1854,21 +1879,21 @@
 					var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
 					for (var t in types) {
 						var group = this.section.getGroup('<code>input type=' + types[t] + '</code>');
-						this.field.setAttribute('type', types[t]);
+						var field = this.createInput(types[t]);
 						
-						this.field.value = "foobar";							
-						var sanitization = this.field.value == '';
+						field.value = "foobar";							
+						var sanitization = field.value == '';
 						
 						group.setItem({
 							title: 		'Minimal element support', 
-							passed:		this.field.type == types[t],
+							passed:		field.type == types[t],
 							value: 		2,
 							required:	true
 						});
 						
 						group.setItem({
 							title: 		'Custom user-interface', 
-							passed:		this.baseline != getRenderedStyle(this.field),
+							passed:		baseline != getRenderedStyle(field),
 							value: 		2
 						});
 						
@@ -1880,33 +1905,35 @@
 						
 						group.setItem({
 							title: 		'<code>min</code> attribute', 
-							passed:		'min' in this.field,
+							passed:		'min' in field,
 							required:	true
 						});
 						
 						group.setItem({
 							title: 		'<code>max</code> attribute', 
-							passed:		'max' in this.field,
+							passed:		'max' in field,
 							required:	true
 						});
 						
 						group.setItem({
 							title: 		'<code>step</code> attribute', 
-							passed:		'step' in this.field,
+							passed:		'step' in field,
 							required:	true
 						});
 
 						group.setItem({
 							title: 		'<code>stepDown()</code> method', 
-							passed:		'stepDown' in this.field,
+							passed:		'stepDown' in field,
 							required:	true
 						});
 
 						group.setItem({
 							title: 		'<code>stepUp()</code> method', 
-							passed:		'stepUp' in this.field,
+							passed:		'stepUp' in field,
 							required:	true
 						});
+						
+						this.removeInput(field);
 					}
 					
 					
@@ -1915,34 +1942,34 @@
 					var types = ['number', 'range'];
 					for (var t in types) {
 						var group = this.section.getGroup('<code>input type=' + types[t] + '</code>');
-						this.field.setAttribute('type', types[t]);
+						var field = this.createInput(types[t]);
 						
-						this.field.value = "foobar";							
-						var sanitization = this.field.value != 'foobar';
+						field.value = "foobar";							
+						var sanitization = field.value != 'foobar';
 						
 						var validation = false;
-						if ('validity' in this.field) {
+						if ('validity' in field) {
 							validation = true;
 							
-							this.field.min = 40;
-							this.field.max = 50;
-							this.field.value = 100;
-							validation &= !this.field.validity.valid
+							field.min = 40;
+							field.max = 50;
+							field.value = 100;
+							validation &= !field.validity.valid
 		
-							this.field.value = 42;
-							validation &= this.field.validity.valid
+							field.value = 42;
+							validation &= field.validity.valid
 						}
 						
 						group.setItem({
 							title: 		'Minimal element support', 
-							passed:		this.field.type == types[t],
+							passed:		field.type == types[t],
 							value: 		2,
 							required:	true
 						});
 						
 						group.setItem({
 							title: 		'Custom user-interface', 
-							passed:		this.baseline != getRenderedStyle(this.field),
+							passed:		baseline != getRenderedStyle(field),
 							value: 		2
 						});
 						
@@ -1962,64 +1989,66 @@
 
 						group.setItem({
 							title: 		'<code>min</code> attribute', 
-							passed:		'min' in this.field,
+							passed:		'min' in field,
 							required:	true
 						});
 						
 						group.setItem({
 							title: 		'<code>max</code> attribute', 
-							passed:		'max' in this.field,
+							passed:		'max' in field,
 							required:	true
 						});
 						
 						group.setItem({
 							title: 		'<code>step</code> attribute', 
-							passed:		'step' in this.field,
+							passed:		'step' in field,
 							required:	true
 						});
 
 						group.setItem({
 							title: 		'<code>stepDown()</code> method', 
-							passed:		'stepDown' in this.field,
+							passed:		'stepDown' in field,
 							required:	true
 						});
 
 						group.setItem({
 							title: 		'<code>stepUp()</code> method', 
-							passed:		'stepUp' in this.field,
+							passed:		'stepUp' in field,
 							required:	true
 						});
+						
+						this.removeInput(field);
 					}					
 					
 					
 					/* input type=color */
 					
 					var group = this.section.getGroup('<code>input type=color</code>');
-					this.field.setAttribute('type', 'color');
-					
-					this.field.value = "foobar";					
-					var sanitization = this.field.value != 'foobar';
+					var field = this.createInput('color');
+											
+					field.value = "foobar";					
+					var sanitization = field.value != 'foobar';
 
 					var validation = false;
-					if ('validity' in this.field) {
+					if ('validity' in field) {
 						validation = true;
 						
-						this.field.value = "foo";
-						validation &= !this.field.validity.valid
+						field.value = "foo";
+						validation &= !field.validity.valid
 	
-						this.field.value = '#000000';
-						validation &= this.field.validity.valid
+						field.value = '#000000';
+						validation &= field.validity.valid
 					}
 					
 					group.setItem({
 						title: 		'Minimal element support', 
-						passed:		this.field.type == 'color',
+						passed:		field.type == 'color',
 						value: 		2
 					});
 					
 					group.setItem({
 						title: 		'Custom user-interface', 
-						passed:		this.baseline != getRenderedStyle(this.field),
+						passed:		baseline != getRenderedStyle(field),
 						value: 		2
 					});
 						
@@ -2035,21 +2064,23 @@
 						required:	true
 					});
 
+					this.removeInput(field);
 					
 					
 					
 					/* input type=checkbox */
 					
 					var group = this.section.getGroup('<code>input type=checkbox</code>');
-					this.field.setAttribute('type', 'checkbox');
+					var field = this.createInput('checkbox');
 					
 					group.setItem({
 						title: 	'<code>indeterminate</color> property', 
-						passed:	'indeterminate' in this.field,
+						passed:	'indeterminate' in field,
 						value: 	2
 					});
 
-
+					this.removeInput(field);
+					
 					
 					
 					/* datalist */
