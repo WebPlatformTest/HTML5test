@@ -366,6 +366,9 @@
 			#results .ballot {
 				color: #853333;
 			}
+			#results .partially {
+				color: #888;
+			}
 			
 			#legend {
 				overflow: hidden;
@@ -797,7 +800,7 @@
 					else if (points == max) 
 						this.score.innerHTML = 'Yes <span class="check">✔</span>';
 					else
-						this.score.innerHTML = '<span class="partially">' + count + ' out of ' + this.items.length + '</span>';
+						this.score.innerHTML = '<span class="partially">' + count + ' out of ' + this.items.length + '</span> <span class="partial">○</span>';
 					
 					this.points = points;
 					this.bonus = bonus;
