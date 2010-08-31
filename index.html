@@ -1903,25 +1903,37 @@
 					var inputItem = group.setItem({
 						title: 	'<code>input</code> event for fields', 
 						passed:	isEventSupported('input'), 
-						value: 	2
+						value: 	1
 					});
 
 					var changeItem = group.setItem({
 						title: 	'<code>change</code> event for fields', 
 						passed:	isEventSupported('change'), 
-						value: 	2
+						value: 	1
 					});
 
 					var forminputItem = group.setItem({
 						title: 	'<code>forminput</code> event for forms', 
 						passed:	isEventSupported('forminput'), 
-						value: 	2
+						value: 	1
 					});
 
 					var formchangeItem = group.setItem({
 						title: 	'<code>formchange</code> event for forms', 
 						passed:	isEventSupported('formchange'), 
-						value: 	2
+						value: 	1
+					});					
+				
+					group.setItem({
+						title: 	'<code>dispatchFormInput</code> function for forms', 
+						passed:	'dispatchFormInput' in document.createElement('form'), 
+						value: 	1
+					});
+
+					group.setItem({
+						title: 	'<code>dispatchFormChange</code> function for forms', 
+						passed:	'dispatchFormChange' in document.createElement('form'), 
+						value: 	1
 					});					
 				
 					if (document.createEvent) {
