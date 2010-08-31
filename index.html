@@ -783,11 +783,13 @@
 					var points = 0;
 					var bonus = 0;
 					var max = 0;
+					var count = 0;
 					
 					for (var i = 0; i < this.items.length; i++) {
 						points += this.items[i].getPoints();
 						bonus += this.items[i].getBonus();
 						max += this.items[i].getMaximum();	
+						count += this.items[i].getPoints() ? 1 : 0;
 					}
 					
 					if (points == 0) 
@@ -795,7 +797,7 @@
 					else if (points == max) 
 						this.score.innerHTML = 'Yes <span class="check">✔</span>';
 					else
-						this.score.innerHTML = '<span class="partially">' + points + ' out of ' + max + '</span>';
+						this.score.innerHTML = '<span class="partially">' + count + ' out of ' + this.items.length + '</span>';
 					
 					this.points = points;
 					this.bonus = bonus;
