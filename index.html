@@ -805,19 +805,34 @@
 					var max = 0;
 					var count = 0;
 					
+					var passedAllRequiredFields = true;
+					var passedPartially = false;
+					
 					for (var i = 0; i < this.items.length; i++) {
 						points += this.items[i].getPoints();
 						bonus += this.items[i].getBonus();
 						max += this.items[i].getMaximum();	
-						count += this.items[i].getPoints() ? 1 : 0;
+						count += this.items[i].getPassed() ? 1 : 0;
+					
+						if (this.items[i].getRequired()) {
+							passedAllRequiredFields &= this.items[i].getPassed();
+						}
+						
+						passedPartially |= this.items[i].getPartiallyPassed();
 					}
 					
-					if (points == 0) 
-						this.score.innerHTML = 'No <span class="ballot">✘</span>';						
-					else if (points == max) 
-						this.score.innerHTML = 'Yes <span class="check">✔</span>';
-					else
-						this.score.innerHTML = '<span class="partially">' + count + ' out of ' + this.items.length + '</span> <span class="partial">○</span>';
+					if (!passedAllRequiredFields) {
+						points = 0;
+					}
+					
+					if (passedPartially && points != max) {
+						this.score.innerHTML = '<span class="partially">Partial</span> <span class="partial">○</span>';
+					} else {
+						if (points == 0) 
+							this.score.innerHTML = 'No <span class="ballot">✘</span>';						
+						else if (points == max) 
+							this.score.innerHTML = 'Yes <span class="check">✔</span>';
+					}
 					
 					this.points = points;
 					this.bonus = bonus;
@@ -924,6 +939,22 @@
 				
 				getMaximum: function() {
 					return this.data.value;
+				},
+				
+				getPassed: function() {
+					return this.data.passed;
+				},
+				
+				getPartiallyPassed: function() {
+					if (this.data.custom && this.data.custom == 'partial') {
+						return true;
+					}
+					
+					return this.getPassed();
+				},
+				
+				getRequired: function() {
+					return !!this.data.required;
 				}
 			}
 			
@@ -977,6 +1008,38 @@
 			  return isEventSupported;
 			})();
 
+
+			var getRenderedStyle = (function(){
+			
+				function getRenderedStyle(elem, name) {
+				    if (document.defaultView && document.defaultView.getComputedStyle) {
+				        s = document.defaultView.getComputedStyle(elem, "");
+				        r = [];
+				        
+				        if (s.length) {
+					        for (var i = 0; i < s.length; i++) {
+					        	v = s.getPropertyValue(s[i]);
+					        	if (v != '') {
+					        		r.push(s[i] + ': ' + v);
+					        	}
+					        }
+				        } else {
+					        for (var i in s) {
+					        	v = s.getPropertyValue(i);
+					        	if (v != '') {
+					        		r.push(i + ': ' + v);
+					        	}
+					        }
+				        }
+				        
+				        return r.join('; ') + ';';
+				    } else {
+				        return null;
+				    }
+				}
+				
+				return getRenderedStyle;
+			})();
 
 
 			
@@ -1679,110 +1742,407 @@
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
 				name: 	'Forms',
-				count: 	8,
+				count: 	3,
 				
 				initialize: function(results) {
 					this.field = document.createElement('input');
 					this.field.id = "testFormInput";
+					this.field.type = 'text';
+					document.body.appendChild(this.field);
+					
+					/* Make sure our field is position absolutely for CSS style comparison */
+					this.field.style.position = 'absolute';
+					this.field.style.top = '0px';
+					this.field.style.left = '0px';
+					
+					this.baseline = getRenderedStyle(this.field);
 					
 					this.section = results.getSection(this.name);
 					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
 				},
 				
 				t1: function() {
-					var group = this.section.getGroup('<code>input</code> element types');
-					var types = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
-					var states = 'text-state-and-search telephone url e-mail date-and-time date month week time local-date-and-time number range color'.split(' ');
+					this.section.setTitle('Field types') 
 					
-					var minimal = [false, false, false, false, false, false, false, false, false, false, false, false, false];
-							
-					for (var t in types) {
-						this.field.setAttribute('type', types[t]);
-						minimal[t] = this.field.type != 'text';
-					}
 					
-					var res = [false, false, false, false, false, false, false, false, false, false, false, false, false];
- 
-					// testing "search"
+					/* input type=search */
+					
+					var group = this.section.getGroup('<code>input type=search</code>');
 					this.field.setAttribute('type', 'search');
-					res[0] = this.field.type == 'search';
- 
-					// testing "tel"
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		this.field.type == 'search',
+						value: 		2
+					});
+					
+					
+					/* input type=tel */
+					
+					var group = this.section.getGroup('<code>input type=tel</code>');
 					this.field.setAttribute('type', 'tel');
-					res[1] = this.field.type == 'tel';
- 
-					// test if the "validity" property is present
-					if ("validity" in this.field) {
- 
-						// testing "url"
-						this.field.setAttribute('type', 'url');
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		this.field.type == 'tel',
+						value: 		2
+					});
+					
+					
+					/* input type=url */
+					
+					var group = this.section.getGroup('<code>input type=url</code>');
+					this.field.setAttribute('type', 'url');
+															
+					var validation = false;
+					if ('validity' in this.field) {
+						validation = true;
+						
 						this.field.value = "foo";
-						if (!this.field.validity.valid) {
-							this.field.value = "http://foo.org";
-							if (this.field.validity.valid) {
-								res[2] = true;
-							}
-						}
- 
-						// testing "email"
-						this.field.setAttribute('type', 'email');
-						this.field.value = "foo";
-						if (!this.field.validity.valid) {
-							this.field.value = "foo@bar.org";
-							if (this.field.validity.valid) {
-								res[3] = true;
-							}
-						}
- 
-						// testing datetime, date, month, week, timeand datetime-local
-						for (var i = 4; i <= 9; i++) {
-							this.field.setAttribute('type', types[i]);
-							this.field.value = "foobar";
-							if (this.field.value == "") {
-									res[i] = true;
-							}
-						}
- 
-						// testing "number" and "range"
-						for (var i = 10; i <= 11; i++) {
-							this.field.setAttribute('type', types[i]);
-							this.field.value = "foo";
-							if (this.field.value != "foo") {
-								this.field.min = 40;
-								this.field.max = 50;
-								this.field.value = 100;
-								if (!this.field.validity.valid) {
-									this.field.value = 42;
-									if (this.field.validity.valid) {
-										this.field.value = "";
-										res[i] = true;
-									}
-								}
-							}
-						}
- 
-						// testing "color"
-						this.field.setAttribute('type', 'color');
-						this.field.value = "foo";
-						if (!this.field.validity.valid && this.field.value == "#000000") {
-							res[12] = false;
-						}
+						validation &= !this.field.validity.valid
+								
+						this.field.value = "http://foo.org";
+						validation &= this.field.validity.valid
 					}
 					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		this.field.type == 'url',
+						value: 		2,
+						required:	true
+					});
+					
+					group.setItem({
+						title: 		'Field validation', 
+						passed:		validation,
+						required:	true
+					});
+					
+					
+					/* input type=email */
+					
+					var group = this.section.getGroup('<code>input type=email</code>');
+					this.field.setAttribute('type', 'email');
+															
+					var validation = false;
+					if ('validity' in this.field) {
+						validation = true;
+						
+						this.field.value = "foo";
+						validation &= !this.field.validity.valid
+	
+						this.field.value = "foo@bar.org";
+						validation &= this.field.validity.valid
+					}
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		this.field.type == 'email',
+						value: 		2,
+						required:	true
+					});
+					
+					group.setItem({
+						title: 		'Field validation', 
+						passed:		validation,
+						required:	true
+					});
+					
+					
+					/* input type=datetime, date, month, week, time and datetime-local */
+					
+					var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
 					for (var t in types) {
+						var group = this.section.getGroup('<code>input type=' + types[t] + '</code>');
+						this.field.setAttribute('type', types[t]);
+						
+						this.field.value = "foobar";							
+						var sanitization = this.field.value == '';
+						
 						group.setItem({
-							title: 	'<code>' + types[t] + '</code> type state', 
-							url:	'http://www.w3.org/TR/html5/forms.html#' + states[t] + '-state',
-							passed:	res[t],
-							value: 	1,
-							custom:	minimal[t] && !res[t] ? 'partial' : false
+							title: 		'Minimal element support', 
+							passed:		this.field.type == types[t],
+							value: 		2,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'Custom user-interface', 
+							passed:		this.baseline != getRenderedStyle(this.field),
+							value: 		2
+						});
+						
+						group.setItem({
+							title: 		'Value sanitization', 
+							passed:		sanitization,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>min</code> attribute', 
+							passed:		'min' in this.field,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>max</code> attribute', 
+							passed:		'max' in this.field,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>step</code> attribute', 
+							passed:		'step' in this.field,
+							required:	true
+						});
+
+						group.setItem({
+							title: 		'<code>stepDown()</code> method', 
+							passed:		'stepDown' in this.field,
+							required:	true
+						});
+
+						group.setItem({
+							title: 		'<code>stepUp()</code> method', 
+							passed:		'stepUp' in this.field,
+							required:	true
 						});
 					}
+					
+					
+					/* input type=number, range */
+					
+					var types = ['number', 'range'];
+					for (var t in types) {
+						var group = this.section.getGroup('<code>input type=' + types[t] + '</code>');
+						this.field.setAttribute('type', types[t]);
+						
+						this.field.value = "foobar";							
+						var sanitization = this.field.value != 'foobar';
+						
+						var validation = false;
+						if ('validity' in this.field) {
+							validation = true;
+							
+							this.field.min = 40;
+							this.field.max = 50;
+							this.field.value = 100;
+							validation &= !this.field.validity.valid
+		
+							this.field.value = 42;
+							validation &= this.field.validity.valid
+						}
+						
+						group.setItem({
+							title: 		'Minimal element support', 
+							passed:		this.field.type == types[t],
+							value: 		2,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'Custom user-interface', 
+							passed:		this.baseline != getRenderedStyle(this.field),
+							value: 		2
+						});
+						
+						group.setItem({
+							title: 		'Value sanitization', 
+							passed:		sanitization,
+							required:	true
+						});
+						
+						if (types[t] != 'range') {
+							group.setItem({
+								title: 		'Field validation', 
+								passed:		validation,
+								required:	true
+							});
+						}
+
+						group.setItem({
+							title: 		'<code>min</code> attribute', 
+							passed:		'min' in this.field,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>max</code> attribute', 
+							passed:		'max' in this.field,
+							required:	true
+						});
+						
+						group.setItem({
+							title: 		'<code>step</code> attribute', 
+							passed:		'step' in this.field,
+							required:	true
+						});
+
+						group.setItem({
+							title: 		'<code>stepDown()</code> method', 
+							passed:		'stepDown' in this.field,
+							required:	true
+						});
+
+						group.setItem({
+							title: 		'<code>stepUp()</code> method', 
+							passed:		'stepUp' in this.field,
+							required:	true
+						});
+					}					
+					
+					
+					/* input type=color */
+					
+					var group = this.section.getGroup('<code>input type=color</code>');
+					this.field.setAttribute('type', 'color');
+					
+					this.field.value = "foobar";					
+					var sanitization = this.field.value != 'foobar';
+
+					var validation = false;
+					if ('validity' in this.field) {
+						validation = true;
+						
+						this.field.value = "foo";
+						validation &= !this.field.validity.valid
+	
+						this.field.value = '#000000';
+						validation &= this.field.validity.valid
+					}
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		this.field.type == 'color',
+						value: 		2
+					});
+					
+					group.setItem({
+						title: 		'Custom user-interface', 
+						passed:		this.baseline != getRenderedStyle(this.field),
+						value: 		2
+					});
+						
+					group.setItem({
+						title: 		'Value sanitization', 
+						passed:		sanitization,
+						required:	true
+					});
+						
+					group.setItem({
+						title: 		'Field validation', 
+						passed:		validation,
+						required:	true
+					});
+
+					
+					
+					
+					/* input type=checkbox */
+					
+					var group = this.section.getGroup('<code>input type=checkbox</code>');
+					this.field.setAttribute('type', 'checkbox');
+					
+					group.setItem({
+						title: 	'<code>indeterminate</color> property', 
+						passed:	'indeterminate' in this.field,
+						value: 	2
+					});
+
+
+					
+					
+					/* datalist */
+					
+					var group = this.section.getGroup('<code>datalist</code>');
+					var element = document.createElement('datalist');
+					
+					group.setItem({
+						title: 		'<code>datalist</code> element', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-datalist-element',
+						passed:		(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
+						value: 		2,
+						required:	true
+					});
+
+					group.setItem({
+						title:		'<code>list</code> attribute for fields',
+						url:		'http://www.w3.org/TR/html5/forms.html#the-list-attribute',
+						passed:		!!("list" in this.field),
+						required:	true				
+					});
+
+
+					/* keygen */
+					
+					var group = this.section.getGroup('<code>keygen</code>');
+					var element = document.createElement('div');
+					element.innerHTML = '<keygen>';
+					
+					group.setItem({
+						title: 		'<code>keytype</code> element', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
+						passed:		typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild, 
+						value: 		2,
+						custom: 	element.childNodes && element.childNodes.length ? 'partial' : false,
+						required:	true
+					});
+
+					group.setItem({
+						title: 		'<code>challenge</code> attribute', 
+						passed:		'challenge' in this.field,
+						required:	true
+					});
+						
+					group.setItem({
+						title: 		'<code>keytype</code> attribute', 
+						passed:		'keytype' in this.field,
+						required:	true
+					});
+						
+					
+					
+					/* output */
+					
+					var group = this.section.getGroup('<code>output</code>');
+					var element = document.createElement('output');
+					group.setItem({
+						title: 	'<code>output</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-output-element',
+						passed:	typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
+						value: 	2
+					});
+
+
+					/* progress */
+					
+					var group = this.section.getGroup('<code>progress</code>');
+					var element = document.createElement('progress');
+					group.setItem({
+						title: 	'<code>progress</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-progress-element',
+						passed:	typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
+						value: 	2
+					});
+					
+					
+					/* meter */
+					
+					var group = this.section.getGroup('<code>meter</code>');
+					var element = document.createElement('meter');
+					group.setItem({
+						title: 	'<code>meter</code> element', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
+						passed:	typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
+						value: 	2
+					});
 				},
 
 				t2: function() {
-					var group = this.section.getGroup('<code>input</code> element attributes');
-					var props = 'autocomplete autofocus placeholder max min multiple pattern required step'.split(' ');
+					this.section.setTitle('Fields') 
+					
+					var group = this.section.getGroup('Field validation');
+					var props = 'pattern required'.split(' ');
 						
 					for (var p in props) {
  						group.setItem({
@@ -1792,54 +2152,10 @@
 							value: 	1
 						});
         			}
-        			
-					var element = document.createElement('datalist');
-					group.setItem({
-						title:	'<code>list</code> attribute',
-						url:	'http://www.w3.org/TR/html5/forms.html#the-list-attribute',
-						passed:	!!("list" in this.field) && (typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length,
-						value:	1
-					});
-				},
-				
-				t3: function() {
-					var group = this.section.getGroup('<code>input</code> element properties');		
 
-					var element = document.createElement('div');
-					document.body.appendChild(element);
-					element.innerHTML = '<form id="form"></form><input form="form">';
-					group.setItem({
-						title: 	'<code>form</code> property', 
-						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#attr-fae-form',
-						passed:	element.lastChild.form == element.firstChild,
-						value: 	1
-					});
-					document.body.removeChild(element);
 
-					var props = 'formAction formEnctype formMethod formNoValidate formTarget indeterminate'.split(' ');
-					for (var p in props) {
- 						group.setItem({
-							title: 	'<code>' + props[p] + '</code> property', 
-							url:	'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-' + props[p].toLowerCase(),
-							passed:	!!(props[p] in this.field), 
-							value: 	1
-						});
-					}
 
-					var label = document.createElement("label");
-					label.setAttribute('for', 'testFormInput');
-					document.body.appendChild(label);
-					group.setItem({
-						title: 	'<code>labels</code> property', 
-						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-lfe-labels',
-						passed:	(!!this.field.labels && this.field.labels.length == 1 && this.field.labels[0] == label),
-						value: 	1
-					});
-					document.body.removeChild(label);
- 				},
-
-				t4: function() {
-					var group = this.section.getGroup('<code>label</code> element properties');
+					var group = this.section.getGroup('Association of controls and forms');
 					
 					var field = document.createElement('input');
 					field.id = "a";
@@ -1850,7 +2166,7 @@
 					document.body.appendChild(label);
 					
 					group.setItem({
-						title: 	'<code>control</code> property', 
+						title: 	'<code>control</code> property on labels', 
 						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-label-control',
 						passed:	label.control == field,
 						value: 	1
@@ -1858,56 +2174,60 @@
 					
 					document.body.removeChild(field);
 					document.body.removeChild(label);
-				},
-
-				t5: function() {
-					var group = this.section.getGroup('Other form elements');
-
-					var element = document.createElement('datalist');
-					group.setItem({
-						title: 	'<code>datalist</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-datalist-element',
-						passed:	(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
-						value: 	1
-					});
+					
 
 					var element = document.createElement('div');
-					element.innerHTML = '<keygen>';
-					
+					document.body.appendChild(element);
+					element.innerHTML = '<form id="form"></form><input form="form">';
 					group.setItem({
-						title: 	'<code>keygen</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
-						passed:	typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild, 
-						value: 	1,
-						custom: element.childNodes && element.childNodes.length ? 'partial' : false
-					});
-					
-					var element = document.createElement('output');
-					group.setItem({
-						title: 	'<code>output</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-output-element',
-						passed:	typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
+						title: 	'<code>form</code> property on fields', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#attr-fae-form',
+						passed:	element.lastChild.form == element.firstChild,
 						value: 	1
 					});
+					document.body.removeChild(element);
 
-					var element = document.createElement('progress');
-					group.setItem({
-						title: 	'<code>progress</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-progress-element',
-						passed:	typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
-						value: 	1
-					});
 
-					var element = document.createElement('meter');
+					var props = 'formAction formEnctype formMethod formNoValidate formTarget'.split(' ');
+					
+					for (var p in props) {
+ 						group.setItem({
+							title: 	'<code>' + props[p] + '</code> property on fields', 
+							url:	'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-' + props[p].toLowerCase(),
+							passed:	!!(props[p] in this.field), 
+							value: 	1
+						});
+					}
+
+					var label = document.createElement("label");
+					label.setAttribute('for', 'testFormInput');
+					document.body.appendChild(label);
 					group.setItem({
-						title: 	'<code>meter</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
-						passed:	typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
+						title: 	'<code>labels</code> property on fields', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-lfe-labels',
+						passed:	(!!this.field.labels && this.field.labels.length == 1 && this.field.labels[0] == label),
 						value: 	1
 					});
-				},
-				
-				t6: function() {
+					document.body.removeChild(label);
+					
+
+
+					
+					
+					var group = this.section.getGroup('Other attributes');
+					var props = 'autocomplete autofocus placeholder multiple'.split(' ');
+						
+					for (var p in props) {
+ 						group.setItem({
+							title: 	'<code>' + props[p] + '</code> attribute', 
+							url:	'http://www.w3.org/TR/html5/forms.html#the-' + props[p] + '-attribute',
+							passed:	!!(props[p] in this.field), 
+							value: 	1
+						});
+        			}
+
+
+
 					var selectors = "valid invalid optional required".split(" ");
 					var res = [false, false, false, false];
  					
@@ -1927,7 +2247,7 @@
 						document.body.removeChild(this.field);
  					}
  					
-					var group = this.section.getGroup('CSS selectors integration');
+					var group = this.section.getGroup('CSS selectors');
  					for (var i = 0; i < selectors.length; i++) {
 						group.setItem({
 							title: 	'<code>:' + selectors[i] + '</code> selector', 
@@ -1937,55 +2257,29 @@
 							custom:	!document.querySelector ? 'unknown' : false
 						});
 					}
-				},
-				
-				t7: function() {
+
+
+
 					var group = this.section.getGroup('Events');
 					var inputItem = group.setItem({
-						title: 	'<code>input</code> event for fields', 
+						title: 	'<code>oninput</code> event', 
 						passed:	isEventSupported('input'), 
 						value: 	1
 					});
 
 					var changeItem = group.setItem({
-						title: 	'<code>change</code> event for fields', 
+						title: 	'<code>onchange</code> event', 
 						passed:	isEventSupported('change'), 
 						value: 	1
 					});
 
-					var forminputItem = group.setItem({
-						title: 	'<code>forminput</code> event for forms', 
-						passed:	isEventSupported('forminput'), 
-						value: 	1
-					});
-
-					var formchangeItem = group.setItem({
-						title: 	'<code>formchange</code> event for forms', 
-						passed:	isEventSupported('formchange'), 
-						value: 	1
-					});					
-				
-					group.setItem({
-						title: 	'<code>dispatchFormInput</code> function for forms', 
-						passed:	'dispatchFormInput' in document.createElement('form'), 
-						value: 	1
-					});
-
-					group.setItem({
-						title: 	'<code>dispatchFormChange</code> function for forms', 
-						passed:	'dispatchFormChange' in document.createElement('form'), 
-						value: 	1
-					});					
-				
-					if (document.createEvent) {
+					try {
 						var event = document.createEvent("KeyboardEvent");				
 						if (event.initKeyEvent) {
 							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
 	
-							var form = document.createElement('form');
 							var input = document.createElement('input');
-							form.appendChild(input);
-							document.body.appendChild(form);
+							document.body.appendChild(input);
 							
 							input.addEventListener('input', function() {
 								inputItem.update({
@@ -1999,6 +2293,68 @@
 								});
 							}, true);	
 												
+							input.focus();
+			        		input.dispatchEvent(event);
+			                input.blur();
+						
+							window.setTimeout(function() {
+								document.body.removeChild(input);
+							}, 1000);
+						}
+					} catch(e) {
+					}
+				},
+				
+				t3: function() {
+					this.section.setTitle('Forms') 
+
+					var group = this.section.getGroup('Form validation');
+					var element = document.createElement('input');
+					
+					group.setItem({
+						title: 	'<code>checkValidity</code> method', 
+						url:	'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api',
+						passed:	'checkValidity' in element, 
+						value: 	10
+					});
+
+
+
+					var group = this.section.getGroup('Events');
+					var forminputItem = group.setItem({
+						title: 	'<code>onforminput</code> event', 
+						passed:	isEventSupported('forminput'), 
+						value: 	1
+					});
+
+					var formchangeItem = group.setItem({
+						title: 	'<code>onformchange</code> event', 
+						passed:	isEventSupported('formchange'), 
+						value: 	1
+					});					
+				
+					group.setItem({
+						title: 	'<code>dispatchFormInput</code> method', 
+						passed:	'dispatchFormInput()' in document.createElement('form'), 
+						value: 	1
+					});
+
+					group.setItem({
+						title: 	'<code>dispatchFormChange</code> method', 
+						passed:	'dispatchFormChange()' in document.createElement('form'), 
+						value: 	1
+					});					
+				
+					try {
+						var event = document.createEvent("KeyboardEvent");				
+						if (event.initKeyEvent) {
+							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
+	
+							var form = document.createElement('form');
+							var input = document.createElement('input');
+							form.appendChild(input);
+							document.body.appendChild(form);
+							
 							form.addEventListener('forminput', function() {
 								forminputItem.update({
 									'passed': true
@@ -2019,19 +2375,9 @@
 								document.body.removeChild(form);
 							}, 1000);
 						}
+					} catch(e) {
 					}
-				},
-				
-				t8: function() {
-					var element = document.createElement('input');
-					
-					this.section.setItem({
-						title: 	'Form validation', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api',
-						passed:	'checkValidity' in element, 
-						value: 	10
-					});
-				}
+ 				}
 			};
 
 
