@@ -301,7 +301,7 @@
 			}
 			#results ul li table tr.title th {
 				font-weight: bold;
-				padding-top: 1em;
+				padding-top: 1.3em;
 			}
 			#results ul li table th {
 				font-weight: normal;
@@ -1422,7 +1422,7 @@
 			function testElements (results) { this.initialize(results) }			
 			testElements.prototype = {
 				name: 	'Elements',
-				count: 	9,
+				count: 	11,
 				
 				initialize: function(results) {
 					this.section = results.getSection('Elements');
@@ -1472,6 +1472,10 @@
 				},
 				
 				t2: function() {
+					this.section.setTitle('New or modified elements') 
+				},
+				
+				t3: function() {
 					var group = this.section.getGroup('Section elements');
 					var elements = 'section nav article aside hgroup header footer'.split(' ');
 					
@@ -1490,7 +1494,7 @@
 					}
 				},
 
-				t3: function() {
+				t4: function() {
 					var group = this.section.getGroup('Grouping content elements');
 					var elements = 'figure figcaption'.split(' ');
 					
@@ -1509,7 +1513,7 @@
 					}
 				},
 
-				t4: function() {
+				t5: function() {
 					var group = this.section.getGroup('Text-level semantic elements');
 					
 					var element = document.createElement('mark');
@@ -1581,7 +1585,7 @@
 					});
 				},
 				
-				t5: function() {
+				t6: function() {
 					var group = this.section.getGroup('Interactive elements');
 
 					var element = document.createElement('details');
@@ -1610,7 +1614,48 @@
 					document.body.removeChild(element);					
 				},
 				
-				t6: function() {
+				t7: function() {
+					this.section.setTitle('Global attributes or methods') 
+				},
+				
+				t8: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'<code>hidden</code> attribute', 
+						url:	'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute',
+						passed:	'hidden' in element, 
+						value: 	1
+					});
+				},
+				
+				t9: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'Scroll into view', 
+						url:	'http://www.w3.org/TR/html5/editing.html#scrolling-elements-into-view',
+						passed:	!!element.scrollIntoView, 
+						value: 	1
+					});
+				},
+
+				t10: function() {
+					/*
+					 * NOTE: Despite having the attribute, contentEditable is not supported on the iPhone and Andriod!
+					 */
+					 
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'<code>contenteditable</code> attribute', 
+						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
+						passed:	'isContentEditable' in element && !iOS && !Android, 
+						value: 	10
+					});
+				},
+
+				t11: function() {
 					var group = this.section.getGroup('Dynamic markup insertion');
 					var element = document.createElement('div');
 
@@ -1626,43 +1671,6 @@
 						url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#dom-insertadjacenthtml',
 						passed:	!!('insertAdjacentHTML' in element), 
 						value: 	1
-					});
-				},
-
-				t7: function() {
-					var element = document.createElement('div');
-					
-					this.section.setItem({
-						title: 	'<code>hidden</code> attribute', 
-						url:	'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute',
-						passed:	'hidden' in element, 
-						value: 	1
-					});
-				},
-				
-				t8: function() {
-					var element = document.createElement('div');
-					
-					this.section.setItem({
-						title: 	'Scroll into view', 
-						url:	'http://www.w3.org/TR/html5/editing.html#scrolling-elements-into-view',
-						passed:	!!element.scrollIntoView, 
-						value: 	1
-					});
-				},
-
-				t9: function() {
-					/*
-					 * NOTE: Despite having the attribute, contentEditable is not supported on the iPhone and Andriod!
-					 */
-					 
-					var element = document.createElement('div');
-					
-					this.section.setItem({
-						title: 	'<code>contenteditable</code> attribute', 
-						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
-						passed:	'isContentEditable' in element && !iOS && !Android, 
-						value: 	10
 					});
 				}
 			};		
