@@ -299,6 +299,10 @@
 				color: #666;
 				line-height: 140%;
 			}
+			#results ul li table tr.title th {
+				font-weight: bold;
+				padding-top: 1em;
+			}
 			#results ul li table th {
 				font-weight: normal;
 				text-align: left;
@@ -666,6 +670,19 @@
 					this.table.appendChild(this.body);
 				},
 				
+				setTitle: function(title) {
+					var row = document.createElement('tr');
+					row.className = 'title';
+					this.body.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = title;
+					row.appendChild(head);
+
+					var cell = document.createElement('td');
+					row.appendChild(cell);									
+				},
+
 				setExplaination: function(explaination) {
 					var row = document.createElement('tr');
 					row.className = 'explaination';
@@ -809,6 +826,19 @@
 					this.parent.update();
 				},
 				
+				setTitle: function(title) {
+					var row = document.createElement('tr');
+					row.className = 'title';
+					this.body.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = title;
+					row.appendChild(head);
+
+					var cell = document.createElement('td');
+					row.appendChild(cell);									
+				},
+
 				setItem: function(result) {
 					var i = new item(this, result);
 					this.items.push(i);
