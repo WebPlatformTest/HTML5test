@@ -510,7 +510,7 @@
 				</p>
 				
 				<p> 
-					June 8, 2010 - version 1.0
+					June 8, 2010 - version 1.0.1
 				</p>
 
 				<div class='credits'>
@@ -1114,9 +1114,11 @@
 				},
 
 				t6: function() {
+					/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
+				
 					var item = {
 						title: 	'H.264 support', 
-						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="avc1.42E01E"')
+						passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
 					};
 					
 					if (item.passed) item.bonus = 2;					
