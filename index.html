@@ -2720,7 +2720,7 @@
 				},
 				
 				hasIndexedDB: function() {
-					return 'indexedDB' in window || 'moz_indexedDB' in window;
+					return 'indexedDB' in window || 'moz_indexedDB' in window || 'webkitIndexedDB' in window;
 				},
 				
 				t1: function() {
