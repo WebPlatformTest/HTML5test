@@ -2761,7 +2761,7 @@
 				},
 				
 				hasIndexedDB: function() {
-					return 'indexedDB' in window || 'moz_indexedDB' in window;
+					return 'indexedDB' in window || 'webkitIndexedDB' in window || 'mozIndexedDB' in window || 'moz_indexedDB' in window;
 				},
 				
 				t1: function() {
