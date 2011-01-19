@@ -1709,6 +1709,32 @@
 					});
 
 					document.body.removeChild(element);					
+
+
+					var element = document.createElement('command');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>command</code> element', 
+						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-command-element',
+						passed:	typeof HTMLCommandElement != 'undefined' && element instanceof HTMLCommandElement, 
+						value: 	2
+					});
+
+					document.body.removeChild(element);					
+
+
+					var element = document.createElement('menu');
+					document.body.appendChild(element);
+
+					group.setItem({
+						title: 	'<code>menu</code> element', 
+						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element',
+						passed:	typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement, 
+						value: 	2
+					});
+
+					document.body.removeChild(element);					
 				},
 				
 				t7: function() {
