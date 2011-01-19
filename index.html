@@ -582,7 +582,7 @@
 			test.prototype = {
 				suites: [ 
 					{ title: null, sections: [ testParsing, testCanvas, testVideo, testAudio, testDevice, testElements, testForm, testInteraction, testMicrodata, testOffline, testSecurity ] },
-					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers ] }
+					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers, testOther ] }
 				],
 				
 				initialize: function(e, t, c) {					
@@ -2475,7 +2475,7 @@
 			function testInteraction (results) { this.initialize(results) }			
 			testInteraction.prototype = {
 				name: 	'User interaction',
-				count: 	4,
+				count: 	2,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -2495,30 +2495,12 @@
 				
 				t2: function() {
 					this.section.setItem({
-						title: 	'Undo history',
-						url:	'http://www.w3.org/TR/html5/editing.html#undo', 
-						passed:	!!window.undoManager,
-						value: 	5
-					});
-				},
-				
-				t3: function() {
-					this.section.setItem({
 						title: 	'Session history', 
 						url:	'http://www.w3.org/TR/html5/history.html#history',
 						passed:	!!(window.history && history.pushState), 
 						value: 	5
 					});
-				},
-				
-				t4: function() {
-					this.section.setItem({
-						title: 	'Text selection', 
-						url:	'http://www.w3.org/TR/html5/editing.html#selection',
-						passed:	!!window.getSelection, 
-						value: 	5
-					});
-				}				
+				}			
 			};
 
 
@@ -2841,7 +2823,25 @@
 				}
 			};
 			
-			
+			function testOther (results) { this.initialize(results) }			
+			testOther.prototype = {
+				name: 	'Other',
+				count: 	1,
+				
+				initialize: function(results) {
+					this.section = results.getSection(this.name);
+					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+				},
+				
+				t1: function() {
+					this.section.setItem({
+						title: 	'Text selection', 
+						url:	'http://html5.org/specs/dom-range.html',
+						passed:	!!window.getSelection, 
+						value: 	5
+					});
+				}	
+			};			
 			
 			
 
