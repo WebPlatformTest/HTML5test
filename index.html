@@ -2676,7 +2676,7 @@
 			function testCommunication (results) { this.initialize(results) }			
 			testCommunication.prototype = {
 				name: 	'Communication',
-				count: 	3,
+				count: 	4,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -2694,18 +2694,22 @@
 				
 				t2: function() {
 					this.section.setItem({
-						title: 	'WebSocket', 
-						url:	'http://www.w3.org/TR/websockets/',
-						passed:	'WebSocket' in window, 
+						title: 	'Server-Sent Events', 
+						url:	'http://www.w3.org/TR/eventsource/',
+						passed:	'EventSource' in window, 
 						value: 	10
 					});
 				},
 				
 				t3: function() {
+					this.section.setExplaination('Both Mozilla and Opera do support the WebSocket protocol in their latest browsers, but have disabled it due to a fundamental security issue with the protocol. Once the protocol has been updated it is expected they will re-enable this feature.')
+				},
+
+				t4: function() {
 					this.section.setItem({
-						title: 	'Server-Sent Events', 
-						url:	'http://www.w3.org/TR/eventsource/',
-						passed:	'EventSource' in window, 
+						title: 	'WebSocket', 
+						url:	'http://www.w3.org/TR/websockets/',
+						passed:	'WebSocket' in window, 
 						value: 	10
 					});
 				}
