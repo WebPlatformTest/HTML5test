@@ -1619,7 +1619,7 @@
 					group.setItem({
 						title: 	'<code>mark</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element',
-						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)'), 
+						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)' || color == '#ffff00'), 
 						value: 	1
 					});
 
