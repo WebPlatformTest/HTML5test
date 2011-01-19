@@ -2141,9 +2141,36 @@
 					});
 
 					this.removeInput(field);
-					
-					
-					
+
+
+					/* select */
+					var group = this.section.getGroup('<code>select</code>');
+					var element = document.createElement('select');
+
+					group.setItem({
+						title:	'<code>required</code> attribute',
+						passed:	'required' in element,
+						value:	2
+					});
+
+
+					/* fieldset */
+					var group = this.section.getGroup('<code>fieldset</code>');
+					var element = document.createElement('fieldset');
+
+					group.setItem({
+						title:	'<code>elements</code> attribute',
+						passed:	'elements' in element,
+						value:	2
+					});
+
+					group.setItem({
+						title:	'<code>disabled</code> attribute',
+						passed:	'disabled' in element,
+						value:	2
+					});
+
+
 					/* datalist */
 					
 					var group = this.section.getGroup('<code>datalist</code>');
