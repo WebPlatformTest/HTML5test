@@ -32,467 +32,22 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 		
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+
 		<link rel="icon" href="icon.png">
 		<link rel="apple-touch-icon" href="button.png">
-		
-		<style>
-		<!--
-		
-			@font-face {
-				font-family: 'PusabRegular';
-				src: url('fonts/PUSAB___.eot');
-				src: local('Pusab'), url('fonts/PUSAB___.woff') format('woff'), url('fonts/PUSAB___.ttf') format('truetype'), url('fonts/PUSAB___.svg#Pusab') format('svg');
-			}
-
-			* {
-				padding: 0;				
-				margin: 0;
-		    	
-		    	-webkit-text-size-adjust: none;
-			}
-			
-			img {
-				border: none;
-			}
-			
-			body {
-				padding: 0 0 30px;
-				background: #454545;
-				background: #454545 -webkit-gradient(radial, center 0, 50, center 0, 300, from(#707070), to(#454545));	
-				background: #454545 -moz-radial-gradient(center 0, circle, #707070 50px, #454545 300px);	
-
-				font-family: Arial, Helvetica, sans-serif;
-			}
-
-			
-			.header {
-				background: #000;
-			}
-			.header h1 {
-				font-family: Helvetica, sans-serif;
-				font-weight: bold;
-				font-size: 0.9em;
-				text-align: center;
-				text-transform: uppercase;
-				letter-spacing: 0.1em;
-				color: #bbb;
-				margin: 0;
-				padding: 8px;
-			}
-			.header h1 em {
-				font-style: normal;
-				color: #666;
-			}
-			.column {
-				margin: 2.5em auto 0;
-				width: 25em;
-			}
-			
-
-			#explaination p {
-				margin: 1em 0;
-				color: #ddd;
-				font-size: 0.75em;
-				line-height: 150%;
-			}
-			#explaination p a {
-				color: #ddd;
-			}
-			
-			#development {
-				background: #eee;
-				margin: 30px 0;
-				padding: 20px 20px 10px 20px;
-				
-				-webkit-border-radius: 6px;
-				-moz-border-radius: 6px;
-				border-radius: 6px;	
-				
-				-webkit-box-shadow: 0px 0px 5px #222;
-				-moz-box-shadow: 0px 0px 5px #222;
-				box-shadow: 0px 0px 5px #222;
-
-				
-				-moz-transform: rotate(2.5deg);  
-				-o-transform: rotate(2.5deg); 
-				-webkit-transform: rotate(2.5deg); 
-			}
-			#development h2 {
-				color: #88b038;
-				line-height: 100%;
-				font-size: 2.1em;
-				font-family: PusabRegular, Arial;
-			}
-			#development p {
-				color: #444;
-			}
-			#development p a {
-				color: #666;
-			}
-			
-			#updated {
-				float: right;
-				position: relative;
-				width: 200px;
-				font-size: 1.1em;
-				padding: 8px 11px 2px;
-				margin: 0 0 0.3em 10px;
-				background: #222;
-				list-style-type: none;
-				line-height: 220%;
-				-webkit-border-radius: 6px;
-				-moz-border-radius: 6px;
-				border-radius: 6px;
-				
-				line-height: 120%;
-				
-				-webkit-box-shadow: 0px 0px 5px #222;
-				-moz-box-shadow: 0px 0px 5px #222;
-				box-shadow: 0px 0px 5px #222;
-				
-				background: #222 -webkit-gradient(linear, left top, left bottom, from(#111), to(#222));
-				background: #222 -moz-linear-gradient(top, #111, #222);
-
-				-moz-transform: rotate(2.5deg);  
-				-o-transform: rotate(2.5deg); 
-				-webkit-transform: rotate(2.5deg); 
-				
-				opacity: 0.7;
-				text-align: center;
-			}
-			#updated:hover {
-				opacity: 1.0;
-			}
-			#updated h2 {
-				font-size: 0.9em;
-				color: #fff;
-			}
-			#updated p {
-				font-size: 0.7em;
-			}
-			#updated p a {
-				color: #fff;
-				text-decoration: none;
-			}
-
-			#results p {
-				font-family: Arial, Helvetica, sans-serif;
-				color: #bbb;
-				text-transform: lowercase;
-				text-align: center;
-				margin: 0 0 2em;
-			}
-			#results p.intro {
-				color: #999;
-				font-size: 2.2em;
-				letter-spacing: 0.1em;
-				line-height: 100%;			
-				margin: 0;
-			}
-
-			#results h2 {
-				font-family: PusabRegular, Arial;
-				font-size: 10em;
-				color: #eee;
-				text-align: center;
-				text-shadow: 0px 0px 10px #333;
-				line-height: 100%;
-			}
-			#results h3 {
-				font-family: PusabRegular, Arial;
-				font-size: 2.3em;
-				color: #888;
-				text-align: center;
-				text-shadow: 0px 0px 5px #333;
-				text-transform: uppercase;
-				text-indent: 0.4em;
-				line-height: 90%;
-				
-				margin: 0 0 0.4em;
-			}
-			
-			#results h4 {
-				font-size: 1.2em;
-				color: #aaa;
-				margin: 2em 0 0.5em;
-			}
-			
-			#results ul li {
-				position: relative;
-				
-				font-size: 1.1em;
-				padding: 4px 11px 6px;
-				margin: 0 0 1em;
-				background: #f0f0f0;
-				list-style-type: none;
-				line-height: 220%;
-				-webkit-border-radius: 6px;
-				-moz-border-radius: 6px;
-				border-radius: 6px;
-				
-				-webkit-box-shadow: 0px 0px 5px #222;
-				-moz-box-shadow: 0px 0px 5px #222;
-				box-shadow: 0px 0px 5px #222;
-				
-				background: #f0f0f0 -webkit-gradient(linear, left top, left 86, from(#e6e6e6), to(#f0f0f0), color-stop(0.5, #f6f6f6), color-stop(0.5, #d6d6d6));
-				background: #f0f0f0 -moz-linear-gradient(top, #e6e6e6, #f6f6f6 43px, #d6d6d6 43px, #f0f0f0);
-			}
-			#results ul li strong {
-				color: #000;
-				display: block;
-				width: 66%;
-				overflow: hidden;
-				white-space: nowrap;
-				font-weight: bold;
-				text-overflow: ellipsis;
-				text-overflow: ellipsis-word;
-			}
-			#results ul li em {
-				position: absolute;
-				top: 2px;
-				right: 7px;
-
-				font-size: 1.8em;
-				font-weight: bold;
-				font-style: normal;
-				font-family: PusabRegular, Arial;
-				color: #aaa;
-			}
-			#results ul li em.none {
-				color: #853333;
-			}
-			#results ul li em.badly {
-				color: #d68533;
-			}
-			#results ul li em.reasonable {
-				color: #e7c333;
-			}
-			#results ul li em.good {
-				color: #88b038;
-			}
-			#results ul li em.great {
-				color: #33af33;
-			}
-			#results ul li em span {
-				position: relative;
-				top: -4px;
-				
-				font-family: Arial;
-				font-size: 0.5em;
-				text-transform: lowercase;
-				
-				color: #fff;
-				padding: 3px 7px;
-				margin: 0 14px 0 0;
-
-				background: #aaa;
-				background: #aaa -webkit-gradient(linear, left top, left bottom, from(#888), to(#aaa), color-stop(0.4, #999));
-				background: #aaa -moz-linear-gradient(top, #888, #999 40%, #aaa);
-
-				-webkit-border-radius: 6px;
-				-moz-border-radius: 6px;
-				border-radius: 6px;
-				
-				-webkit-box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
-				-moz-box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
-				box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
-				
-				text-shadow: rgba(0,0,0,0.3) 0 1px 2px;
-			}
-			
-			#results ul li table {
-				width: 100%;
-				margin: 3px 0 0;
-				line-height: 100%;
-				font-size: 0.70em;
-				border-spacing: 0;
-			}
-			#results ul li table th,
-			#results ul li table td {
-				padding: 6px 0;
-				vertical-align: bottom;
-			}
-			#results ul li table td.container {
-				padding: 0;
-			}
-			#results ul li table tr.explaination th {
-				padding: 16px 0 6px;
-				font-size: 0.9em;
-				font-style: italic;
-				color: #666;
-				line-height: 140%;
-			}
-			#results ul li table tr.title th {
-				font-weight: bold;
-				padding-top: 1.3em;
-			}
-			#results ul li table th {
-				font-weight: normal;
-				text-align: left;
-			}
-			#results ul li table td {
-				text-align: right;
-				white-space: nowrap;
-			}
-			#results ul li table th code {
-				font-size: 12px;
-			}
-			#results ul li table th a {
-				color: #000;
-				text-decoration: none;
-			}
-			#results ul li table th a:hover {
-				text-decoration: underline;
-			}
-			#results ul li table table {
-				font-size: 1em;
-				margin: 0;
-			}
-			#results ul li table table.visible {
-				margin: 0 0 12px;
-			}
-			#results ul li table table thead th {
-				cursor: pointer;
-				padding-left: 20px;
-				background: url(images/triangle.png) left 7px no-repeat;
-			}
-			#results ul li table table.visible thead th {
-				padding-left: 20px;
-				background: url(images/triangle.png) left -18px no-repeat;
-			}
-			#results ul li table table.visible thead th,
-			#results ul li table table.visible thead td {
-				border-bottom: 1px solid #ddd;
-			}
-
-			#results ul li table table tbody {
-				display: none;
-				font-size: 0.9em;
-			}
-			#results ul li table table.visible tbody {
-				display: table-row-group;
-			}
-			#results ul li table table tbody th {
-				padding-left: 20px;
-			}
-			#results ul li table table tbody th code {
-				font-size: 11px;
-			}
-			#results .check,
-			#results .ballot,
-			#results .partial,
-			#results .unknown {
-				display: inline-block;
-				
-				color: #888;
-				font-size: 1.2em;
-				margin: 0 0 0 6px;
-				width: 1em;
-				text-align: center;
-			}
-			#results .check {
-				color: #1c8c1d;
-			}
-			#results .ballot {
-				color: #853333;
-			}
-			#results .partially {
-				color: #888;
-			}
-			
-			#legend {
-				overflow: hidden;
-				width: 60%;
-				margin: 0 0 30px;
-			}			
-			#legend li {
-				list-style-type: none;
-				float: left;
-				white-space: no-break;
-				
-				color: #fff;
-				margin: 0 20px 10px 0;
-				font-size: 0.8em;
-			}
-			#legend li span {
-				display: block;
-				float: left;
-				
-				background-color: #fff;
-				width: 16px;
-				height: 16px;
-				margin: 0 6px 0 0;
-
-				-webkit-border-radius: 3px;
-				-moz-border-radius: 3px;
-				border-radius: 3px;
-
-				-webkit-box-shadow: 0px 0px 5px #222;
-				-moz-box-shadow: 0px 0px 5px #222;
-				box-shadow: 0px 0px 5px #222;
-			}
-			#legend li.none span {
-				background-color: #853333;
-			}
-			#legend li.badly span {
-				background-color: #d68533;
-			}
-			#legend li.reasonable span {
-				background-color: #e7c333;
-			}
-			#legend li.good span {
-				background-color: #88b038;
-			}
-			#legend li.great span {
-				background-color: #33af33;
-			}			
-			
-			
-			.credits {
-				width: 236px;
-				position: relative;
-				background: #666;
-				margin: 40px 0;
-				padding: 10px 20px 10px 20px;
-				
-				-webkit-border-radius: 6px;
-				-moz-border-radius: 6px;
-				border-radius: 6px;	
-				
-				-webkit-box-shadow: 0px 0px 5px #222;
-				-moz-box-shadow: 0px 0px 5px #222;
-				box-shadow: 0px 0px 5px #222;
-			}
-			
-			.hosting {
-				position: absolute;
-				right: -120px;
-				top: 0px;
-				width: 100px;
-
-				color: #aaa;
-				font-size: 0.7em;
-			}
-			
-			@media (max-width: 480px) {
-				
-				.column {
-					width: 100%;
-					overflow: hidden;
-				}
-				.column > * {
-					padding: 0 10px;
-				}
-			}
-		
-		-->
-		</style>	
 	</head>
 	
 	<body onload='startTest();'>
 		<div class='header'>
 			<h1>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
+			<ul>
+				<li class='selected'><a href='index.html'>Your browser</a></li>
+				<li><a href='results.html'>Other browsers</a></li>
+			</ul>
 		</div>
+		
+		<div class='page'>
 		
 		<div class='column'>
 			<noscript>
@@ -510,23 +65,35 @@
 				<li class='good'><span></span>Good</li>
 				<li class='great'><span></span>Great</li>
 			</ul>
+		</div>
 			
-			
-			<div id='explaination'>
-				<div id='updated'>
-					<h2>
-						The HTML5 test has <br>been updated!
-					</h2>
-					<p>
-						<a href='http://rakaz.nl/2010/06/html5-test-updated-how-well-does-your-browser-support-html5-now.html'>Read more about the changes</a>
-					</p>
+		<div class='column' id='explaination'>
+			<div>
+				<h3>About the test</h3>
+
+				<div style="float: right; width: 100px; height: 120px; margin: 10px -10px 0 0;">
+					<svg viewBox="0 0 512 512">
+					  <polygon fill="#E44D26" points="107.644,470.877 74.633,100.62 437.367,100.62 404.321,470.819 255.778,512 			"/>
+					  <polygon fill="#F16529" points="256,480.523 376.03,447.246 404.27,130.894 256,130.894 			"/>
+					  <polygon fill="#EBEBEB" points="256,268.217 195.91,268.217 191.76,221.716 256,221.716 256,176.305 255.843,176.305 142.132,176.305 143.219,188.488 154.38,313.627 256,313.627"/>
+					  <polygon fill="#EBEBEB" points="256,386.153 255.801,386.206 205.227,372.55 201.994,336.333 177.419,336.333 156.409,336.333 162.771,407.634 255.791,433.457 256,433.399"/>
+					  <path d="M108.382,0h23.077v22.8h21.11V0h23.078v69.044H152.57v-23.12h-21.11v23.12h-23.077V0z"/>
+					  <path d="M205.994,22.896h-20.316V0h63.72v22.896h-20.325v46.148h-23.078V22.896z"/>
+					  <path d="M259.511,0h24.063l14.802,24.26L313.163,0h24.072v69.044h-22.982V34.822l-15.877,24.549h-0.397l-15.888-24.549v34.222h-22.58V0z"/>
+					  <path d="M348.72,0h23.084v46.222h32.453v22.822H348.72V0z"/>
+					
+					  <polygon fill="#FFFFFF" points="255.843,268.217 255.843,313.627 311.761,313.627 306.49,372.521 255.843,386.191 255.843,433.435 348.937,407.634 349.62,399.962 360.291,280.411 361.399,268.217 349.162,268.217"/>
+					  <polygon fill="#FFFFFF" points="255.843,176.305 255.843,204.509 255.843,221.605 255.843,221.716 365.385,221.716 365.385,221.716 365.531,221.716 366.442,211.509 368.511,188.488 369.597,176.305"/>
+					</svg>
 				</div>
-	
+
 				<p>
+				
 					The HTML5 test score is only an indication of how well your browser supports the upcoming HTML5 standard and related specifications. 
 					It does not try to test all of the new features offered by HTML5, nor does it try to test the functionality of each feature it does detect. 
 					Despite these shortcomings we hope that by quantifying the level of support users and web developers will get an idea of how hard the 
 					browser manufacturers work on improving their browsers and the web as a development platform.
+					Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
 				</p>
 				
 				<p>
@@ -548,6 +115,7 @@
 					The maximum number of points that can be scored is <span id='total'>0</span> at this moment, but this is a moving goalpost.
 				</p>
 				
+				<h3>Development</h3>
 				<p>
 					The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
 				</p>
@@ -557,6 +125,9 @@
 					Development version, last updated January 16, 2011
 				</p>
 
+			</div>
+		</div>		
+		
 				<div class='credits'>
 					<p> 
 						HTML5 test is created by Niels Leenheer.<br>
@@ -572,9 +143,7 @@
 						<a href='http://sights.nl/en/'><img src='images/sights.png' alt='Sights'></a>
 					</div>
 				</div>
-			</div>
-		</div>		
-		
+		</div>
 		
 		<script>
 		<!--

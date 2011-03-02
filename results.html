@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<!-- 
+	Copyright (c) 2010-2011 Niels Leenheer
+	 
+	Permission is hereby granted, free of charge, to any person obtaining
+	a copy of this software and associated documentation files (the
+	"Software"), to deal in the Software without restriction, including
+	without limitation the rights to use, copy, modify, merge, publish,
+	distribute, sublicense, and/or sell copies of the Software, and to
+	permit persons to whom the Software is furnished to do so, subject to
+	the following conditions:
+	 
+	The above copyright notice and this permission notice shall be
+	included in all copies or substantial portions of the Software.
+	
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+	LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+	OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<html>
+	<head>
+		<title>The HTML5 test - How well does your browser support HTML5?</title>	
+
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+		
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+
+		<link rel="icon" href="icon.png">
+		<link rel="apple-touch-icon" href="button.png">
+	</head>
+	
+	<body>
+		<div class='header'>
+			<h1>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
+			<ul>
+				<li><a href='index.html'>Your browser</a></li>
+				<li class='selected'><a href='results.html'>Other browsers</a></li>
+			</ul>
+		</div>
+		
+		<div class='page'>
+			<div class='column'>
+				<div id="results">
+					<ul>
+						<li>
+							<strong>Desktop browsers</strong>
+							<table>
+								<tbody>
+									<tr>
+										<th class='browser'>Microsoft Internet Explorer</th>
+										<th class='version'>6.0</th>
+										<td class='points'>17</td>
+										<td class='bonus'>0</td>
+									</tr>
+									<tr>
+										<th class='browser'>Microsoft Internet Explorer</th>
+										<th class='version'>7.0</th>
+										<td class='points'>17</td>
+										<td class='bonus'>0</td>
+									</tr>
+									<tr>
+										<th class='browser'>Microsoft Internet Explorer</th>
+										<th class='version'>8.0</th>
+										<td class='points'>32</td>
+										<td class='bonus'>0</td>
+									</tr>
+									<tr>
+										<th class='browser'>Mozilla Firefox</th>
+										<th class='version'>3.6.8</th>
+										<td class='points'>156</td>
+										<td class='bonus'>4</td>
+									</tr>
+									<tr>
+										<th class='browser'>Apple Safari</th>
+										<th class='version'>5.0.3</th>
+										<td class='points'>231</td>
+										<td class='bonus'>7</td>
+									</tr>
+									<tr>
+										<th class='browser'>Opera</th>
+										<th class='version'>11.0</th>
+										<td class='points'>234</td>
+										<td class='bonus'>7</td>
+									</tr>
+									<tr>
+										<th class='browser'>Google Chrome</th>
+										<th class='version'>8</th>
+										<td class='points'>261</td>
+										<td class='bonus'>13</td>
+									</tr>
+								</tbody>
+							</table>
+						</li>
+
+						<li>
+							<strong>Development or beta</strong>
+							<table>
+								<tbody>
+									<tr>
+										<th class='browser'>Microsoft Internet Explorer</th>
+										<th class='version'>9 beta</th>
+										<td class='points'>104</td>
+										<td class='bonus'>5</td>
+									</tr>
+									<tr>
+										<th class='browser'>Microsoft Internet Explorer</th>
+										<th class='version'>9 PP 6</th>
+										<td class='points'>115</td>
+										<td class='bonus'>5</td>
+									</tr>
+									<tr>
+										<th class='browser'>Mozilla Firefox</th>
+										<th class='version'>4.0 beta 9</th>
+										<td class='points'>255</td>
+										<td class='bonus'>9</td>
+									</tr>
+									<tr>
+										<th class='browser'>Webkit Nightly</th>
+										<th class='version'>75891</th>
+										<td class='points'>271</td>
+										<td class='bonus'>9</td>
+									</tr>
+									<tr>
+										<th class='browser'>Google Chromium</th>
+										<th class='version'>10.0.642.0</th>
+										<td class='points'>291</td>
+										<td class='bonus'>9</td>
+									</tr>
+								</tbody>
+							</table>
+						</li>
+
+						<li>
+							<strong>Mobile phones</strong>
+							<table>
+								<tbody>
+									<tr>
+										<th class='browser'>Apple iPad</th>
+										<th class='version'>iOS 3.2</th>
+										<td class='points'>135</td>
+										<td class='bonus'>7</td>
+									</tr>
+									<tr>
+										<th class='browser'>Apple iPhone and iPod</th>
+										<th class='version'>iOS 4.0</th>
+										<td class='points'>198</td>
+										<td class='bonus'>7</td>
+									</tr>
+									<tr>
+										<th class='browser'>Apple iPhone and iPod</th>
+										<th class='version'>iOS 4.1</th>
+										<td class='points'>198</td>
+										<td class='bonus'>7</td>
+									</tr>
+									<tr>
+										<th class='browser'>Apple iPhone, iPod and iPad</th>
+										<th class='version'>iOS 4.2</th>
+										<td class='points'>209</td>
+										<td class='bonus'>7</td>
+									</tr>
+									<tr>
+										<th class='browser'>Apple iPhone, iPod and iPad</th>
+										<th class='version'>iOS 4.3</th>
+										<td class='points'>209</td>
+										<td class='bonus'>7</td>
+									</tr>
+								</tbody>
+							</table>
+						</li>
+					</ul>
+				</div>
+			</div>
+				
+			<div class='column' id='explaination'>
+				<div>
+					<h3>The results</h3>
+					<p>
+						Each of the following browsers have been used to run the HTML5 test. The browsers are run with their default settings. 
+						It is possible your results may differ slightly because of settings, operating system and other factors. If you don't
+						see your browser in these tables don't worry, these tables will be updated regularly. It is not possible to list all
+						versions of all browsers, but will will release more detailed data on <a href='http://browserscope.org'>browserscope.org</a> 
+						soon.
+					</p>
+				</div>
+			</div>		
+		</div>
+	</body>
+</html>
