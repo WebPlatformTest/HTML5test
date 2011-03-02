@@ -2056,6 +2056,8 @@
 						
 							window.setTimeout(function() {
 								document.body.removeChild(form);
+
+								window.scroll(0,0);
 							}, 1000);
 						}
 					} catch(e) {
@@ -2453,7 +2455,6 @@
 
 			function startTest() {
 				var t = new test('results', 'total', function(r) {
-				
 					_bTestResults = {
 					  'Total score': r.score,
 					  'Bonus points': r.bonus
