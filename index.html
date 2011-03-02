@@ -727,7 +727,7 @@
 					
 					this.section.setItem({
 						title: 	'HTML5 tokenizer', 
-						url:	'http://www.w3.org/TR/html5/syntax.html#parsing',
+						url:	'http://www.w3.org/TR/html5/parsing.html',
 						passed:	result, 
 						value: 	5
 					});
@@ -794,7 +794,7 @@
 
 					this.section.setItem({
 						title: 	'HTML5 tree building', 
-						url:	'http://www.w3.org/TR/html5/syntax.html#parsing',
+						url:	'http://www.w3.org/TR/html5/parsing.html',
 						passed:	result, 
 						value: 	5
 					});
@@ -811,7 +811,7 @@
 					
 					this.section.setItem({
 						title: 	'SVG in <code>text/html</code>', 
-						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#svg-0',
+						url:	'http://www.w3.org/TR/html5/the-map-element.html#svg-0',
 						passed:	passed, 
 						bonus: 	passed ? 1 : 0
 					});
@@ -824,7 +824,7 @@
 					
 					this.section.setItem({
 						title: 	'MathML in <code>text/html</code>', 
-						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#math',
+						url:	'http://www.w3.org/TR/html5/the-map-element.html#mathml',
 						passed:	passed, 
 						bonus: 	passed ? 1 : 0
 					});
@@ -906,7 +906,7 @@
 				t2: function() {
 					this.section.setItem({
 						title: 	'Subtitle support', 
-						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/video.html#timed-tracks',
+						url:	'http://www.w3.org/TR/html5/video.html#timed-text-tracks',
 						passed:	'track' in document.createElement('track'), 
 						value: 	10
 					});
@@ -915,7 +915,7 @@
 				t3: function() {
 					this.section.setItem({
 						title: 	'Poster image support', 
-						url:	'http://www.w3.org/TR/html5/video.html#video',
+						url:	'http://www.w3.org/TR/html5/video.html#attr-video-poster',
 						passed:	'poster' in this.element, 
 						value: 	1
 					});
@@ -1089,7 +1089,7 @@
 			function testElements (results) { this.initialize(results) }			
 			testElements.prototype = {
 				name: 	'Elements',
-				count: 	11,
+				count: 	10,
 				
 				initialize: function(results) {
 					this.section = results.getSection('Elements');
@@ -1152,7 +1152,7 @@
 
  						group.setItem({
 							title: 	'<code>' + elements[e] + '</code> element', 
-							url:	'http://www.w3.org/TR/html5/semantics.html#the-' + elements[e] + '-element',
+							url:	'http://www.w3.org/TR/html5/sections.html#the-' + elements[e] + '-element',
 							passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && this.closesImplicitly(elements[e]), 
 							value: 	1
 						});
@@ -1171,7 +1171,7 @@
 
  						group.setItem({
 							title: 	'<code>' + elements[e] + '</code> element', 
-							url:	'http://www.w3.org/TR/html5/semantics.html#the-' + elements[e] + '-element',
+							url:	'http://www.w3.org/TR/html5/grouping-content.html#the-' + elements[e] + '-element',
 							passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e])), 
 							value: 	1
 						});
@@ -1323,17 +1323,6 @@
 				},
 				
 				t9: function() {
-					var element = document.createElement('div');
-					
-					this.section.setItem({
-						title: 	'Scroll into view', 
-						url:	'http://www.w3.org/TR/html5/editing.html#scrolling-elements-into-view',
-						passed:	!!element.scrollIntoView, 
-						value: 	1
-					});
-				},
-
-				t10: function() {
 					/*
 					 * NOTE: Despite having the attribute, contentEditable is not supported on the iPhone and Andriod!
 					 */
@@ -1348,7 +1337,7 @@
 					});
 				},
 
-				t11: function() {
+				t10: function() {
 					var group = this.section.getGroup('Dynamic markup insertion');
 					var element = document.createElement('div');
 
@@ -2090,7 +2079,7 @@
 					
 					this.section.setItem({
 						title: 	'Drag and drop', 
-						url:	'http://www.w3.org/TR/html5/editing.html#dnd',
+						url:	'http://www.w3.org/TR/html5/dnd.html#dnd',
 						passed:	'draggable' in element, 
 						value: 	10
 					});
@@ -2172,7 +2161,7 @@
 				t2: function() {
 					this.section.setItem({
 						title: 	'Custom scheme handlers', 
-						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
+						url:	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
 						passed:	!!window.navigator.registerProtocolHandler, 
 						value: 	2
 					});
@@ -2181,7 +2170,7 @@
 				t3: function() {
 					this.section.setItem({
 						title: 	'Custom content handlers', 
-						url:	'http://www.w3.org/TR/html5/webappapis.html#dom-navigator-registerprotocolhandler',
+						url:	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
 						passed:	!!window.navigator.registerContentHandler, 
 						value: 	2
 					});
@@ -2202,7 +2191,7 @@
 				t1: function() {
 					this.section.setItem({
 						title: 	'Sandboxed <code>iframe</code>', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#attr-iframe-sandbox',
+						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-sandbox',
 						passed:	'sandbox' in document.createElement('iframe'), 
 						value: 	5
 					});
@@ -2211,7 +2200,7 @@
 				t2: function() {
 					this.section.setItem({
 						title: 	'Seamless <code>iframe</code>', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#attr-iframe-seamless',
+						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-seamless',
 						passed:	'seamless' in document.createElement('iframe'), 
 						value: 	5
 					});
@@ -2232,7 +2221,7 @@
 				t1: function() {
 					this.section.setItem({
 						title: 	'Geolocation', 
-						url:    'http://dev.w3.org/geo/api/spec-source.html',
+						url:    'http://www.w3.org/TR/geolocation-API/',
 						passed:	!!navigator.geolocation, 
 						value: 	15
 					});
@@ -2268,7 +2257,7 @@
        				
  					this.section.setItem({
 						title: 	'3D context', 
-						url:    'https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/WebGL-spec.html',
+						url:    'http://www.khronos.org/registry/webgl/specs/latest/',
 						passed:	r, 
 						value: 	15
 					});
@@ -2433,7 +2422,7 @@
 			function testOther (results) { this.initialize(results) }			
 			testOther.prototype = {
 				name: 	'Other',
-				count: 	1,
+				count: 	2,
 				
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -2447,7 +2436,17 @@
 						passed:	!!window.getSelection, 
 						value: 	5
 					});
-				}	
+				},
+					
+				t2: function() {
+					var element = document.createElement('div');
+					
+					this.section.setItem({
+						title: 	'Scroll into view', 
+						passed:	!!element.scrollIntoView, 
+						value: 	1
+					});
+				}
 			};			
 			
 			
