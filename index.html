@@ -1710,13 +1710,42 @@
 					group.setItem({
 						title: 	'<code>indeterminate</color> property', 
 						passed:	'indeterminate' in element.field,
-						value: 	2
+						value: 	1
 					});
 
 					this.removeInput(element);
 					
+
+					/* select */
 					
+					var group = this.section.getGroup('<code>select</code>');
+					var element = document.createElement('select');
+
+					group.setItem({
+						title:	'<code>required</code> attribute',
+						passed:	'required' in element,
+						value:	1
+					});
+
+
+					/* fieldset */
 					
+					var group = this.section.getGroup('<code>fieldset</code>');
+					var element = document.createElement('fieldset');
+
+					group.setItem({
+						title:	'<code>elements</code> attribute',
+						passed:	'elements' in element,
+						value:	1
+					});
+
+					group.setItem({
+						title:	'<code>disabled</code> attribute',
+						passed:	'disabled' in element,
+						value:	1
+					});
+
+
 					/* datalist */
 					
 					var group = this.section.getGroup('<code>datalist</code>');
@@ -1980,7 +2009,7 @@
 						title: 	'<code>checkValidity</code> method', 
 						url:	'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api',
 						passed:	'checkValidity' in element, 
-						value: 	10
+						value: 	8
 					});
 
 
