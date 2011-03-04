@@ -570,7 +570,7 @@
 			  
 			  var TAGNAMES = {
 			    'select':'input','change':'input','input':'input',
-			    'submit':'form','reset':'form','forminput':'form','formchange':'form',
+			    'submit':'form','reset':'form',
 			    'error':'img','load':'img','abort':'img'
 			  }
 			  
@@ -2001,68 +2001,6 @@
 						passed:	'checkValidity' in element, 
 						value: 	8
 					});
-
-
-
-					var group = this.section.getGroup('Events');
-					var forminputItem = group.setItem({
-						title: 	'<code>onforminput</code> event', 
-						passed:	isEventSupported('forminput'), 
-						value: 	1
-					});
-
-					var formchangeItem = group.setItem({
-						title: 	'<code>onformchange</code> event', 
-						passed:	isEventSupported('formchange'), 
-						value: 	1
-					});					
-				
-					group.setItem({
-						title: 	'<code>dispatchFormInput</code> method', 
-						passed:	'dispatchFormInput()' in document.createElement('form'), 
-						value: 	1
-					});
-
-					group.setItem({
-						title: 	'<code>dispatchFormChange</code> method', 
-						passed:	'dispatchFormChange()' in document.createElement('form'), 
-						value: 	1
-					});					
-				
-					try {
-						var event = document.createEvent("KeyboardEvent");				
-						if (event.initKeyEvent) {
-							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
-	
-							var form = document.createElement('form');
-							var input = document.createElement('input');
-							form.appendChild(input);
-							document.body.appendChild(form);
-							
-							form.addEventListener('forminput', function() {
-								forminputItem.update({
-									'passed': true
-								});
-							}, true);
-						
-							form.addEventListener('formchange', function() {
-								formchangeItem.update({
-									'passed': true
-								});
-							}, true);
-												
-			             	input.focus();
-			        		input.dispatchEvent(event);
-			                input.blur();
-						
-							window.setTimeout(function() {
-								document.body.removeChild(form);
-
-								window.scroll(0,0);
-							}, 1000);
-						}
-					} catch(e) {
-					}
  				}
 			};
 
