@@ -30,7 +30,7 @@
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+		<meta name="viewport" content="width=480;">
 		
 		<link rel="stylesheet" href="css/main.css" type="text/css">
 
@@ -121,7 +121,7 @@
 				</p>
 				
 				<p> 
-					March 2, 2010 - version 2.0
+					March 2, 2011 - version 2.0
 				</p>
 
 			</div>
@@ -362,6 +362,8 @@
 					this.points = 0;
 					this.bonus = 0;
 					this.max = 0;
+					
+					this.name = name;
 				
 					this.parent = parent;
 					this.container = container;
@@ -2455,21 +2457,47 @@
 			function startTest() {
 				var t = new test('results', 'total', function(r) {
 					_bTestResults = {
-					  'Total score': r.score,
-					  'Bonus points': r.bonus
+					  '#00 Total score': r.points,
+					  '#01 Bonus points': r.bonus
 					};
 					
-					for (s in r.sections) {
-						_bTestResults[r.sections[s].name] = r.sections[s].value;
-						
-						for (i in r.sections[s].items) {
-							_bTestResults[r.sections[s].items[i].name] = r.sections[s].items[i].passed ? 1 : 0;
+					collectResults('', 2, r);
+					
+					function stripTags(string) {
+						var element = document.createElement('div');
+						element.innerHTML = string;
+						return (element.textContent || element.innerText).replace('=', ' is ');					
+					}
+					
+					function collectResults(prefix, minimum, data) {
+						if (data.items) {
+							for (i in data.items) {
+								var id = parseInt(i, 10) + minimum;
+								id = id < 10 ? '0' + id : id;
+							
+								if (data.items[i].name) {
+									if (data.items[i].parent.total) {
+										_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].name)] = data.items[i].points;
+									} else {
+										_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].name)] = data.items[i].points == data.items[i].max ? 1 : 0;
+									}
+								}
+
+								if (data.items[i].data) {
+									_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].data.title)] = data.items[i].data.passed ? 1 : 0;
+								}
+								
+								if (data.items[i].items) {
+									collectResults(prefix + id + '.', 0, data.items[i]);
+								}
+							}
 						}
 					}
+
 					
 					// Beacon the results to Browserscope.
 					(function() {
-					  var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBif1d4EDA';
+					  var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBiH9N0EDA';
 					  var _bScript = document.createElement('script');
 					  _bScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=_bBeaconComplete';
 					  _bScript.setAttribute('async', 'true');

@@ -119,6 +119,13 @@ body {
 	vertical-align: top;
 }
 
+.column h2 {
+	color: #fff;
+	margin: 0 0 20px 0;
+	font-weight: normal;
+	text-transform: lowercase;
+}
+
 #explaination {
 	width: 200px;
 	margin-left: 20px;
