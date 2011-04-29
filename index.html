@@ -1147,7 +1147,7 @@
 					var group = this.section.getGroup('Section elements');
 					var elements = 'section nav article aside hgroup header footer'.split(' ');
 					
-					for (var e in elements) {
+					for (var e = 0; e < elements.length; e++) {
 						var element = document.createElement(elements[e]);
 						document.body.appendChild(element);
 
@@ -1166,7 +1166,7 @@
 					var group = this.section.getGroup('Grouping content elements');
 					var elements = 'figure figcaption'.split(' ');
 					
-					for (var e in elements) {
+					for (var e = 0; e < elements.length; e++) {
 						var element = document.createElement(elements[e]);
 						document.body.appendChild(element);
 
