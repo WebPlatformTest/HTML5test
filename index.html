@@ -2271,7 +2271,7 @@
 			function testCommunication (results) { this.initialize(results) }			
 			testCommunication.prototype = {
 				name: 	'Communication',
-				count: 	4,
+				count: 	5,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -2280,6 +2280,15 @@
 				
 				t1: function() {
 					this.section.setItem({
+						title: 	'XMLHttpRequest upload', 
+						url:    'http://www.w3.org/TR/XMLHttpRequest2/',
+						passed:	window.XMLHttpRequest && ('upload' in new XMLHttpRequest()), 
+						value: 	15
+					});
+				},
+
+				t2: function() {
+					this.section.setItem({
 						title: 	'Cross-document messaging', 
 						url:    'http://dev.w3.org/html5/postmsg/',
 						passed:	!!window.postMessage, 
@@ -2287,7 +2296,7 @@
 					});
 				},
 				
-				t2: function() {
+				t3: function() {
 					this.section.setItem({
 						title: 	'Server-Sent Events', 
 						url:	'http://www.w3.org/TR/eventsource/',
@@ -2296,11 +2305,11 @@
 					});
 				},
 				
-				t3: function() {
+				t4: function() {
 					this.section.setExplaination('Both Mozilla and Opera do support the WebSocket protocol in their latest browsers, but have disabled it due to a fundamental security issue with the protocol. Once the protocol has been updated it is expected they will re-enable this feature.')
 				},
 
-				t4: function() {
+				t5: function() {
 					this.section.setItem({
 						title: 	'WebSocket', 
 						url:	'http://www.w3.org/TR/websockets/',
