@@ -940,7 +940,7 @@
 					/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 				
 					var item = {
-						title: 	'H.264 support', 
+						title: 	'MP4 H.264 support', 
 						passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
 					};
 					
@@ -1004,7 +1004,7 @@
 
 				t3: function() {
 					var item = {
-						title: 	'PCM audio support', 
+						title: 	'WAV PCM audio support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
 					};
 					
@@ -1036,7 +1036,7 @@
 
 				t5: function() {
 					var item = {
-						title: 	'AAC support', 
+						title: 	'MP4 AAC support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
 					};
 					
