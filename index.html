@@ -923,7 +923,7 @@
 				},
 
 				t4: function() {
-					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more video codecs, two bonus points are awarded for each codec.')
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If browser support for one or more video codecs is detected, two bonus points are awarded for each codec.')
 				},
 					
 				t5: function() {
@@ -940,7 +940,7 @@
 					/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 				
 					var item = {
-						title: 	'H.264 support', 
+						title: 	'MP4 H.264 support', 
 						passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
 					};
 					
@@ -999,12 +999,12 @@
 				},
 
 				t2: function() {
-					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more audio codecs, one bonus point is awarded for each codec.')
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If browser support for one or more audio codecs is detected, one bonus point is awarded for each codec.')
 				},
 
 				t3: function() {
 					var item = {
-						title: 	'PCM audio support', 
+						title: 	'WAV PCM audio support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
 					};
 					
@@ -1036,7 +1036,7 @@
 
 				t5: function() {
 					var item = {
-						title: 	'AAC support', 
+						title: 	'MP4 AAC support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
 					};
 					
@@ -1147,7 +1147,7 @@
 					var group = this.section.getGroup('Section elements');
 					var elements = 'section nav article aside hgroup header footer'.split(' ');
 					
-					for (var e in elements) {
+					for (var e = 0; e < elements.length; e++) {
 						var element = document.createElement(elements[e]);
 						document.body.appendChild(element);
 
@@ -1166,7 +1166,7 @@
 					var group = this.section.getGroup('Grouping content elements');
 					var elements = 'figure figcaption'.split(' ');
 					
-					for (var e in elements) {
+					for (var e = 0; e < elements.length; e++) {
 						var element = document.createElement(elements[e]);
 						document.body.appendChild(element);
 
@@ -1405,6 +1405,26 @@
 					this.removeInput(element);
 					
 					
+					
+					/* input type=text */
+					
+					var group = this.section.getGroup('<code>input type=text</code>');
+					var element = this.createInput('text');
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		element.field.type == 'text',
+						value: 		2
+					});
+					
+					var selDir = ('selectionDirection' in element.field);
+					
+					group.setItem({
+						title: 		'Selection Direction', 
+						passed:		selDir
+					});
+					
+					this.removeInput(element);
 					
 					/* input type=search */
 					
@@ -2271,7 +2291,7 @@
 			function testCommunication (results) { this.initialize(results) }			
 			testCommunication.prototype = {
 				name: 	'Communication',
-				count: 	4,
+				count: 	5,
 								
 				initialize: function(results) {
 					this.section = results.getSection(this.name);
@@ -2280,6 +2300,15 @@
 				
 				t1: function() {
 					this.section.setItem({
+						title: 	'XMLHttpRequest upload', 
+						url:    'http://www.w3.org/TR/XMLHttpRequest2/',
+						passed:	window.XMLHttpRequest && ('upload' in new XMLHttpRequest()), 
+						value: 	15
+					});
+				},
+
+				t2: function() {
+					this.section.setItem({
 						title: 	'Cross-document messaging', 
 						url:    'http://dev.w3.org/html5/postmsg/',
 						passed:	!!window.postMessage, 
@@ -2287,7 +2316,7 @@
 					});
 				},
 				
-				t2: function() {
+				t3: function() {
 					this.section.setItem({
 						title: 	'Server-Sent Events', 
 						url:	'http://www.w3.org/TR/eventsource/',
@@ -2296,11 +2325,11 @@
 					});
 				},
 				
-				t3: function() {
+				t4: function() {
 					this.section.setExplaination('Both Mozilla and Opera do support the WebSocket protocol in their latest browsers, but have disabled it due to a fundamental security issue with the protocol. Once the protocol has been updated it is expected they will re-enable this feature.')
 				},
 
-				t4: function() {
+				t5: function() {
 					this.section.setItem({
 						title: 	'WebSocket', 
 						url:	'http://www.w3.org/TR/websockets/',
