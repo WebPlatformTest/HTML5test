@@ -1406,6 +1406,26 @@
 					
 					
 					
+					/* input type=text */
+					
+					var group = this.section.getGroup('<code>input type=text</code>');
+					var element = this.createInput('text');
+					
+					group.setItem({
+						title: 		'Minimal element support', 
+						passed:		element.field.type == 'text',
+						value: 		2
+					});
+					
+					var selDir = ('selectionDirection' in element.field);
+					
+					group.setItem({
+						title: 		'Selection Direction', 
+						passed:		selDir
+					});
+					
+					this.removeInput(element);
+					
 					/* input type=search */
 					
 					var group = this.section.getGroup('<code>input type=search</code>');
