@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!-- 
-	Copyright (c) 2010-2011 Niels Leenheer
+	Copyright (c) 2010-2012 Niels Leenheer
 	 
 	Permission is hereby granted, free of charge, to any person obtaining
 	a copy of this software and associated documentation files (the
@@ -30,15 +30,27 @@
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="viewport" content="width=480;">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 		
-		<link rel="stylesheet" href="css/main.css" type="text/css">
+		<link rel="stylesheet" href="css/main.css?2.21" type="text/css">
 
 		<link rel="icon" href="icon.png">
 		<link rel="apple-touch-icon" href="button.png">
 	</head>
 	
 	<body onload='startTest();'>
+		<!-- BuySellAds.com Ad Code -->
+		<script type="text/javascript">
+		(function(){
+		  var bsa = document.createElement('script');
+			 bsa.type = 'text/javascript';
+			 bsa.async = true;
+			 bsa.src = '//s3.buysellads.com/ac/bsa.js';
+		  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+		})();
+		</script>
+		<!-- End BuySellAds.com Ad Code -->
+
 		<div class='header'>
 			<h1>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
 			<ul>
@@ -49,7 +61,13 @@
 		
 		<div class='page'>
 		
+		
 		<div class='column'>
+			<div class='updated'>
+				Updated!
+				<span>August 23, 2011</span>
+			</div>
+		
 			<noscript>
 				<h2>
 					To view the results of your browser you need to enable Javascript!
@@ -71,29 +89,29 @@
 			<div>
 				<h3>About the test</h3>
 
-				<div style="float: right; width: 100px; height: 120px; margin: 10px -10px 0 0;">
-					<svg viewBox="0 0 512 512">
-					  <polygon fill="#E44D26" points="107.644,470.877 74.633,100.62 437.367,100.62 404.321,470.819 255.778,512 			"/>
-					  <polygon fill="#F16529" points="256,480.523 376.03,447.246 404.27,130.894 256,130.894 			"/>
-					  <polygon fill="#EBEBEB" points="256,268.217 195.91,268.217 191.76,221.716 256,221.716 256,176.305 255.843,176.305 142.132,176.305 143.219,188.488 154.38,313.627 256,313.627"/>
-					  <polygon fill="#EBEBEB" points="256,386.153 255.801,386.206 205.227,372.55 201.994,336.333 177.419,336.333 156.409,336.333 162.771,407.634 255.791,433.457 256,433.399"/>
-					  <path d="M108.382,0h23.077v22.8h21.11V0h23.078v69.044H152.57v-23.12h-21.11v23.12h-23.077V0z"/>
-					  <path d="M205.994,22.896h-20.316V0h63.72v22.896h-20.325v46.148h-23.078V22.896z"/>
-					  <path d="M259.511,0h24.063l14.802,24.26L313.163,0h24.072v69.044h-22.982V34.822l-15.877,24.549h-0.397l-15.888-24.549v34.222h-22.58V0z"/>
-					  <path d="M348.72,0h23.084v46.222h32.453v22.822H348.72V0z"/>
-					
-					  <polygon fill="#FFFFFF" points="255.843,268.217 255.843,313.627 311.761,313.627 306.49,372.521 255.843,386.191 255.843,433.435 348.937,407.634 349.62,399.962 360.291,280.411 361.399,268.217 349.162,268.217"/>
-					  <polygon fill="#FFFFFF" points="255.843,176.305 255.843,204.509 255.843,221.605 255.843,221.716 365.385,221.716 365.385,221.716 365.531,221.716 366.442,211.509 368.511,188.488 369.597,176.305"/>
-					</svg>
-				</div>
+				<img src='images/html5.png' alt='HTML5' style="float: right; margin: 16px 0 10px 10px;" />
 
 				<p>
 				
-					The HTML5 test score is only an indication of how well your browser supports the upcoming HTML5 standard and related specifications. 
-					It does not try to test all of the new features offered by HTML5, nor does it try to test the functionality of each feature it does detect. 
+					The HTML5 test score is an indication of how well your browser supports the 
+					upcoming HTML5 standard and related specifications. Even though the specification
+					isn't finalized yet, all major browser manufacturers are making sure their
+					browser is ready for the future. Find out which parts of HTML5 are already 
+					supported by your browser today and compare the results with other browsers.
+				</p>
+				
+				<div class='ads'>
+					<p>Sponsors</p>
+				
+					<!-- BuySellAds.com Zone Code -->
+					<div id="bsap_1262954" class="bsarocks bsap_6c18c40d896c427f049e74e4c708ab51"></div>
+					<!-- End BuySellAds.com Zone Code -->				
+				</div>
+				
+				<p>
+					The HTML5 test does not try to test all of the new features offered by HTML5, nor does it try to test the functionality of each feature it does detect. 
 					Despite these shortcomings we hope that by quantifying the level of support users and web developers will get an idea of how hard the 
 					browser manufacturers work on improving their browsers and the web as a development platform.
-					Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
 				</p>
 				
 				<p>
@@ -115,34 +133,1074 @@
 					The maximum number of points that can be scored is <span id='total'>0</span> at this moment, but this is a moving goalpost.
 				</p>
 				
-				<h3>Development</h3>
-				<p>
-					The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
-				</p>
+				<div class='ads'>
+					<p>Sponsors</p>
 				
+					<!-- BuySellAds.com Zone Code -->
+					<div id="bsap_1262955" class="bsarocks bsap_6c18c40d896c427f049e74e4c708ab51"></div>
+					<!-- End BuySellAds.com Zone Code -->
+				</div>
+
+				<h3>Development</h3>
 				<p> 
-					March 2, 2011 - version 2.0
+					The HTML5 test is created by Niels Leenheer. Visit my website at <a href='http://rakaz.nl'>rakaz.nl</a> or follow me on <a href='http://twitter.com/rakaz'>twitter</a>.
 				</p>
 
+				<a href="http://www.twitter.com/rakaz"><img src="http://twitter-badges.s3.amazonaws.com/follow_me-c.png" alt="Follow rakaz on Twitter"/></a>				
+								
+				<p>
+					The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
+					Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+				</p>
+				
+				<p>
+					Thanks to Henri Sivonen for allowing me to reuse <a href='http://hsivonen.iki.fi/test/moz/detect-html5-parser.html'>his HTML5 parser tests</a> and all other contributors.
+				</p>
+
+				<p> 
+					August 23, 2011 - version 2.2.4
+				</p>
+
+				<div class='hosting'>
+					Hosting provided by:<br><br>
+					<a href='http://sights.nl/en/'><img src='images/sights.png' alt='Sights'></a>
+				</div>
 			</div>
 		</div>		
 		
-				<div class='credits'>
-					<p> 
-						HTML5 test is created by Niels Leenheer.<br>
-						Visit my website at <a href='http://rakaz.nl'>rakaz.nl</a> or follow me on <a href='http://twitter.com/rakaz'>twitter</a>.
-					</p>
-					
-					<p>
-						Thanks to Henri Sivonen for allowing me to reuse <a href='http://hsivonen.iki.fi/test/moz/detect-html5-parser.html'>his HTML5 parser tests</a> and all other contributors.
-					</p>
-					
-					<div class='hosting'>
-						Hosting provided by:<br><br>
-						<a href='http://sights.nl/en/'><img src='images/sights.png' alt='Sights'></a>
-					</div>
-				</div>
+
 		</div>
+		
+		<script>
+		<!-- 
+
+			var Browsers = (function(){
+				var Version = function() {};
+				Version.prototype.toString = function() { return this.stock && this.hidden ? '' : this.name ? this.name + (this.version ? ' ' + this.version : '') : ''};
+
+				var Browsers = function() {
+					this.browser = new Version();
+					this.browser.stock = true;
+					this.browser.hidden = false;
+
+					this.engine = new Version();
+					
+					this.os = new Version();
+					
+					this.device = new Version();
+					this.device.type = 'desktop';
+				};
+
+				Browsers.prototype.toString = function() {
+					var browser = '' + this.browser;
+					var os = '' + this.os;
+					var device = '' + (typeof detected.device.manufacturer != 'undefined' ? detected.device.manufacturer + ' ' : '') + (typeof detected.device.model != 'undefined' ? detected.device.model + ' ' : '');
+				
+					if (browser && os && device) {
+						return browser + ' on a ' + device + ' running ' + os;
+					}
+				
+					else if (browser && os && !device) {
+						return browser + ' on ' + os;
+					}
+				
+					else if (!browser && os && device) {
+						return 'a ' + device + ' running ' + os;
+					}
+				
+					else if (browser && !os && !device) {
+						return browser;
+					}
+				
+					else if (!browser && !os && device) {
+						return 'a ' + device;
+					}
+				
+					else {
+						return 'an unknown browser';
+					}
+				};
+
+				var detected = new Browsers();
+				var ua = navigator.userAgent;
+
+				
+				/* Step 1: Detect OS and device */
+				
+				if (ua.match('iPhone;') || ua.match('iPad;') || ua.match('iPod;')) {
+					detected.os.name = 'iOS';
+					detected.os.version = '1.0';
+										
+					if (match = /OS (.*) like Mac OS X/.exec(ua)) {
+						detected.os.version = match[1].replace(/_/g,'.');
+					}					
+					
+					/* 
+						Sometimes Apple releases beta versions that still have the old version number, 
+						but they do have an updated AppleWebKit version. Below are the first version of 
+						iOS in which each version of AppleWebkit is shipped. If the reported version is
+						lower than the version expected from the AppleWebKit version, it is an early beta.
+	
+					if (match = /AppleWebKit\/([0-9.]*)/.exec(ua)) {
+						var build = parseVersion(match[1]);
+						if (build >= 420.10) detected.os.version = Math.max(detected.os.version, 1.1)		// 1.1
+						if (build >= 525.18) detected.os.version = Math.max(detected.os.version, 2.0)		// 2.0
+						if (build >= 528.18) detected.os.version = Math.max(detected.os.version, 3.0)		// 3.0 - 3.1
+						if (build >= 531.21) detected.os.version = Math.max(detected.os.version, 3.2)		// 3.2
+						if (build >= 532.90) detected.os.version = Math.max(detected.os.version, 4.0)		// 4.0 - 4.1
+						if (build >= 533.17) detected.os.version = Math.max(detected.os.version, 4.2)		// 4.2 - 4.3
+						if (build >= 534.32) detected.os.version = Math.max(detected.os.version, 5.0)		// 5.0
+					}
+					*/
+					
+					detected.device.manufacturer = 'Apple';
+				
+					if (ua.match('iPhone;') || ua.match('iPod;')) {
+						detected.device.type = 'mobile';
+						
+						if (ua.match('iPhone;'))
+							detected.device.model = 'iPhone';
+						else
+							detected.device.model = 'iPod Touch';
+					} else {
+						detected.device.type = 'tablet';
+						detected.device.model = 'iPad';
+					}
+				}				
+				
+				else if (ua.match('Mac OS X')) {
+					detected.os.name = 'Mac OS X';
+																				
+					if (match = /Mac OS X (10[0-9\._]*)/.exec(ua)) {
+					    detected.os.version = match[1].replace(/_/g,'.');
+					}					
+				}
+				
+				if (ua.match('Windows')) {
+					detected.os.name = 'Windows';
+
+					if (match = /Windows NT ([0-9]\.[0-9])/.exec(ua)) {
+						detected.os.version = parseVersion(match[1]);
+						
+						switch(match[1]) {
+							case '6.2':		detected.os.version = '8'; break;
+							case '6.1':		detected.os.version = '7'; break;
+							case '6.0':		detected.os.version = 'Vista'; break;
+							case '5.2':		detected.os.version = 'Server 2003'; break;
+							case '5.1':		detected.os.version = 'XP'; break;
+							case '5.0':		detected.os.version = '2000'; break;
+							default:		detected.os.version = 'NT ' + detected.os.version;
+						}
+					}
+					
+					if (ua.match('Windows 95') || ua.match('Win95')) {
+						detected.os.version = '95';
+					}
+
+					if (ua.match('Windows 98') || ua.match('Win98')) {
+						detected.os.version = '98';
+					}
+
+					if (ua.match('Windows ME') || ua.match('WinME')) {
+						detected.os.version = 'ME';
+					}
+
+					if (ua.match('Windows XP') || ua.match('WinXP')) {
+						detected.os.name = 'XP';
+					}
+
+					if (ua.match('WP7')) {
+						detected.os.name = 'Windows Phone';
+						detected.os.version = '7';
+						detected.device.type = 'mobile';
+					}
+
+					if (ua.match('Windows CE') || ua.match('WinCE')) {
+						detected.os.name = 'Windows Mobile';
+						
+						if (ua.match('IEMobile 8')) {
+							detected.os.version = '6.5';
+						}
+
+						if (ua.match('IEMobile 7')) {
+							detected.os.version = '6.1';
+						}
+
+						if (ua.match('IEMobile 6')) {
+							detected.os.version = '6.0';
+						}
+
+						detected.device.type = 'mobile';
+					}
+
+					if (ua.match('Windows Phone OS')) {
+						detected.os.name = 'Windows Phone';
+						detected.os.version = ua.match(/Windows Phone OS ([0-9.]*)/)[1];
+	
+						if (parseVersion(detected.os.version) < 7) {
+							detected.os.name = 'Windows Mobile';
+						}
+	
+						if (match = /IEMobile\/[^;]+; ([^;]+); ([^;]+)[;|\)]/.exec(ua)) {
+							detected.device.manufacturer = match[1];
+							detected.device.model = match[2];
+						}						
+
+						detected.device.type = 'mobile';
+						
+						var models = {
+							'Asus': {
+								'Galaxy6':		[ 'Asus', 'Galaxy 6' ]
+							},
+							
+							'HTC': {
+								'7 Mozart':		[ 'HTC', '7 Mozart' ],
+								'HD7 T9292':	[ 'HTC', 'HD7' ],
+								'mwp6985':		[ 'HTC', 'Trophy' ],
+								'Radar 4G':		[ 'HTC', 'Radar' ],
+								'Radar C110e':	[ 'HTC', 'Radar' ],
+								'Mondrian':		[ 'HTC', 'Mondrian' ], 
+								'Schubert':		[ 'HTC', 'Schubert' ]
+							},
+							
+							'LG': {
+								'GW910':		[ 'LG', 'Optimus 7' ],
+								'LG-E900':		[ 'LG', 'Optimus 7 E900' ],
+								'LG-E900h':		[ 'LG', 'Optimus 7 E900' ],
+								'GW910':		[ 'LG', 'GW910' ],
+								'LG-C900k':		[ 'LG', 'Quantum' ]
+							},
+							
+							'NOKIA': {
+								'Lumia 710':	[ 'Nokia', 'Lumia 710' ],
+								'Lumia 800':	[ 'Nokia', 'Lumia 800' ]
+							},
+							
+							'SAMSUNG': {
+								'GT-I8350':		[ 'Samsung', 'Omnia W' ],
+								'SGH-i707':		[ 'Samsung', 'Taylor' ],
+								'SGH-i917':		[ 'Samsung', 'Omnia 7' ],
+								'SGH-I917':		[ 'Samsung', 'Omnia 7' ],
+								'SGH-i917R':	[ 'Samsung', 'Focus' ],
+								'SGH-i937':		[ 'Samsung', 'Focus S' ],
+								'OMNIA7':		[ 'Samsung', 'Omnia 7' ],
+								'Taylor':		[ 'Samsung', 'Taylor' ]
+							},
+
+							'TOSHIBA': {
+								'TSUNAGI':		[ 'Toshiba', 'Tsunagi' ]
+							}
+						}
+						
+						if (typeof models[detected.device.manufacturer] != 'undefined' && 
+							typeof models[detected.device.manufacturer][detected.device.model] != 'undefined') {
+							detected.device.manufacturer = models[detected.device.manufacturer][detected.device.model][0];
+							detected.device.model = models[detected.device.manufacturer][detected.device.model][1];
+						}
+					}
+				}
+
+				if (ua.match('FreeBSD')) {
+					detected.os.name = 'FreeBSD';
+				}
+				
+				if (ua.match('Linux')) {
+					detected.os.name = 'Linux';
+				}
+				
+				if (ua.match('Android')) {
+					detected.os.name = 'Android';
+
+					if (match = /Android [AllPhone_]?([0-9.]*)/.exec(ua)) {
+						detected.os.version = match[1]
+					}
+
+					if (ua.match('Android Eclair')) {
+						detected.os.version = '2.0';
+					}
+
+					if (match = /; ([^;]*)\s+Build/.exec(ua)) {
+					    detected.device.model = match[1];
+					}					
+
+					if (ua.match('Mobile'))
+						detected.device.type = 'mobile';
+					else
+						detected.device.type = 'tablet';
+					
+
+					var models = {
+						'A100':					[ 'Acer', 'Iconia Tab A100' ],
+						'A200':					[ 'Acer', 'Iconia Tab A200' ],
+						'A500':					[ 'Acer', 'Iconia Tab A500' ],
+						'Telenor_OneTouch':		[ 'Alcatel', 'OT-990' ],
+						'Kindle Fire':			[ 'Amazon', 'Kindle Fire' ],
+						'A80KSC':				[ 'Archos', 'Arnova 8' ],
+						'eeepc':				[ 'Asus', 'Eee Pc' ],
+						'Transformer TF101':	[ 'Asus', 'Eee Pad Transformer' ],
+						'Transformer Prime TF201':	[ 'Asus', 'Eee Pad Transformer Prime' ],
+						'NookColor':			[ 'Barnes & Noble', 'NOOK Color' ],
+						'NOOK BNRV200':			[ 'Barnes & Noble', 'NOOK Color' ],
+						'NOOK BNTV250':			[ 'Barnes & Noble', 'NOOK Tablet' ],
+						'BNTV250':				[ 'Barnes & Noble', 'NOOK Tablet' ],
+						'BM999':				[ 'Bmorn', 'BM999' ],
+						'bcm7425':				[ 'Broadcom', 'BCM7425 mediaplayer' ],
+						'MID8125':				[ 'Coby', 'Kyros MID8125-4G' ],
+						'Dell Streak':			[ 'Dell', 'Streak' ],
+						'Dell Streak 7':		[ 'Dell', 'Streak 7' ],
+						'Dell Streak 10 Pro':	[ 'Dell', 'Streak 10 Pro' ],
+						'Tablet-P27':			[ 'DracoTek', 'P27 Tablet' ],
+						'Nexus One':			[ 'Google', 'Nexus One' ],
+						'Nexus S':				[ 'Google', 'Nexus S' ],
+						'Nexus S 4G':			[ 'Google', 'Nexus S 4G' ],
+						'Dooderbutt-4.0.3-v1':	[ 'Google', 'Nexus S 4G' ],
+						'Touchpad':				[ 'HP', 'TouchPad' ],
+						'HP Touchpad':			[ 'HP', 'TouchPad' ],
+						'HTC Amaze 4G':			[ 'HTC', 'Amaze 4G' ],
+						'HTC ChaCha A810e':		[ 'HTC', 'ChaCha' ],
+						'HTC Desire':			[ 'HTC', 'Desire' ],
+						'Desire_A8181':			[ 'HTC', 'Desire' ],
+						'HTC_Desire-orange-LS':	[ 'HTC', 'Desire' ],
+						'X06HT':				[ 'HTC', 'Desire' ],
+						'HTC_DesireHD_A9191':	[ 'HTC', 'Desire HD' ],
+						'HTC-A9192/1.0':		[ 'HTC', 'Desire HD' ],
+						'Desire HD':			[ 'HTC', 'Desire HD' ],
+						'HTC Desire HD':		[ 'HTC', 'Desire HD' ],
+						'Desire_HD':			[ 'HTC', 'Desire HD' ],
+						'HTC Desire HD with Beats Audio':	[ 'HTC', 'Desire HD' ],
+						'HTC Desire S':			[ 'HTC', 'Desire S' ],
+						'HTC_DesireS_S510e':	[ 'HTC', 'Desire S' ],
+						'SiRF Dream':			[ 'HTC', 'Dream' ],
+						'HTC Dream':			[ 'HTC', 'Dream' ],
+						'ADR6300':				[ 'HTC', 'Droid Incredible' ],
+						'ADR6350':				[ 'HTC', 'Droid Incredible 2' ],
+						'HTC S710d':			[ 'HTC', 'Droid Incredible 2' ],
+						'HTC EVO 3D GSM':		[ 'HTC', 'EVO 3D' ],
+						'HTC EVO 3D X515m':		[ 'HTC', 'EVO 3D' ],
+						'Sprint APX515CKT':		[ 'HTC', 'EVO 3D' ],
+						'PG86100':				[ 'HTC', 'EVO 3D' ],
+						'PG8610000':			[ 'HTC', 'EVO 3D' ],
+						'Sprint APA9292KT':		[ 'HTC', 'EVO 4G' ],
+						'PC36100':				[ 'HTC', 'EVO 4G' ],
+						'Sprint APA7373KT':		[ 'HTC', 'EVO Shift 4G' ],
+						'HTC Flyer P510e':		[ 'HTC', 'Flyer' ],
+						'HTC Glacier':			[ 'HTC', 'Glacier' ],
+						'HTC HD2':				[ 'HTC', 'HD2' ],
+						'Hero':					[ 'HTC', 'Hero' ],
+						'HTC Hero':				[ 'HTC', 'Hero' ],
+						'HTC Incredible S':		[ 'HTC', 'Incredible S' ],
+						'HTC_IncredibleS_S710e':	[ 'HTC', 'Incredible S' ],
+						'Incredible S':			[ 'HTC', 'Incredible S' ],
+						'Inspire 4G':			[ 'HTC', 'Inspire 4G' ],
+						'Legend':				[ 'HTC', 'Legend' ],
+						'HTC_Liberty_A6380':	[ 'HTC', 'Liberty' ],
+						'HTC Magic':			[ 'HTC', 'Magic' ],
+						'HTC Panache':			[ 'HTC', 'Panache' ],
+						'HTC Pyramid':			[ 'HTC', 'Pyramid' ],
+						'ADR6425LVW 4G':		[ 'HTC', 'Rezound 4G' ],	
+						'HTC Sapphire':			[ 'HTC', 'Sapphire' ],
+						'Sensation':			[ 'HTC', 'Sensation' ],
+						'HTC Sensation':		[ 'HTC', 'Sensation' ],
+						'HTC Sensation Z710e':	[ 'HTC', 'Sensation' ],
+						'HTC Sensation Z710E':	[ 'HTC', 'Sensation' ],
+						'HTC_Sensation_Z710e':	[ 'HTC', 'Sensation' ],
+						'HTC Sensation Z715e':	[ 'HTC', 'Sensation' ],
+						'HTC Z710t':			[ 'HTC', 'Sensation' ],
+						'HTC Sensation 4G':		[ 'HTC', 'Sensation 4G' ],
+						'Sensation_4G':			[ 'HTC', 'Sensation 4G' ],
+						'HTC Z715e':			[ 'HTC', 'Sensation XE '],
+						'HTC Sensation XE with Beats Audio':		[ 'HTC', 'Sensation XE' ],
+						'HTC Sensation XE with Beats Audio Z715e':	[ 'HTC', 'Sensation XE' ],
+						'HTC Sensation XL with Beats Audio X315e':	[ 'HTC', 'Sensation XL' ],
+						'ADR6400L 4G':			[ 'HTC', 'Thunderbolt 4G' ],
+						'HTC Vision':			[ 'HTC', 'Vision' ],
+						'HTC_Wildfire_A3333':	[ 'HTC', 'Wildfire' ],
+						'HTC Wildfire S':		[ 'HTC', 'Wildfire S' ],
+						'HTC Wildfire S A510e':	[ 'HTC', 'Wildfire S' ],
+						'HTC_WildfireS_A510e':	[ 'HTC', 'Wildfire S' ],
+						'HTC A510e':			[ 'HTC', 'Wildfire S' ],
+						'HTC/WildfireS/1.33.161.2':					[ 'HTC', 'Wildfire S' ],
+						'M865':					[ 'Huawei', 'M865' ],
+						'C8150':				[ 'Huawei', 'IDEOS' ],
+						'C8500':				[ 'Huawei', 'C8500' ],
+						'C8600':				[ 'Huawei', 'C8600' ],
+						'c8650':				[ 'Huawei', 'C8650' ],
+						'U8110':				[ 'Huawei', 'U8110' ],
+						'U8220':				[ 'Huawei', 'U8220' ],
+						'U8300':				[ 'Huawei', 'U8300' ],
+						'U8350':				[ 'Huawei', 'Boulder' ],
+						'U8500':				[ 'Huawei', 'IDEOS X2' ],
+						'U8510':				[ 'Huawei', 'IDEOS X3' ],
+						'IDEOS S7':				[ 'Huawei', 'IDEOS S7' ],
+						'U8650':				[ 'Huawei', 'Sonic' ],
+						'U8850':				[ 'Huawei', 'Vision' ],
+						'U8800':				[ 'Huawei', 'IDEOS X5' ],
+						'U8800Pro':				[ 'Huawei', 'U8800 Pro' ],
+						'u8800pro':				[ 'Huawei', 'U8800 Pro' ],
+						'U8860':				[ 'Huawei', 'Honor' ],
+						'U9000':				[ 'Huawei', 'Ascend X' ],
+						'HUAWEI MediaPad':		[ 'Huawei', 'MediaPad' ],
+						'HUAWEI SONIC':			[ 'Huawei', 'Sonic' ],
+						'HUAWEI T8300':			[ 'Huawei', 'T8300' ],
+						'ILT-MX100':			[ 'iRiver', 'Tab' ],
+						'A1_07':				[ 'Lenovo', 'LePad' ],
+						'3GW100':				[ 'Lenovo', 'LePhone' ],
+						'3GW101':				[ 'Lenovo', 'LePhone' ],
+						'ThinkPad Tablet':		[ 'Lenovo', 'ThinkPad Tablet' ],
+						'Lenovo S1-37AH0':		[ 'Lenovo', 'S1-37AH0' ],
+						'LG-GW620':				[ 'LG', 'GW620' ],
+						'LG-LS855':				[ 'LG', 'Marquee' ],
+						'LG-GT540':				[ 'LG', 'Optimus' ],
+						'LG-P350':				[ 'LG', 'Optimus Me' ],
+						'LG-P350f':				[ 'LG', 'Optimus Me' ],
+						'LG-P500':				[ 'LG', 'Optimus One' ],
+						'LG-P500h':				[ 'LG', 'Optimus One' ],
+						'LG-P500h-parrot':		[ 'LG', 'Optimus One' ],
+						'LG-P503':				[ 'LG', 'Optimus One' ],
+						'LG-P698f':				[ 'LG', 'Optimus Net' ],
+						'LG-P720':				[ 'LG', 'Optimus Chic' ],
+						'LG-P920':				[ 'LG', 'Optimus 3D' ],
+						'LG-P970':				[ 'LG', 'Optimus Black' ],
+						'LG-P990':				[ 'LG', 'Optimus 2X Speed' ],
+						'Optimus':				[ 'LG', 'Optimus' ],
+						'Optimus 2X':			[ 'LG', 'Optimus 2X' ],
+						'GT540':				[ 'LG', 'Optimus GT540' ],
+						'VM670':				[ 'LG', 'Optimus V' ],
+						'LG-P925/V10e':			[ 'LG', 'Thrill' ],
+						'M9':					[ 'Meizu', 'M9' ],
+						'MEIZU MX':				[ 'Meizu', 'MX' ],
+						'MB300':				[ 'Motorola', 'BACKFLIP' ],
+						'ME600':				[ 'Motorola', 'BACKFLIP' ],
+						'Droid':				[ 'Motorola', 'Droid' ],
+						'DROID2 GLOBAL':		[ 'Motorola', 'Droid 2' ],
+						'DROID3':				[ 'Motorola', 'Droid 3' ],
+						'DROID BIONIC 4G':		[ 'Motorola', 'Droid Bionic' ],
+						'DROID RAZR':			[ 'Motorola', 'Droid RAZR' ],
+						'DROID RAZR 4G':		[ 'Motorola', 'Droid RAZR' ],
+						'DROIDX':				[ 'Motorola', 'Droid X' ],
+						'MB860':				[ 'Motorola', 'ATRIX' ],
+						'ME860':				[ 'Motorola', 'ATRIX' ],
+						'Moto_ME860':			[ 'Motorola', 'ATRIX' ],
+						'MB200':				[ 'Motorola', 'CLIQ' ],
+						'CLIQ':					[ 'Motorola', 'CLIQ' ],
+						'MB611':				[ 'Motorola', 'CLIQ 2' ],
+						'ME501':				[ 'Motorola', 'CLIQ XT' ],
+						'MB525':				[ 'Motorola', 'DEFY' ],
+						'MB526':				[ 'Motorola', 'DEFY+' ],
+						'XT720':				[ 'Motorola', 'Milestone' ],
+						'Milestone':			[ 'Motorola', 'Milestone' ],
+						'Motorola XT720':		[ 'Motorola', 'Milestone' ],
+						'ME722':				[ 'Motorola', 'Milestone 2' ],
+						'A953':					[ 'Motorola', 'Milestone 2' ],
+						'ME525':				[ 'Motorola', 'MOTO ME525' ],
+						'MT870':				[ 'Motorola', 'MOTO MT870' ],
+						'XT800':				[ 'Motorola', 'MOTO XT800' ],
+						'XT882':				[ 'Motorola', 'MOTO XT882' ],
+						'XT800W':				[ 'Motorola', 'MOTO Glam' ],
+						'ME511':				[ 'Motorola', 'FLIPOUT' ],
+						'MB855':				[ 'Motorola', 'PHOTON 4G' ],
+						'Motorola-XT502':		[ 'Motorola', 'QUENCH XT5' ],
+						'XT910':				[ 'Motorola', 'RAZR' ],
+						'MOT-XT910':			[ 'Motorola', 'RAZR' ],
+						'XT300':				[ 'Motorola', 'SPICE' ],
+						'Motorola Triumph':		[ 'Motorola', 'TRIUMPH' ],
+						'Xoom':					[ 'Motorola', 'XOOM' ],
+						'MZ606':				[ 'Motorola', 'XOOM' ],
+						'XT701':				[ 'Motorola', 'XT701' ],
+						'MTC 955':				[ 'MTC', '955' ],
+						'X903':					[ 'Oppo', 'X903' ],
+						'IM-A730s':				[ 'Pantech', 'SKY Vega S' ],
+						'Mobii 7':				[ 'Point Of View', 'Mobii 7' ],
+						'w10':					[ 'Ramos', 'W10' ],
+						'PlayBook':				[ 'RIM', 'BlackBerry PlayBook' ],
+						'Galaxy Nexus':			[ 'Samsung', 'Galaxy Nexus' ],
+						'GT-B5510':				[ 'Samsung', 'Galaxy Y Pro' ],
+						'GT-I5500L':			[ 'Samsung', 'Galaxy 5' ],
+						'GT-I5508':				[ 'Samsung', 'Galaxy 5' ],
+						'GT-I5700':				[ 'Samsung', 'Galaxy Spica' ],
+						'GT-I5800':				[ 'Samsung', 'Galaxy Apollo' ],
+						'GT-I5801':				[ 'Samsung', 'Galaxy Apollo' ],
+						'GT-I8150':				[ 'Samsung', 'Galaxy W' ],
+						'GT-I9000':				[ 'Samsung', 'Galaxy S' ],
+						'GT-I9000B':			[ 'Samsung', 'Galaxy S' ],
+						'GT-I9000M':			[ 'Samsung', 'Galaxy S Vibrant' ],
+						'GT-I9000T':			[ 'Samsung', 'Galaxy S' ],
+						'GT-I9001':				[ 'Samsung', 'Galaxy S Plus' ],
+						'GT-I9003':				[ 'Samsung', 'Galaxy SL' ],
+						'GT-I9008':				[ 'Samsung', 'Galaxy S' ],
+						'GT-I9088':				[ 'Samsung', 'Galaxy S' ],
+						'GT-I9100':				[ 'Samsung', 'Galaxy S II' ],
+						'GT-I9100G':			[ 'Samsung', 'Galaxy S II' ],
+						'GT-I9100M':			[ 'Samsung', 'Galaxy S II' ],
+						'GT-I9100T':			[ 'Samsung', 'Galaxy S II' ],
+						'GT-I9103':				[ 'Samsung', 'Galaxy R' ],
+						'GT-I9220':				[ 'Samsung', 'Galaxy Note' ],
+						'GT-I9500':				[ 'Samsung', 'Galaxy S III' ],
+						'GT-N7000':				[ 'Samsung', 'Galaxy Note' ],
+						'GT-P1000':				[ 'Samsung', 'Galaxy Tab' ],
+						'GT-P1000L':			[ 'Samsung', 'Galaxy Tab' ],
+						'GT-P6210':				[ 'Samsung', 'Galaxy Tab 7.0 Plus'],
+						'GT-P6800':				[ 'Samsung', 'Galaxy Tab 7.7'],
+						'GT-P7100':				[ 'Samsung', 'Galaxy Tab 10.1V' ],
+						'GT-P7300':				[ 'Samsung', 'Galaxy Tab 8.9' ],
+						'GT-P7310':				[ 'Samsung', 'Galaxy Tab 8.9' ],
+						'GT-P7500':				[ 'Samsung', 'Galaxy Tab 10.1' ],
+						'GT-P7501':				[ 'Samsung', 'Galaxy Tab 10.1N' ],
+						'GT-P7510':				[ 'Samsung', 'Galaxy Tab 10.1' ],
+						'GT-S5360':				[ 'Samsung', 'Galaxy Y' ],
+						'GT-S5570':				[ 'Samsung', 'Galaxy Mini' ],
+						'GT-S5570L':			[ 'Samsung', 'Galaxy Mini' ],
+						'GT-S5578':				[ 'Samsung', 'Galaxy Mini' ],
+						'GT-S5660':				[ 'Samsung', 'Galaxy Gio' ],
+						'GT-S5670':				[ 'Samsung', 'Galaxy Fit' ],
+						'GT-S5830':				[ 'Samsung', 'Galaxy Ace' ],
+						'GT-S5830L':			[ 'Samsung', 'Galaxy Ace' ],
+						'SCH-i569':				[ 'Samsung', 'Galaxy Gio' ],
+						'SCH-I400':				[ 'Samsung', 'Continuum' ],
+						'SCH-I500':				[ 'Samsung', 'Fascinate' ],
+						'SCH-I909':				[ 'Samsung', 'Galaxy S' ],
+						'SCH-R720':				[ 'Samsung', 'Admire' ],
+						'SGH-I727':				[ 'Samsung', 'Galaxy S II Skyrocket' ],
+						'SGH-i727R':			[ 'Samsung', 'Galaxy S II' ],
+						'SGH-I777':				[ 'Samsung', 'Galaxy S II' ],
+						'SGH-I896':				[ 'Samsung', 'Galaxy S Captivate' ],
+						'SGH-I897':				[ 'Samsing', 'Captivate' ],
+						'SGH-I927':				[ 'Samsung', 'Captivate Glide' ],
+						'SGH-T959':				[ 'Samsung', 'Galaxy S Vibrant' ],
+						'SGH-T959D':			[ 'Samsung', 'Galaxy S Fascinate 3G+' ],
+						'SGH-T959P':			[ 'Samsung', 'Galaxy S Fascinate 4G' ],
+						'SGH-T959V':			[ 'Samsung', 'Galaxy S 4G' ],
+						'SGH-T989':				[ 'Samsung', 'Galaxy S II' ],
+						'SGH-T989D':			[ 'Samsung', 'Galaxy S II X' ],
+						'SHV-E160K':			[ 'Samsung', 'Galaxy Note' ],
+						'SHW-M110S':			[ 'Samsung', 'Galaxy S' ],
+						'SHW-M130L':			[ 'Samsung', 'Galaxy U' ],
+						'SHW-M130K':			[ 'Samsung', 'Galaxy K' ],
+						'SHW-M250K':			[ 'Samsung', 'Galaxy S II' ],
+						'SHW-M380S':			[ 'Samsung', 'Galaxy Tab 10.1' ],
+						'SPH-D700':				[ 'Samsung', 'Galaxy S Epic 4G' ],
+						'SPH-D710':				[ 'Samsung', 'Galaxy S II Epic 4G' ],
+						'SC-01C':				[ 'Samsung', 'Galaxy Tab' ],
+						'SC-01D':				[ 'Samsung', 'Galaxy Tab 10.1 LTE' ],
+						'SC-02B':				[ 'Samsung', 'Galaxy S' ],
+						'SC-02C':				[ 'Samsung', 'Galaxy S II' ],
+						'I9000':				[ 'Samsung', 'Galaxy S' ],
+						'YP-GB70':				[ 'Samsung', 'Galaxy Player' ],
+						'YP-GS1':				[ 'Samsung', 'Galaxy S WiFi 3.6' ],
+						'T959':					[ 'Samsung', 'Galaxy S Vibrant' ],
+						'Galaxy S II':			[ 'Samsung', 'Galaxy S II' ],
+						'SAMSUNG-SGH-I896':		[ 'Samsung', 'Captivate' ],
+						'SAMSUNG-SGH-I897':		[ 'Samsung', 'Captivate' ],
+						'SAMSUNG-SGH-I997':		[ 'Samsung', 'Galaxy S Infuse 4G' ],
+						'SAMSUNG GT-S5830/S5830BUKPE':	[ 'Samsung', 'Galaxy Ace' ],
+						'SAMSUNG GT-S5570/S5570BUKS2':	[ 'Samsung', 'Galaxy Mini' ],
+						'SH-03C':				[ 'Sharp', 'Lynx 3D' ],
+						'SH-12C':				[ 'Sharp', 'Aquos' ],
+						'SBM006SH':				[ 'Sharp', 'Aquos' ],
+						'SBM003SH':				[ 'Sharp', 'Galapagos' ],
+						'SPX-5':				[ 'Simvalley', 'SPX-5' ],
+						'SonyEricssonE15a':		[ 'SonyEricsson', 'Xperia X8' ],
+						'SonyEricssonE15i':		[ 'SonyEricsson', 'Xperia X8' ],
+						'SonyEricssonIS11S':	[ 'SonyEricsson', 'Xperia Acro' ],
+						'SonyEricssonLT15i':	[ 'SonyEricsson', 'Xperia Arc' ],
+						'SonyEricssonLT15i-o':	[ 'SonyEricsson', 'Xperia Arc' ],
+						'SonyEricssonLT18i':	[ 'SonyEricsson', 'Xperia Arc S' ],
+						'SonyEricssonMT11i':	[ 'SonyEricsson', 'Xperia Neo V' ],
+						'SonyEricssonMT11iv':	[ 'SonyEricsson', 'Xperia Neo V' ],
+						'SonyEricssonMT15i':	[ 'SonyEricsson', 'Xperia Neo' ],
+						'SonyEricssonSK17i':	[ 'SonyEricsson', 'Xperia Mini Pro' ],
+						'SonyEricssonSO-01C':	[ 'SonyEricsson', 'Xperia Arc' ],
+						'SonyEricssonST15i':	[ 'SonyEricsson', 'Xperia Mini' ],
+						'SonyEricssonST18i':	[ 'SonyEricsson', 'Xperia Ray' ],
+						'SonyEricssonWT19i':	[ 'SonyEricsson', 'Live with Walkman' ],
+						'SonyEricssonU20i':		[ 'SonyEricsson', 'Xperia X10 Mini Pro' ],
+						'SonyEricssonX10i':		[ 'SonyEricsson', 'Xperia X10' ],
+						'ST15i':				[ 'SonyEricsson', 'Xperia Mini' ],
+						'ST18i':				[ 'SonyEricsson', 'Xperia Ray' ],
+						'MT15i':				[ 'SonyEricsson', 'Xperia Neo' ],
+						'MT11i':				[ 'SonyEricsson', 'Xperia Neo V' ],
+						'SK17i':				[ 'SonyEricsson', 'Xperia Mini Pro' ],
+						'X8':					[ 'SonyEriccson', 'Xperia X8' ],
+						'E15i':					[ 'SonyEricsson', 'Xperia X8' ],
+						'E10i':					[ 'SonyEriccson', 'Xperia X10 Mini' ],
+						'U20i':					[ 'SonyEricsson', 'Xperia X10 Mini Pro' ],
+						'Sony Tablet S':		[ 'Sony', 'Tablet S' ],
+						'T-01C':				[ 'Toshiba', 'Regza T-01C' ],
+						'T-01D':				[ 'Toshiba', 'Regza T-01D' ],
+						'AT100':				[ 'Toshiba', 'AT100' ],
+						'MOVE':					[ 'T-Mobile', 'MOVE' ],
+						'T-Mobile G2':			[ 'T-Mobile', 'G2' ],
+						'LG-P999':				[ 'T-Mobile', 'G2x' ],
+						'myTouch4G':			[ 'T-Mobile', 'myTouch 4G' ],
+						'myTouch_4G_Slide':		[ 'T-Mobile', 'myTouch 4G Slide' ],
+						'T-Mobile myTouch 3G Slide':	[ 'T-Mobile', 'myTouch 3G Slide' ],
+						'T301':					[ 'Velocity Micro', 'Cruz T301' ],
+						'ViewPad7':				[ 'ViewSonic', 'ViewPad 7' ],
+						'Vodafone 858':			[ 'Vodafone', '858 Smart' ],
+						'WM8650':				[ 'WonderMedia', 'WM8650' ],
+						'MI-ONE Plus':			[ 'Xiaomi', 'MI-ONE Plus' ],
+						'N6':					[ 'Yarvik', '210 Tablet' ],
+						'ZTE-T U880':			[ 'ZTE', 'Blade' ],
+						'Blade-opda':			[ 'ZTE', 'Blade' ],
+						'Blade':				[ 'ZTE', 'Blade' ],
+						'ZTE-BLADE':			[ 'ZTE', 'Blade' ],
+						'ZTE-SKATE':			[ 'ZTE', 'Skate' ],
+						'ZTE Racer':			[ 'ZTE', 'Racer' ],
+						'ZTE-T U880':			[ 'ZTE', 'T-U880' ],
+						'ZTE-U V880':			[ 'ZTE', 'U-V880' ],
+						'ZTE-C N760':			[ 'ZTE', 'C-N760' ]
+					};
+					
+					if (typeof models[detected.device.model] != 'undefined') {
+						detected.device.manufacturer = models[detected.device.model][0];
+						detected.device.model = models[detected.device.model][1];
+					}
+				}				
+				
+				if (ua.match('BlackBerry')) {
+					detected.os.name = 'BlackBerry OS';
+					
+					if (!ua.match('Opera')) {
+						if (match = /BlackBerry([0-9]*)\/([0-9.]*)/.exec(ua)) {
+							detected.device.model = match[1];
+							detected.os.version = match[2];
+						}
+						
+	
+						if (match = /; BlackBerry ([0-9]*);/.exec(ua)) {
+							detected.device.model = match[1];
+						}
+	
+						if (match = /Version\/([0-9.]*)/.exec(ua)) {
+							detected.os.version = match[1];
+						}
+	
+						var models = {
+							'9600':			'Bold',
+							'9650':			'Bold',
+							'9700':			'Bold',
+							'9780':			'Bold',
+							'9900':			'Bold',
+							'9930':			'Bold',
+							'8300':			'Curve',
+							'8310':			'Curve',
+							'8320':			'Curve',
+							'8330':			'Curve',
+							'8350i':		'Curve',
+							'8520':			'Curve',
+							'8530':			'Curve',
+							'8900':			'Curve',
+							'9300':			'Curve',
+							'9330':			'Curve',
+							'9350':			'Curve',
+							'9360':			'Curve',
+							'9370':			'Curve',
+							'8100':			'Pearl',
+							'8110':			'Pearl',
+							'8120':			'Pearl',
+							'8130':			'Pearl',
+							'8220':			'Pearl',
+							'8230':			'Pearl',
+							'9100':			'Pearl',
+							'9530':			'Storm',
+							'9550':			'Storm',
+							'9800':			'Torch',
+							'9810':			'Torch',
+							'9850':			'Torch',
+							'9860':			'Torch',
+							'9630':			'Tour'
+						};
+	
+						if (typeof models[detected.device.model] != 'undefined') {
+							detected.device.model = 'BlackBerry ' + models[detected.device.model] + ' ' + detected.device.model;
+						} else {
+							detected.device.model = 'BlackBerry ' + detected.device.model;
+						}
+					} else {
+						detected.device.model = 'BlackBerry';
+					}
+
+					detected.device.manufacturer = 'RIM';
+					detected.device.type = 'mobile';
+				}
+				
+				if (ua.match('RIM Tablet OS')) {
+					detected.os.name = 'BlackBerry Tablet OS';
+					detected.os.version = ua.match(/RIM Tablet OS ([0-9.]*)/)[1];
+
+					detected.device.manufacturer = 'RIM';
+					detected.device.model = 'BlackBerry PlayBook';
+					detected.device.type = 'tablet';
+				}
+				
+				if (ua.match('[web|hpw]OS')) {
+					detected.os.name = 'webOS';
+					detected.os.version = ua.match(/[web|hpw]OS\/([0-9.]*)/)[1];
+
+					if (ua.match('tablet')) 
+						detected.device.type = 'tablet';
+					else
+						detected.device.type = 'mobile';
+
+					detected.device.manufacturer = ua.match('hpwOS') ? 'HP' : 'Palm';
+					if (ua.match('Pre\/1.0')) detected.device.model = 'Pre';
+					if (ua.match('Pre\/1.1')) detected.device.model = 'Pre Plus';
+					if (ua.match('Pre\/1.2')) detected.device.model = 'Pre2';
+					if (ua.match('Pre\/3.0')) detected.device.model = 'Pre2';
+					if (ua.match('Pixi\/1.0')) detected.device.model = 'Pixi';
+					if (ua.match('Pixi\/1.1')) detected.device.model = 'Pixi Plus';
+					if (ua.match('P160UNA\/1.0')) detected.device.model = 'Veer';
+					if (ua.match('TouchPad\/1.0')) detected.device.model = 'TouchPad';
+				}
+				
+				if (ua.match('SymbianOS/9.1') || ua.match('Series60')) {
+					detected.os.name = 'Series60';
+					detected.os.version = 3.0;
+					
+					if (match = /Series60\/([0-9.]*)/.exec(ua)) {
+						detected.os.version = match[1];
+					}
+
+					if (match = /Nokia([^\/]+)\//.exec(ua)) {
+						detected.device.manufacturer = 'Nokia';
+						detected.device.model = match[1];
+					}
+
+					detected.device.type = 'mobile';
+				}
+				
+				if (ua.match('Series40')) {
+					detected.os.name = 'Series40';
+
+					if (match = /Nokia([^\/]+)\//.exec(ua)) {
+						detected.device.manufacturer = 'Nokia';
+						detected.device.model = match[1];
+					}
+
+					detected.device.type = 'proxy';
+				}
+				
+				if (ua.match('MeeGo')) {
+					detected.os.name = 'MeeGo';
+					detected.device.type = 'mobile';
+
+					if (match = /Nokia([^\)]+)\)/.exec(ua)) {
+						detected.device.manufacturer = 'Nokia';
+						detected.device.model = match[1];
+					}
+				}
+				
+				if (ua.match('Maemo')) {
+					detected.os.name = 'Maemo';
+					detected.device.type = 'mobile';
+
+					if (match = /(N[0-9]+)/.exec(ua)) {
+						detected.device.manufacturer = 'Nokia';
+						detected.device.model = match[1];
+					}
+				}
+				
+				if (ua.match('Tizen')) {
+					detected.os.name = 'Tizen';
+
+					if (match = /Tizen\/([0-9.]*)/.exec(ua)) {
+						detected.os.version = match[1];
+					}
+
+					detected.device.type = 'mobile';
+
+					if (match = /\(([^;]+); ([^\/]+)\//.exec(ua)) {
+						detected.device.manufacturer = match[1];
+						detected.device.model = match[2];
+					}						
+
+					var models = {
+						'SAMSUNG': {
+							'SAMSUNG-GT-I9500':		[ 'Samsung', 'Galaxy S III' ]
+						}
+					}
+					
+					if (typeof models[detected.device.manufacturer] != 'undefined' && 
+						typeof models[detected.device.manufacturer][detected.device.model] != 'undefined') {
+						detected.device.manufacturer = models[detected.device.manufacturer][detected.device.model][0];
+						detected.device.model = models[detected.device.manufacturer][detected.device.model][1];
+					}
+				}
+				
+				if (ua.match('Bada')) {
+					detected.os.name = 'Bada';
+
+					if (match = /Bada\/([0-9.]*)/.exec(ua)) {
+						detected.os.version = match[1];
+					}
+
+					detected.device.type = 'mobile';
+
+					if (match = /\(([^;]+); ([^\/]+)\//.exec(ua)) {
+						detected.device.manufacturer = match[1];
+						detected.device.model = match[2];
+					}						
+
+					var models = {
+						'SAMSUNG': {
+							'SAMSUNG-GT-S8500':		[ 'Samsung', 'Wave' ],
+							'SAMSUNG-GT-S8530':		[ 'Samsung', 'Wave II' ],
+							'SAMSUNG-GT-S8600':		[ 'Samsung', 'Wave 3' ]
+						}
+					}
+					
+					if (typeof models[detected.device.manufacturer] != 'undefined' && 
+						typeof models[detected.device.manufacturer][detected.device.model] != 'undefined') {
+						detected.device.manufacturer = models[detected.device.manufacturer][detected.device.model][0];
+						detected.device.model = models[detected.device.manufacturer][detected.device.model][1];
+					}
+				}
+				
+				if (ua.match('Brew')) {
+					detected.os.name = 'Brew';
+					detected.device.type = 'mobile';
+				}			
+				
+				if (ua.match('Kindle')) {
+					detected.os.name = '';
+
+					detected.device.manufacturer = 'Amazon';
+					detected.device.model = 'Kindle';
+					detected.device.type = 'tablet';
+
+					if (ua.match('Kindle\/2.0')) detected.device.model = 'Kindle 2';
+					if (ua.match('Kindle\/3.0')) detected.device.model = 'Kindle 3 or later';
+				}
+
+
+				
+				
+				/* Step 2: Detect browser */
+
+				if (ua.match('Safari') && (detected.os.name == 'Mac OS X' || detected.os.name == 'iOS' || detected.os.name == 'Windows')) {
+					detected.browser.stock = detected.os.name == 'iOS' || detected.os.name == 'Mac OS X';
+					detected.browser.hidden = detected.os.name == 'iOS';
+					detected.browser.name = 'Safari';
+					
+					if (match = /Version\/([0-9.]*)/.exec(ua)) {
+						detected.browser.version = match[1];
+					}
+				}
+
+				if (ua.match('MSIE')) {
+					detected.browser.name = 'Internet Explorer';
+					
+					if (ua.match('IEMobile') || ua.match('WP7')) {
+						detected.browser.name = 'Mobile Internet Explorer';
+					}
+
+					if (match = /MSIE ([0-9.]*)/.exec(ua)) {
+						detected.browser.version = match[1];
+					}
+				}
+
+				if (ua.match('Opera')) {
+					detected.browser.stock = false;
+					detected.browser.name = 'Opera';
+
+					if (match = /Opera\/([0-9.]*)/.exec(ua)) {
+						detected.browser.version = match[1];
+					}
+
+					if (match = /Version\/([0-9.]*)/.exec(ua)) {
+						if (parseVersion(match[1]) >= 10) {
+							detected.browser.version = match[1];
+						} else {
+							detected.browser.version = null;
+						}
+					}
+					
+					if (ua.match('Opera Tablet')) {
+						detected.browser.name = 'Opera Mobile';
+						detected.device.type = 'tablet';
+					}
+					
+					if (ua.match('Opera Mobi')) {
+						detected.browser.name = 'Opera Mobile';
+						detected.device.type = 'mobile';
+					}
+					
+					if (match = /Opera Mini\/([0-9.]*)/.exec(ua)) {
+						detected.browser.name = 'Opera Mini';
+						detected.browser.version = match[1];
+						detected.device.type = 'proxy';
+					}
+				}
+
+				if (ua.match('Firefox')) {
+					detected.browser.stock = false;
+					detected.browser.name = 'Firefox';
+					detected.browser.version = ua.match(/Firefox\/([0-9.]*)/)[1];
+
+					if (ua.match('Fennec')) {
+						detected.browser.name = 'Firefox Mobile';
+						detected.device.type = 'mobile';
+					}
+				}
+
+				if (ua.match('SeaMonkey')) {
+					detected.browser.stock = false;
+					detected.browser.name = 'SeaMonkey';
+					detected.browser.version = ua.match(/SeaMonkey\/([0-9.]*)/)[1];
+				}
+
+				if (ua.match('Konqueror/')) {
+					detected.browser.name = 'Konqueror';
+					detected.browser.version = ua.match(/Konqueror\/([0-9.]*)/)[1];
+				}
+
+				if (ua.match('Chrome')) {
+					detected.browser.stock = false;
+					detected.browser.name = 'Chrome';
+					detected.browser.version = ua.match(/Chrome\/([0-9]*[.][0-9]*)/)[1];
+					detected.browser.build = ua.match(/Chrome\/([0-9.]*)/)[1];
+				}
+
+				if (ua.match('Maxthon')) {
+					detected.browser.name = 'Maxthon';
+					detected.browser.version = ua.match(/Maxthon\/([0-9]*[.][0-9]*)/)[1];
+				}
+
+				if (ua.match('Midori')) {
+					detected.browser.name = 'Midori';
+					detected.browser.version = ua.match(/Midori\/([0-9]*[.][0-9]*)/)[1];
+				}
+				
+				if (ua.match('Dolfin')) {
+					detected.browser.name = 'Dolfin';
+					detected.browser.version = ua.match(/Dolfin\/([0-9]*[.][0-9]*)/)[1];
+				}
+				
+				if (ua.match('NetFront')) {
+					detected.browser.name = 'NetFront';
+					detected.browser.version = ua.match(/NetFront\/([0-9]*[.][0-9]*)/)[1];
+				}
+				
+				if (ua.match('Silk')) {
+					detected.browser.name = 'Silk';
+					detected.browser.version = ua.match(/Silk\/([0-9]*[.][0-9]*)/)[1];
+					
+					detected.device.manufacturer = 'Amazon';
+					detected.device.model = 'Kindle Fire';
+					detected.device.type = 'tablet';
+					
+					if (detected.os.name != 'Android') {
+						detected.os.name = 'Android';
+						detected.os.version = null;
+					}
+				}
+
+				if (ua.match('rekonq')) {
+					detected.browser.name = 'Rekonq';
+				}
+
+				if (ua.match('Qt')) {
+					detected.browser.name = 'Qt Browser';
+					detected.browser.version = ua.match(/Qt\/([0-9]*[.][0-9]*)/)[1];
+				}
+
+				if (ua.match('Obigo')) {
+					detected.browser.name = 'Obigo';
+					detected.browser.version = ua.match(/Obigo\/([0-9]*[.][0-9]*)/)[1];
+				}
+
+				if (ua.match('UCWEB')) {
+					detected.browser.name = 'UC Web';
+					detected.browser.version = ua.match(/UCWEB([0-9]*[.][0-9]*)/)[1];
+
+					if (detected.os.name == 'Linux') {
+						detected.os.name = '';
+					}
+				}
+
+
+
+
+				/* Step 3: Detect rendering engine */
+				if (match = /AppleWebKit\/([0-9.]*)/.exec(ua)) {
+					detected.engine.name = 'Webkit';
+					detected.engine.version = match[1];
+				}
+
+				if (match = /KHTML\/([0-9.]*)/.exec(ua)) {
+					detected.engine.name = 'KHTML';
+					detected.engine.version = match[1];
+				}
+
+				if (match = /Gecko\//.exec(ua)) {
+					detected.engine.name = 'Gecko';
+					
+					if (match = /; rv:([^\)]+)\)/.exec(ua)) {
+						detected.engine.version = match[1];
+					}
+				}
+
+				if (match = /Presto\/([0-9.]*)/.exec(ua)) {
+					detected.engine.name = 'Presto';
+					detected.engine.version = match[1];
+				}
+
+				if (match = /Trident\/([0-9.]*)/.exec(ua)) {
+					detected.engine.name = 'Trident';
+					detected.engine.version = match[1];
+				}
+
+				
+
+				/* Corrections */
+
+				if (detected.os.name == 'Android' && detected.browser.stock) {
+					detected.browser.hidden = true;
+				}
+
+				if (detected.os.name == 'iOS' && detected.browser.name == 'Opera Mini') {
+					detected.os.version = null;
+				}
+
+
+
+				/*				
+				if (ua.match('Obigo')) {
+					detected.Obigo = true;
+					detected.mobile = true;
+				}
+				*/
+				
+				
+				
+				/* Setup shortcuts */
+				detected.Android = detected.engine.name != 'Presto' && detected.engine.name != 'Gecko' && detected.os.name == 'Android' ? (typeof detected.os.version != 'undefined' ? parseVersion(detected.os.version) : true): false;
+				detected.iOS = detected.engine.name != 'Presto' && detected.os.name == 'iOS' ? (typeof detected.os.version != 'undefined' ? parseVersion(detected.os.version) : true): false;
+				detected.WindowsPhone = detected.os.name == 'Windows Phone' ? (typeof detected.os.version != 'undefined' ? parseVersion(detected.os.version) : true): false;
+				detected.BlackBerry = detected.os.name == 'BlackBerry OS' || detected.os.name == 'BlackBerry Tablet OS' ? (typeof detected.os.version != 'undefined' ? parseVersion(detected.os.version) : true): false;
+				detected.Meego = detected.os.name == 'Meego' ? (typeof detected.os.version != 'undefined' ? parseVersion(detected.os.version) : true): false;
+
+				detected.Opera = detected.engine.name == 'Presto' ? (typeof detected.browser.version != 'undefined' ? parseVersion(detected.browser.version) : true): false;
+				detected.Firefox = detected.engine.name == 'Gecko' ? (typeof detected.browser.version != 'undefined' ? parseVersion(detected.browser.version) : true): false;
+
+				detected.desktop = detected.device.type == 'desktop';
+				detected.tablet = detected.device.type == 'tablet';
+				detected.mobile = detected.device.type == 'mobile';
+				detected.proxy = detected.device.type == 'proxy';
+
+												
+				function parseVersion(version) {
+					var components = version.split('.');
+					var major = components.shift();
+					return parseFloat(major + '.' + components.join(''));
+				}
+				
+				return detected;
+			})();
+			
+						
+		// -->
+		</script>
 		
 		<script>
 		<!--
@@ -150,32 +1208,123 @@
 			function test (e, t, c) { this.initialize(e, t, c) }
 			test.prototype = {
 				suites: [ 
-					{ title: null, sections: [ testParsing, testCanvas, testVideo, testAudio, testElements, testForm, testInteraction, testMicrodata, testOffline, testSecurity ] },
-					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers, testDevice, testOther ] }
+					{ title: null, sections: [ testParsing, testCanvas, testVideo, testAudio, testElements, testForm, testInteraction, testHistory, testMicrodata, testOffline, testSecurity ] },
+					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers, testDevice, testNotifications, testOther ] }
 				],
 				
 				initialize: function(e, t, c) {					
-					var r = new results(e, t);
+					this.backgroundTasks = {};
+					this.callback = c;
+					
+					var date = new Date;
+					this.uniqueid = date.getTime() + '_' + (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+					
+					this.results = new results(this, e, t);
 					
 					for (g in this.suites) {
-						r.createSuite(this.suites[g].title);
+						this.results.createSuite(this.suites[g].title);
 											
 						for (s in this.suites[g].sections) {
-							new (this.suites[g].sections[s])(r);
+							new (this.suites[g].sections[s])(this.results);
 						}
 					}
 					
-					c(r);
+					this.waitForBackground();
+				},
+				
+				waitForBackground: function() {
+					var that = this;
+
+					window.setTimeout(function() {
+						that.checkForBackground.call(that);
+					}, 1000);
+				},
+				
+				checkForBackground: function() {
+					var running = 0;
+					for (var task in this.backgroundTasks) { running += this.backgroundTasks[task] }
+
+					if (running) {
+						this.waitForBackground();
+					} else {
+						this.finished();
+					}				
+				},
+				
+				startBackground: function(id) {
+					this.backgroundTasks[id] = 1;
+				},
+				
+				stopBackground: function(id) {
+					this.backgroundTasks[id] = 0;
+				},
+				
+				finished: function() {
+					this.submitUseragent();
+					this.callback(this.results);
+				},
+				
+				submitUseragent: function() {
+					var payload = '{' +
+								  '"version": "2.2.4",' +
+								  '"uniqueid": "' + this.uniqueid + '",' +
+								  '"score": ' + this.results.points + ',' +
+								  '"bonus": ' + this.results.bonus + ',' +
+								  '"browserName": "' + (Browsers.browser.name ? Browsers.browser.name : '') + '",' +
+								  '"browserVersion": "' + (Browsers.browser.version ? Browsers.browser.version : '') + '",' +
+								  '"engineName": "' + (Browsers.engine.name ? Browsers.engine.name : '') + '",' +
+								  '"engineVersion": "' + (Browsers.engine.version ? Browsers.engine.version : '') + '",' +
+								  '"osName": "' + (Browsers.os.name ? Browsers.os.name : '') + '",' +
+								  '"osVersion": "' + (Browsers.os.version ? Browsers.os.version : '') + '",' +
+								  '"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
+								  '"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
+								  '"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
+								  '"useragent": "' + navigator.userAgent + '"' +
+								  '}';
+					
+					this.submit('submit', payload);
+				},
+				
+				confirmUseragent: function() {
+					this.results.showThanks();
+					
+					var payload = '{' +
+								  '"uniqueid": "' + this.uniqueid + '"' +
+								  '}';
+					
+					this.submit('confirm', payload);
+				},
+				
+				reportUseragent: function() {
+					this.results.showThanks();
+					
+					var payload = '{' +
+								  '"uniqueid": "' + this.uniqueid + '"' +
+								  '}';
+					
+					this.submit('report', payload);
+				},
+				
+				submit: function(method, payload) {
+					var script = document.createElement('script');
+					script.src = 'http://api.html5test.com/api/' + method + '?payload=' + escape(payload);
+					script.setAttribute('async', 'true');
+					var scripts = document.getElementsByTagName('script');
+					var lastScript = scripts[scripts.length - 1];
+					lastScript.parentNode.insertBefore(script, lastScript);
 				}
 			}
 		
-			function results (e, t) { this.initialize(e, t) }
+			function results (parent, e, t) { this.initialize(parent, e, t) }
 			results.prototype = {
-				initialize: function(e, t) {
+				initialize: function(parent, e, t) {
+					this.parent = parent;
 					this.items = [];
 					this.points = 0;
 					this.bonus = 0;
 					this.max = 0;
+				
+					this.backgroundTasks = 0;
 				
 					this.container = document.getElementById(e);
 					
@@ -198,6 +1347,14 @@
 					this.update();
 				},
 				
+				startBackground: function(id) {
+					this.parent.startBackground(id);
+				},
+				
+				stopBackground: function(id) {
+					this.parent.stopBackground(id);
+				},
+				
 				createSuite: function(t) {
 					if (t) {
 						var title = document.createElement('h4');
@@ -209,8 +1366,8 @@
 					this.container.appendChild(this.list);
 				},
 				
-				getSection: function(name, url) {
-					var i = new section(this, name, url)
+				getSection: function(data) {
+					var i = new section(this, data)
 					this.items.push(i);
 					return i;
 				},
@@ -234,25 +1391,39 @@
 					this.points = points;
 					this.bonus = bonus;
 					this.max = max;
+				},
+				
+				retrieve: function() {
+					var data = {
+						points:		this.points,
+						bonus:		this.bonus,
+						items:		{}
+					}
+					
+					for (var i = 0; i < this.items.length; i++) {
+						data.items[this.items[i].data.id] = this.items[i].retrieve();
+					}
+
+					return data;
 				}
 			}
 
-			function section (parent, name) { this.initialize(parent, name) }
+			function section (parent, data) { this.initialize(parent, data) }
 			section.prototype = {
-				initialize: function(parent, name) {
+				initialize: function(parent, data) {
 					this.items = [];
 					this.points = 0;
 					this.bonus = 0;
 					this.max = 0;
 				
 					this.parent = parent;
-					this.name = name;
+					this.data = data;
 					
 					this.container = document.createElement('li');
 					this.parent.list.appendChild(this.container);
 					
 					this.title = document.createElement('strong');
-					this.title.innerHTML = name;
+					this.title.innerHTML = this.data.name;
 					this.container.appendChild(this.title);
 					
 					this.score = document.createElement('em');
@@ -263,6 +1434,14 @@
 
 					this.body = document.createElement('tbody');
 					this.table.appendChild(this.body);
+				},
+				
+				startBackground: function(id) {
+					this.parent.startBackground(id);
+				},
+				
+				stopBackground: function(id) {
+					this.parent.stopBackground(id);
 				},
 				
 				setTitle: function(title) {
@@ -300,7 +1479,7 @@
 					return i;
 				},
 				
-				getGroup: function(name) {
+				getGroup: function(data) {
 					var row = document.createElement ('tr');
 					this.body.appendChild(row);
 					
@@ -309,7 +1488,7 @@
 					container.className = 'container';
 					row.appendChild(container)
 					
-					var i = new group(this, container, name);
+					var i = new group(this, container, data);
 					this.items.push(i);
 					return i;
 				},
@@ -352,18 +1531,32 @@
 				
 				getMaximum: function() {
 					return this.max;
+				},
+				
+				retrieve: function() {
+					var data = {
+						points:		this.points,
+						bonus:		this.bonus,
+						items: 		{}
+					};
+					
+					for (var i = 0; i < this.items.length; i++) {
+						data.items[this.items[i].data.id] = this.items[i].retrieve();
+					}
+
+					return data;
 				}
 			}
 			
-			function group (parent, container, name) { this.initialize(parent, container, name) }
+			function group (parent, container, data) { this.initialize(parent, container, data) }
 			group.prototype = {
-				initialize: function(parent, container, name) {
+				initialize: function(parent, container, data) {
 					this.items = [];
 					this.points = 0;
 					this.bonus = 0;
 					this.max = 0;
 					
-					this.name = name;
+					this.data = data;
 				
 					this.parent = parent;
 					this.container = container;
@@ -386,7 +1579,7 @@
 					this.head.appendChild(row);
 
 					var head = document.createElement('th');
-					head.innerHTML = name;
+					head.innerHTML = this.data.name;
 					row.appendChild(head);
 
 					this.score = document.createElement('td');
@@ -438,6 +1631,14 @@
 					this.parent.update();
 				},
 				
+				startBackground: function(id) {
+					this.parent.startBackground(id);
+				},
+				
+				stopBackground: function(id) {
+					this.parent.stopBackground(id);
+				},
+				
 				setTitle: function(title) {
 					var row = document.createElement('tr');
 					row.className = 'title';
@@ -451,6 +1652,19 @@
 					row.appendChild(cell);									
 				},
 
+				setExplaination: function(explaination) {
+					var row = document.createElement('tr');
+					row.className = 'explaination';
+					this.body.appendChild(row);
+
+					var head = document.createElement('th');
+					head.innerHTML = explaination;
+					row.appendChild(head);
+
+					var cell = document.createElement('td');
+					row.appendChild(cell);									
+				},
+				
 				setItem: function(result) {
 					var i = new item(this, result);
 					this.items.push(i);
@@ -470,7 +1684,21 @@
 				
 				getMaximum: function() {
 					return this.max;
-				}				
+				},
+				
+				retrieve: function() {
+					var data = {
+						points:		this.points,
+						bonus:		this.bonus,
+						items: 		{}
+					};
+					
+					for (var i = 0; i < this.items.length; i++) {
+						data.items[this.items[i].data.id] = this.items[i].retrieve();
+					}
+
+					return data;
+				}
 			}
 			
 			function item (parent, data) { this.initialize(parent, data) }
@@ -526,6 +1754,14 @@
 					}
 				},
 				
+				startBackground: function() {
+					this.parent.startBackground(this.data.id);
+				},
+				
+				stopBackground: function() {
+					this.parent.stopBackground(this.data.id);
+				},
+				
 				getBonus: function() {
 					return this.data.bonus;
 				},
@@ -552,19 +1788,18 @@
 				
 				getRequired: function() {
 					return !!this.data.required;
+				},
+				
+				retrieve: function() {
+					var data = {
+						points:	this.getPoints(),
+						bonus:	this.getBonus()
+					};
+					
+					return data;
 				}
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			var iOS = !!navigator.userAgent.match('iPhone OS') || !!navigator.userAgent.match('iPad');
-			var Android = !!navigator.userAgent.match('Android');
 			
 			var isEventSupported = (function(){
 			  
@@ -648,24 +1883,21 @@
 			
 			function testParsing (results) { this.initialize(results) }			
 			testParsing.prototype = {
-				name: 	'Parsing rules',
-				count: 	6,
-				
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
+					this.section = results.getSection({
+						id:		'parsing',
+						name:	'Parsing rules' 
+					});
+					
 					this.section.setItem({
+						id:		'doctype',
 						title: 	'<code>&lt;!DOCTYPE html&gt;</code> triggers standards mode', 
 						url:    'http://www.w3.org/TR/html5/syntax.html#the-doctype',
 						passed:	document.compatMode == 'CSS1Compat', 
 						value: 	1
 					});
-				},
-				
-				t2: function() {
+
+
 					var result = true;
 					var e = document.createElement('div');	
 					
@@ -727,14 +1959,14 @@
   					result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
 					
 					this.section.setItem({
+						id:		'tokenizer',
 						title: 	'HTML5 tokenizer', 
 						url:	'http://www.w3.org/TR/html5/parsing.html',
 						passed:	result, 
 						value: 	5
 					});
-				},
-				
-				t3: function() {
+
+
 					var result = true;
 					var e = document.createElement('div');	
 					
@@ -794,36 +2026,37 @@
 					result &= e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == "http://www.w3.org/1999/xhtml";
 
 					this.section.setItem({
+						id:		'tree',
 						title: 	'HTML5 tree building', 
 						url:	'http://www.w3.org/TR/html5/parsing.html',
 						passed:	result, 
 						value: 	5
 					});
-				},
-				
-				t4: function() {
-					this.section.setExplaination('HTML5 defines rules for embedding SVG and MathML inside a regular HTML document. Support for SVG and MathML is not required though, so bonus points are awarded if your browser supports embedding these two technologies.')
-				},
 
-				t5: function() {
+
+
+					this.section.setExplaination('HTML5 defines rules for embedding SVG and MathML inside a regular HTML document. Support for SVG and MathML is not required though, so bonus points are awarded if your browser supports embedding these two technologies.')
+
+
 					var e = document.createElement('div');
 					e.innerHTML = '<svg></svg>';
 					var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/2000/svg';
 					
 					this.section.setItem({
+						id:		'svg',
 						title: 	'SVG in <code>text/html</code>', 
 						url:	'http://www.w3.org/TR/html5/the-map-element.html#svg-0',
 						passed:	passed, 
 						bonus: 	passed ? 1 : 0
 					});
-				},
-				
-				t6: function() {
+
+
 					var e = document.createElement('div');
 					e.innerHTML = '<math></math>';
 					var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/1998/Math/MathML';
 					
 					this.section.setItem({
+						id:		'mathml',
 						title: 	'MathML in <code>text/html</code>', 
 						url:	'http://www.w3.org/TR/html5/the-map-element.html#mathml',
 						passed:	passed, 
@@ -835,38 +2068,36 @@
 			
 			function testCanvas (results) { this.initialize(results) }			
 			testCanvas.prototype = {
-				name: 	'Canvas',
-				url:    'http://www.w3.org/TR/2dcontext/',
-				count: 	3,
-				max:    12,
-				
 				initialize: function(results) {
+					this.section = results.getSection({
+						id:		'canvas',
+						name:	'Canvas' 
+					});
+
+
 					this.canvas = document.createElement('canvas');
 
-					this.section = results.getSection(this.name);
-					var r = 0; for (var i = 1; i <= this.count; i++) { r += this['t' + i](); }
-				},
-				
-				t1: function() {
+
 					this.section.setItem({
+						id:		'element',
 						title: 	'<code>canvas</code> element', 
 						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element',
 						passed:	!!this.canvas.getContext, 
 						value: 	5
 					});
-				},
 
-				t2: function() {
+
 					this.section.setItem({
+						id:		'context',
 						title: 	'2D context', 
 						url:    'http://www.w3.org/TR/2dcontext/',
 						passed:	this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D, 
 						value: 	10
 					});
-				},
 
-				t3: function() {
+
 					this.section.setItem({
+						id:		'text',
 						title: 	'Text', 
 						url:	'http://www.w3.org/TR/2dcontext/#text',
 						passed:	this.canvas.getContext && typeof this.canvas.getContext('2d').fillText == 'function', 
@@ -878,141 +2109,141 @@
 									
 			function testVideo (results) { this.initialize(results) }			
 			testVideo.prototype = {
-				name: 	'Video',
-				count: 	8,
-				
 				initialize: function(results) {
+					this.section = results.getSection({
+						id:		'video',
+						name:	'Video'
+					});
+					
+
 					this.element = document.createElement('video');
 					
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				canPlayType: function(t) {
-					if (iOS)
-						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
-					else 
-						return this.element.canPlayType(t) == 'probably';
-				},
-				
-				t1: function() {
+
+					/* Element */
+					
 					this.section.setItem({
+						id:		'element',
 						title: 	'<code>video</code> element', 
 						url:	'http://www.w3.org/TR/html5/video.html#video',
 						passed:	!!this.element.canPlayType, 
 						value: 	20
 					});
-				},
 
-				t2: function() {
+
+					/* Subtitle */
+					
 					this.section.setItem({
+						id:		'subtitle',
 						title: 	'Subtitle support', 
 						url:	'http://www.w3.org/TR/html5/video.html#timed-text-tracks',
 						passed:	'track' in document.createElement('track'), 
 						value: 	10
 					});
-				},
+					
+					
+					/* Poster */
 
-				t3: function() {
 					this.section.setItem({
+						id:		'poster',
 						title: 	'Poster image support', 
 						url:	'http://www.w3.org/TR/html5/video.html#attr-video-poster',
 						passed:	'poster' in this.element, 
 						value: 	1
 					});
-				},
 
-				t4: function() {
-					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more video codecs, two bonus points are awarded for each codec.')
-				},
 					
-				t5: function() {
+					/* Codecs */
+					/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
+
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more video codecs, two bonus points are awarded for each codec.')
+
 					var item = {
+						id:		'mpeg4',
 						title: 	'MPEG-4 support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
 					};
 					
 					if (item.passed) item.bonus = 2;					
 					this.section.setItem(item);
-				},
-
-				t6: function() {
-					/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 				
 					var item = {
+						id:		'h264',
 						title: 	'H.264 support', 
 						passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
+						
 					};
 					
 					if (item.passed) item.bonus = 2;					
 					this.section.setItem(item);
-				},
 
-				t7: function() {
 					var item = {
+						id:		'theora',
 						title: 	'Ogg Theora support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
 					};
 					
 					if (item.passed) item.bonus = 2;					
 					this.section.setItem(item);
-				},
 
-				t8: function() {
 					var item = {
+						id:		'webm',
 						title: 	'WebM support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp8"')
 					};
 					
 					if (item.passed) item.bonus = 2;					
 					this.section.setItem(item);
+				},
+				
+				canPlayType: function(t) {
+					/*
+						There is a bug in iOS 4.1 or earlier where probably and maybe are switched around.
+						This bug was reported and fixed in iOS 4.2 
+					*/
+						
+					if (Browsers.iOS < 4.2)
+						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
+					else 
+						return this.element.canPlayType(t) == 'probably';
 				}
 			};
 			
 			
 			function testAudio (results) { this.initialize(results) }			
 			testAudio.prototype = {
-				name: 	'Audio',
-				count: 	7,
-				
 				initialize: function(results) {
+					this.section = results.getSection({
+						id:		'audio',
+						name:	'Audio'
+					});
+					
 					this.element = document.createElement('audio');
 					
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				canPlayType: function(t) {
-					if (iOS)
-						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
-					else 
-						return this.element.canPlayType(t) == 'probably';
-				},
-				
-				t1: function() {
+
+					/* Element */
+					
 					this.section.setItem({
+						id:		'element',
 						title: 	'<code>audio</code> element', 
 						url:	'http://www.w3.org/TR/html5/video.html#audio',
 						passed:	!!this.element.canPlayType, 
 						value: 	20
 					});
-				},
+					
+					
+					/* Codecs */
 
-				t2: function() {
 					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more audio codecs, one bonus point is awarded for each codec.')
-				},
 
-				t3: function() {
 					var item = {
+						id:		'pcm',
 						title: 	'PCM audio support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
 					};
 					
 					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
-				},
 
-				t4: function() {
 					var r = false;
 					if (this.element.canPlayType) {
 						var t = this.element.canPlayType('audio/mpeg');
@@ -1026,61 +2257,72 @@
 					}
 				
 					var item = {
+						id:		'mp3',
 						title: 	'MP3 support', 
 						passed:	r
 					};
 					
 					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
-				},
 
-				t5: function() {
 					var item = {
+						id:		'aac',
 						title: 	'AAC support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
 					};
 					
 					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
-				},
 
-				t6: function() {
 					var item = {
+						id:		'vorbis',
 						title: 	'Ogg Vorbis support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
 					};
 					
 					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
-				},
 
-				t7: function() {
 					var item = {
+						id:		'webm',
 						title: 	'WebM support', 
 						passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
 					};
 					
 					if (item.passed) item.bonus = 1;
 					this.section.setItem(item);
+				},
+				
+				canPlayType: function(t) {
+					/*
+						There is a bug in iOS 4.1 or earlier where probably and maybe are switched around.
+						This bug was reported and fixed in iOS 4.2 
+					*/
+						
+					if (Browsers.iOS < 4.2)
+						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
+					else 
+						return this.element.canPlayType(t) == 'probably';
 				}
 			};
 			
 			
 			function testDevice (results) { this.initialize(results) }			
 			testDevice.prototype = {
-				name: 	'Local devices',
-				count: 	1,
-				
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
+					this.section = results.getSection({
+						id:		'device',
+						name:	'Local multimedia'
+					});
+					
+					
+					/* getUserMedia */
+
 					this.section.setItem({
-						title: 	'<code>device</code> element', 
-						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/commands.html#devices',
-						passed:	'type' in document.createElement('device'), 
+						id:		'getUserMedia',
+						title: 	'Access the webcam', 
+						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#obtaining-local-multimedia-content',
+						passed:	navigator.getUserMedia, 
 						value: 	20
 					});
 				}
@@ -1089,62 +2331,32 @@
 
 			function testElements (results) { this.initialize(results) }			
 			testElements.prototype = {
-				name: 	'Elements',
-				count: 	10,
-				
 				initialize: function(results) {
-					this.section = results.getSection('Elements');
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				getStyle: function(elem, name) {
-				    if (elem.style[name]) {
-				        return elem.style[name];
-				    } else if (elem.currentStyle) {
-				        return elem.currentStyle[name];
-				    }
-				    else if (document.defaultView && document.defaultView.getComputedStyle) {
-				        name = name.replace(/([A-Z])/g, "-$1");
-				        name = name.toLowerCase();
-				        s = document.defaultView.getComputedStyle(elem, "");
-				        return s && s.getPropertyValue(name);
-				    } else {
-				        return null;
-				    }
-				},
-				
-				isBlock: function(element) {
-					return this.getStyle(element, 'display') == 'block';
-				},
-				
-				closesImplicitly: function(name) {
-					var foo = document.createElement('div');
-					foo.innerHTML = '<p><' + name + '></' + name + '>';
-					return foo.childNodes.length == 2;
-				},
-				
-				isHidden: function(element) {
-					return this.getStyle(element, 'display') == 'none';
-				},
-				
-				t1: function() {
+					this.section = results.getSection({
+						id:		'elements',
+						name:	'Elements'
+					});
+					
+
 					var element = document.createElement('div');
 					element.setAttribute('data-test', 'test');
 					
 					this.section.setItem({
+						id:		'dataset',
 						title: 	'Embedding custom non-visible data', 
 						url:	'http://www.w3.org/TR/html5/elements.html#dom-dataset',
 						passed:	'dataset' in element, 
 						value: 	4
 					});
-				},
-				
-				t2: function() {
+
+
 					this.section.setTitle('New or modified elements') 
-				},
-				
-				t3: function() {
-					var group = this.section.getGroup('Section elements');
+
+					var group = this.section.getGroup({
+						id:		'section',
+						name:	'Section elements'
+					});
+					
 					var elements = 'section nav article aside hgroup header footer'.split(' ');
 					
 					for (var e in elements) {
@@ -1152,6 +2364,7 @@
 						document.body.appendChild(element);
 
  						group.setItem({
+							id:		elements[e],
 							title: 	'<code>' + elements[e] + '</code> element', 
 							url:	'http://www.w3.org/TR/html5/sections.html#the-' + elements[e] + '-element',
 							passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && this.closesImplicitly(elements[e]), 
@@ -1160,10 +2373,12 @@
 
 						document.body.removeChild(element);
 					}
-				},
 
-				t4: function() {
-					var group = this.section.getGroup('Grouping content elements');
+					var group = this.section.getGroup({
+						id:		'grouping',
+						name:	'Grouping content elements'
+					});
+					
 					var elements = 'figure figcaption'.split(' ');
 					
 					for (var e in elements) {
@@ -1171,6 +2386,7 @@
 						document.body.appendChild(element);
 
  						group.setItem({
+							id:		elements[e],
 							title: 	'<code>' + elements[e] + '</code> element', 
 							url:	'http://www.w3.org/TR/html5/grouping-content.html#the-' + elements[e] + '-element',
 							passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e])), 
@@ -1179,15 +2395,17 @@
 
 						document.body.removeChild(element);
 					}
-				},
 
-				t5: function() {
-					var group = this.section.getGroup('Text-level semantic elements');
+					var group = this.section.getGroup({
+						id:		'semantic',
+						name:	'Text-level semantic elements'
+					});
 					
 					var element = document.createElement('mark');
 					document.body.appendChild(element);
 
 					group.setItem({
+						id:		'mark',
 						title: 	'<code>mark</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element',
 						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)' || color == '#ffff00'), 
@@ -1211,6 +2429,7 @@
 					document.body.removeChild(container);					
 					
 					group.setItem({
+						id:		'ruby',
 						title: 	'<code>ruby</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element',
 						passed:	rubyFullSupport, 
@@ -1219,6 +2438,7 @@
 					});
 
 					group.setItem({
+						id:		'rt',
 						title: 	'<code>rt</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rt-element',
 						passed:	rtFullSupport, 
@@ -1227,6 +2447,7 @@
 					});
 
 					group.setItem({
+						id:		'rp',
 						title: 	'<code>rp</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rp-element',
 						passed:	rpFullSupport, 
@@ -1237,6 +2458,7 @@
 					var element = document.createElement('time');
 
 					group.setItem({
+						id:		'time',
 						title: 	'<code>time</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-time-element',
 						passed:	typeof HTMLTimeElement != 'undefined' && element instanceof HTMLTimeElement, 
@@ -1246,23 +2468,31 @@
 					var element = document.createElement('wbr');
 
 					group.setItem({
+						id:		'wbr',
 						title: 	'<code>wbr</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-wbr-element',
 						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement, 
 						value: 	1
 					});
-				},
-				
-				t6: function() {
-					var group = this.section.getGroup('Interactive elements');
+
+
+					var group = this.section.getGroup({
+						id:		'interactive',
+						name:	'Interactive elements'
+					});
 
 					var element = document.createElement('details');
+					element.innerHTML = '<summary>a</summary>b';
 					document.body.appendChild(element);
+					var height = element.offsetHeight;
+					element.open = true;
+					var supported = height != element.offsetHeight;
 
 					group.setItem({
+						id:		'details',
 						title: 	'<code>details</code> element', 
 						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-details-element',
-						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && 'open' in element, 
+						passed:	supported, 
 						value: 	1
 					});
 
@@ -1273,6 +2503,7 @@
 					document.body.appendChild(element);
 
 					group.setItem({
+						id:		'summary',
 						title: 	'<code>summary</code> element', 
 						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element',
 						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement, 
@@ -1286,6 +2517,7 @@
 					document.body.appendChild(element);
 
 					group.setItem({
+						id:		'command',
 						title: 	'<code>command</code> element', 
 						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-command-element',
 						passed:	typeof HTMLCommandElement != 'undefined' && element instanceof HTMLCommandElement, 
@@ -1299,6 +2531,7 @@
 					document.body.appendChild(element);
 
 					group.setItem({
+						id:		'menu',
 						title: 	'<code>menu</code> element', 
 						url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element',
 						passed:	typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement, 
@@ -1306,43 +2539,30 @@
 					});
 
 					document.body.removeChild(element);					
-				},
-				
-				t7: function() {
+
+
 					this.section.setTitle('Global attributes or methods') 
-				},
-				
-				t8: function() {
+
 					var element = document.createElement('div');
 					
 					this.section.setItem({
+						id:		'hidden',
 						title: 	'<code>hidden</code> attribute', 
 						url:	'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute',
 						passed:	'hidden' in element, 
 						value: 	1
 					});
-				},
-				
-				t9: function() {
-					/*
-					 * NOTE: Despite having the attribute, contentEditable is not supported on the iPhone and Andriod!
-					 */
-					 
-					var element = document.createElement('div');
-					
-					this.section.setItem({
-						title: 	'<code>contenteditable</code> attribute', 
-						url:	'http://www.w3.org/TR/html5/editing.html#contenteditable',
-						passed:	'isContentEditable' in element && !iOS && !Android, 
-						value: 	10
-					});
-				},
 
-				t10: function() {
-					var group = this.section.getGroup('Dynamic markup insertion');
+
+					var group = this.section.getGroup({
+						id:		'dynamic',
+						name:	'Dynamic markup insertion'
+					});
+					
 					var element = document.createElement('div');
 
 					group.setItem({
+						id:		'outerHTML',
 						title: 	'<code>outerHTML</code> property', 
 						url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#outerhtml',
 						passed:	!!('outerHTML' in element), 
@@ -1350,29 +2570,991 @@
 					});
 						
 					group.setItem({
+						id:		'insertAdjacentHTML',
 						title: 	'<code>insertAdjacentHTML</code> function', 
 						url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#dom-insertadjacenthtml',
 						passed:	!!('insertAdjacentHTML' in element), 
 						value: 	1
 					});
+				},
+				
+				getStyle: function(elem, name) {
+					function camelCase(str){
+					  return str.replace(/-\D/g, function(match){
+						return match.charAt(1).toUpperCase()
+					  })
+					}
+
+					if (elem.style[name]) {
+				        return elem.style[name];
+				    } else if (elem.currentStyle) {
+				        return elem.currentStyle[camelCase(name)];
+				    }
+				    else if (document.defaultView && document.defaultView.getComputedStyle) {
+				    	s = document.defaultView.getComputedStyle(elem, "");
+				        return s && s.getPropertyValue(name);
+				    } else {
+				        return null;
+				    }
+				},
+				
+				isBlock: function(element) {
+					return this.getStyle(element, 'display') == 'block';
+				},
+				
+				closesImplicitly: function(name) {
+					var foo = document.createElement('div');
+					foo.innerHTML = '<p><' + name + '></' + name + '>';
+					return foo.childNodes.length == 2;
+				},
+				
+				isHidden: function(element) {
+					return this.getStyle(element, 'display') == 'none';
 				}
 			};		
 			
 			
 			function testForm (results) { this.initialize(results) }			
 			testForm.prototype = {
-				name: 	'Forms',
-				count: 	3,
-				
 				initialize: function(results) {
-					this.field = document.createElement('input');
-					this.field.id = "testFormInput";
+					this.section = results.getSection({
+						id:		'form',
+						name:	'Forms'
+					});
+					
+
+					this.section.setTitle('Field types') 
+					
+					var element = this.createInput('text');
+					var baseline = { field: getRenderedStyle(element.field), wrapper: getRenderedStyle(element.wrapper) };
+					this.removeInput(element);
+					
+					
+					/* input type=search */
+					
+					var group = this.section.getGroup({
+						id:		'search',
+						name:	'<code>input type=search</code>'
+					});
+					
+					var element = this.createInput('search');
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#text-state-and-search-state',
+						passed:		element.field.type == 'search',
+						value: 		2
+					});
+					
+					this.removeInput(element);
+					
+					
+					/* input type=tel */
+					
+					var group = this.section.getGroup({
+						id:		'tel',
+						name:	'<code>input type=tel</code>'
+					});
+					
+					var element = this.createInput('tel');
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#telephone-state',
+						passed:		element.field.type == 'tel',
+						value: 		2
+					});
+					
+					this.removeInput(element);
+					
+					
+					/* input type=url */
+					
+					var group = this.section.getGroup({
+						id:		'url',
+						name:	'<code>input type=url</code>'
+					});
+					
+					var element = this.createInput('url');
+					
+					var validation = false;
+					if ('validity' in element.field) {
+						validation = true;
+						
+						element.field.value = "foo";
+						validation &= !element.field.validity.valid
+								
+						element.field.value = "http://foo.org";
+						validation &= element.field.validity.valid
+					}
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#url-state',
+						passed:		element.field.type == 'url',
+						value: 		2,
+						required:	true
+					});
+					
+					group.setItem({
+						id:			'validation',
+						title: 		'Field validation', 
+						url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#dom-cva-validity',
+						passed:		validation,
+						required:	true
+					});
+					
+					this.removeInput(element);
+					
+					
+					/* input type=email */
+					
+					var group = this.section.getGroup({
+						id:		'email',
+						name:	'<code>input type=email</code>'
+					});
+					
+					var element = this.createInput('email');
+															
+					var validation = false;
+					if ('validity' in element.field) {
+						validation = true;
+						
+						element.field.value = "foo";
+						validation &= !element.field.validity.valid
+	
+						element.field.value = "foo@bar.org";
+						validation &= element.field.validity.valid
+					}
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#e-mail-state',
+						passed:		element.field.type == 'email',
+						value: 		2,
+						required:	true
+					});
+					
+					group.setItem({
+						id:			'validation',
+						title: 		'Field validation', 
+						url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#dom-cva-validity',
+						passed:		validation,
+						required:	true
+					});
+					
+					this.removeInput(element);
+					
+					
+					/* input type=datetime, date, month, week, time and datetime-local */
+					
+					var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
+					var links = ['date-and-time', 'date', 'month', 'week', 'time', 'local-date-and-time'];
+					for (var t in types) {
+						var group = this.section.getGroup({
+							id:		types[t],
+							name:	'<code>input type=' + types[t] + '</code>'
+						});
+						
+						var element = this.createInput(types[t]);
+						
+						element.field.value = "foobar";							
+						var sanitization = element.field.value == '';
+						
+						group.setItem({
+							id:			'element',
+							title: 		'Minimal element support', 
+							url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#' + links[t] + '-state',
+							passed:		element.field.type == types[t],
+							value: 		2,
+							required:	true
+						});
+						
+						group.setItem({
+							id:			'ui',
+							title: 		'Custom user-interface', 
+							passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+							value: 		2
+						});
+						
+						group.setItem({
+							id:			'sanitization',
+							title: 		'Value sanitization', 
+							url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm',
+							passed:		sanitization,
+							required:	true
+						});
+						
+						group.setItem({
+							id:			'min',
+							title: 		'<code>min</code> attribute', 
+							url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min',
+							passed:		'min' in element.field,
+							required:	true
+						});
+						
+						group.setItem({
+							id:			'max',
+							title: 		'<code>max</code> attribute', 
+							url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max',
+							passed:		'max' in element.field,
+							required:	true
+						});
+						
+						group.setItem({
+							id:			'step',
+							title: 		'<code>step</code> attribute', 
+							url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step',
+							passed:		'step' in element.field,
+							required:	true
+						});
+
+						group.setItem({
+							id:			'stepDown',
+							title: 		'<code>stepDown()</code> method',
+							url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown',
+							passed:		'stepDown' in element.field,
+							required:	true
+						});
+
+						group.setItem({
+							id:			'stepUp',
+							title: 		'<code>stepUp()</code> method',
+							url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup',
+							passed:		'stepUp' in element.field,
+							required:	true
+						});
+						
+						this.removeInput(element);
+					}
+					
+					
+					/* input type=number, range */
+					
+					var types = ['number', 'range'];
+					for (var t in types) {
+						var group = this.section.getGroup({
+							id:		types[t],
+							name:	'<code>input type=' + types[t] + '</code>'
+						});
+						
+						var element = this.createInput(types[t]);
+						
+						element.field.value = "foobar";							
+						var sanitization = element.field.value != 'foobar';
+						
+						var validation = false;
+						if ('validity' in element.field) {
+							validation = true;
+							
+							element.field.min = 40;
+							element.field.max = 50;
+							element.field.value = 100;
+							validation &= !element.field.validity.valid
+		
+							element.field.value = 42;
+							validation &= element.field.validity.valid
+						}
+						
+						group.setItem({
+							id:			'element',
+							title: 		'Minimal element support',
+							url:		'http://www.w3.org/TR/html5/number-state.html#' + types[t] + '-state',
+							passed:		element.field.type == types[t],
+							value: 		2,
+							required:	true
+						});
+						
+						group.setItem({
+							id:			'ui',
+							title: 		'Custom user-interface', 
+							passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+							value: 		2
+						});
+						
+						group.setItem({
+							id:			'sanitization',
+							title: 		'Value sanitization', 
+							url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm',
+							passed:		sanitization,
+							required:	true
+						});
+						
+						if (types[t] != 'range') {
+							group.setItem({
+								id:			'validation',
+								title: 		'Field validation', 
+								url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#dom-cva-validity',
+								passed:		validation,
+								required:	true
+							});
+						}
+
+						group.setItem({
+							id:			'min',
+							title: 		'<code>min</code> attribute',
+							url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min',
+							passed:		'min' in element.field,
+							required:	true
+						});
+						
+						group.setItem({
+							id:			'max',
+							title: 		'<code>max</code> attribute', 
+							url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max',
+							passed:		'max' in element.field,
+							required:	true
+						});
+						
+						group.setItem({
+							id:			'step',
+							title: 		'<code>step</code> attribute', 
+							url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step',
+							passed:		'step' in element.field,
+							required:	true
+						});
+
+						group.setItem({
+							id:			'stepDown',
+							title: 		'<code>stepDown()</code> method', 
+							url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown',
+							passed:		'stepDown' in element.field,
+							required:	true
+						});
+
+						group.setItem({
+							id:			'stepUp',
+							title: 		'<code>stepUp()</code> method', 
+							url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup',
+							passed:		'stepUp' in element.field,
+							required:	true
+						});
+						
+						this.removeInput(element);
+					}					
+					
+					
+					/* input type=color */
+					
+					var group = this.section.getGroup({
+						id:		'color',
+						name:	'<code>input type=color</code>'
+					});
+					
+					var element = this.createInput('color');
+											
+					element.field.value = "foobar";					
+					var sanitization = element.field.value != 'foobar';
+
+					var validation = false;
+					if ('validity' in element.field) {
+						validation = true;
+						
+						element.field.value = "foo";
+						validation &= !element.field.validity.valid
+	
+						element.field.value = '#000000';
+						validation &= element.field.validity.valid
+					}
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/number-state.html#color-state',
+						passed:		element.field.type == 'color',
+						value: 		2
+					});
+					
+					group.setItem({
+						id:			'ui',
+						title: 		'Custom user-interface', 
+						passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+						value: 		2
+					});
+						
+					group.setItem({
+						id:			'sanitization',
+						title: 		'Value sanitization', 
+						url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm',
+						passed:		sanitization,
+						required:	true
+					});
+						
+					group.setItem({
+						id:			'validation',
+						url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#dom-cva-validity',
+						title: 		'Field validation', 
+						passed:		validation,
+						required:	true
+					});
+
+					this.removeInput(element);
+					
+					
+					
+					/* input type=checkbox */
+					
+					var group = this.section.getGroup({
+						id:		'checkbox',
+						name:	'<code>input type=checkbox</code>'
+					});
+					
+					var element = this.createInput('checkbox');
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/number-state.html#checkbox-state',
+						passed:		element.field.type == 'checkbox',
+						value: 		0
+					});
+
+					group.setItem({
+						id:			'indeterminate',
+						title: 		'<code>indeterminate</code> property', 
+						url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-indeterminate',
+						passed:		'indeterminate' in element.field,
+						value: 		1
+					});
+
+					this.removeInput(element);
+					
+
+					/* input type=image */
+					
+					var group = this.section.getGroup({
+						id:		'image',
+						name:	'<code>input type=image</code>'
+					});
+					
+					var element = this.createInput('image');
+					
+					var supportsWidth = 'width' in element.field;
+					var supportsHeight = 'height' in element.field;
+					
+					element.field.setAttribute('width', '100');
+					element.field.setAttribute('height', '100');
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/number-state.html#image-button-state',
+						passed:		element.field.type == 'image',
+						value: 		0
+					});
+
+					group.setItem({
+						id:			'width',
+						title: 		'<code>width</code> property', 
+						url:		'http://www.w3.org/TR/html5/the-map-element.html#attr-dim-width',
+						passed:		supportsWidth && element.field.offsetWidth == 100,
+						value: 		1
+					});
+
+					group.setItem({
+						id:			'height',
+						title: 		'<code>height</code> property', 
+						url:		'http://www.w3.org/TR/html5/the-map-element.html#attr-dim-height',
+						passed:		supportsHeight && element.field.offsetHeight == 100,
+						value: 		1
+					});
+
+					this.removeInput(element);
+					
+
+					/* textarea */
+					
+					var group = this.section.getGroup({
+						id:		'textarea',
+						name:	'<code>textarea</code>'
+					});
+					
+					var element = document.createElement('textarea');
+
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/the-button-element.html#the-textarea-element',
+						passed:		typeof HTMLTextAreaElement != 'undefined' && element instanceof HTMLTextAreaElement, 
+						value: 		0
+					});
+
+					group.setItem({
+						id:			'maxlength',
+						title:		'<code>maxlength</code> attribute',
+						url:		'http://www.w3.org/TR/html5/the-button-element.html#attr-textarea-maxlength',
+						passed:		'maxLength' in element,
+						value:		1
+					});
+
+					group.setItem({
+						id:			'wrap',
+						title:		'<code>wrap</code> attribute',
+						url:		'http://www.w3.org/TR/html5/the-button-element.html#attr-textarea-wrap',
+						passed:		'wrap' in element,
+						value:		1
+					});
+
+
+					/* select */
+					
+					var group = this.section.getGroup({
+						id:		'select',
+						name:	'<code>select</code>'
+					});
+					
+					var element = document.createElement('select');
+
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/the-button-element.html#the-select-element',
+						passed:		typeof HTMLSelectElement != 'undefined' && element instanceof HTMLSelectElement, 
+						value: 		0
+					});
+
+					group.setItem({
+						id:			'required',
+						title:		'<code>required</code> attribute',
+						url:		'http://www.w3.org/TR/html5/the-button-element.html#dom-select-required',
+						passed:		'required' in element,
+						value:		1
+					});
+
+
+					/* fieldset */
+					
+					var group = this.section.getGroup({
+						id:		'fieldset',
+						name:	'<code>fieldset</code>'
+					});
+					
+					var element = document.createElement('fieldset');
+
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-fieldset-element',
+						passed:		typeof HTMLFieldSetElement != 'undefined' && element instanceof HTMLFieldSetElement, 
+						value: 		0
+					});
+
+					group.setItem({
+						id:			'elements',
+						title:		'<code>elements</code> attribute',
+						url:		'http://www.w3.org/TR/html5/forms.html#dom-fieldset-elements',
+						passed:		'elements' in element,
+						value:		1
+					});
+
+					group.setItem({
+						id:			'disabled',
+						title:		'<code>disabled</code> attribute',
+						url:		'http://www.w3.org/TR/html5/forms.html#dom-fieldset-disabled',
+						passed:		'disabled' in element,
+						value:		1
+					});
+
+
+					/* datalist */
+					
+					var group = this.section.getGroup({
+						id:		'datalist',
+						name:	'<code>datalist</code>'
+					});
+					
+					var element = document.createElement('datalist');
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/the-button-element.html#the-datalist-element',
+						passed:		(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
+						value: 		2,
+						required:	true
+					});
+
+					var element = document.createElement('input');
+
+					group.setItem({
+						id:			'list',
+						title:		'<code>list</code> attribute for fields',
+						url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-list',
+						passed:		!!("list" in element),
+						required:	true				
+					});
+
+
+					/* keygen */
+					
+					var group = this.section.getGroup({
+						id:		'keygen',
+						name:	'<code>keygen</code>'
+					});
+					
+					var element = document.createElement('div');
+					element.innerHTML = '<keygen>';
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
+						passed:		typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild, 
+						value: 		2,
+						custom: 	element.childNodes && element.childNodes.length ? 'partial' : false,
+						required:	true
+					});
+
+					group.setItem({
+						id:			'challenge',
+						title: 		'<code>challenge</code> attribute', 
+						url:		'http://www.w3.org/TR/html5/the-button-element.html#attr-keygen-challenge',
+						passed:		element.firstChild && 'challenge' in element.firstChild,
+						required:	true
+					});
+						
+					group.setItem({
+						id:			'keytype',
+						title: 		'<code>keytype</code> attribute', 
+						url:		'http://www.w3.org/TR/html5/the-button-element.html#dom-keygen-keytype',
+						passed:		element.firstChild && 'keytype' in element.firstChild,
+						required:	true
+					});
+						
+					
+					
+					/* output */
+					
+					var group = this.section.getGroup({
+						id:		'output',
+						name:	'<code>output</code>'
+					});
+					
+					var element = document.createElement('output');
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-output-element',
+						passed:		typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
+						value: 		2
+					});
+
+
+					/* progress */
+					
+					var group = this.section.getGroup({
+						id:		'progress',
+						name:	'<code>progress</code>'
+					});
+					
+					var element = document.createElement('progress');
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-progress-element',
+						passed:		typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
+						value: 		2
+					});
+					
+					
+					/* meter */
+					
+					var group = this.section.getGroup({
+						id:		'meter',
+						name:	'<code>meter</code>'
+					});
+					
+					var element = document.createElement('meter');
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						url:		'http://www.w3.org/TR/html5/forms.html#the-meter-element',
+						passed:		typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
+						value: 		2
+					});
+
+
+
+					this.section.setTitle('Fields') 
+					
+					var group = this.section.getGroup({
+						id:		'validation',
+						name:	'Field validation'
+					});
+					
+					var element = document.createElement('input');
+
+					var props = 'pattern required'.split(' ');
+						
+					for (var p in props) {
+ 						group.setItem({
+							id:			props[p],
+							title: 		'<code>' + props[p] + '</code> attribute', 
+							url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-' + props[p],
+							passed:		!!(props[p] in element), 
+							value: 		1
+						});
+        			}
+
+
+
+					var group = this.section.getGroup({
+						id:		'association',
+						name:	'Association of controls and forms'
+					});
+					
+					var field = document.createElement('input');
+					field.id = "a";
+					document.body.appendChild(field);
+
+					var label = document.createElement("label");
+					label.setAttribute('for', 'a');
+					document.body.appendChild(label);
+					
+					group.setItem({
+						id:			'control',
+						title: 		'<code>control</code> property on labels', 
+						url:		'http://www.w3.org/TR/html5/forms.html#dom-label-control',
+						passed:		label.control == field,
+						value: 		1
+					});
+					
+					document.body.removeChild(field);
+					document.body.removeChild(label);
+					
+
+					var element = document.createElement('div');
+					document.body.appendChild(element);
+					element.innerHTML = '<form id="form"></form><input form="form">';
+					group.setItem({
+						id:			'form',
+						title: 		'<code>form</code> property on fields', 
+						url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fae-form',
+						passed:		element.lastChild.form == element.firstChild,
+						value: 		1
+					});
+					document.body.removeChild(element);
+
+
+					var props = 'formAction formEnctype formMethod formNoValidate formTarget'.split(' ');
+					
+					var element = document.createElement('input');
+
+					for (var p in props) {
+ 						group.setItem({
+							id:			props[p],
+							title: 		'<code>' + props[p] + '</code> property on fields', 
+							url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-' + props[p].toLowerCase(),
+							passed:		!!(props[p] in element), 
+							value: 		1
+						});
+					}
+
+					var element = document.createElement('input');
+					element.id = "testFormInput";
+
+					var label = document.createElement("label");
+					label.setAttribute('for', 'testFormInput');
+					document.body.appendChild(label);
+					group.setItem({
+						id:			'labels',
+						title: 		'<code>labels</code> property on fields', 
+						url:		'http://www.w3.org/TR/html5/forms.html#dom-lfe-labels',
+						passed:		(!!element.labels && element.labels.length == 1 && element.labels[0] == label),
+						value: 		1
+					});
+					
+					document.body.removeChild(label);
+					
+					
 										
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				createInput: function(type) {
+					var group = this.section.getGroup({
+						id:		'other',
+						name:	'Other attributes'
+					});
+
+					var element = document.createElement('input');
+
+					group.setItem({
+						id:			'autofocus',
+						title: 		'<code>autofocus</code> attribute', 
+						url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#autofocusing-a-form-control',
+						passed:		!!('autofocus' in element), 
+						value: 		1
+					});
+
+					var props = 'autocomplete autofocus placeholder multiple dirname'.split(' ');
+						
+					for (var p in props) {
+ 						group.setItem({
+							id:			props[p],
+							title: 		'<code>' + props[p] + '</code> attribute', 
+							url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-' + props[p],
+							passed:		!!(props[p] in element), 
+							value: 		1
+						});
+        			}
+
+
+					var selectors = "valid invalid optional required".split(" ");
+					var res = [false, false, false, false];
+ 					var unknown = false;
+ 					
+ 					if (!!document.querySelector) {
+						var element = document.createElement('input');
+						element.id = 'testFormInput';
+						element.setAttribute("type", "text");
+						document.body.appendChild(element);
+	
+						if ("validity" in element && "setCustomValidity" in element) {
+							try {
+								//:valid
+								res[0] = !!document.querySelector("#testFormInput:valid");
+								//:invalid
+								element.setCustomValidity("foo");
+								res[1] = !!document.querySelector("#testFormInput:invalid");
+								res[2] = !!document.querySelector("#testFormInput:optional");
+								element.setAttribute("required", "true");
+								res[3] = !!document.querySelector("#testFormInput:required");
+							} catch(e) {
+								res[0] = false;
+								res[1] = false;
+								res[2] = false;	
+								res[3] = false;	
+								unknown = true;						
+							}
+						}
+						
+						document.body.removeChild(element);
+ 					}
+ 					
+
+					var group = this.section.getGroup({
+						id:		'selectors',
+						name:	'CSS selectors'
+					});
+					
+ 					for (var i = 0; i < selectors.length; i++) {
+						group.setItem({
+							id:			selectors[i],
+							title: 		'<code>:' + selectors[i] + '</code> selector', 
+							url:		'http://www.w3.org/TR/html5/links.html#selector-' + selectors[i],
+							passed:		res[i],
+							value: 		2,
+							custom:		!document.querySelector || unknown ? 'unknown' : false
+						});
+					}
+
+
+
+					var group = this.section.getGroup({
+						id:		'events',
+						name:	'Events'
+					});
+					
+					var inputItem = group.setItem({
+						id:			'oninput',
+						title: 		'<code>oninput</code> event', 
+						url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#event-input-input',
+						passed:		isEventSupported('input'), 
+						value: 		1
+					});
+
+					var changeItem = group.setItem({
+						id:			'onchange',
+						title: 		'<code>onchange</code> event', 
+						url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#event-input-change',
+						passed:		isEventSupported('change'), 
+						value: 		1
+					});
+
+					var invalidItem = group.setItem({
+						id:			'oninvalid',
+						title: 		'<code>oninvalid</code> event', 
+						url:		'http://www.w3.org/TR/html5/webappapis.html#events',
+						passed:		isEventSupported('invalid'), 
+						value: 		1
+					});
+
+					try {
+						inputItem.startBackground();
+						changeItem.startBackground();
+
+						var event = document.createEvent("KeyboardEvent");				
+						if (event.initKeyEvent) {
+							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
+	
+							var input = document.createElement('input');
+							input.style.position = 'fixed';
+							input.style.left = '-500px';
+							input.style.top = '0px';
+							
+							document.body.appendChild(input);
+							input.addEventListener('input', function() {
+								inputItem.update({
+									'passed': true
+								});
+
+								inputItem.stopBackground();
+							}, true);
+						
+							input.addEventListener('change', function() {
+								changeItem.update({
+									'passed': true
+								});
+
+								changeItem.stopBackground();
+							}, true);	
+												
+							input.focus();
+			        		input.dispatchEvent(event);
+			                input.blur();
+						
+							window.setTimeout(function() {
+								document.body.removeChild(input);
+							}, 1000);
+						} else {
+							inputItem.stopBackground();
+							changeItem.stopBackground();
+						}
+					} catch(e) {
+						inputItem.stopBackground();
+						changeItem.stopBackground();
+					}
+
+
+
+					this.section.setTitle('Forms') 
+
+					var group = this.section.getGroup({
+						id:		'validation',
+						name:	'Form validation'
+					});
+					
+					var element = document.createElement('input');
+					
+					group.setItem({
+						id:			'checkValidity',
+						title: 		'<code>checkValidity</code> method', 
+						url:		'http://www.w3.org/TR/html5/forms.html#dom-form-checkvalidity',
+						passed:		'checkValidity' in element, 
+						value: 		8
+					});
+					
+					group.setItem({
+						id:			'noValidate',
+						title: 		'<code>noValidate</code> attribute', 
+						url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-novalidate',
+						passed:		'noValidate' in element, 
+						value: 		1
+					});
+ 				}, 				
+ 				
+ 				createInput: function(type) {
 					var wrapper = document.createElement('div');
 					document.body.appendChild(wrapper)
 
@@ -1395,705 +3577,239 @@
 				
 				removeInput: function(e) {
 					document.body.removeChild(e.wrapper);
-				},
-				
-				t1: function() {
-					this.section.setTitle('Field types') 
-					
-					var element = this.createInput('text');
-					var baseline = { field: getRenderedStyle(element.field), wrapper: getRenderedStyle(element.wrapper) };
-					this.removeInput(element);
-					
-					
-					
-					/* input type=search */
-					
-					var group = this.section.getGroup('<code>input type=search</code>');
-					var element = this.createInput('search');
-					
-					group.setItem({
-						title: 		'Minimal element support', 
-						passed:		element.field.type == 'search',
-						value: 		2
-					});
-					
-					this.removeInput(element);
-					
-					
-					/* input type=tel */
-					
-					var group = this.section.getGroup('<code>input type=tel</code>');
-					var element = this.createInput('tel');
-					
-					group.setItem({
-						title: 		'Minimal element support', 
-						passed:		element.field.type == 'tel',
-						value: 		2
-					});
-					
-					this.removeInput(element);
-					
-					
-					/* input type=url */
-					
-					var group = this.section.getGroup('<code>input type=url</code>');
-					var element = this.createInput('url');
-					
-					var validation = false;
-					if ('validity' in element.field) {
-						validation = true;
-						
-						element.field.value = "foo";
-						validation &= !element.field.validity.valid
-								
-						element.field.value = "http://foo.org";
-						validation &= element.field.validity.valid
-					}
-					
-					group.setItem({
-						title: 		'Minimal element support', 
-						passed:		element.field.type == 'url',
-						value: 		2,
-						required:	true
-					});
-					
-					group.setItem({
-						title: 		'Field validation', 
-						passed:		validation,
-						required:	true
-					});
-					
-					this.removeInput(element);
-					
-					
-					/* input type=email */
-					
-					var group = this.section.getGroup('<code>input type=email</code>');
-					var element = this.createInput('email');
-															
-					var validation = false;
-					if ('validity' in element.field) {
-						validation = true;
-						
-						element.field.value = "foo";
-						validation &= !element.field.validity.valid
-	
-						element.field.value = "foo@bar.org";
-						validation &= element.field.validity.valid
-					}
-					
-					group.setItem({
-						title: 		'Minimal element support', 
-						passed:		element.field.type == 'email',
-						value: 		2,
-						required:	true
-					});
-					
-					group.setItem({
-						title: 		'Field validation', 
-						passed:		validation,
-						required:	true
-					});
-					
-					this.removeInput(element);
-					
-					
-					/* input type=datetime, date, month, week, time and datetime-local */
-					
-					var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
-					for (var t in types) {
-						var group = this.section.getGroup('<code>input type=' + types[t] + '</code>');
-						var element = this.createInput(types[t]);
-						
-						element.field.value = "foobar";							
-						var sanitization = element.field.value == '';
-						
-						group.setItem({
-							title: 		'Minimal element support', 
-							passed:		element.field.type == types[t],
-							value: 		2,
-							required:	true
-						});
-						
-						group.setItem({
-							title: 		'Custom user-interface', 
-							passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
-							value: 		2
-						});
-						
-						group.setItem({
-							title: 		'Value sanitization', 
-							passed:		sanitization,
-							required:	true
-						});
-						
-						group.setItem({
-							title: 		'<code>min</code> attribute', 
-							passed:		'min' in element.field,
-							required:	true
-						});
-						
-						group.setItem({
-							title: 		'<code>max</code> attribute', 
-							passed:		'max' in element.field,
-							required:	true
-						});
-						
-						group.setItem({
-							title: 		'<code>step</code> attribute', 
-							passed:		'step' in element.field,
-							required:	true
-						});
-
-						group.setItem({
-							title: 		'<code>stepDown()</code> method', 
-							passed:		'stepDown' in element.field,
-							required:	true
-						});
-
-						group.setItem({
-							title: 		'<code>stepUp()</code> method', 
-							passed:		'stepUp' in element.field,
-							required:	true
-						});
-						
-						this.removeInput(element);
-					}
-					
-					
-					/* input type=number, range */
-					
-					var types = ['number', 'range'];
-					for (var t in types) {
-						var group = this.section.getGroup('<code>input type=' + types[t] + '</code>');
-						var element = this.createInput(types[t]);
-						
-						element.field.value = "foobar";							
-						var sanitization = element.field.value != 'foobar';
-						
-						var validation = false;
-						if ('validity' in element.field) {
-							validation = true;
-							
-							element.field.min = 40;
-							element.field.max = 50;
-							element.field.value = 100;
-							validation &= !element.field.validity.valid
-		
-							element.field.value = 42;
-							validation &= element.field.validity.valid
-						}
-						
-						group.setItem({
-							title: 		'Minimal element support', 
-							passed:		element.field.type == types[t],
-							value: 		2,
-							required:	true
-						});
-						
-						group.setItem({
-							title: 		'Custom user-interface', 
-							passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
-							value: 		2
-						});
-						
-						group.setItem({
-							title: 		'Value sanitization', 
-							passed:		sanitization,
-							required:	true
-						});
-						
-						if (types[t] != 'range') {
-							group.setItem({
-								title: 		'Field validation', 
-								passed:		validation,
-								required:	true
-							});
-						}
-
-						group.setItem({
-							title: 		'<code>min</code> attribute', 
-							passed:		'min' in element.field,
-							required:	true
-						});
-						
-						group.setItem({
-							title: 		'<code>max</code> attribute', 
-							passed:		'max' in element.field,
-							required:	true
-						});
-						
-						group.setItem({
-							title: 		'<code>step</code> attribute', 
-							passed:		'step' in element.field,
-							required:	true
-						});
-
-						group.setItem({
-							title: 		'<code>stepDown()</code> method', 
-							passed:		'stepDown' in element.field,
-							required:	true
-						});
-
-						group.setItem({
-							title: 		'<code>stepUp()</code> method', 
-							passed:		'stepUp' in element.field,
-							required:	true
-						});
-						
-						this.removeInput(element);
-					}					
-					
-					
-					/* input type=color */
-					
-					var group = this.section.getGroup('<code>input type=color</code>');
-					var element = this.createInput('color');
-											
-					element.field.value = "foobar";					
-					var sanitization = element.field.value != 'foobar';
-
-					var validation = false;
-					if ('validity' in element.field) {
-						validation = true;
-						
-						element.field.value = "foo";
-						validation &= !element.field.validity.valid
-	
-						element.field.value = '#000000';
-						validation &= element.field.validity.valid
-					}
-					
-					group.setItem({
-						title: 		'Minimal element support', 
-						passed:		element.field.type == 'color',
-						value: 		2
-					});
-					
-					group.setItem({
-						title: 		'Custom user-interface', 
-						passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
-						value: 		2
-					});
-						
-					group.setItem({
-						title: 		'Value sanitization', 
-						passed:		sanitization,
-						required:	true
-					});
-						
-					group.setItem({
-						title: 		'Field validation', 
-						passed:		validation,
-						required:	true
-					});
-
-					this.removeInput(element);
-					
-					
-					
-					/* input type=checkbox */
-					
-					var group = this.section.getGroup('<code>input type=checkbox</code>');
-					var element = this.createInput('checkbox');
-					
-					group.setItem({
-						title: 	'<code>indeterminate</color> property', 
-						passed:	'indeterminate' in element.field,
-						value: 	1
-					});
-
-					this.removeInput(element);
-					
-
-					/* select */
-					
-					var group = this.section.getGroup('<code>select</code>');
-					var element = document.createElement('select');
-
-					group.setItem({
-						title:	'<code>required</code> attribute',
-						passed:	'required' in element,
-						value:	1
-					});
-
-
-					/* fieldset */
-					
-					var group = this.section.getGroup('<code>fieldset</code>');
-					var element = document.createElement('fieldset');
-
-					group.setItem({
-						title:	'<code>elements</code> attribute',
-						passed:	'elements' in element,
-						value:	1
-					});
-
-					group.setItem({
-						title:	'<code>disabled</code> attribute',
-						passed:	'disabled' in element,
-						value:	1
-					});
-
-
-					/* datalist */
-					
-					var group = this.section.getGroup('<code>datalist</code>');
-					var element = document.createElement('datalist');
-					
-					group.setItem({
-						title: 		'<code>datalist</code> element', 
-						url:		'http://www.w3.org/TR/html5/forms.html#the-datalist-element',
-						passed:		(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
-						value: 		2,
-						required:	true
-					});
-
-					group.setItem({
-						title:		'<code>list</code> attribute for fields',
-						url:		'http://www.w3.org/TR/html5/forms.html#the-list-attribute',
-						passed:		!!("list" in this.field),
-						required:	true				
-					});
-
-
-					/* keygen */
-					
-					var group = this.section.getGroup('<code>keygen</code>');
-					var element = document.createElement('div');
-					element.innerHTML = '<keygen>';
-					
-					group.setItem({
-						title: 		'<code>keytype</code> element', 
-						url:		'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
-						passed:		typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild, 
-						value: 		2,
-						custom: 	element.childNodes && element.childNodes.length ? 'partial' : false,
-						required:	true
-					});
-
-					group.setItem({
-						title: 		'<code>challenge</code> attribute', 
-						passed:		'challenge' in this.field,
-						required:	true
-					});
-						
-					group.setItem({
-						title: 		'<code>keytype</code> attribute', 
-						passed:		'keytype' in this.field,
-						required:	true
-					});
-						
-					
-					
-					/* output */
-					
-					var group = this.section.getGroup('<code>output</code>');
-					var element = document.createElement('output');
-					group.setItem({
-						title: 	'<code>output</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-output-element',
-						passed:	typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
-						value: 	2
-					});
-
-
-					/* progress */
-					
-					var group = this.section.getGroup('<code>progress</code>');
-					var element = document.createElement('progress');
-					group.setItem({
-						title: 	'<code>progress</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-progress-element',
-						passed:	typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
-						value: 	2
-					});
-					
-					
-					/* meter */
-					
-					var group = this.section.getGroup('<code>meter</code>');
-					var element = document.createElement('meter');
-					group.setItem({
-						title: 	'<code>meter</code> element', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-meter-element',
-						passed:	typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
-						value: 	2
-					});
-				},
-
-				t2: function() {
-					this.section.setTitle('Fields') 
-					
-					var group = this.section.getGroup('Field validation');
-					var props = 'pattern required'.split(' ');
-						
-					for (var p in props) {
- 						group.setItem({
-							title: 	'<code>' + props[p] + '</code> attribute', 
-							url:	'http://www.w3.org/TR/html5/forms.html#the-' + props[p] + '-attribute',
-							passed:	!!(props[p] in this.field), 
-							value: 	1
-						});
-        			}
-
-
-
-					var group = this.section.getGroup('Association of controls and forms');
-					
-					var field = document.createElement('input');
-					field.id = "a";
-					document.body.appendChild(field);
-
-					var label = document.createElement("label");
-					label.setAttribute('for', 'a');
-					document.body.appendChild(label);
-					
-					group.setItem({
-						title: 	'<code>control</code> property on labels', 
-						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-label-control',
-						passed:	label.control == field,
-						value: 	1
-					});
-					
-					document.body.removeChild(field);
-					document.body.removeChild(label);
-					
-
-					var element = document.createElement('div');
-					document.body.appendChild(element);
-					element.innerHTML = '<form id="form"></form><input form="form">';
-					group.setItem({
-						title: 	'<code>form</code> property on fields', 
-						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#attr-fae-form',
-						passed:	element.lastChild.form == element.firstChild,
-						value: 	1
-					});
-					document.body.removeChild(element);
-
-
-					var props = 'formAction formEnctype formMethod formNoValidate formTarget'.split(' ');
-					
-					for (var p in props) {
- 						group.setItem({
-							title: 	'<code>' + props[p] + '</code> property on fields', 
-							url:	'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-' + props[p].toLowerCase(),
-							passed:	!!(props[p] in this.field), 
-							value: 	1
-						});
-					}
-
-					var label = document.createElement("label");
-					label.setAttribute('for', 'testFormInput');
-					document.body.appendChild(label);
-					group.setItem({
-						title: 	'<code>labels</code> property on fields', 
-						url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#dom-lfe-labels',
-						passed:	(!!this.field.labels && this.field.labels.length == 1 && this.field.labels[0] == label),
-						value: 	1
-					});
-					document.body.removeChild(label);
-					
-
-
-					
-					
-					var group = this.section.getGroup('Other attributes');
-					var props = 'autocomplete autofocus placeholder multiple'.split(' ');
-						
-					for (var p in props) {
- 						group.setItem({
-							title: 	'<code>' + props[p] + '</code> attribute', 
-							url:	'http://www.w3.org/TR/html5/forms.html#the-' + props[p] + '-attribute',
-							passed:	!!(props[p] in this.field), 
-							value: 	1
-						});
-        			}
-
-
-
-					var selectors = "valid invalid optional required".split(" ");
-					var res = [false, false, false, false];
- 					
- 					if (!!document.querySelector) {
-						this.field.setAttribute("type", "text");
-						document.body.appendChild(this.field);
-						if ("validity" in this.field && "setCustomValidity" in this.field) {
-							//:valid
-							res[0] = !!document.querySelector("#testFormInput:valid");
-							//:invalid
-							this.field.setCustomValidity("foo");
-							res[1] = !!document.querySelector("#testFormInput:invalid");
-							res[2] = !!document.querySelector("#testFormInput:optional");
-							this.field.setAttribute("required", "true");
-							res[3] = !!document.querySelector("#testFormInput:required");
-						}
-						document.body.removeChild(this.field);
- 					}
- 					
-					var group = this.section.getGroup('CSS selectors');
- 					for (var i = 0; i < selectors.length; i++) {
-						group.setItem({
-							title: 	'<code>:' + selectors[i] + '</code> selector', 
-							url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#selector-' + selectors[i],
-							passed:	res[i],
-							value: 	1,
-							custom:	!document.querySelector ? 'unknown' : false
-						});
-					}
-
-
-
-					var group = this.section.getGroup('Events');
-					var inputItem = group.setItem({
-						title: 	'<code>oninput</code> event', 
-						passed:	isEventSupported('input'), 
-						value: 	1
-					});
-
-					var changeItem = group.setItem({
-						title: 	'<code>onchange</code> event', 
-						passed:	isEventSupported('change'), 
-						value: 	1
-					});
-
-					try {
-						var event = document.createEvent("KeyboardEvent");				
-						if (event.initKeyEvent) {
-							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
-	
-							var input = document.createElement('input');
-							document.body.appendChild(input);
-							
-							input.addEventListener('input', function() {
-								inputItem.update({
-									'passed': true
-								});
-							}, true);
-						
-							input.addEventListener('change', function() {
-								changeItem.update({
-									'passed': true
-								});
-							}, true);	
-												
-							input.focus();
-			        		input.dispatchEvent(event);
-			                input.blur();
-						
-							window.setTimeout(function() {
-								document.body.removeChild(input);
-							}, 1000);
-						}
-					} catch(e) {
-					}
-				},
-				
-				t3: function() {
-					this.section.setTitle('Forms') 
-
-					var group = this.section.getGroup('Form validation');
-					var element = document.createElement('input');
-					
-					group.setItem({
-						title: 	'<code>checkValidity</code> method', 
-						url:	'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api',
-						passed:	'checkValidity' in element, 
-						value: 	8
-					});
-
-
-
-					var group = this.section.getGroup('Events');
-					var forminputItem = group.setItem({
-						title: 	'<code>onforminput</code> event', 
-						passed:	isEventSupported('forminput'), 
-						value: 	1
-					});
-
-					var formchangeItem = group.setItem({
-						title: 	'<code>onformchange</code> event', 
-						passed:	isEventSupported('formchange'), 
-						value: 	1
-					});					
-				
-					group.setItem({
-						title: 	'<code>dispatchFormInput</code> method', 
-						passed:	'dispatchFormInput()' in document.createElement('form'), 
-						value: 	1
-					});
-
-					group.setItem({
-						title: 	'<code>dispatchFormChange</code> method', 
-						passed:	'dispatchFormChange()' in document.createElement('form'), 
-						value: 	1
-					});					
-				
-					try {
-						var event = document.createEvent("KeyboardEvent");				
-						if (event.initKeyEvent) {
-							event.initKeyEvent("keypress", false, true, null, false, false, false, false, null, 65);  		
-	
-							var form = document.createElement('form');
-							var input = document.createElement('input');
-							form.appendChild(input);
-							document.body.appendChild(form);
-							
-							form.addEventListener('forminput', function() {
-								forminputItem.update({
-									'passed': true
-								});
-							}, true);
-						
-							form.addEventListener('formchange', function() {
-								formchangeItem.update({
-									'passed': true
-								});
-							}, true);
-												
-			             	input.focus();
-			        		input.dispatchEvent(event);
-			                input.blur();
-						
-							window.setTimeout(function() {
-								document.body.removeChild(form);
-
-								window.scroll(0,0);
-							}, 1000);
-						}
-					} catch(e) {
-					}
- 				}
+				}
 			};
 
 
 			function testInteraction (results) { this.initialize(results) }			
 			testInteraction.prototype = {
-				name: 	'User interaction',
-				count: 	2,
-				
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
+					this.section = results.getSection({
+						id:		'interaction',
+						name: 	'User interaction'
+					});
+					
+
+					/* Drag and drop */
 					var element = document.createElement('div');
 					
-					this.section.setItem({
-						title: 	'Drag and drop', 
-						url:	'http://www.w3.org/TR/html5/dnd.html#dnd',
-						passed:	'draggable' in element, 
-						value: 	10
+					this.section.setTitle('Drag and drop') 
+
+					var whitelist =  Browsers.Firefox || Browsers.Opera;
+					var blocked = (Browsers.mobile || Browsers.tablet) && ! whitelist;
+					
+					if ('draggable' in element && blocked) {
+						this.section.setExplaination("Your mobile browser claims to support drag and drop, but this claim is probably not true. Almost all mobile devices claim to support drag and drop, but almost no device supports it properly at this moment. Because of this we've decided to not award any points to mobile browsers unless we've verified drag and drop support is properly working. If you think your browser does properly support drag and drop, please let us know.");
+					}
+
+
+					var group = this.section.getGroup({
+						id:		'attributes',
+						name:	'Attributes'
 					});
-				},
-				
-				t2: function() {
+					
+					group.setItem({
+						id:			'draggable',
+						title: 		'<code>draggable</code> attribute', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#the-draggable-attribute',
+						passed:		'draggable' in element && !blocked,
+						value:		10
+					});
+
+					group.setItem({
+						id:			'dropzone',
+						title: 		'<code>dropzone</code> attribute', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#the-dropzone-attribute',
+						passed:		'dropzone' in element && !blocked,
+						value:		2
+					});
+					
+					var group = this.section.getGroup({
+						id:		'events',
+						name:	'Events'
+					});
+
+
+					/* We need to check if the draggable attribute is supported, because older versions of IE do
+					   support the incompatible versions of the events below. IE 9 and up do support the HTML5
+					   events in combination with the draggable attribute */
+					var supported = 'draggable' in element && !blocked;
+
+					group.setItem({
+						id:			'ondrag',
+						title: 		'<code>ondrag</code> event', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dndevents',
+						passed:		isEventSupported('drag') && supported, 
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'ondragstart',
+						title: 		'<code>ondragstart</code> event', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dndevents',
+						passed:		isEventSupported('dragstart') && supported, 
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'ondragenter',
+						title: 		'<code>ondragenter</code> event', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dndevents',
+						passed:		isEventSupported('dragenter') && supported, 
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'ondragover',
+						title: 		'<code>ondragover</code> event', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dndevents',
+						passed:		isEventSupported('dragover') && supported, 
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'ondragleave',
+						title: 		'<code>ondragleave</code> event', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dndevents',
+						passed:		isEventSupported('dragleave') && supported, 
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'ondragend',
+						title: 		'<code>ondragend</code> event', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dndevents',
+						passed:		isEventSupported('dragend') && supported, 
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'ondrop',
+						title: 		'<code>ondrop</code> event', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dndevents',
+						passed:		isEventSupported('drop') && supported, 
+						value: 		1
+					});
+
+					
+					
+					/* Content editable */
+
+					var element = document.createElement('div');
+
+					this.section.setTitle('HTML editing') 
+
+					var whitelist = Browsers.iOS >= 5 || Browsers.WindowsPhone >= 7.5 || Browsers.BlackBerry || Browsers.Firefox || Browsers.Opera || Browsers.Meego;
+					var blocked = (Browsers.mobile || Browsers.tablet) && ! whitelist;
+					
+					if ('contentEditable' in element && blocked) {
+						this.section.setExplaination("Your mobile browser claims to support editing, but this claim is probably not true. Almost all mobile devices claim to support editing, but almost no device supports it properly at this moment. Because of this we've decided to not award any points to mobile browsers unless we've verified editing support is properly working. If you think your browser does properly support editing, please let us know.");
+					}
+					
+					var group = this.section.getGroup({
+						id:		'editingElements',
+						name:	'Editing elements'
+					});
+					
+					group.setItem({
+						id:			'contentEditable',
+						title: 		'<code>contentEditable</code> attribute', 
+						url:		'http://www.w3.org/TR/html5/editing.html#contenteditable',
+						passed:		'contentEditable' in element && !blocked, 
+						value: 		8
+					});
+
+					group.setItem({
+						id:			'isContentEditable',
+						title: 		'<code>isContentEditable</code> property', 
+						url:		'http://www.w3.org/TR/html5/editing.html#contenteditable',
+						passed:		'isContentEditable' in element && !blocked, 
+						value: 		1
+					});
+					
+					var group = this.section.getGroup({
+						id:		'editingDocuments',
+						name:	'Editing documents'
+					});
+
+					group.setItem({
+						id:			'designMode',
+						title: 		'<code>designMode</code> attribute', 
+						url:		'http://www.w3.org/TR/html5/editing.html#designMode',
+						passed:		'designMode' in document && !blocked, 
+						value: 		2
+					});
+					
+					var group = this.section.getGroup({
+						id:		'apis',
+						name:	'APIs'
+					});
+
+					group.setItem({
+						id:			'execCommand',
+						title: 		'<code>execCommand</code> method', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#execCommand',
+						passed:		'execCommand' in document && !blocked, 
+						value: 		1
+					});
+
+					group.setItem({
+						id:			'queryCommandEnabled',
+						title: 		'<code>queryCommandEnabled</code> method', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandenabled',
+						passed:		'queryCommandEnabled' in document && !blocked, 
+						value: 		1
+					});
+
+					group.setItem({
+						id:			'queryCommandIndeterm',
+						title: 		'<code>queryCommandIndeterm</code> method', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandindeterm',
+						passed:		'queryCommandIndeterm' in document && !blocked, 
+						value: 		1
+					});
+
+					group.setItem({
+						id:			'queryCommandState',
+						title: 		'<code>queryCommandState</code> method', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandstate',
+						passed:		'queryCommandState' in document && !blocked, 
+						value: 		1
+					});
+
+					group.setItem({
+						id:			'queryCommandSupported',
+						title: 		'<code>queryCommandSupported</code> method', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandsupported',
+						passed:		'queryCommandSupported' in document && !blocked, 
+						value: 		1
+					});
+
+					group.setItem({
+						id:			'queryCommandValue',
+						title: 		'<code>queryCommandValue</code> method', 
+						url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandvalue',
+						passed:		'queryCommandValue' in document && !blocked, 
+						value: 		1
+					});
+				}			
+			};
+
+
+			function testHistory (results) { this.initialize(results) }			
+			testHistory.prototype = {
+				initialize: function(results) {
+					this.section = results.getSection({
+						id:		'history',
+						name: 	'History and navigation'
+					});
+					
 					this.section.setItem({
-						title: 	'Session history', 
-						url:	'http://www.w3.org/TR/html5/history.html#history',
-						passed:	!!(window.history && history.pushState), 
-						value: 	5
+						id:			'history',
+						title: 		'Session history', 
+						url:		'http://www.w3.org/TR/html5/history.html#history',
+						passed:		!!(window.history && history.pushState), 
+						value: 		5
 					});
 				}			
 			};
@@ -2101,21 +3817,16 @@
 
 			function testMicrodata (results) { this.initialize(results) }			
 			testMicrodata.prototype = {
-				name: 	'Microdata',
-				count: 	1,
-								
 				initialize: function(results) {
+					this.section = results.getSection({
+						id:		'microdata',
+						name:	'Microdata'
+					});
+					
 					var container = document.createElement('div');
 					container.innerHTML = '<div id="microdataItem" itemscope itemtype="http://example.net/user"><p>My name is <span id="microdataProperty" itemprop="name">Elizabeth</span>.</p></div>';
 					document.body.appendChild(container);
-					
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-					
-					document.body.removeChild(container);
-				},
-				
-				t1: function() {
+
 					var item = document.getElementById('microdataItem');
 					var property = document.getElementById('microdataProperty');
 					var r = true;
@@ -2132,11 +3843,14 @@
 						r = r && user.properties['name'][0].itemValue == 'Elizabeth';
 					}
 												
+					document.body.removeChild(container);
+
 					this.section.setItem({
-						title: 	'Microdata', 
-						url:    'http://www.w3.org/TR/microdata/',
-						passed:	r, 
-						value: 	15
+						id:			'microdata',
+						title: 		'Microdata', 
+						url:    	'http://www.w3.org/TR/microdata/',
+						passed:		r, 
+						value: 		15
 					});
 				}
 			};					
@@ -2144,38 +3858,43 @@
 
 			function testOffline (results) { this.initialize(results) }			
 			testOffline.prototype = {
-				name: 	'Web applications',
-				count: 	3,
-				
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'Application Cache', 
-						url:	'http://www.w3.org/TR/html5/offline.html#offline',
-						passed:	!!window.applicationCache, 
-						value: 	15
+					this.section = results.getSection({
+						id:		'offline',
+						name: 	'Web applications'
 					});
-				},
-				
-				t2: function() {
+					
+
 					this.section.setItem({
-						title: 	'Custom scheme handlers', 
-						url:	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
-						passed:	!!window.navigator.registerProtocolHandler, 
-						value: 	2
+						id:			'applicationCache',
+						title: 		'Application Cache', 
+						url:		'http://www.w3.org/TR/html5/offline.html#offline',
+						passed:		!!window.applicationCache, 
+						value: 		15
 					});
-				},
-				
-				t3: function() {
+
 					this.section.setItem({
-						title: 	'Custom content handlers', 
-						url:	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
-						passed:	!!window.navigator.registerContentHandler, 
-						value: 	2
+						id:			'registerProtocolHandler',
+						title: 		'Custom scheme handlers', 
+						url:		'http://www.w3.org/TR/html5/timers.html#custom-handlers',
+						passed:		!!window.navigator.registerProtocolHandler, 
+						value: 		2
+					});
+
+					this.section.setItem({
+						id:			'registerContentHandler',
+						title: 		'Custom content handlers', 
+						url:		'http://www.w3.org/TR/html5/timers.html#custom-handlers',
+						passed:		!!window.navigator.registerContentHandler, 
+						value: 		2
+					});
+					
+					this.section.setItem({
+						id:			'addSearchProvider',
+						title: 		'Custom search providers', 
+						url:		'http://www.whatwg.org/specs/web-apps/current-work/#dom-external-addsearchprovider',
+						passed:		window.external && typeof window.external.AddSearchProvider != 'undefined' && typeof window.external.IsSearchProviderInstalled != 'undefined', 
+						value: 		1
 					});
 				}
 			};
@@ -2183,29 +3902,27 @@
 
 			function testSecurity (results) { this.initialize(results) }			
 			testSecurity.prototype = {
-				name: 	'Security',
-				count: 	2,
-				
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'Sandboxed <code>iframe</code>', 
-						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-sandbox',
-						passed:	'sandbox' in document.createElement('iframe'), 
-						value: 	5
+					this.section = results.getSection({
+						id:		'security',
+						name:	'Security'
 					});
-				},
-				
-				t2: function() {
+					
+
 					this.section.setItem({
-						title: 	'Seamless <code>iframe</code>', 
-						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-seamless',
-						passed:	'seamless' in document.createElement('iframe'), 
-						value: 	5
+						id:			'sandbox',
+						title: 		'Sandboxed <code>iframe</code>', 
+						url:		'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-sandbox',
+						passed:		'sandbox' in document.createElement('iframe'), 
+						value: 		5
+					});
+
+					this.section.setItem({
+						id:			'seamless',
+						title: 		'Seamless <code>iframe</code>', 
+						url:		'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-seamless',
+						passed:		'seamless' in document.createElement('iframe'), 
+						value: 		5
 					});
 				}
 			};
@@ -2213,20 +3930,19 @@
 
 			function testGeolocation (results) { this.initialize(results) }			
 			testGeolocation.prototype = {
-				name: 	'Geolocation',			
-				count: 	1,
-				
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
+					this.section = results.getSection({
+						id:		'geolocation',
+						name:	'Geolocation'
+					});
+					
+
 					this.section.setItem({
-						title: 	'Geolocation', 
-						url:    'http://www.w3.org/TR/geolocation-API/',
-						passed:	!!navigator.geolocation, 
-						value: 	15
+						id:			'geolocation',
+						title: 		'Geolocation', 
+						url:    	'http://www.w3.org/TR/geolocation-API/',
+						passed:		!!navigator.geolocation, 
+						value: 		15
 					});
 				}
 			};
@@ -2234,17 +3950,12 @@
 		
 			function testWebGL (results) { this.initialize(results) }			
 			testWebGL.prototype = {
-				name: 	'WebGL',
-				count: 	1,
-				
 				initialize: function(results) {
-					this.canvas = document.createElement('canvas');
-
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
+					this.section = results.getSection({
+						id:		'webgl',
+						name:	'WebGL'
+					});
+					
 					var element = document.createElement('canvas');
 					var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
 					var r = false;
@@ -2259,10 +3970,97 @@
 			        }
        				
  					this.section.setItem({
-						title: 	'3D context', 
-						url:    'http://www.khronos.org/registry/webgl/specs/latest/',
-						passed:	r, 
-						value: 	15
+						id:			'context',
+						title: 		'3D context', 
+						url:    	'http://www.khronos.org/registry/webgl/specs/latest/',
+						passed:		r, 
+						value: 		15
+					});
+
+
+					var group = this.section.getGroup({
+						id:		'datatypes',
+						name:	'Native binary data'
+					});
+
+					group.setItem({
+						id:			'ArrayBuffer',
+						title: 		'<code>ArrayBuffer</code>', 
+						passed:		typeof ArrayBuffer != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#5',
+						value: 		1
+					});
+
+					group.setItem({
+						id:			'Int8Array',
+						title: 		'<code>Int8Array</code>', 
+						passed:		typeof Int8Array != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#7',
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'Uint8Array',
+						title: 		'<code>Uint8Array</code>', 
+						passed:		typeof Uint8Array != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#7',
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'Int16Array',
+						title: 		'<code>Int16Array</code>', 
+						passed:		typeof Int16Array != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#7',
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'Uint16Array',
+						title: 		'<code>Uint16Array</code>', 
+						passed:		typeof Uint16Array != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#7',
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'Int32Array',
+						title: 		'<code>Int32Array</code>', 
+						passed:		typeof Int32Array != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#7',
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'Uint32Array',
+						title: 		'<code>Uint32Array</code>', 
+						passed:		typeof Uint32Array != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#7',
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'Float32Array',
+						title: 		'<code>Float32Array</code>', 
+						passed:		typeof Float32Array != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#7',
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'Float64Array',
+						title: 		'<code>Float64Array</code>', 
+						passed:		typeof Float64Array != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#7',
+						value: 		1
+					});
+					
+					group.setItem({
+						id:			'DataView',
+						title: 		'<code>DataView</code>', 
+						passed:		typeof DataView != 'undefined', 
+						url:    	'http://www.khronos.org/registry/typedarray/specs/latest/#8',
+						value: 		1
 					});
 				}
 			};
@@ -2270,42 +4068,37 @@
 
 			function testCommunication (results) { this.initialize(results) }			
 			testCommunication.prototype = {
-				name: 	'Communication',
-				count: 	4,
-								
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'Cross-document messaging', 
-						url:    'http://dev.w3.org/html5/postmsg/',
-						passed:	!!window.postMessage, 
-						value: 	5
+					this.section = results.getSection({
+						id:		'communication',
+						name: 	'Communication'
 					});
-				},
-				
-				t2: function() {
-					this.section.setItem({
-						title: 	'Server-Sent Events', 
-						url:	'http://www.w3.org/TR/eventsource/',
-						passed:	'EventSource' in window, 
-						value: 	10
-					});
-				},
-				
-				t3: function() {
-					this.section.setExplaination('Both Mozilla and Opera do support the WebSocket protocol in their latest browsers, but have disabled it due to a fundamental security issue with the protocol. Once the protocol has been updated it is expected they will re-enable this feature.')
-				},
+					
 
-				t4: function() {
 					this.section.setItem({
-						title: 	'WebSocket', 
-						url:	'http://www.w3.org/TR/websockets/',
-						passed:	'WebSocket' in window, 
-						value: 	10
+						id:			'postMessage',
+						title: 		'Cross-document messaging', 
+						url:    	'http://dev.w3.org/html5/postmsg/',
+						passed:		!!window.postMessage, 
+						value: 		5
+					});
+
+					this.section.setItem({
+						id:			'eventSource',
+						title: 		'Server-Sent Events', 
+						url:		'http://www.w3.org/TR/eventsource/',
+						passed:		'EventSource' in window, 
+						value: 		10
+					});
+
+					this.section.setExplaination('Both Mozilla and Opera do support the WebSocket protocol in their latest browsers, but have disabled it due to a fundamental security issue with the protocol. Once the protocol has been updated it is expected they will re-enable this feature.')
+
+					this.section.setItem({
+						id:			'webSocket',
+						title: 		'WebSocket', 
+						url:		'http://www.w3.org/TR/websockets/',
+						passed:		'WebSocket' in window || 'MozWebSocket' in window, 
+						value: 		10
 					});
 				}
 			};		
@@ -2313,42 +4106,76 @@
 
 			function testFiles (results) { this.initialize(results) }			
 			testFiles.prototype = {
-				name: 	'Files',
-				count: 	2,
-								
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'FileReader API', 
-						url:    'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
-						passed:	'FileReader' in window, 
-						value: 	10
+					this.section = results.getSection({
+						id:		'files',
+						name:	'Files'
 					});
-				},
-				
-				t2: function() {
+					
+
 					this.section.setItem({
-						title: 	'FileWriter API', 
-						url:    'http://www.w3.org/TR/file-writer-api/',
-						passed:	'FileWriter' in window, 
-						value: 	10
+						id:			'fileReader',
+						title: 		'FileReader API', 
+						url:    	'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
+						passed:		'FileReader' in window, 
+						value: 		10
+					});
+
+					this.section.setItem({
+						id:			'fileSystem',
+						title: 		'FileSystem API', 
+						url:    	'http://www.w3.org/TR/file-system-api/',
+						passed:		window.requestFileSystem || window.webkitRequestFileSystem || window.mozRequestFileSystem || window.oRequestFileSystem || window.msRequestFileSystem, 
+						value: 		10
 					});
 				}
 			};
 			
 			
+			
 			function testStorage (results) { this.initialize(results) }			
 			testStorage.prototype = {
-				name: 	'Storage',
-				count: 	5,
-				
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
+					this.section = results.getSection({
+						id:		'storage',
+						name: 	'Storage'
+					});
+					
+
+					this.section.setItem({
+						id:			'sessionStorage',
+						title: 		'Session Storage', 
+						url:    	'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute',
+						passed:		'sessionStorage' in window && window.sessionStorage != null, 
+						value: 		5
+					});
+
+					this.section.setItem({
+						id:			'localStorage',
+						title: 		'Local Storage', 
+						url:    	'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
+						passed:		'localStorage' in window && window.localStorage != null, 
+						value: 		5
+					});
+
+					this.section.setItem({
+						id:			'indexedDB',
+						title: 		'IndexedDB', 
+						url:		'http://www.w3.org/TR/IndexedDB/',
+						passed:		this.hasIndexedDB(), 
+						value: 		10
+					});
+
+					this.section.setExplaination('The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.')
+
+					this.section.setItem({
+						id:			'sqlDatabase',
+						title: 		'Web SQL Database', 
+						url:		'http://www.w3.org/TR/webdatabase/',
+						passed:		this.hasWebSQLDatabase(), 
+						value: 		0,
+						award:  	!this.hasIndexedDB() ? 5 : 0	/* only award points if IndexedDB is not implemented */
+					});
 				},
 				
 				hasWebSQLDatabase: function() {
@@ -2356,98 +4183,85 @@
 				},
 				
 				hasIndexedDB: function() {
-					return 'indexedDB' in window || 'webkitIndexedDB' in window || 'mozIndexedDB' in window || 'moz_indexedDB' in window;
-				},
-				
-				t1: function() {
-					this.section.setItem({
-						title: 	'Session Storage', 
-						url:    'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute',
-						passed:	'sessionStorage' in window, 
-						value: 	5
-					});
-				},
-
-				t2: function() {
-					this.section.setItem({
-						title: 	'Local Storage', 
-						url:    'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
-						passed:	'localStorage' in window, 
-						value: 	5
-					});
-				},
-				
-				t3: function() {
-					this.section.setItem({
-						title: 	'IndexedDB', 
-						url:	'http://www.w3.org/TR/IndexedDB/',
-						passed:	this.hasIndexedDB(), 
-						value: 	10
-					});
-				},
-				
-				t4: function() {
-					this.section.setExplaination('The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.')
-				},
-					
-				t5: function() {
-					this.section.setItem({
-						title: 	'Web SQL Database', 
-						url:	'http://www.w3.org/TR/webdatabase/',
-						passed:	this.hasWebSQLDatabase(), 
-						value: 	0,
-						award:  !this.hasIndexedDB() ? 5 : 0	/* only award points if IndexedDB is not implemented */
-					});
+					return 'indexedDB' in window || 'webkitIndexedDB' in window || 'mozIndexedDB' in window || 'moz_indexedDB' in window || 'oIndexedDB' in window  || 'msIndexedDB' in window ;
 				}			
 			};
 
 
 			function testWorkers (results) { this.initialize(results) }			
 			testWorkers.prototype = {
-				name: 	'Workers',
-				count: 	1,
-				
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
+					this.section = results.getSection({
+						id:		'workers',
+						name:	'Workers'
+					});
+					
+
 					this.section.setItem({
-						title: 	'Web Workers', 
-						url:    'http://www.w3.org/TR/workers/',
-						passed:	!!window.Worker, 
-						value: 	10
+						id:			'worker',
+						title: 		'Web Workers', 
+						url:    	'http://www.w3.org/TR/workers/#dedicated-workers-and-the-worker-interface',
+						passed:		!!window.Worker, 
+						value: 		10
+					});
+
+					this.section.setItem({
+						id:			'sharedWorker',
+						title: 		'Shared Workers', 
+						url:    	'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface',
+						passed:		!!window.SharedWorker, 
+						value: 		5
 					});
 				}
 			};
 			
-			function testOther (results) { this.initialize(results) }			
-			testOther.prototype = {
-				name: 	'Other',
-				count: 	2,
-				
+			function testNotifications (results) { this.initialize(results) }			
+			testNotifications.prototype = {
 				initialize: function(results) {
-					this.section = results.getSection(this.name);
-					for (var i = 1; i <= this.count; i++) { this['t' + i](); }
-				},
-				
-				t1: function() {
+					this.section = results.getSection({
+						id:		'notifications',
+						name:	'Notifications'
+					});
+					
+
 					this.section.setItem({
-						title: 	'Text selection', 
-						url:	'http://html5.org/specs/dom-range.html',
-						passed:	!!window.getSelection, 
-						value: 	5
+						id:			'notifications',
+						title: 		'Web Notifications', 
+						url:		'http://www.w3.org/TR/notifications/',
+						passed:		this.hasNotification(), 
+						value: 		10
 					});
 				},
+				
+				hasNotification: function() {
+					return 'Notification' in window || 'webkitNotification' in window || 'mozNotification' in window || 'oNotification' in window || 'msNotification' in window;
+				}
+			};			
+			
+			function testOther (results) { this.initialize(results) }			
+			testOther.prototype = {
+				initialize: function(results) {
+					this.section = results.getSection({
+						id:		'other',
+						name: 	'Other'
+					});
 					
-				t2: function() {
+
+					this.section.setItem({
+						id:			'getSelection',
+						title: 		'Text selection', 
+						url:		'http://html5.org/specs/dom-range.html',
+						passed:		!!window.getSelection, 
+						value: 		5
+					});
+
 					var element = document.createElement('div');
 					
 					this.section.setItem({
-						title: 	'Scroll into view', 
-						passed:	!!element.scrollIntoView, 
-						value: 	1
+						id:			'scrollIntoView',
+						title: 		'Scroll into view', 
+						passed:		!!element.scrollIntoView, 
+						value: 		1
 					});
 				}
 			};			
@@ -2456,6 +4270,12 @@
 
 			function startTest() {
 				var t = new test('results', 'total', function(r) {
+					/*
+					if (window.console) {
+						console.log(r.retrieve());
+					}
+					*/
+					
 					_bTestResults = {
 					  '#00 Total score': r.points,
 					  '#01 Bonus points': r.bonus
@@ -2475,29 +4295,30 @@
 								var id = parseInt(i, 10) + minimum;
 								id = id < 10 ? '0' + id : id;
 							
-								if (data.items[i].name) {
+								if (data.items[i].data.name) {
 									if (data.items[i].parent.total) {
-										_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].name)] = data.items[i].points;
+										_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].data.name)] = data.items[i].points;
 									} else {
-										_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].name)] = data.items[i].points == data.items[i].max ? 1 : 0;
+										_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].data.name)] = data.items[i].points == data.items[i].max ? 1 : 0;
 									}
 								}
 
-								if (data.items[i].data) {
+								if (data.items[i].data.title) {
 									_bTestResults['#' + prefix + id + ' ' + stripTags(data.items[i].data.title)] = data.items[i].data.passed ? 1 : 0;
 								}
 								
+								/*
 								if (data.items[i].items) {
 									collectResults(prefix + id + '.', 0, data.items[i]);
 								}
+								*/
 							}
 						}
 					}
-
 					
 					// Beacon the results to Browserscope.
 					(function() {
-					  var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBiH9N0EDA';
+					  var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjgjfIHDA';
 					  var _bScript = document.createElement('script');
 					  _bScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=_bBeaconComplete';
 					  _bScript.setAttribute('async', 'true');
