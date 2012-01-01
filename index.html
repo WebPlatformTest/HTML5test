@@ -32,6 +32,9 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 		
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One' rel='stylesheet' type='text/css'>
+		
 		<link rel="stylesheet" href="css/main.css?2.21" type="text/css">
 
 		<link rel="icon" href="icon.png">
@@ -65,7 +68,7 @@
 		<div class='column'>
 			<div class='updated'>
 				Updated!
-				<span>August 23, 2011</span>
+				<span>Januari 1st, 2012</span>
 			</div>
 		
 			<noscript>
@@ -75,14 +78,6 @@
 			</noscript>
 			
 			<div id='results'></div>
-			
-			<ul id='legend'>
-				<li class='none'><span></span>Not available</li>
-				<li class='badly'><span></span>Badly</li>
-				<li class='reasonable'><span></span>Reasonable</li>
-				<li class='good'><span></span>Good</li>
-				<li class='great'><span></span>Great</li>
-			</ul>
 		</div>
 			
 		<div class='column' id='explaination'>
@@ -158,7 +153,7 @@
 				</p>
 
 				<p> 
-					August 23, 2011 - version 2.2.4
+					Januari 1st, 2012 - version 2.5.0
 				</p>
 
 				<div class='hosting'>
@@ -360,7 +355,8 @@
 								'Radar 4G':		[ 'HTC', 'Radar' ],
 								'Radar C110e':	[ 'HTC', 'Radar' ],
 								'Mondrian':		[ 'HTC', 'Mondrian' ], 
-								'Schubert':		[ 'HTC', 'Schubert' ]
+								'Schubert':		[ 'HTC', 'Schubert' ],
+								'TITAN X310e':	[ 'HTC', 'Titan' ]
 							},
 							
 							'LG': {
@@ -436,6 +432,7 @@
 						'Telenor_OneTouch':		[ 'Alcatel', 'OT-990' ],
 						'Kindle Fire':			[ 'Amazon', 'Kindle Fire' ],
 						'A80KSC':				[ 'Archos', 'Arnova 8' ],
+						'ARCHOS 101G9':			[ 'Archos', '101 G9' ],
 						'eeepc':				[ 'Asus', 'Eee Pc' ],
 						'Transformer TF101':	[ 'Asus', 'Eee Pad Transformer' ],
 						'Transformer Prime TF201':	[ 'Asus', 'Eee Pad Transformer Prime' ],
@@ -445,7 +442,8 @@
 						'BNTV250':				[ 'Barnes & Noble', 'NOOK Tablet' ],
 						'BM999':				[ 'Bmorn', 'BM999' ],
 						'bcm7425':				[ 'Broadcom', 'BCM7425 mediaplayer' ],
-						'MID8125':				[ 'Coby', 'Kyros MID8125-4G' ],
+						'MID7024':				[ 'Coby', 'Kyros MID7024' ],
+						'MID8125':				[ 'Coby', 'Kyros MID8125' ],
 						'Dell Streak':			[ 'Dell', 'Streak' ],
 						'Dell Streak 7':		[ 'Dell', 'Streak 7' ],
 						'Dell Streak 10 Pro':	[ 'Dell', 'Streak 10 Pro' ],
@@ -512,6 +510,7 @@
 						'HTC Sensation XE with Beats Audio':		[ 'HTC', 'Sensation XE' ],
 						'HTC Sensation XE with Beats Audio Z715e':	[ 'HTC', 'Sensation XE' ],
 						'HTC Sensation XL with Beats Audio X315e':	[ 'HTC', 'Sensation XL' ],
+						'ADR6400L':				[ 'HTC', 'Thunderbolt 4G' ],
 						'ADR6400L 4G':			[ 'HTC', 'Thunderbolt 4G' ],
 						'HTC Vision':			[ 'HTC', 'Vision' ],
 						'HTC_Wildfire_A3333':	[ 'HTC', 'Wildfire' ],
@@ -557,6 +556,7 @@
 						'LG-P500h':				[ 'LG', 'Optimus One' ],
 						'LG-P500h-parrot':		[ 'LG', 'Optimus One' ],
 						'LG-P503':				[ 'LG', 'Optimus One' ],
+						'LG-P509':				[ 'LG', 'Optimus T' ],
 						'LG-P698f':				[ 'LG', 'Optimus Net' ],
 						'LG-P720':				[ 'LG', 'Optimus Chic' ],
 						'LG-P920':				[ 'LG', 'Optimus 3D' ],
@@ -567,6 +567,7 @@
 						'GT540':				[ 'LG', 'Optimus GT540' ],
 						'VM670':				[ 'LG', 'Optimus V' ],
 						'LG-P925/V10e':			[ 'LG', 'Thrill' ],
+						'LIFETAB_P9514':		[ 'Medion', 'Lifetab' ],
 						'M9':					[ 'Meizu', 'M9' ],
 						'MEIZU MX':				[ 'Meizu', 'MX' ],
 						'MB300':				[ 'Motorola', 'BACKFLIP' ],
@@ -605,7 +606,18 @@
 						'XT300':				[ 'Motorola', 'SPICE' ],
 						'Motorola Triumph':		[ 'Motorola', 'TRIUMPH' ],
 						'Xoom':					[ 'Motorola', 'XOOM' ],
-						'MZ606':				[ 'Motorola', 'XOOM' ],
+						'MZ505':				[ 'Motorola', 'XOOM Family Edition' ],
+						'MZ600':				[ 'Motorola', 'XOOM 4G LTE' ],
+						'MZ601':				[ 'Motorola', 'XOOM 3G' ],
+						'MZ602':				[ 'Motorola', 'XOOM 4G LTE' ],
+						'MZ603':				[ 'Motorola', 'XOOM 3G' ],
+						'MZ604':				[ 'Motorola', 'XOOM WiFi' ],
+						'MZ605':				[ 'Motorola', 'XOOM 3G' ],
+						'MZ606':				[ 'Motorola', 'XOOM WiFi' ],
+						'MZ607':				[ 'Motorola', 'XOOM 2 WiFi Media Edition' ],
+						'MZ609':				[ 'Motorola', 'Droid XYBOARD 8.2' ],
+						'MZ615':				[ 'Motorola', 'XOOM 2 WiFi' ],
+						'MZ617':				[ 'Motorola', 'Droid XYBOARD 10.1' ],
 						'XT701':				[ 'Motorola', 'XT701' ],
 						'MTC 955':				[ 'MTC', '955' ],
 						'X903':					[ 'Oppo', 'X903' ],
@@ -645,6 +657,7 @@
 						'GT-P7300':				[ 'Samsung', 'Galaxy Tab 8.9' ],
 						'GT-P7310':				[ 'Samsung', 'Galaxy Tab 8.9' ],
 						'GT-P7500':				[ 'Samsung', 'Galaxy Tab 10.1' ],
+						'GT-P7500R':			[ 'Samsung', 'Galaxy Tab 10.1' ],
 						'GT-P7501':				[ 'Samsung', 'Galaxy Tab 10.1N' ],
 						'GT-P7510':				[ 'Samsung', 'Galaxy Tab 10.1' ],
 						'GT-S5360':				[ 'Samsung', 'Galaxy Y' ],
@@ -689,11 +702,13 @@
 						'YP-GS1':				[ 'Samsung', 'Galaxy S WiFi 3.6' ],
 						'T959':					[ 'Samsung', 'Galaxy S Vibrant' ],
 						'Galaxy S II':			[ 'Samsung', 'Galaxy S II' ],
+						'SAMSUNG-SGH-I727':		[ 'Samsung', 'Galaxy S II Skyrocket' ],
 						'SAMSUNG-SGH-I896':		[ 'Samsung', 'Captivate' ],
 						'SAMSUNG-SGH-I897':		[ 'Samsung', 'Captivate' ],
 						'SAMSUNG-SGH-I997':		[ 'Samsung', 'Galaxy S Infuse 4G' ],
 						'SAMSUNG GT-S5830/S5830BUKPE':	[ 'Samsung', 'Galaxy Ace' ],
 						'SAMSUNG GT-S5570/S5570BUKS2':	[ 'Samsung', 'Galaxy Mini' ],
+						'SAMSUNG GT-I9100/I9100BUKG2':	[ 'Samsung', 'Galaxy S II' ],
 						'SH-03C':				[ 'Sharp', 'Lynx 3D' ],
 						'SH-12C':				[ 'Sharp', 'Aquos' ],
 						'SBM006SH':				[ 'Sharp', 'Aquos' ],
@@ -707,6 +722,7 @@
 						'SonyEricssonLT18i':	[ 'SonyEricsson', 'Xperia Arc S' ],
 						'SonyEricssonMT11i':	[ 'SonyEricsson', 'Xperia Neo V' ],
 						'SonyEricssonMT11iv':	[ 'SonyEricsson', 'Xperia Neo V' ],
+						'SonyEricssonMT15a':	[ 'SonyEricsson', 'Xperia Neo' ],
 						'SonyEricssonMT15i':	[ 'SonyEricsson', 'Xperia Neo' ],
 						'SonyEricssonSK17i':	[ 'SonyEricsson', 'Xperia Mini Pro' ],
 						'SonyEricssonSO-01C':	[ 'SonyEricsson', 'Xperia Arc' ],
@@ -715,6 +731,7 @@
 						'SonyEricssonWT19i':	[ 'SonyEricsson', 'Live with Walkman' ],
 						'SonyEricssonU20i':		[ 'SonyEricsson', 'Xperia X10 Mini Pro' ],
 						'SonyEricssonX10i':		[ 'SonyEricsson', 'Xperia X10' ],
+						'SonyEricssonX10iv':	[ 'SonyEricsson', 'Xperia X10' ],
 						'ST15i':				[ 'SonyEricsson', 'Xperia Mini' ],
 						'ST18i':				[ 'SonyEricsson', 'Xperia Ray' ],
 						'MT15i':				[ 'SonyEricsson', 'Xperia Neo' ],
@@ -943,6 +960,9 @@
 
 					var models = {
 						'SAMSUNG': {
+							'SAMSUNG-GT-S5380':		[ 'Samsung', 'Wave Y' ],
+							'SAMSUNG-GT-S7250':		[ 'Samsung', 'Wave M' ],
+							'SAMSUNG-GT-S7233E':	[ 'Samsung', 'Wave 723' ],
 							'SAMSUNG-GT-S8500':		[ 'Samsung', 'Wave' ],
 							'SAMSUNG-GT-S8530':		[ 'Samsung', 'Wave II' ],
 							'SAMSUNG-GT-S8600':		[ 'Samsung', 'Wave 3' ]
@@ -972,6 +992,10 @@
 					if (ua.match('Kindle\/3.0')) detected.device.model = 'Kindle 3 or later';
 				}
 
+				if (ua.match('Nintendo Wii')) {
+					detected.os.name = 'Nintendo Wii';
+				}
+				
 
 				
 				
@@ -1061,6 +1085,16 @@
 					detected.browser.build = ua.match(/Chrome\/([0-9.]*)/)[1];
 				}
 
+				if (ua.match('BrowserNG')) {
+					detected.browser.name = 'BrowserNG';
+					detected.browser.version = ua.match(/BrowserNG\/([0-9.]*)/)[1];
+				}
+
+				if (ua.match('NokiaBrowser')) {
+					detected.browser.name = 'NokiaBrowser';
+					detected.browser.version = ua.match(/NokiaBrowser\/([0-9.]*)/)[1];
+				}
+
 				if (ua.match('Maxthon')) {
 					detected.browser.name = 'Maxthon';
 					detected.browser.version = ua.match(/Maxthon\/([0-9]*[.][0-9]*)/)[1];
@@ -1071,6 +1105,16 @@
 					detected.browser.version = ua.match(/Midori\/([0-9]*[.][0-9]*)/)[1];
 				}
 				
+				if (ua.match('QupZilla')) {
+					detected.browser.name = 'QupZilla';
+					detected.browser.version = ua.match(/QupZilla\/([0-9.]*)/)[1];
+				}
+				
+				if (ua.match('Abrowser')) {
+					detected.browser.name = 'Abrowser';
+					detected.browser.version = ua.match(/Abrowser\/([0-9.]*)/)[1];
+				}			
+
 				if (ua.match('Dolfin')) {
 					detected.browser.name = 'Dolfin';
 					detected.browser.version = ua.match(/Dolfin\/([0-9]*[.][0-9]*)/)[1];
@@ -1120,7 +1164,6 @@
 
 
 
-
 				/* Step 3: Detect rendering engine */
 				if (match = /AppleWebKit\/([0-9.]*)/.exec(ua)) {
 					detected.engine.name = 'Webkit';
@@ -1162,14 +1205,6 @@
 					detected.os.version = null;
 				}
 
-
-
-				/*				
-				if (ua.match('Obigo')) {
-					detected.Obigo = true;
-					detected.mobile = true;
-				}
-				*/
 				
 				
 				
@@ -1209,7 +1244,8 @@
 			test.prototype = {
 				suites: [ 
 					{ title: null, sections: [ testParsing, testCanvas, testVideo, testAudio, testElements, testForm, testInteraction, testHistory, testMicrodata, testOffline, testSecurity ] },
-					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers, testDevice, testNotifications, testOther ] }
+					{ title: 'Related specifications', sections: [ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers, testDevice, testNotifications, testOther ] },
+					{ title: 'Experimental', sections: [ testWebAudio, testAnimation ] }
 				],
 				
 				initialize: function(e, t, c) {					
@@ -1237,7 +1273,7 @@
 
 					window.setTimeout(function() {
 						that.checkForBackground.call(that);
-					}, 1000);
+					}, 300);
 				},
 				
 				checkForBackground: function() {
@@ -1260,13 +1296,15 @@
 				},
 				
 				finished: function() {
+					this.results.showFinal();
+					
 					this.submitUseragent();
 					this.callback(this.results);
 				},
 				
 				submitUseragent: function() {
 					var payload = '{' +
-								  '"version": "2.2.4",' +
+								  '"version": "2.5.0",' +
 								  '"uniqueid": "' + this.uniqueid + '",' +
 								  '"score": ' + this.results.points + ',' +
 								  '"bonus": ' + this.results.bonus + ',' +
@@ -1327,6 +1365,8 @@
 					this.backgroundTasks = 0;
 				
 					this.container = document.getElementById(e);
+					this.container.style.opacity = '0.5';
+
 					
 					this.intro = document.createElement('p');
 					this.intro.className = 'intro';
@@ -1342,9 +1382,57 @@
 					this.maximum = document.createElement('p');
 					this.container.appendChild(this.maximum);
 					
+					this.useragent = document.createElement('p');
+					this.useragent.className = 'useragent';
+					this.container.appendChild(this.useragent);
+					this.useragent.innerHTML = 'You are using ' + Browsers;
+					
+					this.confirm = document.createElement('span');
+					this.confirm.innerHTML = 'Correct?';
+					this.useragent.appendChild(this.confirm);
+					
+					var correct = document.createElement('a');
+					if (correct.addEventListener) {
+						correct.addEventListener('click', function() { parent.confirmUseragent.call(parent); });
+					} else {
+						correct.attachEvent('onclick', function() { parent.confirmUseragent.call(parent); });
+					}
+					correct.className = 'correct';
+					correct.innerHTML = '✔';
+					this.confirm.appendChild(correct);
+					
+					var wrong = document.createElement('a');
+					if (correct.addEventListener) {
+						wrong.addEventListener('click', function() { parent.reportUseragent.call(parent); });
+					} else {
+						wrong.attachEvent('onclick', function() { parent.reportUseragent.call(parent); });
+					}
+					wrong.className = 'wrong';
+					wrong.innerHTML = '✘';
+					this.confirm.appendChild(wrong);
+
+					this.thanks = document.createElement('span');
+					this.thanks.style.display = 'none';
+					this.thanks.innerHTML = 'Thanks!';
+					this.useragent.appendChild(this.thanks);
+
 					this.total = document.getElementById(t);
 					
 					this.update();
+				},
+				
+				showThanks: function() {
+					this.confirm.style.display = 'none';
+					this.thanks.style.display = 'inline';
+					
+					var that = this;
+					window.setTimeout(function() {
+						that.thanks.style.display = 'none';
+					}, 2500);
+				},
+				
+				showFinal: function() {
+					this.container.style.opacity = '1';
 				},
 				
 				startBackground: function(id) {
@@ -2155,7 +2243,7 @@
 					/* Codecs */
 					/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 
-					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more video codecs, two bonus points are awarded for each codec.')
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If browser support for one or more video codecs is detected, two bonus points are awarded for each codec.')
 
 					var item = {
 						id:		'mpeg4',
@@ -2233,7 +2321,7 @@
 					
 					/* Codecs */
 
-					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If a browser supports one or more audio codecs, one bonus point is awarded for each codec.')
+					this.section.setExplaination('The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If browser support for one or more audio codecs is detected, one bonus point is awarded for each codec.')
 
 					var item = {
 						id:		'pcm',
@@ -2395,6 +2483,16 @@
 
 						document.body.removeChild(element);
 					}
+
+					var element = document.createElement('ol');
+					group.setItem({
+						id:		'ol',
+						title: 	'<code>reversed</code> attribute on the <code>ol</code> element', 
+						url:	'http://www.w3.org/TR/html5/grouping-content.html#the-ol-element',
+						passed:	'reversed' in element, 
+						value: 	1
+					});
+
 
 					var group = this.section.getGroup({
 						id:		'semantic',
@@ -2627,6 +2725,31 @@
 					
 					var element = this.createInput('text');
 					var baseline = { field: getRenderedStyle(element.field), wrapper: getRenderedStyle(element.wrapper) };
+					this.removeInput(element);
+					
+					
+					/* input type=text */
+					
+					var group = this.section.getGroup({
+						id:		'text',
+						name:	'<code>input type=text</code>'
+					});
+					
+					var element = this.createInput('text');
+					
+					group.setItem({
+						id:			'element',
+						title: 		'Minimal element support', 
+						passed:		element.field.type == 'text'
+					});
+					
+					group.setItem({
+						id:			'selection',
+						title: 		'Selection Direction', 
+						passed:		'selectionDirection' in element.field,
+						value: 		2
+					});
+					
 					this.removeInput(element);
 					
 					
@@ -3205,7 +3328,7 @@
 						url:		'http://www.w3.org/TR/html5/forms.html#the-keygen-element',
 						passed:		typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild, 
 						value: 		2,
-						custom: 	element.childNodes && element.childNodes.length ? 'partial' : false,
+						custom: 	element && element.firstChild && element.firstChild.childNodes && element.firstChild.childNodes.length ? 'partial' : false,
 						required:	true
 					});
 
@@ -3355,6 +3478,7 @@
 					}
 
 					var element = document.createElement('input');
+					document.body.appendChild(element);
 					element.id = "testFormInput";
 
 					var label = document.createElement("label");
@@ -3369,6 +3493,7 @@
 					});
 					
 					document.body.removeChild(label);
+					document.body.removeChild(element);
 					
 					
 										
@@ -3535,7 +3660,7 @@
 						name:	'Form validation'
 					});
 					
-					var element = document.createElement('input');
+					var element = document.createElement('form');
 					
 					group.setItem({
 						id:			'checkValidity',
@@ -3595,7 +3720,7 @@
 					
 					this.section.setTitle('Drag and drop') 
 
-					var whitelist =  Browsers.Firefox || Browsers.Opera;
+					var whitelist = Browsers.Opera;
 					var blocked = (Browsers.mobile || Browsers.tablet) && ! whitelist;
 					
 					if ('draggable' in element && blocked) {
@@ -3699,11 +3824,11 @@
 
 					this.section.setTitle('HTML editing') 
 
-					var whitelist = Browsers.iOS >= 5 || Browsers.WindowsPhone >= 7.5 || Browsers.BlackBerry || Browsers.Firefox || Browsers.Opera || Browsers.Meego;
+					var whitelist = Browsers.iOS >= 5 || Browsers.Android >= 4 || Browsers.WindowsPhone >= 7.5 || Browsers.BlackBerry || Browsers.Firefox || Browsers.Opera || Browsers.Meego;
 					var blocked = (Browsers.mobile || Browsers.tablet) && ! whitelist;
 					
 					if ('contentEditable' in element && blocked) {
-						this.section.setExplaination("Your mobile browser claims to support editing, but this claim is probably not true. Almost all mobile devices claim to support editing, but almost no device supports it properly at this moment. Because of this we've decided to not award any points to mobile browsers unless we've verified editing support is properly working. If you think your browser does properly support editing, please let us know.");
+						this.section.setExplaination("Your mobile browser claims to support editing, but this claim may not be true. Almost all mobile devices claim to support editing, but only the most recent devices support it properly at this moment. Because of this we've decided to not award any points to mobile browsers unless we've verified editing support is properly working. If you think your browser does properly support editing, please let us know.");
 					}
 					
 					var group = this.section.getGroup({
@@ -4090,9 +4215,68 @@
 						passed:		'EventSource' in window, 
 						value: 		10
 					});
+					
+					var group = this.section.getGroup({
+						id:		'xmlhttprequest2',
+						name:	'XMLHttpRequest Level 2'
+					});
 
-					this.section.setExplaination('Both Mozilla and Opera do support the WebSocket protocol in their latest browsers, but have disabled it due to a fundamental security issue with the protocol. Once the protocol has been updated it is expected they will re-enable this feature.')
+					group.setItem({
+						id:			'upload',
+						title: 		'Upload files', 
+						passed:		window.XMLHttpRequest && 'upload' in new XMLHttpRequest(), 
+						url:    	'http://www.w3.org/TR/XMLHttpRequest2/#the-upload-attribute',
+						value: 		4
+					});
 
+					var item = group.setItem({
+						id:			'textresponse',
+						title: 		'Text response type', 
+						passed:		false, 
+						url:    	'http://www.w3.org/TR/XMLHttpRequest2/#dom-xmlhttprequest-responsetype',
+						value: 		1
+					});
+					
+					this.testResponseTypeText(item);
+
+					var item = group.setItem({
+						id:			'documentresponse',
+						title: 		'Document response type', 
+						passed:		false, 
+						url:    	'http://www.w3.org/TR/XMLHttpRequest2/#dom-xmlhttprequest-responsetype',
+						value: 		2
+					});
+					
+					this.testResponseTypeDocument(item);
+
+					var item = group.setItem({
+						id:			'arrayresponse',
+						title: 		'Array buffer response type', 
+						passed:		false, 
+						url:    	'http://www.w3.org/TR/XMLHttpRequest2/#dom-xmlhttprequest-responsetype',
+						value: 		2
+					});
+					
+					this.testResponseTypeArrayBuffer(item);
+
+					var item = group.setItem({
+						id:			'blobresponse',
+						title: 		'Blob response type', 
+						passed:		false, 
+						url:    	'http://www.w3.org/TR/XMLHttpRequest2/#dom-xmlhttprequest-responsetype',
+						value: 		2
+					});
+					
+					this.testResponseTypeBlob(item);
+
+					if (Browsers.Opera) {
+						this.section.setExplaination('Opera does support the WebSocket protocol in their latest browsers, but have disabled it due to a fundamental security issue with the protocol. Once the protocol has been updated it is expected they will re-enable this feature.')
+					}
+					
+					if (Browsers.Firefox >= 4 && Browsers.Firefox < 6) {
+						this.section.setExplaination('Firefox does support the WebSocket protocol, but Mozilla has disabled it temporarily in Firefox 4 and 5 due to a fundamental security issue with the protocol. Support for WebSockets has be reenabled in Firefox 6.')
+					}
+					
 					this.section.setItem({
 						id:			'webSocket',
 						title: 		'WebSocket', 
@@ -4100,6 +4284,150 @@
 						passed:		'WebSocket' in window || 'MozWebSocket' in window, 
 						value: 		10
 					});
+				},
+				
+				testResponseTypeDocument: function(item) {
+					if (!window.XMLHttpRequest) return;
+					
+					var xhr = new window.XMLHttpRequest();
+
+					if (typeof xhr.responseType == 'undefined') return;
+										
+					var done = false;
+
+					xhr.onreadystatechange = function() {
+						if (this.readyState == 4 && !done) {
+							done = true;
+							passed = false;
+							
+							try {
+								passed = !!(this.responseXML && this.responseXML.title && this.responseXML.title == "&&<");									
+							} catch(e) {
+							}							
+
+							item.stopBackground();
+							item.update({
+								'passed': passed
+							});
+						}
+					}
+					
+					try {
+						item.startBackground();
+						xhr.open("GET", "detect.html");
+						xhr.responseType = "document";
+						xhr.send();
+					} catch (e) {
+						item.stopBackground();
+					}
+				},
+
+				testResponseTypeText: function(item) {
+					if (!window.XMLHttpRequest) return;
+					
+					var xhr = new window.XMLHttpRequest();
+
+					if (typeof xhr.responseType == 'undefined') return;
+										
+					var done = false;
+
+					xhr.onreadystatechange = function() {
+						if (this.readyState == 4 && !done) {
+							done = true;
+							passed = false;
+							
+							try {
+								passed = !!(this.responseText); // && this.responseText == '<title>&amp;&<</title>');
+							} catch(e) {
+							}							
+
+							item.stopBackground();
+							item.update({
+								'passed': passed
+							});
+						}
+					}
+					
+					try {
+						item.startBackground();
+						xhr.open("GET", "detect.html");
+						xhr.responseType = "text";
+						xhr.send();
+					} catch (e) {
+						item.stopBackground();
+					}
+				},
+
+				testResponseTypeBlob: function(item) {
+					if (!window.XMLHttpRequest || !window.Blob) return;
+					
+					var xhr = new window.XMLHttpRequest();
+
+					if (typeof xhr.responseType == 'undefined') return;
+										
+					var done = false;
+
+					xhr.onreadystatechange = function() {
+						if (this.readyState == 4 && !done) {
+							done = true;
+							passed = false;
+							
+							try {
+								passed = !!(this.response && this.response instanceof Blob);
+							} catch(e) {
+							}							
+
+							item.stopBackground();
+							item.update({
+								'passed': passed
+							});
+						}
+					}
+					
+					try {
+						item.startBackground();
+						xhr.open("GET", "detect.html");
+						xhr.responseType = "blob";
+						xhr.send();
+					} catch (e) {
+						item.stopBackground();
+					}
+				},
+
+				testResponseTypeArrayBuffer: function(item) {
+					if (!window.XMLHttpRequest || !window.ArrayBuffer) return;
+					
+					var xhr = new window.XMLHttpRequest();
+
+					if (typeof xhr.responseType == 'undefined') return;
+										
+					var done = false;
+
+					xhr.onreadystatechange = function() {
+						if (this.readyState == 4 && !done) {
+							done = true;
+							passed = false;
+							
+							try {
+								passed = !!(this.response && this.response instanceof ArrayBuffer);
+							} catch(e) {
+							}							
+
+							item.stopBackground();
+							item.update({
+								'passed': passed
+							});
+						}
+					}
+					
+					try {
+						item.startBackground();
+						xhr.open("GET", "detect.html");
+						xhr.responseType = "arraybuffer";
+						xhr.send();
+					} catch (e) {
+						item.stopBackground();
+					}
 				}
 			};		
 
@@ -4234,7 +4562,7 @@
 				},
 				
 				hasNotification: function() {
-					return 'Notification' in window || 'webkitNotification' in window || 'mozNotification' in window || 'oNotification' in window || 'msNotification' in window;
+					return 'Notifications' in window || 'webkitNotifications' in window || 'mozNotifications' in window || 'oNotifications' in window || 'msNotifications' in window;
 				}
 			};			
 			
@@ -4246,6 +4574,13 @@
 						name: 	'Other'
 					});
 					
+					this.section.setItem({
+						id:			'pagevisiblity',
+						title: 		'Page Visibility', 
+						url:		'https://developer.mozilla.org/en/DOM/window.requestAnimationFrame',
+						passed:		'visibilityState' in document || 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document, 
+						value: 		2
+					});
 
 					this.section.setItem({
 						id:			'getSelection',
@@ -4262,6 +4597,69 @@
 						title: 		'Scroll into view', 
 						passed:		!!element.scrollIntoView, 
 						value: 		1
+					});
+				}
+			};			
+			
+			
+			function testWebAudio (results) { this.initialize(results) }			
+			testWebAudio.prototype = {
+				initialize: function(results) {
+					this.section = results.getSection({
+						id:		'webaudio',
+						name:	'Audio'
+					});
+					
+
+					this.section.setItem({
+						id:			'webaudio',
+						title: 		'Web Audio API', 
+						url:		'https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html',
+						passed:		this.hasWebAudio(), 
+						value: 		5
+					});
+
+					this.section.setItem({
+						id:			'audiodata',
+						title: 		'Audio Data API', 
+						url:		'https://wiki.mozilla.org/Audio_Data_API',
+						passed:		this.hasAudioData(), 
+						value: 		2
+					});
+				},
+				
+				hasWebAudio: function() {
+					return 'AudioContext' in window || 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window;
+				},
+				
+				hasAudioData: function() {
+					var success = false;
+				
+					try {
+						var element = new Audio();
+						success =  'setup' in element || 'webkitSetup' in element || 'mozSetup' in element || 'oSetup' in element || 'msSetup' in element;
+					} catch(e) {
+					}
+					
+					return success;
+				}
+			};			
+			
+			function testAnimation (results) { this.initialize(results) }			
+			testAnimation.prototype = {
+				initialize: function(results) {
+					this.section = results.getSection({
+						id:		'animation',
+						name: 	'Animation'
+					});
+					
+
+					this.section.setItem({
+						id:			'requestAnimationFrame',
+						title: 		'<code>window.requestAnimationFrame</code>', 
+						url:		'https://developer.mozilla.org/en/DOM/window.requestAnimationFrame',
+						passed:		window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame, 
+						value: 		2
 					});
 				}
 			};			
@@ -4318,7 +4716,7 @@
 					
 					// Beacon the results to Browserscope.
 					(function() {
-					  var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjgjfIHDA';
+					  var _bTestKey = 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjZqbAMDA';
 					  var _bScript = document.createElement('script');
 					  _bScript.src = 'http://www.browserscope.org/user/beacon/' + _bTestKey + '?callback=_bBeaconComplete';
 					  _bScript.setAttribute('async', 'true');
