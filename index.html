@@ -2368,7 +2368,7 @@
 						This bug was reported and fixed in iOS 4.2 
 					*/
 						
-					if (Browsers.iOS < 4.2)
+					if (Browsers.iOS && Browsers.iOS < 4.2)
 						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
 					else 
 						return this.element.canPlayType(t) == 'probably';
@@ -2466,7 +2466,7 @@
 						This bug was reported and fixed in iOS 4.2 
 					*/
 						
-					if (Browsers.iOS < 4.2)
+					if (Browsers.iOS && Browsers.iOS < 4.2)
 						return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
 					else 
 						return this.element.canPlayType(t) == 'probably';
