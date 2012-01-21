@@ -3893,13 +3893,14 @@
 						value: 		1
 					});
 
-					var props = 'autocomplete autofocus placeholder multiple dirname'.split(' ');
+					var props = 'autocomplete autofocus placeholder multiple dirName'.split(' ');
 						
 					for (var p in props) {
+						var prop = props[p].toLowerCase();
  						group.setItem({
-							id:			props[p],
-							title: 		'<code>' + props[p] + '</code> attribute', 
-							url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-' + props[p],
+							id:			prop,
+							title: 		'<code>' + prop + '</code> attribute',
+							url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-' + prop,
 							passed:		!!(props[p] in element), 
 							value: 		1
 						});
