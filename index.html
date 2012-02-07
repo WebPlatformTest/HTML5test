@@ -1774,7 +1774,7 @@
 					
 					var correct = document.createElement('a');
 					if (correct.addEventListener) {
-						correct.addEventListener('click', function() { parent.confirmUseragent.call(parent); });
+						correct.addEventListener('click', function() { parent.confirmUseragent.call(parent); }, true);
 					} else {
 						correct.attachEvent('onclick', function() { parent.confirmUseragent.call(parent); });
 					}
@@ -1784,7 +1784,7 @@
 					
 					var wrong = document.createElement('a');
 					if (correct.addEventListener) {
-						wrong.addEventListener('click', function() { parent.reportUseragent.call(parent); });
+						wrong.addEventListener('click', function() { parent.reportUseragent.call(parent); }, true);
 					} else {
 						wrong.attachEvent('onclick', function() { parent.reportUseragent.call(parent); });
 					}
@@ -1796,7 +1796,7 @@
 					this.thanks.style.display = 'none';
 					this.thanks.innerHTML = 'Thanks!';
 					this.useragent.appendChild(this.thanks);
-
+					
 					this.total = document.getElementById(t);
 					
 					this.update();
