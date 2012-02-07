@@ -68,7 +68,7 @@
 		<div class='column'>
 			<div class='updated'>
 				Updated!
-				<span>Januari 1st, 2012</span>
+				<span>January 1st, 2012</span>
 			</div>
 		
 			<noscript>
@@ -153,7 +153,7 @@
 				</p>
 
 				<p> 
-					Januari 1st, 2012 - version 2.5.0
+					January 1st, 2012 - version 2.5.1
 				</p>
 
 				<div class='hosting'>
@@ -4862,11 +4862,21 @@
 						value: 		5
 					});
 
+					var passed = false;
+					try {
+						passed = 'localStorage' in window && window.localStorage != null
+					} catch(e) {
+						/* If we get a security exception we know the feature exists, but cookies are disabled */
+						if (e.name == 'NS_ERROR_DOM_SECURITY_ERR') {		
+							passed = true; 
+						}
+					}
+
 					this.section.setItem({
 						id:			'localStorage',
 						title: 		'Local Storage', 
 						url:    	'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
-						passed:		'localStorage' in window && window.localStorage != null, 
+						passed:		passed, 
 						value: 		5
 					});
 
