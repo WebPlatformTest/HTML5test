@@ -1338,6 +1338,12 @@
 					detected.browser.version = ua.match(/Chromium\/([0-9.]*)/)[1];
 				}
 
+				if (ua.match('CrMo')) {
+					detected.browser.stock = false;
+					detected.browser.name = 'Chrome';
+					detected.browser.version = ua.match(/CrMo\/([0-9.]*)/)[1];
+				}
+
 				if (ua.match('BrowserNG')) {
 					detected.browser.name = 'BrowserNG';
 					detected.browser.version = ua.match(/BrowserNG\/([0-9.]*)/)[1];
@@ -4205,7 +4211,7 @@
 
 					this.section.setTitle('HTML editing') 
 
-					var whitelist = Browsers.iOS >= 5 || Browsers.Android >= 4 || Browsers.WindowsPhone >= 7.5 || Browsers.BlackBerry || Browsers.Firefox || Browsers.Opera || Browsers.Meego;
+					var whitelist = Browsers.iOS >= 5 || Browsers.Android >= 4 || Browsers.WindowsPhone >= 7.5 || Browsers.BlackBerry || Browsers.Firefox || Browsers.Chrome || Browsers.Opera || Browsers.Meego;
 					var blocked = (Browsers.mobile || Browsers.tablet) && ! whitelist;
 					
 					if ('contentEditable' in element && blocked) {
