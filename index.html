@@ -241,7 +241,7 @@
 				
 				submitUseragent: function() {
 					var payload = '{' +
-								  '"version": "2.5.4",' +
+								  '"version": "2.5.12",' +
 								  '"uniqueid": "' + this.uniqueid + '",' +
 								  '"score": ' + this.results.points + ',' +
 								  '"bonus": ' + this.results.bonus + ',' +
@@ -260,7 +260,8 @@
 								  '"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
 								  '"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
 								  '"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
-								  '"useragent": "' + navigator.userAgent + '"' +
+								  '"useragent": "' + navigator.userAgent + '",' +
+								  '"humanReadable": "' + Browsers.toString() + '"' +
 								  '}';
 					
 					this.submit('submit', payload);
@@ -288,7 +289,7 @@
 				
 				submit: function(method, payload) {
 					var script = document.createElement('script');
-					script.src = 'http://api.html5test.com/api/' + method + '?payload=' + escape(payload);
+					script.src = 'http://api.html5test.com/api/' + method + '?payload=' + encodeURIComponent(payload);
 					script.setAttribute('async', 'true');
 					var scripts = document.getElementsByTagName('script');
 					var lastScript = scripts[scripts.length - 1];
