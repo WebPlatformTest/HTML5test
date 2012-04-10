@@ -2022,7 +2022,8 @@
 						validation = true;
 						
 						element.field.value = "foo";
-						validation &= !element.field.validity.valid
+						// "foo" is sanitized to "#000000", which is valid.
+						validation &= element.field.validity.valid
 	
 						element.field.value = '#000000';
 						validation &= element.field.validity.valid
