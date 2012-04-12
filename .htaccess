@@ -1,0 +1,22 @@
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE text/javascript
+
+RewriteEngine on
+RewriteRule ^compare.html$					/compare/browser/index.html								[R]
+RewriteRule ^results.html$					/results/desktop.html									[R]
+RewriteRule ^results-mobile.html$			/results/mobile.html									[R]
+RewriteRule ^results-tablets.html$			/results/tablet.html									[R]
+RewriteRule ^results-tv.html$				/results/television.html								[R]
+
+RewriteRule ^api/(.+)$ 						/backend/index.php?method=$1&%{QUERY_STRING}
+RewriteRule ^compare/browser/index.html$ 	/backend/browser.php?%{QUERY_STRING}
+RewriteRule ^compare/browser/(.+).html$ 	/backend/browser.php?show=$1&%{QUERY_STRING}
+RewriteRule ^compare/feature/index.html$ 	/backend/feature.php?%{QUERY_STRING}
+RewriteRule ^compare/feature/(.+).html$ 	/backend/feature.php?show=$1&%{QUERY_STRING}
+RewriteRule ^results/desktop.html$			/backend/results.php?type=desktop
+RewriteRule ^results/mobile.html$			/backend/results.php?type=mobile
+RewriteRule ^results/tablet.html$			/backend/results.php?type=tablet
+RewriteRule ^results/gaming.html$			/backend/results.php?type=gaming
+RewriteRule ^results/television.html$		/backend/results.php?type=television
+
