@@ -207,7 +207,58 @@ body {
 
 
 
+#share {
+	position: absolute;
+	top: -10px;
+	right: -164px;
+	
+	background: #f0f0f0;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	
+	-webkit-box-shadow: 0px 0px 5px #222;
+	-moz-box-shadow: 0px 0px 5px #222;
+	-ms-box-shadow: 0px 0px 5px #222;
+	-o-box-shadow: 0px 0px 5px #222;
+	box-shadow: 0px 0px 5px #222;
 
+	width: 140px;
+	height: 84px;	
+	opacity: 0.7;
+	z-index: 10;
+
+	-webkit-transition: opacity ease-in 0.2s;
+	-moz-transition: opacity ease-in 0.2s;
+	-ms-transition: opacity ease-in 0.2s;
+	-o-transition: opacity ease-in 0.2s;
+	transition: opacity ease-in 0.2s;
+}
+#share:hover {
+	opacity: 1;
+}
+#share::after {
+	position: absolute;
+	top: 15px;
+	left: -10px;
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	border-right: 10px solid #f0f0f0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+}
+#share #twitter {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+#share #facebook {
+	position: absolute;
+	top: 10px;
+	left: 76px;
+}
 
 
 .page {
@@ -236,7 +287,7 @@ body {
 
 #explaination {
 	width: 200px;
-	margin: 60px 0 40px 20px;
+	margin: 100px 0 40px 20px;
 }
 #explaination p {
 	margin: 1em 0;
@@ -1277,6 +1328,35 @@ body {
 	}
 	.resultsTable table thead td span.bonus span {
 		display: none;
+	}
+	
+	#share {
+		position: relative;
+		right: auto;
+		top: auto;
+		
+		width: 100%;
+		opacity: 1;
+		margin: -10px 0 20px;
+	}
+	#share::after {
+		top: -8px;
+		left: 50%;;
+		right: auto;
+		margin: 0 0 0 -10px;
+
+		border-top: none;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid #f0f0f0;
+	}
+	#share #twitter {
+		right: 53%;
+		left: auto;
+	}
+	#share #facebook {
+		left: 53%;
+		right: auto;
 	}
 }
 @media (max-width: 360px) {

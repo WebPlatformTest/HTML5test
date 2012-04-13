@@ -23,6 +23,13 @@
 		<link rel="icon" href="/images/icon.png">
 		<link rel="apple-touch-icon" href="/images/button.png">
 		
+		<meta property="og:title" content="The HTML5 test - How well does your browser support HTML5?" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://html5test.com" />
+		<meta property="og:image" content="http://html5test.com/images/button.png" />
+		<meta property="og:site_name" content="HTML5test.com" />
+		<meta property="fb:admins" content="1087142132" />
+
 		<style>
 		<!-- 		
 
@@ -78,6 +85,8 @@
 		</script>
 		<!-- End BuySellAds.com Ad Code -->
 
+		<div id="fb-root"></div>
+
 		<div class='header'>
 			<h1>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
 			<ul>
@@ -91,11 +100,13 @@
 		
 		<div class='page'>
 			<div class='column'>
+				<!--
 				<div class='updated'>
 					Updated!
 					<span>3 April 2012</span>
 				</div>
-			
+				-->
+				
 				<noscript>
 					<h2>
 						To view the results of your browser you need to enable Javascript!
@@ -259,6 +270,56 @@
 
 
 
+			var Share = function() { this.initialize.apply(this, arguments) };
+			Share.prototype = {
+				initialize: function(parent, options) {
+					var that = this;
+
+					this.parent = parent;
+					this.options = options;
+					
+					this.parent.innerHTML +=
+						"<div id='share' style='opacity:0'>" +
+						"<div id='twitter'>" +
+						"<a href='https://twitter.com/share' class='twitter-share-button' " +
+							"data-url='http://html5test.com' " +
+							"data-related='rakaz' " +
+							"data-text='" + this.options.browser + " scored " + this.options.score + "+" + this.options.bonus + " points. How well does your browser support HTML5?' " + 
+							"data-lang='en' "+
+							"data-count='vertical'"+
+							">Tweet</a>" +
+						"</div>" +
+
+						"<div id='facebook'>" +
+						"<div class='fb-like' " +
+							"data-href='http://html5test.com' " + 
+							"data-send='false' " + 
+							"data-layout='box_count' " +
+							"data-width='60' " +
+							"data-show-faces='false'" +
+							"></div>" +
+						"</div>" +
+						"</div>";
+						
+					window.setTimeout(function() {
+						var e = document.getElementById('share');
+						e.style.opacity = '';
+					}, 1000);
+				
+					!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
+					{js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}
+					(document,"script","twitter-wjs");
+
+					(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=202643099847776";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+				}
+			}
+
 
 			Browsers = new UserAgents(navigator.userAgent, {
 				useFeatures:		true,
@@ -281,11 +342,17 @@
 				var total = document.getElementById('total');
 				total.innerHTML = r.maximum;
 				
+				new Share(results, {
+					score: 		r.score,
+					bonus: 		r.bonus,
+					browser:	Browsers.toString()
+				});
+				
 				/* Show box for confirming useragent detection */
 				new Confirm(results, {
 					onConfirm:	function() { submit('confirm', '{"uniqueid": "' + r.uniqueid + '"}'); },
 					onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); }
-				})
+				});
 				
 				/* Show detailed report of scores */
 				var div = document.createElement('div');
