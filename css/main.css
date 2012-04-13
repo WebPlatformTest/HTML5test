@@ -210,7 +210,7 @@ body {
 #share {
 	position: absolute;
 	top: -10px;
-	right: -164px;
+	right: -224px;
 	
 	background: #f0f0f0;
 	-webkit-border-radius: 6px;
@@ -223,7 +223,7 @@ body {
 	-o-box-shadow: 0px 0px 5px #222;
 	box-shadow: 0px 0px 5px #222;
 
-	width: 140px;
+	width: 200px;
 	height: 84px;	
 	opacity: 0.7;
 	z-index: 10;
@@ -258,6 +258,12 @@ body {
 	position: absolute;
 	top: 10px;
 	left: 76px;
+}
+
+#share #google {
+	position: absolute;
+	top: 10px;
+	left: 136px;
 }
 
 
@@ -1351,12 +1357,19 @@ body {
 		border-bottom: 10px solid #f0f0f0;
 	}
 	#share #twitter {
-		right: 53%;
-		left: auto;
+		left: 50%;
+		right: auto;
+		margin: 0 0 0 -100px;
 	}
 	#share #facebook {
-		left: 53%;
+		left: 50%;
 		right: auto;
+		margin: 0 0 0 -28px;
+	}
+	#share #google {
+		left: 50%;
+		right: auto;
+		margin: 0 0 0 40px;
 	}
 }
 @media (max-width: 360px) {

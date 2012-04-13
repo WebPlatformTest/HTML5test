@@ -280,6 +280,7 @@
 					
 					this.parent.innerHTML +=
 						"<div id='share' style='opacity:0'>" +
+						
 						"<div id='twitter'>" +
 						"<a href='https://twitter.com/share' class='twitter-share-button' " +
 							"data-url='http://html5test.com' " +
@@ -299,6 +300,14 @@
 							"data-show-faces='false'" +
 							"></div>" +
 						"</div>" +
+
+						"<div id='google'>" +
+						"<div class='g-plusone' " +
+							"data-href='http://html5test.com' " + 
+							"data-size='tall'" +
+							"></div>" +
+						"</div>" +
+						
 						"</div>";
 						
 					window.setTimeout(function() {
@@ -317,6 +326,13 @@
 					  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=202643099847776";
 					  fjs.parentNode.insertBefore(js, fjs);
 					}(document, 'script', 'facebook-jssdk'));
+					
+					
+					(function() {
+					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					po.src = 'https://apis.google.com/js/plusone.js';
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					})();
 				}
 			}
 
