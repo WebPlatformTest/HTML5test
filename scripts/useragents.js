@@ -4096,6 +4096,21 @@ var UserAgents = (function(){
 				}
 			}
 
+			if (match = /Chrome\/([0-9.]*) Mobile/.exec(ua)) {
+				this.browser.stock = false;
+				this.browser.name = 'Chrome';
+				this.browser.version = new Version({ value: match[1] });
+
+				switch (match[1].split('.', 3).join('.')) {
+					case '18.0.1025':
+						this.browser.channel = 'Beta';
+						break;
+					default:	
+						this.browser.channel = 'Nightly';
+						break;
+				}
+			}
+			
 			/****************************************************
 			 *		Chrome Frame
 			 */
@@ -4801,13 +4816,8 @@ var UserAgents = (function(){
 				}
 				
 				if (this.browser.name == 'Chrome'){
-					if (this.os.name != 'Android' && ! /Chrome\/([0-9]{1,2}\.[0-9]\.[0-9]{3,4}\.[0-9]+)/.exec(ua)) {
+					if (! /Chrome\/([0-9]{1,2}\.[0-9]\.[0-9]{3,4}\.[0-9]+)/.exec(ua)) {
 						this.features.push('wrongVersion');
-						this.camouflage = true;			
-					}
-					
-					if (this.os.name == 'Android' && ! ua.match('CrMo')) {
-						this.features.push('noCrMo');
 						this.camouflage = true;			
 					}
 				}
