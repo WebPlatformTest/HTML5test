@@ -135,6 +135,33 @@ body {
 }
 
 
+#cloudvps a {
+	position: absolute;
+	top: 20px;
+	right: 0;
+	border-left: 1px solid #555;
+	
+	display: block;
+	background: url(/images/cloudvps.png) no-repeat 16px top;
+	background-size: 59px 43px;
+	padding-top: 56px;
+	padding-left: 16px;
+	
+	text-decoration: none;
+	color: #ddd;
+	font-size: 95%;
+}
+#cloudvps a b {
+	font-size: 110%;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	#cloudvps a {
+		background-image: url(/images/cloudvps@2x.png);
+		background-size: 59px 43px;
+	}
+}
+
+
 
 .updated {
 	position: absolute;
