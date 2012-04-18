@@ -95,9 +95,10 @@ body {
 }
 .footer > div {
 	margin: 0 auto;
-	width: 630px;
+	width: 500px;
 	overflow: hidden;
 	padding-bottom: 20px;
+	padding-right: 130px;
 	position: relative;
 }
 .footer > div .hosting {
