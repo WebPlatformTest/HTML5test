@@ -3456,6 +3456,22 @@ var UserAgents = (function(){
 			}
 			
 			/****************************************************
+			 *		Toshiba Smart TV
+			 *
+			 *		Mozilla/5.0 (Linux mipsel; U; HbbTV/1.1.1 (; TOSHIBA; DTV_RL953; 56.7.66.7; t12; ) ; ToshibaTP/1.3.0 (+VIDEO_MP4+VIDEO_X_MS_ASF+AUDIO_MPEG+AUDIO_MP4+DRM+NATIVELAUNCH) ; en) AppleWebKit/534.1 (KHTML, like Gecko)
+			 *		Mozilla/5.0 (DTV; TSBNetTV/T32013713.0203.7DD; TVwithVideoPlayer; like Gecko) NetFront/4.1 DTVNetBrowser/2.2 (000039;T32013713;0203;7DD) InettvBrowser/2.2 (000039;T32013713;0203;7DD)
+
+			 */
+
+			if (ua.match('ToshibaTP\/') || ua.match('TSBNetTV\/')) {
+				this.os.name = '';
+				this.device.manufacturer = 'Toshiba';
+				this.device.model = 'Smart TV';
+				this.device.type = 'television';
+				this.device.identified = true;
+			}
+			
+			/****************************************************
 			 *		ADB
 			 */
 
