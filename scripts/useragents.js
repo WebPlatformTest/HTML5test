@@ -3487,12 +3487,14 @@ var UserAgents = (function(){
 			 *		MStar
 			 */
 
-			if (ua.match(/\( DL PVR;Mstar/)) {
+			if (ua.match(/Mstar;OWB/)) {
 				this.os.name = '';
 				this.device.manufacturer = 'MStar';
 				this.device.model = 'PVR';
 				this.device.type = 'television';
 				this.device.identified = true;
+				
+				this.browser.name = 'Origyn Web Browser';
 			}
 			
 			/****************************************************
