@@ -126,12 +126,12 @@ body {
 	height: 102px;
 	margin: 16px 0 10px 10px;
 	background: url(/images/html5.png);
+	background-size: 74px 102px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	#html5 {
 		background: url(/images/html5@2x.png);
-		background-size: 100%;
 	}
 }
 
@@ -587,6 +587,7 @@ body {
 	display: block;
 	content: '';
 	background: url(../images/crown.png);
+	background-size: 54px 71px;
 	width: 54px;
 	height: 71px;
 	
@@ -626,7 +627,6 @@ body {
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.rankingPanel dl#winner::before {
 		background: url(../images/crown@2x.png);
-		background-size: 100%;
 	}
 }
 
