@@ -5049,6 +5049,7 @@ var UserAgents = (function(){
 		s = s.replace(/_CMCC$/, '');
 
 		s = s.replace(/_/g, " ");
+		s = s.replace(/^\s+|\s+$/g, "");
 		s = s.replace(/\/[^/]+$/, "");
 		s = s.replace(/\/[^/]+ Android\/.*/, "");
 
