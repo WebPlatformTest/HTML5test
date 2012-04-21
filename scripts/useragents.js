@@ -4351,7 +4351,13 @@ var UserAgents = (function(){
 			if (match = /NX\/([0-9.]*)/.exec(ua)) {
 				this.browser.name = 'NetFront NX';
 				this.browser.version = new Version({ value: match[1], details: 2 });
-				this.device.type = 'television';
+				if (match = /DTV/i.exec(ua)) {
+					this.device.type = 'television';
+				} else if (match = /mobile/i.exec(ua)) {
+					this.device.type = 'mobile';
+				} else {
+					this.device.type = 'desktop';
+				} 
 
 				this.os.name = null;
 				this.os.version = null;
