@@ -2739,6 +2739,11 @@ var UserAgents = (function(){
 					}
 				}		
 				
+				/* Sometimes we get a model name that starts with Android, in that case it is a mismatch and we should ignore it */
+				if (this.device.model && this.device.model.substring(0,7) == 'Android') {
+					this.device.model = null;
+				}
+				
 				if (this.device.model) {
 					var model = cleanupModel(this.device.model);
 
