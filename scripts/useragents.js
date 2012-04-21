@@ -4079,59 +4079,15 @@ var UserAgents = (function(){
 			 *		Chrome
 			 */
 		
-			if (match = /Chrome\/([0-9.]*)/.exec(ua)) {
+			if (match = /(?:Chrome|CrMo)\/([0-9.]*)/.exec(ua)) {
 				this.browser.stock = false;
 				this.browser.name = 'Chrome';
 				this.browser.version = new Version({ value: match[1] });
 
-				switch (match[1].split('.', 3).join('.')) {
-					case '0.2.149':
-					case '0.3.154':
-					case '0.4.154':
-					case '1.0.154':
-					case '2.0.172':
-					case '3.0.195':
-					case '4.0.249':
-					case '4.1.249':
-					case '5.0.375':
-					case '6.0.472':
-					case '7.0.517':
-					case '8.0.552':
-					case '9.0.597':
-					case '10.0.648':
-					case '11.0.696':
-					case '12.0.742':
-					case '13.0.782':
-					case '14.0.835':
-					case '15.0.874':
-					case '16.0.912':
-					case '17.0.963':
-					case '18.0.1025':
-						if (this.browser.version.minor == 0) 
-							this.browser.version.details = 1;
-						else
-							this.browser.version.details = 2;
-							
-						break;
-					default:	
-						this.browser.channel = 'Nightly';
-						break;
-				}
-			}
-
-			/****************************************************
-			 *		Chrome Mobile
-			 */
-		
-			if (ua.match('CrMo')) {
-				this.browser.stock = false;
-				this.browser.name = 'Chrome';
-
-				if (match = /CrMo\/([0-9.]*)/.exec(ua)) {
-					this.browser.version = new Version({ value: match[1] });
-
+				if (this.os.name == 'Android') {
 					switch (match[1].split('.', 3).join('.')) {
 						case '16.0.912':
+						case '18.0.1025':
 							this.browser.channel = 'Beta';
 							break;
 						default:	
@@ -4139,20 +4095,41 @@ var UserAgents = (function(){
 							break;
 					}
 				}
-			}
-
-			if (match = /Chrome\/([0-9.]*) Mobile/.exec(ua)) {
-				this.browser.stock = false;
-				this.browser.name = 'Chrome';
-				this.browser.version = new Version({ value: match[1] });
-
-				switch (match[1].split('.', 3).join('.')) {
-					case '18.0.1025':
-						this.browser.channel = 'Beta';
-						break;
-					default:	
-						this.browser.channel = 'Nightly';
-						break;
+								
+				else {
+					switch (match[1].split('.', 3).join('.')) {
+						case '0.2.149':
+						case '0.3.154':
+						case '0.4.154':
+						case '1.0.154':
+						case '2.0.172':
+						case '3.0.195':
+						case '4.0.249':
+						case '4.1.249':
+						case '5.0.375':
+						case '6.0.472':
+						case '7.0.517':
+						case '8.0.552':
+						case '9.0.597':
+						case '10.0.648':
+						case '11.0.696':
+						case '12.0.742':
+						case '13.0.782':
+						case '14.0.835':
+						case '15.0.874':
+						case '16.0.912':
+						case '17.0.963':
+						case '18.0.1025':
+							if (this.browser.version.minor == 0) 
+								this.browser.version.details = 1;
+							else
+								this.browser.version.details = 2;
+								
+							break;
+						default:	
+							this.browser.channel = 'Nightly';
+							break;
+					}
 				}
 			}
 			
