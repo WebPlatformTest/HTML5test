@@ -2699,6 +2699,7 @@ var UserAgents = (function(){
 		
 			if (ua.match('Android')) {
 				this.os.name = 'Android';
+				this.os.version = null;
 
 				if (match = /Android(?: )?(?:AllPhone_)?(?:\/)?v?([0-9.]+)/.exec(ua.replace('-update', '.'))) {
 					this.os.version = new Version({ value: match[1], details: 3 })
