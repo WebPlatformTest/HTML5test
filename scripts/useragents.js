@@ -4850,7 +4850,7 @@ var UserAgents = (function(){
 				}
 				
 				if (this.browser.name == 'Chrome'){
-					if (! /Chrome\/([0-9]{1,2}\.[0-9]\.[0-9]{3,4}\.[0-9]+)/.exec(ua)) {
+					if (! /(?:Chrome|CrMo)\/([0-9]{1,2}\.[0-9]\.[0-9]{3,4}\.[0-9]+)/.exec(ua)) {
 						this.features.push('wrongVersion');
 						this.camouflage = true;			
 					}
