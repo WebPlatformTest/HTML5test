@@ -3,6 +3,9 @@ AddOutputFilterByType DEFLATE text/css
 AddOutputFilterByType DEFLATE text/javascript
 
 RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.html5test\.com$
+RewriteRule ^ http://html5test.com%{REQUEST_URI} [L,R=301]
+
 RewriteRule ^compare.html$					/compare/browser/index.html								[R]
 RewriteRule ^results.html$					/results/desktop.html									[R]
 RewriteRule ^results-mobile.html$			/results/mobile.html									[R]
