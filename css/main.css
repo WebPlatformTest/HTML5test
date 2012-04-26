@@ -816,18 +816,20 @@ body {
 	cursor: pointer;
 	padding-left: 28px;
 }
-.resultsTable table tr.hasChild th::before {
+.resultsTable table tr.hasChild th > * {
+	position: relative;
+}
+.resultsTable table tr.hasChild th > ::before {
 	position: absolute;
-	top: 7px;
-	left: 8px;
+	top: 0px;
+	left: -18px;
 
 	display: block;
 	content: '▼';
 	color: #888;
 	font-size: 11px;
 }
-.resultsTable table tr.hasChild.hidden th::before {
-	left: 10px;
+.resultsTable table tr.hasChild.hidden th > ::before {
 	content: '▶';
 	font-size: 10px;
 }
@@ -898,7 +900,6 @@ body {
 	padding: 5px 8px;
 	text-align: left;
 	font-weight: normal;
-	position: relative;
 }
 .comparisonTable table th code {
 	font-size: 12px;
@@ -924,18 +925,20 @@ body {
 	cursor: pointer;
 	padding-left: 28px;
 }
-.comparisonTable table tr.hasChild th::before {
+.comparisonTable table tr.hasChild th > * {
+	position: relative;
+}
+.comparisonTable table tr.hasChild th > ::before {
 	position: absolute;
-	top: 6px;
-	left: 7px;
-
+	top: -1px;
+	left: -18px;
+	
 	display: block;
 	content: '▼';
 	color: #888;
 	font-size: 11px;
 }
-.comparisonTable table tr.hasChild.hidden th::before {
-	left: 9px;
+.comparisonTable table tr.hasChild.hidden th > ::before {
 	content: '▶';
 	font-size: 10px;
 }

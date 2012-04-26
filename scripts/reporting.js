@@ -396,7 +396,7 @@
 					if (this.options.links && typeof tests[i].url != 'undefined') 
 						th.innerHTML = "<a href='" + tests[i].url + "'>" + tests[i].name + "</a>";
 					else
-						th.innerHTML = tests[i].name;
+						th.innerHTML = "<span>" + tests[i].name + "</span>";
 					
 					tr.appendChild(th);
 					
