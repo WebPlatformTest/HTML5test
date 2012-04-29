@@ -15,6 +15,7 @@
 		<script src='/scripts/jquery/jquery-1.7.2.min.js' type='text/javascript'></script>
 		<script src='/scripts/highcharts/highcharts.src.js' type='text/javascript'></script>
 		<script src="/scripts/highcharts/modules/exporting.js" type="text/javascript"></script>
+		<script src="/scripts/fullscreen.js" type="text/javascript"></script>
 
 		<link rel="icon" href="/images/icon.png">
 		<link rel="apple-touch-icon" href="/images/button.png">
@@ -170,7 +171,10 @@
 					
 					<?php if ($type == 'desktop' || $type == 'mobile' || $type == 'tablet'): ?>
 					<hr>
+					
+					<div id='fsCanvas'>
 					<h2>Timeline</h2>
+					<button id='fsButton' style='display: none;'></button>
 					<br>
 					
 					<div id='timelineGraph' style='height: 500px;'></div>
@@ -267,8 +271,21 @@
 							}
 						}
 						
-
+						var canvas = document.getElementById('fsCanvas');
+						var button = document.getElementById('fsButton');
+						
+						if (canvas.requestFullscreen) {
+							button.style.display = '';
+							button.addEventListener('click', function() {
+								if (document.fullscreenEnabled) 
+									document.exitFullscreen();
+								else
+									canvas.requestFullscreen();
+							}, true);
+						}
+						
 					</script>
+					</div>
 					<?php endif; ?>
 					
 					<hr>

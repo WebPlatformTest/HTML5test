@@ -1462,3 +1462,81 @@ body {
 		display: none;
 	}
 }
+
+
+#fsCanvas {
+	position: relative;
+}
+#fsButton {
+	position: absolute;
+	top: 30px;
+	right: 8px;
+	z-index: 10000;
+
+	border: none;
+	background: none;
+	color: #888;
+	font-size: 26px;
+	font-weight: bold;
+
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	
+	cursor: pointer;
+}
+#fsButton::before {
+	display: inline;
+	content: '↔';
+}
+
+
+div:-webkit-full-screen {
+	background: #fff;
+	width: 100% !important;
+	height: 100% !important;
+}
+div:-webkit-full-screen h2 {
+	display: none;
+}
+div:-webkit-full-screen #fsButton {
+	top: 10px;
+	right: 40px;
+}
+div:-webkit-full-screen #fsButton::before {
+	content: '+';
+}
+div:-webkit-full-screen #timelineGraph {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	bottom: 30px;
+	right: 30px;
+	height: auto !important;
+}
+
+div:-moz-full-screen {
+	background: #fff;
+	width: 100% !important;
+	height: 100% !important;
+}
+div:-moz-full-screen h2 {
+	display: none;
+}
+div:-moz-full-screen #fsButton {
+	top: 10px;
+	right: 34px;
+}
+div:-moz-full-screen #fsButton::before {
+	content: '+';
+}
+div:-moz-full-screen #timelineGraph {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	bottom: 30px;
+	right: 30px;
+	height: auto !important;
+}
