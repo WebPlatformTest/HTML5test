@@ -190,8 +190,7 @@
 					var passed = null;
 				
 					var key = id + '-' + tests[i].id;
-					key = key.replace('formvalidation', 'validation');	/* temporary */
-				
+						
 					if (match = (new RegExp(key + '=([0|1])')).exec(data.results))
 						passed = match[1] == '1';
 					else
