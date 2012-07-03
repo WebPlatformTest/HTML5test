@@ -89,7 +89,7 @@
 						columns:		3,
 						
 						onChange:		function(ids) {
-											if (window.history) {
+											if (window.history && window.history.replaceState) {
 												if (ids.length) 
 													window.history.replaceState([], document.title, '/compare/browser/' + ids.join('/') + '.html');
 												else
