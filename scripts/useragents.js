@@ -3505,6 +3505,17 @@ var UserAgents = (function(){
 			}
 			
 			/****************************************************
+			 *		MachBlue XT
+			 */
+
+			if (match = /mbxtWebKit\/([0-9.]*)/.exec(ua)) {
+				this.os.name = '';
+				this.browser.name = 'MachBlue XT'
+				this.browser.version = new Version({ value: match[1], details: 2 });
+				this.device.type = 'television';
+			}
+
+			/****************************************************
 			 *		ADB
 			 */
 
