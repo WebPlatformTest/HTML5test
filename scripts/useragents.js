@@ -3566,6 +3566,18 @@ var UserAgents = (function(){
 			}
 			
 			/****************************************************
+			 *		Winbox Evo2
+			 */
+
+			if (match = /Winbox Evo2/.exec(ua)) {
+				this.os.name = '';
+				this.device.manufacturer = 'Winbox';
+				this.device.model = 'Evo2';
+				this.device.type = 'television';
+				this.device.identified = true;
+			}
+			
+			/****************************************************
 			 *		Roku
 			 */
 
