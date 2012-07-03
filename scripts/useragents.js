@@ -3522,7 +3522,7 @@ var UserAgents = (function(){
 			if (match = /\(ADB; ([^\)]+)\)/.exec(ua)) {
 				this.os.name = '';
 				this.device.manufacturer = 'ADB';
-				this.device.model = match[1].replace('ADB','') + ' IPTV receiver';
+				this.device.model = (match[1] != 'Unknown' ? match[1].replace('ADB','') + ' ' : '') + 'IPTV receiver';
 				this.device.type = 'television';
 				this.device.identified = true;
 			}
