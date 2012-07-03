@@ -2109,7 +2109,8 @@ Test = (function() {
 								Browsers.isOs('Meego') || 
 								Browsers.isBrowser('Chrome') ||
 								Browsers.isBrowser('Firefox') ||
-								Browsers.isBrowser('Opera')
+								Browsers.isBrowser('Opera') || 
+								Browsers.isBrowser('Polaris', '>=', '8')
 							) ||
 							Browsers.isType('television') && (
 								Browsers.isBrowser('Espial') ||
