@@ -3598,11 +3598,44 @@ var UserAgents = (function(){
 				this.device.identified = true;
 			}
 			
+			if (match = /HbbTV\/1.1.1 \([^;]*;\s*([^;]*)\s*;\s*([^;]*)\s*;/.exec(ua)) {
+				var vendorName = match[1].trim();
+				var modelName = match[2].trim();
+				
+				if (!this.device.manufacturer && vendorName != '' && vendorName != 'vendorName') {
+					switch(vendorName) {
+						case 'LGE':		this.device.manufacturer = 'LG'; break;
+						case 'TOSHIBA':	this.device.manufacturer = 'Toshiba'; break;
+						case 'smart':	this.device.manufacturer = 'Smart'; break;
+						case 'tv2n':	this.device.manufacturer = 'TV2N'; break;
+						default:		this.device.manufacturer = vendorName;
+					}
+
+					if (!this.device.model && modelName != '' && modelName != 'modelName') {
+						switch(modelName) {
+							case 'GLOBAL_PLAT3':	this.device.model = 'NetCast TV'; break;
+							case 'SmartTV2012':		this.device.model = 'Smart TV 2012'; break;
+							case 'videoweb':		this.device.model = 'Videoweb'; break;
+							default:				this.device.model = modelName;
+						}
+						
+						if (vendorName == 'Humax') {
+							this.device.model = this.device.model.toUpperCase();
+						}
+	
+						this.device.identified = true;
+						this.os.name = '';
+					}
+				}
+
+				this.device.type = 'television';
+			}
+			
 			/****************************************************
 			 *		Detect type based on common identifiers
 			 */
 
-			if (ua.match('HbbTV')) {
+			if (ua.match('InettvBrowser')) {
 				this.device.type = 'television';
 			}
 
