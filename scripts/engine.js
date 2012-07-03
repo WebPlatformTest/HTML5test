@@ -2114,6 +2114,7 @@ Test = (function() {
 							) ||
 							Browsers.isType('television') && (
 								Browsers.isBrowser('Espial') ||
+								Browsers.isBrowser('MachBlue XT') ||
 								Browsers.isEngine('Presto', '>=', '2.9')
 							);
 			
