@@ -1399,6 +1399,7 @@ Test = (function() {
 			});
 			
 			var blacklist = Browsers.isBrowser('Maxthon');
+
 			var element = this.createInput('color');
 									
 			element.field.value = "foobar";					
