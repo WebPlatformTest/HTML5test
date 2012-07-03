@@ -1251,7 +1251,7 @@ Test = (function() {
 				
 				group.setItem({
 					id:			'ui',
-					passed:		minimal && baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+					passed:		!blacklist && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 					value: 		2
 				});
 				
@@ -1340,7 +1340,7 @@ Test = (function() {
 				
 				group.setItem({
 					id:			'ui',
-					passed:		minimal && baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+					passed:		minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 					value: 		2
 				});
 				
@@ -1398,6 +1398,7 @@ Test = (function() {
 				id:		'color'
 			});
 			
+			var blacklist = Browsers.isBrowser('Maxthon');
 			var element = this.createInput('color');
 									
 			element.field.value = "foobar";					
@@ -1422,7 +1423,7 @@ Test = (function() {
 			
 			group.setItem({
 				id:			'ui',
-				passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+				passed:		!blacklist && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 				value: 		2
 			});
 				
