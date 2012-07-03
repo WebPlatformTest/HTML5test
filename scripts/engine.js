@@ -1220,6 +1220,15 @@ Test = (function() {
 			
 			/* input type=datetime, date, month, week, time and datetime-local */
 			
+			try {
+				var styles = document.createElement('style');
+				styles.innerHTML = "input[type=date]::-webkit-textfield-decoration-container, input[type=datetime]::-webkit-textfield-decoration-container, input[type=month]::-webkit-textfield-decoration-container, input[type=week]::-webkit-textfield-decoration-container, input[type=time]::-webkit-textfield-decoration-container, input[type=datetime-local]::-webkit-textfield-decoration-container { padding: 10px; }";
+				(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(styles)
+			} catch(e) {
+			}
+			
+			var blacklist = Browsers.isBrowser('Maxthon');
+			
 			var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
 			for (var t in types) {
 				var group = this.section.getGroup({
@@ -1287,6 +1296,13 @@ Test = (function() {
 			
 			
 			/* input type=number, range */
+			
+			try {
+				var styles = document.createElement('style');
+				styles.innerHTML = "input[type=number]::-webkit-outer-spin-button { display: inline; padding: 60px; }";
+				(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(styles)
+			} catch(e) {
+			}
 			
 			var types = ['number', 'range'];
 			for (var t in types) {
