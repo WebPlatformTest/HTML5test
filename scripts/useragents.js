@@ -4093,8 +4093,10 @@ var UserAgents = (function(){
 				if (this.os.name == 'Android') {
 					switch (match[1].split('.', 3).join('.')) {
 						case '16.0.912':
-						case '18.0.1025':
 							this.browser.channel = 'Beta';
+							break;
+						case '18.0.1025':
+							this.browser.version.details = 1;
 							break;
 						default:	
 							this.browser.channel = 'Nightly';
@@ -4126,6 +4128,8 @@ var UserAgents = (function(){
 						case '16.0.912':
 						case '17.0.963':
 						case '18.0.1025':
+						case '19.0.1084':
+						case '20.0.1132':
 							if (this.browser.version.minor == 0) 
 								this.browser.version.details = 1;
 							else
