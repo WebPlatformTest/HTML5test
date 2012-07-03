@@ -2107,6 +2107,7 @@ Test = (function() {
 								Browsers.isOs('BlackBerry OS') || 
 								Browsers.isOs('BlackBerry Tablet OS') || 
 								Browsers.isOs('Meego') || 
+								Browsers.isOs('Tizen') || 
 								Browsers.isBrowser('Chrome') ||
 								Browsers.isBrowser('Firefox') ||
 								Browsers.isBrowser('Opera') || 
