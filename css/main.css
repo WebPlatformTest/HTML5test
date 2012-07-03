@@ -571,12 +571,14 @@ body {
 	-o-box-shadow: 0px 0px 5px #999;
 	box-shadow: 0px 0px 5px #999;
 
+	background: #f0f0f0;
 	background: #f0f0f0 -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#f6f6f6), color-stop(0.5, #f6f6f6), color-stop(0.5, #e6e6e6));
 	background: #f0f0f0 -moz-linear-gradient(top, #e6e6e6, #f6f6f6 50%, #e6e6e6 50%, #f6f6f6);
 	background: #f0f0f0 -ms-linear-gradient(top, #e6e6e6, #f6f6f6 50%, #e6e6e6 50%, #f6f6f6);
 	background: #f0f0f0 -o-linear-gradient(top, #e6e6e6, #f6f6f6 50%, #e6e6e6 50%, #f6f6f6);
 }
 .rankingPanel dl#winner {
+	background: #e04f2e;
 	background: #e04f2e -webkit-gradient(linear, left top, left bottom, from(#ec6534), to(#e04f2e), color-stop(0.5, #ec6534), color-stop(0.5, #e04f2e));
 	background: #e04f2e -moz-linear-gradient(top, #ec6534, #e04f2e 50%, #ec6534 50%, #e04f2e);
 	background: #e04f2e -ms-linear-gradient(top, #ec6534, #e04f2e 50%, #ec6534 50%, #e04f2e);
