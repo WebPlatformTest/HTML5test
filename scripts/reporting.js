@@ -569,6 +569,7 @@
 				var cell = row.childNodes[column + 1];
 				cell.className = '';
 				
+				var item;
 				if (item = this.getItemById(this.options.tests, data.id)) {
 					cell.firstChild.firstChild.innerHTML = '<span class="feature">' + item.name + '</span>';
 				}
