@@ -4579,7 +4579,7 @@ var UserAgents = (function(){
 		
 			if (ua.match('UCWEB')) {
 				this.browser.stock = false;
-				this.browser.name = 'UC Web';
+				this.browser.name = 'UC Browser';
 				
 				if (match = /UCWEB([0-9]*[.][0-9]*)/.exec(ua)) {
 					this.browser.version = new Version({ value: match[1], details: 3 });
