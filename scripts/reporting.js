@@ -322,7 +322,7 @@
 							switch(this.options.browsers[i].type) {
 								case 'desktop':		item.innerHTML = t('Desktop browsers'); break;
 								case 'gaming':		item.innerHTML = t('Gaming'); break;
-								case 'mobile':		item.innerHTML = t('Mobile phones'); break;
+								case 'mobile':		item.innerHTML = t('Mobiles'); break;
 								case 'tablet':		item.innerHTML = t('Tablets'); break;
 								case 'television':	item.innerHTML = t('Television'); break;
 							}
@@ -716,7 +716,7 @@
 					switch(this.browsers[i].type) {
 						case 'desktop':		th.innerHTML = '<h3>' + t('Desktop browsers') + '</h3>'; break;
 						case 'gaming':		th.innerHTML = '<h3>' + t('Gaming') + '</h3>'; break;
-						case 'mobile':		th.innerHTML = '<h3>' + t('Mobile phones') + '</h3>'; break;
+						case 'mobile':		th.innerHTML = '<h3>' + t('Mobiles') + '</h3>'; break;
 						case 'tablet':		th.innerHTML = '<h3>' + t('Tablets') + '</h3>'; break;
 						case 'television':	th.innerHTML = '<h3>' + t('Television') + '</h3>'; break;
 					}
