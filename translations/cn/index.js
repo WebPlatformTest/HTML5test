@@ -288,6 +288,7 @@ var translation = {
 	
 	
 	'Desktop<span> browsers</span>':			'电脑上的浏览器',
+	'Desktop browsers':							'电脑上的浏览器',
 	'Tablets':									'平板上的浏览器',
 	'Mobiles':									'手机上的浏览器',
 	'Gaming':									'',
