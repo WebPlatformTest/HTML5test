@@ -1,5 +1,8 @@
 Test = (function() {			
 	
+	var blacklists = {};
+	var whitelists = {};
+	
 	function test (c) { this.initialize(c) }
 	test.prototype = {
 		suites: [ 
@@ -9,6 +12,43 @@ Test = (function() {
 		],
 		
 		initialize: function(c) {					
+			blacklists = {
+				dateFields:			Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser'),
+				colorField:			Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser'),
+				rangeField:			Browsers.isBrowser('UC Browser'),
+				subtitle:			Browsers.isBrowser('Maxthon'),
+				getUserMedia:		Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
+				webgl:				Browsers.isBrowser('Maxthon'),
+			};		
+			
+			whitelists = {
+				contentEditable:	Browsers.isType('desktop') ||
+									Browsers.isType('mobile', 'tablet', 'media') && (
+										Browsers.isOs('iOS', '>=', '5') || 
+										Browsers.isOs('Android', '>=', '4') || 
+										Browsers.isOs('Windows Phone', '>=', '7.5') || 
+										Browsers.isOs('BlackBerry') || 
+										Browsers.isOs('BlackBerry OS') || 
+										Browsers.isOs('BlackBerry Tablet OS') || 
+										Browsers.isOs('Meego') || 
+										Browsers.isOs('Tizen') || 
+										Browsers.isBrowser('Chrome') ||
+										Browsers.isBrowser('Firefox') ||
+										Browsers.isBrowser('Opera') || 
+										Browsers.isBrowser('Polaris', '>=', '8')
+									) ||
+									Browsers.isType('television') && (
+										Browsers.isBrowser('Espial') ||
+										Browsers.isBrowser('MachBlue XT') ||
+										Browsers.isEngine('Presto', '>=', '2.9')
+									),
+									
+				dragdrop:			Browsers.isType('desktop') ||
+									Browsers.isType('mobile', 'tablet', 'media') && (
+										Browsers.isBrowser('Opera')
+									)	
+			};
+	
 			this.backgroundTasks = {};
 			this.callback = c;
 			
@@ -665,7 +705,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:		'subtitle',
-				passed:	'track' in document.createElement('track'), 
+				passed:	!blacklists.subtitle && 'track' in document.createElement('track'), 
 				value: 	10
 			});
 			
@@ -815,7 +855,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:		'getUserMedia',
-				passed:	!!navigator.getUserMedia || !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia, 
+				passed:	!blacklists.getUserMedia && (!!navigator.getUserMedia || !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia), 
 				value: 	20
 			});
 		}
@@ -1227,8 +1267,6 @@ Test = (function() {
 			} catch(e) {
 			}
 			
-			var blacklist = Browsers.isBrowser('Maxthon');
-			
 			var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
 			for (var t in types) {
 				var group = this.section.getGroup({
@@ -1251,7 +1289,7 @@ Test = (function() {
 				
 				group.setItem({
 					id:			'ui',
-					passed:		!blacklist && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+					passed:		!blacklists.dateFields && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 					value: 		2
 				});
 				
@@ -1340,7 +1378,7 @@ Test = (function() {
 				
 				group.setItem({
 					id:			'ui',
-					passed:		minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+					passed:		(t != 'range' || !blacklists.rangeField) && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 					value: 		2
 				});
 				
@@ -1398,8 +1436,6 @@ Test = (function() {
 				id:		'color'
 			});
 			
-			var blacklist = Browsers.isBrowser('Maxthon');
-
 			var element = this.createInput('color');
 									
 			element.field.value = "foobar";					
@@ -1424,7 +1460,7 @@ Test = (function() {
 			
 			group.setItem({
 				id:			'ui',
-				passed:		!blacklist && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+				passed:		!blacklists.colorField && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 				value: 		2
 			});
 				
@@ -2021,24 +2057,19 @@ Test = (function() {
 			/* Drag and drop */
 			var element = document.createElement('div');
 			
-			var whitelist = Browsers.isType('desktop') ||
-							Browsers.isType('mobile', 'tablet', 'media') && (
-								Browsers.isBrowser('Opera')
-							);
-
 			var group = this.section.getGroup({
 				id:		'attributes'
 			});
 			
 			group.setItem({
 				id:			'draggable',
-				passed:		'draggable' in element && whitelist,
+				passed:		'draggable' in element && whitelists.dragdrop,
 				value:		10
 			});
 
 			group.setItem({
 				id:			'dropzone',
-				passed:		('dropzone' in element || 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element) && whitelist,
+				passed:		('dropzone' in element || 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element) && whitelists.dragdrop,
 				value:		2
 			});
 			
@@ -2049,7 +2080,7 @@ Test = (function() {
 			/* We need to check if the draggable attribute is supported, because older versions of IE do
 			   support the incompatible versions of the events below. IE 9 and up do support the HTML5
 			   events in combination with the draggable attribute */
-			var supported = 'draggable' in element && whitelist;
+			var supported = 'draggable' in element && whitelists.dragdrop;
 
 			group.setItem({
 				id:			'ondrag',
@@ -2098,40 +2129,19 @@ Test = (function() {
 
 			var element = document.createElement('div');
 
-			var whitelist = Browsers.isType('desktop') ||
-							Browsers.isType('mobile', 'tablet', 'media') && (
-								Browsers.isOs('iOS', '>=', '5') || 
-								Browsers.isOs('Android', '>=', '4') || 
-								Browsers.isOs('Windows Phone', '>=', '7.5') || 
-								Browsers.isOs('BlackBerry') || 
-								Browsers.isOs('BlackBerry OS') || 
-								Browsers.isOs('BlackBerry Tablet OS') || 
-								Browsers.isOs('Meego') || 
-								Browsers.isOs('Tizen') || 
-								Browsers.isBrowser('Chrome') ||
-								Browsers.isBrowser('Firefox') ||
-								Browsers.isBrowser('Opera') || 
-								Browsers.isBrowser('Polaris', '>=', '8')
-							) ||
-							Browsers.isType('television') && (
-								Browsers.isBrowser('Espial') ||
-								Browsers.isBrowser('MachBlue XT') ||
-								Browsers.isEngine('Presto', '>=', '2.9')
-							);
-			
 			var group = this.section.getGroup({
 				id:		'editingElements'
 			});
 			
 			group.setItem({
 				id:			'contentEditable',
-				passed:		'contentEditable' in element && whitelist, 
+				passed:		'contentEditable' in element && whitelists.contentEditable, 
 				value: 		8
 			});
 
 			group.setItem({
 				id:			'isContentEditable',
-				passed:		'isContentEditable' in element && whitelist, 
+				passed:		'isContentEditable' in element && whitelists.contentEditable, 
 				value: 		1
 			});
 			
@@ -2141,7 +2151,7 @@ Test = (function() {
 
 			group.setItem({
 				id:			'designMode',
-				passed:		'designMode' in document && whitelist, 
+				passed:		'designMode' in document && whitelists.contentEditable, 
 				value: 		2
 			});
 			
@@ -2151,37 +2161,37 @@ Test = (function() {
 
 			group.setItem({
 				id:			'execCommand',
-				passed:		'execCommand' in document && whitelist, 
+				passed:		'execCommand' in document && whitelists.contentEditable, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandEnabled',
-				passed:		'queryCommandEnabled' in document && whitelist, 
+				passed:		'queryCommandEnabled' in document && whitelists.contentEditable, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandIndeterm',
-				passed:		'queryCommandIndeterm' in document && whitelist, 
+				passed:		'queryCommandIndeterm' in document && whitelists.contentEditable, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandState',
-				passed:		'queryCommandState' in document && whitelist, 
+				passed:		'queryCommandState' in document && whitelists.contentEditable, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandSupported',
-				passed:		'queryCommandSupported' in document && whitelist, 
+				passed:		'queryCommandSupported' in document && whitelists.contentEditable, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandValue',
-				passed:		'queryCommandValue' in document && whitelist, 
+				passed:		'queryCommandValue' in document && whitelists.contentEditable, 
 				value: 		1
 			});
 
@@ -2381,7 +2391,7 @@ Test = (function() {
 				
 			this.section.setItem({
 				id:			'context',
-				passed:		r, 
+				passed:		!blacklists.webgl && r, 
 				value: 		15
 			});
 
