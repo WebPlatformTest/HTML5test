@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>The HTML5 test - How well does your browser support HTML5?</title>	
+		<title data-i18n>The HTML5 test - How well does your browser support HTML5?</title>	
 
 		<meta charset="UTF-8">
 		
@@ -15,9 +15,13 @@
 		<link href='//fonts.googleapis.com/css?family=Alfa+Slab+One' rel='stylesheet' type='text/css'>
 		
 		<link rel="stylesheet" href="/css/main.css" type="text/css">
+
+		<script src='/translation.js' type='text/javascript'></script>
+
 		<script src='/scripts/useragents.js' type='text/javascript'></script>
 		<script src='/scripts/engine.js' type='text/javascript'></script>
 		<script src='/scripts/data.js' type='text/javascript'></script>
+		<script src='/scripts/template.js' type='text/javascript'></script>
 		<script src='/scripts/reporting.js' type='text/javascript'></script>
 
 		<link rel="icon" href="/images/icon.png">
@@ -73,13 +77,13 @@
 		<div id="fb-root"></div>
 
 		<div class='header'>
-			<h1>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
+			<h1 data-i18n>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
 			<ul>
-				<li class='selected'><a href='/index.html'>Your browser</a></li>
-				<li><a href='/results/desktop.html'>Other<span> browser</span>s</a></li>
-				<li><a href='/compare/browser/index.html'>Compare</a></li>
+				<li class='selected'><a href='/index.html' data-i18n>Your browser</a></li>
+				<li><a href='/results/desktop.html' data-i18n>Other<span> browser</span>s</a></li>
+				<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
 
-				<li class='right'><a href='/about.html'>About<span> the test</span></a></li>
+				<li class='right'><a href='/about.html' data-i18n>About<span> the test</span></a></li>
 			</ul>
 		</div>
 		
@@ -105,7 +109,7 @@
 				<div>
 					<span id='html5'></span>
 					
-					<p>
+					<p data-i18n='index-intro-1'>
 						The HTML5 test score is an indication of how well your browser supports the 
 						upcoming HTML5 standard and related specifications. Even though the specification
 						isn't finalized yet, all major browser manufacturers are making sure their
@@ -114,27 +118,27 @@
 					</p>
 					
 					<div class='ads'>
-						<p>Sponsors</p>
+						<p data-i18n>Sponsors</p>
 					
 						<!-- BuySellAds.com Zone Code -->
 						<div id="bsap_1262954" class="bsarocks bsap_6c18c40d896c427f049e74e4c708ab51"></div>
 						<!-- End BuySellAds.com Zone Code -->				
 					</div>
 					
-					<p>
+					<p data-i18n='index-intro-2'>
 						The HTML5 test does not try to test all of the new features offered by HTML5, nor does it try to test the functionality of each feature it does detect. 
 						Despite these shortcomings we hope that by quantifying the level of support users and web developers will get an idea of how hard the 
 						browser manufacturers work on improving their browsers and the web as a development platform.
 					</p>
 					
-					<p>
+					<p data-i18n='index-intro-3'>
 						The score is calculated by testing for the many new features of HTML5. Each feature is worth one or more points. Apart from the main HTML5 
 						specification and other specifications created the W3C HTML Working Group, this test also awards points for supporting related drafts and 
 						specifications. Some of these specifications were initially part of HTML5, but are now further developed by other W3C working groups. 
 						WebGL is also part of this test despite not being developed by the W3C, because it extends the HTML5 canvas element with a 3d context.
 					</p>
 					
-					<p>
+					<p data-i18n='index-intro-4'>
 						The test also awards bonus points for supporting audio and video codecs and supporting SVG or MathML embedding in a plain HTML document. 
 						These test do not count towards the total score because HTML5 does not specify any required audio or video codec. Also SVG and MathML are 
 						not required by HTML5, the specification only specifies rules for how such content should be embedded inside a plain HTML file.
@@ -148,13 +152,13 @@
 						<!-- End BuySellAds.com Zone Code -->
 					</div>
 
-					<p>
+					<p data-i18n='index-intro-5'>
 						Please be aware that the specifications that are being tested are still in development and could change before receiving an official status.
 						In the future new tests will be added for the pieces of the specification that are currently still missing. 
 						The maximum number of points that can be scored is <span id='total'>0</span> at this moment, but this is a moving goalpost.
 					</p>
 					
-					<p> 
+					<p data-i18n='index-intro-6'> 
 						The HTML5 test is created by Niels Leenheer. Visit my website at <a href='http://rakaz.nl'>rakaz.nl</a> or follow me on <a href='http://twitter.com/rakaz'>twitter</a>.
 					</p>
 	
@@ -172,13 +176,9 @@
 				</div>
 				
 				<div class='copyright'>
-					<p>
-						Copyright 2010-2012 by Sights
-					</p>
-					<p>
-						April, 2012 - version 3.0
-					</p>
-					<p>
+					<p>Copyright 2010-2012 by Sights</p>
+					<p>April, 2012 - version 3.0</p>
+					<p data-i18n='footer'>
 						The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
 						Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
 					</p>
@@ -204,10 +204,10 @@
 					this.useragent = document.createElement('p');
 					this.useragent.className = 'useragent';
 					parent.appendChild(this.useragent);
-					this.useragent.innerHTML = 'You are using ' + Browsers;
+					this.useragent.innerHTML = t('You are using') + ' ' + Browsers;
 					
 					this.confirm = document.createElement('span');
-					this.confirm.innerHTML = 'Correct?';
+					this.confirm.innerHTML = t('Correct?');
 					this.useragent.appendChild(this.confirm);
 					
 					var correct = document.createElement('a');
@@ -232,7 +232,7 @@
 
 					this.thanks = document.createElement('span');
 					this.thanks.style.display = 'none';
-					this.thanks.innerHTML = 'Thanks!';
+					this.thanks.innerHTML = t('Thanks!');
 					this.useragent.appendChild(this.thanks);				
 				},
 
@@ -335,13 +335,16 @@
 				
 				/* Update total score */
 				var results = document.getElementById('results');
-				results.innerHTML = 
+				results.innerHTML = tim(
 					"<div class='scorePanel'>" + 
-					"<p class='intro'>Your browser scores</p>" +
-					"<h2>" + r.score + "</h2>" + 
-					"<h3>and " + (r.bonus ? r.bonus : 'no') + " bonus point" + (r.bonus != 1 ? 's' : '') + "</h3>" + 
-					"<p>out of a total of " + r.maximum + " points</p>" +
-					"</div>";
+					"<p class='intro'>" + t('Your browser scores') + "</p>" +
+					"<h2>{{score}}</h2>" + 
+					(r.bonus == 0 ? '<h3>' + t('and no bonus points') + '</h3>' : '') + 
+					(r.bonus == 1 ? '<h3>' + t('and 1 bonus point') + '</h3>' : '') + 
+					(r.bonus > 1  ? '<h3>' + t('and {{bonus}} bonus points') + '</h3>' : '') + 
+					"<p>" + t('out of a total of {{maximum}} points') + "</p>" +
+					"</div>",
+				r);
 					
 
 				var total = document.getElementById('total');
@@ -385,7 +388,7 @@
 				/* Submit results */
 				var payload = '{' +
 							  '"version": "3",' +
-							  '"revision": "16",' +
+							  '"revision": "17",' +
 							  '"uniqueid": "' + r.uniqueid + '",' +
 							  '"score": ' + r.score + ',' +
 							  '"bonus": ' + r.bonus + ',' +

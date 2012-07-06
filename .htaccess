@@ -6,6 +6,11 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.html5test\.com$
 RewriteRule ^ http://html5test.com%{REQUEST_URI} [L,R=301]
 
+RewriteCond %{HTTP_HOST} ^(beta.)?cn.html5test.com
+RewriteRule ^translation.js$				/translations/cn/index.js
+
+RewriteRule ^translation.js$				/translations/en/index.js
+
 RewriteRule ^compare.html$					/compare/browser/index.html								[R]
 RewriteRule ^results.html$					/results/desktop.html									[R]
 RewriteRule ^results-mobile.html$			/results/mobile.html									[R]

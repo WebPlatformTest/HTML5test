@@ -1,3 +1,4 @@
+	
 	(function(win, doc){
 		if(win.addEventListener)return;		//No need to polyfill
 	
@@ -88,7 +89,7 @@
 			function process(r) {
 				that.updateColumn(column, {
 					id:				'mybrowser',
-					nickname:		'My browser',
+					nickname:		t('My browser'),
 					score:			r.score,
 					bonus:			r.bonus,
 					points:			r.points,
@@ -162,7 +163,7 @@
 				var row = document.getElementById('row-header');
 				var cell = row.childNodes[column + 1];
 				cell.className = '';
-				cell.firstChild.firstChild.innerHTML = '<span class="nickname">' + data.nickname + '</span><span class="score">' + data.score + '</span><span class="bonus">' + data.bonus + ' bonus points</span>';
+				cell.firstChild.firstChild.innerHTML = '<span class="nickname">' + t(data.nickname) + '</span><span class="score">' + data.score + '</span><span class="bonus">' + data.bonus + ' ' + t('bonus points') + '</span>';
 			}
 			
 			for (var i = 0; i < this.tests.length; i++) {
@@ -182,7 +183,7 @@
 						var cell = row.childNodes[column + 1];
 						
 						if (this.options.bonus && bonus > 0) {
-							cell.innerHTML += "<span class='bonus'>+" + bonus + "<span> bonus points</span></span>";
+							cell.innerHTML += "<span class='bonus'>+" + bonus + "<span> " + t('bonus points') + "</span></span>";
 						}
 												
 						if (this.options.grading) {
@@ -232,21 +233,21 @@
 						var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
 					
 						if (results[0] == results[1])
-							cell.innerHTML = 'Yes <span class="check">✔</span>';
+							cell.innerHTML = t('Yes') + ' <span class="check">✔</span>';
 						else if (results[1] == 0)
-							cell.innerHTML = 'No <span class="ballot">✘</span>';
+							cell.innerHTML = t('No') + ' <span class="ballot">✘</span>';
 						else
-							cell.innerHTML = '<span class="partially">Partial</span> <span class="partial">○</span>';
+							cell.innerHTML = '<span class="partially">' + t('Partial') + '</span> <span class="partial">○</span>';
 					} 
 					
 					else {
 						if (unknown) {
-							cell.innerHTML = '<span class="partially">Unknown</span> <span class="partial">?</span>';
+							cell.innerHTML = '<span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span>';
 						} else {
 							if (passed)
-								cell.innerHTML = 'Yes <span class="check">✔</span>';
+								cell.innerHTML = t('Yes') + ' <span class="check">✔</span>';
 							else
-								cell.innerHTML = 'No <span class="ballot">✘</span>';
+								cell.innerHTML = t('No') + ' <span class="ballot">✘</span>';
 						}
 					}
 
@@ -300,7 +301,7 @@
 					scroll.appendChild(list);	
 					
 					var item = document.createElement('li');
-					item.innerHTML = 'My browser';
+					item.innerHTML = t('My browser');
 					list.appendChild(item);
 
 					(function(c, menu, item, that) {
@@ -319,11 +320,11 @@
 							list.appendChild(item);
 							
 							switch(this.options.browsers[i].type) {
-								case 'desktop':		item.innerHTML = 'Desktop browsers'; break;
-								case 'gaming':		item.innerHTML = 'Gaming'; break;
-								case 'mobile':		item.innerHTML = 'Mobile phones'; break;
-								case 'tablet':		item.innerHTML = 'Tablets'; break;
-								case 'television':	item.innerHTML = 'Television'; break;
+								case 'desktop':		item.innerHTML = t('Desktop browsers'); break;
+								case 'gaming':		item.innerHTML = t('Gaming'); break;
+								case 'mobile':		item.innerHTML = t('Mobile phones'); break;
+								case 'tablet':		item.innerHTML = t('Tablets'); break;
+								case 'television':	item.innerHTML = t('Television'); break;
 							}
 						}
 						
@@ -350,7 +351,7 @@
 						div.addEventListener('click', function(e) { 
 							if (that.data[c] == null) {
 								if (e.altKey) {
-									var id = prompt('Enter the unique id of the results you want to see')
+									var id = prompt(t('Enter the unique id of the results you want to see'))
 									if (id) {
 										that.loadColumn(c, 'custom:' + id);
 									}
@@ -370,7 +371,7 @@
 			for (var i = 0; i < this.tests.length; i++) {
 				if (typeof this.tests[i] == 'string') {
 					var h2 = document.createElement('h2');
-					h2.innerHTML = tests[i];
+					h2.innerHTML = t(tests[i]);
 					parent.appendChild(h2);
 				} else {
 					var table = document.createElement('table');
@@ -385,7 +386,7 @@
 					thead.appendChild(tr);
 					
 					var th = document.createElement('th');
-					th.innerHTML = this.tests[i].name;
+					th.innerHTML = t(this.tests[i].name);
 					tr.appendChild(th);
 
 					for (var c = 0; c < this.options.columns; c++) {
@@ -417,14 +418,14 @@
 						th.className = 'details';
 						tr.appendChild(th);
 	
-						th.innerHTML = tests[i];
+						th.innerHTML = t(tests[i]);
 					}
 				} else {
 					var th = document.createElement('th');
 					if (this.options.links && typeof tests[i].url != 'undefined') 
-						th.innerHTML = "<a href='" + tests[i].url + "'>" + tests[i].name + "</a>";
+						th.innerHTML = "<a href='" + tests[i].url + "'>" + t(tests[i].name) + "</a>";
 					else
-						th.innerHTML = "<span>" + tests[i].name + "</span>";
+						th.innerHTML = "<span>" + t(tests[i].name) + "</span>";
 					
 					tr.appendChild(th);
 					
@@ -451,7 +452,7 @@
 						})(this, tr, th, children);
 					} else {
 						if (this.options.features) {
-							th.innerHTML = "<a href='/compare/feature/" + id + '-' + tests[i].id + ".html'>" + tests[i].name + " <span>»</span></a>";
+							th.innerHTML = "<a href='/compare/feature/" + id + '-' + tests[i].id + ".html'>" + t(tests[i].name) + " <span>»</span></a>";
 						}
 					}
 					
@@ -600,7 +601,7 @@
 				
 				var item;
 				if (item = this.getItemById(this.options.tests, data.id)) {
-					cell.firstChild.firstChild.innerHTML = '<span class="feature">' + item.name + '</span>';
+					cell.firstChild.firstChild.innerHTML = '<span class="feature">' + t(item.name) + '</span>';
 				}
 			}
 			
@@ -609,9 +610,9 @@
 				var cell = row.childNodes[column + 1];
 
 				if (match = (new RegExp(this.browsers[i].id + '=1')).exec(data.supported))
-					cell.innerHTML = 'Yes <span class="check">✔</span>';
+					cell.innerHTML = t('Yes') + ' <span class="check">✔</span>';
 				else
-					cell.innerHTML = 'No <span class="ballot">✘</span>';
+					cell.innerHTML = t('No') + ' <span class="ballot">✘</span>';
 			}
 		},
 
@@ -659,7 +660,7 @@
 					for (var i = 0; i < tests.length; i++) {
 						var item = document.createElement('li');
 						item.className = 'indent-' + tests[i].indent;
-						item.innerHTML = tests[i].name;
+						item.innerHTML = t(tests[i].name);
 						list.appendChild(item);
 
 						
@@ -713,11 +714,11 @@
 					tr.appendChild(th);
 					
 					switch(this.browsers[i].type) {
-						case 'desktop':		th.innerHTML = '<h3>Desktop browsers</h3>'; break;
-						case 'gaming':		th.innerHTML = '<h3>Gaming</h3>'; break;
-						case 'mobile':		th.innerHTML = '<h3>Mobile phones</h3>'; break;
-						case 'tablet':		th.innerHTML = '<h3>Tablets</h3>'; break;
-						case 'television':	th.innerHTML = '<h3>Television</h3>'; break;
+						case 'desktop':		th.innerHTML = '<h3>' + t('Desktop browsers') + '</h3>'; break;
+						case 'gaming':		th.innerHTML = '<h3>' + t('Gaming') + '</h3>'; break;
+						case 'mobile':		th.innerHTML = '<h3>' + t('Mobile phones') + '</h3>'; break;
+						case 'tablet':		th.innerHTML = '<h3>' + t('Tablets') + '</h3>'; break;
+						case 'television':	th.innerHTML = '<h3>' + t('Television') + '</h3>'; break;
 					}
 				}
 	
