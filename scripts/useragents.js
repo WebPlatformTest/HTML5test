@@ -4613,7 +4613,13 @@ var UserAgents = (function(){
 
 			if (ua.match(/\) UC /)) {
 				this.browser.stock = false;
-				this.browser.name = 'UC Web';
+				this.browser.name = 'UC Browser';
+			}
+
+			if (match = /UCBrowser\/([0-9.]*)/.exec(ua)) {
+				this.browser.stock = false;
+				this.browser.name = 'UC Browser';
+				this.browser.version = new Version({ value: match[1], details: 2 });
 			}
 						
 			/****************************************************
