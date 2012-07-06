@@ -4658,7 +4658,7 @@ var UserAgents = (function(){
 			 */
 		
 			if (match = /DolphinHDCN\/([0-9.]*)/.exec(ua)) {
-				this.browser.name = 'Dolphin HD';
+				this.browser.name = 'Dolphin';
 				this.browser.version = new Version({ value: match[1] });
 
 				this.device.type = 'mobile';
@@ -4667,6 +4667,11 @@ var UserAgents = (function(){
 					this.os.name = 'Android';
 					this.os.version = null;
 				}
+			}	
+
+			if (match = /Dolphin\/INT/.exec(ua)) {
+				this.browser.name = 'Dolphin';
+				this.device.type = 'mobile';
 			}	
 
 			/****************************************************
