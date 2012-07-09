@@ -1441,17 +1441,6 @@ Test = (function() {
 			element.field.value = "foobar";					
 			var sanitization = element.field.value != 'foobar';
 
-			var validation = false;
-			if ('validity' in element.field) {
-				validation = true;
-				
-				element.field.value = "foo";
-				validation &= !element.field.validity.valid
-
-				element.field.value = '#000000';
-				validation &= element.field.validity.valid
-			}
-			
 			group.setItem({
 				id:			'element',
 				passed:		element.field.type == 'color',
@@ -1470,12 +1459,6 @@ Test = (function() {
 				required:	true
 			});
 				
-			group.setItem({
-				id:			'validation',
-				passed:		validation,
-				required:	true
-			});
-
 			this.removeInput(element);
 			
 			

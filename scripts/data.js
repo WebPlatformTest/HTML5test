@@ -632,10 +632,6 @@ var tests = [
 										id:			'sanitization',
 										name: 		'Value sanitization', 
 										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
-									}, {
-										id:			'validation',
-										name: 		'Field validation', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#dom-cva-validity'
 									}
 								]
 					}, {
