@@ -856,7 +856,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'getUserMedia',
 				passed:	!blacklists.getUserMedia && (!!navigator.getUserMedia || !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia), 
-				value: 	20
+				value: 	10
 			});
 		}
 	}
