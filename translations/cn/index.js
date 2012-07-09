@@ -23,8 +23,8 @@ var translation = {
 	'Partial':									'部分的',
 	'Unknown':									'不明',
 	
-	'Related specifications':					'',
-	'Experimental':								'',
+	'Related specifications':					'相关说明',
+	'Experimental':								'实验的',
 	
 	
 	'Parsing rules':							'解析规则',
