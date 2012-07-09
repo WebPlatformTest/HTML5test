@@ -1493,6 +1493,7 @@ Test = (function() {
 			});
 			
 			var element = this.createInput('image');
+			element.field.style.display = 'inline-block';
 			
 			var supportsWidth = 'width' in element.field;
 			var supportsHeight = 'height' in element.field;
