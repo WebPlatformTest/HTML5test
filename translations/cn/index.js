@@ -26,6 +26,7 @@ var translation = {
 	'Related specifications':					'相关说明',
 	'Experimental':								'实验的',
 	
+	'My browser':								'',
 	
 	'Parsing rules':							'解析规则',
 	'<code>&lt;!DOCTYPE html&gt;</code> triggers standards mode': '触发标准模式',
