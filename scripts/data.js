@@ -352,6 +352,14 @@ var tests = [
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
 										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+									}, {
+										id:			'valueAsDate',
+										name: 		'<code>valueAsDate()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+									}, {
+										id:			'valueAsNumber',
+										name: 		'<code>valueAsNumber()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -389,6 +397,14 @@ var tests = [
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
 										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+									}, {
+										id:			'valueAsDate',
+										name: 		'<code>valueAsDate()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+									}, {
+										id:			'valueAsNumber',
+										name: 		'<code>valueAsNumber()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -426,6 +442,14 @@ var tests = [
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
 										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+									}, {
+										id:			'valueAsDate',
+										name: 		'<code>valueAsDate()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+									}, {
+										id:			'valueAsNumber',
+										name: 		'<code>valueAsNumber()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -463,6 +487,14 @@ var tests = [
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
 										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+									}, {
+										id:			'valueAsDate',
+										name: 		'<code>valueAsDate()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+									}, {
+										id:			'valueAsNumber',
+										name: 		'<code>valueAsNumber()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -500,6 +532,14 @@ var tests = [
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
 										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+									}, {
+										id:			'valueAsDate',
+										name: 		'<code>valueAsDate()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+									}, {
+										id:			'valueAsNumber',
+										name: 		'<code>valueAsNumber()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -537,6 +577,10 @@ var tests = [
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
 										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+									}, {
+										id:			'valueAsNumber',
+										name: 		'<code>valueAsNumber()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -578,6 +622,10 @@ var tests = [
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
 										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+									}, {
+										id:			'valueAsNumber',
+										name: 		'<code>valueAsNumber()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -615,6 +663,10 @@ var tests = [
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
 										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+									}, {
+										id:			'valueAsNumber',
+										name: 		'<code>valueAsNumber()</code> method',
+										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
 									}
 								]
 					}, {

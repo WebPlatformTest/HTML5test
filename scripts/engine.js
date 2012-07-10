@@ -1329,6 +1329,20 @@ Test = (function() {
 					required:	true
 				});
 				
+				if (t != 'datetime-local') {
+					group.setItem({
+						id:			'valueAsDate',
+						passed:		minimal && 'valueAsDate' in element.field,
+						required:	true
+					});
+				}
+				
+				group.setItem({
+					id:			'valueAsNumber',
+					passed:		minimal && 'valueAsNumber' in element.field,
+					required:	true
+				});
+
 				this.removeInput(element);
 			}
 			
@@ -1426,6 +1440,12 @@ Test = (function() {
 					required:	true
 				});
 				
+				group.setItem({
+					id:			'valueAsNumber',
+					passed:		minimal && 'valueAsNumber' in element.field,
+					required:	true
+				});
+
 				this.removeInput(element);
 			}					
 			
