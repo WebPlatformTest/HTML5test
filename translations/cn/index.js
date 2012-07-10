@@ -18,7 +18,7 @@ var translation = {
 	'Thanks!':									'谢谢!',
 	
 	'bonus points':								'额外奖励分',
-	'Yes':										'是',
+	'Yes':										'支持',
 	'No':										'不',
 	'Partial':									'部分的',
 	'Unknown':									'不明',
