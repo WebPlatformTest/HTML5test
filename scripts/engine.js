@@ -933,7 +933,7 @@ Test = (function() {
 
 			group.setItem({
 				id:		'mark',
-				passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)' || color == '#ffff00'), 
+				passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color != 'transparent'), 
 				value: 	1
 			});
 
