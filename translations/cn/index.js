@@ -267,9 +267,9 @@ var translation = {
 	'<em>The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.</em>': '<em>Web SQL Database规范已经被IndexedDB规范取代并且不再更新，但是我们仍然在本测试中包括了这一项，这是因为有至少3位供应商已经推出实施了这项规范。</em>',
 	'Web SQL Database':							'Web SQL Database',
 
-	'Workers':									'工作人员',
-	'Web Workers':								'网络工作人员',
-	'Shared Workers':							'共享工作人员',
+	'Workers':									'Workers',
+	'Web Workers':								'Web Workers',
+	'Shared Workers':							'Shared Workers',
 
 	'Local multimedia':							'本地多媒体',
 	'Access the webcam':						'接入网络摄像头',
