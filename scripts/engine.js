@@ -32,9 +32,9 @@ Test = (function() {
 										Browsers.isOs('BlackBerry Tablet OS') || 
 										Browsers.isOs('Meego') || 
 										Browsers.isOs('Tizen') || 
+										Browsers.isEngine('Gecko') ||
+										Browsers.isEngine('Presto') || 
 										Browsers.isBrowser('Chrome') ||
-										Browsers.isBrowser('Firefox') ||
-										Browsers.isBrowser('Opera') || 
 										Browsers.isBrowser('Polaris', '>=', '8')
 									) ||
 									Browsers.isType('television') && (
@@ -45,7 +45,7 @@ Test = (function() {
 									
 				dragdrop:			Browsers.isType('desktop') ||
 									Browsers.isType('mobile', 'tablet', 'media') && (
-										Browsers.isBrowser('Opera')
+										Browsers.isEngine('Presto')
 									)	
 			};
 	
