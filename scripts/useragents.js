@@ -4322,6 +4322,7 @@ var UserAgents = (function(){
 						case '18.0.1025':
 						case '19.0.1084':
 						case '20.0.1132':
+						case '21.0.1180':
 							if (this.browser.version.minor == 0) 
 								this.browser.version.details = 1;
 							else
