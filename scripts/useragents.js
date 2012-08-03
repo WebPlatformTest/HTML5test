@@ -4189,7 +4189,7 @@ var UserAgents = (function(){
 				}
 				
 				if (this.device.type == 'mobile' || this.device.type == 'tablet') {
-					this.browser.name = 'Firefox Mobile';
+					this.browser.name = 'Firefox';
 				}
 			}
 
