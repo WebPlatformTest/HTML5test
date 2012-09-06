@@ -2843,8 +2843,8 @@ Test = (function() {
 			});
 			
 			this.section.setItem({
-				id:			'requestFullScreen',
-				passed:		!! document.documentElement.requestFullScreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen || !! document.documentElement.oRequestFullScreen, 
+				id:			'requestFullscreen',
+				passed:		!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen, 
 				value: 		2
 			});
 
