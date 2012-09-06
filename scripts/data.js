@@ -1386,7 +1386,7 @@ var tests = [
 		name: 	'Video and Animation',
 		items:	[
 					{
-						id:			'requestFullScreen',
+						id:			'requestFullscreen',
 						name: 		'Full screen support', 
 						url:		'http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api'
 					}, {
