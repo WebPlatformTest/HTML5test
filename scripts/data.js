@@ -103,6 +103,9 @@ var tests = [
 						id:		'mp3',
 						name: 	'MP3 support'
 					}, { 
+						id:		'opus',
+						name: 	'Opus support'
+					}, { 
 						id:		'vorbis',
 						name: 	'Ogg Vorbis support'
 					}, { 
