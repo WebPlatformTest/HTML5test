@@ -1133,6 +1133,14 @@ var tests = [
 						id:			'spellcheck',
 						name: 		'<code>spellcheck</code> attribute', 
 						url:		'http://www.w3.org/TR/html5/editing.html#attr-spellcheck'
+					},
+
+					'<strong>Dialogs</strong>',
+					
+					{
+						id:			'modaldialog',
+						name: 		'<code>showModalDialog</code> method', 
+						url:		'http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-showmodaldialog'
 					}
 				]
 	}, {

@@ -2226,6 +2226,12 @@ Test = (function() {
 				passed:		!!('spellcheck' in element), 
 				value: 		1
 			});
+
+			this.section.setItem({
+				id:			'modaldialog',
+				passed:		'showModalDialog' in window, 
+				value: 		2
+			});
 		}			
 	};
 
