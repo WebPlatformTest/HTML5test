@@ -503,7 +503,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'doctype',
 				passed:	document.compatMode == 'CSS1Compat', 
-				value: 	1
+				value: 	0
 			});
 
 			var result = true;
@@ -707,7 +707,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'subtitle',
 				passed:	!blacklists.subtitle && 'track' in document.createElement('track'), 
-				value: 	10
+				value: 	9
 			});
 			
 			this.section.setItem({
@@ -884,7 +884,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'dataset',
 				passed:	'dataset' in element, 
-				value: 	4
+				value: 	7
 			});
 
 			var group = this.section.getGroup({
@@ -1306,7 +1306,7 @@ Test = (function() {
 				group.setItem({
 					id:			'element',
 					passed:		minimal,
-					value: 		2,
+					value: 		3,
 					required:	true
 				});
 				
@@ -1561,7 +1561,7 @@ Test = (function() {
 				passed:		supportsHeight && element.field.offsetHeight == 100,
 				value: 		1
 			});
-
+			
 			this.removeInput(element);
 			
 
@@ -2044,7 +2044,7 @@ Test = (function() {
 			group.setItem({
 				id:			'noValidate',
 				passed:		'noValidate' in element, 
-				value: 		1
+				value: 		2
 			});
 		}, 				
 			
@@ -2246,7 +2246,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'history',
 				passed:		!!(window.history && history.pushState), 
-				value: 		5
+				value: 		10
 			});
 		}			
 	};
@@ -2331,7 +2331,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'sandbox',
 				passed:		'sandbox' in document.createElement('iframe'), 
-				value: 		5
+				value: 		10
 			});
 
 			this.section.setItem({
@@ -2358,13 +2358,13 @@ Test = (function() {
 			this.section.setItem({
 				id:			'scoped',
 				passed:		'scoped' in document.createElement('style'), 
-				value: 		2
+				value: 		5
 			});
 
 			this.section.setItem({
 				id:			'async',
 				passed:		'async' in document.createElement('script'), 
-				value: 		2
+				value: 		3
 			});
 
 			this.section.setItem({
@@ -2510,7 +2510,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'eventSource',
 				passed:		'EventSource' in window, 
-				value: 		10
+				value: 		8
 			});
 			
 			var group = this.section.getGroup({
@@ -2760,7 +2760,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'indexedDB',
 				passed:		this.hasIndexedDB(), 
-				value: 		10
+				value: 		15
 			});
 
 			this.section.setItem({
@@ -2865,7 +2865,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'webaudio',
 				passed:		this.hasWebAudio(), 
-				value: 		4
+				value: 		5
 			});
 		},
 		
@@ -2883,8 +2883,8 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'requestFullScreen',
-				value: 		2
 				passed:		!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen, 
+				value: 		4
 			});
 			
 			this.section.setItem({
@@ -2896,7 +2896,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'requestAnimationFrame',
 				passed:		!! window.requestAnimationFrame || !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame, 
-				value: 		2
+				value: 		3
 			});
 		}
 	};
