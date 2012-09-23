@@ -2845,6 +2845,12 @@ Test = (function() {
 				passed:		!!element.scrollIntoView, 
 				value: 		1
 			});
+			
+			this.section.setItem({
+				id:   		'mutationObserver',
+				passed:   	'MutationObserver' in window || 'webkitMutationObserver' in window || 'mozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window,
+				value:  	3 
+			});
 		}
 	};			
 	

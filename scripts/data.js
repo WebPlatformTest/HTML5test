@@ -1432,6 +1432,9 @@ var tests = [
 					}, {
 						id:			'scrollIntoView',
 						name: 		'Scroll into view'
+					}, {
+						id: 		'mutationObserver',
+						name:   	'Mutation Observer'
 					}
 				]
 	},
