@@ -2982,6 +2982,16 @@ var UserAgents = (function(){
 				this.device.type = 'mobile';
 				this.device.identified = true;
 			}
+			
+			if (match = /\(BB(1[^;]+); ([^\)]+)\)/.exec(ua)) {
+				this.os.name = 'BlackBerry';
+				this.os.version = new Version({ value: match[1], details: 2 });
+
+				this.device.manufacturer = 'RIM';
+				this.device.model = 'BlackBerry ' + match[2];
+				this.device.type = ua.match('Mobile') ? 'mobile' : 'tablet';
+				this.device.identified = true;
+			}
 				
 			/****************************************************
 			 *		BlackBerry PlayBook
