@@ -1460,6 +1460,10 @@ var tests = [
 						name: 		'Full screen support', 
 						url:		'http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api'
 					}, {
+						id:			'pointerLock',
+						name: 		'Pointer Lock support', 
+						url:		'http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html'
+					}, {
 						id:			'requestAnimationFrame',
 						name: 		'<code>window.requestAnimationFrame</code>', 
 						url:		'http://www.w3.org/TR/animation-timing/#requestAnimationFrame'

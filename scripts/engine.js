@@ -2885,6 +2885,12 @@ Test = (function() {
 				passed:		!! document.documentElement.requestFullScreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen || !! document.documentElement.oRequestFullScreen, 
 				value: 		2
 			});
+			
+			this.section.setItem({
+				id:   		'pointerLock',
+				passed:  	'pointerLockElement' in document || 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document,
+				value:   	3
+			});
 
 			this.section.setItem({
 				id:			'requestAnimationFrame',
