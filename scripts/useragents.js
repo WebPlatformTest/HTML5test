@@ -4896,6 +4896,7 @@ var UserAgents = (function(){
 				{ name: 'Abrowser', 			regexp: /Abrowser\/([0-9.]*)/ },
 				{ name: 'arora', 				regexp: /[Aa]rora\/([0-9.]*)/ },
 				{ name: 'Baidu Browser', 		regexp: /M?BaiduBrowser\/([0-9.]*)/i },
+				{ name: 'Baidu Browser', 		regexp: /FlyFlow\/([0-9.]*)/, details: 2 },
 				{ name: 'Camino', 				regexp: /Camino\/([0-9.]*)/ },
 				{ name: 'Canure',				regexp: /Canure\/([0-9.]*)/, details: 3 },
 				{ name: 'CometBird', 			regexp: /CometBird\/([0-9.]*)/ },
