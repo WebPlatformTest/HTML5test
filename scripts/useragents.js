@@ -3000,6 +3000,15 @@ var UserAgents = (function(){
 				if (ua.match('P160UN?A?\/1.0')) { this.device.manufacturer = 'HP'; this.device.model = 'Veer'; this.device.identified = true; }
 			}
 
+			if (ua.match('AliyunOS')) {
+				this.os.name = 'Aliyun OS';
+				this.os.version = null;
+
+				if (match = /AliyunOS ([0-9.]+)/.exec(ua)) {
+					this.os.version = new Version({ value: match[1], details: 3 })
+				}
+			}
+
 			/****************************************************
 			 *		Google TV
 			 */
