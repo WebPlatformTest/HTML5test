@@ -2091,13 +2091,13 @@ Test = (function() {
 			group.setItem({
 				id:			'draggable',
 				passed:		'draggable' in element && whitelists.dragdrop,
-				value:		10
+				value:		0
 			});
 
 			group.setItem({
 				id:			'dropzone',
 				passed:		('dropzone' in element || 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element) && whitelists.dragdrop,
-				value:		2
+				value:		0
 			});
 			
 			var group = this.section.getGroup({
@@ -2112,43 +2112,43 @@ Test = (function() {
 			group.setItem({
 				id:			'ondrag',
 				passed:		isEventSupported('drag') && supported, 
-				value: 		1
+				value: 		0
 			});
 			
 			group.setItem({
 				id:			'ondragstart',
 				passed:		isEventSupported('dragstart') && supported, 
-				value: 		1
+				value: 		0
 			});
 			
 			group.setItem({
 				id:			'ondragenter',
 				passed:		isEventSupported('dragenter') && supported, 
-				value: 		1
+				value: 		0
 			});
 			
 			group.setItem({
 				id:			'ondragover',
 				passed:		isEventSupported('dragover') && supported, 
-				value: 		1
+				value: 		0
 			});
 			
 			group.setItem({
 				id:			'ondragleave',
 				passed:		isEventSupported('dragleave') && supported, 
-				value: 		1
+				value: 		0
 			});
 			
 			group.setItem({
 				id:			'ondragend',
 				passed:		isEventSupported('dragend') && supported, 
-				value: 		1
+				value: 		0
 			});
 			
 			group.setItem({
 				id:			'ondrop',
 				passed:		isEventSupported('drop') && supported, 
-				value: 		1
+				value: 		0
 			});
 
 			
