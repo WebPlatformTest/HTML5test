@@ -2163,7 +2163,7 @@ Test = (function() {
 			group.setItem({
 				id:			'contentEditable',
 				passed:		'contentEditable' in element && whitelists.contentEditable, 
-				value: 		8
+				value: 		9
 			});
 
 			group.setItem({
@@ -2225,7 +2225,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'spellcheck',
 				passed:		!!('spellcheck' in element), 
-				value: 		1
+				value: 		2
 			});
 		}			
 	};
