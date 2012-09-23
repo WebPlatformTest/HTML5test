@@ -131,7 +131,7 @@ body {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	#html5 {
-		background: url(/images/html5@2x.png);
+		background-image: url(/images/html5@2x.png);
 	}
 }
 
