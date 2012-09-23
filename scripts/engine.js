@@ -2722,7 +2722,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'fileSystem',
 				passed:		!! window.requestFileSystem || !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem, 
-				value: 		10
+				value: 		0
 			});
 		}
 	};

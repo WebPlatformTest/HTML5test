@@ -1349,11 +1349,15 @@ var tests = [
 		items:	[
 					{
 						id:			'fileReader',
-						name: 		'FileReader API', 
+						name: 		'File API', 
 						url:    	'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface'
-					}, {
+					}, 
+					
+					'<em>The Directories and System API proposal has failed to gain traction among browser vendors and is only supported in some Webkit based browsers. No additional points are awarded for supporting this API.</em>',
+
+					{
 						id:			'fileSystem',
-						name: 		'FileSystem API', 
+						name: 		'File API: Directories and System', 
 						url:    	'http://www.w3.org/TR/file-system-api/'
 					}
 				]
