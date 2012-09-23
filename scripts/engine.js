@@ -11,7 +11,7 @@ Test = (function() {
 			[ testWebAudio, testAnimation ]
 		],
 		
-		initialize: function(c) {					
+		initialize: function(c) {
 			blacklists = {
 				fileField: 			Browsers.isOs('iOS', '<', '6'), 
 				dateFields:			Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser'),
@@ -1575,13 +1575,13 @@ Test = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		!blacklists.fileInput && element.field.type == 'file',
+				passed:		!blacklists.fileField && element.field.type == 'file',
 				value: 		0
 			});
 
 			group.setItem({
 				id:			'files',
-				passed:		!blacklists.fileInput && element.field.files && element.field.files instanceof FileList,
+				passed:		!blacklists.fileField && element.field.files && element.field.files instanceof FileList,
 				value: 		1
 			});
 
