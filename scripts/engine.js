@@ -824,6 +824,14 @@ Test = (function() {
 			this.section.setItem(item);
 
 			var item = {
+				id:		'opus',
+				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="opus"') 
+			};
+			
+			if (item.passed) item.bonus = 1;
+			this.section.setItem(item);
+
+			var item = {
 				id:		'webm',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
 			};

@@ -105,6 +105,9 @@ var tests = [
 					}, { 
 						id:		'vorbis',
 						name: 	'Ogg Vorbis support'
+					}, {
+						id:		'opus',
+						name: 	'Ogg Opus support'
 					}, { 
 						id:		'webm',
 						name: 	'WebM support'
