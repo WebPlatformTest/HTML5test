@@ -183,6 +183,14 @@ var tests = [
 						name:	'Text-level semantic elements',
 						items:	[
 									{
+										id:		'download',
+										name: 	'<code>download</code> attribute on the <code>a</code> element', 
+										url:	'http://developers.whatwg.org/links.html#attr-hyperlink-download'
+									}, {
+										id:		'ping',
+										name: 	'<code>ping</code> attribute on the <code>a</code> element', 
+										url:	'http://developers.whatwg.org/links.html#ping'
+									}, {
 										id:		'mark',
 										name: 	'<code>mark</code> element', 
 										url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element'

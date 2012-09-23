@@ -936,6 +936,20 @@ Test = (function() {
 				id:		'semantic'
 			});
 			
+			var element = document.createElement('a');
+			group.setItem({
+				id:		'download',
+				passed:	'download' in element, 
+				value: 	1
+			});
+			
+			group.setItem({
+				id:		'ping',
+				passed:	'ping' in element, 
+				value: 	1
+			});
+
+
 			var element = document.createElement('mark');
 			document.body.appendChild(element);
 
