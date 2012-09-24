@@ -3162,6 +3162,10 @@ var UserAgents = (function(){
 				this.device.model = 'BlackBerry ' + match[2];
 				this.device.type = ua.match('Mobile') ? 'mobile' : 'tablet';
 				this.device.identified = true;
+
+				if (match = /Version\/([0-9.]*)/.exec(ua)) {
+					this.os.version = new Version({ value: match[1], details: 2 });
+				}
 			}
 				
 			/****************************************************
