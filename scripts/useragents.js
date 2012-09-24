@@ -324,6 +324,7 @@ var UserAgents = (function(){
 		/* Middleware and emulators */
 		'BlueStacks':								[ 'BlueStacks', 'App Player', 'desktop' ],
 		'youwave custom':							[ 'Youwave', 'Android on PC', 'desktop' ],
+		'BlackBerry Runtime for Android Apps':		[ 'RIM', 'BlackBerry (Android Runtime)', 'mobile' ],
 		
 		/* Regular devices */
 		'A100':										[ STRINGS_ACER, 'Iconia Tab A100', 'tablet' ],
@@ -3114,7 +3115,7 @@ var UserAgents = (function(){
 			 *		BlackBerry
 			 */
 		
-			if (ua.match('BlackBerry')) {
+			if (ua.match('BlackBerry') && !ua.match('BlackBerry Runtime for Android Apps')) {
 				this.os.name = 'BlackBerry OS';
 				
 				if (!ua.match('Opera')) {
