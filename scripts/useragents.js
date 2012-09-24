@@ -3056,9 +3056,15 @@ var UserAgents = (function(){
 			 *		Aliyun OS
 			 */
 		
-			if (ua.match('AliyunOS')) {
+			if (ua.match('Aliyun')) {
+				this.device.type = 'mobile';
+
 				this.os.name = 'Aliyun OS';
 				this.os.version = null;
+
+				if (match = /YunOs ([0-9.]+)/.exec(ua)) {
+					this.os.version = new Version({ value: match[1], details: 3 })
+				}
 
 				if (match = /AliyunOS ([0-9.]+)/.exec(ua)) {
 					this.os.version = new Version({ value: match[1], details: 3 })
@@ -5176,6 +5182,10 @@ var UserAgents = (function(){
 				this.browser.hidden = true;
 			}
 
+			if (this.os.name == 'Aliyun OS' && this.browser.stock) {
+				this.browser.hidden = true;
+			}
+			
 			if (this.os.name == 'iOS' && this.browser.name == 'Opera Mini') {
 				this.os.version = null;
 			}	
