@@ -3069,6 +3069,21 @@ var UserAgents = (function(){
 				if (match = /AliyunOS ([0-9.]+)/.exec(ua)) {
 					this.os.version = new Version({ value: match[1], details: 3 })
 				}
+
+				if (match = /; ([^;]*[^;\s])\s+Build/.exec(ua)) {
+				    this.device.model = match[1];
+				}		
+
+				if (this.device.model) {
+					var model = cleanupModel(this.device.model);
+
+					if (typeof ANDROID_MODELS[model] != 'undefined') {
+						this.device.manufacturer = ANDROID_MODELS[model][0];
+						this.device.model = ANDROID_MODELS[model][1];
+						if (typeof ANDROID_MODELS[model][2] != 'undefined') this.device.type = ANDROID_MODELS[model][2];
+						this.device.identified = true;
+					}
+				}
 			}
 
 			if (ua.match('Android')) {
