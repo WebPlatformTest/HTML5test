@@ -3786,6 +3786,20 @@ var UserAgents = (function(){
 			}
 			
 			/****************************************************
+			 *		NetRange MMH 
+			 */
+
+			if (ua.match('NETRANGEMMH')) {
+				this.os.name = '';
+				this.os.version = null;
+				this.browser.name = '';
+				this.browser.version = null;
+				this.device.model = 'NetRange MMH';
+				this.device.type = 'television';
+				this.device.identified = true;
+			}
+
+			/****************************************************
 			 *		MachBlue XT
 			 */
 
@@ -3885,16 +3899,18 @@ var UserAgents = (function(){
 				
 				if (!this.device.manufacturer && vendorName != '' && vendorName != 'vendorName') {
 					switch(vendorName) {
-						case 'LGE':		this.device.manufacturer = 'LG'; break;
-						case 'TOSHIBA':	this.device.manufacturer = 'Toshiba'; break;
-						case 'smart':	this.device.manufacturer = 'Smart'; break;
-						case 'tv2n':	this.device.manufacturer = 'TV2N'; break;
-						default:		this.device.manufacturer = vendorName;
+						case 'LG Electronics':	this.device.manufacturer = 'LG'; break;
+						case 'LGE':				this.device.manufacturer = 'LG'; break;
+						case 'TOSHIBA':			this.device.manufacturer = 'Toshiba'; break;
+						case 'smart':			this.device.manufacturer = 'Smart'; break;
+						case 'tv2n':			this.device.manufacturer = 'TV2N'; break;
+						default:				this.device.manufacturer = vendorName;
 					}
 
 					if (!this.device.model && modelName != '' && modelName != 'modelName') {
 						switch(modelName) {
 							case 'GLOBAL_PLAT3':	this.device.model = 'NetCast TV'; break;
+							case 'GLOBAL_PLAT4':	this.device.model = 'NetCast TV'; break;
 							case 'SmartTV2012':		this.device.model = 'Smart TV 2012'; break;
 							case 'videoweb':		this.device.model = 'Videoweb'; break;
 							default:				this.device.model = modelName;
@@ -4549,7 +4565,7 @@ var UserAgents = (function(){
 			 *		NetFront
 			 */
 		
-			if (ua.match('NetFront')) {
+			if (ua.match('Net[fF]ront')) {
 				this.browser.name = 'NetFront';
 				this.device.type = 'mobile';
 
@@ -4649,6 +4665,15 @@ var UserAgents = (function(){
 				}
 			}
 
+			/****************************************************
+			 *		LG Browser
+			 */
+			if (match = /LG Browser\/([0-9.]*)/.exec(ua)) {
+				this.browser.name = 'LG Browser';
+				this.browser.version = new Version({ value: match[1], details: 2 });
+				this.device.type = 'television';
+			}
+			
 			/****************************************************
 			 *		Espial
 			 */
@@ -5121,6 +5146,8 @@ var UserAgents = (function(){
 			if (this.device.type == 'television' && this.browser.name == 'Opera') {
 				this.browser.name = 'Opera Devices';
 				switch (true) {
+					case this.engine.version.is('2.12'):	this.browser.version = new Version({ value: 3.4 }); break;
+					case this.engine.version.is('2.11'):	this.browser.version = new Version({ value: 3.3 }); break;
 					case this.engine.version.is('2.10'):	this.browser.version = new Version({ value: 3.2 }); break;
 					case this.engine.version.is('2.9'):		this.browser.version = new Version({ value: 3.1 }); break;
 					case this.engine.version.is('2.8'):		this.browser.version = new Version({ value: 3.0 }); break;
