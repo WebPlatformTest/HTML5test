@@ -5025,6 +5025,7 @@ var UserAgents = (function(){
 				{ name: 'Lightning',			regexp: /Lightning\/([0-9.]*)/ },
 				{ name: 'Lunascape', 			regexp: /Lunascape[\/| ]([0-9.]*)/, details: 3 },
 				{ name: 'iLunascape', 			regexp: /iLunascape\/([0-9.]*)/, details: 3 },
+				{ name: 'MaCross Mobile',		regexp: /MaCross\/([0-9.]*)/ },
 				{ name: 'Maxthon', 				regexp: /Maxthon[\/ ]([0-9.]*)/, details: 3 },
 				{ name: 'MiniBrowser',			regexp: /MiniBr?owserM\/([0-9.]*)/ },
 				{ name: 'MiniBrowser',			regexp: /MiniBrowserMobile\/([0-9.]*)/ },
