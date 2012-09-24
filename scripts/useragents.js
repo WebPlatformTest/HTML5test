@@ -2968,9 +2968,22 @@ var UserAgents = (function(){
 					this.os.version = new Version({ value: match[1], details: 3 })
 				}
 
+				if (match = /Android [0-9][0-9].[0-9][0-9].[0-9][0-9]\(([^)]+)\);/.exec(ua.replace('-update', '.'))) {
+					this.os.version = new Version({ value: match[1], details: 3 })
+				}	
+				
 				if (ua.match('Android Eclair')) {
 					this.os.version = new Version({ value: '2.0', details: 3 });
 				}
+
+				if (this.os.version < 2) {
+					if (ua.match('Build/CUPCAKE')) this.os.version = new Version({ value: 1.5, details: 3 });
+					if (ua.match('Build/DONUT')) this.os.version = new Version({ value: 1.6, details: 3 });
+					if (ua.match('Build/ECLAIR')) this.os.version = new Version({ value: 2.0, details: 3 });
+					if (ua.match('Build/FROYO')) this.os.version = new Version({ value: 2.2, details: 3 });
+					if (ua.match('Build/GINGERBREAD')) this.os.version = new Version({ value: 2.3, details: 3 });
+				}
+					
 
 				this.device.type = 'mobile';
 				if (this.os.version >= 3) this.device.type = 'tablet';
@@ -3001,15 +3014,7 @@ var UserAgents = (function(){
 				    	this.device.model = match[1];
 					}
 				}	
-				
-				if (this.os.version < 2) {
-					if (ua.match('Build/CUPCAKE')) this.os.version = new Version({ value: 1.5, details: 3 });
-					if (ua.match('Build/DONUT')) this.os.version = new Version({ value: 1.6, details: 3 });
-					if (ua.match('Build/ECLAIR')) this.os.version = new Version({ value: 2.0, details: 3 });
-					if (ua.match('Build/FROYO')) this.os.version = new Version({ value: 2.2, details: 3 });
-					if (ua.match('Build/GINGERBREAD')) this.os.version = new Version({ value: 2.3, details: 3 });
-				}
-					
+
 				
 				/* Sometimes we get a model name that starts with Android, in that case it is a mismatch and we should ignore it */
 				if (this.device.model && this.device.model.substring(0,7) == 'Android') {
