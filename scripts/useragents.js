@@ -5002,6 +5002,7 @@ var UserAgents = (function(){
 				{ name: 'Daedalus',				regexp: /Daedalus ([0-9.]*)/, details: 2 },
 				{ name: 'Demobrowser', 			regexp: /demobrowser\/([0-9.]*)/ },
 				{ name: 'Dooble', 				regexp: /Dooble(?:\/([0-9.]*))?/ },
+				{ name: 'Dorothy', 				regexp: /Dorothy$/ },
 				{ name: 'DWB', 					regexp: /dwb(?:-hg)?(?:\/([0-9.]*))?/ },
 				{ name: 'Epiphany', 			regexp: /Epiphany\/([0-9.]*)/ },
 				{ name: 'FireWeb', 				regexp: /FireWeb\/([0-9.]*)/ },
