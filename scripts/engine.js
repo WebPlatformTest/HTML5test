@@ -14,12 +14,17 @@ Test = (function() {
 		initialize: function(c) {
 			blacklists = {
 				fileField: 			Browsers.isOs('iOS', '<', '6'), 
-				dateFields:			Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser'),
-				colorField:			Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser'),
+				dateFields:			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser'),
+				colorField:			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser'),
 				rangeField:			Browsers.isBrowser('UC Browser'),
-				subtitle:			Browsers.isBrowser('Maxthon'),
-				getUserMedia:		Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
-				webgl:				Browsers.isBrowser('Maxthon'),
+				numberField:		false,
+				progressField:		false,
+				meterField:			false,
+				subtitle:			Browsers.isBrowser('Sogou Explorer'),
+				notifications:		Browsers.isBrowser('Sogou Explorer'),
+				fullScreen:			Browsers.isBrowser('Sogou Explorer'),
+				getUserMedia:		Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
+				webgl:				false,
 			};		
 			
 			whitelists = {
@@ -1413,11 +1418,19 @@ Test = (function() {
 					required:	true
 				});
 				
-				group.setItem({
-					id:			'ui',
-					passed:		(t != 'range' || !blacklists.rangeField) && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
-					value: 		2
-				});
+				if (t == 'range') {
+					group.setItem({
+						id:			'ui',
+						passed:		!blacklists.rangeField && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+						value: 		2
+					});
+				} else {
+					group.setItem({
+						id:			'ui',
+						passed:		!blacklists.numberField && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+						value: 		2
+					});
+				}
 				
 				group.setItem({
 					id:			'sanitization',
@@ -1740,7 +1753,7 @@ Test = (function() {
 			var element = document.createElement('progress');
 			group.setItem({
 				id:			'element',
-				passed:		typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
+				passed:		!blacklists.progressField && typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
 				value: 		2
 			});
 			
@@ -1754,7 +1767,7 @@ Test = (function() {
 			var element = document.createElement('meter');
 			group.setItem({
 				id:			'element',
-				passed:		typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
+				passed:		!blacklists.meterField && typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
 				value: 		2
 			});
 
@@ -2804,7 +2817,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'notifications',
-				passed:		this.hasNotification(), 
+				passed:		!blacklists.notifications && this.hasNotification(), 
 				value: 		10
 			});
 		},
@@ -2877,7 +2890,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'requestFullScreen',
-				passed:		!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen, 
+				passed:		!blacklists.subtitle && (!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen), 
 				value: 		4
 			});
 			
