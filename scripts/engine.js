@@ -2856,7 +2856,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:   		'mutationObserver',
-				passed:   	'MutationObserver' in window || 'webkitMutationObserver' in window || 'mozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window,
+				passed:   	'MutationObserver' in window || 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window,
 				value:  	3 
 			});
 		}
