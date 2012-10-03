@@ -14,7 +14,7 @@ Test = (function() {
 		initialize: function(c) {
 			blacklists = {
 				fileField: 			Browsers.isOs('iOS', '<', '6'), 
-				dateFields:			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser'),
+				dateFields:			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				colorField:			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser'),
 				rangeField:			Browsers.isBrowser('UC Browser'),
 				numberField:		false,
