@@ -2919,6 +2919,12 @@ var UserAgents = (function(){
 					this.os.name = new Version({ value: '5.1', alias: 'XP' });
 				}
 
+				if (ua.match('Windows NT 6.2') && ua.match('; ARM;')) {
+					this.os.name = 'Windows Phone';
+					this.os.version = new Version({ value: '8', details: 1 });
+					this.device.type = 'mobile';
+				}
+				
 				if (ua.match('WP7')) {
 					this.os.name = 'Windows Phone';
 					this.os.version = new Version({ value: '7.0', details: 2 });
