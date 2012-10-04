@@ -5070,6 +5070,11 @@ var UserAgents = (function(){
 				this.device.model = null;
 				this.device.type = 'desktop';
 			}	
+
+			if (match = /midori$/.exec(ua)) {
+				this.browser.name = 'Midori';
+			}
+			
 			
 			/****************************************************
 			 *		Others
