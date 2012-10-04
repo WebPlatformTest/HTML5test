@@ -4984,7 +4984,7 @@ var UserAgents = (function(){
 				}
 			}	
 
-			if (match = /Dolphin\/INT/.exec(ua)) {
+			if (match = /Dolphin\/(?:INT|CN)/.exec(ua)) {
 				this.browser.name = 'Dolphin';
 				this.device.type = 'mobile';
 			}	
