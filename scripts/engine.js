@@ -20,6 +20,7 @@ Test = (function() {
 				numberField:		false,
 				progressField:		false,
 				meterField:			false,
+				fileSystem:			Browsers.isOs('BlackBerry Tablet OS'),
 				subtitle:			Browsers.isBrowser('Sogou Explorer'),
 				notifications:		Browsers.isBrowser('Sogou Explorer'),
 				fullScreen:			Browsers.isBrowser('Sogou Explorer'),
@@ -2729,7 +2730,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'fileSystem',
-				passed:		!! window.requestFileSystem || !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem, 
+				passed:		!blacklists.fileSystem && (!! window.requestFileSystem || !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem), 
 				value: 		0
 			});
 		}
