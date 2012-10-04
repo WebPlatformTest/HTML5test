@@ -3953,6 +3953,12 @@ var UserAgents = (function(){
 				this.device.type = 'television';
 			}
 
+			if (ua == 'MachBlue') {
+				this.os.name = '';
+				this.browser.name = 'MachBlue XT'
+				this.device.type = 'television';
+			}
+
 			/****************************************************
 			 *		ADB
 			 */
