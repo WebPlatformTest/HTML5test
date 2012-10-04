@@ -3764,6 +3764,25 @@ var UserAgents = (function(){
 				this.device.identified = true;
 			}
 
+
+			/****************************************************
+			 *		XBox
+			 *
+			 *		Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; Xbox)
+			 */
+		
+			if (ua.match(/Xbox\)$/)) {
+				this.os.name = '';
+				this.os.version = null;
+
+				this.device.manufacturer = 'Microsoft';
+				this.device.model = 'Xbox 360';
+				this.device.type = 'gaming';
+				this.device.identified = true;
+			}
+
+
+
 			/****************************************************
 			 *		Panasonic Smart Viera
 			 *
