@@ -2890,7 +2890,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'requestFullScreen',
-				passed:		!blacklists.subtitle && (!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen), 
+				passed:		!blacklists.fullScreen && (!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen), 
 				value: 		4
 			});
 			
