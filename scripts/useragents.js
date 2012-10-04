@@ -3675,6 +3675,7 @@ var UserAgents = (function(){
 			 *		Opera/9.50 (Nintendo DSi; Opera/507; U; en-US)
 			 *		Mozilla/5.0 (Nintendo 3DS; U; ; en) Version/1.7455.US
 			 *		Mozilla/5.0 (Nintendo 3DS; U; ; en) Version/1.7455.EU
+			 *		Mozilla/5.0 (Nintendo WiiU) AppleWebKit/534.52 (KHTML, like Gecko) NX/2.1.0.8.8 Version/1.0.0.6760.JP
 			 */
 		
 			if (ua.match('Nintendo Wii')) {
@@ -3682,6 +3683,15 @@ var UserAgents = (function(){
 
 				this.device.manufacturer = 'Nintendo';
 				this.device.model = 'Wii';
+				this.device.type = 'gaming';
+				this.device.identified = true;
+			}
+			
+			if (ua.match('Nintendo WiiU')) {
+				this.os.name = '';
+
+				this.device.manufacturer = 'Nintendo';
+				this.device.model = 'Wii U';
 				this.device.type = 'gaming';
 				this.device.identified = true;
 			}
