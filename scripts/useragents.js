@@ -2899,10 +2899,6 @@ var UserAgents = (function(){
 					}
 				}
 				
-				if (ua.match('Windows NT 6.2') && ua.match('; ARM;')) {
-					this.os.version = new Version({ value: match[1], alias: 'RT' });
-				}
-				
 				if (ua.match('Windows 95') || ua.match('Win95') || ua.match('Win 9x 4.00')) {
 					this.os.version = new Version({ value: '4.0', alias: '95' });
 				}
