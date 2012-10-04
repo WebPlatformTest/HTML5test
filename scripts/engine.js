@@ -23,7 +23,7 @@ Test = (function() {
 				fileSystem:			Browsers.isOs('BlackBerry Tablet OS'),
 				subtitle:			Browsers.isBrowser('Sogou Explorer'),
 				notifications:		Browsers.isBrowser('Sogou Explorer'),
-				fullScreen:			Browsers.isBrowser('Sogou Explorer'),
+				fullScreen:			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
 				getUserMedia:		Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
 				webgl:				false,
 			};		
