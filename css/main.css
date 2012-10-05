@@ -1495,6 +1495,30 @@ body {
 }
 
 
+div:fullscreen {
+	background: #fff;
+	width: 100% !important;
+	height: 100% !important;
+}
+div:fullscreen h2 {
+	display: none;
+}
+div:fullscreen #fsButton {
+	top: 10px;
+	right: 40px;
+}
+div:fullscreen #fsButton::before {
+	content: '+';
+}
+div:fullscreen #timelineGraph {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	bottom: 30px;
+	right: 30px;
+	height: auto !important;
+}
+
 div:-webkit-full-screen {
 	background: #fff;
 	width: 100% !important;

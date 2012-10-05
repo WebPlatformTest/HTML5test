@@ -281,7 +281,7 @@
 						if (canvas.requestFullscreen) {
 							button.style.display = '';
 							button.addEventListener('click', function() {
-								if (document.fullscreenEnabled) 
+								if (document.fullscreenElement) 
 									document.exitFullscreen();
 								else
 									canvas.requestFullscreen();
