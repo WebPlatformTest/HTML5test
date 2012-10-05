@@ -25,7 +25,7 @@ Test = (function() {
 				notifications:		Browsers.isBrowser('Sogou Explorer'),
 				fullScreen:			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
 				getUserMedia:		Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
-				webgl:				false,
+				webgl:				false
 			};		
 			
 			whitelists = {
