@@ -4728,6 +4728,25 @@ var UserAgents = (function(){
 			}
 			
 			/****************************************************
+			 *		Nokia Xpress
+			 *
+			 *		Mozilla/5.0 (X11; Linux x86_64; rv:5.0.1) Gecko/20120822 OSRE/1.0.7f
+			 */
+			
+			if (ua.match('OSRE')) {
+				this.browser.name = 'Nokia Xpress';
+				this.browser.mode = 'proxy';
+
+				if (match = /OSRE\/([0-9.]*)/.exec(ua)) {
+					this.browser.version = new Version({ value: match[1], details: 3 });
+				}
+
+				this.os.name = 'Windows Phone';
+				this.device.type = 'mobile';
+			}
+			
+			
+			/****************************************************
 			 *		MicroB
 			 */
 		
