@@ -21,11 +21,13 @@
 	}
 	
 	function translate() {
-		var elements = document.querySelectorAll('[data-i18n]');
-		for (var i = 0; i < elements.length; i++) {
-			var id = elements[i].getAttribute('data-i18n');
-			if (id == '') id = elements[i].innerHTML;
-			if (id && translation[id]) elements[i].innerHTML = translation[id];
+		if (document.querySelectorAll) {
+			var elements = document.querySelectorAll('[data-i18n]');
+			for (var i = 0; i < elements.length; i++) {
+				var id = elements[i].getAttribute('data-i18n');
+				if (id == '') id = elements[i].innerHTML;
+				if (id && translation[id]) elements[i].innerHTML = translation[id];
+			}
 		}
 	}
 })();
