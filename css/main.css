@@ -825,6 +825,12 @@ body {
 	cursor: pointer;
 	padding-left: 28px;
 }
+.resultsTable table tr th.hasLink:hover {
+	cursor: pointer;
+}
+.resultsTable table tr th.hasLink:hover span {
+	text-decoration: underline;
+}
 .resultsTable table tr.hasChild th > * {
 	position: relative;
 }
@@ -896,6 +902,101 @@ body {
 	color: #888;
 }
 
+
+.resultsTable .linksPanel {
+	position: absolute;
+	background: #fff;
+	z-index: 1;
+
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	
+	-webkit-box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+	-o-box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+
+	max-width: 120%;
+	border: 1px solid rgba(245,245,245,0.9);
+	padding: 6px 0;
+	margin-top: 8px;
+}
+.resultsTable .linksPanel::before {
+	content: '';
+	display: block;
+	
+	position: absolute;
+	width: 0;
+	height: 0;
+	top: -9px;
+	left: 10px;
+	z-index: 10;
+	
+	border-bottom: 8px solid rgba(30,30,30,0.1);
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+}
+.resultsTable .linksPanel::after {
+	content: '';
+	display: block;
+	
+	position: absolute;
+	width: 0;
+	height: 0;
+	top: -7px;
+	left: 10px;
+	z-index: 11;
+	
+	border-bottom: 8px solid #fff;
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+}
+.resultsTable .linksPanel h3 {
+	line-height: 32px;
+	padding: 0 10px;
+	border-bottom: 1px solid #eee;
+}
+.resultsTable .linksPanel a {
+	display: block;
+	white-space: nowrap;
+	line-height: 30px;
+	padding: 0 10px;
+
+	background-size: 24px 24px;
+	background-position: 10px center;
+	background-repeat: no-repeat;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+} 
+.resultsTable .linksPanel a:hover {
+	background-color: #eee;
+	text-decoration: none;
+}
+.resultsTable .linksPanel a.compare {
+	border-bottom: 1px solid #eee;
+}
+.resultsTable .linksPanel a.w3c {
+	background-image: url(/images/w3c-logo.png);
+	background-size: 24px 24px;
+	text-indent: 32px;
+}
+.resultsTable .linksPanel a.khronos {
+	background-image: url(/images/khronos-logo.png);
+	background-size: 24px 24px;
+	text-indent: 32px;
+}
+.resultsTable .linksPanel a.wp {
+	background-image: url(/images/wp-logo.png);
+	background-size: 24px 24px;
+	text-indent: 32px;
+}
+.resultsTable .linksPanel a.mdn {
+	background-image: url(/images/mdn-logo.png);
+	text-indent: 32px;
+}
 
 
 .comparisonTable table {
@@ -1172,11 +1273,11 @@ body {
 	-moz-border-radius: 6px;
 	border-radius: 6px;
 	
-	-webkit-box-shadow: 0px 0px 10px #666;
-	-moz-box-shadow: 0px 0px 10px #666;
-	-ms-box-shadow: 0px 0px 10px #666;
-	-o-box-shadow: 0px 0px 10px #666;
-	box-shadow: 0px 0px 10px #666;
+	-webkit-box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+	-o-box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 10px #666, 0px 0px 100px rgba(0,0,0,0.5);
 	border:1px solid rgba(245,245,245,0.9);
 	
 	height: 400px;

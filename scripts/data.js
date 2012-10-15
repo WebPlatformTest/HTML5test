@@ -10,11 +10,17 @@ var tests = [
 					}, {
 						id:		'tokenizer',
 						name: 	'HTML5 tokenizer', 
-						url:	'http://www.w3.org/TR/html5/parsing.html'
+						urls:	{
+									'w3c':	'http://www.w3.org/TR/html5/parsing.html',
+									'mdn':	'/HTML/HTML5/HTML5_Parser'
+								}
 					}, {
 						id:		'tree',
 						name: 	'HTML5 tree building', 
-						url:	'http://www.w3.org/TR/html5/parsing.html'
+						urls:	{
+									'w3c':	'http://www.w3.org/TR/html5/parsing.html',
+									'mdn':	'/HTML/HTML5/HTML5_Parser'
+								}
 					}, 
 					
 					'<em>HTML5 defines rules for embedding SVG and MathML inside a regular HTML document. Support for SVG and MathML is not required though, so bonus points are awarded if your browser supports embedding these two technologies.</em>',
@@ -22,11 +28,18 @@ var tests = [
 					{
 						id:		'svg',
 						name: 	'SVG in <code>text/html</code>', 
-						url:	'http://www.w3.org/TR/html5/the-map-element.html#svg-0'
+						url2:	{
+									'w3c':	'http://www.w3.org/TR/html5/the-map-element.html#svg-0',
+									'mdn':	'/SVG'
+								}
+								
 					}, {
 						id:		'mathml',
 						name: 	'MathML in <code>text/html</code>', 
-						url:	'http://www.w3.org/TR/html5/the-map-element.html#mathml'
+						urls:	{
+									'w3c':	'http://www.w3.org/TR/html5/the-map-element.html#mathml',
+									'mdn':	'/MathML'
+								}
 					}
 				]
 	}, {
@@ -36,15 +49,23 @@ var tests = [
 					{
 						id:		'element',
 						name: 	'<code>canvas</code> element', 
-						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element'
+						urls:	{
+									'w3c':	'http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element',
+									'wp': 	'/canvas',
+									'mdn':	'/HTML/Canvas'
+								}
 					}, {
 						id:		'context',
 						name: 	'2D context', 
-						url:    'http://www.w3.org/TR/2dcontext/'
+						urls:   {
+									'w3c':	'http://www.w3.org/TR/2dcontext/'
+								}
 					}, {
 						id:		'text',
 						name: 	'Text', 
-						url:	'http://www.w3.org/TR/2dcontext/#text'
+						urls:	{
+									'w3c':	'http://www.w3.org/TR/2dcontext/#text'
+								}
 					}
 				]
 	}, {
@@ -54,7 +75,11 @@ var tests = [
 					{
 						id:		'element',
 						name: 	'<code>video</code> element', 
-						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#the-video-element'
+						urls:	{
+									'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#the-video-element',
+									'wp': 	'/html/elements/video',
+									'mdn':	'/Using_HTML5_audio_and_video'
+								}
 					}, {
 						id:		'subtitle',
 						name: 	'Subtitle support', 
@@ -88,7 +113,11 @@ var tests = [
 					{
 						id:		'element',
 						name: 	'<code>audio</code> element', 
-						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#the-audio-element'
+						urls:	{
+									'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#the-audio-element',
+									'wp': 	'/html/elements/audio',
+									'mdn':	'/Using_HTML5_audio_and_video'
+								}
 					},
 					
 					'<em>The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If browser support for one or more audio codecs is detected, one bonus point is awarded for each codec.</em>',
@@ -120,7 +149,10 @@ var tests = [
 					{
 						id:		'dataset',
 						name: 	'Embedding custom non-visible data', 
-						url:	'http://www.w3.org/TR/html5/elements.html#dom-dataset'
+						urls:	{
+									'w3c':	'http://www.w3.org/TR/html5/elements.html#dom-dataset',
+									'mdn':	'/DOM/element.dataset'
+								}
 					}, 
 					
 					'<strong>New or modified elements</strong>',
@@ -128,6 +160,9 @@ var tests = [
 					{
 						id:		'section',
 						name:	'Section elements',
+						urls:	{
+									'mdn':	'/Sections_and_Outlines_of_an_HTML5_document'
+								},
 						items:	[
 									{
 										id:		'section',
@@ -163,6 +198,9 @@ var tests = [
 					}, {
 						id:		'grouping',
 						name:	'Grouping content elements',
+						urls:	{
+									'mdn':	'/Sections_and_Outlines_of_an_HTML5_document'
+								},
 						items:	[
 									{
 										id:		'figure',
@@ -1022,6 +1060,9 @@ var tests = [
 					{
 						id:		'attributes',
 						name:	'Attributes',
+						urls:	{
+									'mdn':	'/DragDrop/Drag_and_Drop'
+								},
 						items:	[
 									{
 										id:			'draggable',
@@ -1036,6 +1077,9 @@ var tests = [
 					}, {
 						id:		'events',
 						name:	'Events',
+						urls:	{
+									'mdn':	'/DragDrop/Drag_and_Drop'
+								},
 						items:	[
 									{
 										id:			'ondrag',
@@ -1074,6 +1118,9 @@ var tests = [
 					{
 						id:		'editingElements',
 						name:	'Editing elements',
+						urls:	{
+									'mdn':	'/HTML/Content_Editable'
+								},
 						items:	[
 									{
 										id:			'contentEditable',
@@ -1088,6 +1135,9 @@ var tests = [
 					}, {
 						id:		'editingDocuments',
 						name:	'Editing documents',
+						urls:	{
+									'mdn':	'/HTML/Content_Editable'
+								},
 						items:	[
 									{
 										id:			'designMode',
@@ -1098,6 +1148,9 @@ var tests = [
 					}, {
 						id:		'apis',
 						name:	'APIs',
+						urls:	{
+									'mdn':	'/HTML/Content_Editable'
+								},
 						items:	[
 									{
 										id:			'execCommand',
@@ -1142,7 +1195,11 @@ var tests = [
 					{
 						id:			'history',
 						name: 		'Session history', 
-						url:		'http://www.w3.org/TR/html5/history.html#history'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/history.html#history',
+										'wp': 	'/dom/history',
+										'mdn':	'/DOM/Manipulating_the_browser_history'
+									}
 					}
 				]
 	}, {
@@ -1162,15 +1219,25 @@ var tests = [
 					{
 						id:			'applicationCache',
 						name: 		'Application Cache', 
-						url:		'http://www.w3.org/TR/html5/offline.html#offline'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/offline.html#offline',
+										'wp': 	'/apis/appcache/ApplicationCache',
+										'mdn':	'/HTML/Using_the_application_cache'
+									}
 					}, {
 						id:			'registerProtocolHandler',
 						name: 		'Custom scheme handlers', 
-						url:		'http://www.w3.org/TR/html5/timers.html#custom-handlers'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
+										'mdn':	'/docs/Web-based_protocol_handlers'
+									}
 					}, {
 						id:			'registerContentHandler',
 						name: 		'Custom content handlers', 
-						url:		'http://www.w3.org/TR/html5/timers.html#custom-handlers'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
+										'mdn':	'/DOM/window.navigator.registerContentHandler'
+									}
 					}, {
 						id:			'addSearchProvider',
 						name: 		'Custom search providers', 
@@ -1184,15 +1251,24 @@ var tests = [
 					{
 						id:			'sandbox',
 						name: 		'Sandboxed <code>iframe</code>', 
-						url:		'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-sandbox'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-sandbox',
+										'mdn':	'/HTML/Element/iframe'
+									}
 					}, {
 						id:			'seamless',
 						name: 		'Seamless <code>iframe</code>', 
-						url:		'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-seamless'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-seamless',
+										'mdn':	'/HTML/Element/iframe'
+									}
 					}, {
 						id:			'srcdoc',
 						name: 		'<code>iframe</code> with inline contents', 
-						url:		'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-srcdoc'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-srcdoc',
+										'mdn':	'/HTML/Element/iframe'
+									}
 					}
 				]
 	}, {
@@ -1206,15 +1282,24 @@ var tests = [
 					}, {
 						id:			'async',
 						name: 		'Asyncronous script execution', 
-						url:		'http://www.w3.org/TR/html5/scripting-1.html#attr-script-async'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/scripting-1.html#attr-script-async',
+										'mdn':	'/HTML/Element/script'
+									}
 					}, {
 						id:			'onerror',
 						name: 		'Runtime script error reporting', 
-						url:		'http://www.w3.org/TR/html5/webappapis.html#report-the-error'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/html5/webappapis.html#report-the-error',
+										'mdn':	'/DOM/window.onerror'
+									}
 					}, {
 						id:			'base64',
 						name: 		'Base64 encoding and decoding', 
-						url:		'http://www.w3.org/TR/html5/webappapis.html#atob'
+						url:		{
+										'w3c':	'http://www.w3.org/TR/html5/webappapis.html#atob',
+										'mdn':	'/DOM/window.atob'
+									}
 					}
 				]
 	},
@@ -1228,11 +1313,18 @@ var tests = [
 					{
 						id:			'geolocation',
 						name: 		'Geolocation', 
-						url:    	'http://www.w3.org/TR/geolocation-API/'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/geolocation-API/',
+										'wp': 	'/apis/geolocation',
+										'mdn':	'/Using_geolocation'
+									}
 					}, {
 						id:			'orientation',
 						name: 		'Device Orientation', 
-						url:    	'http://dev.w3.org/geo/api/spec-source-orientation.html'
+						urls:		{
+										'w3c':	'http://dev.w3.org/geo/api/spec-source-orientation.html',
+										'mdn':	'/Mozilla_event_reference/devicemotion'
+									}
 					}
 				]
 	}, {
@@ -1242,7 +1334,12 @@ var tests = [
 					{
 						id:			'context',
 						name: 		'3D context', 
-						url:    	'http://www.khronos.org/registry/webgl/specs/latest/'
+						urls:		{
+										'khronos':	'http://www.khronos.org/registry/webgl/specs/latest/',
+										'wp': 		'/webgl',
+										'mdn':		'/docs/WebGL'
+									}
+
 					}, {
 						id:			'datatypes',
 						name:		'Native binary data',
@@ -1298,14 +1395,25 @@ var tests = [
 					{
 						id:			'postMessage',
 						name: 		'Cross-document messaging', 
-						url:    	'http://dev.w3.org/html5/postmsg/'
+						urls:    	{
+										'w3c':	'http://dev.w3.org/html5/postmsg/',
+										'wp':	'/apis/web-messaging',
+										'mdn':	'/DOM/window.postMessage'
+									}
 					}, {
 						id:			'eventSource',
 						name: 		'Server-Sent Events', 
-						url:		'http://www.w3.org/TR/eventsource/'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/eventsource/',
+										'mdn':	'/Server-sent_events/Using_server-sent_events'
+									}
+
 					}, {
 						id:			'xmlhttprequest2',
 						name:		'XMLHttpRequest Level 2',
+						urls:		{
+										'mdn':	'/DOM/XMLHttpRequest'
+									},
 						items:		[
 										{
 											id:			'upload',
@@ -1332,7 +1440,10 @@ var tests = [
 					}, {
 						id:			'webSocket',
 						name: 		'WebSocket', 
-						url:		'http://www.w3.org/TR/websockets/'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/websockets/',
+										'mdn':	'/docs/WebSockets'
+									}
 					}
 				]
 	}, {
@@ -1342,7 +1453,11 @@ var tests = [
 					{
 						id:			'fileReader',
 						name: 		'File API', 
-						url:    	'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface'
+						urls:		{
+										'w3c':	'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
+										'wp': 	'/apis/file',
+										'mdn':	'/Using_files_from_web_applications'
+									}
 					}, 
 					
 					'<em>The Directories and System API proposal has failed to gain traction among browser vendors and is only supported in some Webkit based browsers. No additional points are awarded for supporting this API.</em>',
@@ -1360,15 +1475,27 @@ var tests = [
 					{
 						id:			'sessionStorage',
 						name: 		'Session Storage', 
-						url:    	'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute',
+										'wp': 	'/apis/web-storage',
+										'mdn':	'/DOM/Storage'
+									}
 					}, {
 						id:			'localStorage',
 						name: 		'Local Storage', 
-						url:    	'http://www.w3.org/TR/webstorage/#the-localstorage-attribute'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
+										'wp': 	'/apis/web-storage',
+										'mdn':	'/DOM/Storage'
+									}
 					}, {
 						id:			'indexedDB',
 						name: 		'IndexedDB', 
-						url:		'http://www.w3.org/TR/IndexedDB/'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/IndexedDB/',
+										'wp': 	'/apis/indexedDB',
+										'mdn':	'/IndexedDB'
+									}
 					},
 					
 					'<em>The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.</em>',
@@ -1386,11 +1513,17 @@ var tests = [
 					{
 						id:			'worker',
 						name: 		'Web Workers', 
-						url:    	'http://www.w3.org/TR/workers/#dedicated-workers-and-the-worker-interface'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/workers/#dedicated-workers-and-the-worker-interface',
+										'mdn':	'/DOM/Using_web_workers'
+									}
 					}, {
 						id:			'sharedWorker',
 						name: 		'Shared Workers', 
-						url:    	'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface'
+						urls:    	{
+										'w3c':	'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface',
+										'mdn':	'/DOM/Using_web_workers'
+									}
 					}
 				]
 	}, {
@@ -1398,9 +1531,12 @@ var tests = [
 		name:	'Local multimedia',
 		items:	[
 					{
-						id:		'getUserMedia',
-						name: 	'Access the webcam', 
-						url:	'http://dev.w3.org/2011/webrtc/editor/getusermedia.html'
+						id:			'getUserMedia',
+						name: 		'Access the webcam', 
+						urls:		{
+										'w3c':	'http://dev.w3.org/2011/webrtc/editor/getusermedia.html',
+										'mdn':	'/WebRTC'
+									}
 					}
 				]
 	}, {
@@ -1420,7 +1556,10 @@ var tests = [
 					{
 						id:			'pagevisiblity',
 						name: 		'Page Visibility', 
-						url:		'http://www.w3.org/TR/page-visibility/'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/page-visibility/',
+										'mdn':	'/DOM/Using_the_Page_Visibility_API'
+									}
 					}, {
 						id:			'getSelection',
 						name: 		'Text selection', 
@@ -1430,7 +1569,11 @@ var tests = [
 						name: 		'Scroll into view'
 					}, {
 						id: 		'mutationObserver',
-						name:   	'Mutation Observer'
+						name:   	'Mutation Observer',
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/dom/#mutation-observers',
+										'mdn':	'/DOM/MutationObserver'
+									}
 					}
 				]
 	},
@@ -1454,15 +1597,27 @@ var tests = [
 					{
 						id:			'requestFullScreen',
 						name: 		'Full screen support', 
-						url:		'http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api'
+						urls:		{
+										'w3c':	'http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api',
+										'wp':	'/dom/methods/requestFullscreen',
+										'mdn':	'/DOM/Using_fullscreen_mode'
+									}
 					}, {
 						id:			'pointerLock',
 						name: 		'Pointer Lock support', 
-						url:		'http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html'
+						urls:		{
+										'w3c':	'http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html',
+										'wp':	'/dom/methods/requestPointerLock',
+										'mdn':	'/API/Pointer_Lock_API'
+									}
 					}, {
 						id:			'requestAnimationFrame',
 						name: 		'<code>window.requestAnimationFrame</code>', 
-						url:		'http://www.w3.org/TR/animation-timing/#requestAnimationFrame'
+						urls:		{
+										'w3c':	'http://www.w3.org/TR/animation-timing/#requestAnimationFrame',
+										'wp': 	'/apis/timing/methods/requestAnimationFrame',
+										'mdn':	'/DOM/window.requestAnimationFrame'
+									}
 					}
 				]
 	}

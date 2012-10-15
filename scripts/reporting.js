@@ -51,6 +51,36 @@
 				onChange:		options.onChange || false
 			}
 
+			this.panel = null;
+
+			if (this.options.links) {
+				var that = this;
+				
+				function close(e) {
+					if (that.panel) {
+						var cell = that.panel.parentNode;
+						var node = e.target;
+
+						while (node.parentNode) {
+							if (node == that.panel) return;
+							node = node.parentNode;
+						}
+					
+						that.panel.parentNode.removeChild(that.panel);
+						that.panel = null;
+
+						var node = e.target;
+						while (node.parentNode) {
+							if (node == cell) return e.stopPropagation();
+							node = node.parentNode;
+						}
+					}	
+				}
+
+				document.addEventListener('click', close, true)
+				document.addEventListener('touchstart', close, true)
+			}
+
 			this.data = [];
 			for (var i = 0; i < this.options.columns; i++) {
 				this.data[i] = null;
@@ -183,8 +213,10 @@
 						var row = document.getElementById('head-' + tests[i].id);
 						var cell = row.childNodes[column + 1];
 						
+						var content = "<div class='grade'>";
+						
 						if (this.options.bonus && bonus > 0) {
-							cell.innerHTML += "<span class='bonus'>+" + bonus + "<span> " + t('bonus points') + "</span></span>";
+							content += "<span class='bonus'>+" + bonus + "<span> " + t('bonus points') + "</span></span>";
 						}
 												
 						if (this.options.grading) {
@@ -199,13 +231,16 @@
 							}
 						
 							if (points == maximum)
-								cell.innerHTML += "<span class='" + grade + "'>" + points + "</span>";
+								content += "<span class='" + grade + "'>" + points + "</span>";
 							else
-								cell.innerHTML += "<span class='" + grade + "'>" + points + "/" + maximum + "</span>";
+								content += "<span class='" + grade + "'>" + points + "/" + maximum + "</span>";
 						} else {
-							cell.innerHTML += points;
+							content += "<span>" + points + "</span>";
 						}
 
+						content += "</div>"
+						
+						cell.innerHTML = content;
 						this.updateItems(column, data, 0, this.tests[i].id, this.tests[i].items);
 					}
 				}
@@ -405,7 +440,7 @@
 			}
 		},
 		
-		createItems: function(parent, level, id, tests) {
+		createItems: function(parent, level, id, tests, parentUrls) {
 			var ids = [];
 			
 			for (var i = 0; i < tests.length; i++) {
@@ -423,13 +458,9 @@
 					}
 				} else {
 					var th = document.createElement('th');
-					if (this.options.links && typeof tests[i].url != 'undefined') 
-						th.innerHTML = "<a href='" + tests[i].url + "'>" + t(tests[i].name) + "</a>";
-					else
-						th.innerHTML = "<span>" + t(tests[i].name) + "</span>";
-					
+					th.innerHTML = "<span>" + t(tests[i].name) + "</span>";
 					tr.appendChild(th);
-					
+
 					for (var c = 0; c < this.options.columns; c++) {
 						var td = document.createElement('td');
 						tr.appendChild(td);
@@ -442,8 +473,19 @@
 					}
 					
 					if (typeof tests[i].items != 'undefined') {
+						var urls = null;
+
+						if (this.options.links) {
+							if (typeof tests[i].urls != 'undefined') {
+								urls = tests[i].urls;	
+							}						
+							else if (typeof tests[i].url != 'undefined') {
+								urls = { 'w3c': tests[i].url };
+							}
+						}
+
 						tr.className += 'hasChild';
-						var children = this.createItems(parent, level + 1, id + '-' + tests[i].id, tests[i].items);
+						var children = this.createItems(parent, level + 1, id + '-' + tests[i].id, tests[i].items, urls);
 						this.hideChildren(tr, children);
 						
 						(function(that, tr, th, children) {
@@ -455,6 +497,30 @@
 						if (this.options.features) {
 							th.innerHTML = "<a href='/compare/feature/" + id + '-' + tests[i].id + ".html'>" + t(tests[i].name) + " <span>»</span></a>";
 						}
+
+						if (this.options.links) {
+							var urls;
+							var showLinks = false;
+		
+							if (typeof tests[i].urls != 'undefined') {
+								urls = tests[i].urls;	
+								showLinks = true;
+							}						
+							else if (typeof tests[i].url != 'undefined') {
+								urls = { 'w3c': tests[i].url };
+								showLinks = true;
+							}
+							
+							if (showLinks) {
+								th.className = 'hasLink';
+								
+								(function(that, th, id, name, parentUrls, urls) {
+									th.onclick = function() {
+										that.showLinks(th, id, name, parentUrls, urls);
+									};		
+								})(this, th, id + '-' + tests[i].id, tests[i].name, parentUrls, urls);
+							}
+						}
 					}
 					
 					ids.push(tr.id);
@@ -464,6 +530,27 @@
 			return ids;
 		},
 	
+		showLinks: function(parent, id, name, parentUrls, urls) {
+			if (this.panel) {
+				this.panel.parentNode.removeChild(this.panel);
+				this.panel = null;
+			}
+			
+			var result = {};
+			if (parentUrls) for (key in parentUrls) result[key] = parentUrls[key];
+			if (urls) for (key in urls) result[key] = urls[key];
+			
+			var content = "<a href='/compare/feature/" + id +".html' class='compare'>" + t('Compare browsers') + "</a>";
+			if (typeof result.w3c != 'undefined') content += "<a href='" + result.w3c +"' class='w3c'>" + t('Go to the specification at W3C.org') + "</a>";
+			if (typeof result.khronos != 'undefined') content += "<a href='" + result.khronos +"' class='khronos'>" + t('Go to the specification at Khronos.org') + "</a>";
+			if (typeof result.wp != 'undefined') content += "<a href='http://docs.webplatform.org/wiki" + result.wp +"' class='wp'>" + t('Documentation at WebPlatform.org') + "</a>";
+			if (typeof result.mdn != 'undefined') content += "<a href='https://developer.mozilla.org/en-US/docs" + result.mdn +"' class='mdn'>" + t('Documentation at Mozilla Developer Network') + "</a>";
+		
+			this.panel = document.createElement('div');
+			this.panel.className = 'linksPanel';
+			this.panel.innerHTML = content;
+			parent.appendChild(this.panel);
+		},
 	
 		toggleChildren: function(element, ids) {
 			if (element.className.indexOf(' hidden') == -1) {
