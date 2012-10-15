@@ -124,6 +124,7 @@
 						xOperaMiniPhoneUA = "' . mysql_real_escape_string($xOperaMiniPhoneUA) . '",
 						results = "' . mysql_real_escape_string($payload->results) . '",
 						points = "' . mysql_real_escape_string($payload->points) . '",
+						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
 						status = 0
 				');
 			}
