@@ -726,6 +726,7 @@ body {
 	
 	font-size: 1.1em;
 	text-align: left;
+	height: 38px;
 }
 .resultsTable table thead td {
 	padding: 3px 10px;
@@ -736,6 +737,12 @@ body {
 	font-size: 1.8em;
 	text-align: right;
 	color: #999;
+	width: 50px;
+}
+.resultsTable table thead td div.grade {
+	position: absolute;
+	right: 10px;
+	top: 4px;
 }
 .resultsTable table thead td span.none {
 	color: #853333;
@@ -753,9 +760,9 @@ body {
 	color: #33af33;
 }
 .resultsTable table thead td span.bonus {
-	position: absolute;
-	margin-top: 5px;
-	margin-left: -155px;
+	position: relative;
+	top: -6px;
+	left: -10px;
 	
 	white-space: nowrap;
 	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
