@@ -80,6 +80,9 @@
 			$headers = apache_request_headers();
 						
 			$xWapProfile = isset($headers['x-wap-profile']) ? $headers['x-wap-profile'] : '';
+			$xDeviceStockUA = isset($headers['Device-Stock-UA']) ? $headers['Device-Stock-UA'] : '';
+			$xDeviceUserAgent = isset($headers['X-Device-User-Agent']) ? $headers['X-Device-User-Agent'] : '';
+			$xOriginalUserAgent = isset($headers['X-Original-User-Agent']) ? $headers['X-Original-User-Agent'] : '';
 			$xOperaMiniPhoneUA = isset($headers['X-OperaMini-Phone-UA']) ? $headers['X-OperaMini-Phone-UA'] : '';
 			
 			if (!$readonly) {
@@ -115,6 +118,9 @@
 						useragent = "' . mysql_real_escape_string($payload->useragent) . '",
 						humanReadable = "' . mysql_real_escape_string($payload->humanReadable) . '",
 						xWapProfile = "' . mysql_real_escape_string($xWapProfile) . '",
+						xDeviceStockUA = "' . mysql_real_escape_string($xDeviceStockUA) . '",
+						xDeviceUserAgent = "' . mysql_real_escape_string($xDeviceUserAgent) . '",
+						xOriginalUserAgent = "' . mysql_real_escape_string($xOriginalUserAgent) . '",
 						xOperaMiniPhoneUA = "' . mysql_real_escape_string($xOperaMiniPhoneUA) . '",
 						results = "' . mysql_real_escape_string($payload->results) . '",
 						points = "' . mysql_real_escape_string($payload->points) . '",
