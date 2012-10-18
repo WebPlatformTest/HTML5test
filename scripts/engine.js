@@ -2783,7 +2783,8 @@ Test = (function() {
 		},
 		
 		hasNotification: function() {
-			return 'Notifications' in window || 'webkitNotifications' in window || 'mozNotifications' in window || 'oNotifications' in window || 'msNotifications' in window;
+			/* W3C standard is "new Notification()", WebKit pre-standard is "window.webkitNotifications.createNotification()", Gecko pre-standard is "window.navigator.mozNotification.createNotification()" */
+			return 'Notification' in window || 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window;
 		}
 	};			
 	
