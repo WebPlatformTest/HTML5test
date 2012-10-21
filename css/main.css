@@ -183,16 +183,17 @@ body {
 	-o-box-shadow: 0px 0px 5px #222;
 	box-shadow: 0px 0px 5px #222;
 
-	-webkit-transform: rotate(10deg);
-	-moz-transform: rotate(10deg);
-	-ms-transform: rotate(10deg);
-	-o-transform: rotate(10deg);
+	-webkit-transform: rotate(-10deg);
+	-moz-transform: rotate(-10deg);
+	-ms-transform: rotate(-10deg);
+	-o-transform: rotate(-10deg);
+	transform: rotate(-10deg);
 
 	text-shadow: 0px -1px 1px #852706;
 
 	font-family: 'Alfa Slab One', Arial;
 	font-weight: normal;
-	font-size: 1.4em;
+	font-size: 1.1em;
 	text-transform: uppercase;
 	color: #eee;
 	text-align: center;
