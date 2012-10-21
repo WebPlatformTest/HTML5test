@@ -1405,6 +1405,11 @@ body {
 	}
 	.footer > div .copyright {
 		margin-left: 50px;
+		margin-right: 116px;
+	}
+
+	#cloudvps a {
+		right: 16px;
 	}
 
 	.page {
