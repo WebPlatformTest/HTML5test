@@ -166,11 +166,11 @@ body {
 
 .updated {
 	position: absolute;
-	top: -10px;
-	left: 500px;
+	top: -23px;
+	left: -54px;
 	
 	float: left;
-	background-color: #db4d1a;
+	background-color: #dc4f1b;
 	padding: 5px;
 	border-radius: 8px;
 
