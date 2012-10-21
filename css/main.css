@@ -28,11 +28,11 @@ body {
 
 .header {
 	background: #222;
-	background: #222 -webkit-gradient(linear, left 64, left 80, from(#222), to(#111));
-	background: #222 -moz-linear-gradient(top, #111, #222);
-	background: #222 -ms-linear-gradient(top, #111, #222);
-	background: #222 -o-linear-gradient(top, #111, #222);
-	background: #222 linear-gradient(top, #111, #222);
+	background: #222 -webkit-gradient(linear, left top, left bottom, from(#222), to(#111));
+	background: #222 -moz-linear-gradient(bottom, #111, #222);
+	background: #222 -ms-linear-gradient(bottom, #111, #222);
+	background: #222 -o-linear-gradient(bottom, #111, #222);
+	background: #222 linear-gradient(bottom, #111, #222);
 }
 .header h1 {
 	font-weight: bold;
@@ -49,13 +49,21 @@ body {
 	font-style: normal;
 	color: #666;
 }
-.header ul {
+.header div {
 	margin: 10px auto 0;
+	overflow: hidden;
 	width: 630px;
-	overflow:hidden;
-
+}
+.header ul {
 	list-style-type: none;
 }
+.header ul.left {
+	float: left;
+}
+.header ul.right {
+	float: right;
+}
+
 .header ul li {
 	display: block;
 	float: left;
@@ -83,9 +91,6 @@ body {
 .header ul li a {
 	color: #fff;
 	text-decoration: none;
-}
-.header ul li.right {
-	float: right;
 }
 
 .footer {
@@ -1380,7 +1385,7 @@ body {
 
 
 
-@media (max-width: 640px) {
+@media (max-width: 680px) {
 	body {
 		padding: 0;
 	}
@@ -1389,11 +1394,18 @@ body {
 		width: auto;
 		padding-left: 30px;
 	}
-	.header ul {
+	
+	.header div {
 		width: auto;
-		padding-left: 30px;
-		padding-right: 10px;
 	}
+	.header ul.left {
+		padding-left: 30px;
+	}
+
+	.header ul.right {
+		padding-right: 30px;
+	}
+
 	.footer > div {
 		width: auto;
 		padding-left: 30px;
@@ -1487,6 +1499,52 @@ body {
 	}
 }
 
+@media (max-width: 560px) {
+	.header h1 {
+		width: 400px;
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;
+	}
+
+	.header div {
+		width: auto;
+	}
+	.header ul {
+		padding: 0 !important;
+		margin: 0 0 12px 0 !important;
+		width: 50%;
+	}
+	.header ul li {
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+
+		line-height: 30px;
+
+		background: none;
+		clear: left;
+	}
+	.header ul.right {
+		padding-left: 10px;
+	}
+	.header ul.left li {
+		float: right;
+		clear: right;
+		margin-right: 6px;
+	}
+	.header ul.right li {
+		margin-left: 6px;
+	}
+	
+	.page.hasNavigation {
+		padding-top: 24px;
+		background: #111;
+		margin: 0;
+	}
+}
+
+
 @media (max-width: 480px) {
 	.comparisonTable table tr :nth-child(4) {
 		display: none;
@@ -1520,28 +1578,33 @@ body {
 		column-count: 1;
 	}
 
+	/*
 	.resultsTable table thead td span.bonus {
 		margin-left: -42px;
 	}
-	.resultsTable table thead td span.bonus span {
-		display: none;
-	}
+	*/
 }
-@media (max-width: 360px) {
+@media (max-width: 432px) {
 	.header h1 {
+		width: auto;
 		padding-left: 16px;
+		padding-right: 16px;
 	}
 	.header ul {
-		padding-left: 16px;
 		font-size: 0.85em;
+	}
+	.header ul.left {
+		padding-left: 16px;
 	}
 	.header ul li {
 		padding: 0 8px;
+		line-height: 28px;
 	}
+	/*
 	.header ul li span {
 		display: none;
 	}
-
+	*/
 	.scorePanel  h2 {
 		font-size: 8em !important;
 	}
@@ -1551,11 +1614,6 @@ body {
 	}
 	#explaination {
 		width: 90%;
-	}
-	
-	
-	.page {
-		margin-top: 2em;
 	}
 	
 	.paper ul {
@@ -1579,7 +1637,9 @@ body {
 		margin: 0 -16px;
 	}	
 
-
+	.resultsTable table thead td span.bonus span {
+		display: none;
+	}
 	
 	.comparisonTable table tr :nth-child(3),
 	.comparisonTable table tr :nth-child(4) {

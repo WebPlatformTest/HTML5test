@@ -28,17 +28,20 @@
 	<body>
 		<div class='header'>
 			<h1 data-i18n>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
-			<ul>
-				<li><a href='/index.html' data-i18n>Your browser</a></li>
-				<li><a href='/results/desktop.html' data-i18n>Other<span> browser</span>s</a></li>
-				<li class='selected'><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
-
-				<li class='right'><a href='/about.html' data-i18n>About<span> the test</span></a></li>
-				<li class='right'><a href='http://blog.html5test.com/' data-i18n>News</a></li>
-			</ul>
+			<div class='navigation'>
+				<ul class='left'>
+					<li><a href='/index.html' data-i18n>Your browser</a></li>
+					<li><a href='/results/desktop.html' data-i18n>Other<span> browser</span>s</a></li>
+					<li class='selected'><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
+				</ul>
+				<ul class='right'>
+					<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
+					<li><a href='/about.html' data-i18n>About<span> the test</span></a></li>
+				</ul>
+			</div>
 		</div>
 		
-		<div class='page'>
+		<div class='page hasNavigation'>
 			<div class='paper'>
 				<ul>
 					<li class='selected'><a href='/compare/browser/index.html' data-i18n>Browsers</a></li>
