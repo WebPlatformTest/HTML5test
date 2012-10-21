@@ -1,0 +1,800 @@
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+
+html, body, br, hr, div, span, a, object, 
+iframe, ul, ol, dl, li, dt, dd, h1, h2, h3, 
+h4, h5, h6, blockquote, q, address, small, big, 
+cite, dfn, ins, del, i, em, b, strong, sup, sub, 
+strike, pre, code, samp, kbd, var, tt, form, 
+fieldset, legend, label, input, textarea, 
+option, .nobox {
+	font-size: 100%;
+	margin: 0;
+	outline: 0 none;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+blockquote, q { quotes:none;}
+br { height:0;}
+a img { border:0 none;}
+// img { display:block;}
+img.inline { display:inline;}
+legend { display:none;}
+
+code, samp, kbd, var { font-family:"Courier New","Courier",Monospace;}
+h1, h2, h3, h4, h5, h6, b, strong { font-weight: normal; }
+i, em, cite, dfn, ins { font-style:italic; }
+del, code, samp, kbd, var { font-style:inherit; }
+del { text-decoration:line-through;}
+ins { text-decoration:none; }
+abbr, acronym { 
+	border:0 none;
+	cursor:help;
+	text-decoration:none;
+}
+.bott-patt {
+	background: url("http://static.tumblr.com/xcxngn2/KHpld1vbs/rep-bg-bottom.png") repeat-x bottom left;
+}
+ol, ul {
+	list-style: none;
+	margin: 0;
+}
+ol li,
+ul li {
+	margin: 0;
+}
+
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* - - - RESET STYLES END - - */
+
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* http://perishablepress.com/press/2009/12/06/new-clearfix-hack */
+
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/*
+	The following zoom:1 rule is specifically for IE6 + IE7.
+	Move to separate stylesheet if invalid CSS is a problem.
+*/
+* html .clearfix,
+*:first-child+html .clearfix {
+	zoom: 1;
+}
+
+/* - - CLEAR FLOTS END - - */
+html {
+}
+body {
+	background: #fff;
+/*	color: #333333;
+	font: 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+*/
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+	text-shadow: 0 1px 0 #fff;
+}
+.noise {
+	background: #EEEEEE url("http://static.tumblr.com/xcxngn2/Iz0ld1v2h/bg.png") repeat;
+}
+a {
+	color: #dc4f1b;
+	}
+a:hover {
+	color: #3B3B3B;
+}
+a:active,a:focus { outline: none; }
+h1, h2, h3, h4 ,h5 {
+	font-weight: bold;
+}
+
+strong, b {
+	font-weight: bold;
+}
+#header p, .post .sidebar p, .description, #footer .footer, #footer .description p {
+	line-height: 1.6363em;
+}
+code, pre {
+	font-size: 13px;
+	padding: 0;
+}
+pre {
+	border: 1px solid #DDDDDD;
+}
+#container {
+	margin: 0 auto;
+	width: 630px;
+	position: relative;
+
+	padding-top: 45px;
+	font-size: 13px;
+	line-height: 20px;
+
+	font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
+}
+#header { 
+	//padding: 30px 0px;
+	padding: 45px 0 50px; 
+	}
+	#header h1 {
+		font-size: 3em;
+		font-family: 'Alfa Slab One', Arial;
+		font-weight: normal;
+		text-transform: normal;
+		font-size: 40px;
+		}
+		#header h1 a {
+			color: #3b3b3b;
+			text-decoration:none;
+}
+#header p {
+color:#555555;
+padding-right:25em;
+}
+
+
+
+.header {
+	background: #222;
+	background: #222 -webkit-gradient(linear, left 64, left 80, from(#222), to(#111));
+	background: #222 -moz-linear-gradient(top, #111, #222);
+	background: #222 -ms-linear-gradient(top, #111, #222);
+	background: #222 -o-linear-gradient(top, #111, #222);
+	
+	text-shadow: none;
+}
+.header h1 {
+	font-weight: bold;
+	font-size: 0.9em;
+	text-align: left;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: #bbb;
+	padding: 8px 0;
+	margin: 0 auto;
+	width: 630px;
+}
+.header h1 em {
+	font-style: normal;
+	color: #666;
+}
+.header ul {
+	margin: 10px auto 0;
+	width: 630px;
+	overflow:hidden;
+
+	list-style-type: none;
+}
+.header ul li {
+	display: block;
+	float: left;
+	margin: 0 3px 0 0;
+	padding: 0 10px;
+	line-height: 32px;
+	color: #fff;
+	font-size: 0.9em;
+	text-transform: lowercase;
+	text-shadow: 0px -1px 1px #000;
+
+	background: #2a2a2a;
+	
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	border-top-left-radius: 6px;	
+
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	border-top-right-radius: 6px;	
+}
+.header ul li.selected {
+	background: #eee url("http://static.tumblr.com/xcxngn2/Iz0ld1v2h/bg.png") repeat;
+}
+.header ul li a {
+	color: #fff;
+	text-decoration: none;
+}
+.header ul li.selected a {
+	color: #000;
+	text-shadow: 0 1px 0 #fff;
+}
+.header ul li.right {
+	float: right;
+}
+
+
+
+#nav {
+	list-style-type: none;
+	float: right;
+	position: relative;
+	top: -22px;
+}
+#nav li {
+	float: left;
+	margin: 0 0 0 10px;
+}
+#nav li a,
+#footer .search input[type=submit] {
+	font-size: 11.5px;
+	background: #00A5F8; /* old browsers */
+	background: -moz-linear-gradient(top, #00A5F8 0%, #0581D2 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00A5F8), color-stop(100%,#0581D2)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00A5F8', endColorstr='#0581D2',GradientType=0 ); /* ie */
+	text-decoration: none;
+	font-weight: normal;
+	border: 1px solid #0083c5;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	padding: 5px 15px;
+	color: #fff;
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 0px #58c7ff inset;
+	-webkit-box-shadow: 0 1px 0px #58c7ff inset;
+	box-shadow: 0 1px 0px #58c7ff inset;
+	font-family: "Lucida Sans","Lucida Grande",Verdana,Sans-serif;
+}
+#nav li a:hover,
+#footer .search input[type=submit]:hover {
+	opacity: 0.9;
+}
+#nav li a:focus,
+#footer .search input[type=submit]:focus {
+	opacity: 1;
+	-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.3) inset;
+    -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.3) inset;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3) inset;
+}
+#contents .post {
+	clear: right;
+	position: relative;
+	margin-bottom: 40px;
+}
+.content p {
+	margin: 10px 0 !important;
+	position: relative;
+}
+.content .note {
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	padding: 10px 30px;
+	font-size: 0.9em;	
+	text-align: center;
+	margin: 20px 0;
+}
+.content .go h3 {
+	font-size: 24px !important;
+}
+.content h4 {
+	margin-top: 2em;
+	font-size: 15px;
+}
+.content ul {
+	list-style-type: disc;
+}
+.content table {
+	width: 100%;
+	margin: 16px 0;
+}
+.content table th {
+	text-align: left;
+	border: 1px solid #ddd;
+	padding: 2px 4px;
+	background: #f6f6f6;
+}
+.content table td {
+	border: 1px solid #ddd;
+	padding: 2px 4px;
+}
+.description {
+	padding: 10px 0 0 0;
+}
+.description p {
+	margin: 0 !important;
+}
+#contents .post:first-child {
+border-top:0 none;
+}
+.post .sidebar {
+float:right;
+padding: 20px 0 0;
+width: 140px;
+
+/*
+position:absolute;
+right:0;
+top:0;
+*/
+letter-spacing: 0;
+font-size: 11px;
+}
+.sidebar ul {
+	list-style-type: none;
+}
+.sidebar ul li {
+	background:url("http://static.tumblr.com/xcxngn2/cX9ld1v64/li-border.png") no-repeat scroll right bottom transparent;
+font-weight:bold;
+line-height:20px;
+padding:5px 10px;
+}
+.sidebar ul li.notes a {
+	background: url("http://static.tumblr.com/xcxngn2/MZtld1v83/notes.png") no-repeat 0 1px;
+	padding: 1px 0 5px 22px;
+}
+.sidebar ul li.permalink a {
+	background: url("http://static.tumblr.com/xcxngn2/D4qld1v8r/permalink.png") no-repeat 0 0;
+	padding: 1px 0 5px 22px;
+}
+.sidebar ul li.comments a {
+	background: url("http://static.tumblr.com/xcxngn2/Ojslm7i2m/comments.png") no-repeat 0 0;
+	padding: 1px 0 5px 22px;
+}
+.sidebar ul li.tweet a {
+	background: url("http://static.tumblr.com/xcxngn2/hYZlm7i52/tweet.png") no-repeat 0 0;
+	padding: 1px 0 5px 22px;
+}
+.sidebar ul li.date {
+	background: url("http://static.tumblr.com/xcxngn2/JDMld1v4b/date-bg.png") no-repeat 0 0;
+	padding: 14px 0 14px 30px;
+	width: 210px;
+}
+.sidebar ul li.date h2 {
+	color: #ffffff;
+	font-weight:bold;
+	text-shadow: 0 1px 2px #000;
+	font-size: 14px;
+}
+.sidebar ul li.notes {
+	margin: 0;
+}
+.post .sidebar a {
+color:#555555;
+text-decoration:none;
+}
+.post .sidebar a:hover {
+	color: #3b3b3b;
+}
+.post .sidebar p.notes + p {
+margin:0;
+}
+.post .content {
+background:none repeat scroll 0 0 #FFFFFF;
+margin-right:23.5em;
+padding: 30px;
+width: 400px;
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+border: 4px solid #FCFCFC;
+
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.description + .description {
+margin-top:0;
+}
+#footer {
+padding: 0 0 20px 0;
+}
+#footer .description {
+    float: left;
+    padding-bottom: 1.2em;
+    width: 350px;
+}
+
+.footer-wrap {
+	background: #ffffff;
+	width: 100%;
+	float: left;
+	border-top: 1px solid #ddd;
+}
+.footer {
+	clear:both;
+	margin-bottom:0px;
+	margin-top: 10px;
+	padding: 30px 0;
+	text-align:center;
+	margin: 0 auto;
+    position: relative;
+    width: 700px;
+    color: #ccc;
+    font-size: 0.8em;
+}
+.footer a {
+	color: #aaa;
+}
+#footer .search {
+    float: left;
+    margin-left: 50px;
+    padding-bottom: 30px;
+    width: 300px;
+}
+#footer .search input[type="text"] {
+	background: url("http://static.tumblr.com/xcxngn2/rCqld1v59/input_bg.gif") repeat-x scroll center top #FFFFFF;
+	border: 1px solid #BBBBBB;
+	font: 120% Helvetica,Arial,sans-serif;
+	margin-right: 0.5em;
+	padding: 6px;
+	width: 180px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+#footer h2 {
+	color: #3b3b3b;
+	font-size: 1.7em;
+	line-height: 1.5em;
+	margin-bottom: 5px;
+	letter-spacing: -1px;
+}
+#footer .description p {
+	color: #555555;
+	margin-top: 0 !important;
+}
+#footer .description img {
+float:left;
+margin-right:10px;
+}
+#footer .follow ul li {
+float:left;
+list-style:none outside none;
+margin-right:2px;
+}
+.post h3 {
+	font-family: 'Alfa Slab One', Arial;
+	color: #3b3b3b;
+	display: block;
+	font-size: 35px;
+	line-height: 120%;
+	margin: 0 0 14px;
+	font-weight: normal;
+}
+.post h3 a {
+	text-decoration: none;
+}
+.post h3 a:hover {
+	color: #3B3B3B;
+}
+.post blockquote {
+border-left: 4px double #CCCCCC;
+padding-left:1em;
+}
+.post blockquote h3 {
+
+}
+.post p, .post blockquote, .post ul, .post ol {
+margin-top:1em;
+}
+.post p:first-child, .post blockquote:first-child, .post ul:first-child, .post ol:first-child {
+margin-top:0;
+}
+.post .nav {
+min-height:0 !important;
+}
+.post .link h3 {
+margin:0;
+}
+.post .quote .symbol {
+float:left;
+font-size:5em;
+margin-top:-0.1em;
+}
+.post .quote .quote {
+font-size:1.7em;
+line-height:1.5em;
+margin-left:1.5em;
+}
+.post .chat ul {
+list-style:none outside none;
+}
+.post .chat ul li {
+font-size:1.2em;
+line-height:1.5em;
+padding:0.25em 0.5em;
+}
+.post .chat ul li {
+background:none repeat scroll 0 0 #FFFFFF;
+}
+.post .chat ul li.odd {
+background: #EEEEEE;
+}
+.post .chat .label {
+color:#999999;
+font-weight:bold;
+}
+.post .chat .odd .label {
+color: #3B3B3B;
+}
+.post .text .go img {
+max-width:100%;
+}
+.post .text blockquote {
+line-height:1.5em;
+}
+.post .text ul, .post .text ol, .post .description ol, .post .description ul {
+padding-left:2.5em;
+}
+ol.notes {
+list-style-type:none;
+margin:0;
+padding:0;
+}
+ol.notes li.note {
+background:none repeat scroll 0 0 #EEEEEE;
+border-top:1px solid #DDDDDD;
+padding:10px;
+}
+ol.notes li.note img.avatar {
+height:16px;
+margin-right:10px;
+vertical-align:-4px;
+width:16px;
+}
+ol.notes li.note span.action {
+font-weight:bold;
+}
+ol.notes li.note .answer_content {
+font-weight:normal;
+}
+ol.notes li.note blockquote {
+border-color:#EEEEEE;
+margin:10px 0 0 25px;
+padding:4px 10px;
+}
+ol.notes li.note blockquote a {
+text-decoration:none;
+}
+
+.text-post,
+.image-post,
+.quote-post,
+.link-post,
+.video-post,
+.chat-post,
+.audio-post {
+	width: 49px;
+	height: 40px;
+	text-indent: -9999em;
+	position: absolute;
+	top: 25;
+	left: -45px;
+}
+.text-post {
+	background: url("http://static.tumblr.com/xcxngn2/tRold1ve5/text.png") no-repeat;
+}
+.image-post {
+	background: url("http://static.tumblr.com/xcxngn2/Dpold1v9c/photo.png") no-repeat;
+}
+img.image {
+	opacity: 0;
+}
+
+span.image-wrap {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.25) inset;
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.25) inset;
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.25) inset;
+	position: relative;
+}
+
+.quote-post {
+	background: url("http://static.tumblr.com/xcxngn2/oJ5ld1vb7/quote.png") no-repeat;
+}
+.link-post {
+	background: url("http://static.tumblr.com/xcxngn2/MbRld1v6s/link.png") no-repeat;
+}
+.video-post {
+	background: url("http://static.tumblr.com/xcxngn2/4S8ld1veq/video.png") no-repeat;
+}
+.chat-post {
+	background: url("http://static.tumblr.com/xcxngn2/Aikld1v3n/chat.png") no-repeat;
+}
+.audio-post {
+	background: url("http://static.tumblr.com/xcxngn2/POLlm7i1v/audio.png") no-repeat;
+}
+p.tags {
+	padding-left: 22px;
+	line-height: 25px !important;
+	margin-top: 10px !important;
+	margin-left: 10px;
+	background: url("http://static.tumblr.com/xcxngn2/KXPld1vdg/tags.png") no-repeat 0 5px;
+	word-wrap: break-word;
+}
+p.tags a {
+	padding: 5px 9px;
+	background: #ddd;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	margin-right: 3px;
+}
+div.quote {
+	background-color: #dc4f1b !important;
+	border-color: #dc4f1b !important;
+	color: #000;
+	text-shadow: none;
+}
+div.quote h4 {
+    color: #fff !important;
+    font-family: "League Gothic", Impact, Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-family: 'Alfa Slab One', Arial;
+    font-size: 28px !important;
+    font-weight: normal;
+    line-height: 120% !important;
+    margin: 0 !important;
+    xxxtext-shadow: 0 1px 0 #dc4f1b;
+    text-transform: uppercase;
+}
+div.quote a {
+	color: #000;
+	text-decoration: none;
+	text-shadow: none;
+}
+.footer-nav {
+	margin-right:23.5em;
+	min-height:0 !important;
+	padding: 0px;
+	width: 460px;
+}
+.sidebar img.portrait {
+	float: left;
+	margin-right: 10px;
+}
+a.previous-page {
+	background: url("http://static.tumblr.com/xcxngn2/ifPld1v9u/previous.png") no-repeat;
+	height: 40px;
+	width: 40px;
+	text-indent: -9999em;
+	display: block;
+	float: left;
+}
+a.next-page {
+	background: url("http://static.tumblr.com/xcxngn2/1dRld1v7e/next.png") no-repeat;
+	height: 40px;
+	width: 40px;
+	text-indent: -9999em;
+	display: block;
+	float: right;
+}
+a.next-page:focus,
+a.previous-page:focus {
+	position: relative;
+	top: 1px;
+}
+.notes {
+	clear: right;
+	position: relative;
+	margin-bottom: 45px;
+}
+#disqus_thread,
+ol.notes {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 4px solid #FCFCFC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); 
+    margin-right: 23.5em;
+    padding: 30px;
+    width: 400px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+.dsq-item-trackback {
+	background: #EEE !important;
+	padding: 10px !important;
+	margin: 0 !important;
+}
+img.me {
+	float: right;
+	margin: 0 0 0 20px;
+}
+.clear-div {
+	clear: both;
+}	
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* http://perishablepress.com/press/2009/12/06/new-clearfix-hack */
+
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/*
+	The following zoom:1 rule is specifically for IE6 + IE7.
+	Move to separate stylesheet if invalid CSS is a problem.
+*/
+* html .clearfix,
+*:first-child+html .clearfix {
+	zoom: 1;
+}
+.audio span.image-wrap {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.35) inset;
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.35) inset;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.35) inset;
+    display: block;
+    width: 145px;
+    height: 145px;
+    float: left;
+    position: relative;
+    margin: 0 25px 0 0;
+}
+img.cover {
+	width: 145px;
+	opacity: 0;
+}
