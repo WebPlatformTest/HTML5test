@@ -1444,6 +1444,42 @@ body {
 	.paper > div dl#upcoming {
 		display: none;
 	}
+
+	#share {
+		position: relative;
+		right: auto;
+		top: auto;
+		
+		width: 100%;
+		opacity: 1;
+		margin: -10px 0 20px;
+	}
+	#share::after {
+		top: -8px;
+		left: 50%;;
+		right: auto;
+		margin: 0 0 0 -10px;
+
+		border-top: none;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid #f0f0f0;
+	}
+	#share #twitter {
+		left: 50%;
+		right: auto;
+		margin: 0 0 0 -100px;
+	}
+	#share #facebook {
+		left: 50%;
+		right: auto;
+		margin: 0 0 0 -28px;
+	}
+	#share #google {
+		left: 50%;
+		right: auto;
+		margin: 0 0 0 40px;
+	}
 }
 
 @media (max-width: 480px) {
@@ -1484,42 +1520,6 @@ body {
 	}
 	.resultsTable table thead td span.bonus span {
 		display: none;
-	}
-	
-	#share {
-		position: relative;
-		right: auto;
-		top: auto;
-		
-		width: 100%;
-		opacity: 1;
-		margin: -10px 0 20px;
-	}
-	#share::after {
-		top: -8px;
-		left: 50%;;
-		right: auto;
-		margin: 0 0 0 -10px;
-
-		border-top: none;
-		border-left: 10px solid transparent;
-		border-right: 10px solid transparent;
-		border-bottom: 10px solid #f0f0f0;
-	}
-	#share #twitter {
-		left: 50%;
-		right: auto;
-		margin: 0 0 0 -100px;
-	}
-	#share #facebook {
-		left: 50%;
-		right: auto;
-		margin: 0 0 0 -28px;
-	}
-	#share #google {
-		left: 50%;
-		right: auto;
-		margin: 0 0 0 40px;
 	}
 }
 @media (max-width: 360px) {
