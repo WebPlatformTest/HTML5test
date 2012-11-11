@@ -103,13 +103,14 @@ var UserAgents = (function(){
 			cleanup: function(s) {
 				s = typeof s == 'undefined' ? '' : s;
 			
+				s = s.replace(/\/[^/]+$/, "");
+				s = s.replace(/\/[^/]+ Android\/.*/, "");
+
 				s = s.replace(/_TD$/, '');
 				s = s.replace(/_CMCC$/, '');
 		
 				s = s.replace(/_/g, " ");
 				s = s.replace(/^\s+|\s+$/g, "");
-				s = s.replace(/\/[^/]+$/, "");
-				s = s.replace(/\/[^/]+ Android\/.*/, "");
 		
 				s = s.replace(/^tita on /, '');
 				s = s.replace(/^ICS AOSP on /, '');
@@ -125,12 +126,12 @@ var UserAgents = (function(){
 				s = s.replace(/^Alcatel OT-(.*)/, 'one touch $1');
 				s = s.replace(/^YL-/, '');
 				s = s.replace(/^Novo7 ?/i, 'Novo7 ');
-				s = s.replace(/^GIONEE /, '');
+				s = s.replace(/^G[iI]ONEE[ -]/, '');
 				s = s.replace(/^HW-/, '');
 				s = s.replace(/^Huawei[ -]/i, 'Huawei ');
 				s = s.replace(/^SAMSUNG[ -]/i, '');
 				s = s.replace(/^(Sony ?Ericsson|Sony)/, '');
-				s = s.replace(/^(Lenovo Lenovo|LNV-Lenovo)/, 'Lenovo');
+				s = s.replace(/^(Lenovo Lenovo|LNV-Lenovo|LENOVO-Lenovo)/, 'Lenovo');
 				s = s.replace(/^Lenovo-/, 'Lenovo ');
 				s = s.replace(/^ZTE-/, 'ZTE ');
 				s = s.replace(/^(LG)[ _\/]/, '$1-');
