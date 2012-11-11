@@ -4368,7 +4368,6 @@ var UserAgents = (function(){
 					this.browser.version = new Version({ value: match[1], details: 3 });
 				}
 
-				this.os.name = 'Windows Phone';
 				this.device.type = TYPE_MOBILE;
 			}
 			
