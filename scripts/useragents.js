@@ -4346,6 +4346,14 @@ var UserAgents = (function(){
 				}
 			}
 			
+			if (ua.match('OviBrowser')) {
+				this.browser.name = 'Nokia Browser';
+
+				if (match = /OviBrowser\/([0-9.]*)/.exec(ua)) {
+					this.browser.version = new Version({ value: match[1], details: 3 });
+				}
+			}
+			
 			/****************************************************
 			 *		Nokia Xpress
 			 *
