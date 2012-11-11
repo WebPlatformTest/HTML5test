@@ -3130,7 +3130,7 @@ var UserAgents = (function(){
 
 				
 				if (match = /\(([^;]+);U;REX\/[^;]+;BREW\/[^;]+;(?:.*;)?[0-9]+\*[0-9]+;CTC\/2.0\)/.exec(ua)) {
-					this.device = DeviceModels.identify('bada', match[1]);
+					this.device = DeviceModels.identify('brew', match[1]);
 					
 					if (!this.device.identified) {
 					    this.device.model = match[1];
