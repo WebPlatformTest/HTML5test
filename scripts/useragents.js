@@ -3934,15 +3934,17 @@ var UserAgents = (function(){
 									}	
 								}
 								
-								this.device = DeviceModels.identify('touchwiz', this.device.model);
-								if (this.device.identified) {
-									this.os.name = 'Touchwiz';
-		
-									switch(version) {
-										case '1.0':		this.os.version = new Version({ value: '1.0' }); break;						
-										case '1.5':		this.os.version = new Version({ value: '2.0' }); break;							
-										case '2.0':		this.os.version = new Version({ value: '3.0' }); break;					
-									}	
+								else {
+									this.device = DeviceModels.identify('touchwiz', this.device.model);
+									if (this.device.identified) {
+										this.os.name = 'Touchwiz';
+			
+										switch(version) {
+											case '1.0':		this.os.version = new Version({ value: '1.0' }); break;						
+											case '1.5':		this.os.version = new Version({ value: '2.0' }); break;							
+											case '2.0':		this.os.version = new Version({ value: '3.0' }); break;					
+										}	
+									}
 								}
 							}
 							
