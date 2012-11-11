@@ -3802,7 +3802,11 @@ var UserAgents = (function(){
 				if (match = /\ ([^\s]+)$/.exec(ua)) {
 					candidates.push(match[1]);
 				}
-
+				
+				if (match = /^([a-z0-9\.\_\+\/ ]+) Linux/i.exec(ua)) {
+					candidates.push(match[1]);
+				}
+				
 				for (var i = 0; i < candidates.length; i++) {
 					if (!this.device.model && !this.device.manufacturer) {
 						var result = false;
