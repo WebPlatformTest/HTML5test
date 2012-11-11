@@ -4793,6 +4793,7 @@ var UserAgents = (function(){
 				{ name: 'Flock', 				regexp: /Flock\/([0-9.]*)/, details: 3 },
 				{ name:	'Galeon',				regexp: /Galeon\/([0-9.]*)/, details: 3 },
 				{ name: 'Helium', 				regexp: /HeliumMobileBrowser\/([0-9.]*)/ },
+				{ name: 'Hive Explorer', 		regexp: /HiveE/ },
 				{ name: 'iCab', 				regexp: /iCab\/([0-9.]*)/ },
 				{ name: 'Iceape', 				regexp: /Iceape\/([0-9.]*)/ },
 				{ name: 'IceCat', 				regexp: /IceCat ([0-9.]*)/ },
