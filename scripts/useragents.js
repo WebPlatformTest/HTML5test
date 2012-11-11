@@ -4818,6 +4818,7 @@ var UserAgents = (function(){
 				{ name: 'Netscape Navigator', 	regexp: /Navigator\/([0-9.]*)/, details: 3 },
 				{ name:	'Odyssey',				regexp: /OWB\/([0-9.]*)/ },
 				{ name: 'OmniWeb', 				regexp: /OmniWeb/ },
+				{ name:	'OneBrowser',			regexp: /OneBrowser\/([0-9.]*)/ },
 				{ name:	'Orca',					regexp: /Orca\/([0-9.]*)/ },
 				{ name:	'Open Sankoré',			regexp: /Open-Sankore\/([0-9.]*)/ },
 				{ name: 'Origyn',				regexp: /Origyn Web Browser/ },
