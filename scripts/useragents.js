@@ -4691,7 +4691,7 @@ var UserAgents = (function(){
 			 *		iBrowser
 			 */
 		
-			if (match = /(iBrowser)\/([0-9.]*)/.exec(ua)) {
+			if (match = /(iBrowser)\/([0-9.]*)/.exec(ua) && !ua.match('OviBrowser')) {
 				this.browser.name = 'iBrowser';
 				
 				var version = match[2];
