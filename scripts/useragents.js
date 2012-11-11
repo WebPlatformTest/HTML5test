@@ -4784,6 +4784,7 @@ var UserAgents = (function(){
 				{ name: 'ChromePlus', 			regexp: /ChromePlus(?:\/([0-9.]*))?$/, details: 3 },
 				{ name: 'Daedalus',				regexp: /Daedalus ([0-9.]*)/, details: 2 },
 				{ name: 'Demobrowser', 			regexp: /demobrowser\/([0-9.]*)/ },
+				{ name: 'Doga Rhodonit',		regexp: /DogaRhodonit/ },
 				{ name: 'Dooble', 				regexp: /Dooble(?:\/([0-9.]*))?/ },
 				{ name: 'Dorothy', 				regexp: /Dorothy$/ },
 				{ name: 'DWB', 					regexp: /dwb(?:-hg)?(?:\/([0-9.]*))?/ },
