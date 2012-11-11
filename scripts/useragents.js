@@ -4405,10 +4405,16 @@ var UserAgents = (function(){
 						this.browser.version = new Version({ value: match[1], details: 2 });
 					}
 					
-					this.device.manufacturer = 'Amazon';
-					this.device.model = 'Kindle Fire';
-					this.device.type = TYPE_TABLET;
-					this.device.identified = true;
+					if (match = /; ([^;]*[^;\s])\s+Build/.exec(ua)) {
+						this.device = DeviceModels.identify('android', match[1]);
+					}		
+
+					if (!this.device.identified) {
+						this.device.manufacturer = 'Amazon';
+						this.device.model = 'Kindle Fire';
+						this.device.type = TYPE_TABLET;
+						this.device.identified = true;
+					}
 					
 					if (this.os.name != 'Android') {
 						this.os.name = 'Android';
