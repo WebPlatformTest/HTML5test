@@ -2683,15 +2683,15 @@ var UserAgents = (function(){
 					this.device.type = TYPE_MOBILE;
 				}
 				
-				if (ua.match('Windows Phone OS')) {
+				if (ua.match('Windows Phone')) {
 					this.os.name = 'Windows Phone';
-					this.os.version = new Version({ value: ua.match(/Windows Phone OS ([0-9.]*)/)[1], details: 2 });
+					this.os.version = new Version({ value: ua.match(/Windows Phone (?:OS )?([0-9.]*)/)[1], details: 2 });
 
 					if (this.os.version < 7) {
 						this.os.name = 'Windows Mobile';
 					}
 
-					if (match = /IEMobile\/[^;]+; ([^;]+); ([^;]+)[;|\)]/.exec(ua)) {
+					if (match = /IEMobile\/[^;]+;(?: ARM; Touch; )?([^;]+); ([^;]+)[;|\)]/.exec(ua)) {
 						this.device = DeviceModels.identify('wp', match[2]);
 						
 						if (!this.device.identified) {
