@@ -82,7 +82,7 @@ var UserAgents = (function(){
 
 				if (!result.identified) {
 					model = DeviceModels.cleanup(model);
-					if (model.match(/AndroVM/) || model == 'Emulator' || model == 'x86 Emulator' || model == 'x86 VirtualBox' || model == 'vm') {
+					if (model.match(/AndroVM/i) || model == 'Emulator' || model == 'x86 Emulator' || model == 'x86 VirtualBox' || model == 'vm') {
 						return {
 							type:			'emulator',
 							identified:		true,
