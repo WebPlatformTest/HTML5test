@@ -4765,6 +4765,7 @@ var UserAgents = (function(){
 
 				{ name: '360 Extreme Explorer', regexp: /360EE/ },
 				{ name: '360 Phone Browser', 	regexp: /360 Android Phone Browser \(V([0-9.]*)\)/ },
+				{ name: '360 Phone Browser', 	regexp: /360 Aphone Browser \(Version ([0-9.]*)\)/ },
 				{ name: 'ABrowse', 				regexp: /Abrowse ([0-9.]*)/ },
 				{ name: 'Abrowser', 			regexp: /Abrowser\/([0-9.]*)/ },
 				{ name: 'arora', 				regexp: /[Aa]rora\/([0-9.]*)/ },
