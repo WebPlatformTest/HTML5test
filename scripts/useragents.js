@@ -2978,7 +2978,7 @@ var UserAgents = (function(){
 			 *		S60
 			 */
 		
-			if (ua.match('Symbian') || ua.match('Series[ ]?60') || ua.match('S60')) {
+			if (ua.match('Symbian') || ua.match('Series[ ]?60') || ua.match('S60;')) {
 				this.os.name = 'Series60';
 				
 				if (ua.match('SymbianOS/9.1')  && !ua.match('Series60')) {
