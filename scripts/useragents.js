@@ -3612,6 +3612,20 @@ var UserAgents = (function(){
 				this.device.type = TYPE_TELEVISION;
 			}
 
+			
+
+			/****************************************************
+			 *		Motorola KreaTV
+			 */
+
+			if (match = /Motorola KreaTV STB/.exec(ua)) {
+				this.os.name = '';
+				this.device.manufacturer = STRINGS_MOTOROLA;
+				this.device.model = 'KreaTV';
+				this.device.type = TYPE_TELEVISION;
+				this.device.identified = true;
+			}
+
 			/****************************************************
 			 *		ADB
 			 */
