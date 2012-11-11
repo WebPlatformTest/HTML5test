@@ -3888,6 +3888,13 @@ var UserAgents = (function(){
 								this.os.name = 'Series40';
 							}
 						}
+
+						if (match = /^Pantech([^\/_]+)(?:\/|_|$)/.exec(candidates[i])) {
+							this.device.manufacturer = 'Pantech';
+							this.device.model = DeviceModels.cleanup(match[1]);
+							this.device.type = TYPE_MOBILE;
+							this.device.identified = true;
+						}
 		
 						if (match = /^SonyEricsson([^\/_]+)(?:\/|_|$)/.exec(candidates[i])) {
 							this.device.manufacturer = STRINGS_SONY_ERICSSON;
