@@ -4764,7 +4764,7 @@ var UserAgents = (function(){
 				{ name: 'Thunderbird', 			regexp: /Thunderbird\/([0-9.]*)/ },
 
 				{ name: '360 Extreme Explorer', regexp: /QIHU 360EE/ },
-				{ name: '360 Safe Explorer', regexp: /QIHU 360SE/ },
+				{ name: '360 Safe Explorer', 	regexp: /QIHU 360SE/ },
 				{ name: '360 Phone Browser', 	regexp: /360 Android Phone Browser \(V([0-9.]*)\)/ },
 				{ name: '360 Phone Browser', 	regexp: /360 Aphone Browser \(Version ([0-9.]*)\)/ },
 				{ name: 'ABrowse', 				regexp: /Abrowse ([0-9.]*)/ },
