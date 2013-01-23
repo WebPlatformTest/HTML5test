@@ -1127,11 +1127,6 @@ Test = (function() {
 				id:		'form'
 			});
 
-			var element = this.createInput('text');
-			var baseline = { field: getRenderedStyle(element.field), wrapper: getRenderedStyle(element.wrapper) };
-			this.removeInput(element);
-			
-			
 			/* input type=text */
 			
 			var group = this.section.getGroup({
@@ -1288,12 +1283,6 @@ Test = (function() {
 				});
 				
 				group.setItem({
-					id:			'ui',
-					passed:		!blacklists.dateFields && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
-					value: 		2
-				});
-				
-				group.setItem({
 					id:			'sanitization',
 					passed:		minimal && sanitization,
 					required:	true
@@ -1377,12 +1366,6 @@ Test = (function() {
 				});
 				
 				group.setItem({
-					id:			'ui',
-					passed:		(t != 'range' || !blacklists.rangeField) && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
-					value: 		2
-				});
-				
-				group.setItem({
 					id:			'sanitization',
 					passed:		minimal && sanitization,
 					required:	true
@@ -1458,12 +1441,6 @@ Test = (function() {
 				value: 		2
 			});
 			
-			group.setItem({
-				id:			'ui',
-				passed:		!blacklists.colorField && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
-				value: 		2
-			});
-				
 			group.setItem({
 				id:			'sanitization',
 				passed:		sanitization,
