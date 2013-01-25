@@ -18,7 +18,7 @@
 
 		<script src='/translation.js' type='text/javascript'></script>
 
-		<script src='/scripts/useragents.js' type='text/javascript'></script>
+		<script src='/scripts/useragents/detect.js?<?php echo preg_replace('/([ ])/e', 'chr(rand(97,122))', '        '); ?>' type='text/javascript'></script>
 		<script src='/scripts/engine.js' type='text/javascript'></script>
 		<script src='/scripts/data.js' type='text/javascript'></script>
 		<script src='/scripts/template.js' type='text/javascript'></script>
@@ -330,7 +330,7 @@
 			}
 
 
-			Browsers = new UserAgents(navigator.userAgent, {
+			Browsers = new UserAgents({
 				useFeatures:		true,
 				detectCamouflage:	true
 			});
