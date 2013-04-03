@@ -5848,6 +5848,14 @@
 					$this->device->type = TYPE_DESKTOP;
 				}
 			}
+			
+			if (preg_match('/PmWFx\/([0-9ab.]*)/', $ua, $match)) {
+				$this->browser->stock = false;
+				$this->browser->name = 'SeaMonkey';
+				$this->browser->version = new Version(array('value' => $match[1]));
+			}
+			
+			
 
 			/****************************************************
 			 *		Netscape
