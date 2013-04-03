@@ -18,14 +18,16 @@ Test = (function() {
 				colorField:			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser'),
 				rangeField:			Browsers.isBrowser('UC Browser'),
 				numberField:		false,
-				progressField:		false,
+				progressField:		Browsers.isBrowser('Baidu Browser'),
 				meterField:			false,
 				fileSystem:			Browsers.isOs('BlackBerry Tablet OS'),
-				subtitle:			Browsers.isBrowser('Sogou Explorer'),
-				notifications:		Browsers.isBrowser('Sogou Explorer'),
+				subtitle:			Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+				notifications:		Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
 				fullScreen:			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
-				getUserMedia:		Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
-				webgl:				false
+				getUserMedia:		Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
+				webgl:				Browsers.isBrowser('Baidu Browser'),
+				geolocation:		Browsers.isBrowser('Baidu Browser'),
+				orientation:		Browsers.isBrowser('Baidu Browser')				
 			};		
 			
 			whitelists = {
