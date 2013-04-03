@@ -4325,8 +4325,17 @@
 				$this->os->name = 'BlackBerry';
 				$this->os->version = new Version(array('value' => $match[1], 'details' => 2));
 				
-				$this->device->manufacturer = 'RIM';
-				$this->device->model = 'BlackBerry ' . $match[2];
+				$this->device->manufacturer = 'BlackBerry';
+				$this->device->model = $match[2];
+				
+				if ($this->device->model == 'Kbd') {
+					$this->device->model = 'Q10';
+				} 
+				
+				if ($this->device->model == 'Touch') {
+					$this->device->model = 'Z10 or Dev Alpha';
+				} 
+				
 				$this->device->type = preg_match('/Mobile/', $ua) ? TYPE_MOBILE : TYPE_TABLET;
 				$this->device->identified = true;
 
