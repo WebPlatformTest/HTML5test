@@ -4648,7 +4648,7 @@
 			 *		OS/2 Warp
 			 */
 		
-			if (preg_match('/OS\/2; Warp ([0-9.]*)/i', $ua, $match)) {
+			if (preg_match('/OS\/2; (?:U; )?Warp ([0-9.]*)/i', $ua, $match)) {
 				$this->os->name = 'OS/2 Warp';
 				$this->os->version = new Version(array('value' => $match[1]));
 				$this->device->type = TYPE_DESKTOP;
