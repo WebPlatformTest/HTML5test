@@ -4364,7 +4364,7 @@
 			 *		WebOS
 			 */
 		
-			if (preg_match('/(?:web|hpw)OS\/([0-9.]*)/', $ua, $match)) {
+			if (preg_match('/(?:web|hpw)OS\/(?:HP webOS )?([0-9.]*)/', $ua, $match)) {
 				$this->os->name = 'webOS';
 				$this->os->version = new Version(array('value' => $match[1], 'details' => 2));
 				$this->device->type = preg_match('/Tablet/', $ua) ? TYPE_TABLET : TYPE_MOBILE;
