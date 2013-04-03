@@ -6885,7 +6885,7 @@
 			}
 				
 			
-			if ($this->device->type == TYPE_TELEVISION && $this->browser->name == 'Opera') {
+			if (isset($this->browser->name) && $this->browser->name == 'Opera' && $this->device->type == TYPE_TELEVISION) {
 				$this->browser->name = 'Opera Devices';
 				
 				if (preg_match('/Presto\/([0-9]+\.[0-9]+)/', $ua, $match)) {
