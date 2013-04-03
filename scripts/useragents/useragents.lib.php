@@ -6757,7 +6757,7 @@
 					$this->browser->channel = '';
 					$this->browser->stock = false;
 
-					if ($match[1]) {
+					if (isset($match[1]) && $match[1]) {
 						$this->browser->version = new Version(array('value' => $match[1], 'details' => isset($browsers[$b]['details']) ? $browsers[$b]['details'] : null));
 					} else {
 						$this->browser->version = null;
