@@ -6593,7 +6593,7 @@
 		
 			if (preg_match('/Maxthon[\/\' ]([0-9.]*)/', $ua, $match)) {
 				$this->browser->name = 'Maxthon';
-				$this->browser->version = new Version(array('value' => $match[1], 'details' => 2));
+				$this->browser->version = new Version(array('value' => $match[1], 'details' => 3));
 				$this->browser->channel = '';
 				
 				if ($this->os->name == 'Windows' && $this->browser->version->toFloat() < 4) {
