@@ -160,6 +160,7 @@ var UserAgents = (function(){
 			if (ua == 'Mozilla/5.0 (X11; U; Linux i686; zh-CN; rv:1.2.3.4) Gecko/') {
 				if (this.browser.name != 'UC Browser') {
 					this.browser.name = 'UC Browser';
+					this.browser.version = null;
 					this.engine.name = 'Gecko';
 				}
 				
