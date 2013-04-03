@@ -11,14 +11,14 @@ var tests = [
 						id:		'tokenizer',
 						name: 	'HTML5 tokenizer', 
 						urls:	{
-									'w3c':	'http://www.w3.org/TR/html5/parsing.html',
+									'w3c':	'http://www.w3.org/TR/html5/syntax.html#parsing',
 									'mdn':	'/HTML/HTML5/HTML5_Parser'
 								}
 					}, {
 						id:		'tree',
 						name: 	'HTML5 tree building', 
 						urls:	{
-									'w3c':	'http://www.w3.org/TR/html5/parsing.html',
+									'w3c':	'http://www.w3.org/TR/html5/syntax.html#parsing',
 									'mdn':	'/HTML/HTML5/HTML5_Parser'
 								}
 					}, 
@@ -29,7 +29,7 @@ var tests = [
 						id:		'svg',
 						name: 	'SVG in <code>text/html</code>', 
 						url2:	{
-									'w3c':	'http://www.w3.org/TR/html5/the-map-element.html#svg-0',
+									'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#svg',
 									'mdn':	'/SVG'
 								}
 								
@@ -37,7 +37,7 @@ var tests = [
 						id:		'mathml',
 						name: 	'MathML in <code>text/html</code>', 
 						urls:	{
-									'w3c':	'http://www.w3.org/TR/html5/the-map-element.html#mathml',
+									'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#mathml',
 									'mdn':	'/MathML'
 								}
 					}
@@ -50,7 +50,7 @@ var tests = [
 						id:		'element',
 						name: 	'<code>canvas</code> element', 
 						urls:	{
-									'w3c':	'http://www.w3.org/TR/html5/the-canvas-element.html#the-canvas-element',
+									'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#the-canvas-element',
 									'wp': 	'/canvas',
 									'mdn':	'/HTML/Canvas'
 								}
@@ -76,18 +76,18 @@ var tests = [
 						id:		'element',
 						name: 	'<code>video</code> element', 
 						urls:	{
-									'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#the-video-element',
+									'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#the-video-element',
 									'wp': 	'/html/elements/video',
 									'mdn':	'/Using_HTML5_audio_and_video'
 								}
 					}, {
 						id:		'subtitle',
 						name: 	'Subtitle support', 
-						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#the-track-element'
+						url:	'http://www.w3.org/TR/html5/embedded-content-0.html#the-track-element'
 					}, {
 						id:		'poster',
 						name: 	'Poster image support', 
-						url:	'http://www.w3.org/TR/html5/the-iframe-element.html#dom-video-poster'
+						url:	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-video-poster'
 					}, 
 					
 					'<em>The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If browser support for one or more video codecs is detected, two bonus points are awarded for each codec.</em>',
@@ -114,7 +114,7 @@ var tests = [
 						id:		'element',
 						name: 	'<code>audio</code> element', 
 						urls:	{
-									'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#the-audio-element',
+									'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element',
 									'wp': 	'/html/elements/audio',
 									'mdn':	'/Using_HTML5_audio_and_video'
 								}
@@ -150,7 +150,7 @@ var tests = [
 						id:		'dataset',
 						name: 	'Embedding custom non-visible data', 
 						urls:	{
-									'w3c':	'http://www.w3.org/TR/html5/elements.html#dom-dataset',
+									'w3c':	'http://www.w3.org/TR/html5/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes',
 									'mdn':	'/DOM/element.dataset'
 								}
 					}, 
@@ -291,11 +291,11 @@ var tests = [
 									{
 										id:		'outerHTML',
 										name: 	'<code>outerHTML</code> property', 
-										url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#outerhtml'
+										url:	'http://domparsing.spec.whatwg.org/#outerhtml'
 									}, {
 										id:		'insertAdjacentHTML',
 										name: 	'<code>insertAdjacentHTML</code> function', 
-										url:	'http://www.w3.org/TR/html5/apis-in-html-documents.html#dom-insertadjacenthtml'
+										url:	'http://domparsing.spec.whatwg.org/#insertadjacenthtml%28%29'
 									}
 								]
 					}
@@ -325,7 +325,7 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#text-state-and-search-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#text-(type=text)-state-and-search-state-(type=search)'
 									}
 								]
 					}, {
@@ -335,7 +335,7 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#telephone-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#telephone-state-(type=tel)'
 									}
 								]
 					}, {
@@ -345,11 +345,11 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#url-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#url-state-(type=url)'
 									}, {
 										id:			'validation',
 										name: 		'Field validation', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#dom-cva-validity'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api'
 									}
 								]
 					}, {
@@ -359,11 +359,11 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#e-mail-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#e-mail-state-(type=email)'
 									}, {
 										id:			'validation',
 										name: 		'Field validation', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#dom-cva-validity'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api'
 									}
 								]
 					}, {
@@ -373,42 +373,42 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-and-time-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#date-and-time-state-(type=datetime)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}, {
 										id:			'min',
 										name: 		'<code>min</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
 									}, {
 										id:			'max',
 										name: 		'<code>max</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
 									}, {
 										id:			'step',
 										name: 		'<code>step</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
 									}, {
 										id:			'stepDown',
 										name: 		'<code>stepDown()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
 									}, {
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
 									}, {
 										id:			'valueAsDate',
 										name: 		'<code>valueAsDate()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasdate'
 									}, {
 										id:			'valueAsNumber',
 										name: 		'<code>valueAsNumber()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -418,42 +418,42 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#date-state-(type=date)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}, {
 										id:			'min',
 										name: 		'<code>min</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
 									}, {
 										id:			'max',
 										name: 		'<code>max</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
 									}, {
 										id:			'step',
 										name: 		'<code>step</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
 									}, {
 										id:			'stepDown',
 										name: 		'<code>stepDown()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
 									}, {
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
 									}, {
 										id:			'valueAsDate',
 										name: 		'<code>valueAsDate()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasdate'
 									}, {
 										id:			'valueAsNumber',
 										name: 		'<code>valueAsNumber()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -463,42 +463,42 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#month-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#month-state-(type=month)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}, {
 										id:			'min',
 										name: 		'<code>min</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
 									}, {
 										id:			'max',
 										name: 		'<code>max</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
 									}, {
 										id:			'step',
 										name: 		'<code>step</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
 									}, {
 										id:			'stepDown',
 										name: 		'<code>stepDown()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
 									}, {
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
 									}, {
 										id:			'valueAsDate',
 										name: 		'<code>valueAsDate()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasdate'
 									}, {
 										id:			'valueAsNumber',
 										name: 		'<code>valueAsNumber()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -508,42 +508,42 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#week-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#week-state-(type=week)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}, {
 										id:			'min',
 										name: 		'<code>min</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
 									}, {
 										id:			'max',
 										name: 		'<code>max</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
 									}, {
 										id:			'step',
 										name: 		'<code>step</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
 									}, {
 										id:			'stepDown',
 										name: 		'<code>stepDown()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
 									}, {
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
 									}, {
 										id:			'valueAsDate',
 										name: 		'<code>valueAsDate()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasdate'
 									}, {
 										id:			'valueAsNumber',
 										name: 		'<code>valueAsNumber()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -553,42 +553,42 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#time-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#time-state-(type=time)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}, {
 										id:			'min',
 										name: 		'<code>min</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
 									}, {
 										id:			'max',
 										name: 		'<code>max</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
 									}, {
 										id:			'step',
 										name: 		'<code>step</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
 									}, {
 										id:			'stepDown',
 										name: 		'<code>stepDown()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
 									}, {
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
 									}, {
 										id:			'valueAsDate',
 										name: 		'<code>valueAsDate()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasdate'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasdate'
 									}, {
 										id:			'valueAsNumber',
 										name: 		'<code>valueAsNumber()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -598,38 +598,38 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/states-of-the-type-attribute.html#local-date-and-time-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#local-date-and-time-state-(type=datetime-local)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}, {
 										id:			'min',
 										name: 		'<code>min</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
 									}, {
 										id:			'max',
 										name: 		'<code>max</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
 									}, {
 										id:			'step',
 										name: 		'<code>step</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
 									}, {
 										id:			'stepDown',
 										name: 		'<code>stepDown()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
 									}, {
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
 									}, {
 										id:			'valueAsNumber',
 										name: 		'<code>valueAsNumber()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -639,42 +639,42 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support',
-										url:		'http://www.w3.org/TR/html5/number-state.html#number-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#number-state-(type=number)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}, {
 										id:			'validation',
 										name: 		'Field validation', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#dom-cva-validity'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-constraint-validation-api'
 									}, {
 										id:			'min',
 										name: 		'<code>min</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
 									}, {
 										id:			'max',
 										name: 		'<code>max</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
 									}, {
 										id:			'step',
 										name: 		'<code>step</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
 									}, {
 										id:			'stepDown',
 										name: 		'<code>stepDown()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
 									}, {
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
 									}, {
 										id:			'valueAsNumber',
 										name: 		'<code>valueAsNumber()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -684,38 +684,38 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support',
-										url:		'http://www.w3.org/TR/html5/number-state.html#range-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#range-state-(type=range)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}, {
 										id:			'min',
 										name: 		'<code>min</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-min'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
 									}, {
 										id:			'max',
 										name: 		'<code>max</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-max'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
 									}, {
 										id:			'step',
 										name: 		'<code>step</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-step'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
 									}, {
 										id:			'stepDown',
 										name: 		'<code>stepDown()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepdown'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
 									}, {
 										id:			'stepUp',
 										name: 		'<code>stepUp()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-stepup'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
 									}, {
 										id:			'valueAsNumber',
 										name: 		'<code>valueAsNumber()</code> method',
-										url:		'http://www.w3.org/TR/html5/common-input-element-apis.html#dom-input-valueasnumber'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
 									}
 								]
 					}, {
@@ -725,14 +725,14 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support',
-										url:		'http://www.w3.org/TR/html5/number-state.html#color-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#color-state-(type=color)'
 									}, {
 										id:			'ui',
 										name: 		'Custom user-interface'
 									}, {
 										id:			'sanitization',
 										name: 		'Value sanitization', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#value-sanitization-algorithm'
+										url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
 									}
 								]
 					}, {
@@ -742,11 +742,11 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support',
-										url:		'http://www.w3.org/TR/html5/number-state.html#checkbox-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#checkbox-state-(type=checkbox)'
 									}, {
 										id:			'indeterminate',
 										name: 		'<code>indeterminate</code> property', 
-										url:		'http://www.w3.org/TR/html5/the-input-element.html#dom-input-indeterminate'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-indeterminate'
 									}
 								]
 					}, {
@@ -756,15 +756,15 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/number-state.html#image-button-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#image-button-state-(type=image)'
 									}, {
 										id:			'width',
 										name: 		'<code>width</code> property', 
-										url:		'http://www.w3.org/TR/html5/the-map-element.html#attr-dim-width'
+										url:		'http://www.w3.org/TR/html5/embedded-content-0.html#attr-dim-width'
 									}, {
 										id:			'height',
 										name: 		'<code>height</code> property', 
-										url:		'http://www.w3.org/TR/html5/the-map-element.html#attr-dim-height'
+										url:		'http://www.w3.org/TR/html5/embedded-content-0.html#attr-dim-height'
 									}
 								]
 					}, {
@@ -774,11 +774,11 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/number-state.html#file-upload-state'
+										url:		'http://www.w3.org/TR/html5/forms.html#file-upload-state-(type=file)'
 									}, {
 										id:			'files',
 										name: 		'<code>files</code> property', 
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#dom-input-files'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-input-files'
 									}
 								]
 					}, {
@@ -788,15 +788,15 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#the-textarea-element'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-textarea-element'
 									}, {
 										id:			'maxlength',
 										name:		'<code>maxlength</code> attribute',
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#attr-textarea-maxlength'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-textarea-maxlength'
 									}, {
 										id:			'wrap',
 										name:		'<code>wrap</code> attribute',
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#attr-textarea-wrap'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-textarea-wrap'
 									}
 								]
 					}, {
@@ -806,11 +806,11 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#the-select-element'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-select-element'
 									}, {
 										id:			'required',
 										name:		'<code>required</code> attribute',
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#dom-select-required'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-select-required'
 									}
 								]
 					}, {
@@ -838,11 +838,11 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#the-datalist-element'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-datalist-element'
 									}, {
 										id:			'list',
 										name:		'<code>list</code> attribute for fields',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-list'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-list'
 									}
 								]
 					}, {
@@ -852,15 +852,15 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#the-keygen-element'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-keygen-element'
 									}, {
 										id:			'challenge',
 										name: 		'<code>challenge</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#attr-keygen-challenge'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-keygen-challenge'
 									}, {
 										id:			'keytype',
 										name: 		'<code>keytype</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#dom-keygen-keytype'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-keygen-keytype'
 									}
 								]
 					}, {
@@ -870,7 +870,7 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#the-output-element'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-output-element'
 									}
 								]
 					}, {
@@ -880,7 +880,7 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#the-progress-element'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-progress-element'
 									}
 								]
 					}, {
@@ -890,7 +890,7 @@ var tests = [
 									{
 										id:			'element',
 										name: 		'Minimal element support', 
-										url:		'http://www.w3.org/TR/html5/the-button-element.html#the-meter-element'
+										url:		'http://www.w3.org/TR/html5/forms.html#the-meter-element'
 									}
 								]
 					},
@@ -904,11 +904,11 @@ var tests = [
 									{
 										id:			'pattern',
 										name: 		'<code>pattern</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-pattern'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-pattern'
 									}, {
 										id:			'required',
 										name: 		'<code>required</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-required'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-required'
 									}
 								]
 					}, {
@@ -922,27 +922,27 @@ var tests = [
 									}, {
 										id:			'form',
 										name: 		'<code>form</code> property on fields', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fae-form'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-fae-form'
 									}, {
 										id:			'formAction',
 										name: 		'<code>formAction</code> property on fields', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-formaction'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formaction'
 									}, {
 										id:			'formEnctype',
 										name: 		'<code>formEnctype</code> property on fields', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-formenctype'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formenctype'
 									}, {
 										id:			'formMethod',
 										name: 		'<code>formMethod</code> property on fields', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-formmethod'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formmethod'
 									}, {
 										id:			'formNoValidate',
 										name: 		'<code>formNoValidate</code> property on fields', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-formnovalidate'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formnovalidate'
 									}, {
 										id:			'formTarget',
 										name: 		'<code>formTarget</code> property on fields', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-formtarget'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formtarget'
 									}, {
 										id:			'labels',
 										name: 		'<code>labels</code> property on fields', 
@@ -956,23 +956,23 @@ var tests = [
 									{
 										id:			'autofocus',
 										name: 		'<code>autofocus</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#autofocusing-a-form-control'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-fe-autofocus'
 									}, {
 										id:			'autocomplete',
 										name: 		'<code>autocomplete</code> attribute',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-autocomplete'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-autocomplete'
 									}, {
 										id:			'placeholder',
 										name: 		'<code>placeholder</code> attribute',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-placeholder'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-placeholder'
 									}, {
 										id:			'multiple',
 										name: 		'<code>multiple</code> attribute',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-multiple'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-multiple'
 									}, {
 										id:			'dirname',
 										name: 		'<code>dirName</code> attribute',
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#attr-input-dirname'
+										url:		'http://www.w3.org/TR/html5/forms.html#attr-input-dirname'
 									}
 								]
 					}, {
@@ -1020,11 +1020,11 @@ var tests = [
 									{
 										id:			'oninput',
 										name: 		'<code>oninput</code> event', 
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#event-input-input'
+										url:		'http://www.w3.org/TR/html5/forms.html#event-input-input'
 									}, {
 										id:			'onchange',
 										name: 		'<code>onchange</code> event', 
-										url:		'http://www.w3.org/TR/html5/common-input-element-attributes.html#event-input-change'
+										url:		'http://www.w3.org/TR/html5/forms.html#event-input-change'
 									}, {
 										id:			'oninvalid',
 										name: 		'<code>oninvalid</code> event', 
@@ -1046,7 +1046,7 @@ var tests = [
 									}, {
 										id:			'noValidate',
 										name: 		'<code>noValidate</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/association-of-controls-and-forms.html#attr-fs-novalidate'
+										url:		'http://www.w3.org/TR/html5/forms.html#dom-fs-novalidate'
 									}
 								]
 					}
@@ -1067,11 +1067,11 @@ var tests = [
 									{
 										id:			'draggable',
 										name: 		'<code>draggable</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#the-draggable-attribute'
+										url:		'http://www.w3.org/TR/html5/editing.html#the-draggable-attribute'
 									}, {
 										id:			'dropzone',
 										name: 		'<code>dropzone</code> attribute', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#the-dropzone-attribute'
+										url:		'http://www.w3.org/TR/html5/editing.html#the-dropzone-attribute	'
 									}
 								]
 					}, {
@@ -1084,31 +1084,31 @@ var tests = [
 									{
 										id:			'ondrag',
 										name: 		'<code>ondrag</code> event', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dndevents'
+										url:		'http://www.w3.org/TR/html5/editing.html#dndevents'
 									}, {
 										id:			'ondragstart',
 										name: 		'<code>ondragstart</code> event', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dndevents'
+										url:		'http://www.w3.org/TR/html5/editing.html#dndevents'
 									}, {
 										id:			'ondragenter',
 										name: 		'<code>ondragenter</code> event', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dndevents'
+										url:		'http://www.w3.org/TR/html5/editing.html#dndevents'
 									}, {
 										id:			'ondragover',
 										name: 		'<code>ondragover</code> event', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dndevents'
+										url:		'http://www.w3.org/TR/html5/editing.html#dndevents'
 									}, {
 										id:			'ondragleave',
 										name: 		'<code>ondragleave</code> event', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dndevents'
+										url:		'http://www.w3.org/TR/html5/editing.html#dndevents'
 									}, {
 										id:			'ondragend',
 										name: 		'<code>ondragend</code> event', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dndevents'
+										url:		'http://www.w3.org/TR/html5/editing.html#dndevents'
 									}, {
 										id:			'ondrop',
 										name: 		'<code>ondrop</code> event', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dndevents'
+										url:		'http://www.w3.org/TR/html5/editing.html#dndevents'
 									}
 								]
 					},
@@ -1155,27 +1155,27 @@ var tests = [
 									{
 										id:			'execCommand',
 										name: 		'<code>execCommand</code> method', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#execCommand'
+										url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 									}, {
 										id:			'queryCommandEnabled',
 										name: 		'<code>queryCommandEnabled</code> method', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandenabled'
+										url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 									}, {
 										id:			'queryCommandIndeterm',
 										name: 		'<code>queryCommandIndeterm</code> method', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandindeterm'
+										url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 									}, {
 										id:			'queryCommandState',
 										name: 		'<code>queryCommandState</code> method', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandstate'
+										url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 									}, {
 										id:			'queryCommandSupported',
 										name: 		'<code>queryCommandSupported</code> method', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandsupported'
+										url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 									}, {
 										id:			'queryCommandValue',
 										name: 		'<code>queryCommandValue</code> method', 
-										url:		'http://www.w3.org/TR/html5/dnd.html#dom-document-querycommandvalue'
+										url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 									}
 								]
 					}, 
@@ -1196,7 +1196,7 @@ var tests = [
 						id:			'history',
 						name: 		'Session history', 
 						urls:		{
-										'w3c':	'http://www.w3.org/TR/html5/history.html#history',
+										'w3c':	'http://www.w3.org/TR/html5/browsers.html#the-history-interface',
 										'wp': 	'/dom/history',
 										'mdn':	'/DOM/Manipulating_the_browser_history'
 									}
@@ -1220,7 +1220,7 @@ var tests = [
 						id:			'applicationCache',
 						name: 		'Application Cache', 
 						urls:		{
-										'w3c':	'http://www.w3.org/TR/html5/offline.html#offline',
+										'w3c':	'http://www.w3.org/TR/html5/browsers.html#offline',
 										'wp': 	'/apis/appcache/ApplicationCache',
 										'mdn':	'/HTML/Using_the_application_cache'
 									}
@@ -1228,14 +1228,14 @@ var tests = [
 						id:			'registerProtocolHandler',
 						name: 		'Custom scheme handlers', 
 						urls:		{
-										'w3c':	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
+										'w3c':	'http://www.w3.org/TR/html5/webappapis.html#custom-handlers',
 										'mdn':	'/docs/Web-based_protocol_handlers'
 									}
 					}, {
 						id:			'registerContentHandler',
 						name: 		'Custom content handlers', 
 						urls:		{
-										'w3c':	'http://www.w3.org/TR/html5/timers.html#custom-handlers',
+										'w3c':	'http://www.w3.org/TR/html5/webappapis.html#custom-handlers',
 										'mdn':	'/DOM/window.navigator.registerContentHandler'
 									}
 					}, {
@@ -1252,21 +1252,21 @@ var tests = [
 						id:			'sandbox',
 						name: 		'Sandboxed <code>iframe</code>', 
 						urls:		{
-										'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-sandbox',
+										'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-sandbox',
 										'mdn':	'/HTML/Element/iframe'
 									}
 					}, {
 						id:			'seamless',
 						name: 		'Seamless <code>iframe</code>', 
 						urls:		{
-										'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-seamless',
+										'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-seamless',
 										'mdn':	'/HTML/Element/iframe'
 									}
 					}, {
 						id:			'srcdoc',
 						name: 		'<code>iframe</code> with inline contents', 
 						urls:		{
-										'w3c':	'http://www.w3.org/TR/html5/the-iframe-element.html#attr-iframe-srcdoc',
+										'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-srcdoc',
 										'mdn':	'/HTML/Element/iframe'
 									}
 					}
@@ -1278,7 +1278,7 @@ var tests = [
 					{
 						id:			'scoped',
 						name: 		'Scoped <code>style</code> element', 
-						url:		'http://www.w3.org/TR/html5/semantics.html#attr-style-scoped'
+						url:		'http://www.w3.org/TR/html5/document-metadata.html#attr-style-scoped'
 					}, {
 						id:			'async',
 						name: 		'Asyncronous script execution', 
