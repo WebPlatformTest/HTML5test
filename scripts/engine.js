@@ -2536,7 +2536,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'geolocation',
-				passed:		!!navigator.geolocation, 
+				passed:		!blacklists.geolocation && !!navigator.geolocation, 
 				value: 		15
 			});
 
