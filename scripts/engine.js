@@ -56,17 +56,20 @@ Test = (function() {
 									)	
 			};
 	
-			this.backgroundTasks = {};
+			this.backgroundTasks = [];
+			this.backgroundIds = {};
+			this.backgroundId = 0;
+			
 			this.callback = c;
 			
 			this.results = new results(this);
 			
-			for (g in this.suites) {
-				for (s in this.suites[g]) {
+			for (var g = 0; g < this.suites.length; g++) {
+				for (var s = 0; s < this.suites[g].length; s++) {
 					new (this.suites[g][s])(this.results);
 				}
 			}
-			
+
 			this.waitForBackground();
 		},
 		
@@ -80,7 +83,7 @@ Test = (function() {
 		
 		checkForBackground: function() {
 			var running = 0;
-			for (var task in this.backgroundTasks) { running += this.backgroundTasks[task] }
+			for (var task = 0; task < this.backgroundTasks.length; task++) { running += this.backgroundTasks[task] }
 
 			if (running) {
 				this.waitForBackground();
@@ -90,11 +93,13 @@ Test = (function() {
 		},
 		
 		startBackground: function(id) {
-			this.backgroundTasks[id] = 1;
+			var i = this.backgroundId++;
+			this.backgroundIds[id] = i;
+			this.backgroundTasks[i] = 1;
 		},
 		
 		stopBackground: function(id) {
-			this.backgroundTasks[id] = 0;
+			this.backgroundTasks[this.backgroundIds[id]] = 0;
 		},
 		
 		finished: function() {
@@ -103,7 +108,7 @@ Test = (function() {
 			collectResults(0, '', this.results);
 			function collectResults(level, prefix, data) {
 				if (data.items) {
-					for (i in data.items) {
+					for (var i = 0; i < data.items.length; i++) {
 						if (level == 0) points.push(data.items[i].data.id + '=' + data.items[i].points + '/' + data.items[i].max + '+' + data.items[i].bonus);
 						if (typeof data.items[i].data.passed != 'undefined') results.push(prefix + data.items[i].data.id + '=' + (!! data.items[i].data.passed ? 1 : 0));
 						if (data.items[i].items) {
