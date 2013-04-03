@@ -4590,6 +4590,15 @@
 			}
 
 			/****************************************************
+			 *		MAUI Runtime
+			 */
+		
+			if (preg_match('/\(MAUI Runtime;/', $ua)) {
+				$this->os->name = 'MAUI Runtime';
+				$this->device->type = TYPE_MOBILE;
+			}
+
+			/****************************************************
 			 *		CrOS
 			 */
 		
