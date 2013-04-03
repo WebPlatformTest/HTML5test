@@ -1277,6 +1277,16 @@ body {
 
 	width: 200px;
 }
+.comparisonTable #table-header #row-header td .information .popup {
+	left: -98px;
+	top: 100px;
+	width: 300px;
+}
+.comparisonTable #table-header #row-header td:hover .information .popup {
+	display: block;
+}
+
+
 .comparisonTable #table-header #row-header td .popup.visible {
 	display: block;
 }
@@ -1299,6 +1309,24 @@ body {
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;	
 }
+.comparisonTable #table-header #row-header td .information .popup > div {
+	padding: 20px;
+	height: auto;
+}
+.comparisonTable #table-header #row-header td .popup table {
+	margin: 0;
+}
+
+.comparisonTable #table-header #row-header td .popup table td,
+.comparisonTable #table-header #row-header td .popup table th {
+	border: 1px solid #ddd;
+	width: auto;
+	height: auto;
+	vertical-align: top;
+	text-align: left;
+	padding: 10px;
+}
+
 .comparisonTable #table-header #row-header td .popup ul {
 	-webkit-transform: translate3d(0,0,0);
 	width: 200px;

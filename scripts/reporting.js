@@ -195,6 +195,10 @@
 				var cell = row.childNodes[column + 1];
 				cell.className = '';
 				cell.firstChild.firstChild.innerHTML = '<span class="nickname">' + t(data.nickname) + '</span><span class="score">' + data.score + '</span><span class="bonus">' + data.bonus + ' ' + t('bonus points') + '</span>';
+				
+				if (typeof data.useragent != 'undefined') {
+					cell.firstChild.firstChild.innerHTML += '<div class="information"><div class="popup"><div><table><tbody><tr><th>Identification</th><td>' + data.humanReadable + '</td></tr><tr><th>Useragent</th><td>' + data.useragent + '</td></tr><tr><th>Screen size</th><td>' + data.deviceWidth + ' x ' + data.deviceHeight + '</td></tr></tbody></table></div></div></div>';
+				}
 			}
 			
 			for (var i = 0; i < this.tests.length; i++) {
