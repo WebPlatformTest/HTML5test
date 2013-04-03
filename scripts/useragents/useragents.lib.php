@@ -4769,6 +4769,20 @@
 			}
 
 			/****************************************************
+			 *		Tesla Model S in-car browser
+			 */
+		
+			if (preg_match('/QtCarBrowser/', $ua)) {
+				$this->os->name = '';
+				
+				$this->device->manufacturer = 'Tesla';
+				$this->device->model = 'Model S';
+				$this->device->type = TYPE_CAR;
+				$this->device->identified = true;
+			}
+
+
+			/****************************************************
 			 *		Nintendo
 			 *
 			 *		Opera/9.30 (Nintendo Wii; U; ; 3642; en)
