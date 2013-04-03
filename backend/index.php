@@ -79,11 +79,21 @@
 			$payload = json_decode($_REQUEST['payload']);
 			$headers = apache_request_headers();
 						
-			$xWapProfile = isset($headers['x-wap-profile']) ? $headers['x-wap-profile'] : '';
-			$xDeviceStockUA = isset($headers['Device-Stock-UA']) ? $headers['Device-Stock-UA'] : '';
-			$xDeviceUserAgent = isset($headers['X-Device-User-Agent']) ? $headers['X-Device-User-Agent'] : '';
-			$xOriginalUserAgent = isset($headers['X-Original-User-Agent']) ? $headers['X-Original-User-Agent'] : '';
-			$xOperaMiniPhoneUA = isset($headers['X-OperaMini-Phone-UA']) ? $headers['X-OperaMini-Phone-UA'] : '';
+			$filteredHeaders = '';
+
+			foreach($headers as $key => $value) {
+				if (!in_array(strtolower($key), array(
+					'accept', 'host', 'connection', 'dnt', 'user-agent', 'accept-encoding', 'accept-language', 
+					'accept-charset', 'referer', 'cookie', 'content-type', 'content-length', 'content-transfer-encoding', 
+					'origin', 'pragma', 'cache-control', 'via', 'clientip', 'x-bluecoat-via', 'x-piper-id',
+					'x-forwarded-for', 'x-teacup', 'x-saucer', 'isajaxrequest', 'keep-alive', 'max-forwards',
+					'xroxy-connection', 'client-ip', 'cookie2', 'x-via', 'x-imforwards', 'http-client-id',
+					'x-proxy-id', 'z-forwarded-for', 'expect', 'x-ip-address', 'x-rbt-optimized-by', 'qpr-loop',
+					'cuda_cliip', 'x-source-id', 'x-clickoncesupport'
+				))) {
+					$filteredHeaders .= $key . ": " . $value . "\n";
+				}
+			}
 			
 			if (!$readonly) {
 				mysql_query('
@@ -117,11 +127,7 @@
 						deviceType = "' . mysql_real_escape_string($payload->deviceType) . '",
 						useragent = "' . mysql_real_escape_string($payload->useragent) . '",
 						humanReadable = "' . mysql_real_escape_string($payload->humanReadable) . '",
-						xWapProfile = "' . mysql_real_escape_string($xWapProfile) . '",
-						xDeviceStockUA = "' . mysql_real_escape_string($xDeviceStockUA) . '",
-						xDeviceUserAgent = "' . mysql_real_escape_string($xDeviceUserAgent) . '",
-						xOriginalUserAgent = "' . mysql_real_escape_string($xOriginalUserAgent) . '",
-						xOperaMiniPhoneUA = "' . mysql_real_escape_string($xOperaMiniPhoneUA) . '",
+						headers = "' . mysql_real_escape_string($filteredHeaders) . '",
 						results = "' . mysql_real_escape_string($payload->results) . '",
 						points = "' . mysql_real_escape_string($payload->points) . '",
 						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
