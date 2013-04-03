@@ -230,7 +230,7 @@ var UserAgents = (function(){
 				}
 
 
-				if (this.options.useFeatures) {
+				if (this.options.useFeatures && this.browser.mode != 'proxy') {
 					/* If it claims not to be Trident, but it is probably Trident running camouflage mode */
 					if (window.ActiveXObject) {
 						this.features.push('trident');		
