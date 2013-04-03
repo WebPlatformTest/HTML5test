@@ -3,9 +3,9 @@ var translation = {
 	'The HTML5 test <em>– how well does your browser support HTML5?</em>': 'HTML5测试 <em>– 你的浏览器能有多好的支持HTML5?</em>',
 
 	'Your browser':								'你的浏览器',
-	'Other<span> browser</span>s':				'其他浏览器',
+	'Other browsers':							'其他浏览器',
 	'Compare':									'比较',
-	'About<span> the test</span>':				'关于测试',
+	'About the test':							'关于测试',
 
 	'Your browser scores': 						'你的浏览器分数',
 	'and no bonus points':						'额外奖励分 {{bonus}} 分',
