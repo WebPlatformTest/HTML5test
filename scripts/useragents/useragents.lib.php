@@ -5981,6 +5981,17 @@
 			 *		Opera
 			 */
 		
+			if (preg_match('/OPR\/([0-9.]*)/', $ua, $match)) {
+				$this->browser->stock = false;
+				$this->browser->channel = '';
+				$this->browser->name = 'Opera';
+				$this->browser->version = new Version(array('value' => $match[1], 'details' => 2));
+
+				if ($this->device->type == TYPE_MOBILE) {
+					$this->browser->name = 'Opera Mobile';
+				}
+			}
+
 			if (preg_match('/Opera/i', $ua)) {
 				$this->browser->stock = false;
 				$this->browser->name = 'Opera';
