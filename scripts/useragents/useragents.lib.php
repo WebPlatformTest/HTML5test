@@ -6541,6 +6541,7 @@
 			if (preg_match('/Puffin\/([0-9.]*)/', $ua, $match)) {
 				$this->browser->name = 'Puffin';
 				$this->browser->version = new Version(array('value' => $match[1], 'details' => 2));
+				$this->browser->mode = 'proxy';
 				$this->browser->channel = '';
 				
 				$this->device->type = TYPE_MOBILE;
