@@ -3794,6 +3794,23 @@
 			
 			
 			/****************************************************
+			 *		IRIX
+			 */
+		
+			if (preg_match('/IRIX/', $ua)) {
+				$this->os->name = 'IRIX';
+
+				if (preg_match('/IRIX ([0-9.]*)/', $ua, $match)) {
+					$this->os->version = new Version(array('value' => $match[1]));
+				}
+
+				if (preg_match('/IRIX;(?:64|32) ([0-9.]*)/', $ua, $match)) {
+					$this->os->version = new Version(array('value' => $match[1]));
+				}
+			}
+			
+			
+			/****************************************************
 			 *		Syllable
 			 */
 		
