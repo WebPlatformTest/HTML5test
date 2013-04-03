@@ -15,21 +15,18 @@
 			SELECT 
 				b.unique AS id, CONCAT(b.unique,'-" . $type . "-',b.id) AS uid, b.nickname, b.details, '" . $type . "' AS type
 			FROM 
-				browsers AS b
-				LEFT JOIN scores AS s ON (b.unique = s.id)
-				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
+				browsers AS b, 
+				scores AS s 
 			WHERE 
+				b.unique = s.id AND
 				b.listed = 1 AND
 				FIND_IN_SET('" . $type . "',b.type) AND
-				f.version = '" . $version . "' AND
-				f.points != ''
+				s.version = '" . $version . "' AND
+				s.points != ''
 			ORDER BY 
 				id, nickname
 		");
 		
-			echo mysql_error();
-			
-
 		while ($row = mysql_fetch_object($res)) {
 			$results[] = $row;
 		}
@@ -45,12 +42,12 @@
 			
 			$res = mysql_query("
 				SELECT 
-					IF(f.results LIKE '%" . mysql_real_escape_string($show[0]) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid
+					IF(s.results LIKE '%" . mysql_real_escape_string($show[0]) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid
 				FROM 
-					browsers AS b			
-					LEFT JOIN scores AS s ON (b.unique = s.id)
-					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
+					browsers AS b, 
+					scores AS s 
 				WHERE 
+					b.unique = s.id AND 
 					b.listed = 1 AND
 					s.version = '" . $version . "'
 			");
@@ -70,12 +67,12 @@
 			
 			$res = mysql_query("
 				SELECT 
-					IF(f.results LIKE '%" . mysql_real_escape_string($show[1]) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid 
+					IF(s.results LIKE '%" . mysql_real_escape_string($show[1]) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid 
 				FROM 
-					browsers AS b 
-					LEFT JOIN scores AS s ON (b.unique = s.id)
-					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
+					browsers AS b, 
+					scores AS s 
 				WHERE 
+					b.unique = s.id AND 
 					b.listed = 1 AND
 					s.version = '" . $version . "'
 			");
@@ -95,12 +92,12 @@
 			
 			$res = mysql_query("
 				SELECT 
-					IF(f.results LIKE '%" . mysql_real_escape_string($show[2]) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid 
+					IF(s.results LIKE '%" . mysql_real_escape_string($show[2]) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid 
 				FROM 
-					browsers AS b
-					LEFT JOIN scores AS s ON (b.unique = s.id)
-					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
+					browsers AS b, 
+					scores AS s 
 				WHERE 
+					b.unique = s.id AND 
 					b.listed = 1 AND
 					s.version = '" . $version . "'
 			");
