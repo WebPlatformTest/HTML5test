@@ -229,10 +229,14 @@ body {
 	-ms-box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
 	-o-box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
 	box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
+
+	color: #ddd;
+	font-size: 0.75em;
+	line-height: 150%;
 }
 .ads > p {
 	text-transform: uppercase;
-	font-size: 0.6em !important;
+	font-size: 0.8em !important;
 	text-align: center;
 	letter-spacing: 0.8em;
 	
