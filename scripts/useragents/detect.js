@@ -71,7 +71,7 @@ var UserAgents = (function(){
 		},
 		
 		valueOf: function() {
-			return parseFloat('' + this.major + '.' + ('0000' + this.minor).slice(-4));
+			return parseFloat('' + this.major + '.' + ('0000' + this.minor).slice(-4) + ('0000' + this.revision).slice(-4));
 		},
 		
 		toString: function() {
