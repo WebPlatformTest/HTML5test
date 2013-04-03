@@ -106,6 +106,7 @@ var UserAgents = (function(){
 			return version;
 		}
 	}
+	
 
  	var Detected = function() { this.initialize.apply(this, arguments) };
 	Detected.prototype = {
@@ -291,7 +292,6 @@ var UserAgents = (function(){
 					}
 	
 	
-	
 					/* If we have an iPad that is not 768 x 1024, we have an imposter */
 					if (this.device.model == 'iPad') {
 						if ((screen.width != 0 && screen.height != 0) && (screen.width != 768 && screen.height != 1024) && (screen.width != 1024 && screen.height != 768)) {
@@ -420,7 +420,6 @@ var UserAgents = (function(){
 			}
 		}
 	};
-
 
 	return Detected;
 })();	
