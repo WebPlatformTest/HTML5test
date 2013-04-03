@@ -2736,7 +2736,7 @@ Test = (function() {
 			
 			try {
 				item.startBackground();
-				xhr.open("GET", "/detect.html");
+				xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
 				xhr.responseType = "document";
 				xhr.send();
 			} catch (e) {
@@ -2772,7 +2772,7 @@ Test = (function() {
 			
 			try {
 				item.startBackground();
-				xhr.open("GET", "/detect.html");
+				xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
 				xhr.responseType = "text";
 				xhr.send();
 			} catch (e) {
@@ -2808,7 +2808,7 @@ Test = (function() {
 			
 			try {
 				item.startBackground();
-				xhr.open("GET", "/detect.html");
+				xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
 				xhr.responseType = "blob";
 				xhr.send();
 			} catch (e) {
@@ -2844,7 +2844,7 @@ Test = (function() {
 			
 			try {
 				item.startBackground();
-				xhr.open("GET", "/detect.html");
+				xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
 				xhr.responseType = "arraybuffer";
 				xhr.send();
 			} catch (e) {
