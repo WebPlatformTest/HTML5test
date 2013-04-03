@@ -605,7 +605,7 @@ Test = (function() {
 			} catch (e) {
 				result = false;
 			}
-			
+
 			e.innerHTML = "<ul><li>A </li> <li>B</li></ul>";
 			result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.firstChild && e.firstChild.firstChild.firstChild.nodeValue == "A ";
 		
@@ -961,13 +961,13 @@ Test = (function() {
 				document.body.removeChild(element);
 			}
 
+
 			var element = document.createElement('ol');
 			group.setItem({
 				id:		'ol',
 				passed:	'reversed' in element, 
 				value: 	1
 			});
-
 
 			var group = this.section.getGroup({
 				id:		'semantic'
@@ -2712,7 +2712,7 @@ Test = (function() {
 			if (!window.XMLHttpRequest) return;
 			
 			var xhr = new window.XMLHttpRequest();
-
+			
 			if (typeof xhr.responseType == 'undefined') return;
 								
 			var done = false;
@@ -2748,7 +2748,7 @@ Test = (function() {
 			if (!window.XMLHttpRequest) return;
 			
 			var xhr = new window.XMLHttpRequest();
-
+			
 			if (typeof xhr.responseType == 'undefined') return;
 								
 			var done = false;
@@ -2820,7 +2820,7 @@ Test = (function() {
 			if (!window.XMLHttpRequest || !window.ArrayBuffer) return;
 			
 			var xhr = new window.XMLHttpRequest();
-
+			
 			if (typeof xhr.responseType == 'undefined') return;
 								
 			var done = false;
