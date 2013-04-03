@@ -4075,7 +4075,7 @@
 					$this->device->type = TYPE_MOBILE;
 				}
 
-				if (preg_match('/Windows Mobile/', $ua)) {
+				if (preg_match('/Windows ?Mobile/', $ua)) {
 					$this->os->name = 'Windows Mobile';
 					$this->device->type = TYPE_MOBILE;
 				}
