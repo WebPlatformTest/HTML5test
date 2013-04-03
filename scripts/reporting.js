@@ -217,7 +217,7 @@
 						var row = document.getElementById('head-' + tests[i].id);
 						var cell = row.childNodes[column + 1];
 						
-						var content = "<div class='grade'>";
+						var content = "<div><div class='grade'>";
 						
 						if (this.options.bonus && bonus > 0) {
 							content += "<span class='bonus'>+" + bonus + "<span> " + t('bonus points') + "</span></span>";
@@ -242,7 +242,7 @@
 							content += "<span>" + points + "</span>";
 						}
 
-						content += "</div>"
+						content += "</div></div>";
 						
 						cell.innerHTML = content;
 						this.updateItems(column, data, 0, this.tests[i].id, this.tests[i].items);

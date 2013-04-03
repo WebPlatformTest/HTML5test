@@ -735,14 +735,15 @@ body {
 	background: #f0f0f0 linear-gradient(top, #e6e6e6, #f6f6f6 43px, #d6d6d6 43px, #f0f0f0);
 }
 .resultsTable table thead th {
-	padding: 3px 10px;
+	padding: 0px 10px;
+	height: 44px;
 	
 	font-size: 1.1em;
 	text-align: left;
-	height: 38px;
 }
 .resultsTable table thead td {
-	padding: 3px 10px;
+	padding: 0px 10px;
+	width: 44px;
 	
 	font-family: 'Alfa Slab One', Arial;
 	font-weight: normal;
@@ -750,12 +751,14 @@ body {
 	font-size: 1.8em;
 	text-align: right;
 	color: #999;
-	width: 50px;
+}
+.resultsTable table thead td > div {
+	position: relative;
 }
 .resultsTable table thead td div.grade {
 	position: absolute;
-	right: 10px;
-	top: 4px;
+	right: 0px;
+	top: -18px;
 }
 .resultsTable table thead td span.none {
 	color: #853333;
