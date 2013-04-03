@@ -90,15 +90,15 @@
 										}	
 					});
 					
-				<?php if (isset($one) && $one != ''): ?> 
+				<?php if ($one != ''): ?> 
 					table.updateColumn(0, <?php echo $one; ?>);
 				<?php endif; ?>
 				
-				<?php if (isset($two) && $two != ''): ?> 
+				<?php if ($two != ''): ?> 
 					table.updateColumn(1, <?php echo $two; ?>);
 				<?php endif; ?>
 				
-				<?php if (isset($three) && $three != ''): ?> 
+				<?php if ($three != ''): ?> 
 					table.updateColumn(2, <?php echo $three; ?>);
 				<?php endif; ?>
 				
