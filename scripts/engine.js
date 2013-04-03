@@ -2542,7 +2542,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'orientation',
-				passed:		!!window.DeviceOrientationEvent, 
+				passed:		!blacklists.orientation && !!window.DeviceOrientationEvent, 
 				value: 		5
 			});
 		}
