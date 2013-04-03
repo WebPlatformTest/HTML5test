@@ -695,9 +695,18 @@ Test = (function() {
 				value: 	10
 			});
 
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').fillText == 'function';
+				}
+				catch(e) {
+				}
+			}
+			
 			this.section.setItem({
 				id:		'text',
-				passed:	!! (this.canvas.getContext && typeof this.canvas.getContext('2d').fillText == 'function'), 
+				passed:	passed, 
 				value: 	5
 			});
 		}
