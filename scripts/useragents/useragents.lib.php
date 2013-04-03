@@ -5197,7 +5197,7 @@
 					}
 
 					if (!isset($this->device->model) && $modelName != '' && $modelName != 'modelName') {
-						switch(modelName) {
+						switch($modelName) {
 							case 'GLOBAL_PLAT3':	$this->device->model = 'NetCast TV'; break;
 							case 'GLOBAL_PLAT4':	$this->device->model = 'NetCast TV'; break;
 							case 'SmartTV2012':		$this->device->model = 'Smart TV 2012'; break;
