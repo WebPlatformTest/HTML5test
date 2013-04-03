@@ -138,6 +138,18 @@
 						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
 						status = 0
 				');
+
+				mysql_query('
+					INSERT INTO 
+						fingerprints
+					SET 
+						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
+						version = "' . mysql_real_escape_string($payload->version) . '",
+						score = "' . mysql_real_escape_string($payload->score) . '",
+						bonus = "' . mysql_real_escape_string($payload->bonus) . '",
+						results = "' . mysql_real_escape_string($payload->results) . '",
+						points = "' . mysql_real_escape_string($payload->points) . '"
+				');
 			}
 
 			break;
