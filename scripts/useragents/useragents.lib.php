@@ -6624,7 +6624,6 @@
 				array('name' => 'UWebKit',				'regexp' => '/UWebKit\/([0-9.]*)/'),
 				
 				array('name' => 'PhantomJS',			'regexp' => '/PhantomJS\/([0-9.]*)/'),
-				array('name' => 'Google Web Preview',	'regexp' => '/Google Web Preview/'),
 				
 				array('name' => 'Google Earth',			'regexp' => '/Google Earth\/([0-9.]*)/'),
 				array('name' => 'EA Origin',			'regexp' => '/Origin\/([0-9.]*)/'),
@@ -6632,7 +6631,8 @@
 				array('name' => 'Valve Steam',			'regexp' => '/Valve Steam/'),
 				
 				array('name' => 'Songbird',				'regexp' => '/Songbird\/([0-9.]*)/'),
-				array('name' => 'Thunderbird',			'regexp' => '/Thunderbird\/([0-9.]*)/', 'type' => TYPE_DESKTOP),
+				array('name' => 'Thunderbird',			'regexp' => '/Thunderbird[\/ ]([0-9.]*)/', 'type' => TYPE_DESKTOP),
+				array('name' => 'Microsoft Outlook',	'regexp' => '/Microsoft Outlook IMO, Build ([0-9.]*)/', 'details' => 2, 'type' => TYPE_DESKTOP),
 				
 				array('name' => '360 Extreme Explorer',	'regexp' => '/QIHU 360EE/', 'type' => TYPE_DESKTOP),
 				array('name' => '360 Safe Explorer',	'regexp' => '/QIHU 360SE/', 'type' => TYPE_DESKTOP),
@@ -6640,6 +6640,7 @@
 				array('name' => '360 Phone Browser',	'regexp' => '/360 Aphone Browser \(Version ([0-9.]*)\)/'),
 				array('name' => 'ABrowse',				'regexp' => '/A[Bb]rowse ([0-9.]*)/'),
 				array('name' => 'Abrowser',				'regexp' => '/Abrowser\/([0-9.]*)/'),
+				array('name' => 'AltiBrowser',			'regexp' => '/AltiBrowser\/([0-9.]*)/i'),
 				array('name' => 'arora',				'regexp' => '/[Aa]rora\/([0-9.]*)/'),
 				array('name' => 'Avant Browser',		'regexp' => '/Avant TriCore/'),
 				array('name' => 'Baidu Browser',		'regexp' => '/M?BaiduBrowser\/([0-9.]*)/i'),
@@ -6676,10 +6677,12 @@
 				array('name' => 'Jumanji', 				'regexp' => '/jumanji/'),
 				array('name' => 'Kazehakase', 			'regexp' => '/Kazehakase\/([0-9.]*)/'),
 				array('name' => 'KChrome', 				'regexp' => '/KChrome\/([0-9.]*)/', 'details' => 3),
+				array('name' => 'Kiosk', 				'regexp' => '/Kiosk\/([0-9.]*)/'),
 				array('name' => 'K-Meleon', 			'regexp' => '/K-Meleon\/([0-9.]*)/', 'type' => TYPE_DESKTOP),
 				array('name' => 'Leechcraft', 			'regexp' => '/Leechcraft(?:\/([0-9.]*))?/', 'details' => 2),
 				array('name' => 'Lightning', 			'regexp' => '/Lightning\/([0-9.]*)/'),
 				array('name' => 'Lunascape', 			'regexp' => '/Lunascape[\/| ]([0-9.]*)/', 'details' => 3),
+				array('name' => 'Lynx', 				'regexp' => '/Lynx\/([0-9.]*)/'),
 				array('name' => 'iLunascape', 			'regexp' => '/iLunascape\/([0-9.]*)/', 'details' => 3),
 				array('name' => 'Intermec Browser', 	'regexp' => '/Intermec\/([0-9.]*)/', 'details' => 2),
 				array('name' => 'MaCross Mobile', 		'regexp' => '/MaCross\/([0-9.]*)/'),
@@ -6687,12 +6690,12 @@
 				array('name' => 'MixShark', 			'regexp' => '/MixShark\/([0-9.]*)/'),
 				array('name' => 'Motorola WebKit', 		'regexp' => '/MotorolaWebKit(?:\/([0-9.]*))?/', 'details' => 3),
 				array('name' => 'NetFront LifeBrowser', 'regexp' => '/NetFrontLifeBrowser\/([0-9.]*)/'),
+				array('name' => 'NetPositive', 			'regexp' => '/NetPositive\/([0-9.]*)/'),
 				array('name' => 'Netscape Navigator', 	'regexp' => '/Navigator\/([0-9.]*)/', 'details' => 3),
 				array('name' => 'Odyssey', 				'regexp' => '/OWB\/([0-9.]*)/'),
 				array('name' => 'OmniWeb', 				'regexp' => '/OmniWeb/', 'type' => TYPE_DESKTOP),
 				array('name' => 'OneBrowser', 			'regexp' => '/OneBrowser\/([0-9.]*)/'),
 				array('name' => 'Orca', 				'regexp' => '/Orca\/([0-9.]*)/'),
-				array('name' => 'Open Sankoré', 		'regexp' => '/Open-Sankore\/([0-9.]*)/'),
 				array('name' => 'Origyn', 				'regexp' => '/Origyn Web Browser/'),
 				array('name' => 'Palemoon', 			'regexp' => '/Pale[mM]oon\/([0-9.]*)/'),
 				array('name' => 'Phantom', 				'regexp' => '/Phantom\/V([0-9.]*)/'),
@@ -6705,7 +6708,7 @@
 				array('name' => 'QupZilla', 			'regexp' => '/QupZilla\/([0-9.]*)/', 'type' => TYPE_DESKTOP),
 				array('name' => 'Roccat', 				'regexp' => '/Roccat\/([0-9]\.[0-9.]*)/'),
 				array('name' => 'Raven for Mac', 		'regexp' => '/Raven for Mac\/([0-9.]*)/'),
-				array('name' => 'rekonq', 				'regexp' => '/rekonq/', 'type' => TYPE_DESKTOP),
+				array('name' => 'rekonq', 				'regexp' => '/rekonq(?:\/([0-9.]*))?/', 'type' => TYPE_DESKTOP),
 				array('name' => 'RockMelt', 			'regexp' => '/RockMelt\/([0-9.]*)/', 'details' => 2),
 				array('name' => 'Sleipnir', 			'regexp' => '/Sleipnir\/([0-9.]*)/', 'details' => 3),
 				array('name' => 'SMBrowser', 			'regexp' => '/SMBrowser/'),
@@ -6725,10 +6728,27 @@
 				array('name' => 'Wavelink Velocity',	'regexp' => '/Wavelink Velocity Browser\/([0-9.]*)/', 'details' => 2),
 				array('name' => 'WebPositive', 			'regexp' => '/WebPositive/'),
 				array('name' => 'WebRender', 			'regexp' => '/WebRender/'),
+				array('name' => 'Webster', 				'regexp' => '/Webster ([0-9.]*)/'),
 				array('name' => 'Wyzo', 				'regexp' => '/Wyzo\/([0-9.]*)/', 'details' => 3),
 				array('name' => 'Yandex Browser', 		'regexp' => '/YaBrowser\/([0-9.]*)/', 'details' => 2),
+				array('name' => 'YRC Weblink', 			'regexp' => '/YRCWeblink\/([0-9.]*)/'),
 				array('name' => 'Zetakey', 				'regexp' => '/Zetakey Webkit\/([0-9.]*)/'),
-				array('name' => 'Zetakey', 				'regexp' => '/Zetakey\/([0-9.]*)/')
+				array('name' => 'Zetakey', 				'regexp' => '/Zetakey\/([0-9.]*)/'),
+				
+				array('name' => 'McAfee Web Gateway', 	'regexp' => '/Webwasher\/([0-9.]*)/'),
+				
+				array('name' => 'Open Sankoré', 		'regexp' => '/Open-Sankore\/([0-9.]*)/', 'type' => TYPE_WHITEBOARD),
+				array('name' => 'Coship MMCP', 			'regexp' => '/Coship_MMCP_([0-9.]*)/', 'type' => TYPE_SIGNAGE),
+				
+				array('name' => '80legs', 				'regexp' => '/008\/([0-9.]*)/', 'type' => TYPE_BOT),
+				array('name' => 'Ask Jeeves', 			'regexp' => '/Ask Jeeves\/Teoma/', 'type' => TYPE_BOT),
+				array('name' => 'Baiduspider', 			'regexp' => '/Baiduspider\/([0-9.]*)/', 'type' => TYPE_BOT),
+				array('name' => 'Bloglines', 			'regexp' => '/Bloglines\/([0-9.]*)/', 'type' => TYPE_BOT),
+				array('name' => 'Googlebot', 			'regexp' => '/Googlebot\/([0-9.]*)/', 'type' => TYPE_BOT),
+				array('name' => 'Google Web Preview',	'regexp' => '/Google Web Preview/', 'type' => TYPE_BOT),
+				array('name' => 'Google Font Analysis', 'regexp' => '/Google-FontAnalysis\/([0-9.]*)/', 'type' => TYPE_BOT),
+				array('name' => 'HeartRails Capture', 	'regexp' => '/HeartRails_Capture\/([0-9.]*)/', 'type' => TYPE_BOT),
+				array('name' => 'Wget', 				'regexp' => '/Wget\/([0-9.]*)/', 'type' => TYPE_BOT)
 			);
 
 			for ($b = 0; $b < count($browsers); $b++) {
