@@ -6385,6 +6385,8 @@
 			if (preg_match('/UCWEB/', $ua)) {
 				$this->browser->stock = false;
 				$this->browser->name = 'UC Browser';
+
+				unset($this->browser->channel);
 				
 				if (preg_match('/UCWEB\/?([0-9]*[.][0-9]*)/', $ua, $match)) {
 					$this->browser->version = new Version(array('value' => $match[1], 'details' => 3));
@@ -6414,6 +6416,8 @@
 			if (preg_match('/ucweb-squid/', $ua)) {
 				$this->browser->stock = false;
 				$this->browser->name = 'UC Browser';
+
+				unset($this->browser->channel);
 			}
 
 			if (preg_match('/\) UC /', $ua)) {
@@ -6438,6 +6442,8 @@
 				$this->browser->stock = false;
 				$this->browser->name = 'UC Browser';
 				$this->browser->version = new Version(array('value' => $match[1], 'details' => 2));
+
+				unset($this->browser->channel);
 
 				if (!$this->device->type) {
 					$this->device->type = TYPE_MOBILE;
