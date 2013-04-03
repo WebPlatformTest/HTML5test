@@ -5901,6 +5901,7 @@
 							$this->browser->channel = 'Beta';
 							break;
 						case '18.0.1025':
+						case '25.0.1364':
 							$this->browser->version->details = 1;
 							break;
 						default:	
@@ -5942,6 +5943,8 @@
 						case '22.0.1229':
 						case '23.0.1271':
 						case '24.0.1312':
+						case '25.0.1364':
+						case '26.0.1410':
 							$this->browser->version->details = 1;
 							break;
 						default:	
