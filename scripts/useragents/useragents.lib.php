@@ -5744,6 +5744,9 @@
 				}
 			}
 
+			if (preg_match('/\(IE ([0-9.]*)/', $ua, $match)) {
+				$this->browser->name = 'Internet Explorer';
+				$this->browser->version = new Version(array('value' => $match[1]));
 			}
 
 			/****************************************************
