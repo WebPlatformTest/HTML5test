@@ -34,7 +34,11 @@
 	define ('TYPE_EMULATOR', 'emulator');
 	define ('TYPE_TELEVISION', 'television');
 	define ('TYPE_CAMERA', 'camera');
+	define ('TYPE_SIGNAGE', 'signage');
+	define ('TYPE_WHITEBOARD', 'whiteboard');
+	define ('TYPE_CAR', 'car');
 	define ('TYPE_POS', 'pos');
+	define ('TYPE_BOT', 'bot');
 
 	define ('FLAG_GOOGLETV', 1);
 
