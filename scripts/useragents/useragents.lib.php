@@ -5733,99 +5733,6 @@
 				}
 			}
 
-			/****************************************************
-			 *		Opera
-			 */
-		
-			if (preg_match('/Opera/i', $ua)) {
-				$this->browser->stock = false;
-				$this->browser->name = 'Opera';
-
-				if (preg_match('/Opera[\/| ]([0-9.]*)/', $ua, $match)) {
-					$this->browser->version = new Version(array('value' => $match[1]));
-				}
-
-				if (preg_match('/Version\/([0-9.]*)/', $ua, $match)) {
-					if (floatval($match[1]) >= 10)
-						$this->browser->version = new Version(array('value' => $match[1]));
-					else
-						$this->browser->version = null;
-				}
-
-				if (is_array($this->browser->version) && preg_match('/Edition Labs/', $ua)) {
-					$this->browser->channel = 'Labs';
-				}
-				
-				if (is_array($this->browser->version) && preg_match('/Edition Next/', $ua)) {
-					$this->browser->channel = 'Next';
-				}
-				
-				if (preg_match('/Opera Tablet/', $ua)) {
-					$this->browser->name = 'Opera Mobile';
-					$this->device->type = TYPE_TABLET;
-				}
-				
-				if (preg_match('/Opera Mobi/', $ua)) {
-					$this->browser->name = 'Opera Mobile';
-					$this->device->type = TYPE_MOBILE;
-				}
-
-				if (preg_match('/Opera Mini;/', $ua)) {
-					$this->browser->name = 'Opera Mini';
-					$this->browser->version = null;
-					$this->browser->mode = 'proxy';
-					$this->device->type = TYPE_MOBILE;
-				}
-				
-				if (preg_match('/Opera Mini\/(?:att\/)?([0-9.]*)/', $ua, $match)) {
-					$this->browser->name = 'Opera Mini';
-					$this->browser->version = new Version(array('value' => $match[1], 'details' => (intval(substr(strrchr($match[1], '.'), 1)) > 99 ? -1 : null)));
-					$this->browser->mode = 'proxy';
-					$this->device->type = TYPE_MOBILE;
-				}
-				
-				if ($this->browser->name == 'Opera' && $this->device->type == TYPE_MOBILE) {
-					$this->browser->name = 'Opera Mobile';
-					
-					if (preg_match('/BER/', $ua)) {
-						$this->browser->name = 'Opera Mini';
-						$this->browser->version = null;
-					}
-				}
-
-				if (preg_match('/InettvBrowser/', $ua)) {
-					$this->device->type = TYPE_TELEVISION;
-				}
-
-				if (preg_match('/Opera[ -]TV/', $ua)) {
-					$this->browser->name = 'Opera';
-					$this->device->type = TYPE_TELEVISION;
-				}
-
-				if (preg_match('/Linux zbov/', $ua)) {
-					$this->browser->name = 'Opera Mobile';
-					$this->browser->mode = 'desktop';
-
-					$this->device->type = TYPE_MOBILE;
-
-					$this->os->name = null;
-					$this->os->version = null;
-				}
-
-				if (preg_match('/Linux zvav/', $ua)) {
-					$this->browser->name = 'Opera Mini';
-					$this->browser->version = null;
-					$this->browser->mode = 'desktop';
-
-					$this->device->type = TYPE_MOBILE;
-
-					$this->os->name = null;
-					$this->os->version = null;
-				}
-				
-				if ($this->device->type == '') {
-					$this->device->type = TYPE_DESKTOP;
-				}
 			}
 
 			/****************************************************
@@ -6045,6 +5952,101 @@
 			}	
 			
 			
+			/****************************************************
+			 *		Opera
+			 */
+		
+			if (preg_match('/Opera/i', $ua)) {
+				$this->browser->stock = false;
+				$this->browser->name = 'Opera';
+
+				if (preg_match('/Opera[\/| ]([0-9.]*)/', $ua, $match)) {
+					$this->browser->version = new Version(array('value' => $match[1]));
+				}
+
+				if (preg_match('/Version\/([0-9.]*)/', $ua, $match)) {
+					if (floatval($match[1]) >= 10)
+						$this->browser->version = new Version(array('value' => $match[1]));
+					else
+						$this->browser->version = null;
+				}
+
+				if (!is_null($this->browser->version) && preg_match('/Edition Labs/', $ua)) {
+					$this->browser->channel = 'Labs';
+				}
+				
+				if (!is_null($this->browser->version) && preg_match('/Edition Next/', $ua)) {
+					$this->browser->channel = 'Next';
+				}
+				
+				if (preg_match('/Opera Tablet/', $ua)) {
+					$this->browser->name = 'Opera Mobile';
+					$this->device->type = TYPE_TABLET;
+				}
+				
+				if (preg_match('/Opera Mobi/', $ua)) {
+					$this->browser->name = 'Opera Mobile';
+					$this->device->type = TYPE_MOBILE;
+				}
+
+				if (preg_match('/Opera Mini;/', $ua)) {
+					$this->browser->name = 'Opera Mini';
+					$this->browser->version = null;
+					$this->browser->mode = 'proxy';
+					$this->device->type = TYPE_MOBILE;
+				}
+				
+				if (preg_match('/Opera Mini\/(?:att\/)?([0-9.]*)/', $ua, $match)) {
+					$this->browser->name = 'Opera Mini';
+					$this->browser->version = new Version(array('value' => $match[1], 'details' => (intval(substr(strrchr($match[1], '.'), 1)) > 99 ? -1 : null)));
+					$this->browser->mode = 'proxy';
+					$this->device->type = TYPE_MOBILE;
+				}
+				
+				if ($this->browser->name == 'Opera' && $this->device->type == TYPE_MOBILE) {
+					$this->browser->name = 'Opera Mobile';
+					
+					if (preg_match('/BER/', $ua)) {
+						$this->browser->name = 'Opera Mini';
+						$this->browser->version = null;
+					}
+				}
+
+				if (preg_match('/InettvBrowser/', $ua)) {
+					$this->device->type = TYPE_TELEVISION;
+				}
+
+				if (preg_match('/Opera[ -]TV/', $ua)) {
+					$this->browser->name = 'Opera';
+					$this->device->type = TYPE_TELEVISION;
+				}
+
+				if (preg_match('/Linux zbov/', $ua)) {
+					$this->browser->name = 'Opera Mobile';
+					$this->browser->mode = 'desktop';
+
+					$this->device->type = TYPE_MOBILE;
+
+					$this->os->name = null;
+					$this->os->version = null;
+				}
+
+				if (preg_match('/Linux zvav/', $ua)) {
+					$this->browser->name = 'Opera Mini';
+					$this->browser->version = null;
+					$this->browser->mode = 'desktop';
+
+					$this->device->type = TYPE_MOBILE;
+
+					$this->os->name = null;
+					$this->os->version = null;
+				}
+				
+				if ($this->device->type == '') {
+					$this->device->type = TYPE_DESKTOP;
+				}
+			}
+
 			/****************************************************
 			 *		wOSBrowser
 			 */
