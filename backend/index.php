@@ -23,12 +23,12 @@
 			
 			$res = mysql_query("
 				SELECT 
-					IF(s.results LIKE '%" . mysql_real_escape_string($_REQUEST['id']) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid
+					IF(f.results LIKE '%" . mysql_real_escape_string($_REQUEST['id']) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid
 				FROM 
-					browsers AS b, 
-					scores AS s 
+					browsers AS b
+					LEFT JOIN scores AS s ON (b.unique = s.id)
+					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE 
-					b.unique = s.id AND 
 					b.listed = 1 AND
 					s.version = '" . $version . "'
 			");
@@ -48,7 +48,7 @@
 			if (substr($_REQUEST['id'], 0, 7) == 'custom:') {
 				$res = mysql_query("
 					SELECT 
-						'custom' AS id, 'Unique id'  AS nickname, score, bonus, points, results 
+						uniqueid AS id, 'Unique id'  AS nickname, score, bonus, points, results, humanReadable, useragentHeader AS useragent, deviceWidth, deviceHeight
 					FROM 
 						results 
 					WHERE 
@@ -57,12 +57,12 @@
 			} else {
 				$res = mysql_query("
 					SELECT 
-						b.unique AS id, b.nickname, s.score, s.bonus, s.points, s.results 
+						b.unique AS id, b.nickname, f.score, f.bonus, f.points, f.results 
 					FROM 
-						browsers AS b, 
-						scores AS s 
+						browsers AS b 
+						LEFT JOIN scores AS s ON (b.unique = s.id)
+						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE 
-						b.unique = s.id AND 
 						b.listed = 1 AND
 						s.version = '" . $version . "' AND
 						b.unique ='" . mysql_real_escape_string($_REQUEST['id']) . "'
