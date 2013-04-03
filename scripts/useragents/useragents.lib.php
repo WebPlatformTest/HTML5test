@@ -3721,6 +3721,31 @@
 					$this->device = $device;
 				}
 			}
+
+			if (count($parts) > 1 && $parts[0] == 'iPhone OS') {
+				if (!isset($this->os->name) || $this->os->name != 'iOS') {
+					$this->os->name = 'iOS';
+					$this->os->version = null;
+				}
+				
+				if (preg_match('/iPod( touch)?/', $parts[1])) {
+					$this->device->type = TYPE_MEDIA;
+					$this->device->manufacturer = 'Apple';
+					$this->device->model = 'iPod touch';
+				} 
+				else if (preg_match('/(?:Unknown )?iPhone( 3G| 3GS| 4| 4S| 5)?/', $parts[1], $match)) {
+					$this->device->type = TYPE_MOBILE;
+					$this->device->manufacturer = 'Apple';
+					$this->device->model = 'iPhone' . (isset($match[1]) ? $match[1] : '');
+				} 
+				else if (preg_match('/iPad/', $parts[1])) {
+					$this->device->type = TYPE_TABLET;
+					$this->device->manufacturer = 'Apple';
+					$this->device->model = 'iPad';
+				}
+				
+				$this->device->identified = true;
+			}
 		}
 		
 		function analyseUserAgent($ua) {
