@@ -95,7 +95,10 @@
 				}
 			}
 			
-			if (!$readonly) {
+			if (!$readonly && intval($payload->version) >= 4) {
+				$useragentHeader = $_SERVER['HTTP_USER_AGENT'];
+				$useragentId = preg_replace("/(; ?)[a-z][a-z](?:-[a-zA-Z][a-zA-Z])?([;)])/", '$1xx$2', $useragentHeader);
+			
 				mysql_query('
 					INSERT INTO 
 						results
@@ -126,6 +129,8 @@
 						deviceHeight = "' . mysql_real_escape_string($payload->deviceHeight) . '",
 						deviceType = "' . mysql_real_escape_string($payload->deviceType) . '",
 						useragent = "' . mysql_real_escape_string($payload->useragent) . '",
+						useragentHeader = "' . mysql_real_escape_string($useragentHeader) . '",
+						useragentId = "' . mysql_real_escape_string(md5($useragentId)) . '",
 						humanReadable = "' . mysql_real_escape_string($payload->humanReadable) . '",
 						headers = "' . mysql_real_escape_string($filteredHeaders) . '",
 						results = "' . mysql_real_escape_string($payload->results) . '",
