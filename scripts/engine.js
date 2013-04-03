@@ -917,7 +917,7 @@ Test = (function() {
 			
 			var elements = 'section nav article aside hgroup header footer'.split(' ');
 			
-			for (var e in elements) {
+			for (var e = 0; e < elements.length; e++) {
 				var element = document.createElement(elements[e]);
 				document.body.appendChild(element);
 
@@ -942,7 +942,7 @@ Test = (function() {
 			
 			var elements = 'figure figcaption'.split(' ');
 			
-			for (var e in elements) {
+			for (var e = 0; e < elements.length; e++) {
 				var element = document.createElement(elements[e]);
 				document.body.appendChild(element);
 
@@ -1384,7 +1384,7 @@ Test = (function() {
 			}
 			
 			var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
-			for (var t in types) {
+			for (var t = 0; t < types.length; t++) {
 				var group = this.section.getGroup({
 					id:		types[t]
 				});
@@ -1473,7 +1473,7 @@ Test = (function() {
 			}
 			
 			var types = ['number', 'range'];
-			for (var t in types) {
+			for (var t = 0; t < types.length; t++) {
 				var group = this.section.getGroup({
 					id:		types[t],
 					name:	'<code>input type=' + types[t] + '</code>'
@@ -1917,8 +1917,8 @@ Test = (function() {
 			var element = document.createElement('input');
 
 			var props = 'pattern required'.split(' ');
-				
-			for (var p in props) {
+			
+			for (var p = 0; p < props.length; p++) {
 					group.setItem({
 					id:			props[p],
 					passed:		!!(props[p] in element), 
@@ -1961,7 +1961,7 @@ Test = (function() {
 			
 			var element = document.createElement('input');
 
-			for (var p in props) {
+			for (var p = 0; p < props.length; p++) {
 					group.setItem({
 					id:			props[p],
 					passed:		!!(props[p] in element), 
@@ -1999,7 +1999,7 @@ Test = (function() {
 
 			var props = 'autocomplete placeholder multiple dirName'.split(' ');
 				
-			for (var p in props) {
+			for (var p = 0; p < props.length; p++) {
 				var prop = props[p].toLowerCase();
 				group.setItem({
 					id:			prop,
