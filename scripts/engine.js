@@ -921,9 +921,15 @@ Test = (function() {
 				var element = document.createElement(elements[e]);
 				document.body.appendChild(element);
 
-					group.setItem({
+				var passed = false;
+				try { 
+					passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && this.closesImplicitly(elements[e]);
+				} catch(error) {
+				}
+				
+				group.setItem({
 					id:		elements[e],
-					passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && this.closesImplicitly(elements[e]), 
+					passed:	passed, 
 					value: 	1
 				});
 
@@ -940,9 +946,15 @@ Test = (function() {
 				var element = document.createElement(elements[e]);
 				document.body.appendChild(element);
 
-					group.setItem({
+				var passed = false;
+				try { 
+					passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e]));
+				} catch(error) {
+				}
+
+				group.setItem({
 					id:		elements[e],
-					passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e])), 
+					passed:	passed, 
 					value: 	1
 				});
 
@@ -978,9 +990,15 @@ Test = (function() {
 			var element = document.createElement('mark');
 			document.body.appendChild(element);
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color != 'transparent');
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:		'mark',
-				passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color != 'transparent'), 
+				passed:	passed, 
 				value: 	1
 			});
 
@@ -992,9 +1010,18 @@ Test = (function() {
 			var rubyElement = document.getElementById('ruby');
 			var rtElement = document.getElementById('rt');
 			var rpElement = document.getElementById('rp');
-			var rubySupport = rubyElement && typeof HTMLElement != 'undefined' && rubyElement instanceof HTMLElement;
-			var rtSupport = rtElement && typeof HTMLElement != 'undefined' && rtElement instanceof HTMLElement;
-			var rpSupport = rpElement && typeof HTMLElement != 'undefined' && rpElement instanceof HTMLElement && this.isHidden(rpElement);
+			
+			var rubySupport = false;
+			var rtSupport = false;
+			var rpSupport = false;
+
+			try {
+				rubySupport = rubyElement && typeof HTMLElement != 'undefined' && rubyElement instanceof HTMLElement;
+				rtSupport = rtElement && typeof HTMLElement != 'undefined' && rtElement instanceof HTMLElement;
+				rpSupport = rpElement && typeof HTMLElement != 'undefined' && rpElement instanceof HTMLElement && this.isHidden(rpElement);
+			} catch(error) {				
+			}
+			
 			document.body.removeChild(container);					
 			
 			group.setItem({
@@ -1005,17 +1032,29 @@ Test = (function() {
 
 			var element = document.createElement('time');
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLTimeElement != 'undefined' && element instanceof HTMLTimeElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:		'time',
-				passed:	typeof HTMLTimeElement != 'undefined' && element instanceof HTMLTimeElement, 
+				passed:	passed, 
 				value: 	1
 			});
 			
 			var element = document.createElement('wbr');
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:		'wbr',
-				passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement, 
+				passed:	passed, 
 				value: 	1
 			});
 
@@ -1041,9 +1080,15 @@ Test = (function() {
 			var element = document.createElement('summary');
 			document.body.appendChild(element);
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:		'summary',
-				passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement, 
+				passed:	passed, 
 				value: 	1
 			});
 
@@ -1052,9 +1097,15 @@ Test = (function() {
 			var element = document.createElement('command');
 			document.body.appendChild(element);
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLCommandElement != 'undefined' && element instanceof HTMLCommandElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:		'command',
-				passed:	typeof HTMLCommandElement != 'undefined' && element instanceof HTMLCommandElement, 
+				passed:	passed, 
 				value: 	2
 			});
 
@@ -1063,9 +1114,15 @@ Test = (function() {
 			var element = document.createElement('menu');
 			document.body.appendChild(element);
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:		'menu',
-				passed:	typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement, 
+				passed:	passed, 
 				value: 	1
 			});
 
@@ -1081,9 +1138,15 @@ Test = (function() {
 			
 			var comparison = getRenderedStyle(element);
 			
+			var passed = false;
+			try { 
+				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && supported && baseline != comparison;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:		'menutoolbar',
-				passed:	typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && supported && baseline != comparison, 
+				passed:	passed, 
 				value: 	1
 			});
 
@@ -1091,15 +1154,21 @@ Test = (function() {
 
 			try {
 				element.type = 'context';
-			} catch(e) {
+			} catch(error) {
 				supported = false;
 			}
 			
 			var comparison = getRenderedStyle(element);
 		
+			var passed = false;
+			try { 
+				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && supported && baseline != comparison;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:		'menucontext',
-				passed:	typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && supported && baseline != comparison, 
+				passed:	passed, 
 				value: 	1
 			});
 
@@ -1628,9 +1697,15 @@ Test = (function() {
 			
 			var element = document.createElement('textarea');
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLTextAreaElement != 'undefined' && element instanceof HTMLTextAreaElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:			'element',
-				passed:		typeof HTMLTextAreaElement != 'undefined' && element instanceof HTMLTextAreaElement, 
+				passed:		passed, 
 				value: 		0
 			});
 
@@ -1655,9 +1730,15 @@ Test = (function() {
 			
 			var element = document.createElement('select');
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLSelectElement != 'undefined' && element instanceof HTMLSelectElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:			'element',
-				passed:		typeof HTMLSelectElement != 'undefined' && element instanceof HTMLSelectElement, 
+				passed:		passed, 
 				value: 		0
 			});
 
@@ -1676,9 +1757,15 @@ Test = (function() {
 			
 			var element = document.createElement('fieldset');
 
+			var passed = false;
+			try { 
+				passed = typeof HTMLFieldSetElement != 'undefined' && element instanceof HTMLFieldSetElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:			'element',
-				passed:		typeof HTMLFieldSetElement != 'undefined' && element instanceof HTMLFieldSetElement, 
+				passed:		passed, 
 				value: 		0
 			});
 
@@ -1703,9 +1790,15 @@ Test = (function() {
 			
 			var element = document.createElement('datalist');
 			
+			var passed = false;
+			try { 
+				passed = (typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:			'element',
-				passed:		(typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length, 
+				passed:		passed, 
 				value: 		2,
 				required:	true
 			});
@@ -1728,9 +1821,15 @@ Test = (function() {
 			var element = document.createElement('div');
 			element.innerHTML = '<keygen>';
 			
+			var passed = false;
+			try { 
+				passed = typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:			'element',
-				passed:		typeof HTMLKeygenElement != 'undefined' && element.firstChild instanceof HTMLKeygenElement && 'challenge' in element.firstChild && 'keytype' in element.firstChild, 
+				passed:		passed, 
 				value: 		2,
 				required:	true
 			});
@@ -1756,9 +1855,16 @@ Test = (function() {
 			});
 			
 			var element = document.createElement('output');
+
+			var passed = false;
+			try { 
+				passed = typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:			'element',
-				passed:		typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement, 
+				passed:		passed, 
 				value: 		2
 			});
 
@@ -1770,9 +1876,16 @@ Test = (function() {
 			});
 			
 			var element = document.createElement('progress');
+
+			var passed = false;
+			try { 
+				passed = typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:			'element',
-				passed:		!blacklists.progressField && typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement, 
+				passed:		!blacklists.progressField && passed, 
 				value: 		2
 			});
 			
@@ -1784,9 +1897,16 @@ Test = (function() {
 			});
 			
 			var element = document.createElement('meter');
+
+			var passed = false;
+			try { 
+				passed = typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement;
+			} catch(error) {
+			}
+
 			group.setItem({
 				id:			'element',
-				passed:		!blacklists.meterField && typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement, 
+				passed:		!blacklists.meterField && passed, 
 				value: 		2
 			});
 
