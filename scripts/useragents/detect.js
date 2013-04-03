@@ -71,7 +71,7 @@ var UserAgents = (function(){
 		},
 		
 		valueOf: function() {
-			return parseFloat('' + this.major + '.' + ('0000' + this.minor).slice(-4));
+			return parseFloat('' + this.major + '.' + ('0000' + this.minor).slice(-4) + ('0000' + this.revision).slice(-4));
 		},
 		
 		toString: function() {
@@ -106,6 +106,7 @@ var UserAgents = (function(){
 			return version;
 		}
 	}
+	
 
  	var Detected = function() { this.initialize.apply(this, arguments) };
 	Detected.prototype = {
@@ -160,7 +161,13 @@ var UserAgents = (function(){
 			if (ua == 'Mozilla/5.0 (X11; U; Linux i686; zh-CN; rv:1.2.3.4) Gecko/') {
 				if (this.browser.name != 'UC Browser') {
 					this.browser.name = 'UC Browser';
+					this.browser.version = null;
 					this.engine.name = 'Gecko';
+				}
+				
+				if (this.os.name == 'Windows') {
+					this.os.name = '';
+					this.os.version = null;
 				}
 				
 				this.engine.name = 'Gecko';
@@ -224,7 +231,7 @@ var UserAgents = (function(){
 				}
 
 
-				if (this.options.useFeatures) {
+				if (this.options.useFeatures && this.browser.mode != 'proxy') {
 					/* If it claims not to be Trident, but it is probably Trident running camouflage mode */
 					if (window.ActiveXObject) {
 						this.features.push('trident');		
@@ -283,7 +290,6 @@ var UserAgents = (function(){
 							this.camouflage = true;	
 						}	
 					}
-	
 	
 	
 					/* If we have an iPad that is not 768 x 1024, we have an imposter */
@@ -414,7 +420,6 @@ var UserAgents = (function(){
 			}
 		}
 	};
-
 
 	return Detected;
 })();	
