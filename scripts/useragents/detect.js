@@ -164,6 +164,11 @@ var UserAgents = (function(){
 					this.engine.name = 'Gecko';
 				}
 				
+				if (this.os.name == 'Windows') {
+					this.os.name = '';
+					this.os.version = null;
+				}
+				
 				this.engine.name = 'Gecko';
 				this.engine.version = null;
 				
