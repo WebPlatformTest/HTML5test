@@ -365,29 +365,6 @@
 					onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); }
 				});
 				
-				/* Show detailed report of scores */
-				var div = document.createElement('div');
-				div.className = 'resultsTable';
-				results.appendChild(div);
-				
-				var table = new FeatureTable({
-					parent:			div, 
-					tests:			tests,
-					header:			false,
-					links:			true,
-					explainations: 	true,
-					grading:		true,
-					bonus:			true,
-					columns:		1
-				});
-
-				table.updateColumn(0, r);
-
-				var div = document.createElement('div');
-				div.className = 'uniqueid';
-				div.innerHTML = 'id: ' + r.uniqueid;
-				results.appendChild(div);
-				
 				/* Submit results */
 				var payload = '{' +
 							  '"version": "4",' +
@@ -422,7 +399,30 @@
 							  '}';
 				
 				submit('submit', payload);
-					
+				
+				/* Show detailed report of scores */
+				var div = document.createElement('div');
+				div.className = 'resultsTable';
+				results.appendChild(div);
+				
+				var table = new FeatureTable({
+					parent:			div, 
+					tests:			tests,
+					header:			false,
+					links:			true,
+					explainations: 	true,
+					grading:		true,
+					bonus:			true,
+					columns:		1
+				});
+
+				table.updateColumn(0, r);
+
+				var div = document.createElement('div');
+				div.className = 'uniqueid';
+				div.innerHTML = 'id: ' + r.uniqueid;
+				results.appendChild(div);
+
 				function submit(method, payload) {
 					var httpRequest;
 					if (window.XMLHttpRequest) {
