@@ -352,6 +352,7 @@ body {
 	top: 32px;
 	
 	background: #fff;
+	color: #000;
 
 	-webkit-border-radius: 6px;
 	-webkit-border-top-left-radius: 0;
@@ -737,6 +738,7 @@ body {
 	background: #f0f0f0 -ms-linear-gradient(top, #e6e6e6, #f6f6f6 43px, #d6d6d6 43px, #f0f0f0);
 	background: #f0f0f0 -o-linear-gradient(top, #e6e6e6, #f6f6f6 43px, #d6d6d6 43px, #f0f0f0);
 	background: #f0f0f0 linear-gradient(top, #e6e6e6, #f6f6f6 43px, #d6d6d6 43px, #f0f0f0);
+	color: #000;
 }
 .resultsTable table thead th {
 	padding: 0px 10px;
