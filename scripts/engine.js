@@ -520,63 +520,67 @@ Test = (function() {
 			var result = true;
 			var e = document.createElement('div');	
 			
-			e.innerHTML = "<div<div>";
-			result &= e.firstChild && e.firstChild.nodeName == "DIV<DIV";
-			
-			e.innerHTML = "<div foo<bar=''>";
-			result &= e.firstChild.attributes[0].nodeName == "foo<bar";
-			
-			e.innerHTML = "<div foo=`bar`>";
-			result &= e.firstChild.getAttribute("foo") == "`bar`";
-			
-			e.innerHTML = "<div \"foo=''>";
-			result &= e.firstChild && e.firstChild.attributes[0].nodeName == "\"foo";
-			
-			e.innerHTML = "<a href='\nbar'></a>";
-			result &= e.firstChild && e.firstChild.getAttribute("href") == "\nbar";
-			
-			e.innerHTML = "<!DOCTYPE html>";
-			result &= e.firstChild == null;
-			
-			e.innerHTML = "\u000D";
-			result &= e.firstChild && e.firstChild.nodeValue == "\u000A";
-			
-			e.innerHTML = "&lang;&rang;";
-			result &= e.firstChild.nodeValue == "\u27E8\u27E9";
-			
-			e.innerHTML = "&apos;";
-			result &= e.firstChild.nodeValue == "'";
-			
-			e.innerHTML = "&ImaginaryI;";
-			result &= e.firstChild.nodeValue == "\u2148";
-			
-			e.innerHTML = "&Kopf;";
-			result &= e.firstChild.nodeValue == "\uD835\uDD42";
-			
-			e.innerHTML = "&notinva;";
-			result &= e.firstChild.nodeValue == "\u2209";
-			
-			e.innerHTML = '<?import namespace="foo" implementation="#bar">';
-			result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == '?import namespace="foo" implementation="#bar"';
-			
-			e.innerHTML = '<!--foo--bar-->';
-			result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == 'foo--bar';
-			
-			e.innerHTML = '<![CDATA[x]]>';
-			result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == '[CDATA[x]]';
-			
-			e.innerHTML = "<textarea><!--</textarea>--></textarea>";
-			result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+			try {
+				e.innerHTML = "<div<div>";
+				result &= e.firstChild && e.firstChild.nodeName == "DIV<DIV";
+	
+				e.innerHTML = "<div foo<bar=''>";
+				result &= e.firstChild.attributes[0].nodeName == "foo<bar";
 				
-			e.innerHTML = "<textarea><!--</textarea>-->";
-			result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
-			
-			e.innerHTML = "<style><!--</style>--></style>";
-			result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
-			
-			e.innerHTML = "<style><!--</style>-->";
-			result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
-			
+				e.innerHTML = "<div foo=`bar`>";
+				result &= e.firstChild.getAttribute("foo") == "`bar`";
+				
+				e.innerHTML = "<div \"foo=''>";
+				result &= e.firstChild && e.firstChild.attributes[0].nodeName == "\"foo";
+				
+				e.innerHTML = "<a href='\nbar'></a>";
+				result &= e.firstChild && e.firstChild.getAttribute("href") == "\nbar";
+				
+				e.innerHTML = "<!DOCTYPE html>";
+				result &= e.firstChild == null;
+				
+				e.innerHTML = "\u000D";
+				result &= e.firstChild && e.firstChild.nodeValue == "\u000A";
+				
+				e.innerHTML = "&lang;&rang;";
+				result &= e.firstChild.nodeValue == "\u27E8\u27E9";
+				
+				e.innerHTML = "&apos;";
+				result &= e.firstChild.nodeValue == "'";
+				
+				e.innerHTML = "&ImaginaryI;";
+				result &= e.firstChild.nodeValue == "\u2148";
+				
+				e.innerHTML = "&Kopf;";
+				result &= e.firstChild.nodeValue == "\uD835\uDD42";
+				
+				e.innerHTML = "&notinva;";
+				result &= e.firstChild.nodeValue == "\u2209";
+				
+				e.innerHTML = '<?import namespace="foo" implementation="#bar">';
+				result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == '?import namespace="foo" implementation="#bar"';
+				
+				e.innerHTML = '<!--foo--bar-->';
+				result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == 'foo--bar';
+				
+				e.innerHTML = '<![CDATA[x]]>';
+				result &= e.firstChild && e.firstChild.nodeType == 8 && e.firstChild.nodeValue == '[CDATA[x]]';
+				
+				e.innerHTML = "<textarea><!--</textarea>--></textarea>";
+				result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+					
+				e.innerHTML = "<textarea><!--</textarea>-->";
+				result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+				
+				e.innerHTML = "<style><!--</style>--></style>";
+				result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+				
+				e.innerHTML = "<style><!--</style>-->";
+				result &= e.firstChild && e.firstChild.firstChild && e.firstChild.firstChild.nodeValue == "<!--";
+			} catch(e) {
+				result = false;
+			}
+
 			this.section.setItem({
 				id:		'tokenizer',
 				passed:	result, 
