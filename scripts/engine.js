@@ -525,13 +525,13 @@ Test = (function() {
 				result &= e.firstChild && e.firstChild.nodeName == "DIV<DIV";
 	
 				e.innerHTML = "<div foo<bar=''>";
-				result &= e.firstChild.attributes[0].nodeName == "foo<bar";
+				result &= e.firstChild.attributes[0].nodeName == "foo<bar" || e.firstChild.attributes[0].name == "foo<bar";
 				
 				e.innerHTML = "<div foo=`bar`>";
 				result &= e.firstChild.getAttribute("foo") == "`bar`";
 				
 				e.innerHTML = "<div \"foo=''>";
-				result &= e.firstChild && e.firstChild.attributes[0].nodeName == "\"foo";
+				result &= e.firstChild && (e.firstChild.attributes[0].nodeName == "\"foo" || e.firstChild.attributes[0].name == "\"foo");
 				
 				e.innerHTML = "<a href='\nbar'></a>";
 				result &= e.firstChild && e.firstChild.getAttribute("href") == "\nbar";
