@@ -23,12 +23,12 @@
 			
 			$res = mysql_query("
 				SELECT 
-					IF(s.results LIKE '%" . mysql_real_escape_string($_REQUEST['id']) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid
+					IF(f.results LIKE '%" . mysql_real_escape_string($_REQUEST['id']) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid
 				FROM 
-					browsers AS b, 
-					scores AS s 
+					browsers AS b
+					LEFT JOIN scores AS s ON (b.unique = s.id)
+					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE 
-					b.unique = s.id AND 
 					b.listed = 1 AND
 					s.version = '" . $version . "'
 			");
@@ -48,7 +48,7 @@
 			if (substr($_REQUEST['id'], 0, 7) == 'custom:') {
 				$res = mysql_query("
 					SELECT 
-						'custom' AS id, 'Unique id'  AS nickname, score, bonus, points, results 
+						uniqueid AS id, 'Unique id'  AS nickname, score, bonus, points, results, humanReadable, useragentHeader AS useragent, deviceWidth, deviceHeight
 					FROM 
 						results 
 					WHERE 
@@ -57,12 +57,12 @@
 			} else {
 				$res = mysql_query("
 					SELECT 
-						b.unique AS id, b.nickname, s.score, s.bonus, s.points, s.results 
+						b.unique AS id, b.nickname, f.score, f.bonus, f.points, f.results 
 					FROM 
-						browsers AS b, 
-						scores AS s 
+						browsers AS b 
+						LEFT JOIN scores AS s ON (b.unique = s.id)
+						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE 
-						b.unique = s.id AND 
 						b.listed = 1 AND
 						s.version = '" . $version . "' AND
 						b.unique ='" . mysql_real_escape_string($_REQUEST['id']) . "'
@@ -79,13 +79,26 @@
 			$payload = json_decode($_REQUEST['payload']);
 			$headers = apache_request_headers();
 						
-			$xWapProfile = isset($headers['x-wap-profile']) ? $headers['x-wap-profile'] : '';
-			$xDeviceStockUA = isset($headers['Device-Stock-UA']) ? $headers['Device-Stock-UA'] : '';
-			$xDeviceUserAgent = isset($headers['X-Device-User-Agent']) ? $headers['X-Device-User-Agent'] : '';
-			$xOriginalUserAgent = isset($headers['X-Original-User-Agent']) ? $headers['X-Original-User-Agent'] : '';
-			$xOperaMiniPhoneUA = isset($headers['X-OperaMini-Phone-UA']) ? $headers['X-OperaMini-Phone-UA'] : '';
+			$filteredHeaders = '';
+
+			foreach($headers as $key => $value) {
+				if (!in_array(strtolower($key), array(
+					'accept', 'host', 'connection', 'dnt', 'user-agent', 'accept-encoding', 'accept-language', 
+					'accept-charset', 'referer', 'cookie', 'content-type', 'content-length', 'content-transfer-encoding', 
+					'origin', 'pragma', 'cache-control', 'via', 'clientip', 'x-bluecoat-via', 'x-piper-id',
+					'x-forwarded-for', 'x-teacup', 'x-saucer', 'isajaxrequest', 'keep-alive', 'max-forwards',
+					'xroxy-connection', 'client-ip', 'cookie2', 'x-via', 'x-imforwards', 'http-client-id',
+					'x-proxy-id', 'z-forwarded-for', 'expect', 'x-ip-address', 'x-rbt-optimized-by', 'qpr-loop',
+					'cuda_cliip', 'x-source-id', 'x-clickoncesupport'
+				))) {
+					$filteredHeaders .= $key . ": " . $value . "\n";
+				}
+			}
 			
-			if (!$readonly) {
+			if (!$readonly && intval($payload->version) >= 4) {
+				$useragentHeader = $_SERVER['HTTP_USER_AGENT'];
+				$useragentId = preg_replace("/(; ?)[a-z][a-z](?:-[a-zA-Z][a-zA-Z])?([;)])/", '$1xx$2', $useragentHeader);
+			
 				mysql_query('
 					INSERT INTO 
 						results
@@ -116,16 +129,26 @@
 						deviceHeight = "' . mysql_real_escape_string($payload->deviceHeight) . '",
 						deviceType = "' . mysql_real_escape_string($payload->deviceType) . '",
 						useragent = "' . mysql_real_escape_string($payload->useragent) . '",
+						useragentHeader = "' . mysql_real_escape_string($useragentHeader) . '",
+						useragentId = "' . mysql_real_escape_string(md5($useragentId)) . '",
 						humanReadable = "' . mysql_real_escape_string($payload->humanReadable) . '",
-						xWapProfile = "' . mysql_real_escape_string($xWapProfile) . '",
-						xDeviceStockUA = "' . mysql_real_escape_string($xDeviceStockUA) . '",
-						xDeviceUserAgent = "' . mysql_real_escape_string($xDeviceUserAgent) . '",
-						xOriginalUserAgent = "' . mysql_real_escape_string($xOriginalUserAgent) . '",
-						xOperaMiniPhoneUA = "' . mysql_real_escape_string($xOperaMiniPhoneUA) . '",
+						headers = "' . mysql_real_escape_string($filteredHeaders) . '",
 						results = "' . mysql_real_escape_string($payload->results) . '",
 						points = "' . mysql_real_escape_string($payload->points) . '",
 						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
 						status = 0
+				');
+
+				mysql_query('
+					INSERT INTO 
+						fingerprints
+					SET 
+						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
+						version = "' . mysql_real_escape_string($payload->version) . '",
+						score = "' . mysql_real_escape_string($payload->score) . '",
+						bonus = "' . mysql_real_escape_string($payload->bonus) . '",
+						results = "' . mysql_real_escape_string($payload->results) . '",
+						points = "' . mysql_real_escape_string($payload->points) . '"
 				');
 			}
 
@@ -161,5 +184,44 @@
 				');
 			}
 
+			break;
+
+
+			
+		case 'uasimplify':
+			$res = mysql_query("
+				SELECT 
+					DISTINCT useragentHeader
+				FROM
+					results
+				WHERE
+					useragentId = ''
+			");
+
+			header ('Content-type: text/html');
+
+			echo "<table style='font-family: sans-serif' border=1>";
+			while ($row = mysql_fetch_object($res)) {
+				$ua = preg_replace("/(; ?)[a-z][a-z](?:-[a-zA-Z][a-zA-Z])?([;)])/", '$1xx$2', $row->useragentHeader);
+			
+				echo "<tr>";
+				echo "<td>" . $row->useragentHeader . "</td>";
+				echo "<td>" . $ua . "</td>";
+				echo "</tr>";
+				
+				mysql_query("
+					UPDATE
+						results
+					SET
+						useragentId = '" . md5($row->useragentId) . "' 
+					WHERE
+						useragentHeader = '" . $row->useragentHeader . "'
+				");
+
+			}
+
+			echo "</table>";
+
+		
 			break;
 	}
