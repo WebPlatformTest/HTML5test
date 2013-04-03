@@ -3702,6 +3702,12 @@
 		function analysePuffinUserAgent($ua) {
 			$parts = explode('/', $ua);
 			
+			if ($this->browser->name != 'Puffin') {
+				$this->browser->name = 'Puffin';
+				$this->browser->version = null;
+				$this->browser->stock = false;
+			}
+		
 			$this->device->type = 'mobile';
 			
 			if (count($parts) > 1 && $parts[0] == 'Android') {
