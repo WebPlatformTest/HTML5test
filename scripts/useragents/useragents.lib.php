@@ -6903,6 +6903,12 @@
 			if (preg_match('/WebKit\/([0-9.]*)/i', $ua, $match)) {
 				$this->engine->name = 'Webkit';
 				$this->engine->version = new Version(array('value' => $match[1]));
+
+				if (preg_match('/(?:Chrome|Chromium)\/([0-9]*)/', $ua, $match)) {
+					if (intval($match[1]) >= 27) {
+						$this->engine->name = 'Blink';
+					}
+				}
 			}
 
 			if (preg_match('/Browser\/AppleWebKit([0-9.]*)/i', $ua, $match)) {

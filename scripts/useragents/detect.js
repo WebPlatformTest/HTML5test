@@ -271,7 +271,7 @@ var UserAgents = (function(){
 					if ('WebKitCSSMatrix' in window || 'WebKitPoint' in window || 'webkitStorageInfo' in window || 'webkitURL' in window) {
 						this.features.push('webkit');		
 		
-						if (typeof this.engine.name != 'undefined' && this.engine.name != 'Webkit') {
+						if (typeof this.engine.name != 'undefined' && (this.engine.name != 'Blink' && this.engine.name != 'Webkit')) {
 							this.camouflage = true;			
 						}	
 
