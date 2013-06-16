@@ -33,6 +33,7 @@
 	define ('TYPE_MEDIA', 'media');
 	define ('TYPE_EMULATOR', 'emulator');
 	define ('TYPE_TELEVISION', 'television');
+	define ('TYPE_MONITOR', 'monitor');
 	define ('TYPE_CAMERA', 'camera');
 	define ('TYPE_SIGNAGE', 'signage');
 	define ('TYPE_WHITEBOARD', 'whiteboard');
