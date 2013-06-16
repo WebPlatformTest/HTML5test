@@ -4471,6 +4471,11 @@
 					$this->os->name = 'Aliyun OS';
 					$this->os->version = new Version(array('value' => $match[1], 'details' => 3));
 				}
+
+				if (preg_match('/Android 20[0-9]+/', $ua, $match)) {
+					$this->os->name = 'Aliyun OS';
+					$this->os->version = null;
+				}
 			}
 			
 
