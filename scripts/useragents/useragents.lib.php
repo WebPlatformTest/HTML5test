@@ -4769,10 +4769,12 @@
 				}
 
 				if (preg_match('/;\s+([^;\)]+)\)/', $ua, $match)) {
-					$this->device = DeviceModels::identify('tizen', $match[1]);
-
-					if (!$this->device->identified) {
-						$this->device->model = $match[1];
+					if (substr($match[1], 0, 5) != 'Tizen') {
+						$this->device = DeviceModels::identify('tizen', $match[1]);
+	
+						if (!$this->device->identified) {
+							$this->device->model = $match[1];
+						}
 					}
 				}
 			}
