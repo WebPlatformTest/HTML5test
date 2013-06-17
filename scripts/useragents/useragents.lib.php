@@ -4622,14 +4622,6 @@
 					$this->os->version = new Version(array('value' => '2.0', 'details' => 3));
 				}
 				
-				if (is_null($this->os->version)) {
-					if (preg_match('/Build\/CUPCAKE/', $ua)) $this->os->version = new Version(array('value' => '1.5', 'details' => 3));
-					if (preg_match('/Build\/DONUT/', $ua)) $this->os->version = new Version(array('value' => '1.6', 'details' => 3));
-					if (preg_match('/Build\/ECLAIR/', $ua)) $this->os->version = new Version(array('value' => '2.0', 'details' => 3));
-					if (preg_match('/Build\/FROYO/', $ua)) $this->os->version = new Version(array('value' => '2.2', 'details' => 3));
-					if (preg_match('/Build\/GINGERBREAD/', $ua)) $this->os->version = new Version(array('value' => '2.3', 'details' => 3));
-				}
-					
 				$this->device->type = TYPE_MOBILE;
 				if ($this->os->version->toFloat() >= 3) $this->device->type = TYPE_TABLET;
 				if ($this->os->version->toFloat() >= 4 && preg_match('/Mobile/', $ua)) $this->device->type = TYPE_MOBILE;
