@@ -4027,9 +4027,13 @@
 			$s = preg_replace('/^\s+|\s+$/', '', $s);
 			
 			$s = preg_replace('/^tita on /', '', $s);
+			$s = preg_replace('/^De-Sensed /', '', $s);
 			$s = preg_replace('/^ICS AOSP on /', '', $s);
+			$s = preg_replace('/^Baidu Yi on /', '', $s);
+			$s = preg_replace('/^Buildroid for /', '', $s);
 			$s = preg_replace('/^Android (on |for )/', '', $s);
 			$s = preg_replace('/^Generic Android on /', '', $s);
+			$s = preg_replace('/^Full JellyBean( on )?/', '', $s);			
 			$s = preg_replace('/^Full (AOSP on |Android on |Cappuccino on |MIPS Android on |Android)/', '', $s);
 
 			$s = preg_replace('/^Acer( |-)?/i', '', $s);
