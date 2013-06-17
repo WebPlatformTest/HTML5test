@@ -6578,6 +6578,10 @@
 				$this->browser->name = 'Opera';
 				$this->browser->version = new Version(array('value' => $match[1], 'details' => 2));
 
+				if (preg_match('/Edition Next/', $ua)) {
+					$this->browser->channel = 'Next';
+				}
+
 				if ($this->device->type == TYPE_MOBILE) {
 					$this->browser->name = 'Opera Mobile';
 				}
