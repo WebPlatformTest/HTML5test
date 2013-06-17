@@ -6904,6 +6904,13 @@
 					
 					$this->device = DeviceModels::identify('android', $match[2]);
 				}
+				
+				if (preg_match('/; Adr ([0-9\.]+); [^;]+; ([^;]*[^\s])\)/', $ua, $match)) {
+					$this->os->name = 'Android';
+					$this->os->version = new Version(array('value' => $match[1]));
+					
+					$this->device = DeviceModels::identify('android', $match[2]);
+				}
 			}
 
 			if (preg_match('/ucweb-squid/', $ua)) {
@@ -6942,6 +6949,15 @@
 					$this->device->type = TYPE_MOBILE;
 				}
 			}
+
+			if (preg_match('/U2\//', $ua)) {
+				$this->browser->mode = 'proxy';
+			}
+
+			if (preg_match('/U3\//', $ua)) {
+				$this->engine->name = 'Webkit';
+			}
+
 						
 			/****************************************************
 			 *		NineSky
