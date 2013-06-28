@@ -1,78 +1,98 @@
 Test = (function() {			
 	
-	var blacklists = {};
-	var whitelists = {};
 	
-	function test (c) { this.initialize(c) }
+	var YES = 1, 
+		NO = 0, 
+		BUGGY = -1, 
+		OLD = -2, 
+		BLOCKED = -3;	
+	
+	
+	var blacklists = {};
+	
+	function test (callback, error) { this.initialize(callback, error) }
 	test.prototype = {
-		suites: [ 
-			[ testParsing, testCanvas, testVideo, testAudio, testElements, testForm, testInteraction, testHistory, testMicrodata, testOffline, testSecurity, testVarious ],
-			[ testGeolocation, testWebGL, testCommunication, testFiles, testStorage, testWorkers, testDevice, testNotifications, testOther ],
-			[ testWebAudio, testAnimation ]
+		tests: [
+
+			/* Semantics */						testParsing, testElements, testForm, testMicrodata,
+			/* Offline & Storage */				testOffline, testStorage, testFiles,
+			/* Device Access */					testGeolocation, testOutput, testInput,
+			/* Connectivity */					testCommunication,
+			/* Multimedia */					testVideo, testAudio, testWebRTC,
+			/* 3D, Graphics & Effects */		testCanvas, testWebGL, testAnimation,
+			/* Performance & Integration */		testInteraction, testPerformance, testSecurity, testHistory,
+			
+			testOther,
 		],
 		
-		initialize: function(c) {
+		initialize: function(callback, error) {
 			blacklists = {
-				fileField: 			Browsers.isOs('iOS', '<', '6'), 
-				dateFields:			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				colorField:			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser'),
-				rangeField:			Browsers.isBrowser('UC Browser'),
-				numberField:		false,
-				progressField:		Browsers.isBrowser('Baidu Browser'),
-				meterField:			false,
-				fileSystem:			Browsers.isOs('BlackBerry Tablet OS'),
-				subtitle:			Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-				notifications:		Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-				fullScreen:			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
-				getUserMedia:		Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
-				webgl:				Browsers.isBrowser('Baidu Browser'),
-				geolocation:		Browsers.isBrowser('Baidu Browser'),
-				orientation:		Browsers.isBrowser('Baidu Browser')				
+				'form.file':						Browsers.isOs('iOS', '<', '6'), 
+				'form.datetime.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.date.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.month.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.week.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.time.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.datetime-local.ui':			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.color.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser'),
+				'form.range.ui':					Browsers.isBrowser('UC Browser'),
+				'form.progress.element':			Browsers.isBrowser('Baidu Browser'),
+				'files.fileSystem':					Browsers.isOs('BlackBerry Tablet OS'),
+				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
+				'location.geolocation':				Browsers.isBrowser('Baidu Browser'),
+				'location.orientation':				Browsers.isBrowser('Baidu Browser'),
+				'output.notifications':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+				'output.requestFullScreen':			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
+				'video.subtitle':					Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+				'webgl.context':					Browsers.isBrowser('Baidu Browser'),
+				
+				'interaction.dragdrop':				!(  Browsers.isType('desktop') ||
+														Browsers.isType('mobile', 'tablet', 'media') && (
+															Browsers.isBrowser('Opera')
+														) 
+													),
+
+				'interaction.editing':				!(	Browsers.isType('desktop') ||
+														Browsers.isType('mobile', 'tablet', 'media') && (
+															Browsers.isOs('iOS', '>=', '5') ||		
+															Browsers.isOs('Android', '>=', '4') || 
+															Browsers.isOs('Windows Phone', '>=', '7.5') || 
+															Browsers.isOs('BlackBerry') || 
+															Browsers.isOs('BlackBerry OS') || 
+															Browsers.isOs('BlackBerry Tablet OS') || 
+															Browsers.isOs('Meego') || 
+															Browsers.isOs('Tizen') || 
+															Browsers.isEngine('Gecko') ||
+															Browsers.isEngine('Presto') || 
+															Browsers.isBrowser('Chrome') ||
+															Browsers.isBrowser('Polaris', '>=', '8')
+														) ||
+														Browsers.isType('television') && (
+															Browsers.isBrowser('Espial') ||
+															Browsers.isBrowser('MachBlue XT') ||
+															Browsers.isEngine('Presto', '>=', '2.9')
+														)
+													)
 			};		
 			
-			whitelists = {
-				contentEditable:	Browsers.isType('desktop') ||
-									Browsers.isType('mobile', 'tablet', 'media') && (
-										Browsers.isOs('iOS', '>=', '5') || 
-										Browsers.isOs('Android', '>=', '4') || 
-										Browsers.isOs('Windows Phone', '>=', '7.5') || 
-										Browsers.isOs('BlackBerry') || 
-										Browsers.isOs('BlackBerry OS') || 
-										Browsers.isOs('BlackBerry Tablet OS') || 
-										Browsers.isOs('Meego') || 
-										Browsers.isOs('Tizen') || 
-										Browsers.isEngine('Gecko') ||
-										Browsers.isEngine('Presto') || 
-										Browsers.isBrowser('Chrome') ||
-										Browsers.isBrowser('Polaris', '>=', '8')
-									) ||
-									Browsers.isType('television') && (
-										Browsers.isBrowser('Espial') ||
-										Browsers.isBrowser('MachBlue XT') ||
-										Browsers.isEngine('Presto', '>=', '2.9')
-									),
-									
-				dragdrop:			Browsers.isType('desktop') ||
-									Browsers.isType('mobile', 'tablet', 'media') && (
-										Browsers.isBrowser('Opera')
-									)	
-			};
-	
-			this.backgroundTasks = [];
-			this.backgroundIds = {};
-			this.backgroundId = 0;
-			
-			this.callback = c;
-			
-			this.results = new results(this);
-			
-			for (var g = 0; g < this.suites.length; g++) {
-				for (var s = 0; s < this.suites[g].length; s++) {
-					new (this.suites[g][s])(this.results);
+			try {
+				this.backgroundTasks = [];
+				this.backgroundIds = {};
+				this.backgroundId = 0;
+				
+				this.callback = callback;
+				
+				this.results = new results(this);
+				
+				for (var s = 0; s < this.tests.length; s++) {
+					new (this.tests[s])(this.results);
 				}
+	
+				this.waitForBackground();
 			}
-
-			this.waitForBackground();
+			catch(e) {
+				error(e);
+			}
 		},
 		
 		waitForBackground: function() {
@@ -111,8 +131,8 @@ Test = (function() {
 			function collectResults(level, prefix, data) {
 				if (data.items) {
 					for (var i = 0; i < data.items.length; i++) {
-						if (level == 0) points.push(data.items[i].data.id + '=' + data.items[i].points + '/' + data.items[i].max + '+' + data.items[i].bonus);
-						if (typeof data.items[i].data.passed != 'undefined') results.push(prefix + data.items[i].data.id + '=' + (!! data.items[i].data.passed ? 1 : 0));
+						if (level == 0) points.push(data.items[i].data.id + '=' + data.items[i].points + '/' + data.items[i].max);
+						if (typeof data.items[i].data.passed != 'undefined') results.push(prefix + data.items[i].data.id + '=' + (+data.items[i].data.passed));
 						if (data.items[i].items) {
 							collectResults(level + 1, prefix + data.items[i].data.id + '-', data.items[i]);
 						}
@@ -120,13 +140,11 @@ Test = (function() {
 				}
 			}
 			
-			var date = new Date;
-			var uniqueid = date.getTime() + '_' + (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+			var uniqueid = (((1+Math.random())*0x1000000)|0).toString(16).substring(1) + ("0000000000" + (new Date().getTime() - new Date(2010,0,1).getTime()).toString(16)).slice(-10);
 
 			this.callback({
 				uniqueid:	uniqueid,
 				score:		this.results.points,
-				bonus:		this.results.bonus,
 				results:	results.join(','),
 				points:		points.join(','),
 				maximum:	this.results.max
@@ -140,7 +158,6 @@ Test = (function() {
 			this.parent = parent;
 			this.items = [];
 			this.points = 0;
-			this.bonus = 0;
 			this.max = 0;
 		
 			this.backgroundTasks = 0;
@@ -164,24 +181,20 @@ Test = (function() {
 
 		update: function() {
 			var points = 0;
-			var bonus = 0;
 			var max = 0;
 			
 			for (var i = 0; i < this.items.length; i++) {
 				points += this.items[i].getPoints();
-				bonus += this.items[i].getBonus();
 				max += this.items[i].getMaximum();	
 			}
 
 			this.points = points;
-			this.bonus = bonus;
 			this.max = max;
 		},
 		
 		retrieve: function() {
 			var data = {
 				points:		this.points,
-				bonus:		this.bonus,
 				items:		{}
 			}
 			
@@ -198,11 +211,11 @@ Test = (function() {
 		initialize: function(parent, data) {
 			this.items = [];
 			this.points = 0;
-			this.bonus = 0;
 			this.max = 0;
 		
 			this.parent = parent;
 			this.data = data;
+			this.path = data.id;
 		},
 		
 		startBackground: function(id) {
@@ -230,24 +243,17 @@ Test = (function() {
 		
 		update: function() {
 			var points = 0;
-			var bonus = 0;
 			var max = 0;
 			
 			for (var i = 0; i < this.items.length; i++) {
 				points += this.items[i].getPoints();
-				bonus += this.items[i].getBonus();
 				max += this.items[i].getMaximum();	
 			}
 			
 			this.points = points;
-			this.bonus = bonus;
 			this.max = max;
 			
 			this.parent.update();
-		},
-		
-		getBonus: function() {
-			return this.bonus;
 		},
 		
 		getPoints: function() {
@@ -261,7 +267,6 @@ Test = (function() {
 		retrieve: function() {
 			var data = {
 				points:		this.points,
-				bonus:		this.bonus,
 				items: 		{}
 			};
 			
@@ -278,16 +283,15 @@ Test = (function() {
 		initialize: function(parent, data) {
 			this.items = [];
 			this.points = 0;
-			this.bonus = 0;
 			this.max = 0;
 			
 			this.data = data;
 			this.parent = parent;
+			this.path = parent.path + '.' + data.id;
 		},
 		
 		update: function() {
 			var points = 0;
-			var bonus = 0;
 			var max = 0;
 			var count = 0;
 			
@@ -296,12 +300,11 @@ Test = (function() {
 			
 			for (var i = 0; i < this.items.length; i++) {
 				points += this.items[i].getPoints();
-				bonus += this.items[i].getBonus();
 				max += this.items[i].getMaximum();	
-				count += this.items[i].getPassed() ? 1 : 0;
+				count += this.items[i].getPassed() > 0 ? 1 : 0;
 			
 				if (this.items[i].getRequired()) {
-					passedAllRequiredFields &= this.items[i].getPassed();
+					passedAllRequiredFields &= this.items[i].getPassed() > 0;
 				}
 				
 				passedPartially |= this.items[i].getPartiallyPassed();
@@ -312,7 +315,6 @@ Test = (function() {
 			}
 			
 			this.points = points;
-			this.bonus = bonus;
 			this.max = max;
 			
 			this.parent.update();
@@ -335,10 +337,6 @@ Test = (function() {
 			return i;
 		},
 		
-		getBonus: function() {
-			return this.bonus;
-		},
-		
 		getPoints: function() {
 			return this.points;
 		},
@@ -350,7 +348,6 @@ Test = (function() {
 		retrieve: function() {
 			var data = {
 				points:		this.points,
-				bonus:		this.bonus,
 				items: 		{}
 			};
 			
@@ -366,11 +363,15 @@ Test = (function() {
 	item.prototype = {
 		initialize: function(parent, data) {
 			this.parent = parent;
-		
+			
+			this.path = parent.path + '.' + data.id;
+			
 			this.data = data;
 			if (typeof this.data.value == 'undefined') this.data.value = 0;
-			if (typeof this.data.bonus == 'undefined') this.data.bonus = 0;
 			if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
+			if (typeof this.data.passed == 'undefined') this.data.padded = false;
+
+			if (this.data.passed && this.isOnBlacklist()) this.data.passed = BLOCKED;
 		},
 		
 		update: function(data) {
@@ -379,10 +380,28 @@ Test = (function() {
 			}
 
 			if (typeof this.data.value == 'undefined') this.data.value = 0;
-			if (typeof this.data.bonus == 'undefined') this.data.bonus = 0;
 			if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
+			if (typeof this.data.passed == 'undefined') this.data.passed = false;
+
+			if (this.data.passed && this.isOnBlacklist()) this.data.passed = BLOCKED;
 			
 			this.parent.update();
+		},
+		
+		isOnBlacklist: function() {
+			var part = '';
+			var parts = this.path.split('.');
+			for (var i = 0; i < parts.length; i++) {
+				part += (i == 0 ? '' : '.') + parts[i];
+
+				if (typeof blacklists[part] != 'undefined') {
+					if (blacklists[part]) {
+						return true;
+					}
+				}
+			}
+			
+			return false;
 		},
 			
 		startBackground: function() {
@@ -393,12 +412,8 @@ Test = (function() {
 			this.parent.stopBackground(this.data.id);
 		},
 		
-		getBonus: function() {
-			return this.data.bonus;
-		},
-		
 		getPoints: function() {
-			return this.data.passed ? this.data.award : 0;
+			return this.data.passed > 0 ? this.data.award : 0;
 		},
 		
 		getMaximum: function() {
@@ -423,8 +438,7 @@ Test = (function() {
 		
 		retrieve: function() {
 			var data = {
-				points:	this.getPoints(),
-				bonus:	this.getBonus()
+				points:	this.getPoints()
 			};
 			
 			return data;
@@ -659,8 +673,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:		'svg',
-				passed:	passed, 
-				bonus: 	passed ? 1 : 0
+				passed:	passed
 			});
 
 			var e = document.createElement('div');
@@ -669,8 +682,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:		'mathml',
-				passed:	passed, 
-				bonus: 	passed ? 1 : 0
+				passed:	passed
 			});
 		}
 	};
@@ -684,12 +696,6 @@ Test = (function() {
 			});
 
 			this.canvas = document.createElement('canvas');
-
-			this.section.setItem({
-				id:		'element',
-				passed:	!!this.canvas.getContext, 
-				value: 	5
-			});
 
 			this.section.setItem({
 				id:		'context',
@@ -709,7 +715,157 @@ Test = (function() {
 			this.section.setItem({
 				id:		'text',
 				passed:	passed, 
+				value: 	2
+			});
+
+
+			this.section.setItem({
+				id:		'path',
+				passed:	typeof Path != "undefined", 
+				value: 	2
+			});
+
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').ellipse != 'undefined';
+				}
+				catch(e) {
+				}
+			}
+			
+			this.section.setItem({
+				id:		'ellipse',
+				passed:	passed, 
+				value: 	2
+			});
+
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').setLineDash != 'undefined';
+				}
+				catch(e) {
+				}
+			}
+			
+			this.section.setItem({
+				id:		'dashed',
+				passed:	passed, 
+				value: 	2
+			});
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').addHitRegion != 'undefined';
+				}
+				catch(e) {
+				}
+			}
+			
+			this.section.setItem({
+				id:		'hittest',
+				passed:	passed, 
+				value: 	2
+			});
+
+
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					var ctx = this.canvas.getContext('2d');
+					passed = typeof ctx.webkitGetImageDataHD == 'function' || typeof ctx.mozGetImageDataHD == 'function' || typeof ctx.msGetImageDataHD == 'function' || typeof ctx.oGetImageDataHD == 'function' || typeof ctx.getImageDataHD == 'function';
+				}
+				catch(e) {
+				}
+			}
+			
+			this.section.setItem({
+				id:		'hires',
+				passed:	passed, 
 				value: 	5
+			});
+
+
+			var passed = false;
+
+			if (this.canvas.getContext) {
+				this.canvas.width = 1;
+				this.canvas.height = 1;			
+
+				try {
+					var ctx = this.canvas.getContext('2d');
+					ctx.fillStyle = '#fff';
+					ctx.fillRect(0,0,1,1);	
+					ctx.globalCompositeOperation = 'screen';
+					ctx.fillStyle = '#000';
+					ctx.fillRect(0,0,1,1);	
+					
+					var data = ctx.getImageData(0,0,1,1);
+					
+					passed = ctx.globalCompositeOperation == 'screen' && data.data[0] == 255;
+				}
+				catch(e) {
+				}
+			}
+			
+			this.section.setItem({
+				id:		'blending',
+				passed:	passed, 
+				value: 	5
+			});
+			
+			
+			
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = this.canvas.toDataURL('image/png').substring(5,14) == 'image/png';
+				}
+				catch(e) {
+				}
+			}
+
+
+			this.section.setItem({
+				id:		'png',
+				passed:	passed, 
+				value: 	0
+			});
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = this.canvas.toDataURL('image/jpeg').substring(5,15) == 'image/jpeg';
+				}
+				catch(e) {
+				}
+			}
+
+			this.section.setItem({
+				id:		'jpeg',
+				passed:	passed, 
+				value: 	0
+			});
+
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = this.canvas.toDataURL('image/webp').substring(5,15) == 'image/webp';
+				}
+				catch(e) {
+				}
+			}
+
+			this.section.setItem({
+				id:		'webp',
+				passed:	passed, 
+				value: 	0
 			});
 		}
 	};
@@ -732,8 +888,8 @@ Test = (function() {
 
 			this.section.setItem({
 				id:		'subtitle',
-				passed:	!blacklists.subtitle && 'track' in document.createElement('track'), 
-				value: 	9
+				passed:	'track' in document.createElement('track'), 
+				value: 	8
 			});
 			
 			this.section.setItem({
@@ -742,13 +898,25 @@ Test = (function() {
 				value: 	1
 			});
 
+
+			this.section.setItem({
+				id:		'drm',
+				passed:	'addKey' in this.element || 'webkitAddKey' in this.element || 'mozAddKey' in this.element || 'msAddKey' in this.element
+			});
+
+			this.section.setItem({
+				id:		'mediasource',
+				passed:	'MediaSource' in window || 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window, 
+				value: 	2
+			});
+
+
 			/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 			var item = {
 				id:		'mpeg4',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
 			};
 			
-			if (item.passed) item.bonus = 2;					
 			this.section.setItem(item);
 		
 			var item = {
@@ -757,7 +925,6 @@ Test = (function() {
 				
 			};
 			
-			if (item.passed) item.bonus = 2;					
 			this.section.setItem(item);
 
 			var item = {
@@ -765,15 +932,53 @@ Test = (function() {
 				passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
 			};
 			
-			if (item.passed) item.bonus = 2;					
 			this.section.setItem(item);
 
 			var item = {
-				id:		'webm',
+				id:		'webmvp8',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp8"')
 			};
 			
-			if (item.passed) item.bonus = 2;					
+			this.section.setItem(item);
+
+			var item = {
+				id:		'webmvp9',
+				passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp9"')
+			};
+			
+			this.section.setItem(item);
+		
+		
+			var passed = true;
+
+			/* Known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string */
+			if (this.element.canPlayType('video/nonsense') == 'no') passed = false;
+			
+			/* Known bug in Gecko that always says "probably" when asked about WebM, even when the codecs string is not present */
+			if (this.element.canPlayType('video/webm') == 'probably') passed = false;
+			
+			/* Known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around */
+			if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'probably') passed = false;
+		
+			/* Known bug in Android where no better answer than "maybe" is given */
+			if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'maybe') passed = false;
+		
+			/* Known bug in Internet Explorer 9 that requires both audio and video codec on test */
+			if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') passed = false;
+
+			/* This test should always return an empty string, if not the codecs string is ignored */
+			// if (this.element.canPlayType('video/mp4; codecs="whatthewhat"') != '') passed = false;
+			
+			/* This test should always return an empty string, if not there is no check at all */
+			// if (this.element.canPlayType('video/huh') != '') passed = false;
+
+			
+			var item = {
+				id:		'canplaytype',
+				passed:	this.element.canPlayType ? (passed ? true : BUGGY) : false,
+				value:	4
+			};
+		
 			this.section.setItem(item);
 		},
 		
@@ -811,7 +1016,6 @@ Test = (function() {
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
 			};
 			
-			if (item.passed) item.bonus = 1;
 			this.section.setItem(item);
 
 			var r = false;
@@ -831,7 +1035,6 @@ Test = (function() {
 				passed:	r
 			};
 			
-			if (item.passed) item.bonus = 1;
 			this.section.setItem(item);
 
 			var item = {
@@ -839,7 +1042,6 @@ Test = (function() {
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
 			};
 			
-			if (item.passed) item.bonus = 1;
 			this.section.setItem(item);
 
 			var item = {
@@ -847,7 +1049,6 @@ Test = (function() {
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
 			};
 			
-			if (item.passed) item.bonus = 1;
 			this.section.setItem(item);
 
 			var item = {
@@ -855,7 +1056,6 @@ Test = (function() {
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="opus"') 
 			};
 			
-			if (item.passed) item.bonus = 1;
 			this.section.setItem(item);
 
 			var item = {
@@ -863,8 +1063,14 @@ Test = (function() {
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
 			};
 			
-			if (item.passed) item.bonus = 1;
 			this.section.setItem(item);
+
+
+			this.section.setItem({
+				id:			'webaudio',
+				passed:		'AudioContext' in window || 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window, 
+				value: 		5
+			});
 		},
 		
 		canPlayType: function(t) {
@@ -881,17 +1087,50 @@ Test = (function() {
 	};
 	
 	
-	function testDevice (results) { this.initialize(results) }			
-	testDevice.prototype = {
+	function testWebRTC (results) { this.initialize(results) }			
+	testWebRTC.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
-				id:		'device'
+				id:		'webrtc'
 			});
 			
 			this.section.setItem({
-				id:		'getUserMedia',
-				passed:	!blacklists.getUserMedia && (!!navigator.getUserMedia || !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia), 
+				id:		'peerconnection',
+				passed:	!!window.RTCPeerConnection || !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection, 
 				value: 	10
+			});
+		}
+	}
+
+	function testInput (results) { this.initialize(results) }			
+	testInput.prototype = {
+		initialize: function(results) {
+			this.section = results.getSection({
+				id:		'input'
+			});
+			
+			this.section.setItem({
+				id:			'getUserMedia',
+				passed:		!!navigator.getUserMedia || !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia, 
+				value: 		10
+			});
+
+			this.section.setItem({
+				id:			'getGamepads',
+				passed:		!!navigator.getGamepads || !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads, 
+				value: 		2
+			});
+
+			this.section.setItem({
+				id:   		'pointerLock',
+				passed:  	'pointerLockElement' in document || 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document,
+				value:   	3
+			});
+
+			this.section.setItem({
+				id:   		'pointerevents',
+				passed:  	!!window.navigator.pointerEnabled || !!window.navigator.msPointerEnabled || !!window.navigator.mozPointerEnabled || !!window.navigator.webkitPointerEnabled,
+				value:   	5
 			});
 		}
 	}
@@ -910,7 +1149,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'dataset',
 				passed:	'dataset' in element, 
-				value: 	7
+				value: 	4
 			});
 
 			var group = this.section.getGroup({
@@ -1092,23 +1331,6 @@ Test = (function() {
 				id:		'summary',
 				passed:	passed, 
 				value: 	1
-			});
-
-			document.body.removeChild(element);					
-
-			var element = document.createElement('command');
-			document.body.appendChild(element);
-
-			var passed = false;
-			try { 
-				passed = typeof HTMLCommandElement != 'undefined' && element instanceof HTMLCommandElement;
-			} catch(error) {
-			}
-
-			group.setItem({
-				id:		'command',
-				passed:	passed, 
-				value: 	2
 			});
 
 			document.body.removeChild(element);					
@@ -1407,7 +1629,7 @@ Test = (function() {
 				
 				group.setItem({
 					id:			'ui',
-					passed:		!blacklists.dateFields && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+					passed:		minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 					value: 		2
 				});
 				
@@ -1511,13 +1733,13 @@ Test = (function() {
 				if (t == 'range') {
 					group.setItem({
 						id:			'ui',
-						passed:		!blacklists.rangeField && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+						passed:		minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 						value: 		2
 					});
 				} else {
 					group.setItem({
 						id:			'ui',
-						passed:		!blacklists.numberField && minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+						passed:		minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
 						value: 		2
 					});
 				}
@@ -1595,7 +1817,7 @@ Test = (function() {
 			
 			group.setItem({
 				id:			'ui',
-				passed:		!blacklists.colorField && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+				passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
 				value: 		2
 			});
 				
@@ -1678,13 +1900,13 @@ Test = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		!blacklists.fileField && element.field.type == 'file',
+				passed:		element.field.type == 'file',
 				value: 		0
 			});
 
 			group.setItem({
 				id:			'files',
-				passed:		!blacklists.fileField && element.field.files && element.field.files instanceof FileList,
+				passed:		element.field.files && element.field.files instanceof FileList,
 				value: 		1
 			});
 
@@ -1887,7 +2109,7 @@ Test = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		!blacklists.progressField && passed, 
+				passed:		passed, 
 				value: 		2
 			});
 			
@@ -1908,7 +2130,7 @@ Test = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		!blacklists.meterField && passed, 
+				passed:		passed, 
 				value: 		2
 			});
 
@@ -2239,29 +2461,30 @@ Test = (function() {
 			var element = document.createElement('div');
 			
 			var group = this.section.getGroup({
-				id:		'attributes'
+				id:		'dragdrop.attributes'
 			});
 			
 			group.setItem({
 				id:			'draggable',
-				passed:		'draggable' in element && whitelists.dragdrop,
-				value:		0
+				passed:		'draggable' in element,
+				value:		3
 			});
 
 			group.setItem({
 				id:			'dropzone',
-				passed:		('dropzone' in element || 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element) && whitelists.dragdrop,
-				value:		0
-			});
-			
-			var group = this.section.getGroup({
-				id:		'events'
+				passed:		('dropzone' in element || 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element),
+				value:		2
 			});
 
+			var group = this.section.getGroup({
+				id:		'dragdrop.events'
+			});
+			
 			/* We need to check if the draggable attribute is supported, because older versions of IE do
 			   support the incompatible versions of the events below. IE 9 and up do support the HTML5
 			   events in combination with the draggable attribute */
-			var supported = 'draggable' in element && whitelists.dragdrop;
+			
+			var supported = 'draggable' in element;
 
 			group.setItem({
 				id:			'ondrag',
@@ -2311,68 +2534,68 @@ Test = (function() {
 			var element = document.createElement('div');
 
 			var group = this.section.getGroup({
-				id:		'editingElements'
+				id:		'editing.elements'
 			});
 			
 			group.setItem({
 				id:			'contentEditable',
-				passed:		'contentEditable' in element && whitelists.contentEditable, 
+				passed:		'contentEditable' in element, 
 				value: 		9
 			});
 
 			group.setItem({
 				id:			'isContentEditable',
-				passed:		'isContentEditable' in element && whitelists.contentEditable, 
+				passed:		'isContentEditable' in element, 
 				value: 		1
 			});
 			
 			var group = this.section.getGroup({
-				id:		'editingDocuments'
+				id:		'editing.documents'
 			});
 
 			group.setItem({
 				id:			'designMode',
-				passed:		'designMode' in document && whitelists.contentEditable, 
+				passed:		'designMode' in document, 
 				value: 		2
 			});
 			
 			var group = this.section.getGroup({
-				id:		'apis'
+				id:		'editing.apis'
 			});
 
 			group.setItem({
 				id:			'execCommand',
-				passed:		'execCommand' in document && whitelists.contentEditable, 
+				passed:		'execCommand' in document, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandEnabled',
-				passed:		'queryCommandEnabled' in document && whitelists.contentEditable, 
+				passed:		'queryCommandEnabled' in document, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandIndeterm',
-				passed:		'queryCommandIndeterm' in document && whitelists.contentEditable, 
+				passed:		'queryCommandIndeterm' in document, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandState',
-				passed:		'queryCommandState' in document && whitelists.contentEditable, 
+				passed:		'queryCommandState' in document, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandSupported',
-				passed:		'queryCommandSupported' in document && whitelists.contentEditable, 
+				passed:		'queryCommandSupported' in document, 
 				value: 		1
 			});
 
 			group.setItem({
 				id:			'queryCommandValue',
-				passed:		'queryCommandValue' in document && whitelists.contentEditable, 
+				passed:		'queryCommandValue' in document, 
 				value: 		1
 			});
 
@@ -2477,6 +2700,32 @@ Test = (function() {
 			});
 			
 			this.section.setItem({
+				id:			'crypto',
+				passed:		!!window.crypto || !!window.webkitCrypto || !!window.mozCrypto || !!window.msCrypto || !!window.oCrypto, 
+				value: 		5
+			});
+
+			this.section.setItem({
+				id:			'csp',
+				passed:		'SecurityPolicy' in document, 
+				value: 		5
+			});
+
+			this.section.setItem({
+				id:			'cors',
+				passed:		!!(window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest()), 
+				value: 		5
+			});
+
+			this.section.setItem({
+				id:			'postMessage',
+				passed:		!!window.postMessage, 
+				value: 		5
+			});
+
+
+
+			this.section.setItem({
 				id:			'sandbox',
 				passed:		'sandbox' in document.createElement('iframe'), 
 				value: 		10
@@ -2496,39 +2745,6 @@ Test = (function() {
 		}
 	};
 
-	function testVarious (results) { this.initialize(results) }			
-	testVarious.prototype = {
-		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'various'
-			});
-			
-			this.section.setItem({
-				id:			'scoped',
-				passed:		'scoped' in document.createElement('style'), 
-				value: 		5
-			});
-
-			this.section.setItem({
-				id:			'async',
-				passed:		'async' in document.createElement('script'), 
-				value: 		3
-			});
-
-			this.section.setItem({
-				id:			'onerror',
-				passed:		isEventSupported('error'), 
-				value: 		1
-			});
-
-			this.section.setItem({
-				id:			'base64',
-				passed:		'btoa' in window && 'atob' in window, 
-				value: 		1
-			});
-		}
-	};
-
 	function testGeolocation (results) { this.initialize(results) }			
 	testGeolocation.prototype = {
 		initialize: function(results) {
@@ -2538,13 +2754,13 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'geolocation',
-				passed:		!blacklists.geolocation && !!navigator.geolocation, 
+				passed:		!!navigator.geolocation, 
 				value: 		15
 			});
 
 			this.section.setItem({
 				id:			'orientation',
-				passed:		!blacklists.orientation && !!window.DeviceOrientationEvent, 
+				passed:		!!window.DeviceOrientationEvent, 
 				value: 		5
 			});
 		}
@@ -2559,12 +2775,12 @@ Test = (function() {
 			
 			var element = document.createElement('canvas');
 			var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
-			var r = false;
+			var passed = false;
     
 	        for (var b = -1, len = contexts.length; ++b < len;) {
 	            try {
 	                if (element.getContext(contexts[b])) {
-	                	r = true;
+	                	passed = true;
 	                	break;
 	                };	
 	            } catch(e){	}
@@ -2572,72 +2788,8 @@ Test = (function() {
 				
 			this.section.setItem({
 				id:			'context',
-				passed:		!blacklists.webgl && r, 
+				passed:		passed, 
 				value: 		15
-			});
-
-			var group = this.section.getGroup({
-				id:		'datatypes'
-			});
-
-			group.setItem({
-				id:			'ArrayBuffer',
-				passed:		typeof ArrayBuffer != 'undefined', 
-				value: 		1
-			});
-
-			group.setItem({
-				id:			'Int8Array',
-				passed:		typeof Int8Array != 'undefined', 
-				value: 		1
-			});
-			
-			group.setItem({
-				id:			'Uint8Array',
-				passed:		typeof Uint8Array != 'undefined', 
-				value: 		1
-			});
-			
-			group.setItem({
-				id:			'Int16Array',
-				passed:		typeof Int16Array != 'undefined', 
-				value: 		1
-			});
-			
-			group.setItem({
-				id:			'Uint16Array',
-				passed:		typeof Uint16Array != 'undefined', 
-				value: 		1
-			});
-			
-			group.setItem({
-				id:			'Int32Array',
-				passed:		typeof Int32Array != 'undefined', 
-				value: 		1
-			});
-			
-			group.setItem({
-				id:			'Uint32Array',
-				passed:		typeof Uint32Array != 'undefined', 
-				value: 		1
-			});
-			
-			group.setItem({
-				id:			'Float32Array',
-				passed:		typeof Float32Array != 'undefined', 
-				value: 		1
-			});
-			
-			group.setItem({
-				id:			'Float64Array',
-				passed:		typeof Float64Array != 'undefined', 
-				value: 		1
-			});
-			
-			group.setItem({
-				id:			'DataView',
-				passed:		typeof DataView != 'undefined', 
-				value: 		1
 			});
 		}
 	};
@@ -2650,29 +2802,23 @@ Test = (function() {
 			});
 
 			this.section.setItem({
-				id:			'postMessage',
-				passed:		!!window.postMessage, 
-				value: 		5
-			});
-
-			this.section.setItem({
 				id:			'eventSource',
 				passed:		'EventSource' in window, 
 				value: 		8
 			});
 			
-			var group = this.section.getGroup({
-				id:		'xmlhttprequest2'
-			});
-
-			group.setItem({
-				id:			'upload',
+			this.section.setItem({
+				id:			'xmlhttprequest2.upload',
 				passed:		window.XMLHttpRequest && 'upload' in new XMLHttpRequest(), 
 				value: 		5
 			});
 
+			var group = this.section.getGroup({
+				id:			'xmlhttprequest2.response'
+			});
+
 			var item = group.setItem({
-				id:			'textresponse',
+				id:			'text',
 				passed:		false, 
 				value: 		1
 			});
@@ -2680,7 +2826,7 @@ Test = (function() {
 			this.testResponseTypeText(item);
 
 			var item = group.setItem({
-				id:			'documentresponse',
+				id:			'document',
 				passed:		false, 
 				value: 		2
 			});
@@ -2688,7 +2834,7 @@ Test = (function() {
 			this.testResponseTypeDocument(item);
 
 			var item = group.setItem({
-				id:			'arrayresponse',
+				id:			'array',
 				passed:		false, 
 				value: 		2
 			});
@@ -2696,17 +2842,44 @@ Test = (function() {
 			this.testResponseTypeArrayBuffer(item);
 
 			var item = group.setItem({
-				id:			'blobresponse',
+				id:			'blob',
 				passed:		false, 
 				value: 		2
 			});
 			
 			this.testResponseTypeBlob(item);
 
+
+			var minimal = 'WebSocket' in window || 'MozWebSocket' in window;
+			var required = 'WebSocket' in window && window.WebSocket.CLOSING === 2;
+
 			this.section.setItem({
-				id:			'webSocket',
-				passed:		'WebSocket' in window || 'MozWebSocket' in window, 
+				id:			'websocket.basic',
+				passed:		minimal ? (required ? true : OLD) : false, 
 				value: 		10
+			});
+
+
+
+			var passed = false;
+			var protocol = 'https:' == location.protocol ? 'wss' : 'ws';
+	
+			if ("WebSocket" in window) {
+	        	if ("binaryType" in WebSocket.prototype) {
+	            	passed = true;
+				}
+				else {
+					try {
+						passed = !!(new WebSocket(protocol+'://.').binaryType);
+					} catch (e) {
+					}
+	          	}
+	        }
+
+			this.section.setItem({
+				id:			'websocket.binary',
+				passed:		passed, 
+				value: 		5
 			});
 		},
 		
@@ -2870,7 +3043,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'fileSystem',
-				passed:		!blacklists.fileSystem && (!! window.requestFileSystem || !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem), 
+				passed:		!! window.requestFileSystem || !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem, 
 				value: 		0
 			});
 		}
@@ -2882,6 +3055,9 @@ Test = (function() {
 			this.section = results.getSection({
 				id:		'storage'
 			});
+			
+			
+			/* Key-value storage */
 			
 			this.section.setItem({
 				id:			'sessionStorage',
@@ -2905,34 +3081,85 @@ Test = (function() {
 				value: 		5
 			});
 
+
+
+			/* IndexedDB */
+			
+			var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.moz_indexedDB || window.oIndexedDB || window.msIndexedDB
+
 			this.section.setItem({
-				id:			'indexedDB',
-				passed:		this.hasIndexedDB(), 
-				value: 		15
+				id:			'indexedDB.basic',
+				passed:		!! indexedDB ? ('deleteDatabase' in indexedDB ? true : BUGGY) : false, 
+				value: 		16
 			});
+
+			var blobitem = this.section.setItem({
+				id:			'indexedDB.blob',
+				passed:		false, 
+				value: 		2
+			});
+
+			var arrayitem = this.section.setItem({
+				id:			'indexedDB.arraybuffer',
+				passed:		false, 
+				value: 		2
+			});
+
+
+			if (indexedDB && 'deleteDatabase' in indexedDB) {
+				indexedDB.deleteDatabase('html5test').onsuccess = function () {
+					var request = indexedDB.open('html5test', 1);
+					
+					request.onupgradeneeded = function() {
+						request.result.createObjectStore("store");
+					};
+					
+					request.onsuccess = function() {
+						var db = request.result;
+						
+						try {
+							db.transaction("store", "readwrite").objectStore("store").put(new Blob(), "key");
+	
+							blobitem.update({
+								passed: true
+							});
+						} catch (e) {
+						}
+						
+						try {
+							db.transaction("store", "readwrite").objectStore("store").put(new ArrayBuffer(), "key");
+	
+							arrayitem.update({
+								passed: true
+							});
+						} catch (e) {
+						}
+						
+						db.close();
+						indexedDB.deleteDatabase('html5test');
+					};
+				};
+			}
+
+
+
+
+			/* WebSQL */
 
 			this.section.setItem({
 				id:			'sqlDatabase',
-				passed:		this.hasWebSQLDatabase(), 
+				passed:		!!window.openDatabase, 
 				value: 		0,
-				award:  	!this.hasIndexedDB() ? 5 : 0	/* only award points if IndexedDB is not implemented */
+				award:  	! indexedDB ? 5 : 0	/* only award points if IndexedDB is not implemented */
 			});
-		},
-		
-		hasWebSQLDatabase: function() {
-			return !!window.openDatabase;
-		},
-		
-		hasIndexedDB: function() {
-			return 'indexedDB' in window || 'webkitIndexedDB' in window || 'mozIndexedDB' in window || 'moz_indexedDB' in window || 'oIndexedDB' in window  || 'msIndexedDB' in window ;
-		}			
+		}
 	};
 
-	function testWorkers (results) { this.initialize(results) }			
-	testWorkers.prototype = {
+	function testPerformance (results) { this.initialize(results) }			
+	testPerformance.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
-				id:		'workers'
+				id:		'performance'
 			});
 
 			this.section.setItem({
@@ -2946,29 +3173,97 @@ Test = (function() {
 				passed:		!!window.SharedWorker, 
 				value: 		5
 			});
+
+			var group = this.section.getGroup({
+				id:		'datatypes'
+			});
+
+			group.setItem({
+				id:			'ArrayBuffer',
+				passed:		typeof ArrayBuffer != 'undefined', 
+				value: 		1
+			});
+
+			group.setItem({
+				id:			'Int8Array',
+				passed:		typeof Int8Array != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
+				id:			'Uint8Array',
+				passed:		typeof Uint8Array != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
+				id:			'Int16Array',
+				passed:		typeof Int16Array != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
+				id:			'Uint16Array',
+				passed:		typeof Uint16Array != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
+				id:			'Int32Array',
+				passed:		typeof Int32Array != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
+				id:			'Uint32Array',
+				passed:		typeof Uint32Array != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
+				id:			'Float32Array',
+				passed:		typeof Float32Array != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
+				id:			'Float64Array',
+				passed:		typeof Float64Array != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
+				id:			'DataView',
+				passed:		typeof DataView != 'undefined', 
+				value: 		1
+			});
 		}
 	};
 	
-	function testNotifications (results) { this.initialize(results) }			
-	testNotifications.prototype = {
+	function testOutput (results) { this.initialize(results) }			
+	testOutput.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
-				id:		'notifications'
+				id:		'output'
 			});
 			
 			this.section.setItem({
-				id:			'notifications',
-				passed:		!blacklists.notifications && this.hasNotification(), 
-				value: 		10
+				id:			'requestFullScreen',
+				passed:		!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullscreen, 
+				value: 		5
 			});
-		},
-		
-		hasNotification: function() {
+			
+
 			/* W3C standard is "new Notification()", WebKit pre-standard is "window.webkitNotifications.createNotification()", Gecko pre-standard is "window.navigator.mozNotification.createNotification()" */
-      		return 'Notification' in window || 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window;
+			this.section.setItem({
+				id:			'notifications',
+				passed:		'Notification' in window || 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window, 
+				value: 		5
+			});
 		}
 	};			
 	
+
 	function testOther (results) { this.initialize(results) }			
 	testOther.prototype = {
 		initialize: function(results) {
@@ -2976,6 +3271,36 @@ Test = (function() {
 				id:		'other'
 			});
 			
+			this.section.setItem({
+				id:			'scoped',
+				passed:		'scoped' in document.createElement('style'), 
+				value: 		5
+			});
+
+			this.section.setItem({
+				id:			'async',
+				passed:		'async' in document.createElement('script'), 
+				value: 		3
+			});
+
+			this.section.setItem({
+				id:			'onerror',
+				passed:		isEventSupported('error'), 
+				value: 		1
+			});
+
+			this.section.setItem({
+				id:			'base64',
+				passed:		'btoa' in window && 'atob' in window, 
+				value: 		1
+			});
+
+			this.section.setItem({
+				id:   		'mutationObserver',
+				passed:   	'MutationObserver' in window || 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window,
+				value:  	3 
+			});
+
 			this.section.setItem({
 				id:			'pagevisiblity',
 				passed:		'visibilityState' in document || 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document, 
@@ -2996,32 +3321,9 @@ Test = (function() {
 				value: 		1
 			});
 			
-			this.section.setItem({
-				id:   		'mutationObserver',
-				passed:   	'MutationObserver' in window || 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window,
-				value:  	3 
-			});
 		}
 	};			
 	
-	function testWebAudio (results) { this.initialize(results) }			
-	testWebAudio.prototype = {
-		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'webaudio'
-			});
-
-			this.section.setItem({
-				id:			'webaudio',
-				passed:		this.hasWebAudio(), 
-				value: 		5
-			});
-		},
-		
-		hasWebAudio: function() {
-			return 'AudioContext' in window || 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window;
-		}
-	};			
 	
 	function testAnimation (results) { this.initialize(results) }			
 	testAnimation.prototype = {
@@ -3031,21 +3333,9 @@ Test = (function() {
 			});
 			
 			this.section.setItem({
-				id:			'requestFullScreen',
-				passed:		!blacklists.fullScreen && (!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullScreen), 
-				value: 		4
-			});
-			
-			this.section.setItem({
-				id:   		'pointerLock',
-				passed:  	'pointerLockElement' in document || 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document,
-				value:   	3
-			});
-
-			this.section.setItem({
 				id:			'requestAnimationFrame',
 				passed:		!! window.requestAnimationFrame || !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame, 
-				value: 		3
+				value: 		5
 			});
 		}
 	};

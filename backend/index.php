@@ -14,63 +14,30 @@
 
 	include('config.php');
 	include('libraries/database.php');
+	include('libraries/model.php');
+
 	
 	$method = $_REQUEST['method'];
 	switch($method) {
 	
 		case 'loadFeature':
-			$results = array();
-			
-			$res = mysql_query("
-				SELECT 
-					IF(f.results LIKE '%" . mysql_real_escape_string($_REQUEST['id']) . "=1%',1,0) AS supported, b.unique AS id, CONCAT(b.unique,'-',b.id) AS uid
-				FROM 
-					browsers AS b
-					LEFT JOIN scores AS s ON (b.unique = s.id)
-					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
-				WHERE 
-					b.listed = 1 AND
-					s.version = '" . $version . "'
-			");
-			
-			while ($row = mysql_fetch_object($res)) {
-				$results[] = $row->id . '=' . $row->supported;
-			}
-			
 			echo json_encode(array(
 				'id'		=> $_REQUEST['id'],
-				'supported' => implode(',', $results)
+				'supported' => implode(',', getResultsForFeature($_REQUEST['id'], $version))
 			));
 			
 			break;
 	
 		case 'loadBrowser':
 			if (substr($_REQUEST['id'], 0, 7) == 'custom:') {
-				$res = mysql_query("
-					SELECT 
-						uniqueid AS id, 'Unique id'  AS nickname, score, bonus, points, results, humanReadable, useragentHeader AS useragent, deviceWidth, deviceHeight
-					FROM 
-						results 
-					WHERE 
-						uniqueid ='" . mysql_real_escape_string(substr($_REQUEST['id'], 7)) . "'
-				");
+				if ($data = getResultsForUniqueId(substr($_REQUEST['id'], 7))) {
+					echo json_encode($data);
+				}
+
 			} else {
-				$res = mysql_query("
-					SELECT 
-						b.unique AS id, b.nickname, f.score, f.bonus, f.points, f.results 
-					FROM 
-						browsers AS b 
-						LEFT JOIN scores AS s ON (b.unique = s.id)
-						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
-					WHERE 
-						b.listed = 1 AND
-						s.version = '" . $version . "' AND
-						b.unique ='" . mysql_real_escape_string($_REQUEST['id']) . "'
-				");
-			}
-		
-			if ($row = mysql_fetch_object($res)) {
-				echo json_encode($row);
+				if ($data = getResultsForBrowser($_REQUEST['id'], $version)) {
+					echo json_encode($data);
+				}
 			}
 		
 			break;
@@ -108,7 +75,8 @@
 						ip = "' . mysql_real_escape_string($_SERVER['REMOTE_ADDR']) . '",
 						uniqueid = "' . mysql_real_escape_string($payload->uniqueid) . '",
 						score = "' . mysql_real_escape_string($payload->score) . '",
-						bonus = "' . mysql_real_escape_string($payload->bonus) . '",
+						maximum = "' . mysql_real_escape_string($payload->maximum) . '",
+						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
 						camouflage = "' . mysql_real_escape_string($payload->camouflage) . '",
 						features = "' . mysql_real_escape_string($payload->features) . '",
 						browserName = "' . mysql_real_escape_string($payload->browserName) . '",
@@ -133,9 +101,6 @@
 						useragentId = "' . mysql_real_escape_string(md5($useragentId)) . '",
 						humanReadable = "' . mysql_real_escape_string($payload->humanReadable) . '",
 						headers = "' . mysql_real_escape_string($filteredHeaders) . '",
-						results = "' . mysql_real_escape_string($payload->results) . '",
-						points = "' . mysql_real_escape_string($payload->points) . '",
-						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
 						status = 0
 				');
 
@@ -146,7 +111,7 @@
 						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
 						version = "' . mysql_real_escape_string($payload->version) . '",
 						score = "' . mysql_real_escape_string($payload->score) . '",
-						bonus = "' . mysql_real_escape_string($payload->bonus) . '",
+						maximum = "' . mysql_real_escape_string($payload->maximum) . '",
 						results = "' . mysql_real_escape_string($payload->results) . '",
 						points = "' . mysql_real_escape_string($payload->points) . '"
 				');

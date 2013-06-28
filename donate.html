@@ -30,10 +30,7 @@
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
-		
-		<link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link href='//fonts.googleapis.com/css?family=Alfa+Slab+One' rel='stylesheet' type='text/css'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link rel="stylesheet" href="css/main.css" type="text/css">
 
@@ -59,7 +56,7 @@
 	
 	<body>
 		<div class='header'>
-			<h1 data-i18n>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
+			<h1 data-i18n><span>The HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
 			<div class='navigation'>
 				<ul class='left'>
 					<li><a href='/index.html' data-i18n>Your browser</a></li>
@@ -73,96 +70,87 @@
 			</div>
 		</div>
 		
-		<div class='page hasNavigation'>
-			<div class='paper'>
-				<ul>
-					<li><a href='about.html' data-i18n>Frequently asked questions</a></li>
-					<li class='selected'><a href='donate.html' data-i18n>Donate</a></li>
-				</ul>
-			
-				<div>
-					<h2>Donate</h2>
-
-					<h3>Help us create an even better HTML5 test</h3>
-					<div class='explaination'>
-						<p>
-							We have big plans for HTML5 test. Our latest additions are a new server backend
-							that automatically collects the test results and creates some extensive reports based on the
-							collected data. But we have some more ideas for the future.
-						</p>
-						<p>
-							These additions do take a lot of time, so if you think HTML5 test is a great resource, consider
-							donating.
-						</p>
-						<p>
-							<br>
-							<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-							<input type="hidden" name="cmd" value="_s-xclick">
-							<input type="hidden" name="hosted_button_id" value="9DNBJPQFEHYSC">
-							<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-							<img alt="" border="0" src="https://www.paypalobjects.com/nl_NL/i/scr/pixel.gif" width="1" height="1">
-							</form>
-						</p>
-						<p>
-							<a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://html5test.com"></a>
-							<noscript><a href="http://flattr.com/thing/626751/HTML5-test" target="_blank">
-							<img src="//api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
-						</p>
+		<div class='page'>
+			<div class='column'>
+				<div class='paper hasNavigation'>
+					<ul>
+						<li><a href='about.html' data-i18n>Frequently asked questions</a></li>
+						<li class='selected'><a href='donate.html' data-i18n>Donate</a></li>
+					</ul>
+				
+					<div>
+						<h2>Donate</h2>
+	
+						<h3>Help us create an even better HTML5 test</h3>
+						<div class='text'>
+							<p>
+								We have big plans for HTML5 test. Our latest additions are a new server backend
+								that automatically collects the test results and creates some extensive reports based on the
+								collected data. But we have some more ideas for the future.
+							</p>
+							<p>
+								These additions do take a lot of time, so if you think HTML5 test is a great resource, consider
+								donating.
+							</p>
+							<p>
+								<a class='button donate' href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC"><span>Donate using Paypal</span></a>
+							</p>
+						</div>
+						
+						
+						<h3>Advertising</h3>
+						<div class='text'>
+							<p>
+								In order to pay for hosting and further development of the HTML5 test we allow a small number of ads 
+								on two positions of the main page. We prefer ads that are related to HTML5 or web development.
+								Ads on the HTML5 test are exclusively sold by <a href='http://buysellads.com/buy/detail/64155'>BuySellAds</a>.
+							</p>
+						</div>
+	
+						
+						<h3>Devices</h3>
+						<div class='text'>
+							<p>
+								A lot of our data is crowd sourced, but in certain cases we need access to the actual browser running on 
+								the actual device. For this purpose we are trying to build a testing lab with not only new devices, but also
+								older devices for testing historic versions. 
+							</p>
+							<p>
+								We already have various phones and tablets running Android (1.6 to 4.2), BlackBerry (Legacy 7.1, 
+								Tablet OS 2.1 and BB10), iOS (5, 6 and 7) and Windows Phone (7.5 and 8) to our disposal.
+								We are looking for devices running older versions of iOS or Android, and devices running different 
+								operating systems, such as S40, S60, Windows Mobile or any other WIFI enabled phone with a browser. 
+								If you have a new or used device you want to donate to our lab, please contact me on 
+								<a href='https://github.com/NielsLeenheer'>Github</a> or <a href='http://twitter.com/rakaz'>Twitter</a>.
+							</p>
+							<p>
+								At the moment we are actively looking for a device running iOS 3 or 4, Tizen or Sailfish. 
+							</p>
+						</div>
 					</div>
-					
-					
-					<h3>Advertising</h3>
-					<div class='explaination'>
-						<p>
-							In order to pay for hosting and further development of the HTML5 test we allow a small number of ads 
-							on two positions of the main page. We prefer ads that are related to HTML5 or web development.
-							Ads on the HTML5 test are exclusively sold by <a href='http://buysellads.com/buy/detail/64155'>BuySellAds</a>.
-						</p>
-					</div>
-
-					
-					<h3>Devices</h3>
-					<div class='explaination'>
-						<p>
-							A lot of our data is crowd sourced, but in certain cases we need access to the actual browser running on 
-							the actual device. For this purpose we are trying to build a testing lab with not only new devices, but also
-							older devices for testing historic versions. 
-						</p>
-						<p>
-							We already have various phones and tablets running Android (2.1 to 4.1), BlackBerry (Legacy 7.1, 
-							Tablet OS 2.1 and BB10), iOS (5.0 and 6.0) and Windows Phone (7.5) to our disposal.
-							We are looking for devices running older versions of iOS or Android, and devices running different 
-							operating systems, such as S60, Windows Mobile or Windows Phone 8. If you have a new or used 
-							device you want to donate to our lab, please contact me on 
-							<a href='https://github.com/NielsLeenheer'>Github</a> or <a href='http://twitter.com/rakaz'>Twitter</a>.
-						</p>
-						<p>
-							At the moment we are actively looking for a device running iOS 3 or 4 and Android 1.6. 
-						</p>
+				</div>
+				
+				<div class='footer'>
+					<div>
+						<div class='hosting'>
+							<a href='http://sights.nl/en/'><img src='/images/sights.png' width=55 alt='Sights'></a>
+						</div>
+						
+						<div class='copyright'>
+							<p>Created by Niels Leenheer for Sights. Copyright 2013.
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							<p>June 2013 - version 5.0</p>
+							<p id='uniqueid'></p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>		
-		</div>
-
-		<div class='footer'>
-			<div>
-				<div class='hosting'>
-					<a href='http://sights.nl/en/'><img src='/images/sights.png' width=55 alt='Sights'></a>
-				</div>
-				
-				<div class='copyright'>
-					<p>Copyright 2010-2012 by Sights</p>
-					<p>October, 2012 - version 4.0</p>
-					<p data-i18n='footer'>
-						The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
-						Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
-					</p>
-
-					<div id='cloudvps'>
-						<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<script src='//www.google-analytics.com/ga.js'></script>

@@ -18,6 +18,7 @@ RewriteRule ^results-tablets.html$			/results/tablet.html									[R]
 RewriteRule ^results-tv.html$				/results/television.html								[R]
 
 RewriteRule ^api/(.+)$ 						/backend/index.php?method=$1&%{QUERY_STRING}
+RewriteRule ^s/(.+).html$ 					/backend/saved.php?id=$1
 RewriteRule ^compare/browser/index.html$ 	/backend/browser.php?%{QUERY_STRING}
 RewriteRule ^compare/browser/(.+).html$ 	/backend/browser.php?show=$1&%{QUERY_STRING}
 RewriteRule ^compare/feature/index.html$ 	/backend/feature.php?%{QUERY_STRING}

@@ -1,0 +1,50 @@
+/* Regular */
+@font-face {
+    font-family: 'League Gothic';
+    src: url('leaguegothic-italic-webfont.eot');
+    src: url('leaguegothic-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('leaguegothic-italic-webfont.woff') format('woff'),
+         url('leaguegothic-italic-webfont.ttf') format('truetype'),
+         url('leaguegothic-italic-webfont.svg#league_gothic_italicregular') format('svg');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+/* Italic */
+@font-face {
+    font-family: 'League Gothic';
+    src: url('leaguegothic-regular-webfont.eot');
+    src: url('leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('leaguegothic-regular-webfont.woff') format('woff'),
+         url('leaguegothic-regular-webfont.ttf') format('truetype'),
+         url('leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* Condensed */
+@font-face {
+    font-family: 'League Gothic Condensed';
+    src: url('leaguegothic-condensed-regular-webfont.eot');
+    src: url('leaguegothic-condensed-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('leaguegothic-condensed-regular-webfont.woff') format('woff'),
+         url('leaguegothic-condensed-regular-webfont.ttf') format('truetype'),
+         url('leaguegothic-condensed-regular-webfont.svg#league_gothic_condensed-Rg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* Condensed Italic */
+@font-face {
+    font-family: 'League Gothic Condensed';
+    src: url('leaguegothic-condensed-italic-webfont.eot');
+    src: url('leaguegothic-condensed-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('leaguegothic-condensed-italic-webfont.woff') format('woff'),
+         url('leaguegothic-condensed-italic-webfont.ttf') format('truetype'),
+         url('leaguegothic-condensed-italic-webfont.svg#league_gothic_condensed_itaRg') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}

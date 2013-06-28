@@ -6,16 +6,13 @@
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
-		
-		<link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link href='//fonts.googleapis.com/css?family=Alfa+Slab+One' rel='stylesheet' type='text/css'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link rel="stylesheet" href="/css/main.css" type="text/css">
 
 		<script src='/translation.js' type='text/javascript'></script>
 
-		<script src='/scripts/template.js' type='text/javascript'></script>
+		<script src='/scripts/base.js' type='text/javascript'></script>
 		<script src='/scripts/jquery/jquery-1.7.2.min.js' type='text/javascript'></script>
 		<script src='/scripts/highcharts/highcharts.src.js' type='text/javascript'></script>
 		<script src="/scripts/highcharts/modules/exporting.js" type="text/javascript"></script>
@@ -27,7 +24,7 @@
 	
 	<body>
 		<div class='header'>
-			<h1 data-i18n>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
+			<h1 data-i18n><span>The HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
 			<div class='navigation'>
 				<ul class='left'>
 					<li><a href='/index.html' data-i18n>Your browser</a></li>
@@ -41,293 +38,381 @@
 			</div>
 		</div>
 		
-		<div class='page hasNavigation'>
-			<div class='paper'>
-				<ul>
-					<li class='<?php echo $type == 'desktop' ? 'selected' : ''; ?>'><a data-i18n href='/results/desktop.html'>Desktop<span> browsers</span></a></li>
-					<li class='<?php echo $type == 'tablet' ? 'selected' : ''; ?>'><a data-i18n href='/results/tablet.html'>Tablets</a></li>
-					<li class='<?php echo $type == 'mobile' ? 'selected' : ''; ?>'><a data-i18n href='/results/mobile.html'>Mobiles</a></li>
-					<li class='<?php echo $type == 'gaming' ? 'selected' : ''; ?>'><a data-i18n href='/results/gaming.html'>Gaming</a></li>
-					<li class='<?php echo $type == 'television' ? 'selected' : ''; ?>'><a data-i18n href='/results/television.html'>Television</a></li>
-				</ul>
+		<div class='page'>
+			<div class='column'>
+				<div class='paper hasNavigation'>
+					<ul>
+						<li class='<?php echo $type == 'desktop' ? 'selected' : ''; ?>'><a data-i18n href='/results/desktop.html'>Desktop<span> browsers</span></a></li>
+						<li class='<?php echo $type == 'tablet' ? 'selected' : ''; ?>'><a data-i18n href='/results/tablet.html'>Tablets</a></li>
+						<li class='<?php echo $type == 'mobile' ? 'selected' : ''; ?>'><a data-i18n href='/results/mobile.html'>Mobiles</a></li>
+						<li class='<?php echo $type == 'gaming' ? 'selected' : ''; ?>'><a data-i18n href='/results/gaming.html'>Gaming</a></li>
+						<li class='<?php echo $type == 'television' ? 'selected' : ''; ?>'><a data-i18n href='/results/television.html'>Television</a></li>
+					</ul>
+				
+					<div>
+						<!--
+						<div class='rankingPanel'>
+							<?php if (isset($first)): ?>
+							<dl id='winner'>
+								<dt data-i18n>first place</dt>
+								<dd class='score'><?php echo $first->score; ?></dd>
+								<dd><?php echo $first->nickname; ?></dd>
+							</dl>
+							<?php endif; ?>
+		
+							<?php if (isset($runnerup)): ?>
+							<dl id='runnerup'>
+								<dt data-i18n>runner up</dt>
+								<dd class='score'><?php echo $runnerup->score; ?></dd>
+								<dd><?php echo $runnerup->nickname; ?></dd>
+							</dl>
+							<?php endif; ?>
+		
+							<?php if (isset($upcoming)): ?>
+							<dl id='upcoming'>
+								<dt data-i18n>upcoming</dt>
+								<dd class='score'><?php echo $upcoming->score; ?></dd>
+								<dd><?php echo $upcoming->nickname; ?></dd>
+							</dl>
+							<?php endif; ?>
+						</div>
+						
+						<hr>	
+						-->
+						
+						<?php if ($type == 'desktop' || $type == 'mobile' || $type == 'tablet'): ?>
+						<div class='overviewPanel'>
+							<h2 data-i18n>Overview</h2>
+							<div class='horizontalOverflow'>
+								<table class='overviewTable'>
+									<thead>
+										<tr>
+											<th>&nbsp;</th>
+											<?php foreach($mainColumns as $c): ?>
+												<th><?php echo $c; ?></th>
+											<?php endforeach; ?>
+										</tr>
+									</thead>
+									<tbody>
+										<?php for ($r = 0; $r < $mainRows; $r++): ?>
+										<tr>
+											<th class='<?php echo $r == 0 ? 'development' : ''; ?><?php echo $r == 1 ? 'current' : ''; ?>'>
+												<?php echo $r == 0 ? 'Upcoming' : ''; ?><?php echo $r == 1 ? 'Current' : ''; ?><?php echo $r == 2 ? 'Older' : ''; ?>
+											</th>
+											
+											<?php foreach($main as $d): ?>
+												<td class='<?php echo $r == 0 ? 'development' : ''; ?><?php echo $r == 1 ? 'current' : ''; ?>'><?php 
+													if (!is_null($d[$r])) {
+														echo '<span class="version"><span><span>' . $d[$r]->version . '</span></span></span> <span class="points">' . $d[$r]->score . '</span>'; 
+													}
+												?></td>
+											<?php endforeach; ?>
+										</tr>
+										<?php endfor; ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<hr>
+						<?php endif; ?>
+
+	
+						<div class='scorePanel'>
+							<h2 data-i18n>Scores</h2>
+							
+							<div id='scoreToggle' class='toggle'>
+								<div class='background'></div>
+								<div class='part first'>Most used</div>
+								<div class='part second'>All browsers</div>
+							</div>
+							
+							<div class='left'>
+								<?php if (isset($results['current'])): ?>
+								<h3 data-i18n>Current</h3>
+								<table class='scoreTable'>
+									<thead>
+										<tr>
+											<th class='points' data-i18n>Score</th>
+											<th class='nickname' data-i18n>Browser</th>
+											<th class='details'></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach($results['current'] as $item): ?>
+										<tr class='<?php echo $item->listed == 0 ? 'hidden' :''; ?>'>
+											<td class='points'><?php echo $item->score; ?></td>
+											<th class='nickname'>
+												<?php if ($item->points != ''): ?>
+													<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+												<?php else: ?>
+													<?php echo $item->nickname; ?>
+												<?php endif; ?>
+											</th>
+											<th class='details'><?php echo $item->details; ?></th>
+										</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+								<?php endif; ?>
 			
-				<div>
-					<div class='rankingPanel'>
-						<?php if (isset($first)): ?>
-						<dl id='winner'>
-							<dt data-i18n>first place</dt>
-							<dd class='score'><?php echo $first->score; ?></dd>
-							<dd><?php echo $first->nickname; ?></dd>
-						</dl>
-						<?php endif; ?>
-	
-						<?php if (isset($runnerup)): ?>
-						<dl id='runnerup'>
-							<dt data-i18n>runner up</dt>
-							<dd class='score'><?php echo $runnerup->score; ?></dd>
-							<dd><?php echo $runnerup->nickname; ?></dd>
-						</dl>
-						<?php endif; ?>
-	
-						<?php if (isset($upcoming)): ?>
-						<dl id='upcoming'>
-							<dt data-i18n>upcoming</dt>
-							<dd class='score'><?php echo $upcoming->score; ?></dd>
-							<dd><?php echo $upcoming->nickname; ?></dd>
-						</dl>
-						<?php endif; ?>
-					</div>
-					
-					<hr>	
-
-					<?php if (isset($results['current'])): ?>
-					<h2 data-i18n>Current</h2>
-					<table class='scoreTable'>
-						<thead>
-							<tr>
-								<th class='nickname'></th>
-								<th class='details'></th>
-								<th class='description'></th>
-								<th class='points' data-i18n>Score</th>
-								<th class='bonus' data-i18n>Bonus</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php foreach($results['current'] as $item): ?>
-							<tr>
-								<th class='nickname'>
-									<?php if ($item->points != ''): ?>
-										<a href='/compare/browser/<?php echo $item->unique; ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-									<?php else: ?>
-										<?php echo $item->nickname; ?>
-									<?php endif; ?>
-								</th>
-								<th class='details'><?php echo $item->details; ?></th>
-								<th class='description'><em><?php echo $item->description; ?></em></th>
-								<td class='points'><?php echo $item->score; ?></td>
-								<td class='bonus'><?php echo $item->bonus; ?></td>
-							</tr>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
-					<?php endif; ?>
-
-					<?php if (isset($results['development'])): ?>
-					<h2 data-i18n>Development or beta</h2>
-					<table class='scoreTable'>
-						<thead>
-							<tr>
-								<th class='nickname'></th>
-								<th class='details'></th>
-								<th class='description'></th>
-								<th class='points' data-i18n>Score</th>
-								<th class='bonus' data-i18n>Bonus</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php foreach($results['development'] as $item): ?>
-							<tr>
-								<th class='nickname'>
-									<?php if ($item->points != ''): ?>
-										<a href='/compare/browser/<?php echo $item->unique; ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-									<?php else: ?>
-										<?php echo $item->nickname; ?>
-									<?php endif; ?>
-								</th>
-								<th class='details'><?php echo $item->details; ?></th>
-								<th class='description'><em><?php echo $item->description; ?></em></th>
-								<td class='points'><?php echo $item->score; ?></td>
-								<td class='bonus'><?php echo $item->bonus; ?></td>
-							</tr>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
-					<?php endif; ?>
-
-					<?php if (isset($results['legacy'])): ?>
-					<h2 data-i18n>Older</h2>
-					<table class='scoreTable'>
-						<thead>
-							<tr>
-								<th class='nickname'></th>
-								<th class='details'></th>
-								<th class='description'></th>
-								<th class='points' data-i18n>Score</th>
-								<th class='bonus' data-i18n>Bonus</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php foreach($results['legacy'] as $item): ?>
-							<tr>
-								<th class='nickname'>
-									<?php if ($item->points != ''): ?>
-										<a href='/compare/browser/<?php echo $item->unique; ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-									<?php else: ?>
-										<?php echo $item->nickname; ?>
-									<?php endif; ?>
-								</th>
-								<th class='details'><?php echo $item->details; ?></th>
-								<th class='description'><em><?php echo $item->description; ?></em></th>
-								<td class='points'><?php echo $item->score; ?></td>
-								<td class='bonus'><?php echo $item->bonus; ?></td>
-							</tr>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
-					<?php endif; ?>
-					
-					
-					<?php if ($type == 'desktop' || $type == 'mobile' || $type == 'tablet'): ?>
-					<hr>
-					
-					<div id='fsCanvas'>
-					<h2 data-i18n>Timeline</h2>
-					<button id='fsButton' style='display: none;'></button>
-					<br>
-					
-					<div id='timelineGraph' style='height: 500px;'></div>
-					
-					<script>
-					
-						var sets = <?php echo json_encode(array_values($sets)); ?>;
-						var series = [];
-						
-						var start = new Date().getTime();
-						
-						for (var i = 0; i < sets.length; i++) {
-							var s = {
-								name: sets[i].name,
-								data: []
-							}
+								<?php if (isset($results['development'])): ?>
+								<h3 data-i18n>Upcoming</h3>
+								<table class='scoreTable'>
+									<thead>
+										<tr>
+											<th class='points' data-i18n>Score</th>
+											<th class='nickname' data-i18n>Browser</th>
+											<th class='details'></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach($results['development'] as $item): ?>
+										<tr class='<?php echo $item->listed == 0 ? 'hidden' :''; ?>'>
+											<td class='points'><?php echo $item->score; ?></td>
+											<th class='nickname'>
+												<?php if ($item->points != ''): ?>
+													<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+												<?php else: ?>
+													<?php echo $item->nickname; ?>
+												<?php endif; ?>
+											</th>
+											<th class='details'><?php echo $item->details; ?></th>
+										</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+								<?php endif; ?>
+							</div>
 							
-							for (var j = 0; j < sets[i].data.length; j++) {
-								var ts = new Date().getTime();
-								
-								if (sets[i].data[j].release) {
-									var date = sets[i].data[j].release.split('-');
-									var ts = Date.UTC(date[0], parseInt(date[1], 10) - 1, date[2]);
-								}
-								
-								start = Math.min(ts, start);
-								
-								s.data.push({
-									name:	sets[i].data[j].nickname,
-									status:	sets[i].data[j].status,
-									x: 		ts,
-									y: 		parseInt(sets[i].data[j].score, 10)
-								});
-							}
-							
-							series.push(s);
-						}
-					
-						var chart = new Highcharts.Chart({
-							chart: {
-								renderTo: 'timelineGraph',
-								zoomType: 'x',
-								type: 'spline'
-							},
-							credits: {
-								enabled: false
-							},
-							title: {
-								text: t('HTML5test.com score over the years')
-							},
-							legend: {
-								borderWidth: 0,
-								margin: 40
-							},
-							xAxis: {
-								type: 'datetime',
-								min: Math.max(start, Date.UTC(2008,9,1)),
-								dateTimeLabelFormats: { 
-									month: '%b %Y',
-									year: '%b %Y'
-								}
-							},
-							yAxis: {
-								title: {
-									text: t('Score (points)')
-								},
-								min: 0
-							},
-							tooltip: {
-								formatter: function() {
-										return '<b>'+ this.key +'</b><br/>'+
-										(this.point.status != 'development' ? Highcharts.dateFormat('%b %Y', this.x) : t('Unreleased'))  +'<br>' + 
-										this.y +' points';
-								}
-							},
-							
-							series: series
-						});
+							<div class='right'>
+								<?php if (isset($results['legacy'])): ?>
+								<h3 data-i18n>Older</h3>
+								<table class='scoreTable'>
+									<thead>
+										<tr>
+											<th class='points' data-i18n>Score</th>
+											<th class='nickname' data-i18n>Browser</th>
+											<th class='details'></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach($results['legacy'] as $item): ?>
+										<tr class='<?php echo $item->listed == 0 ? 'hidden' :''; ?>'>
+											<td class='points'><?php echo $item->score; ?></td>
+											<th class='nickname'>
+												<?php if ($item->points != ''): ?>
+													<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+												<?php else: ?>
+													<?php echo $item->nickname; ?>
+												<?php endif; ?>
+											</th>
+											<th class='details'><?php echo $item->details; ?></th>
+										</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+								<?php endif; ?>
+							</div>
+						</div>	
 
-						for (var s = 0; s < chart.series.length; s++) {						
-							switch(chart.series[s].name) {
-								case 'Android':
-								case 'Blackberry':
-								case 'Chrome':
-								case 'Firefox':
-								case 'Internet Explorer':
-								case 'iOS':
-								case 'Opera':
-								case 'Safari':
-								case 'Windows':
-									break;
-								default:
-									chart.series[s].hide();
-							}
-						}
-						
-						var canvas = document.getElementById('fsCanvas');
-						var button = document.getElementById('fsButton');
-						
-						if (canvas.requestFullscreen) {
-							button.style.display = '';
-							button.addEventListener('click', function() {
-								if (document.fullscreenElement) 
-									document.exitFullscreen();
-								else
-									canvas.requestFullscreen();
+						<script>
+							var toggle = document.getElementById('scoreToggle');
+							toggle.addEventListener('click', function() {
+								if (toggle.className.indexOf(' selected') == -1) {
+									toggle.className += ' selected';
+
+									var tables = document.getElementsByClassName('scoreTable');
+									for (var i = 0; i < tables.length; i++) {
+										tables[i].className += ' showAll';
+									}
+								} else {
+									toggle.className = toggle.className.replace(' selected', '');
+
+									var tables = document.getElementsByClassName('scoreTable');
+									for (var i = 0; i < tables.length; i++) {
+										tables[i].className = tables[i].className.replace(' showAll', '');
+									}
+								}
 							}, true);
-						}
+						</script>
+								
 						
-					</script>
+						<?php if ($type == 'desktop' || $type == 'mobile' || $type == 'tablet'): ?>
+						<hr>
+						
+						<div class='timelinePanel'>
+							<div id='fsCanvas'>
+								<h2 data-i18n>Timeline</h2>
+								<button id='fsButton' style='display: none;'></button>
+								<br>
+								
+								<div id='timelineGraph' style='height: 500px;'></div>
+								
+								<script>
+								
+									var sets = <?php echo json_encode(array_values($sets)); ?>;
+									var series = [];
+									
+									var start = new Date().getTime();
+									
+									for (var i = 0; i < sets.length; i++) {
+										var s = {
+											name: sets[i].name,
+											data: []
+										}
+										
+										for (var j = 0; j < sets[i].data.length; j++) {
+											var ts = new Date().getTime();
+											
+											if (sets[i].data[j].release) {
+												var date = sets[i].data[j].release.split('-');
+												var ts = Date.UTC(date[0], parseInt(date[1], 10) - 1, date[2]);
+											}
+											
+											start = Math.min(ts, start);
+											
+											s.data.push({
+												name:		sets[i].data[j].nickname,
+												status:		sets[i].data[j].status,
+												importance:	sets[i].data[j].importance,
+												x: 			ts,
+												y: 			parseInt(sets[i].data[j].score, 10)
+											});
+										}
+										
+										series.push(s);
+									}
+									
+									Highcharts.setOptions({
+									    chart: {
+									        style: {
+									            fontFamily: '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif'
+									        }
+									    }
+									});
+								
+									var chart = new Highcharts.Chart({
+										
+										chart: {
+											renderTo: 'timelineGraph',
+											zoomType: 'x',
+											type: 'line'
+										},
+										credits: {
+											enabled: false
+										},
+										title: {
+											text: t('HTML5test.com score over the years')
+										},
+										legend: {
+											borderWidth: 0,
+											margin: 40
+										},
+										xAxis: {
+											type: 'datetime',
+											min: Math.max(start, Date.UTC(2008,9,1)),
+											dateTimeLabelFormats: { 
+												month: '%b %Y',
+												year: '%b %Y'
+											}
+										},
+										yAxis: {
+											title: {
+												text: t('Score (points)')
+											},
+											min: 0
+										},
+										tooltip: {
+											formatter: function() {
+													return '<b>'+ this.key +'</b><br/>'+
+													(this.point.status != 'development' ? Highcharts.dateFormat('%b %Y', this.x) : t('Unreleased'))  +'<br>' + 
+													this.y +' points';
+											}
+										},
+										
+										plotOptions: {
+										    series: {
+										        step: 'left' 
+										    }
+										},
+										series: series
+									});
+			
+									for (var s = 0; s < chart.series.length; s++) {
+										if (chart.series[s].data[0].importance < 1) {
+											chart.series[s].hide();
+										}
+										/*
+										console.debug(chart.series[s].data[0])						
+										switch(chart.series[s].name) {
+											case 'Android':
+											case 'Blackberry':
+											case 'Chrome':
+											case 'Firefox':
+											case 'Internet Explorer':
+											case 'iOS':
+											case 'Opera':
+											case 'Safari':
+											case 'Windows':
+												break;
+											default:
+												chart.series[s].hide();
+										}
+										*/
+									}
+									
+									var canvas = document.getElementById('fsCanvas');
+									var button = document.getElementById('fsButton');
+									
+									if (canvas.requestFullscreen) {
+										button.style.display = '';
+										button.addEventListener('click', function() {
+											if (document.fullscreenElement) 
+												document.exitFullscreen();
+											else
+												canvas.requestFullscreen();
+										}, true);
+									}
+									
+								</script>
+							</div>
+						</div>
+						<?php endif; ?>
+						
+						<hr>
+	
+						<h3 data-i18n>About these scores</h3>
+						<div class='text' data-i18n='score-explaination'>
+							The data above is compiled from automatically submitted test results. It is possible your results 
+							may differ slightly due to external factors such as settings and which operating system is used.
+							If you believe the data above is incorrect, or if you think we are missing an important browser
+							or device, please open a bug report at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>.
+						</div>
 					</div>
-					<?php endif; ?>
-					
-					<hr>
-
-					<h3 data-i18n>About these scores</h3>
-					<div class='explaination' data-i18n='score-explaination'>
-						The data above is compiled from automatically submitted test results. It is possible your results 
-						may differ slightly due to external factors such as settings and which operating system is used.
-						If you believe the data above is incorrect, or if you think we are missing an important browser
-						or device, please open a bug report at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>.
+				</div>
+				
+				<div class='footer'>
+					<div>
+						<div class='hosting'>
+							<a href='http://sights.nl/en/'><img src='/images/sights.png' width=55 alt='Sights'></a>
+						</div>
+						
+						<div class='copyright'>
+							<p>Created by Niels Leenheer for Sights. Copyright 2013.
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							<p>June 2013 - version 5.0</p>
+							<p id='uniqueid'></p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>		
-		</div>
-
-		<div class='footer'>
-			<div>
-				<div class='hosting'>
-					<a href='http://sights.nl/en/'><img src='/images/sights.png' width=55 alt='Sights'></a>
-				</div>
-				
-				<div class='copyright'>
-					<p>Copyright 2010-2012 by Sights</p>
-					<p>October, 2012 - version 4.0</p>
-					<p data-i18n='footer'>
-						The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
-						Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
-					</p>
-
-					<div id='cloudvps'>
-						<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<script src='//www.google-analytics.com/ga.js'></script>

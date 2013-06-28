@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title data-i18n>The HTML5 test - How well does your browser support HTML5?</title>	
+
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
+
+		<script src='/translation.js' type='text/javascript'></script>
+
+		<script src='/scripts/base.js' type='text/javascript'></script>
+		<script src='/scripts/data.js' type='text/javascript'></script>
+		<script src='/scripts/engine.js' type='text/javascript'></script>
+		<script src='/scripts/reporting.js' type='text/javascript'></script>
+
+		<link rel="icon" href="/images/icon.png">
+		<link rel="apple-touch-icon" href="/images/button.png">
+	</head>
+
+	<body>
+		<div class='header'>
+			<h1 data-i18n><span>The HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+			<div class='navigation'>
+				<ul class='left'>
+					<li class='selected'><a href='/index.html' data-i18n>Your browser</a></li>
+					<li><a href='/results/desktop.html' data-i18n>Other browsers</a></li>
+					<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
+				</ul>
+				<ul class='right'>
+					<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
+					<li><a href='/about.html' data-i18n>About the test</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class='page saved'>
+			<div id='contents' class='column'>
+				<div id='score'></div>
+				<div id='results'></div>
+
+				<div class='footer'>
+					<div>
+						<div class='hosting'>
+							<a href='http://sights.nl/en/'><img src='/images/sights.png' width=55 alt='Sights'></a>
+						</div>
+						
+						<div class='copyright'>
+							<p>Created by Niels Leenheer for Sights. Copyright 2013.
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							<p>June 2013 - version 5.0</p>
+							<p id='uniqueid'></p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+			</div>
+		</div>
+		
+		
+		<script>
+		<!--
+
+			<?php if (isset($one) && $one != ''): ?> 
+				var r = <?php echo $one; ?>;
+				
+				var container = document.getElementById('score');
+				container.innerHTML = tim(
+					"<div class='pointsPanel'>" + 
+					"<h2><span>" + t('This browser scored') + "</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" + 
+					"</div>",
+				r);
+					
+				var wrapper = document.createElement('div');
+				wrapper.className = 'useragent';
+				container.appendChild(wrapper);
+	
+				wrapper.innerHTML = tim(
+					"<p>" + t('This score was recorded using') + " {{humanReadable}}</p>" +
+					"<div class='expandWidget'>▼</div>" + 
+					"<div class='expandedPanel'>" + 
+					"<table><tbody>" + 
+					"<tr><th>" + t('Useragent') + ":</th><td>{{useragent}}</td></tr>" +
+					(r.deviceHeight > 0 && r.deviceWidth > 0 ? "<tr><th>" + t('Screen size') + ":</th><td>{{deviceWidth}} x {{deviceHeight}} px</td></tr>" : "") +
+					"</tbody></table>" +
+					"</div>",
+				r);
+	
+				wrapper.addEventListener('click', function() {
+					if (wrapper.className.indexOf(' expanded') == -1)
+						wrapper.className += ' expanded';
+					else
+						wrapper.className = wrapper.className.replace(' expanded', '');
+				}, true);
+	
+				
+				
+				
+				var container = document.getElementById('results');
+				var div = document.createElement('div');
+				div.className = 'resultsTable detailsTable';
+				container.appendChild(div);
+				
+				var table = new ResultsTable({
+					parent:			div, 
+					tests:			tests,
+					header:			false,
+					links:			true,
+					explainations: 	true,
+					grading:		true,
+					bonus:			true,
+					distribute:		true,
+					columns:		1
+				});
+	
+				table.updateColumn(0, r);
+			<?php endif; ?>
+
+
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-68192-4']);
+				_gaq.push(['_trackPageview']);
+				
+				(function() {
+					var ga = document.createElement('script');
+					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					ga.setAttribute('async', 'true');
+					document.documentElement.firstChild.appendChild(ga);
+				})();
+				
+		//-->
+		</script>
+	</body>
+</html>

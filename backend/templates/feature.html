@@ -6,17 +6,14 @@
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
-		
-		<link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link href='//fonts.googleapis.com/css?family=Alfa+Slab+One' rel='stylesheet' type='text/css'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link rel="stylesheet" href="/css/main.css" type="text/css">
 		
 		<script src='/translation.js' type='text/javascript'></script>
 
+		<script src='/scripts/base.js' type='text/javascript'></script>
 		<script src='/scripts/data.js' type='text/javascript'></script>
-		<script src='/scripts/template.js' type='text/javascript'></script>
 		<script src='/scripts/reporting.js' type='text/javascript'></script>
 
 		<link rel="icon" href="/images/icon.png">
@@ -25,7 +22,7 @@
 	
 	<body>
 		<div class='header'>
-			<h1 data-i18n>The HTML5 test <em>&ndash; how well does your browser support HTML5?</em></h1>
+			<h1 data-i18n><span>The HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
 			<div class='navigation'>
 				<ul class='left'>
 					<li><a href='/index.html' data-i18n>Your browser</a></li>
@@ -39,85 +36,95 @@
 			</div>
 		</div>
 		
-		<div class='page hasNavigation'>
-			<div class='paper'>
-				<ul>
-					<li><a href='/compare/browser/index.html' data-i18n>Browsers</a></li>
-					<li class='selected'><a href='/compare/feature/index.html' data-i18n>Features</a></li>
-				</ul>
-
-				<div>
-					<div id='comparison' class='comparisonTable'></div>
-
-					<hr>
+		<div class='page'>
+			<div class='column'>
+				<div class='paper hasNavigation'>
+					<ul>
+						<li><a href='/compare/browser/index.html' data-i18n>Browsers</a></li>
+						<li class='selected'><a href='/compare/feature/index.html' data-i18n>Features</a></li>
+					</ul>
 	
-					<h3 data-i18n>About these scores</h3>
-					<div class='explaination' data-i18n='score-explaination'>
-						The data above is compiled from automatically submitted test results. It is possible your results 
-						may differ slightly due to external factors such as settings and which operating system is used.
-						If you believe the data above is incorrect, or if you think we are missing an important browser
-						or device, please open a bug report at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>.
+					<div>
+						<div id='comparison' class='comparisonTable detailsTable'></div>
+	
+						<hr>
+		
+						<h3 data-i18n>About these scores</h3>
+						<div class='text' data-i18n='score-explaination'>
+							The data above is compiled from automatically submitted test results. It is possible your results 
+							may differ slightly due to external factors such as settings and which operating system is used.
+							If you believe the data above is incorrect, or if you think we are missing an important browser
+							or device, please open a bug report at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>.
+						</div>
 					</div>
-				</div>
-
-				<script>
-				<!--
-				
-					var table = new BrowserTable({
-						title:			'<h2>' + t('Features') + '</h2><p>' + t('Select up to three features and immediately see how well it is supported by each browser') + '</p>',
-						parent:			document.getElementById('comparison'), 
-						tests:			tests,
-						browsers:		<?php echo json_encode($results); ?>,
-						header:			true,
-						explainations: 	false,
-						columns:		3,
-						
-						onChange:		function(ids) {
-											if (window.history && window.history.replaceState) {
-												if (ids.length) 
-													window.history.replaceState([], document.title, '/compare/feature/' + ids.join('/') + '.html');
-												else
-													window.history.replaceState([], document.title, '/compare/feature/index.html');
-											}
-										}	
-					});
+	
+					<script>
+					<!--
 					
-				<?php if (isset($one) && $one != ''): ?> 
-					table.updateColumn(0, <?php echo $one; ?>);
-				<?php endif; ?>
-				
-				<?php if (isset($two) && $two != ''): ?> 
-					table.updateColumn(1, <?php echo $two; ?>);
-				<?php endif; ?>
-				
-				<?php if (isset($three) && $three != ''): ?> 
-					table.updateColumn(2, <?php echo $three; ?>);
-				<?php endif; ?>
-										
-				-->
-				</script>
-			</div>		
-		</div>
-
-		<div class='footer'>
-			<div>
-				<div class='hosting'>
-					<a href='http://sights.nl/en/'><img src='/images/sights.png' width=55 alt='Sights'></a>
+						var table = new BrowserTable({
+							title:			'<h2>' + t('Features') + '</h2><p>' + t('Select up to five features and immediately see how well it is supported by each browser') + '</p>',
+							parent:			document.getElementById('comparison'), 
+							tests:			tests,
+							browsers:		<?php echo json_encode($results); ?>,
+							header:			true,
+							explainations: 	false,
+							columns:		5,
+							
+							onChange:		function(ids) {
+												if (window.history && window.history.replaceState) {
+													if (ids.length) 
+														window.history.replaceState([], document.title, '/compare/feature/' + ids.join('/') + '.html');
+													else
+														window.history.replaceState([], document.title, '/compare/feature/index.html');
+												}
+											}	
+						});
+						
+					<?php if (isset($one) && $one != ''): ?> 
+						table.updateColumn(0, <?php echo $one; ?>);
+					<?php endif; ?>
+					
+					<?php if (isset($two) && $two != ''): ?> 
+						table.updateColumn(1, <?php echo $two; ?>);
+					<?php endif; ?>
+					
+					<?php if (isset($three) && $three != ''): ?> 
+						table.updateColumn(2, <?php echo $three; ?>);
+					<?php endif; ?>
+											
+					<?php if (isset($four) && $four != ''): ?> 
+						table.updateColumn(3, <?php echo $four; ?>);
+					<?php endif; ?>
+											
+					<?php if (isset($five) && $five != ''): ?> 
+						table.updateColumn(4, <?php echo $five; ?>);
+					<?php endif; ?>
+											
+					-->
+					</script>
 				</div>
-				
-				<div class='copyright'>
-					<p>Copyright 2010-2012 by Sights</p>
-					<p>October, 2012 - version 4.0</p>
-					<p data-i18n='footer'>
-						The HTML5 test is being developed at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>. Please file an issue there if you find any bugs or think of any improvements to this test.
-						Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
-					</p>
-
-					<div id='cloudvps'>
-						<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+					
+				<div class='footer'>
+					<div>
+						<div class='hosting'>
+							<a href='http://sights.nl/en/'><img src='/images/sights.png' width=55 alt='Sights'></a>
+						</div>
+						
+						<div class='copyright'>
+							<p>Created by Niels Leenheer for Sights. Copyright 2013.
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							<p>June 2013 - version 5.0</p>
+							<p id='uniqueid'></p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
+			</div>		
 		</div>
 
 		<script src='//www.google-analytics.com/ga.js'></script>
