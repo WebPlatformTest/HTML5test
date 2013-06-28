@@ -49,6 +49,9 @@
 //			com.android.browser
 //			com.google.android.browser
 
+//			com.hydrastream.hydroid
+//			com.oupeng.browser
+
 			'com.qihoo.browser'									=> '360 Phone Browser',
 			'net.adgjm.angel'									=> 'Angel Browser',
 			'com.apc.browser'									=> 'APC',
@@ -774,7 +777,7 @@
 			'Coolpad 8028'								=> array( 'Coolpad', '8028' ),
 			'Coolpad 8050'								=> array( 'Coolpad', '8050' ),
 			'Coolpad 8060'								=> array( 'Coolpad', '8060' ),
-			'Coolpad -8190'								=> array( 'Coolpad', '8190' ),
+			'Coolpad -?8190!'							=> array( 'Coolpad', '8190' ),
 			'Coolpad 8809'								=> array( 'Coolpad', '8809' ),
 			'Coolpad 8810'								=> array( 'Coolpad', '8810' ),
 			'8810'										=> array( 'Coolpad', '8810' ),
@@ -3086,6 +3089,7 @@
 			'Spice Mi-500'								=> array( 'Spice', 'Mi-500' ),
 			'Mi501'										=> array( 'Spice', 'Mi-501' ),
 			'Spice Mi-530'								=> array( 'Spice', 'Mi-530' ),
+			'Spice Mi-535'								=> array( 'Spice', 'Mi-535' ),
 			'SPICE Mi-720'								=> array( 'Spice', 'Mi-720' ),
 			'SpiceMi1010'								=> array( 'Spice', 'Mi-1010 Stellar Pad', TYPE_TABLET ),
 			'A5000'										=> array( 'Star', 'A5000' ),
@@ -3205,6 +3209,7 @@
 			'Fantastic T3'								=> array( 'TWM', 'Fantastic T3' ),
 			'TB100'										=> array( 'Unitech', 'TB100', TYPE_TABLET ),
 			'M70014'									=> array( 'United Star Technology', 'M70014', TYPE_TABLET ),
+			'UMI S1'									=> array( 'UMI', 'S1' ),
 			'UMI X1'									=> array( 'UMI', 'X1' ),
 			'UMI X1S'									=> array( 'UMI', 'X1s' ),
 			'U1203'										=> array( 'Uniscope', 'U1203' ),
