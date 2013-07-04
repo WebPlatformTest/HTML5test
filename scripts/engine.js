@@ -2701,9 +2701,12 @@ Test = (function() {
 				id:		'security'
 			});
 			
+			
+			var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
+			
 			this.section.setItem({
 				id:			'crypto',
-				passed:		!!window.crypto || !!window.webkitCrypto || !!window.mozCrypto || !!window.msCrypto || !!window.oCrypto, 
+				passed: 	!!crypto && 'encrypt' in crypto,
 				value: 		5
 			});
 
