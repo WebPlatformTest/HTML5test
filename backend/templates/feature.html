@@ -46,7 +46,10 @@
 	
 					<div>
 						<div id='comparison' class='comparisonTable detailsTable'>
-							<div id='scoreToggle'></div>
+							<div class='filters'>
+								<div id='searchField'></div>
+								<div id='scoreToggle'></div>
+							</div>
 							<hr>
 						</div>
 	
@@ -72,6 +75,7 @@
 							header:			true,
 							explainations: 	false,
 							columns:		5,
+							filter:			':mostused',
 							
 							onChange:		function(ids) {
 												if (window.history && window.history.replaceState) {
@@ -104,18 +108,21 @@
 					<?php endif; ?>
 											
 
-						new ToggleSwitch({
+						var search = new SearchField({
+							parent:		document.getElementById('searchField'),
+							onQuery:	function(query) {
+											toggle.activate();
+											table.filter(query);
+										}
+						});
+
+						var toggle = new ToggleSwitch({
 							parent:		document.getElementById('scoreToggle'),
 							inactive:	'Most used',
 							active:		'All browsers',
 							onChange:	function(active) {
-											var o = document.getElementById('comparison');
-										
-											if (active) {
-												o.className += ' showAll';
-											} else {
-												o.className = o.className.replace(' showAll', '');
-											}
+											search.clear();
+											table.filter(active ? '' : ':mostused');
 										}
 						});
 

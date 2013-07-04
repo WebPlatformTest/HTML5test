@@ -1,4 +1,48 @@
 
+	var SearchField = function() { this.initialize.apply(this, arguments) };
+	SearchField.prototype = {
+
+		initialize: function(options) {
+			this.parent = options.parent;
+			this.options = {
+				onQuery:	options.onQuery || null
+			}
+			
+			this.container = document.createElement('div');
+			this.container.className = 'search';
+			this.parent.appendChild(this.container);
+			
+			this.container.innerHTML = 
+				"<input type='text' placeholder='Search...' value=''>" +
+				"<button>×</button>";
+				
+			this.container.firstChild.addEventListener("keyup", this.onUpdate.bind(this), true);
+			this.container.firstChild.addEventListener("change", this.onUpdate.bind(this), true);
+			this.container.firstChild.nextSibling.addEventListener("click", this.onClear.bind(this), true);
+		},
+		
+		onUpdate: function() {
+			var value = this.container.firstChild.value;
+			if (value.length < 3) return;
+			
+			if (this.options.onQuery) {
+				this.options.onQuery(value);
+			}	
+		},
+		
+		onClear: function() {
+			this.clear();
+
+			if (this.options.onQuery) {
+				this.options.onQuery('');
+			}	
+		},
+		
+		clear: function() {
+			this.container.firstChild.value = '';
+		}
+	}
+	
 	var ToggleSwitch = function() { this.initialize.apply(this, arguments) };
 	ToggleSwitch.prototype = {
 
@@ -22,10 +66,10 @@
 				"<div class='part second'>All browsers</div>";
 				
 			
-			this.container.addEventListener("click", this.toggle.bind(this), true);
+			this.container.addEventListener("click", this.onToggle.bind(this), true);
 		},
 		
-		toggle: function() {
+		onToggle: function() {
 			this.active = ! this.active;
 			
 			if (this.active) {
@@ -36,6 +80,20 @@
 			
 			if (this.options.onChange) {
 				this.options.onChange(this.active);
+			}
+		},
+		
+		activate: function() {
+			if (!this.active) {
+				this.active = true;
+				this.container.className += ' selected';
+			}
+		},
+		
+		deactivate: function() {
+			if (this.active) {
+				this.active = false;
+				this.container.className = this.container.className.replace(' selected', '');
 			}
 		}
 	}
@@ -545,6 +603,7 @@
 				links:			options.links || false,
 				grading:		options.grading || false,
 				explainations:	options.explainations || false,
+				filter:			'',
 				
 				onChange:		options.onChange || false
 			}
@@ -555,6 +614,32 @@
 			}
 			
 			this.createSections(this.parent);
+			
+			this.filter(options.filter || '');
+		},
+		
+		filter: function(filter) {
+			if (this.options.filter != filter) {
+				this.options.filter = filter;	
+				
+				for (var i = 0; i < this.browsers.length; i++) {
+					var row = document.getElementById('row-' + this.browsers[i].uid);
+					var visible = true;
+					
+					if (filter != '') {
+						if (filter == ':mostused') {
+							visible = this.browsers[i].listed;	
+						}
+						
+						else {
+							
+							visible = (this.browsers[i].variant  + ' ' + this.browsers[i].version).indexOf(filter) != -1
+						}
+					}
+					
+					row.style.display = visible ? '' : 'none';
+				}	
+			}
 		},
 		
 		loadColumn: function(column, id) {
@@ -634,7 +719,7 @@
 			}
 			
 			for (var i = 0; i < this.browsers.length; i++) {
-				var row = document.getElementById('row-' + this.browsers[i].type + '-' + this.browsers[i].variant + '-' + this.browsers[i].version);
+				var row = document.getElementById('row-' + this.browsers[i].uid);
 				var cell = row.childNodes[column + 1];
 				
 				cell.className = 'used';
@@ -759,7 +844,6 @@
 				}
 	
 				var tr = document.createElement('tr');
-				tr.className = this.browsers[i].listed ? '' : 'secondary';
 				tr.id = 'row-' + this.browsers[i].uid;
 				tbody.appendChild(tr);
 	
