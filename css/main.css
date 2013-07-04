@@ -1448,69 +1448,6 @@ table {
 
 
 
-/*******************************************************************************
- *
- *   Other browsers: Ranking
- */
-
-.rankingPanel dl {
-	float: left;
-	margin-bottom: 20px;
-	padding: 10px 8px;
-	overflow: hidden;
-	text-align: center;
-
-	background: #ddd;
-	
-	width: 140px;
-	height: 140px;
-	
-	box-sizing: border-box;
-}
-.rankingPanel dl#winner {
-	background: #0092bf; 
-}
-.rankingPanel dl#upcoming {
-	float: right;
-	margin: 0;
-}
-.rankingPanel dl dt {
-	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
-	font-size: 1.3em;
-	text-transform: lowercase;
-	font-weight: bold;
-	line-height: 90%;
-	color: #666;
-}
-.rankingPanel dl dd {
-	color: #666;
-}
-.rankingPanel dl dd.score {
-    font-family: 'League Gothic', Impact;
-    font-weight: normal;
-	font-size: 7em;
-	line-height: 75%;
-	color: #0092bf;
-	margin: 0;
-	margin: 12px 0 4px;
-}
-.rankingPanel dl#winner dt,
-.rankingPanel dl#winner dd {
-	color: #fff;
-}
-
-@media (max-width: 360px) {
-	.rankingPanel dl#runnerup {
-		display: none;
-	}
-}
-@media (max-width: 680px) {
-	.rankingPanel dl#upcoming {
-		display: none;
-	}
-}
-
-
 /********************************************
  *
  *   Other browsers: Table
