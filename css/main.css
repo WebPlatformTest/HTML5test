@@ -1376,6 +1376,7 @@ table {
 	display: inline-block;
 	float: left;
 	width: 25%;
+	overflow: hidden;
 }
 
 @media (max-width: 680px) {
