@@ -166,6 +166,9 @@ table {
 .header ul li.selected {
 	background: #0092bf;
 }
+.header ul li:hover {
+	box-shadow: inset 0 32px 0px rgba(0,0,0,0.05);
+}
 .header ul li a {
 	color: #fff;
 	text-decoration: none;
@@ -625,6 +628,9 @@ table {
 	font-size: 1em;
 	text-decoration: none;
 	text-align: left;
+}
+.button:hover {
+	box-shadow: inset 0 50px 0px rgba(0,0,0,0.05);
 }
 .button > span {
 	margin: 0 2px 0 10px;
