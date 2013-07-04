@@ -105,6 +105,10 @@ var tests = [
 												},
 										items:	[
 													{
+														id:		'main',
+														name: 	'<code>main</code> element', 
+														url:	'http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-main-element'
+													}, {
 														id:		'figure',
 														name: 	'<code>figure</code> element', 
 														url:	'http://www.w3.org/TR/html5/grouping-content.html#the-figure-element'

@@ -1183,7 +1183,7 @@ Test = (function() {
 				id:		'grouping'
 			});
 			
-			var elements = 'figure figcaption'.split(' ');
+			var elements = 'main figure figcaption'.split(' ');
 			
 			for (var e = 0; e < elements.length; e++) {
 				var element = document.createElement(elements[e]);
