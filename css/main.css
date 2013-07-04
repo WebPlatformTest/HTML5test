@@ -1776,7 +1776,7 @@ div:-moz-full-screen #timelineGraph {
 	font-size: 12px;
 }
 .comparisonTable table td {
-	width: 95px;
+	width: 96px;
 	text-align: center;
 	border-right: 1px solid #fff;
 }
@@ -1870,6 +1870,27 @@ div:-moz-full-screen #timelineGraph {
 	color: #999;
 	background: none;
 	padding: 8px 0;
+	position: relative;
+}
+.comparisonTable table thead td::after {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 0px;
+	height: 10px;
+	border-right: 1px solid #ddd;	
+	left: 0;
+	bottom: 0;
+}
+.comparisonTable table thead td:last-child::before {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 10px;
+	height: 10px;
+	border-right: 1px solid #ddd;	
+	right: 0;
+	bottom: 0;
 }
 .comparisonTable h2 {
 	color: #0092bf;
@@ -1907,7 +1928,7 @@ div:-moz-full-screen #timelineGraph {
 }
 .comparisonTable #table-header #row-header span.nickname {
 	position: absolute;
-	bottom: 68px;
+	bottom: 18px;
 	font-weight: bold;
 	line-height: 105%;
 	padding: 0 10px;
@@ -1917,7 +1938,7 @@ div:-moz-full-screen #timelineGraph {
 }
 .comparisonTable #table-header #row-header span.score {
 	position: absolute;
-	bottom: 32px;
+	bottom: 46px;
 	font-size: 4em;
 	font-style: normal;
     font-family: 'League Gothic', Impact;
