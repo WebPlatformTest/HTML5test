@@ -1902,7 +1902,7 @@ div:-moz-full-screen #timelineGraph {
 	cursor: pointer;
 }
 .comparisonTable #table-header #row-header td.empty {
-	background: #b3deeb;
+	background: #eee;
 }
 .comparisonTable #table-header #row-header div.name {
 	display: table;
@@ -1911,7 +1911,7 @@ div:-moz-full-screen #timelineGraph {
 	display: block;
 	text-align: center;
 	width: 96px;
-	color: #b3deeb;
+	color: #b2ddeb;
 }
 .comparisonTable #table-header #row-header span.nickname {
 	position: absolute;
