@@ -109,7 +109,7 @@
 									</thead>
 									<tbody>
 										<?php foreach($results['current'] as $item): ?>
-										<tr class='<?php echo $item->listed == 0 ? 'hidden' :''; ?>'>
+										<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
 											<td class='points'><?php echo $item->score; ?></td>
 											<th class='nickname'>
 												<?php if ($item->points != ''): ?>
@@ -137,7 +137,7 @@
 									</thead>
 									<tbody>
 										<?php foreach($results['development'] as $item): ?>
-										<tr class='<?php echo $item->listed == 0 ? 'hidden' :''; ?>'>
+										<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
 											<td class='points'><?php echo $item->score; ?></td>
 											<th class='nickname'>
 												<?php if ($item->points != ''): ?>
@@ -167,7 +167,7 @@
 									</thead>
 									<tbody>
 										<?php foreach($results['legacy'] as $item): ?>
-										<tr class='<?php echo $item->listed == 0 ? 'hidden' :''; ?>'>
+										<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
 											<td class='points'><?php echo $item->score; ?></td>
 											<th class='nickname'>
 												<?php if ($item->points != ''): ?>

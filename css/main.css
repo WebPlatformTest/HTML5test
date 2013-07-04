@@ -1539,10 +1539,10 @@ table {
 .scoreTable {
 	margin: 0 0 50px;
 }
-.scoreTable tr.hidden {
+.scoreTable tr.secondary {
 	display: none;
 }
-.scoreTable.showAll tr.hidden {
+.scoreTable.showAll tr.secondary {
 	display: table-row;
 }
 .scoreTable th,
