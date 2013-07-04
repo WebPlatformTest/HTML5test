@@ -1751,7 +1751,16 @@ div:-moz-full-screen #timelineGraph {
  *   Compare
  */
 
+.comparisonTable {
+	position: relative;
+}
+.comparisonTable #scoreToggle {
+	position: static;
+	float: right;	
+}
+
 .comparisonTable table {
+	margin-top: 20px;
 	margin-bottom: 40px;
 	font-size: 1em;
 }
@@ -1874,6 +1883,7 @@ div:-moz-full-screen #timelineGraph {
 .comparisonTable #table-header #row-header th {
 	padding: 0 40px 0 0;
 	background: none;
+	vertical-align: top;
 }
 .comparisonTable #table-header #row-header th p {
 	margin: 0;
@@ -2042,6 +2052,13 @@ div:-moz-full-screen #timelineGraph {
 	background: #fff;
 	cursor: default;
 }
+.comparisonTable tr.secondary {
+	display: none;
+}
+.comparisonTable.showAll tr.secondary {
+	display: table-row;
+}
+
 
 @media (max-width: 880px) {
 	.comparisonTable table tr :nth-child(6) {

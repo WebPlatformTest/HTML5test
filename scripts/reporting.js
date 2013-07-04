@@ -759,6 +759,7 @@
 				}
 	
 				var tr = document.createElement('tr');
+				tr.className = this.browsers[i].listed ? '' : 'secondary';
 				tr.id = 'row-' + this.browsers[i].uid;
 				tbody.appendChild(tr);
 	

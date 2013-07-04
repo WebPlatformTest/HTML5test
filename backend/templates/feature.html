@@ -45,7 +45,10 @@
 					</ul>
 	
 					<div>
-						<div id='comparison' class='comparisonTable detailsTable'></div>
+						<div id='comparison' class='comparisonTable detailsTable'>
+							<div id='scoreToggle'></div>
+							<hr>
+						</div>
 	
 						<hr>
 		
@@ -100,6 +103,23 @@
 						table.updateColumn(4, <?php echo $five; ?>);
 					<?php endif; ?>
 											
+
+						new ToggleSwitch({
+							parent:		document.getElementById('scoreToggle'),
+							inactive:	'Most used',
+							active:		'All browsers',
+							onChange:	function(active) {
+											var o = document.getElementById('comparison');
+										
+											if (active) {
+												o.className += ' showAll';
+											} else {
+												o.className = o.className.replace(' showAll', '');
+											}
+										}
+						});
+
+
 					-->
 					</script>
 				</div>
