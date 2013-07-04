@@ -13,6 +13,8 @@
 		<script src='/translation.js' type='text/javascript'></script>
 
 		<script src='/scripts/base.js' type='text/javascript'></script>
+		<script src='/scripts/reporting.js' type='text/javascript'></script>
+
 		<script src='/scripts/jquery/jquery-1.7.2.min.js' type='text/javascript'></script>
 		<script src='/scripts/highcharts/highcharts.src.js' type='text/javascript'></script>
 		<script src="/scripts/highcharts/modules/exporting.js" type="text/javascript"></script>
@@ -121,12 +123,8 @@
 						<div class='scorePanel'>
 							<h2 data-i18n>Scores</h2>
 							
-							<div id='scoreToggle' class='toggle'>
-								<div class='background'></div>
-								<div class='part first'>Most used</div>
-								<div class='part second'>All browsers</div>
-							</div>
-							
+							<div id='scoreToggle'></div>
+
 							<div class='left'>
 								<?php if (isset($results['current'])): ?>
 								<h3 data-i18n>Current</h3>
@@ -217,24 +215,26 @@
 						</div>	
 
 						<script>
-							var toggle = document.getElementById('scoreToggle');
-							toggle.addEventListener('click', function() {
-								if (toggle.className.indexOf(' selected') == -1) {
-									toggle.className += ' selected';
+						
+							new ToggleSwitch({
+								parent:		document.getElementById('scoreToggle'),
+								inactive:	'Most used',
+								active:		'All browsers',
+								onChange:	function(active) {
+												var tables = document.getElementsByClassName('scoreTable');
+											
+												if (active) {
+													for (var i = 0; i < tables.length; i++) {
+														tables[i].className += ' showAll';
+													}
+												} else {
+													for (var i = 0; i < tables.length; i++) {
+														tables[i].className = tables[i].className.replace(' showAll', '');
+													}
+												}
+											}
+							});
 
-									var tables = document.getElementsByClassName('scoreTable');
-									for (var i = 0; i < tables.length; i++) {
-										tables[i].className += ' showAll';
-									}
-								} else {
-									toggle.className = toggle.className.replace(' selected', '');
-
-									var tables = document.getElementsByClassName('scoreTable');
-									for (var i = 0; i < tables.length; i++) {
-										tables[i].className = tables[i].className.replace(' showAll', '');
-									}
-								}
-							}, true);
 						</script>
 								
 						

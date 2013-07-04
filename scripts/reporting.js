@@ -1,4 +1,45 @@
-	
+
+	var ToggleSwitch = function() { this.initialize.apply(this, arguments) };
+	ToggleSwitch.prototype = {
+
+		initialize: function(options) {
+			this.parent = options.parent;
+			this.options = {
+				inactive:	options.inactive || '',
+				active:		options.active || '',
+				onChange:	options.onChange || null
+			}
+			
+			this.active = false;
+			
+			this.container = document.createElement('div');
+			this.container.className = 'toggle';
+			this.parent.appendChild(this.container);
+			
+			this.container.innerHTML = 
+				"<div class='background'></div>" +
+				"<div class='part first'>Most used</div>" +
+				"<div class='part second'>All browsers</div>";
+				
+			
+			this.container.addEventListener("click", this.toggle.bind(this), true);
+		},
+		
+		toggle: function() {
+			this.active = ! this.active;
+			
+			if (this.active) {
+				this.container.className += ' selected';
+			} else {
+				this.container.className = this.container.className.replace(' selected', '');
+			}
+			
+			if (this.options.onChange) {
+				this.options.onChange(this.active);
+			}
+		}
+	}
+
 
 	var FeatureTable = function() { this.initialize.apply(this, arguments) };
 	FeatureTable.prototype = {
