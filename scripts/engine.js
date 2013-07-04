@@ -22,7 +22,7 @@ Test = (function() {
 			/* 3D, Graphics & Effects */		testCanvas, testWebGL, testAnimation,
 			/* Performance & Integration */		testInteraction, testPerformance, testSecurity, testHistory,
 			
-			testOther,
+			testOther
 		],
 		
 		initialize: function(callback, error) {
