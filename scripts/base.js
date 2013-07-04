@@ -333,7 +333,7 @@
 			e.stopPropagation();
 			
 			var ignore = false;
-			var el = e.target;
+			var el = e.target || e.srcElement;
 			
 			while (el != this.parent && ignore == false) {
 				if (el.className.indexOf('popupPanel') != -1) ignore = true;
@@ -507,17 +507,19 @@
 					
 			left = document.createElement('div');
 			left.className = 'left';
+			left.innerHTML = '<div></div>';
 			parent.appendChild(left);
 
 			right = document.createElement('div');
 			right.className = 'right';
+			right.innerHTML = '<div></div>';
 			parent.appendChild(right);
 
 		
 			for (var i = 0; i < tests.length; i++) {
 				var container = parent;
-				if (tests[i].column == 'left') container = left;
-				if (tests[i].column == 'right') container = right;
+				if (tests[i].column == 'left') container = left.firstChild;
+				if (tests[i].column == 'right') container = right.firstChild;
 			
 				var div = document.createElement('div');
 				div.className = 'category ' + tests[i].id;
@@ -534,6 +536,7 @@
 		createSections: function(parent, tests) {
 			for (var i = 0; i < tests.length; i++) {
 				var table = document.createElement('table');
+				table.cellSpacing = 0;
 				table.id = 'table-' + tests[i].id;
 				parent.appendChild(table);
 

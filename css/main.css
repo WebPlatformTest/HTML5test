@@ -113,7 +113,9 @@ table {
 }
 .header h1 span,
 .header h1 em {
-	display: inline-block;	
+	zoom: 1;
+	display: inline-block;       
+	*display: inline;
 }
 
 .header h1 strong {
@@ -322,15 +324,19 @@ table {
 .page .column .left,
 .page .column .right {
 	width: 50%;	
-	display: inline-block;
+
+	zoom: 1;
+	display: inline-block;       
+	*display: inline;
+
 	vertical-align: top;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 }
-.page .column .left {
+.page .column .left > div {
 	padding-right: 10px;
 }
-.page .column .right {
+.page .column .right > div {
 	padding-left: 10px;
 }
 
@@ -349,6 +355,9 @@ table {
 	.page .column .left,
 	.page .column .right {
 		width: 100%;	
+	}
+	.page .column .left > div,
+	.page .column .right > div {
 		padding: 0;
 	}
 }
@@ -607,7 +616,7 @@ table {
 	-moz-box-sizing: border-box;
 	width: 100%;
 	border: none;
-	padding: 10px 2px 10px 10px;
+	padding: 10px 0;
 	margin: 0;
 	cursor: pointer;
 	vertical-align: top;
@@ -618,6 +627,7 @@ table {
 	text-align: left;
 }
 .button > span {
+	margin: 0 2px 0 10px;
 	vertical-align: middle;
 }
 .button > span::before {
@@ -631,19 +641,19 @@ table {
 }
 
 .button.website { background: #444; color: #fff; }
-.button.website span::before { content: ''; }
+.button.website > span::before { content: ''; }
 .button.followme { background: #0092bf; color: #fff; }
-.button.followme span::before { content: ''; }
+.button.followme > span::before { content: ''; }
 .button.donate { background: #ffd500; color: #000; }
-.button.donate span::before { content: ''; }
+.button.donate > span::before { content: ''; }
 .button.developed { background: #ccc; color: #000; }
-.button.developed span::before { content: ''; }
+.button.developed > span::before { content: ''; }
 .button.compare { background: #33af33; color: #fff; }
-.button.compare span::before { content: '☉'; }
+.button.compare > span::before { content: '☉'; }
 .button.save { background: #0092bf; color: #fff; }
-.button.save span::before { content: '☁'; }
+.button.save > span::before { content: '☁'; }
 .button.share { background: #ec6534; color: #fff; }
-.button.share span::before { content: ''; }
+.button.share > span::before { content: ''; }
 
 
 
@@ -758,6 +768,9 @@ table {
  *   Your Browser: Score
  */
 
+#score {
+	z-index: 10;
+}
 
 .pointsPanel {
 	background: #fff;
@@ -787,7 +800,7 @@ table {
 	transform: translateY(6px);
 }
 .pointsPanel h2 > strong {
-	font-family: inherit;
+    font-family: 'League Gothic', Impact;
     font-weight: normal;
 	font-size: 3.8em;
 	color: #0092bf;
@@ -842,7 +855,6 @@ table {
 .popupPanel.save {
 	width: 210px;
 	margin-top: 21px;
-	margin-left: -10px;
 	padding: 20px 10px 10px;
 	
 	text-align: center;
@@ -875,7 +887,6 @@ table {
 .popupPanel.share {
 	width: 210px;
 	margin-top: 21px;
-	margin-left: -10px;
 }
 #share {
 	display: block;
@@ -912,6 +923,7 @@ table {
 .wrapper .buttons > * {
 	width: 25%;
 	display: inline-block;
+	overflow: hidden;
 }
 
 @media (max-width: 680px) {
@@ -1104,6 +1116,7 @@ table {
 	color: #000;
 	
 	border-collapse: separate;
+	z-index: 0;
 }
 .resultsTable table thead tr {
 	color: #fff;
