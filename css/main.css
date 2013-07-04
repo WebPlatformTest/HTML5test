@@ -1145,104 +1145,35 @@ table {
 	
 	text-align: right;
 }
-.resultsTable table thead td div.grade {
+.resultsTable table thead th div.grade {
 	position: absolute;
 	top: 0;
 	right: 0;
 }
-.resultsTable table thead td div > span {
+.resultsTable table thead th div > span {
 	display: block;
 	height: 100%;
 	line-height: 44px;
 	padding: 0 10px;
     font-family: 'League Gothic', Impact;
-    font-size: 1.6em;
+    font-size: 0.8em;
 }
-.resultsTable table thead td span.none {
+.resultsTable table thead th span.none {
 	background-color: #853333;
 }
-.resultsTable table thead td span.badly {
+.resultsTable table thead th span.badly {
 	background-color: #d68533;
 }
-.resultsTable table thead td span.reasonable {
+.resultsTable table thead th span.reasonable {
 	background-color: #e7c333;
 }
-.resultsTable table thead td span.good {
+.resultsTable table thead th span.good {
 	background-color: #88b038;
 }
-.resultsTable table thead td span.great {
+.resultsTable table thead th span.great {
 	background-color: #33af33;
 }
 
-.resultsTable table thead td span.bonus {
-	position: absolute;
-	top: 7px;
-	left: -37px;
-	height: 30px;
-	width: 27px;
-	padding: 0 0 0 3px;
-	
-	white-space: nowrap;
-	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
-	font-size: 1.1em;
-	text-transform: lowercase;
-	font-weight: bold;
-	text-align: left;
-	line-height: 30px;
-	
-	color: #0092bf;
-
-	background: #fff;
-	opacity: 0.6;
-	
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
-}
-.resultsTable table thead td:hover span.bonus {
-	width: 120px;
-	left: -130px;
-	opacity: 1;
-}
-
-.resultsTable table thead td span.bonus::after {
-	position: absolute;
-	right: -6px;
-	top: 9px;
-	content: ' ';
-	display: block;
-	width: 0px;
-	height: 0px;
-	background: red;
-	border-left: 6px solid #fff;
-	border-top: 6px solid #0092bf;
-	border-bottom: 6px solid #0092bf;
-	border-right: none;
-}
-.resultsTable table thead td span.bonus span {
-	display: inline-block;
-	position: absolute;
-	top: 0;
-	left: 30px;
-	height: 30px;
-	line-height: 30px;
-	font-size: 0.7em;
-	opacity: 0;
-	width: 8px;
-	overflow: hidden;
-
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
-}
-.resultsTable table thead td:hover span.bonus span {
-	width: 100px;
-	opacity: 1;
-}
 .resultsTable table tbody th {
 	padding: 5px 10px;
 	

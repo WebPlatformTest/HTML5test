@@ -315,10 +315,9 @@
 		
 		create: function() {
 			this.created = true;
-	
+
 			this.popup.innerHTML +=
 				"<div id='save'>" + 
-				
 				"<p>You can see the results here:</p>" +
 				"<p><a href='http://alpha.html5test.com/s/" + this.options.id + ".html'>http://alpha.html5test.com<br>/s/" + this.options.id + ".html</a></p>" + 
 				"<p>Or scan this QR-code:</p>" +
@@ -429,9 +428,9 @@
 						}
 
 						var row = document.getElementById('head-' + test.id);
-						var cell = row.childNodes[column + 1];
+						var cell = row.childNodes[0].firstChild.nextSibling;
 						
-						var content = "<div><div class='grade'>";
+						var content = "<div class='grade'>";
 						
 						if (this.options.grading) {
 							var grade = '';
@@ -452,7 +451,7 @@
 							content += "<span>" + points + "</span>";
 						}
 
-						content += "</div></div>";
+						content += "</div>";
 						
 						cell.innerHTML = content;
 						this.updateItems(column, data, 0, test.id, test.items);
@@ -548,14 +547,10 @@
 				thead.appendChild(tr);
 				
 				var th = document.createElement('th');
-				th.innerHTML = t(tests[i].name);
+				th.innerHTML = t(tests[i].name) + "<div></div>";
+				th.colSpan = this.options.columns + 1;
 				tr.appendChild(th);
 
-				for (var c = 0; c < this.options.columns; c++) {
-					var td = document.createElement('td');
-					tr.appendChild(td);
-				}
-				
 				if (typeof tests[i].items != 'undefined') {
 					var tbody = document.createElement('tbody');
 					table.appendChild(tbody);
