@@ -1629,24 +1629,6 @@ table {
 	font-size: 1.1em;
 	font-weight: bold;
 }
-/*
-.scoreTable tr.hidden th,
-.scoreTable tr.hidden td {
-	color: #fff;
-
-	-webkit-transition: color 0.5s 1s ease-in-out;
-	-moz-transition: color 0.5s 1s ease-in-out;
-	-ms-transition: color 0.5s 1s ease-in-out;
-	-o-transition: color 0.5s 1s ease-in-out;
-	transition: color 0.5s 1s ease-in-out;
-}
-
-.scoreTable.showAll tr.hidden th,
-.scoreTable.showAll tr.hidden td {
-	color: inherit;
-}
-*/
-
 
 @media (max-width: 680px) {
 	.scoreTable .description {
