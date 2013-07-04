@@ -87,10 +87,6 @@ var tests = [
 														name: 	'<code>aside</code> element', 
 														url:	'http://www.w3.org/TR/html5/sections.html#the-aside-element'
 													}, {
-														id:		'hgroup',
-														name: 	'<code>hgroup</code> element', 
-														url:	'http://www.w3.org/TR/html5/sections.html#the-hgroup-element'
-													}, {
 														id:		'header',
 														name: 	'<code>header</code> element', 
 														url:	'http://www.w3.org/TR/html5/sections.html#the-header-element'

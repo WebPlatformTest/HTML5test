@@ -1158,7 +1158,7 @@ Test = (function() {
 				id:		'section'
 			});
 			
-			var elements = 'section nav article aside hgroup header footer'.split(' ');
+			var elements = 'section nav article aside header footer'.split(' ');
 			
 			for (var e = 0; e < elements.length; e++) {
 				var element = document.createElement(elements[e]);
