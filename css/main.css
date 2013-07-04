@@ -233,23 +233,17 @@ table {
  */
 
 .footer {
-	background: #444;
+	background: #eee;
 	margin-top: 30px;
-	padding: 0 20px 20px 20px;
+	padding: 20px;
 	overflow: hidden;
-	min-height: 130px;
+	min-height: 43px;
 }
 .footer > div {
-	padding-right: 130px;
 	position: relative;
-}
-.footer > div .hosting {
-	position: absolute;
-	top: 0;
-	left: 0;
+	padding-right: 300px;
 }
 .footer > div .copyright {
-	margin: 24px 0 0 72px;
 	font-size: 0.75em;
 	color: #777;
 }
@@ -264,17 +258,18 @@ table {
 	position: absolute;
 	top: 0;
 	right: 0;
-	border-left: 1px solid #555;
+	border-left: 1px solid #ccc;
 	
 	display: block;
-	background: url(/images/cloudvps.png) no-repeat 16px top;
+	background: url(/images/cloudvps.png) no-repeat 10px top;
 	background-size: 59px 43px;
-	padding-top: 56px;
-	padding-left: 16px;
+	padding-top: 0px;
+	padding-left: 80px;
 	
 	text-decoration: none;
-	color: #ddd;
-	font-size: 95%;
+	color: #04446d;
+	font-size: 90%;
+	min-height: 43px;
 }
 #cloudvps a b {
 	font-size: 110%;
@@ -294,13 +289,13 @@ table {
 	
 	#cloudvps a {
 		top: auto;
-		left: 70px;		
+		left: 0;		
 		
 		border-left: none;
-		border-top: 1px solid #555;
+		border-top: 1px solid #ccc;
 		padding-top: 12px;
 		padding-left: 70px;
-		background-position: left 16px;
+		background-position: left 12px;
 	}
 }
 
