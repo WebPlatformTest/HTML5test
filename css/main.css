@@ -555,7 +555,7 @@ table {
 	width: 200px;	
 	height: 40px;
 	line-height: 40px;
-	background: #f6f6f6;
+	background: #eee;
 }
 .search input {
 	position: absolute;
@@ -585,10 +585,10 @@ table {
 }
 .search button {
 	position: absolute;
-	top: 0;
-	right: 0;
-	height: 40px;
-	width: 40px;
+	top: 4px;
+	right: 4px;
+	height: 32px;
+	width: 32px;
 	
 	font-size: 1.2em;
 	color: #bbb;
@@ -613,7 +613,7 @@ table {
 	
 	line-height: 40px;
 	text-align: center;
-	background: #d9d9d9;
+	background: #eee;
 }
 .toggle .part {
 	position: absolute;
@@ -1745,15 +1745,18 @@ div:-moz-full-screen #timelineGraph {
 	position: relative;
 }
 .comparisonTable .filters {
-	overflow: hidden;
+	height: 40px;
+}
+.comparisonTable .filters + hr {
+	border-top-width: 3px;
 }
 .comparisonTable #scoreToggle {
 	position: static;
-	float: right;	
+	float: left;	
 }
 .comparisonTable #searchField {
 	position: static;
-	float: left;
+	float: right;
 }
 .comparisonTable hr {
 	clear: both;
