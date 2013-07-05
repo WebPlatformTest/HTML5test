@@ -632,6 +632,8 @@
 			if (this.options.filter != filter) {
 				this.options.filter = filter;	
 				
+				filter = filter.toLowerCase();
+				
 				for (var i = 0; i < this.browsers.length; i++) {
 					var row = document.getElementById('row-' + this.browsers[i].uid);
 					var visible = true;
@@ -642,8 +644,7 @@
 						}
 						
 						else {
-							
-							visible = (this.browsers[i].variant  + ' ' + this.browsers[i].version).indexOf(filter) != -1
+							visible = this.browsers[i].nickname.toLowerCase().indexOf(filter) != -1
 						}
 					}
 					
