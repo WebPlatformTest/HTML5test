@@ -8,6 +8,8 @@
 				onQuery:	options.onQuery || null
 			}
 			
+			this.interval = null;
+			
 			this.container = document.createElement('div');
 			this.container.className = 'search';
 			this.parent.appendChild(this.container);
@@ -22,12 +24,11 @@
 		},
 		
 		onUpdate: function() {
-			var value = this.container.firstChild.value;
-			if (value.length < 3) return;
+			if (this.interval) {
+				window.clearTimeout(this.interval);
+			}
 			
-			if (this.options.onQuery) {
-				this.options.onQuery(value);
-			}	
+			this.interval = window.setTimeout(this.onQuery.bind(this), 250);
 		},
 		
 		onClear: function() {
@@ -35,6 +36,15 @@
 
 			if (this.options.onQuery) {
 				this.options.onQuery('');
+			}	
+		},
+		
+		onQuery: function() {
+			var value = this.container.firstChild.value;
+			if (value.length < 3) return;
+			
+			if (this.options.onQuery) {
+				this.options.onQuery(value);
 			}	
 		},
 		
