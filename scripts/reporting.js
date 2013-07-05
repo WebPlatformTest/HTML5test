@@ -125,6 +125,7 @@
 				grading:		options.grading || false,
 				features:		options.features || false,
 				explainations:	options.explainations || false,
+				filter:			null,
 				
 				onChange:		options.onChange || false
 			}
@@ -136,7 +137,101 @@
 				this.data[i] = null;
 			}
 			
-			this.createCategories(this.parent, this.tests);
+			this.createCategories(this.parent, this.tests)
+			this.results = document.createElement('div');
+			this.parent.appendChild(this.results);
+			
+			this.filter(options.filter || '');
+		},
+		
+		filter: function(filter) {
+			if (this.options.filter == filter) {
+				return;
+			}
+			
+			this.options.filter = filter;
+		
+			if (filter == '') {
+				this.results.innerHTML = '';
+				for (var i = 0; i < this.tests.length; i++) {
+					this.createSections(this.results, this.tests[i].items);
+				}
+				
+				this.update();
+				return;
+			}
+			
+			var result = [];
+			var path = [];
+		
+			function retrieveItems(items, level) {
+				for (var i = 0; i < items.length; i++) {
+					if (typeof items[i] == 'object') {
+						path[level] = items[i].id;
+				
+						if (!filterItem(items[i], level)) {
+							if (items[i].items) {
+								retrieveItems(items[i].items, level + 1);
+							}
+						}
+					}
+				}
+			}
+			
+			function addItems(items, level) {
+				for (var i = 0; i < items.length; i++) {
+					if (typeof items[i] == 'object') {
+						path[level] = items[i].id;
+						
+						if (level > 1) {
+							var r = {
+								id:		path.slice(1, level + 1).join('-'),
+								name:	items[i].name
+							}
+							if (items[i].url) r.url = items[i].url;
+							if (items[i].urls) r.urls = items[i].urls;
+							if (items[i].items) r.items = items[i].items;
+	
+							result.push(r);
+						}
+						else if (items[i].items) {
+							addItems(items[i].items, level + 1);
+						}
+					}
+				}
+				
+				return true;
+			}
+			
+			function filterItem(item, level) {
+				path[level] = item.id;
+				
+				var selected = item.name.toLowerCase().indexOf(filter) != -1;
+
+				if (selected) {
+					if (level > 1) {
+						var r = {
+							id:		path.slice(1, level + 1).join('-'),
+							name:	item.name
+						}
+						if (item.url) r.url = item.url;
+						if (item.urls) r.urls = item.urls;
+						if (item.items) r.items = item.items;
+
+						return result.push(r);
+					}
+					else if (item.items) {
+						return addItems(item.items, level + 1);
+					}
+				}		
+			}
+
+			retrieveItems(this.tests, 0);
+			
+			this.results.innerHTML = '';
+			this.createSections(this.results, [{ name: filter, items: result }]);
+			
+			this.update();
 		},
 		
 		loadColumn: function(column, browser) {
@@ -216,9 +311,11 @@
 				if (typeof test != 'string') {
 					if (typeof test.items != 'undefined') {
 						var row = document.getElementById('head-' + test.id);
-						var cell = row.childNodes[column + 1];
-						cell.innerHTML = '';
-
+						if (row) {
+							var cell = row.childNodes[column + 1];
+							cell.innerHTML = '';
+						}
+						
 						this.clearItems(column, test.id, test.items);
 					}
 				}
@@ -229,13 +326,23 @@
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] != 'string') {
 					var row = document.getElementById('row-' + id + '-' + tests[i].id);
-					var cell = row.childNodes[column + 1];
-					cell.innerHTML = '';
-					cell.className = '';
+					if (row) {
+						var cell = row.childNodes[column + 1];
+						cell.innerHTML = '';
+						cell.className = '';
+					}
 					
 					if (typeof tests[i].items != 'undefined') {
 						this.clearItems(column, id + '-' + tests[i].id, tests[i].items);
 					}
+				}
+			}
+		},
+		
+		update: function() {
+			for (var i = 0; i < this.options.columns; i++) {
+				if (this.data[i]) {
+					this.updateColumn(i, this.data[i]);
 				}
 			}
 		},
@@ -281,32 +388,34 @@
 						}
 
 						var row = document.getElementById('head-' + test.id);
-						var cell = row.childNodes[column + 1];
-						
-						var content = "<div><div class='grade'>";
-						
-						if (this.options.grading) {
-							var grade = '';
-							var percent = parseInt(points / maximum * 100, 10);
-							switch (true) {
-								case percent == 0: 	grade = 'none'; break;
-								case percent <= 30: grade = 'badly'; break;
-								case percent <= 60: grade = 'reasonable'; break;
-								case percent <= 95: grade = 'good'; break;
-								default:			grade = 'great'; break;
+						if (row) {
+							var cell = row.childNodes[column + 1];
+							
+							var content = "<div><div class='grade'>";
+							
+							if (this.options.grading) {
+								var grade = '';
+								var percent = parseInt(points / maximum * 100, 10);
+								switch (true) {
+									case percent == 0: 	grade = 'none'; break;
+									case percent <= 30: grade = 'badly'; break;
+									case percent <= 60: grade = 'reasonable'; break;
+									case percent <= 95: grade = 'good'; break;
+									default:			grade = 'great'; break;
+								}
+							
+								if (points == maximum)
+									content += "<span class='" + grade + "'>" + points + "</span>";
+								else
+									content += "<span class='" + grade + "'>" + points + "/" + maximum + "</span>";
+							} else {
+								content += "<span>" + points + "</span>";
 							}
-						
-							if (points == maximum)
-								content += "<span class='" + grade + "'>" + points + "</span>";
-							else
-								content += "<span class='" + grade + "'>" + points + "/" + maximum + "</span>";
-						} else {
-							content += "<span>" + points + "</span>";
+	
+							content += "</div></div>";
+							cell.innerHTML = content;
 						}
 
-						content += "</div></div>";
-						
-						cell.innerHTML = content;
 						this.updateItems(column, data, 0, test.id, test.items);
 					}
 				}
@@ -319,36 +428,42 @@
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] != 'string') {
 					var row = document.getElementById('row-' + id + '-' + tests[i].id);
-					var cell = row.childNodes[column + 1];
-
-					cell.className = 'used';
-
-					if (typeof tests[i].items != 'undefined') {
-						var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
-					
-						if (results[0] == results[1])
-							cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>';
-						else if (results[1] == 0)
-							cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
-						else
-							cell.innerHTML = '<div><span class="partially">' + t('Partial') + '</span> <span class="partial">○</span></div>';
-					} 
-					
-					else {
-						var key = id + '-' + tests[i].id;
-							
-						if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(data.results)) {
-							switch(parseInt(match[1], 10)) {
-								case 1:		cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
-								case -1:	cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
-								case -2:	cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
-								default: 	cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+					if (row) {
+						var cell = row.childNodes[column + 1];
+	
+						cell.className = 'used';
+	
+						if (typeof tests[i].items != 'undefined') {
+							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
+						
+							if (results[0] == results[1])
+								cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>';
+							else if (results[1] == 0)
+								cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
+							else
+								cell.innerHTML = '<div><span class="partially">' + t('Partial') + '</span> <span class="partial">○</span></div>';
+						} 
+						
+						else {
+							var key = id + '-' + tests[i].id;
+								
+							if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(data.results)) {
+								switch(parseInt(match[1], 10)) {
+									case 1:		cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
+									case -1:	cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
+									case -2:	cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
+									default: 	cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+								}
+							} else {
+								cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';
 							}
-						} else {
-							cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';
+						}
+					} else {
+						if (typeof tests[i].items != 'undefined') {
+							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);					
 						}
 					}
-
+					
 					count[0]++;
 				}
 			}
@@ -460,11 +575,6 @@
 					}, true);
 				})(this, c, menu);
 			}
-
-
-			for (var i = 0; i < tests.length; i++) {
-				this.createSections(parent, tests[i].items);
-			}
 		},
 	
 		createSections: function(parent, tests) {
@@ -476,18 +586,18 @@
 					parent.appendChild(h2);
 				} else {
 					var table = document.createElement('table');
-					table.id = 'table-' + tests[i].id;
+					if (tests[i].id) table.id = 'table-' + tests[i].id;
 					parent.appendChild(table);
 	
 					var thead = document.createElement('thead');
 					table.appendChild(thead);
 					
 					var tr = document.createElement('tr');
-					tr.id = 'head-' + tests[i].id;
+					if (tests[i].id) tr.id = 'head-' + tests[i].id;
 					thead.appendChild(tr);
 					
 					var th = document.createElement('th');
-					th.innerHTML = t(tests[i].name);
+					if (tests[i].name) th.innerHTML = t(tests[i].name);
 					tr.appendChild(th);
 
 					for (var c = 0; c < this.options.columns; c++) {
@@ -499,7 +609,7 @@
 						var tbody = document.createElement('tbody');
 						table.appendChild(tbody);
 	
-						this.createItems(tbody, 0, tests[i].id, tests[i].items);
+						this.createItems(tbody, 0, tests[i].id ? tests[i].id : '', tests[i].items);
 					}
 				}
 			}
@@ -531,7 +641,7 @@
 						tr.appendChild(td);
 					}
 					
-					tr.id = 'row-' + id + '-' + tests[i].id;
+					tr.id = 'row-' + (id ? id + '-' : '') + tests[i].id;
 					
 					if (level > 0) {
 						tr.className = 'isChild';
@@ -550,7 +660,7 @@
 						}
 
 						tr.className += 'hasChild';
-						var children = this.createItems(parent, level + 1, id + '-' + tests[i].id, tests[i].items, urls);
+						var children = this.createItems(parent, level + 1, (id ? id + '-' : '') + tests[i].id, tests[i].items, urls);
 						this.hideChildren(tr, children);
 						
 						(function(that, tr, th, children) {

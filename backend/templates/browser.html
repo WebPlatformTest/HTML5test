@@ -48,7 +48,12 @@
 					</ul>
 	
 					<div>
-						<div id='comparison' class='comparisonTable detailsTable'></div>
+						<div id='comparison' class='comparisonTable detailsTable'>
+							<div class='filters'>
+								<div id='searchField'></div>
+							</div>
+							<hr>
+						</div>
 	
 						<hr>
 		
@@ -90,6 +95,14 @@
 													}
 												}	
 							});
+
+							var search = new SearchField({
+								parent:		document.getElementById('searchField'),
+								onQuery:	function(query) {
+												table.filter(query);
+											}
+							});
+	
 							
 						<?php if (isset($one)): ?> 
 							<?php if ($one != ''): ?> 
