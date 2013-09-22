@@ -2656,7 +2656,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'microdata',
 				passed:		r, 
-				value: 		15
+				value: 		5
 			});
 		}
 	};					
