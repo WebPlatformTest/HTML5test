@@ -1276,6 +1276,15 @@ var tests = [
 														'mdn':		'/docs/WebGL'
 													}
 				
+									}, {
+										id:			'context2',
+										name: 		'WebGL 2 3D graphics', 
+										urls:		{
+														'khronos':	'http://www.khronos.org/registry/webgl/specs/latest/2.0/',
+														'wp': 		'/webgl',
+														'mdn':		'/docs/WebGL'
+													}
+				
 									}
 								]
 					}, {
