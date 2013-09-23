@@ -1073,6 +1073,19 @@ Test = (function() {
 				passed:		'AudioContext' in window || 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window, 
 				value: 		5
 			});
+
+
+			this.section.setItem({
+				id:			'speechrecognition',
+				passed:		'SpeechRecognition' in window || 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window, 
+				value: 		3
+			});
+
+			this.section.setItem({
+				id:			'speechsynthesis',
+				passed:		'speechSynthesis' in window || 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window, 
+				value: 		2
+			});
 		},
 		
 		canPlayType: function(t) {

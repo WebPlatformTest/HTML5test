@@ -1142,6 +1142,18 @@ var tests = [
 										url:		'https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html'
 									},
 				
+									{
+										id:			'speechrecognition',
+										name: 		'Speech Recognition', 
+										url:		'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
+									},
+				
+									{
+										id:			'speechsynthesis',
+										name: 		'Speech Synthesis', 
+										url:		'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
+									},
+				
 									'<em>The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score.</em>',
 									
 									{
