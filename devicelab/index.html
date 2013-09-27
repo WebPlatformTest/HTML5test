@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title data-i18n>The HTML5 test - How well does your browser support HTML5?</title>	
+
+		<meta charset="UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+		
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
+
+		<script src='/scripts/base.js' type='text/javascript'></script>
+		<script src='/scripts/engine.js' type='text/javascript'></script>
+		<script src='/scripts/data.js' type='text/javascript'></script>
+		
+		<link rel="icon" href="/images/icon.png">
+		<link rel="apple-touch-icon" href="/images/button.png">
+		
+		<meta name="application-name" content="HTML5test"/> 
+		<meta name="msapplication-TileColor" content="#454545"/> 
+		<meta name="msapplication-TileImage" content="http://html5test.com/images/tile.png"/>
+
+		<meta property="og:title" content="The HTML5 test - How well does your browser support HTML5?" />
+		<meta property="og:description" content="The HTML5 test score is an indication of how well your browser supports the upcoming HTML5 standard and related specifications. How well does your browser support HTML5?" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://html5test.com" />
+		<meta property="og:image" content="http://html5test.com/images/thumbnail.jpg" />
+		<meta property="og:site_name" content="HTML5test.com" />
+		<meta property="fb:admins" content="1087142132" />
+	</head>
+	
+	
+	<body>
+		<div id="fb-root"></div>
+
+		<div class='header'>
+			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+			<div class='navigation'>
+				<ul class='left'>
+					<li><a href='/index.html' data-i18n>Your browser</a></li>
+					<li><a href='/results/desktop.html' data-i18n>Other<span> browser</span>s</a></li>
+					<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
+				</ul>
+				<ul class='right'>
+					<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
+					<li class='selected'><a href='/devicelab'>Device Lab</a></li>
+					<li><a href='/about.html' data-i18n>About<span> the test</span></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class='page'>
+			<div id='contents' class='column'>
+				<div class='labheader'>
+					<h2>Open Device Lab</h2>
+				</div>	
+			
+				<p style="line-height: 180%; margin: 16px 0;">
+					Do you test your website on mobile? Testing on a real device is always better than an emulator. 
+					But there are so many devices, it's not possible for every developer to own all devices. 
+					Fortunately, you don't have to!
+				</p>
+
+				<div class='paper'>
+					<div>
+						<div class='text'>
+							<div class='intro'>
+								<p>
+									If you want to know how your website looks on an ancient BlackBerry,
+									on a Nokia N9 or a Firefox OS device - we've got them. Need to test on iOS? 
+									No problem, we've got devices running iOS 2.2 to 7.0 and you're welcome to 
+									use them.
+								</p>
+							</div>
+
+							<p>
+								But the HTML5test Device Lab isn't the only one. There are more than 70 Open Device
+								Labs across 22 countries.
+								Head on over to <a href='http://opendevicelab.com'>OpenDeviceLab.com</a>
+								for more information and locate the one closest to you.
+							</p>
+															
+							<h3 class='break'>Location and opening times</h3>
+	
+							<p>
+								We are based in Drachten, located in the north of The Netherlands.
+							</p>
+							<p>
+								For now, our lab is open only on friday afternoon and only by appointment. We have limited space and
+								time, so make sure you contact us before hand and let us know which devices you like to use, so we can make sure
+								they are available and charged when you arrive.
+							</p>
+							<p>
+								If you want to visit our lab, contact us and we will send you a complete description where to go.
+							</p>
+							
+							<p class='break'>
+								<img src='/images/phones@2x.jpg' width='276' height='241'>
+							</p>
+							
+							<div class='devicecount'>68 Devices available!</div>
+	
+						</div>
+
+						<div class='labrules'>
+							<ol>
+								<li>Always make an appointment</li>
+								<li>Let us know in advance which devices you want to use</li>
+								<li>Never <b>ever</b> upgrade the firmware or operating system</li>
+								<li>Devices can not be taken home for testing</li>
+							</ol>
+						</div>	
+
+						<div class='buttons'>
+							<a class='button donate' href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC"><span>Donate using Paypal</span></a>
+							<a class='button followme' href="http://www.twitter.com/rakaz"><span>Follow me on Twitter</span></a>				
+							<a class='button contact' href="mailto:info@html5test.com"><span>Make an appointment</span></a>				
+							<a class='button labs' href="http://opendevicelab.com/#!odl=1138"><span>Rate my Open Device Lab</span></a>			
+						</div>	
+					</div>
+				</div>
+						
+				<div class='paper'>
+					<div>
+						<h2>Our devices</h2>
+						
+						<table class='scoreTable'>
+							<thead>
+								<tr>
+									<th>Manufacturer</th>
+									<th>Model</th>
+									<th>Operating System</th>
+									<th>Contributor</th>
+								</tr>
+							</thead>
+						
+							<tbody>
+								<tr>
+									<td>Acer</td>
+									<td>Iconia Tab A500</td>
+									<td>Android 3.2</td>
+									<td>Salonhub</td>
+								</tr>
+								<tr>
+									<td>Aldi</td>
+									<td>Minipad</td>
+									<td>Android 2.3</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>HTC</td>
+									<td>G2</td>
+									<td>Android 1.6</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>HTC</td>
+									<td>Nexus 7</td>
+									<td>Android 4.2</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>Galaxy Apollo</td>
+									<td>Android 2.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>Galaxy Ace</td>
+									<td>Android 2.3</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>Galaxy S III</td>
+									<td>Android 4.0</td>
+									<td>Salonhub</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>Galaxy Tab 2 7.0</td>
+									<td>Android 4.1</td>
+									<td>Salonhub</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>Galaxy Nexus</td>
+									<td>Android 4.1</td>
+									<td>Google</td>
+								</tr>
+								<tr>
+									<td>Sony Ericsson</td>
+									<td>Xperia Arc</td>
+									<td>Android 2.3</td>
+									<td>Salonhub</td>
+								</tr>
+								<tr>
+									<td>Sony</td>
+									<td>Xperia E dual</td>
+									<td>Android 4.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Tomtec</td>
+									<td>Ultimate 10</td>
+									<td>Android 4.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Wolfgang</td>
+									<td>AS43D</td>
+									<td>Android 2.3</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Wolfgang</td>
+									<td>AS43D2</td>
+									<td>Android 2.1</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Samsung</td>
+									<td>Wave 525</td>
+									<td>Bada 1.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>Wave 723</td>
+									<td>Bada 1.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>Wave</td>
+									<td>Bada 2.0</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>BlackBerry</td>
+									<td>8820</td>
+									<td>BlackBerry OS 4.5</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>BlackBerry</td>
+									<td>Bold 9790</td>
+									<td>BlackBerry OS 7.1</td>
+									<td>BB Dev Group</td>
+								</tr>
+								<tr>
+									<td>BlackBerry</td>
+									<td>PlayBook</td>
+									<td>Tablet OS 2.1</td>
+									<td>BB Dev Group</td>
+								</tr>
+								<tr>
+									<td>BlackBerry</td>
+									<td>Dev Alpha A</td>
+									<td>BlackBerry 10</td>
+									<td>BlackBerry</td>
+								</tr>
+
+								<tr>
+									<td>Samsung</td>
+									<td>Chromebook XE303</td>
+									<td>Chrome OS</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Geeksphone</td>
+									<td>Keon</td>
+									<td>Firefox OS</td>
+									<td>Mozilla</td>
+								</tr>
+								<tr>
+									<td>Geeksphone</td>
+									<td>Peak</td>
+									<td>Firefox OS</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Amazon</td>
+									<td>Kindle Fire HD</td>
+									<td>Fire OS 2</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Apple</td>
+									<td>iPhone</td>
+									<td>iOS 3.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPhone 3G</td>
+									<td>iOS 4.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPhone 3G</td>
+									<td>iOS 4.2</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPhone 3GS</td>
+									<td>iOS 5.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPhone 4S</td>
+									<td>iOS 5.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPhone 4S</td>
+									<td>iOS 6.1</td>
+									<td>Salonhub</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPhone 5</td>
+									<td>iOS 7.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPod Touch (2nd gen)</td>
+									<td>iOS 2.2</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPod Touch (5th gen)</td>
+									<td>iOS 6.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPad (3rd gen)</td>
+									<td>iOS 6.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Apple</td>
+									<td>iPad mini</td>
+									<td>iOS 7.0</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Nokia</td>
+									<td>N900</td>
+									<td>Maemo 5</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Nokia</td>
+									<td>N9</td>
+									<td>Meego 1.2</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Nokia</td>
+									<td>Asha 203</td>
+									<td>S40 Touch & Type</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>Asha 311</td>
+									<td>S40 Full Touch</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>C3-00</td>
+									<td>S40 6th Ed.</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>X3-02</td>
+									<td>S40 6th Ed. FP1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>6301</td>
+									<td>S40 5th Ed. FP1</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Nokia</td>
+									<td>500</td>
+									<td>S60 5.3 (Belle)</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>N93</td>
+									<td>S60 3.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>N95</td>
+									<td>S60 3.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>N96</td>
+									<td>S60 3.2</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>N97 mini</td>
+									<td>S60 5.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Nokia</td>
+									<td>C6-00</td>
+									<td>S60 5.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Sony Ericsson</td>
+									<td>Vivaz</td>
+									<td>S60</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Samsung</td>
+									<td>S8000 Jet</td>
+									<td>Touchwiz 2.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>S5620 Monte</td>
+									<td>Touchwiz 2.0 Plus</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>S5260 Star II</td>
+									<td>Touchwiz 3.0</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>HTC</td>
+									<td>Nexus 7</td>
+									<td>Ubuntu Touch</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Palm</td>
+									<td>Pre</td>
+									<td>WebOS</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>HP</td>
+									<td>Palm Pixi Plus</td>
+									<td>WebOS 1.4.5</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>HP</td>
+									<td>TouchPad</td>
+									<td>WebOS 3.0</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>HTC</td>
+									<td>TyTn</td>
+									<td>Windows Mobile 5.0</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>HTC</td>
+									<td>Touch Mini</td>
+									<td>Windows Mobile 6.1</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>HTC</td>
+									<td>Touch Diamond 2</td>
+									<td>Windows Mobile 6.5</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Samsung</td>
+									<td>B7610 OmniaPRO</td>
+									<td>Windows Mobile 6.5</td>
+									<td>Sights</td>
+								</tr>
+
+								<tr>
+									<td>Nokia</td>
+									<td>Lumia 610</td>
+									<td>Windows Phone 7.5</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>HTC</td>
+									<td>8S</td>
+									<td>Windows Phone 8</td>
+									<td>Salonhub</td>
+								</tr>
+								
+								<tr>
+									<td>Samsung</td>
+									<td>ATIV Smart PC XE500</td>
+									<td>Windows 8.0</td>
+									<td>Salonhub</td>
+								</tr>
+								<tr>
+									<td>Microsoft</td>
+									<td>Surface RT</td>
+									<td>Windows RT 8.1</td>
+									<td>Salonhub</td>
+								</tr>
+
+								<tr>
+									<td>LG</td>
+									<td>KC910i Renoir</td>
+									<td>-</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>LG</td>
+									<td>T565b</td>
+									<td>-</td>
+									<td>Sights</td>
+								</tr>
+								<tr>
+									<td>Sony Ericsson</td>
+									<td>Cybershot C905</td>
+									<td>-</td>
+									<td>Sights</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<hr>
+
+						<h2>How can you help us?</h2>
+						<div class='text'>
+							<div class='helpus'>
+								<h3>Everybody</h3>
+								<p>
+									We are always looking for devices to add to our lab. If you have a second-hand phone or tablet
+									you want to donate to us, that would be great! Any mobile device with a browser is welcome, no matter
+									how old. We do prefer unlocked GSM devices or devices with WiFi.
+								</p>
+								<p>
+									At this time we are actively looking for devices with older versions of BlackBerry OS and Kindle ereaders.
+								</p>
+							</div>
+							<div class='helpus'>
+								<h3>Manufacturers</h3>
+								<p>
+									If you are a manufacturer that has a new phone, developer unit, or completely new platform, please also contribute!
+								</p>
+								<p>
+									All donated devices are going to be used for improving HTML5test.com itself and makes sure you always have
+									up to date scores on the scoreboard. They will also be available to the public and will be used to improve
+									compatibility of real-life websites with your devices.
+								</p>
+								<p>
+									At this time we are actively looking for devices running Android 4.3 or 4.4, Ubuntu Touch, Sailfish or Tizen.
+								</p>
+							</div>
+							<div class='helpus'>
+								<h3>Developers</h3>
+								<p>
+									Do you want to establish your own Open Device Lab? <a href='http://labup.com'>LabUp</a> is here to help you!
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>		
+
+
+				<div class='footer'>
+					<div>
+						<div class='copyright'>
+							<p>
+								June 2013 - version 5.0. Created by Niels Leenheer. 
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
