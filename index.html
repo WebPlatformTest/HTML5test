@@ -328,6 +328,8 @@
 				}, 
 				
 				function(e) {
+					if (typeof console != 'undefined') console.log(e);
+					
 					alert('Test has failed: ' + e.message);
 
 					var contents = document.getElementById('contents');
