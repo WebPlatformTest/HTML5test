@@ -30,6 +30,7 @@
 			LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 		WHERE 
 			v.importance > 0 AND
+			b.listed = 1 AND
 			s.release = '" . $version . "' AND
 			FIND_IN_SET('" . $type . "',b.type)
 		ORDER BY 
