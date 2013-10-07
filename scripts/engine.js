@@ -1628,13 +1628,6 @@ Test = (function() {
 			this.removeInput(element);
 			
 			
-			
-			try {
-				var styles = document.createElement('style');
-				styles.innerHTML = "input[type=date]::-webkit-textfield-decoration-container, input[type=datetime]::-webkit-textfield-decoration-container, input[type=month]::-webkit-textfield-decoration-container, input[type=week]::-webkit-textfield-decoration-container, input[type=time]::-webkit-textfield-decoration-container, input[type=datetime-local]::-webkit-textfield-decoration-container { padding: 10px; }";
-				(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(styles)
-			} catch(e) {
-			}
 			/* input type=date, month, week, time and datetime-local */
 			
 			var types = ['date', 'month', 'week', 'time', 'datetime-local'];
@@ -1659,10 +1652,10 @@ Test = (function() {
 				
 				group.setItem({
 					id:			'ui',
-					passed:		minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
+					passed:		minimal && sanitization, 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
 					value: 		2
 				});
-				
+
 				group.setItem({
 					id:			'sanitization',
 					passed:		minimal && sanitization,
@@ -1719,13 +1712,6 @@ Test = (function() {
 			
 			/* input type=number, range */
 			
-			try {
-				var styles = document.createElement('style');
-				styles.innerHTML = "input[type=number]::-webkit-outer-spin-button { display: inline; padding: 60px; }";
-				(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(styles)
-			} catch(e) {
-			}
-			
 			var types = ['number', 'range'];
 			for (var t = 0; t < types.length; t++) {
 				var group = this.section.getGroup({
@@ -1760,20 +1746,12 @@ Test = (function() {
 					required:	true
 				});
 				
-				if (t == 'range') {
-					group.setItem({
-						id:			'ui',
-						passed:		minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
-						value: 		2
-					});
-				} else {
-					group.setItem({
-						id:			'ui',
-						passed:		minimal && (baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper)),
-						value: 		2
-					});
-				}
-				
+				group.setItem({
+					id:			'ui',
+					passed:		minimal && sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
+					value: 		2
+				});
+
 				group.setItem({
 					id:			'sanitization',
 					passed:		minimal && sanitization,
@@ -1847,7 +1825,7 @@ Test = (function() {
 			
 			group.setItem({
 				id:			'ui',
-				passed:		baseline.field != getRenderedStyle(element.field) || baseline.wrapper != getRenderedStyle(element.wrapper),
+				passed:		sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
 				value: 		2
 			});
 				
