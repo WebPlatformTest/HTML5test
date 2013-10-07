@@ -3402,6 +3402,12 @@ Test = (function() {
 			});
 
 			this.section.setItem({
+				id:			'json',
+				passed:		'JSON' in window && 'parse' in JSON, 
+				value: 		1
+			});
+
+			this.section.setItem({
 				id:   		'mutationObserver',
 				passed:   	'MutationObserver' in window || 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window,
 				value:  	3 

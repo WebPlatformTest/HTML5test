@@ -1827,6 +1827,12 @@ var tests = [
 														'mdn':	'/DOM/window.atob'
 													}
 									}, {
+										id:			'json',
+										name: 		'JSON encoding and decoding', 
+										urls:		{
+														'mdn':	'/JSON'
+													}
+									}, {
 										id: 		'mutationObserver',
 										name:   	'Mutation Observer',
 										urls:		{
