@@ -2014,7 +2014,7 @@ div:-moz-full-screen #timelineGraph {
 }
 .comparisonTable #table-header #row-header span.nickname {
 	position: absolute;
-	bottom: 18px;
+	top: 58px;
 	font-weight: bold;
 	line-height: 105%;
 	padding: 0 10px;
