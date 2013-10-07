@@ -528,6 +528,12 @@ tbody tr:hover th.details {
 	color: #0092bf;
 	text-decoration: underline;
 }
+.paper > div .text a.button {
+	color: inherit;
+}
+.paper > div .text a.button:hover {
+	text-decoration: inherit;
+}
 .intro {
 	font-size: 1.05em;
 	line-height: 150%;
