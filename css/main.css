@@ -1258,7 +1258,6 @@ table {
 	color: #000;
 	
 	border-collapse: separate;
-	z-index: 0;
 }
 .resultsTable table thead tr {
 	color: #fff;
