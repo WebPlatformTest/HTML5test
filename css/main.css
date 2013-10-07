@@ -2072,12 +2072,18 @@ div:-moz-full-screen #timelineGraph {
 	content: '+';
 	font-size: 3em;
 	color: #0092bf;
+	
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
 }
 .comparisonTable #table-header #row-header td > div > div.name:hover::after {
 	background: #0092bf;
 	color: #b3deeb;
 }
-.comparisonTable #table-header #row-header td:not(.empty) > div > div.name:hover::after {
+.comparisonTable #table-header #row-header td:not(.empty) > div > div.name::after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -2090,8 +2096,17 @@ div:-moz-full-screen #timelineGraph {
 	width: 96px;
 	height: 90px;
 	z-index: 2;
-}
+	opacity: 0;
 
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+.comparisonTable #table-header #row-header td:not(.empty) > div > div.name:hover::after {
+	opacity: 0.8;
+}
 .comparisonTable #table-header #row-header td .popup {
 	display: none;
 
