@@ -319,10 +319,10 @@
 			this.popup.innerHTML +=
 				"<div id='save'>" + 
 				"<p>You can see the results here:</p>" +
-				"<p><a href='http://alpha.html5test.com/s/" + this.options.id + ".html'>http://alpha.html5test.com<br>/s/" + this.options.id + ".html</a></p>" + 
+				"<p><a href='http://html5te.st/" + this.options.id + "'>html5te.st/" + this.options.id + "</a></p>" + 
 				"<p>Or scan this QR-code:</p>" +
 				"<p>" + 
-				"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent("http://alpha.html5test.com/s/" + this.options.id + ".html") + "&choe=UTF-8' width='200' height='200'>" +
+				"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent("http://html5te.st/" + this.options.id) + "&choe=UTF-8' width='200' height='200'>" +
 				"</p>" +
 				"<p>The unique id for this test is:<br><code>" + this.options.id + "</code></p>" +
 				"</div>";
