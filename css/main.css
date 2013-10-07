@@ -754,7 +754,7 @@ table {
 .button.developed { background: #ccc; color: #000; }
 .button.developed > span::before { content: ''; }
 .button.compare { background: #33af33; color: #fff; }
-.button.compare > span::before { content: '☉'; }
+.button.compare > span::before { content: '⚏'; }
 .button.save { background: #0092bf; color: #fff; }
 .button.save > span::before { content: '☁'; }
 .button.share { background: #ec6534; color: #fff; }
