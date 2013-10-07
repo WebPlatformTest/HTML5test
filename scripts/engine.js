@@ -1412,6 +1412,22 @@ Test = (function() {
 
 			document.body.removeChild(element);					
 
+
+			var element = document.createElement('dialog');
+
+			var passed = false;
+			try { 
+				passed = typeof HTMLDialogElement != 'undefined' && element instanceof HTMLDialogElement;
+			} catch(error) {
+			}
+			
+			group.setItem({
+				id:			'dialog',
+				passed:		passed, 
+				value: 		1
+			});
+			
+			
 			var element = document.createElement('div');
 			
 			this.section.setItem({

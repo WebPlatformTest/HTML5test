@@ -176,6 +176,10 @@ var tests = [
 														id:		'menucontext',
 														name: 	'<code>menu</code> element of type <code>context</code>', 
 														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element'
+													}, {
+														id:		'dialog',
+														name: 	'<code>dialog</code> element', 
+														url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/commands.html#the-dialog-element'
 													}
 												]					
 									},
