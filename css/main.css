@@ -2484,5 +2484,72 @@ div:-moz-full-screen #timelineGraph {
 
 
 
+ul.legend {
+	list-style-type: none;
+	margin-bottom: 1em;
+}
+ul.legend li {
+	display: inline;
+	margin-right: 10px;
+	white-space: nowrap;
+}
+ul.legend li span {
+	display: inline;
+}
+tr[data-available^=no] td {
+	color: #aaa;
+	text-decoration: line-through;
+}
+.unavailable {
+	color: #aaa;
+	text-decoration: line-through;
+	margin-right: 4px;
+}
 
+.hasWifi::before {
+	content: '';
+	font-family: html5test;
+	margin-left: 4px;
+	color: #aaa;
+}
+tr:hover .hasWifi::before {
+	color: #0092bf;
+}
+li.hasWifi::before {
+	color: #0092bf;
+	margin: 0 6px 0 0;
+}
 
+.onRequest::before {
+	content: '☎';
+	font-family: html5test;
+	margin-left: 4px;
+	color: #aaa;
+}
+tr:hover .onRequest::before {
+	color: #33af33;
+}
+li.onRequest::before {
+	color: #33af33;
+	margin: 0 6px 0 0;
+}
+.hasInspect::before {
+	content: 'In';
+	margin-left: 4px;
+	color: #fff;
+	background: #aaa;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	line-height: 16px;
+	text-align: center;
+	font-size: 0.8em;
+	font-family: Arial;
+}
+tr:hover .hasInspect::before {
+	background: #624127;
+}
+li.hasInspect::before {
+	background: #624127;
+	margin: 0 6px 0 0;
+}
