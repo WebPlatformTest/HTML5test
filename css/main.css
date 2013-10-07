@@ -91,7 +91,12 @@ table {
 	border-collapse: collapse; 
 	width: 100%;
 }
-
+tbody tr:hover td, tbody tr:hover th {
+	background-color: #f6f6f6;
+}
+tbody tr:hover th.details {
+	background-color: inherit;
+}
 
 
 
