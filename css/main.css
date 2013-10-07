@@ -462,11 +462,27 @@ table {
 	column-gap: 16px;
 }
 
+.break-2 {
+	-webkit-column-break-before: always;
+	break-before: always;
+}
+
+.break-3 {
+	-webkit-column-break-before: always;
+	break-before: always;
+}
+
 @media (max-width: 767px) {
 	.paper > div .text {
 		-webkit-column-count: 2;
 		-moz-column-count: 2;
 		column-count: 2;
+	}
+	
+	.break-3 {
+		margin-top: 1.5em !important;
+		-webkit-column-break-before: auto;
+		break-before: auto;
 	}
 }
 
@@ -475,6 +491,12 @@ table {
 		-webkit-column-count: 1;
 		-moz-column-count: 1;
 		column-count: 1;
+	}
+
+	.break-2 {
+		margin-top: 1.5em !important;
+		-webkit-column-break-before: auto;
+		break-before: auto;
 	}
 
 	.paper ul li span {
@@ -491,6 +513,26 @@ table {
 		padding: 0 6px;
 	}
 }
+.paper > div .text a {
+	color: #0092bf;
+	text-decoration: none;
+}
+.paper > div .text a:hover {
+	color: #0092bf;
+	text-decoration: underline;
+}
+.intro {
+	font-size: 1.05em;
+	line-height: 150%;
+	font-weight: bold;
+	color: #555;
+}
+
+.break {
+	-webkit-column-break-before: always;
+	break-before: always;
+}
+
 
 
 /********************************************
@@ -717,6 +759,10 @@ table {
 .button.save > span::before { content: '☁'; }
 .button.share { background: #ec6534; color: #fff; }
 .button.share > span::before { content: ''; }
+.button.contact { background: #ec6534; color: #fff; }
+.button.contact > span::before { content: ''; }
+.button.labs { background: #33af33; color: #fff; }
+.button.labs > span::before { content: '☟'; }
 
 
 
@@ -1464,6 +1510,7 @@ table {
 	float: left;
 	width: 25%;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 @media (max-width: 680px) {
@@ -2245,3 +2292,157 @@ div:-moz-full-screen #timelineGraph {
 	overflow: scroll;
 	overflow-y: hidden;
 }
+
+
+
+/*******************************************************************************
+ *
+ *   Device lab
+ */
+
+.labheader {
+	position: relative;
+	margin: -2.5em 0 0; 
+	height: 340px; 
+	background: url(/images/lab.jpg) top center; 
+	background-attachment: fixed; 
+
+		background-image: url(/images/lab@2x.jpg);
+		background-size: 900px 450px;
+}
+.labheader h2 {
+	position: absolute; 
+	bottom: 0; 
+	left: 0; 
+	padding: 10px 16px 4px; 
+	font-size: 4em; 
+	color: #fff; 
+	background: rgba(236,101,52,0.8)
+}
+
+.inbetween {
+	line-height: 180%; 
+	margin: 16px 0;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.labheader {
+		background-image: url(/images/lab@2x.jpg);
+		background-size: 900px 450px;
+	}
+}
+
+@media (max-width: 680px) {
+	.labheader {
+		background-attachment: scroll; 
+		background-position: center bottom;
+		background-size: 450px 225px;
+		height: 265px; 
+	}
+
+	.labheader h2 {
+		font-size: 3em; 
+	}
+
+	.inbetween {
+		font-size: 0.9em;
+	}
+}
+
+@media (max-width: 432px) {
+	.labheader h2 {
+		font-size: 2.5em; 
+	}
+
+	.inbetween {
+		font-size: 0.85em;
+	}
+}
+
+.labrules {
+	background: #eee; 
+	margin: 20px -20px 20px; 
+	padding: 20px;
+}
+.labrules ol {
+	text-align: center; 
+	font-size: 1.6em; 
+	line-height: 150%; 
+	list-style-type: none;
+}
+.devicecount {
+	display: inline-block;
+	padding: 6px 8px 4px;
+    font-family: 'League Gothic', Impact;
+    font-weight: normal;
+	font-size: 2em;
+	line-height: 100%;
+	text-transform: uppercase;
+
+	color: #fff;
+	background-color: #0092bf;
+}
+
+
+.help {
+	-moz-column-count: 3;
+	-moz-column-gap: 16px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 16px;
+	column-count: 3;
+	column-gap: 16px;
+}
+
+
+.helpus {
+	margin-top: 50px;
+	position: relative;
+	background: #eee;
+	padding: 30px 20px 10px;
+	-webkit-column-break-after: always;
+	break-after: always;
+}
+.helpus::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: block;
+	content: '';
+	border-left: 138px solid #fff;
+	border-right: 138px solid #fff;
+	border-bottom: 20px solid rgba(0,0,0,0);
+}
+.helpus h3 {
+    font-family: 'League Gothic', Impact;
+    font-weight: normal;
+	font-size: 2.5em;
+	line-height: 100%;
+	text-transform: uppercase;
+	color: #777;
+	margin: -40px 0 0 -20px !important;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	text-align: center;
+}
+
+@media (max-width: 680px) {
+	.help {
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		column-count: 1;
+	}
+
+	.helpus {
+		margin-top: 70px;
+	}
+	.helpus::before {
+		border-left: 200px solid #fff;
+		border-right: 200px solid #fff;
+	}
+}
+
+
+
+
