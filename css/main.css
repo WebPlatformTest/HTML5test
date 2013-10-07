@@ -449,11 +449,6 @@ tbody tr:hover th.details {
 .paper > div p + h3 {
 	margin-top: 1.5em;
 }
-/*
-.paper > div a {
-	color: #333;
-}
-*/
 .paper > div hr {
 	clear: both;
 	margin: 20px -20px;
