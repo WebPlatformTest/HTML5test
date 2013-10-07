@@ -269,51 +269,6 @@ var tests = [
 													}
 												]
 									}, {
-										id:		'datetime',
-										name:	'<code>input type=datetime</code>',
-										items:	[
-													{
-														id:			'element',
-														name: 		'Minimal element support', 
-														url:		'http://www.w3.org/TR/html5/forms.html#date-and-time-state-(type=datetime)'
-													}, {
-														id:			'ui',
-														name: 		'Custom user-interface'
-													}, {
-														id:			'sanitization',
-														name: 		'Value sanitization', 
-														url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
-													}, {
-														id:			'min',
-														name: 		'<code>min</code> attribute', 
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
-													}, {
-														id:			'max',
-														name: 		'<code>max</code> attribute', 
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
-													}, {
-														id:			'step',
-														name: 		'<code>step</code> attribute', 
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
-													}, {
-														id:			'stepDown',
-														name: 		'<code>stepDown()</code> method',
-														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
-													}, {
-														id:			'stepUp',
-														name: 		'<code>stepUp()</code> method',
-														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
-													}, {
-														id:			'valueAsDate',
-														name: 		'<code>valueAsDate()</code> method',
-														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasdate'
-													}, {
-														id:			'valueAsNumber',
-														name: 		'<code>valueAsNumber()</code> method',
-														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
-													}
-												]
-									}, {
 										id:		'date',
 										name:	'<code>input type=date</code>',
 										items:	[

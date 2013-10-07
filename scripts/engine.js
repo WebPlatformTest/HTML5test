@@ -28,7 +28,6 @@ Test = (function() {
 		initialize: function(callback, error) {
 			blacklists = {
 				'form.file':						Browsers.isOs('iOS', '<', '6'), 
-				'form.datetime.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				'form.date.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				'form.month.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				'form.week.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
@@ -1613,7 +1612,6 @@ Test = (function() {
 			this.removeInput(element);
 			
 			
-			/* input type=datetime, date, month, week, time and datetime-local */
 			
 			try {
 				var styles = document.createElement('style');
@@ -1621,8 +1619,9 @@ Test = (function() {
 				(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(styles)
 			} catch(e) {
 			}
+			/* input type=date, month, week, time and datetime-local */
 			
-			var types = ['datetime', 'date', 'month', 'week', 'time', 'datetime-local'];
+			var types = ['date', 'month', 'week', 'time', 'datetime-local'];
 			for (var t = 0; t < types.length; t++) {
 				var group = this.section.getGroup({
 					id:		types[t]
