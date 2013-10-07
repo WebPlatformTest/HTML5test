@@ -628,6 +628,8 @@ table {
 	font-family: html5test;
 	text-align: center;
 	font-size: 1.2em;
+	color: #666;
+	-webkit-font-smoothing: antialiased;
 }
 .search button {
 	position: absolute;
@@ -734,6 +736,7 @@ table {
 .button > span {
 	margin: 0 2px 0 10px;
 	vertical-align: middle;
+	white-space: nowrap;
 }
 .button > span::before {
 	font-family: html5test;
