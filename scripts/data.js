@@ -1449,6 +1449,23 @@ var tests = [
 													}
 												]
 									}, {
+										id:		'editing.selectors',
+										name:	'CSS selectors',
+										urls:	{
+													'mdn':	'/HTML/Content_Editable'
+												},
+										items:	[
+													{
+														id:			'read-write',
+														name: 		'<code>:read-write</code> selector', 
+														url:		'http://www.w3.org/TR/html5/links.html#selector-read-write'
+													}, {
+														id:			'read-only',
+														name: 		'<code>:read-only</code> selector', 
+														url:		'http://www.w3.org/TR/html5/links.html#selector-read-only'
+													}
+												]
+									}, {
 										id:		'editing.apis',
 										name:	'APIs',
 										urls:	{

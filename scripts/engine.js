@@ -2629,6 +2629,55 @@ Test = (function() {
 				value: 		1
 			});
 
+
+
+			var selectors = "read-write read-only".split(" ");
+			var res = [false, false];
+			var unknown = false;
+				
+			if ('querySelector' in document) {
+				var element = document.createElement('div');
+				element.id = 'testDivElement';
+				element.contentEditable = true;
+				document.body.appendChild(element);
+
+				var nested = document.createElement('div');
+				nested.id = 'testDivNested';
+				nested.contentEditable = false;
+				element.appendChild(nested);
+
+				try {
+					res[0] = document.querySelector("#testDivElement:read-write") == element;
+				} catch(e) {
+					res[0] = false;
+				}
+
+				try {
+					res[1] = document.querySelector("#testDivNested:read-only") == nested;
+				} catch(e) {
+					res[1] = false;
+				}
+
+				document.body.removeChild(element);
+			} else {
+				unknown = true;	
+			}
+			
+			var group = this.section.getGroup({
+				id:		'editing.selectors'
+			});
+			
+			for (var i = 0; i < selectors.length; i++) {
+				group.setItem({
+					id:			selectors[i],
+					passed:		res[i],
+					value: 		1,
+					custom:		unknown ? 'unknown' : false
+				});
+			}
+			
+			
+
 			this.section.setItem({
 				id:			'spellcheck',
 				passed:		!!('spellcheck' in element), 
