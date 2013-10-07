@@ -72,8 +72,10 @@ h3 {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-size: 1.05em;
 }
-
-strong {
+th {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+}
+strong, b {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 }
 button {
@@ -524,6 +526,7 @@ table {
 .intro {
 	font-size: 1.05em;
 	line-height: 150%;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 	color: #555;
 }
@@ -1700,6 +1703,7 @@ table {
 	padding-right: 10px;
 	padding-left: 10px;
 	font-size: 1.1em;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 }
 
@@ -2032,6 +2036,7 @@ div:-moz-full-screen #timelineGraph {
 	color: #fff;
 }
 .comparisonTable #table-header #row-header span.feature {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 	padding: 0 10px;
 	width: 76px;
@@ -2275,6 +2280,7 @@ div:-moz-full-screen #timelineGraph {
 .overviewTable span.version span {
 }
 .overviewTable span.version span span {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	color: #fff;
 	background: #aaa;
 	padding: 2px 4px;
@@ -2291,6 +2297,7 @@ div:-moz-full-screen #timelineGraph {
 .overviewTable span.points {
 	display: inline-block;
 	width: 40px;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 	text-align: left;
 }
