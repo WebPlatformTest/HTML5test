@@ -2461,6 +2461,14 @@ div:-moz-full-screen #timelineGraph {
 	width: 100%;
 	text-align: center;
 }
+.helpus a {
+	color: #0092bf;
+	text-decoration: none;
+}
+.helpus a:hover {
+	color: #0092bf;
+	text-decoration: underline;
+}
 
 @media (max-width: 680px) {
 	.help {
