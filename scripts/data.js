@@ -1813,6 +1813,13 @@ var tests = [
 														'mdn':	'/DOM/window.onerror'
 													}
 									}, {
+										id:			'executionevents',
+										name: 		'Script execution events', 
+										urls:		{
+														'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element',
+														'mdn':		'/Web/Reference/Events/beforescriptexecute'
+													}
+									}, {
 										id:			'base64',
 										name: 		'Base64 encoding and decoding', 
 										url:		{

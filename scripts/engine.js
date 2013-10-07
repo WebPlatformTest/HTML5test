@@ -3369,6 +3369,32 @@ Test = (function() {
 				value: 		1
 			});
 
+			var executionevents = this.section.setItem({
+				id:			'executionevents',
+				passed:		false, 
+				value: 		2
+			});
+
+			var before = false;
+			
+			var s = document.createElement('script');
+			s.src="data:text/javascript;charset=utf-8,window"
+
+			s.addEventListener('beforescriptexecute', function() {
+				before = true;
+			});
+
+			s.addEventListener('afterscriptexecute', function() {
+				if (before) {
+					executionevents.update({
+						passed: true
+					});
+				}
+			});
+			
+			document.body.appendChild(s);
+
+
 			this.section.setItem({
 				id:			'base64',
 				passed:		'btoa' in window && 'atob' in window, 
