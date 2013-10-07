@@ -1163,7 +1163,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'dataset',
 				passed:	'dataset' in element, 
-				value: 	4
+				value: 	3
 			});
 
 			var group = this.section.getGroup({
