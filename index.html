@@ -91,6 +91,8 @@
 			
 			<div id='loading'><div></div></div>
 			
+			<div id='warning'></div>
+
 			<div id='contents' class='column' style='visibility: hidden;'>
 				<div id='score'></div>
 				<div id='results'></div>
@@ -186,11 +188,43 @@
 					detectCamouflage:	true
 				});
 	
-
+				Blacklist = { 'OneBrowser' : { blocked: true, identifier: Browsers.browser.toString() } };
+				
+				if (typeof Blacklist[Browsers.browser.name] != 'undefined') 
+				{
+					if (Blacklist[Browsers.browser.name].blocked) 
+					{
+						var contents = document.getElementById('contents');
+						contents.style.visibility = 'visible';
+	
+						var warning = document.getElementById('warning');
+						warning.innerHTML = 
+							"<div class='blocked'>" +
+								"<h2>" + Blacklist[Browsers.browser.name].identifier + " has been blocked!</h2>" +
+								"<p>It appears that your browser is too buggy to test or is deliberately attempting to get higher scores " +
+								"by claiming it supports features that it does not. In any case consider switching to a different browser, " +
+								"because this will also cause problems for websites that attempt to use these features.</p>" +
+								"<button onclick='this.style.display=\"none\"; start();'>Show results anyway</button>" +
+ 							"</div>"
+		
+						var loading = document.getElementById('loading');
+						loading.style.display = 'none';
+	
+						this.load();
+						return;
+					}
+				}
+				
+				start();
+			}, false);
+				
+			
+			function start() {
 				new Test(function(r) {
 					
 					/* Update total score */
 					var container = document.getElementById('score');
+
 					container.innerHTML = tim(
 						"<div class='pointsPanel'>" + 
 						"<h2><span>" + t('Your browser scores') + "</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" + 
@@ -339,9 +373,10 @@
 					loading.style.display = 'none';
 				});
 	
-	
-	
-	
+				this.load();
+			}
+			
+			function load() {
 				(function(){
 				  	var bsa = document.createElement('script');
 					 bsa.type = 'text/javascript';
@@ -361,8 +396,7 @@
 					ga.setAttribute('async', 'true');
 					document.documentElement.firstChild.appendChild(ga);
 				})();
-				
-			}, false);
+			}
 
 		//-->
 		</script>

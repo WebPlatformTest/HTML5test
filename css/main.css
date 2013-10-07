@@ -76,6 +76,10 @@ h3 {
 strong {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 }
+button {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	font-size: 0.75em;
+}
 
 img {
 	border: none;
@@ -867,6 +871,27 @@ table {
 	margin: 0 10px;
 }
 
+.blocked {
+	background: #ec6534;
+	padding: 20px;
+	margin-bottom: 40px;
+}
+.blocked h2 {
+	color: #fff;
+	font-size: 2.6em;
+}
+.blocked p {
+	color: #fff;
+	font-size: 0.8em;
+	line-height: 150%;
+}
+.blocked button {
+	margin-top: 10px;
+	background: rgba(0,0,0,0.3);
+	color: #fff;
+	border: none;
+	padding: 10px;
+}
 .wrapper {
 	margin: 8px 0 20px;
 	position: relative;	
@@ -874,6 +899,10 @@ table {
 
 @media (max-width: 900px) {
 	.pointsPanel {
+		font-size: 90%;
+	}
+
+	.blocked {
 		font-size: 90%;
 	}
 }
@@ -899,6 +928,11 @@ table {
 @media (max-width: 680px) {
 	.pointsPanel {
 		padding: 0;
+	}
+	
+	.blocked {
+		margin-left: 20px;
+		margin-right: 20px;
 	}
 }
 
