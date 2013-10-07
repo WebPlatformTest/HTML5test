@@ -2249,84 +2249,82 @@ Test = (function() {
 				universally implemented, see http://www.css3.info/selectors-test/
 			*/
 
-			if (!!document.querySelector) {
+			if ('querySelector' in document) {
 				var element = document.createElement('input');
 				element.id = 'testFormInput';
 				element.setAttribute("type", "text");
 				document.body.appendChild(element);
 
-				if ('querySelector' in document) {
-					try {
-						res[0] = !!document.querySelector("#testFormInput:valid");
-					} catch(e) {
-						res[0] = false;
-					}
+				try {
+					res[0] = !!document.querySelector("#testFormInput:valid");
+				} catch(e) {
+					res[0] = false;
+				}
+
+				try {
+					res[6] = !!document.querySelector("#testFormInput:read-write");
+				} catch(e) {
+					res[6] = false;
+				}
+
+				if ("validity" in element && "setCustomValidity" in element) {
+					element.setCustomValidity("foo");
 
 					try {
-						res[6] = !!document.querySelector("#testFormInput:read-write");
+						res[1] = !!document.querySelector("#testFormInput:invalid");
 					} catch(e) {
-						res[6] = false;
-					}
-
-					if ("validity" in element && "setCustomValidity" in element) {
-						element.setCustomValidity("foo");
-
-						try {
-							res[1] = !!document.querySelector("#testFormInput:invalid");
-						} catch(e) {
-							res[1] = false;
-						}
-					} else {
 						res[1] = false;
 					}
-												
-					try {
-						res[2] = !!document.querySelector("#testFormInput:optional");
-					} catch(e) {
-						res[2] = false;
-					}
-
-					element.setAttribute("required", "true");
-
-					try {
-						res[3] = !!document.querySelector("#testFormInput:required");
-					} catch(e) {
-						res[3] = false;
-					}
-					
-					try {
-						element.setAttribute("type", "number");
-						element.setAttribute("min", "10");
-						element.setAttribute("max", "20");
-						element.setAttribute("value", "15");
-						res[4] = !!document.querySelector("#testFormInput:in-range");
-					} catch(e) {
-						res[4] = false;
-					}
-
-
-					try {
-						element.setAttribute("type", "number");
-						element.setAttribute("min", "10");
-						element.setAttribute("max", "20");
-						element.setAttribute("value", "25");
-						res[5] = !!document.querySelector("#testFormInput:out-of-range");
-					} catch(e) {
-						res[5] = false;
-					}
-
-					element.setAttribute("readonly", "readonly");
-
-					try {
-						res[7] = !!document.querySelector("#testFormInput:read-only");
-					} catch(e) {
-						res[7] = false;
-					}
 				} else {
-					unknown = true;	
+					res[1] = false;
+				}
+											
+				try {
+					res[2] = !!document.querySelector("#testFormInput:optional");
+				} catch(e) {
+					res[2] = false;
+				}
+
+				element.setAttribute("required", "true");
+
+				try {
+					res[3] = !!document.querySelector("#testFormInput:required");
+				} catch(e) {
+					res[3] = false;
+				}
+				
+				try {
+					element.setAttribute("type", "range");
+					element.setAttribute("min", "10");
+					element.setAttribute("max", "20");
+					element.setAttribute("value", "15");
+					res[4] = !!document.querySelector("#testFormInput:in-range");
+				} catch(e) {
+					res[4] = false;
+				}
+
+
+				try {
+					element.setAttribute("type", "range");
+					element.setAttribute("min", "10");
+					element.setAttribute("max", "20");
+					element.setAttribute("value", "25");
+					res[5] = !!document.querySelector("#testFormInput:out-of-range");
+				} catch(e) {
+					res[5] = false;
+				}
+
+				element.setAttribute("readonly", "readonly");
+
+				try {
+					res[7] = !!document.querySelector("#testFormInput:read-only");
+				} catch(e) {
+					res[7] = false;
 				}
 				
 				document.body.removeChild(element);
+			} else {
+				unknown = true;	
 			}
 			
 			var group = this.section.getGroup({
