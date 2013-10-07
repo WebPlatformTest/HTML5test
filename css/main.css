@@ -2342,7 +2342,7 @@ div:-moz-full-screen #timelineGraph {
 	background: url(/images/lab.jpg) top center; 
 	background-attachment: fixed; 
 
-		background-image: url(/images/lab@2x.jpg);
+		background-image: url(/images/lab.jpg);
 		background-size: 900px 450px;
 }
 .labheader h2 {
