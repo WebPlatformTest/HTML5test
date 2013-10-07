@@ -1822,7 +1822,7 @@ var tests = [
 									}, {
 										id:			'base64',
 										name: 		'Base64 encoding and decoding', 
-										url:		{
+										urls:		{
 														'w3c':	'http://www.w3.org/TR/html5/webappapis.html#atob',
 														'mdn':	'/DOM/window.atob'
 													}
