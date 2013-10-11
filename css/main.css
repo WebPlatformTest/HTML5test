@@ -1467,27 +1467,27 @@ tbody tr:hover th.details {
 	border-bottom: 1px solid #eee;
 }
 .resultsTable .linksPanel a.w3c {
-	background-image: url(/images/w3c-logo.png);
+	background-image: url(/images/external/w3c.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
 .resultsTable .linksPanel a.whatwg {
-	background-image: url(/images/whatwg-logo.svg);
+	background-image: url(/images/external/whatwg.svg);
 	background-size: 20px 20px;
 	text-indent: 32px;
 }
 .resultsTable .linksPanel a.khronos {
-	background-image: url(/images/khronos-logo.png);
+	background-image: url(/images/external/khronos.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
 .resultsTable .linksPanel a.wp {
-	background-image: url(/images/wp-logo.png);
+	background-image: url(/images/external/wp.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
 .resultsTable .linksPanel a.mdn {
-	background-image: url(/images/mdn-logo.png);
+	background-image: url(/images/external/mdn.png);
 	text-indent: 32px;
 }
 
