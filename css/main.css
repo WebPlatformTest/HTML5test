@@ -277,7 +277,7 @@ tbody tr:hover th.details {
 	border-left: 1px solid #ccc;
 	
 	display: block;
-	background: url(/images/cloudvps.png) no-repeat 10px top;
+	background: url(/images/sponsors/cloudvps.png) no-repeat 10px top;
 	background-size: 59px 43px;
 	padding-top: 0px;
 	padding-left: 80px;
@@ -292,7 +292,7 @@ tbody tr:hover th.details {
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	#cloudvps a {
-		background-image: url(/images/cloudvps@2x.png);
+		background-image: url(/images/sponsors/cloudvps@2x.png);
 		background-size: 59px 43px;
 	}
 }
