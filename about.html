@@ -91,18 +91,10 @@
 	
 						<h3>What is the maximum number of points you can score?</h3>
 						<div class='text'>
-							If a browser passes all tests it would receive the maximum score of 500 points and 15 bonus points. Previous
-							versions of the HTML5test had less tests and therefore also a lower maximum score, such as 160, 300, 450 and 475 points.
-							In the future we will probably add even more tests which would also mean we will raise the maximum number of
-							points.
-						</div>
-	
-						<h3>What are bonus points?</h3>
-						<div class='text'>
-							HTML5 defines an <code>audio</code> and <code>video</code> element, which allows the browser to play media files. The HTML5 specification
-							does not define a required codec though. So for each common codec that is supported we award bonus points. Similarly
-							we give bonus points for SVG and MathML support. Bonus points are counted separately and do not count towards
-							the maximum of 500 points.
+							If a browser passes all tests it would receive the maximum score of 555. Previous
+							versions of the HTML5test had less tests and therefore also a lower maximum score, such as 160, 300, 450, 475 and 500 points.
+							Previous versions of this test also awarded bonus points for some features, but as of version 5, we
+							no longer do. 
 						</div>
 	
 						<h3>The scoring seems arbitrary, who decides how many points are awarded?</h3>
@@ -141,7 +133,7 @@
 						<div class='text'>
 							<p>
 								We cannot distinguish between a browser that supports a particular feature and a browser that lies about supporting
-								that feature. The only way do deal with these situations it to manually confirm the test results. And if a browser
+								that feature. The only way to deal with these situations it to manually confirm the test results. And if a browser
 								is found to be overly confident about claiming support for certain features we can put that browser on a blacklist. 
 								That means that that even though the browser claims to support a particular feature, we ignore what the browser says and do
 								not give any points. This is usually just a temporary problem and once the browser has been fixed we will remove
@@ -157,7 +149,8 @@
 							<p>
 								If we find that a browser is structurally lying about which features they support - deliberately or not - we will 
 								usually give a warning to the developers of the browser and if the problem hasn't been fixed in the next version 
-								we will remove the browser from the 'other browser' and 'compare' pages and/or give other penalties.
+								we will remove the browser from the 'other browser' and 'compare' pages and/or give other penalties. In extreme
+								cases we may block the browser from showing test results and show a warning instead.
 							</p>
 						</div>
 						
@@ -180,20 +173,6 @@
 								Please open a new issue on <a href='https://github.com/NielsLeenheer/html5test'>Github</a> when you believe a
 								browser should be included on the whitelist.
 							</p>
-						</div>
-	
-						<h3>How are you detecting when a field is using a custom user interface</h3>
-						<div class='text'>
-							The HTML5 specification introduces a number of new field types. Instead of just a plain input field there are now
-							color pickers, date pickers, number fields and sliders. The specification doesn't define what the user interface of these 
-							new fields are supposed to look like. Rightly so, because the user interface might depend on the device that is 
-							used. It does make detecting a bit problematic. What we do is look at the field itself and how the field affects
-							its surroundings. We start by creating a plain text field and wrap it with a block. We measure the rendered style of
-							the wrapper and the field itself. We then create a field of a specific type and measure the wrapper and the field again.
-							If the rendered style of the wrapper has changed, this should mean the field itself is rendered in such a way that
-							it affects its surroundings in a certain way. That does not mean it has a fully functioning custom user interface, but
-							this is the best we can do. Similarly we compare the rendered style of the field itself. If either one of these
-							is different from the plain text field, we assume the field has a custom user interface.
 						</div>
 	
 	
