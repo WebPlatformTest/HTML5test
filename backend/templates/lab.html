@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title data-i18n>HTML5test - How well does your browser support HTML5?</title>	
+
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
+
+		<script src='/scripts/jquery/jquery-1.7.2.min.js' type='text/javascript'></script>
+		<script src='/scripts/jquery/jquery.tablesorter.min.js' type='text/javascript'></script>
+		
+		<script src='/scripts/reporting.js' type='text/javascript'></script>
+
+		<link rel="icon" href="/images/icon.png">
+		<link rel="apple-touch-icon" href="/images/button.png">
+	</head>
+	
+	
+	<body>
+		<div id="fb-root"></div>
+
+		<div class='header'>
+			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+			<div class='navigation'>
+				<ul class='left'>
+					<li><a href='/index.html' data-i18n>Your browser</a></li>
+					<li><a href='/results/desktop.html' data-i18n>Other<span> browser</span>s</a></li>
+					<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
+				</ul>
+				<ul class='right'>
+					<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
+					<li class='selected'><a href='/devicelab'>Device Lab</a></li>
+					<li><a href='/about.html' data-i18n>About<span> the test</span></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class='page'>
+			<div id='contents' class='column'>
+				<div class='labheader'>
+					<h2>Open Device Lab</h2>
+					<div class='opening'>
+						We're opening on Monday October&nbsp;21st!
+					</div>	
+				</div>	
+			
+				<p class='inbetween'>
+					Do you test your website on mobile? Testing on a real device is always better than an emulator. 
+					But there are so many devices, it's not possible for every developer to own all devices. 
+					Fortunately, you don't have to!
+				</p>
+
+				<div class='paper'>
+					<div>
+						<div class='text'>
+							<div class='intro'>
+								<p>
+									If you want to know how your website looks on an ancient BlackBerry,
+									on a Nokia N9 or a Firefox OS device - we've got them. Need to test on iOS? 
+									No problem, we've got devices running iOS 2.2 to 7.0 and you're welcome to 
+									use them.
+								</p>
+							</div>
+
+							<p>
+								But the HTML5test Device Lab isn't the only one. There are more than 70 Open Device
+								Labs across 22 countries.
+								Head on over to <a href='http://opendevicelab.com'>OpenDeviceLab.com</a>
+								for more information and locate the one closest to you.
+							</p>
+															
+							<h3 class='break-3'>Location and opening times</h3>
+	
+							<p>
+								We are based in Drachten, located in the north of The Netherlands.
+							</p>
+							<p>
+								For now, our lab is only open by appointment. We have limited space and
+								time, so make sure you contact us beforehand and let us know which devices you like to use, so we can make sure
+								they are available and charged when you arrive.
+							</p>
+							<p>
+								If you want to visit our lab, contact us and we will send you a complete description where to go.
+							</p>
+							
+							<p class='break-2'>
+								<img src='/images/lab/phones@2x.jpg' width='100%' style='max-width: 276px;'>
+							</p>
+							
+							<div class='devicecount'><?= $available; ?> Devices available!</div>
+	
+						</div>
+
+						<div class='labrules'>
+							<ol>
+								<li>Always make an appointment</li>
+								<li>Let us know in advance which devices you want to use</li>
+							</ol>
+						</div>	
+
+						<div class='buttons'>
+							<a class='button donate' href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC"><span>Donate using Paypal</span></a>
+							<a class='button followme' href="http://www.twitter.com/html5test"><span>Follow me on Twitter</span></a>				
+							<a class='button schedule' href="mailto:lab@html5test.com"><span>Make an appointment</span></a>				
+							<a class='button labs' href="http://opendevicelab.com/#!odl=1138"><span>Rate my Open Device Lab</span></a>			
+						</div>	
+					</div>
+				</div>
+						
+				<div class='paper'>
+					<div>
+						<h2>Our devices</h2>
+
+						<div class='horizontalOverflow'>
+							<table id='deviceTable' class='scoreTable'>
+								<thead>
+									<tr>
+										<th>Manufacturer</th>
+										<th>Model</th>
+										<th>Operating System</th>
+										<th>Type</th>
+										<th></th>
+										<th>Contributor</th>
+									</tr>
+								</thead>
+							
+								<tbody>
+									<?php while(list(,$device) = each($devices)): ?>
+									
+									<tr data-id="<?php echo $device->id; ?>"<?php echo !$device->isAvailable ? ' data-available="no"' : ''; ?>>
+										<td><?php echo $device->deviceManufacturer; ?></td>
+										<td><?php echo $device->deviceModel; ?></td>
+										<td><?php echo (isset($device->osName) ? $device->osName : '-') . (isset($device->osVersion) ? ' ' . $device->osVersion : ''); ?></td>
+										<td><?php 
+												switch($device->deviceType) {
+													case 'mobile': 		echo 'phone'; break;
+													case 'tablet': 		echo 'tablet'; break;
+													case 'media': 		echo 'media player'; break;
+													case 'netbook': 	echo 'netbook'; break;
+													case 'laptop': 		echo 'laptop'; break;
+													case 'ereader': 	echo 'e-reader'; break;
+												}
+										?></td>
+										<td>
+											<!-- <?php echo $device->hasWifi ? '<span class="hasWifi"></span>' : ''; ?> -->
+											<!-- <?php echo $device->hasInspect ? '<span class="hasInspect"></span>' : ''; ?> -->
+											<?php echo $device->isPersonal ? '<span class="onRequest"></span>' : ''; ?> 
+										</td>
+										<td><?php echo (isset($device->contributor) ? $device->contributor : '-'); ?></td>
+									</tr>
+
+									<?php endwhile; ?>						
+						
+								</tbody>
+							</table>
+						</div>
+						
+						<script>
+
+							$(document).ready(function() 
+							    { 
+							        $("#deviceTable").tablesorter(); 
+							    } 
+							); 
+							
+							new DeviceTable({
+								parent:	document.getElementById('deviceTable')
+							})
+							
+    						
+    					</script>
+
+						<ul class='legend'>
+							<!--
+							<li class="hasWifi">Wi-Fi available</li>
+							<li class="hasInspect">Adobe Edge Inspect available</li>
+							-->
+							<li class="onRequest">Personal phone, only available on request</li>
+							<li><span class='unavailable'>Sorry</span> Currently not available for testing</li>
+						</ul>
+						<p>
+							Adobe Edge Inspect is available on every supported device. Every device also has all major browsers installed 
+							by default. Most of our devices support Wi-Fi, but in case the device does not, or if you want to test the
+							device using a cellular network, you must bring your own SIM card. Click or tap on each of the devices above to
+							get more details of that particular device.
+						</p>
+
+						<div class='labrules'>
+							<ol>
+								<li>Never <b>ever</b> upgrade the firmware or operating system</li>
+								<li>Devices can not be taken home for testing</li>
+							</ol>
+						</div>	
+					
+						<hr>
+
+						<h2>How can you help us?</h2>
+						<div class='help'>
+							<div class='helpus'>
+								<h3>Everybody</h3>
+								<p>
+									We are always looking for devices to add to our lab. If you have a second-hand phone or tablet
+									you want to donate to us, that would be great! Any mobile device with a browser is welcome, no matter
+									how old. We do prefer unlocked GSM devices or devices with WiFi.
+								</p>
+								<p>
+									At this time we are actively looking for devices with older versions of BlackBerry OS and Kindle ereaders.
+								</p>
+							</div>
+							<div class='helpus'>
+								<h3>Manufacturers</h3>
+								<p>
+									If you are a manufacturer that has a new phone, developer unit, or completely new platform, please also contribute!
+								</p>
+								<p>
+									All donated devices are going to be used for improving HTML5test.com itself and makes sure you always have
+									up to date scores on the scoreboard. They will also be available to the public and will be used to improve
+									compatibility of real-life websites with your devices.
+								</p>
+								<p>
+									At this time we are actively looking for devices running Android 4.3 or 4.4, Ubuntu Touch, Sailfish or Tizen.
+								</p>
+							</div>
+							<div class='helpus'>
+								<h3>Developers</h3>
+								<p>
+									Do you want to establish your own Open Device Lab? <a href='http://lab-up.org'>LabUp</a> is here to help you!
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>		
+				
+				<div class='sponsors'>
+					<h3>This Device Lab is made possible with help from</h3>
+					
+					<ul>
+						<li><a href='http://lab-up.org'><img src="/images/sponsors/labup.png" width='108' alt='LabUp!'></a></li>
+						<li><a href='http://google.com'><img src="/images/sponsors/google.svg" width='116' alt='Google'></a></li>
+						<li><a href='http://blackberry.com'><img src="/images/sponsors/blackberry.svg" width='140' alt='Blackberry'></a></li>
+						<li><a href='http://salonhub.nl'><img src="/images/sponsors/salonhub.png" width='128' alt='Salonhub'></a></li>
+					</ul>
+				</div>
+
+
+				<div class='footer'>
+					<div>
+						<div class='copyright'>
+							<p>
+								October 2013 - version 5.0. Created by Niels Leenheer. 
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src='//www.google-analytics.com/ga.js'></script>
+		<script>
+		<!--
+			try {
+				var pageTracker = _gat._getTracker("UA-68192-4");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		//-->
+		</script>
+	</body>
+</html>

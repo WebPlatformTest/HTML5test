@@ -29,3 +29,4 @@ RewriteRule ^results/tablet.html$			/backend/results.php?type=tablet
 RewriteRule ^results/gaming.html$			/backend/results.php?type=gaming
 RewriteRule ^results/television.html$		/backend/results.php?type=television
 
+RewriteRule ^devicelab/?$					/backend/lab.php

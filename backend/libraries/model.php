@@ -1,6 +1,39 @@
 <?php
 
 	
+	function getLabDevice($id) {
+		$res = mysql_query("
+			SELECT 
+				*
+			FROM 
+				labDevices
+			WHERE 
+				id = '" . intval($id) . "'
+		");
+		
+		echo mysql_error();
+		
+		if ($row = mysql_fetch_object($res)) {
+			$row->simSize = ucfirst($row->simSize);
+			$row->simLocked = !! $row->simLocked;
+			$row->hasInspect = !! $row->hasInspect;
+			$row->browsers = explode(',', $row->browsers);
+			$row->browsers = array_combine($row->browsers, $row->browsers);
+
+			switch($row->deviceType) {
+				case 'mobile': 		$row->type = 'Phone'; break;
+				case 'tablet': 		$row->type = 'Tablet'; break;
+				case 'media': 		$row->type = 'Media player'; break;
+				case 'netbook': 	$row->type = 'Netbook'; break;
+				case 'laptop': 		$row->type = 'Laptop'; break;
+				case 'ereader': 	$row->type = 'E-reader'; break;
+				default:			$row->type = '-';
+			}
+
+			return $row;
+		}
+	}
+	
 	function getAllBrowsers($version) {
 		$results = array();
 		

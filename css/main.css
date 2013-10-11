@@ -91,7 +91,7 @@ table {
 	border-collapse: collapse; 
 	width: 100%;
 }
-tbody tr:hover td, tbody tr:hover th {
+tbody tr:hover > td, tbody tr:hover > th {
 	background-color: #f6f6f6;
 }
 tbody tr:hover th.details {
@@ -105,10 +105,10 @@ tbody tr:hover th.details {
  *   Header and navigation
  */
 
-.header {
+body > .header {
 	background: #eee;
 }
-.header h1 {
+body > .header h1 {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 	font-size: 0.9em;
@@ -119,17 +119,17 @@ tbody tr:hover th.details {
 	margin: 0 auto;
 	max-width: 900px;
 }
-.header h1 span {
+body > .header h1 span {
 	margin-right: 10px;
 }
-.header h1 span,
-.header h1 em {
+body > .header h1 span,
+body > .header h1 em {
 	zoom: 1;
 	display: inline-block;       
 	*display: inline;
 }
 
-.header h1 strong {
+body > .header h1 strong {
 	font-family: html5test;	
 	font-weight: normal;
 	font-size: 1.8em;
@@ -140,30 +140,30 @@ tbody tr:hover th.details {
 	top: 7px;
 }
 
-.header h1 em {
+body > .header h1 em {
 	font-style: normal;
 	text-transform: lowercase;
 	font-size: 1.15em;
 	color: #bbb;
 }
-.header div {
+body > .header div {
 	margin: 10px auto 0;
 	overflow: hidden;
 	max-width: 900px;
 	padding: 0 20px;
 }
-.header ul {
+body > .header ul {
 	list-style-type: none;
 	margin-bottom: 8px;
 }
-.header ul.left {
+body > .header ul.left {
 	float: left;
 }
-.header ul.right {
+body > .header ul.right {
 	float: right;
 }
 
-.header ul li {
+body > .header ul li {
 	display: block;
 	float: left;
 	margin: 0 3px 0 0;
@@ -174,70 +174,70 @@ tbody tr:hover th.details {
 	text-transform: lowercase;
 	background: #aaa;
 }
-.header ul li.selected {
+body > .header ul li.selected {
 	background: #0092bf;
 }
-.header ul li:hover {
+body > .header ul li:hover {
 	box-shadow: inset 0 32px 0px rgba(0,0,0,0.05);
 }
-.header ul li a {
+body > .header ul li a {
 	color: #fff;
 	text-decoration: none;
 }
 
 @media (max-width: 680px) {
-	.header h1 {
+	body > .header h1 {
 		width: 400px;
 		padding-left: 0;
 		padding-right: 0;
 		text-align: center;
 	}
-	.header h1 em {
+	body > .header h1 em {
 		font-size: 1em;
 	}
 
-	.header div {
+	body > .header div {
 		width: auto;
 	}
-	.header ul {
+	body > .header ul {
 		padding: 0 !important;
 		margin: 0 0 12px 0 !important;
 		width: 50%;
 	}
-	.header ul li {
+	body > .header ul li {
 		line-height: 30px;
 		margin-bottom: 3px;
 		clear: left;
 	}
-	.header ul.right {
+	body > .header ul.right {
 		padding-left: 10px;
 	}
-	.header ul.left li {
+	body > .header ul.left li {
 		float: right;
 		clear: right;
 		margin-right: 6px;
 	}
-	.header ul.right li {
+	body > .header ul.right li {
 		margin-left: 6px;
 	}
 }
 
 @media (max-width: 432px) {
-	.header h1 {
+	body > .header h1 {
 		width: auto;
 		padding-left: 16px;
 		padding-right: 16px;
 	}
-	.header h1 em {
+	body > .header h1 em {
 		font-size: 0.9em;
 	}
-	.header ul {
+	body > .header ul {
 		font-size: 0.85em;
 	}
-	.header ul.left {
+	body > .header ul.left {
 		padding-left: 16px;
 	}
-	.header ul li {
+	body > .header ul li {
 		padding: 0 8px;
 		line-height: 28px;
 	}
@@ -772,9 +772,13 @@ tbody tr:hover th.details {
 .button.share { background: #ec6534; color: #fff; }
 .button.share > span::before { content: ''; }
 .button.contact { background: #ec6534; color: #fff; }
-.button.contact > span::before { content: ''; }
+.button.contact > span::before { content: '☎'; }
+.button.schedule { background: #ec6534; color: #fff; }
+.button.schedule > span::before { content: ''; }
 .button.labs { background: #33af33; color: #fff; }
 .button.labs > span::before { content: '☟'; }
+.button.info { background: #33af33; color: #fff; }
+.button.info > span::before { content: ''; }
 
 
 
@@ -2334,11 +2338,8 @@ div:-moz-full-screen #timelineGraph {
 	position: relative;
 	margin: -2.5em 0 0; 
 	height: 340px; 
-	background: url(/images/lab.jpg) top center; 
+	background: url(/images/lab/header.jpg) top center; 
 	background-attachment: fixed; 
-
-		background-image: url(/images/lab.jpg);
-		background-size: 900px 450px;
 }
 .labheader h2 {
 	position: absolute; 
@@ -2357,7 +2358,7 @@ div:-moz-full-screen #timelineGraph {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.labheader {
-		background-image: url(/images/lab@2x.jpg);
+		background-image: url(/images/lab/header@2x.jpg);
 		background-size: 900px 450px;
 	}
 }
@@ -2400,6 +2401,21 @@ div:-moz-full-screen #timelineGraph {
 	line-height: 150%; 
 	list-style-type: none;
 }
+.opening {
+	display: inline-block;
+	padding: 6px 8px 4px;
+    font-family: 'League Gothic', Impact;
+    font-weight: normal;
+	font-size: 2em;
+	line-height: 100%;
+	text-transform: uppercase;
+
+	color: #fff;
+	background-color: rgba(0,146,191,0.8);
+	float: right;
+}
+
+
 .devicecount {
 	display: inline-block;
 	padding: 6px 8px 4px;
@@ -2504,6 +2520,64 @@ div:-moz-full-screen #timelineGraph {
 
 
 
+.lab .header {
+	background: none;
+	border-bottom: 1px solid #eee;
+}
+.lab .header h2 {
+	text-align: center;
+	font-size: 2.5em;
+	margin-bottom: 0.5em;
+}
+.lab .page {
+	margin-top: 1em;
+}
+.lab .useragent {
+	padding: 10px;
+	text-align: center;
+	border-top: none;
+	border-bottom: 8px solid #d9d9d9; 
+	font-size: 0.8em;
+}
+.lab .qrcode {
+	position: relative;
+	box-sizing: border-box;
+	border-top: 8px solid #d9d9d9; 
+	display: block;
+
+	text-align: center;
+	font-size: 0.8em;
+	color: #222;
+	padding: 20px 10px 0;
+	margin-bottom: 20px;
+	background: #fff;
+}
+.lab .links {
+	background: #fff;
+	margin-bottom: 20px;
+}
+.lab .links li {
+	border-bottom: 1px solid #d9d9d9;
+}
+.lab .links li:last-child {
+	border-bottom: none;
+}
+.lab .links li a {
+	display: block;
+	color: #000;
+	text-decoration: none;
+	font-size: 0.8em;
+	padding: 6px 10px;
+}
+.lab .links li a::before {
+	display: inline;
+	content: '';
+	color: #666;
+	font-family: html5test;
+	font-size: 1.2em;
+	margin-right: 6px;
+}
+
 
 ul.legend {
 	list-style-type: none;
@@ -2517,7 +2591,7 @@ ul.legend li {
 ul.legend li span {
 	display: inline;
 }
-tr[data-available^=no] td {
+tr[data-available^=no] > td {
 	color: #aaa;
 	text-decoration: line-through;
 }
@@ -2542,16 +2616,16 @@ li.hasWifi::before {
 }
 
 .onRequest::before {
-	content: '☎';
+	content: '!';
 	font-family: html5test;
 	margin-left: 4px;
 	color: #aaa;
 }
 tr:hover .onRequest::before {
-	color: #33af33;
+	color: #ec6534;
 }
 li.onRequest::before {
-	color: #33af33;
+	color: #ec6534;
 	margin: 0 6px 0 0;
 }
 .hasInspect::before {
@@ -2574,3 +2648,97 @@ li.hasInspect::before {
 	background: #624127;
 	margin: 0 6px 0 0;
 }
+
+
+
+#deviceTable tr td, #deviceTable tr th {
+	cursor: pointer;
+}
+.deviceInfo {
+	color: black;
+	position: absolute;
+	margin-top: 10px;
+	margin-left: -10px;
+	width: 450px;
+	min-height: 196px;
+	padding: 20px;
+	cursor: auto;
+}
+.deviceInfo h2 {
+	margin-bottom: 16px !important;
+	font-size: 2.5em;
+}
+.deviceInfo a.external {
+	font-family: html5test;
+	font-size: 18px;
+	display: inline;
+	margin-left: 14px;
+	color: #999;
+	position: relative;
+	top: -1px;
+}
+.deviceInfo .image {
+	position: absolute;
+	width: 140px;
+	height: 140px;
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+.deviceInfo .information {
+	margin-left: 160px;
+	width: 290px;
+}
+.deviceInfo table .check {
+	font-family: html5test;
+	font-weight: normal;
+	color: #1c8c1d;
+}
+.deviceInfo table .ballot {
+	font-family: html5test;
+	font-weight: normal;
+	color: #853333;
+}
+
+.deviceInfo .browsers {
+	list-style-type: none;
+	margin-top: 30px;
+}
+.deviceInfo .browsers li {
+	display: inline-block;
+	position: relative;
+	background: #eee;
+	width: 48px;
+	height: 48px;
+	margin-right: 16px;
+	margin-bottom: 32px;
+}
+.deviceInfo .browsers span {
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 50px;
+	width: 48px;
+	text-align: center;
+	font-size: 0.9em;
+}
+.deviceInfo .browsers img {
+	position: relative;
+	top: 8px;
+	left: 8px;
+	width: 32px;
+}
+.deviceInfo .browsers li.no img {
+	opacity: 0.3;
+
+	filter: grayscale(100%);
+    -webkit-filter: grayscale(100%); 
+}
+
+.deviceInfo .comment {
+	border-top: 1px solid #ccc;
+	padding-top: 10px;
+}
+

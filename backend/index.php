@@ -20,6 +20,13 @@
 	$method = $_REQUEST['method'];
 	switch($method) {
 	
+		case 'loadLabDevice':
+			if ($data = getLabDevice($_REQUEST['id'])) {
+				echo json_encode($data);
+			}
+			
+			break;
+
 		case 'loadFeature':
 			echo json_encode(array(
 				'id'		=> $_REQUEST['id'],

@@ -1,4 +1,140 @@
 
+	var DeviceTable = function() { this.initialize.apply(this, arguments) };
+	DeviceTable.prototype = {
+	
+		initialize: function(options) {
+			this.parent = options.parent;
+
+			document.body.addEventListener("click", this.onClose.bind(this), true);
+
+			var rows = this.parent.querySelectorAll('tbody tr');
+			for (var r = 0; r < rows.length; r++) {
+				rows[r].addEventListener("click", this.onShow.bind(this, rows[r]), true);
+			}
+			
+			this.popup = null;
+		},
+		
+		onClose: function(e) {
+			var child = false;
+			
+			var el = e.target;
+			while (el.parentNode) {
+				if (el == this.parent) {
+					child = true;
+					break;
+				}
+				
+				el = el.parentNode;
+			}
+			
+			if (!child) this.close();
+		},
+		
+		onShow: function(row) {
+			this.close();
+			
+			var httpRequest;
+			if (window.XMLHttpRequest) {
+				httpRequest = new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+		   	httpRequest.open('POST','/api/loadLabDevice', true);
+			httpRequest.onreadystatechange = process.bind(this);
+		   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			httpRequest.send('id=' + encodeURIComponent(row.getAttribute('data-id')));
+
+			function process() {
+				if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
+					var data = JSON.parse(httpRequest.responseText);
+
+					console.debug(data.browsers)
+
+					var bb = [ 
+						[ 'ie5', 'ie6', 'IE 5'],
+						[ 'ie6', 'ie6', 'IE 6'],
+						[ 'ie7', 'ie7', 'IE 7'],
+						[ 'ie8', 'ie7', 'IE 8'],
+						[ 'ie9', 'ie9', 'IE 9'],
+						[ 'ie10', 'ie10', 'IE 10'],
+						[ 'ie11', 'ie10', 'IE 11'],
+						[ 'ie10_metro', 'ie-metro', 'IE 10'],
+						[ 'ie11_metro', 'ie-metro', 'IE 11'],
+						[ 'wp7', 'ie-metro', 'IE 9'],
+						[ 'wp8', 'ie-metro', 'IE 10'],
+						[ 'safari_ios_6', 'safari-ios-6', 'Safari'],
+						[ 'safari_ios_7', 'safari-ios-7', 'Safari'],
+						[ 'xpress', 'nokia', 'Xpress'],
+						[ 'nokia', 'nokia', 'Nokia'],
+						[ 'maemo', 'nokia', 'Nokia'],
+						[ 'meego', 'nokia', 'Nokia'],
+						[ 'webos', 'webos', 'webOS'],
+						[ 'android', 'android', 'Android'],
+						[ 'bb', 'bb', 'Browser'],
+						[ 'bb10', 'bb10', 'Browser'],
+						[ 'tabletos', 'tabletos', 'Browser'],
+						
+						[ 'chrome', 'chrome', 'Chrome'],
+						[ 'coast', 'coast', 'Coast'],
+						[ 'diigo', 'diigo', 'Diigo'],
+						[ 'dolphin', 'dolphin', 'Dolphin'],
+						[ 'firefox', 'firefox', 'Firefox'],
+						[ 'ilunascape', 'ilunascape', 'iLunascape'],
+						[ 'maxthon', 'maxthon', 'Maxthon'],
+						[ 'mercury', 'mercury', 'Mercury'],
+						[ 'puffin', 'puffin', 'Puffin'],
+						[ 'silk', 'silk', 'Silk'],
+						[ 'sleipnir', 'sleipnir', 'Sleipnir'],
+						[ 'one', 'one', 'One'],
+						[ 'opera', 'opera', 'Opera'],
+						[ 'qq', 'qq', 'QQ'],
+						[ 'uc-iphone', 'uc-iphone', 'UC Web'],
+						[ 'uc-old', 'uc-old', 'UC Web'],
+					]
+					
+					var browsers = "<ul class='browsers'>";
+					for (var b = 0; b < bb.length; b++) {
+						if (data.browsers[bb[b][0]]) browsers += "<li><img src='/images/browsers/" + bb[b][1] +".png'><span>" + bb[b][2] + "</span></li>";
+					}
+
+					if (data.hasInspect) browsers += "<li><img src='/images/browsers/inspect.png'><span>Inspect</span></li>";
+					browsers += "</ul>";
+					
+					this.popup = document.createElement('div');
+					this.popup.className = 'popupPanel pointsLeft deviceInfo';
+					this.popup.innerHTML = 
+						"<h2>" + data.deviceManufacturer + " " + data.deviceModel + ( data.url ? "<a class='external' href='" + data.url + "'></a>" : "") + "</h2>" +
+						"<div class='image'" + (data.image ? " style='background-image: url(/images/devices/" + data.image + ");'" : "") + "></div>" +
+						"<div class='information'>" +
+							"<table>" +
+								"<tr><th>Type</th><td>" + data.type + "</td></tr>" + 
+								"<tr><th>Display</th><td>" + (data.deviceWidth && data.deviceHeight ? data.deviceWidth + " x " + data.deviceHeight + " pixels, " : "") + (data.deviceSize + " inch") + (data.devicePPI ? ", " + data.devicePPI + " ppi" : "") + "</td></tr>" + 
+								"<tr><th>OS</th><td>" + (data.osName ? data.osName + (data.osVersion ? " " + data.osVersion : "") : "-") + "</td></tr>" + 
+								"<tr><th>Wi-Fi</th><td>" + (data.hasWifi ? "<span class='check'>✔</span> Yes" : "<span class='ballot'>✘</span> No") + "</td></tr>" + 
+								"<tr><th>Cellular</th><td>" + (data.simSize ? "<span class='check'>✔</span> " + data.simSize + " sim" + (data.simLocked ? ', locked' : ', unlocked') : "<span class='ballot'>✘</span> No") + "</td></tr>" + 
+							"</table>" +
+							browsers +
+							
+							(data.comment ? "<div class='comment'>" + data.comment + "</div>" : "" ) +
+						"</div>";
+
+					row.cells[0].appendChild(this.popup);
+				}
+			}			
+		},
+		
+		close: function() {
+			if (this.popup) {
+				this.popup.parentNode.removeChild(this.popup);
+				this.popup = null;
+			}
+		}
+	}
+
+
+
 	var SearchField = function() { this.initialize.apply(this, arguments) };
 	SearchField.prototype = {
 
