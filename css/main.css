@@ -67,20 +67,26 @@ h2 {
 
 	color: #0092bf;
 }
-
 h3 {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-size: 1.05em;
 }
-th {
-	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
-}
-strong, b {
+th, h4, strong, b {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 }
 button {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-size: 0.75em;
+}
+
+input, textarea {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+}
+
+button, input, textarea {
+	-webkit-appearance: none;
+	border-radius: 0;
+	box-sizing: border-box;
 }
 
 img {
@@ -394,7 +400,7 @@ body > .header ul li a {
 	color: #000;
 
 	font-size: 0.75em;
-	line-height: 150%;
+	line-height: 165%;
 	
 	margin-bottom: 60px;
 }
@@ -507,6 +513,7 @@ body > .header ul li a {
 }	
 
 @media (max-width: 432px) {
+/*
 	.paper ul {
 		font-size: 0.8em;	
 	}
@@ -514,6 +521,7 @@ body > .header ul li a {
 	.paper ul li {
 		padding: 0 6px;
 	}
+*/
 }
 .paper > div .text a {
 	color: #0092bf;
@@ -587,6 +595,12 @@ body > .header ul li a {
 	border-right: 1px solid #ddd;	
 	right: 0;
 	bottom: 0;
+}
+
+
+.text ul {
+	list-style-type: square;
+	padding: 0 0 0 20px;
 }
 
 
