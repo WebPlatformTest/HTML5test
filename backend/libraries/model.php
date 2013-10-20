@@ -17,8 +17,9 @@
 			$row->simSize = ucfirst($row->simSize);
 			$row->simLocked = !! $row->simLocked;
 			$row->hasInspect = !! $row->hasInspect;
-			$row->browsers = explode(',', $row->browsers);
-			$row->browsers = array_combine($row->browsers, $row->browsers);
+			$row->hasWifi = !! $row->hasWifi;
+			$row->otherBrowsers = explode(',', $row->otherBrowsers);
+			$row->otherBrowsers = array_combine($row->otherBrowsers, $row->otherBrowsers);
 
 			switch($row->deviceType) {
 				case 'mobile': 		$row->type = 'Phone'; break;
@@ -28,6 +29,10 @@
 				case 'laptop': 		$row->type = 'Laptop'; break;
 				case 'ereader': 	$row->type = 'E-reader'; break;
 				default:			$row->type = '-';
+			}
+
+			if ($row->defaultFingerprint) {
+				$row->defaultResults = getResultsForUniqueId($row->defaultFingerprint);
 			}
 
 			return $row;
@@ -168,6 +173,22 @@
 				LEFT JOIN fingerprints AS f ON (r.fingerprint = f.fingerprint)
 			WHERE 
 				r.uniqueid ='" . mysql_real_escape_string($id) . "'
+		");
+		
+		if ($row = mysql_fetch_object($res)) {
+			return $row;
+		}		
+	}
+	
+	
+	function getResultsForFingerprint($id) {
+		$res = mysql_query("
+			SELECT 
+				score, points, results 
+			FROM 
+				fingerprints
+			WHERE 
+				fingerprint ='" . mysql_real_escape_string($id) . "'
 		");
 		
 		if ($row = mysql_fetch_object($res)) {

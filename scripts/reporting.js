@@ -50,8 +50,6 @@
 				if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
 					var data = JSON.parse(httpRequest.responseText);
 
-					console.debug(data.browsers)
-
 					var bb = [ 
 						[ 'ie5', 'ie6', 'IE 5'],
 						[ 'ie6', 'ie6', 'IE 6'],
@@ -95,8 +93,34 @@
 					]
 					
 					var browsers = "<ul class='browsers'>";
+					
+					if (data.defaultBrowser || data.defaultFingerprint) {
+						browsers += "<li class='default'>";
+						var stock = true;
+						
+						if (data.defaultBrowser) {
+							for (var b = 0; b < bb.length; b++) {
+								if (data.defaultBrowser == bb[b][0]) {
+									stock = false;
+									browsers += "<img src='/images/browsers/" + bb[b][1] +".png'><span>" + bb[b][2] + "</span>";
+								}
+							}
+						}
+						
+						if (stock) {
+							browsers += "<span class='stock'>Default browser</span>";
+						}
+
+						if (data.defaultFingerprint) {
+							browsers += "<div class='score'><a href='http://html5te.st/" + data.defaultFingerprint + "'>" +  data.defaultResults.score + "</a></div>";
+						}
+						
+						browsers += "</li>";
+					}
+					
+					
 					for (var b = 0; b < bb.length; b++) {
-						if (data.browsers[bb[b][0]]) browsers += "<li><img src='/images/browsers/" + bb[b][1] +".png'><span>" + bb[b][2] + "</span></li>";
+						if (data.otherBrowsers[bb[b][0]]) browsers += "<li><img src='/images/browsers/" + bb[b][1] +".png'><span>" + bb[b][2] + "</span></li>";
 					}
 
 					if (data.hasInspect) browsers += "<li><img src='/images/browsers/inspect.png'><span>Inspect</span></li>";
@@ -109,8 +133,8 @@
 						"<div class='image'" + (data.image ? " style='background-image: url(/images/devices/" + data.image + ");'" : "") + "></div>" +
 						"<div class='information'>" +
 							"<table>" +
-								"<tr><th>Type</th><td>" + data.type + "</td></tr>" + 
-								"<tr><th>Display</th><td>" + (data.deviceWidth && data.deviceHeight ? data.deviceWidth + " x " + data.deviceHeight + " pixels, " : "") + (data.deviceSize + " inch") + (data.devicePPI ? ", " + data.devicePPI + " ppi" : "") + "</td></tr>" + 
+								"<tr><th>Type</th><td>" + data.type + ", " + data.deviceSize + "&nbsp;inch</td></tr>" + 
+								"<tr><th>Display</th><td>" + (data.deviceWidth && data.deviceHeight ? data.deviceWidth + "&nbsp;x&nbsp;" + data.deviceHeight + "&nbsp;pixels" : "") + (data.devicePPI ? ", " + data.devicePPI + "&nbsp;ppi" : "") + "</td></tr>" + 
 								"<tr><th>OS</th><td>" + (data.osName ? data.osName + (data.osVersion ? " " + data.osVersion : "") : "-") + "</td></tr>" + 
 								"<tr><th>Wi-Fi</th><td>" + (data.hasWifi ? "<span class='check'>✔</span> Yes" : "<span class='ballot'>✘</span> No") + "</td></tr>" + 
 								"<tr><th>Cellular</th><td>" + (data.simSize ? "<span class='check'>✔</span> " + data.simSize + " sim" + (data.simLocked ? ', locked' : ', unlocked') : "<span class='ballot'>✘</span> No") + "</td></tr>" + 

@@ -2324,7 +2324,8 @@ div:-moz-full-screen #timelineGraph {
 
 .horizontalOverflow {
 	overflow: scroll;
-	overflow-y: hidden;
+	overflow-y: visible;
+	/* -webkit-overflow-scrolling: */
 }
 
 
@@ -2653,16 +2654,21 @@ li.hasInspect::before {
 
 #deviceTable tr td, #deviceTable tr th {
 	cursor: pointer;
+	white-space: nowrap;
+}
+#deviceTable tr td td, #deviceTable tr th th {
+	white-space: normal;
 }
 .deviceInfo {
 	color: black;
 	position: absolute;
 	margin-top: 10px;
 	margin-left: -10px;
-	width: 450px;
+	width: 420px;
 	min-height: 196px;
-	padding: 20px;
+	padding: 20px 0 0 20px;
 	cursor: auto;
+	white-space: normal;
 }
 .deviceInfo h2 {
 	margin-bottom: 16px !important;
@@ -2676,6 +2682,7 @@ li.hasInspect::before {
 	color: #999;
 	position: relative;
 	top: -1px;
+	text-decoration: none;
 }
 .deviceInfo .image {
 	position: absolute;
@@ -2689,7 +2696,10 @@ li.hasInspect::before {
 }
 .deviceInfo .information {
 	margin-left: 160px;
-	width: 290px;
+	width: 260px;
+}
+.deviceInfo table {
+	width: 240px;
 }
 .deviceInfo table .check {
 	font-family: html5test;
@@ -2705,6 +2715,7 @@ li.hasInspect::before {
 .deviceInfo .browsers {
 	list-style-type: none;
 	margin-top: 30px;
+	padding: 0;
 }
 .deviceInfo .browsers li {
 	display: inline-block;
@@ -2715,6 +2726,10 @@ li.hasInspect::before {
 	margin-right: 16px;
 	margin-bottom: 32px;
 }
+.deviceInfo .browsers li.default {
+	width: 240px;
+	margin-bottom: 24px;
+}
 .deviceInfo .browsers span {
 	position: absolute;
 	display: block;
@@ -2722,7 +2737,35 @@ li.hasInspect::before {
 	top: 50px;
 	width: 48px;
 	text-align: center;
-	font-size: 0.9em;
+	font-size: 0.8em;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.deviceInfo .browsers li.default span {
+	left: 44px;
+	top: 14px;
+	font-size: 1em;
+	width: auto;
+}
+.deviceInfo .browsers li.default span.stock {
+	left: 16px;
+}
+.deviceInfo .browsers .score {
+	position: absolute;
+	display: block;
+	right: 0;
+	top: 0;
+	height: 48px;
+	background: #0092bf;
+	color: #fff;
+	padding: 0 10px;
+	line-height: 48px;
+    font-family: 'League Gothic', Impact;
+    font-weight: normal;
+	font-size: 2.2em;
+}
+.deviceInfo .browsers .score a {
+	color: #fff;
+	text-decoration: none;
 }
 .deviceInfo .browsers img {
 	position: relative;
@@ -2730,15 +2773,44 @@ li.hasInspect::before {
 	left: 8px;
 	width: 32px;
 }
-.deviceInfo .browsers li.no img {
-	opacity: 0.3;
-
-	filter: grayscale(100%);
-    -webkit-filter: grayscale(100%); 
-}
-
 .deviceInfo .comment {
 	border-top: 1px solid #ccc;
 	padding-top: 10px;
+	width: 240px;
+	margin-bottom: 20px;
 }
 
+
+
+@media (max-width: 680px) {
+	.deviceInfo {
+		width: 236px;
+	}
+	
+	.deviceInfo .image {
+		position: static;
+		width: 216px;
+		margin-bottom: 20px;
+	}
+
+	.deviceInfo table {
+		width: 216px;
+	}
+	.deviceInfo tr:first-of-type th,
+	.deviceInfo tr:first-of-type td {
+		border-top: none;
+	}
+	.deviceInfo .information {
+		margin: 0;
+		width: 216px;
+	}
+	.deviceInfo .browsers {
+		margin-top: 20px;
+	}
+	.deviceInfo .browsers li.default {
+		width: 216px;
+	}
+	.deviceInfo .comment {
+		width: 216px;
+	}
+}
