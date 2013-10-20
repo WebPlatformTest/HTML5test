@@ -1794,7 +1794,10 @@ var tests = [
 									{
 										id:			'scoped',
 										name: 		'Scoped <code>style</code> element', 
-										url:		'http://www.w3.org/TR/html5/document-metadata.html#attr-style-scoped'
+										urls:		{
+														'w3c':	'http://www.w3.org/TR/html5/document-metadata.html#attr-style-scoped',
+														'wp':	'/Meta:HTML/Elements/style'
+													}
 									}, 
 									
 									'<strong>Scripts</strong>',
@@ -1804,7 +1807,8 @@ var tests = [
 										name: 		'Asyncronous script execution', 
 										urls:		{
 														'w3c':	'http://www.w3.org/TR/html5/scripting-1.html#attr-script-async',
-														'mdn':	'/HTML/Element/script'
+														'mdn':	'/HTML/Element/script',
+														'wp':	'/html/elements/script'
 													}
 									}, {
 										id:			'onerror',
@@ -1831,7 +1835,8 @@ var tests = [
 										id:			'json',
 										name: 		'JSON encoding and decoding', 
 										urls:		{
-														'mdn':	'/JSON'
+														'mdn':	'/JSON',
+														'wp':	'/apis/json'
 													}
 									}, {
 										id: 		'mutationObserver',
