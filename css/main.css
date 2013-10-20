@@ -544,6 +544,52 @@ body > .header ul li a {
 
 
 
+
+.text table {
+	margin: 1em 0;
+}
+.text table th,
+.text table td {
+	font-weight: normal;
+	text-align: left;
+	
+	border-top: 1px solid #ddd; 
+	padding: 4px 0;
+	vertical-align: top;
+	font-size: 1em;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.text table thead th {
+	text-align: left;
+	padding-left: 10px;
+	padding-bottom: 10px;	
+	border-top: none;
+	font-weight: bold;
+	position: relative;
+}
+.text table thead th::after {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 0px;
+	height: 10px;
+	border-right: 1px solid #ddd;	
+	left: 0;
+	bottom: 0;
+}
+.text table thead th:last-child::before {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 10px;
+	height: 10px;
+	border-right: 1px solid #ddd;	
+	right: 0;
+	bottom: 0;
+}
+
+
 /********************************************
  *
  *   Global: UI elements > Popup
