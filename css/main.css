@@ -402,7 +402,7 @@ body > .header ul li a {
 	top: 32px;
 	margin-bottom: 52px;
 }
-.paper > ul {
+.paper > ul.navigation {
 	position:absolute;
 	top: -32px;
 
@@ -410,7 +410,7 @@ body > .header ul li a {
 	overflow:hidden;
 	list-style-type: none;
 }
-.paper > ul li {
+.paper > ul.navigation li {
 	display: block;
 	float: left;
 	
@@ -423,14 +423,14 @@ body > .header ul li a {
 
 	background: #aaa;
 }
-.paper > ul li.selected {
+.paper > ul.navigation li.selected {
 	background: #fff;
 }
-.paper > ul li a {
+.paper > ul.navigation li a {
 	color: #fff;
 	text-decoration: none;
 }
-.paper > ul li.selected a {
+.paper > ul.navigation li.selected a {
 	color: #000;
 }
 .paper > div {
@@ -501,7 +501,7 @@ body > .header ul li a {
 		break-before: auto;
 	}
 
-	.paper ul li span {
+	.paper ul.navigation li span {
 		display: none;
 	}
 }	
