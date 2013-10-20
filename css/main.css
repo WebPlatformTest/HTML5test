@@ -2643,6 +2643,7 @@ div:-moz-full-screen #timelineGraph {
 ul.legend {
 	list-style-type: none;
 	margin-bottom: 1em;
+	padding: 10px 0 0;
 }
 ul.legend li {
 	display: inline;
