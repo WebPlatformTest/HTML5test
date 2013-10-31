@@ -2501,13 +2501,13 @@ Test = (function() {
 			group.setItem({
 				id:			'draggable',
 				passed:		'draggable' in element,
-				value:		3
+				value:		2
 			});
 
 			group.setItem({
 				id:			'dropzone',
 				passed:		'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO,
-				value:		2
+				value:		1
 			});
 
 			var group = this.section.getGroup({
@@ -2884,7 +2884,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'context',
 				passed:		passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO,
-				value: 		15
+				value: 		20
 			});
 
 
@@ -3392,7 +3392,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'scoped',
 				passed:		'scoped' in document.createElement('style'), 
-				value: 		5
+				value: 		4
 			});
 
 			this.section.setItem({
@@ -3460,7 +3460,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'getSelection',
 				passed:		!!window.getSelection, 
-				value: 		4
+				value: 		2
 			});
 
 			var element = document.createElement('div');
