@@ -30,3 +30,10 @@ RewriteRule ^results/gaming.html$			/backend/results.php?type=gaming
 RewriteRule ^results/television.html$		/backend/results.php?type=television
 
 RewriteRule ^devicelab/?$					/backend/lab.php
+
+<FilesMatch "index.html">
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "default-src 'unsafe-inline' *; frame-src *"
+    Header set X-Content-Security-Policy "default-src 'unsafe-inline' *; frame-src *"
+</IfModule>
+</FilesMatch>

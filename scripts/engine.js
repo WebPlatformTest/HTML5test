@@ -2778,9 +2778,15 @@ Test = (function() {
 			});
 
 			this.section.setItem({
-				id:			'csp',
+				id:			'csp10',
+				passed:		!(function() { try { return eval('true'); } catch (e) {} })(),
+				value: 		3
+			});
+
+			this.section.setItem({
+				id:			'csp11',
 				passed:		'SecurityPolicy' in document, 
-				value: 		5
+				value: 		2	
 			});
 
 			this.section.setItem({

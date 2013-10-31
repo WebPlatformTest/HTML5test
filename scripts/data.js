@@ -1580,8 +1580,15 @@ var tests = [
 														'w3c':	'http://www.w3.org/TR/WebCryptoAPI/'
 													}
 									}, {
-										id:			'csp',
-										name: 		'Content Security Policy', 
+										id:			'csp10',
+										name: 		'Content Security Policy 1.0',
+										urls:		{
+														'w3c':	'http://www.w3.org/TR/CSP/',
+														'mdn':	'/Security/CSP'
+													}
+									}, {
+										id:			'csp11',
+										name: 		'Content Security Policy 1.1',
 										urls:		{
 														'w3c':	'http://www.w3.org/TR/CSP/',
 														'mdn':	'/Security/CSP'

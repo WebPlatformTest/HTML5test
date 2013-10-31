@@ -238,13 +238,7 @@
 				"</div>" +
 	
 				"<div id='facebook'>" +
-				"<div class='fb-like' " +
-					"data-href='http://html5test.com' " + 
-					"data-send='false' " + 
-					"data-layout='box_count' " +
-					"data-width='60' " +
-					"data-show-faces='false'" +
-					"></div>" +
+				"<iframe src='//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhtml5test.com&amp;width=60&amp;height=65&amp;colorscheme=light&amp;layout=box_count&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=202643099847776' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:The pixel width of the pluginpx; height:65px;' allowTransparency='true'></iframe>" +
 				"</div>" +
 	
 				"<div id='google'>" +
@@ -256,18 +250,11 @@
 				
 				"</div></div>";
 	
+	
+	
 			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
 			{js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}
 			(document,"script","twitter-wjs");
-	
-			(function(d, s, id) {
-			  var js, fjs = d.getElementsByTagName(s)[0];
-			  if (d.getElementById(id)) return;
-			  js = d.createElement(s); js.id = id;
-			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=202643099847776";
-			  fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
-			
 			
 			(function() {
 			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
