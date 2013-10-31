@@ -1338,33 +1338,29 @@ Test = (function() {
 
 			var passed = false;
 			try { 
-				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement;
+				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'menu',
-				passed:	passed, 
-				value: 	1
-			});
-
-			var minimal = 'type' in element;
-			var baseline = getRenderedStyle(element);
-			var supported = minimal;
+			// Check default type
+			if (passed && element.type != 'toolbar') passed = false;	
 			
+			// Check type sanitization
+			try {
+				element.type = 'foobar';
+			} catch(error) {
+			}
+			
+			if (passed && element.type == 'foobar') passed = false;	
+
+			// Check if correct type sticks
 			try {
 				element.type = 'toolbar';
-			} catch(e) {
-				supported = false;
-			}
-			
-			var comparison = getRenderedStyle(element);
-			
-			var passed = false;
-			try { 
-				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && supported && baseline != comparison;
 			} catch(error) {
+				passed = false;
 			}
+
+			if (passed && element.type != 'toolbar') passed = false;	
 
 			group.setItem({
 				id:		'menutoolbar',
@@ -1372,26 +1368,59 @@ Test = (function() {
 				value: 	1
 			});
 
-			var supported = minimal;
+			document.body.removeChild(element);					
 
-			try {
-				element.type = 'context';
-			} catch(error) {
-				supported = false;
-			}
-			
-			var comparison = getRenderedStyle(element);
-		
+
+
+			var element = document.createElement('menu');
+			document.body.appendChild(element);
+
 			var passed = false;
 			try { 
-				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && supported && baseline != comparison;
+				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
 			} catch(error) {
+			}
+
+			try {
+				element.type = 'popup';
+			} catch(error) {
+			}
+			
+			// Check default type
+			var second = document.createElement('menu');
+			element.appendChild(second);
+			if (passed && second.type != 'popup') passed = false;	
+			element.removeChild(second);					
+				
+			// Check type sanitization
+			try {
+				element.type = 'foobar';
+			} catch(error) {
+			}
+
+			if (passed && element.type == 'foobar') passed = false;	
+
+			// Check if correct type sticks
+			try {
+				element.type = 'popup';
+			} catch(error) {
+				passed = false;
+			}
+
+			if (passed && element.type != 'popup') passed = false;	
+
+
+			if (passed) {
+				var item = document.createElement('menuitem');
+				element.appendChild(item);
+				
+				if (typeof HTMLMenuItemElement == 'undefined' || ! item instanceof HTMLMenuItemElement) passed = false;
 			}
 
 			group.setItem({
-				id:		'menucontext',
+				id:		'menupopup',
 				passed:	passed, 
-				value: 	1
+				value: 	2
 			});
 
 			document.body.removeChild(element);					

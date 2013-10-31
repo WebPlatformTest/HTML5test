@@ -166,16 +166,12 @@ var tests = [
 														name: 	'<code>summary</code> element', 
 														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element'
 													}, {
-														id:		'menu',
-														name: 	'<code>menu</code> element of type <code>list</code>', 
-														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element'
-													}, {
 														id:		'menutoolbar',
 														name: 	'<code>menu</code> element of type <code>toolbar</code>', 
 														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element'
 													}, {
-														id:		'menucontext',
-														name: 	'<code>menu</code> element of type <code>context</code>', 
+														id:		'menupopup',
+														name: 	'<code>menu</code> element of type <code>popup</code>', 
 														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element'
 													}, {
 														id:		'dialog',
