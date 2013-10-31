@@ -35,7 +35,7 @@ var tests = [
 									{
 										id:		'svg',
 										name: 	'SVG in <code>text/html</code>', 
-										url2:	{
+										urls:	{
 													'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#svg',
 													'mdn':	'/SVG'
 												}
