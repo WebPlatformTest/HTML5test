@@ -2770,10 +2770,11 @@ Test = (function() {
 			
 			
 			var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
+			var passed = window.crypto ? YES : window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
 			
 			this.section.setItem({
 				id:			'crypto',
-				passed: 	!!crypto && 'encrypt' in crypto,
+				passed: 	!!crypto && 'encrypt' in crypto ? passed : NO,
 				value: 		5
 			});
 
@@ -2956,7 +2957,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'websocket.basic',
-				passed:		minimal ? (required ? true : OLD) : false, 
+				passed:		passed,
 				value: 		10
 			});
 
