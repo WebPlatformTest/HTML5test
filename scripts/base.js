@@ -357,6 +357,13 @@
 
 
 
+	var NO = 0, 
+		YES = 1, 
+		OLD = 2, 
+		BUGGY = 4, 
+		PREFIX = 8, 
+		BLOCKED = 16;	
+		
 	var ResultsTable = function() { this.initialize.apply(this, arguments) };
 	ResultsTable.prototype = {
 	
@@ -483,11 +490,18 @@
 						var key = id + '-' + tests[i].id;
 							
 						if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(data.results)) {
-							switch(parseInt(match[1], 10)) {
-								case 1:		cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
-								case -1:	cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
-								case -2:	cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
-								default: 	cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+							var result = parseInt(match[1], 10);
+							
+							if (result & YES) {
+								switch(true) {
+									case !! (result & OLD):		cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
+									case !! (result & BUGGY):	cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
+									case !! (result & PREFIX):	cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; count[1]++; break;
+									default:					cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
+								}
+							}
+							else {
+								cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
 							}
 						} else {
 							cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';

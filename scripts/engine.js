@@ -1,12 +1,12 @@
 
 Test = (function() {			
 	
-	
-	var YES = 1, 
-		NO = 0, 
-		BUGGY = -1, 
-		OLD = -2, 
-		BLOCKED = -3;	
+	var NO = 0, 
+		YES = 1, 
+		OLD = 2, 
+		BUGGY = 4, 
+		PREFIX = 8, 
+		BLOCKED = 16;	
 	
 	
 	var blacklists = {};
@@ -884,12 +884,12 @@ Test = (function() {
 
 			this.section.setItem({
 				id:		'drm',
-				passed:	'addKey' in this.element || 'webkitAddKey' in this.element || 'mozAddKey' in this.element || 'msAddKey' in this.element
+				passed:	'addKey' in this.element ? YES : 'webkitAddKey' in this.element || 'mozAddKey' in this.element || 'msAddKey' in this.element ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:		'mediasource',
-				passed:	'MediaSource' in window || 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window, 
+				passed:	'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO, 
 				value: 	2
 			});
 
@@ -960,7 +960,7 @@ Test = (function() {
 			
 			var item = {
 				id:		'canplaytype',
-				passed:	this.element.canPlayType ? (passed ? true : BUGGY) : false,
+				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO,
 				value:	4
 			};
 		
@@ -1053,20 +1053,20 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'webaudio',
-				passed:		'AudioContext' in window || 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window, 
+				passed:		'AudioContext' in window ? YES : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window ? YES | PREFIX : NO, 
 				value: 		5
 			});
 
 
 			this.section.setItem({
 				id:			'speechrecognition',
-				passed:		'SpeechRecognition' in window || 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window, 
+				passed:		'SpeechRecognition' in window ? YES : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window ? YES | PREFIX : NO, 
 				value: 		3
 			});
 
 			this.section.setItem({
 				id:			'speechsynthesis',
-				passed:		'speechSynthesis' in window || 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window, 
+				passed:		'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO, 
 				value: 		2
 			});
 		},
@@ -1094,7 +1094,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:		'peerconnection',
-				passed:	!!window.RTCPeerConnection || !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection, 
+				passed:	!!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO, 
 				value: 	10
 			});
 		}
@@ -1109,25 +1109,25 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'getUserMedia',
-				passed:		!!navigator.getUserMedia || !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia, 
+				passed:		!!navigator.getUserMedia ? YES : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO, 
 				value: 		10
 			});
 
 			this.section.setItem({
 				id:			'getGamepads',
-				passed:		!!navigator.getGamepads || !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads, 
+				passed:		!!navigator.getGamepads ? YES : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads ? YES | PREFIX : NO, 
 				value: 		2
 			});
 
 			this.section.setItem({
 				id:   		'pointerLock',
-				passed:  	'pointerLockElement' in document || 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document,
+				passed:  	'pointerLockElement' in document ? YES : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document ? YES | PREFIX : NO,
 				value:   	3
 			});
 
 			this.section.setItem({
 				id:   		'pointerevents',
-				passed:  	!!window.navigator.pointerEnabled || !!window.navigator.msPointerEnabled || !!window.navigator.mozPointerEnabled || !!window.navigator.webkitPointerEnabled,
+				passed:  	!!window.navigator.pointerEnabled ? YES : !!window.navigator.msPointerEnabled || !!window.navigator.mozPointerEnabled || !!window.navigator.webkitPointerEnabled ? YES | PREFIX : NO,
 				value:   	5
 			});
 		}
@@ -2492,7 +2492,7 @@ Test = (function() {
 
 			group.setItem({
 				id:			'dropzone',
-				passed:		('dropzone' in element || 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element),
+				passed:		'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO,
 				value:		2
 			});
 
@@ -2847,11 +2847,13 @@ Test = (function() {
 			
 			var element = document.createElement('canvas');
 			var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
+			var context = '';
 			var passed = false;
     
 	        for (var b = -1, len = contexts.length; ++b < len;) {
 	            try {
 	                if (element.getContext(contexts[b])) {
+	                	context = contexts[b];
 	                	passed = true;
 	                	break;
 	                };	
@@ -2860,7 +2862,7 @@ Test = (function() {
 				
 			this.section.setItem({
 				id:			'context',
-				passed:		passed, 
+				passed:		passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO,
 				value: 		15
 			});
 
@@ -2942,8 +2944,9 @@ Test = (function() {
 			this.testResponseTypeBlob(item);
 
 
-			var minimal = 'WebSocket' in window || 'MozWebSocket' in window;
-			var required = 'WebSocket' in window && window.WebSocket.CLOSING === 2;
+			var websocket = window.WebSocket || window.MozWebSocket;
+			var passed = 'WebSocket' in window ? YES : 'MozWebSocket' in window ? YES | PREFIX : NO;
+			if (websocket && websocket.CLOSING !== 2) passed |= OLD;
 
 			this.section.setItem({
 				id:			'websocket.basic',
@@ -3135,7 +3138,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'fileSystem',
-				passed:		!! window.requestFileSystem || !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem, 
+				passed:		!! window.requestFileSystem ? YES : !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem ? YES | PREFIX : NO, 
 				value: 		0
 			});
 		}
@@ -3177,11 +3180,13 @@ Test = (function() {
 
 			/* IndexedDB */
 			
-			var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.moz_indexedDB || window.oIndexedDB || window.msIndexedDB
+			var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.moz_indexedDB || window.oIndexedDB || window.msIndexedDB;
+			var passed = !! window.indexedDB ? YES : !! window.webkitIndexedDB || !! window.mozIndexedDB || !! window.moz_indexedDB || !! window.oIndexedDB || !! window.msIndexedDB ? YES | PREFIX : NO;
+			if (indexedDB && ! 'deleteDatabase' in indexedDB) passed != BUGGY;
 
 			this.section.setItem({
 				id:			'indexedDB.basic',
-				passed:		!! indexedDB ? ('deleteDatabase' in indexedDB ? true : BUGGY) : false, 
+				passed:		passed,
 				value: 		16
 			});
 
@@ -3341,7 +3346,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'requestFullScreen',
-				passed:		!! document.documentElement.requestFullscreen || !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullscreen, 
+				passed:		!! document.documentElement.requestFullscreen ? YES : !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullscreen ? YES | PREFIX : NO, 
 				value: 		5
 			});
 			
@@ -3349,7 +3354,7 @@ Test = (function() {
 			/* W3C standard is "new Notification()", WebKit pre-standard is "window.webkitNotifications.createNotification()", Gecko pre-standard is "window.navigator.mozNotification.createNotification()" */
 			this.section.setItem({
 				id:			'notifications',
-				passed:		'Notification' in window || 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window, 
+				passed:		'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO, 
 				value: 		5
 			});
 		}
@@ -3421,13 +3426,13 @@ Test = (function() {
 
 			this.section.setItem({
 				id:   		'mutationObserver',
-				passed:   	'MutationObserver' in window || 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window,
+				passed:   	'MutationObserver' in window ? YES : 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window ? YES | PREFIX : NO,
 				value:  	3 
 			});
 
 			this.section.setItem({
 				id:			'pagevisiblity',
-				passed:		'visibilityState' in document || 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document, 
+				passed:		'visibilityState' in document ? YES : 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document ? YES | PREFIX : NO,
 				value: 		2
 			});
 
@@ -3458,7 +3463,7 @@ Test = (function() {
 			
 			this.section.setItem({
 				id:			'requestAnimationFrame',
-				passed:		!! window.requestAnimationFrame || !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame, 
+				passed:		!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO,
 				value: 		5
 			});
 		}
