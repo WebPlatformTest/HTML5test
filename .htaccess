@@ -31,6 +31,12 @@ RewriteRule ^results/television.html$		/backend/results.php?type=television
 
 RewriteRule ^devicelab/?$					/backend/lab.php
 
+<FilesMatch "detect.html">
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatch>
+
 <FilesMatch "index.html">
 <IfModule mod_headers.c>
     Header set Content-Security-Policy "default-src 'unsafe-inline' *; frame-src *"
