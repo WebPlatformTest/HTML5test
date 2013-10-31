@@ -1137,12 +1137,19 @@ var tests = [
 						name:	'Peer To Peer',
 						items:	[
 									{
-										id:			'peerconnection',
-										name: 		'WebRTC', 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/webrtc/',
-														'mdn':	'/WebRTC'
-													}
+										id:		'peerconnection',
+										name: 	'WebRTC',
+										urls:	{
+													'w3c':	'http://www.w3.org/TR/webrtc/',
+													'mdn':	'/WebRTC'
+												}
+									}, {
+										id:		'datachannel',
+										name: 	'Data channel',
+										urls:	{
+													'w3c':	'http://www.w3.org/TR/webrtc/',
+													'mdn':	'/WebRTC'
+												}
 									}
 								]
 					}

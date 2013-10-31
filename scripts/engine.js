@@ -1097,6 +1097,20 @@ Test = (function() {
 				passed:	!!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO, 
 				value: 	10
 			});
+			
+			var passed = false;
+			try {
+				o = new (window.RTCPeerConnection || window.msRTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection)(null);
+				passed = 'createDataChannel' in o;
+			}
+			catch(e) {
+			}
+			
+			this.section.setItem({
+				id:		'datachannel',
+				passed:	passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO, 
+				value: 	5
+			});
 		}
 	}
 
