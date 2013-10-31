@@ -1209,12 +1209,6 @@ var tests = [
 													'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-addhitregion'
 												}
 									}, {
-										id:		'hires',
-										name: 	'High resolution support', 
-										urls:	{
-													'whatwg':	'http://developers.whatwg.org/the-canvas-element.html#dom-context-2d-getimagedatahd'
-												}
-									}, {
 										id:		'blending',
 										name: 	'Blending modes', 
 										urls:	{

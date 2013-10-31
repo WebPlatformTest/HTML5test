@@ -775,23 +775,6 @@ Test = (function() {
 
 
 			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					var ctx = this.canvas.getContext('2d');
-					passed = typeof ctx.webkitGetImageDataHD == 'function' || typeof ctx.mozGetImageDataHD == 'function' || typeof ctx.msGetImageDataHD == 'function' || typeof ctx.oGetImageDataHD == 'function' || typeof ctx.getImageDataHD == 'function';
-				}
-				catch(e) {
-				}
-			}
-			
-			this.section.setItem({
-				id:		'hires',
-				passed:	passed, 
-				value: 	5
-			});
-
-
-			var passed = false;
 
 			if (this.canvas.getContext) {
 				this.canvas.width = 1;
