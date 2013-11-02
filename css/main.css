@@ -1,7 +1,7 @@
 
 /********************************************
  *
- *   Import fonts	
+ *   Import fonts
  */
 
 @font-face {
@@ -38,13 +38,13 @@
  *
  *   Background: 	#d9d9d9
  *	 Blue:			#0092bf
- *   Orange:		#ec6534			
+ *   Orange:		#ec6534
  */
 
 * {
-	padding: 0;				
+	padding: 0;
 	margin: 0;
-	
+
 	-webkit-text-size-adjust: none;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -94,7 +94,7 @@ img {
 }
 
 table {
-	border-collapse: collapse; 
+	border-collapse: collapse;
 	width: 100%;
 }
 tbody tr:hover > td, tbody tr:hover > th {
@@ -131,17 +131,17 @@ body > .header h1 span {
 body > .header h1 span,
 body > .header h1 em {
 	zoom: 1;
-	display: inline-block;       
+	display: inline-block;
 	*display: inline;
 }
 
 body > .header h1 strong {
-	font-family: html5test;	
+	font-family: html5test;
 	font-weight: normal;
 	font-size: 1.8em;
 	color: #ec6534;
 	-webkit-font-smoothing: antialiased;
-	
+
 	position: relative;
 	top: 7px;
 }
@@ -281,13 +281,13 @@ body > .header ul li a {
 	top: 0;
 	right: 0;
 	border-left: 1px solid #ccc;
-	
+
 	display: block;
 	background: url(/images/sponsors/cloudvps.png) no-repeat 10px top;
 	background-size: 59px 43px;
 	padding-top: 0px;
 	padding-left: 80px;
-	
+
 	text-decoration: none;
 	color: #04446d;
 	font-size: 90%;
@@ -306,13 +306,13 @@ body > .header ul li a {
 @media (max-width: 680px) {
 	.footer > div {
 		padding-right: 0;
-		padding-bottom: 60px;	
-	} 
-	
+		padding-bottom: 60px;
+	}
+
 	#cloudvps a {
 		top: auto;
-		left: 0;		
-		
+		left: 0;
+
 		border-left: none;
 		border-top: 1px solid #ccc;
 		padding-top: 12px;
@@ -337,16 +337,16 @@ body > .header ul li a {
 	position: relative;
 
 	zoom: 1;
-	display: inline-block;       
+	display: inline-block;
 	*display: inline;
 	vertical-align: top;
 }
 .page .column .left,
 .page .column .right {
-	width: 50%;	
+	width: 50%;
 
 	zoom: 1;
-	display: inline-block;       
+	display: inline-block;
 	*display: inline;
 
 	vertical-align: top;
@@ -374,7 +374,7 @@ body > .header ul li a {
 	}
 	.page .column .left,
 	.page .column .right {
-		width: 100%;	
+		width: 100%;
 	}
 	.page .column .left > div,
 	.page .column .right > div {
@@ -401,7 +401,7 @@ body > .header ul li a {
 
 	font-size: 0.75em;
 	line-height: 165%;
-	
+
 	margin-bottom: 60px;
 }
 .paper.hasNavigation {
@@ -419,7 +419,7 @@ body > .header ul li a {
 .paper > ul.navigation li {
 	display: block;
 	float: left;
-	
+
 	margin: 0 3px 0 0;
 	padding: 0 10px;
 	line-height: 32px;
@@ -486,7 +486,7 @@ body > .header ul li a {
 		-moz-column-count: 2;
 		column-count: 2;
 	}
-	
+
 	.break-3 {
 		margin-top: 1.5em !important;
 		-webkit-column-break-before: auto;
@@ -510,14 +510,14 @@ body > .header ul li a {
 	.paper ul.navigation li span {
 		display: none;
 	}
-}	
+}
 
 @media (max-width: 432px) {
 /*
 	.paper ul {
-		font-size: 0.8em;	
+		font-size: 0.8em;
 	}
-	
+
 	.paper ul li {
 		padding: 0 6px;
 	}
@@ -560,8 +560,8 @@ body > .header ul li a {
 .text table td {
 	font-weight: normal;
 	text-align: left;
-	
-	border-top: 1px solid #ddd; 
+
+	border-top: 1px solid #ddd;
 	padding: 4px 0;
 	vertical-align: top;
 	font-size: 1em;
@@ -571,7 +571,7 @@ body > .header ul li a {
 .text table thead th {
 	text-align: left;
 	padding-left: 10px;
-	padding-bottom: 10px;	
+	padding-bottom: 10px;
 	border-top: none;
 	font-weight: bold;
 	position: relative;
@@ -582,7 +582,7 @@ body > .header ul li a {
 	content: '';
 	width: 0px;
 	height: 10px;
-	border-right: 1px solid #ddd;	
+	border-right: 1px solid #ddd;
 	left: 0;
 	bottom: 0;
 }
@@ -592,7 +592,7 @@ body > .header ul li a {
 	content: '';
 	width: 10px;
 	height: 10px;
-	border-right: 1px solid #ddd;	
+	border-right: 1px solid #ddd;
 	right: 0;
 	bottom: 0;
 }
@@ -621,14 +621,14 @@ body > .header ul li a {
 .popupPanel.pointsRight::before {
 	content: '';
 	display: block;
-	
+
 	position: absolute;
 	width: 0;
 	height: 0;
 	top: -13px;
 	left: 7px;
 	z-index: 10;
-	
+
 	border-bottom: 11px solid #aaa;
 	border-right: 11px solid transparent;
 	border-left: 11px solid transparent;
@@ -637,14 +637,14 @@ body > .header ul li a {
 .popupPanel.pointsRight::after {
 	content: '';
 	display: block;
-	
+
 	position: absolute;
 	width: 0;
 	height: 0;
 	top: -7px;
 	left: 10px;
 	z-index: 11;
-	
+
 	border-bottom: 8px solid #fff;
 	border-right: 8px solid transparent;
 	border-left: 8px solid transparent;
@@ -667,7 +667,7 @@ body > .header ul li a {
 
 .search {
 	position: relative;
-	width: 200px;	
+	width: 200px;
 	height: 40px;
 	line-height: 40px;
 	background: #eee;
@@ -706,7 +706,7 @@ body > .header ul li a {
 	right: 4px;
 	height: 32px;
 	width: 32px;
-	
+
 	font-size: 1.2em;
 	color: #bbb;
 
@@ -723,11 +723,11 @@ body > .header ul li a {
 .toggle {
 	display: block;
 	cursor: pointer;
-	
+
 	position: relative;
-	width: 200px;	
+	width: 200px;
 	height: 40px;
-	
+
 	line-height: 40px;
 	text-align: center;
 	background: #eee;
@@ -764,7 +764,7 @@ body > .header ul li a {
 	left: 0;
 	bottom: 0;
 	width: 100px;
-	
+
 	background: #0092bf;
 
 	-webkit-transition: all .3s ease-in-out;
@@ -855,9 +855,9 @@ body > .header ul li a {
 .detailsTable .unknown {
 	position: relative;
 	display: inline-block;
-	
+
 	top: -1px;
-	
+
 	color: #888;
 	font-size: 1.2em;
 	margin: 0 0 0 6px;
@@ -907,7 +907,7 @@ body > .header ul li a {
   from {
     transform: rotate(0deg);
   }
-  to { 
+  to {
     transform: rotate(360deg);
   }
 }
@@ -916,7 +916,7 @@ body > .header ul li a {
   from {
     -webkit-transform: rotate(0deg);
 	}
-  to { 
+  to {
     -webkit-transform: rotate(360deg);
   }
 }
@@ -924,7 +924,7 @@ body > .header ul li a {
 #loading {
 	min-height: 500px;
 	position: relative;
-} 
+}
 
 #loading div {
 	display: block;
@@ -945,7 +945,7 @@ body > .header ul li a {
     -webkit-animation: loader 1s steps(8) infinite;
     animation: loader 1s steps(8) infinite;
 }
- 
+
 
 
 /*******************************************************************************
@@ -971,7 +971,7 @@ body > .header ul li a {
 	text-align: center;
 	line-height: 40px;
 	margin: 0;
-	
+
 }
 .pointsPanel h2 > strong,
 .pointsPanel h2 > span {
@@ -1016,7 +1016,7 @@ body > .header ul li a {
 }
 .wrapper {
 	margin: 8px 0 20px;
-	position: relative;	
+	position: relative;
 }
 
 @media (max-width: 900px) {
@@ -1045,13 +1045,13 @@ body > .header ul li a {
 	.pointsPanel h2 > strong {
 		display: block;
 	}
-}	
+}
 
 @media (max-width: 680px) {
 	.pointsPanel {
 		padding: 0;
 	}
-	
+
 	.blocked {
 		margin-left: 20px;
 		margin-right: 20px;
@@ -1071,7 +1071,7 @@ body > .header ul li a {
 	width: 210px;
 	margin-top: 21px;
 	padding: 20px 10px 10px;
-	
+
 	text-align: center;
 	color: #000;
 	cursor: auto;
@@ -1105,7 +1105,7 @@ body > .header ul li a {
 }
 #share {
 	display: block;
-	height: 94px;	
+	height: 94px;
 	position: relative;
 }
 #share #twitter {
@@ -1151,7 +1151,7 @@ body > .header ul li a {
 	.wrapper .buttons > * {
 		width: 100%;
 	}
-	
+
 	.wrapper .buttons .donate {
 		display: none;
 	}
@@ -1167,7 +1167,7 @@ body > .header ul li a {
 .useragent {
 	position: relative;
 	box-sizing: border-box;
-	border-top: 8px solid #d9d9d9; 
+	border-top: 8px solid #d9d9d9;
 	display: block;
 
 	text-align: left;
@@ -1202,7 +1202,7 @@ body > .header ul li a {
 	font-size: 1.6em;
 	padding: 0 0 0 6px;
 	cursor: pointer;
-	
+
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
@@ -1223,7 +1223,7 @@ body > .header ul li a {
 		font-size: 0.75em;
 		min-height: 1.7em;
 	}
-}	
+}
 
 
 .useragent .expandWidget {
@@ -1237,7 +1237,7 @@ body > .header ul li a {
 	text-align: center;
 
 	color: #888;
-	
+
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
@@ -1273,12 +1273,12 @@ body > .header ul li a {
 }
 
 .useragent table th {
-	padding-right: 16px;	
+	padding-right: 16px;
 	white-space: nowrap;
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 }
 
-.useragent table td, 
+.useragent table td,
 .useragent table th {
 	vertical-align: top;
 	font-size: 0.9em;
@@ -1310,7 +1310,7 @@ body > .header ul li a {
 	font-size: 1.2em;
 	padding-right: 4px;
 	vertical-align: middle;
-	
+
 	-webkit-font-smoothing: antialiased;
 }
 .resultsTable .category.semantics h2::before { content: ''; }
@@ -1323,13 +1323,13 @@ body > .header ul li a {
 
 .resultsTable table {
 	border-spacing: 0;
-	
+
 	position: relative;
 	margin: 0 0 24px;
-	
+
 	background: #fff;
 	color: #000;
-	
+
 	border-collapse: separate;
 }
 .resultsTable table thead tr {
@@ -1344,7 +1344,7 @@ body > .header ul li a {
 
 	padding: 0px 10px;
 	height: 44px;
-	
+
     font-family: 'League Gothic', Impact;
     font-weight: normal;
 
@@ -1356,7 +1356,7 @@ body > .header ul li a {
 
 	padding: 0px 10px;
 	width: 44px;
-	
+
 	text-align: right;
 }
 .resultsTable table thead th div.grade {
@@ -1390,12 +1390,12 @@ body > .header ul li a {
 
 .resultsTable table tbody th {
 	padding: 5px 10px;
-	
+
 	font-size: 0.75em;
 	font-weight: normal;
 	text-align: left;
 	position: relative;
-} 
+}
 .resultsTable table tbody td {
 	padding: 5px 10px;
 
@@ -1421,7 +1421,7 @@ body > .header ul li a {
 .resultsTable table tr:first-child th.details {
 	padding-top: 8px;
 }
-.resultsTable table th.details em { 
+.resultsTable table th.details em {
 	color: #666;
 	font-size: 90%;
 }
@@ -1522,7 +1522,7 @@ body > .header ul li a {
 
 	overflow: hidden;
 	text-overflow: ellipsis;
-} 
+}
 .resultsTable .linksPanel a:hover {
 	background-color: #eee;
 	text-decoration: none;
@@ -1561,7 +1561,7 @@ body > .header ul li a {
  */
 
 #html5 {
-	float: right; 
+	float: right;
 	display: block;
 	width: 74px;
 	height: 102px;
@@ -1610,14 +1610,14 @@ body > .header ul li a {
 	position: absolute;
 	top: 0;
 	right: 0;
-	
+
 	width: 125px;
 	height: 125px;
 	background: #eee;
 	overflow: hidden;
 	padding: 10px;
-	border-bottom: 8px solid #d9d9d9; 
-	border-left: 8px solid #d9d9d9; 
+	border-bottom: 8px solid #d9d9d9;
+	border-left: 8px solid #d9d9d9;
 }
 #headerad div {
 	width: 125px;
@@ -1679,8 +1679,8 @@ body > .header ul li a {
 
 #scoreToggle {
 	position: absolute;
-	top: 0; 
-	right: 0;	
+	top: 0;
+	right: 0;
 }
 .scoreTable {
 	margin: 0 0 50px;
@@ -1695,8 +1695,8 @@ body > .header ul li a {
 .scoreTable td {
 	font-weight: normal;
 	text-align: left;
-	
-	border-top: 1px solid #ddd; 
+
+	border-top: 1px solid #ddd;
 	padding: 4px 0;
 	vertical-align: top;
 	font-size: 1em;
@@ -1706,7 +1706,7 @@ body > .header ul li a {
 .scoreTable thead th {
 	text-align: left;
 	padding-left: 10px;
-	padding-bottom: 10px;	
+	padding-bottom: 10px;
 	border-top: none;
 	font-weight: bold;
 	position: relative;
@@ -1717,7 +1717,7 @@ body > .header ul li a {
 	content: '';
 	width: 0px;
 	height: 10px;
-	border-right: 1px solid #ddd;	
+	border-right: 1px solid #ddd;
 	left: 0;
 	bottom: 0;
 }
@@ -1727,7 +1727,7 @@ body > .header ul li a {
 	content: '';
 	width: 10px;
 	height: 10px;
-	border-right: 1px solid #ddd;	
+	border-right: 1px solid #ddd;
 	right: 0;
 	bottom: 0;
 }
@@ -1809,7 +1809,7 @@ body > .header ul li a {
 	-ms-transform: rotate(-45deg);
 	-o-transform: rotate(-45deg);
 	transform: rotate(-45deg);
-	
+
 	cursor: pointer;
 }
 #fsButton::before {
@@ -1909,7 +1909,7 @@ div:-moz-full-screen #timelineGraph {
 }
 .comparisonTable #scoreToggle {
 	position: static;
-	float: left;	
+	float: left;
 }
 .comparisonTable #searchField {
 	position: static;
@@ -1927,7 +1927,7 @@ div:-moz-full-screen #timelineGraph {
 .comparisonTable table th,
 .comparisonTable table td {
 	border-bottom: 1px solid #ddd;
-	
+
 	padding: 5px 0;
 	font-weight: normal;
 	text-align: left;
@@ -1941,7 +1941,7 @@ div:-moz-full-screen #timelineGraph {
 	border-right: 1px solid #fff;
 }
 .comparisonTable table td.used {
-	background-color: #eee; 
+	background-color: #eee;
 }
 .comparisonTable table th em {
 	font-style: normal;
@@ -1951,7 +1951,7 @@ div:-moz-full-screen #timelineGraph {
 .comparisonTable table th.details {
 	padding-top: 15px;
 }
-.comparisonTable table th.details em { 
+.comparisonTable table th.details em {
 	color: #666;
 }
 .comparisonTable table tr.hasChild th {
@@ -1965,7 +1965,7 @@ div:-moz-full-screen #timelineGraph {
 	position: absolute;
 	top: -1px;
 	left: -18px;
-	
+
 	display: block;
 	font-family: html5test;
 	font-size: 11px;
@@ -2038,7 +2038,7 @@ div:-moz-full-screen #timelineGraph {
 	content: '';
 	width: 0px;
 	height: 10px;
-	border-right: 1px solid #ddd;	
+	border-right: 1px solid #ddd;
 	left: 0;
 	bottom: 0;
 }
@@ -2048,7 +2048,7 @@ div:-moz-full-screen #timelineGraph {
 	content: '';
 	width: 10px;
 	height: 10px;
-	border-right: 1px solid #ddd;	
+	border-right: 1px solid #ddd;
 	right: 0;
 	bottom: 0;
 }
@@ -2147,7 +2147,7 @@ div:-moz-full-screen #timelineGraph {
 	content: '+';
 	font-size: 3em;
 	color: #0092bf;
-	
+
 	-webkit-transition: all .2s ease-in-out;
 	-moz-transition: all .2s ease-in-out;
 	-ms-transition: all .2s ease-in-out;
@@ -2166,7 +2166,7 @@ div:-moz-full-screen #timelineGraph {
 	display: block;
 	content: '×';
 	font-size: 3em;
-	
+
 	line-height: 90px;
 	width: 96px;
 	height: 90px;
@@ -2199,14 +2199,14 @@ div:-moz-full-screen #timelineGraph {
 	height: 400px;
 	overflow: hidden;
 	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;	
+	-webkit-overflow-scrolling: touch;
 }
 .comparisonTable #table-header #row-header td .popup ul {
 	-webkit-transform: translate3d(0,0,0);
 	width: 200px;
 	margin: 0;
 	padding: 10px 0;
-	
+
 	text-align: left;
 	line-height: 170%;
 	font-size: 0.9em;
@@ -2287,14 +2287,14 @@ div:-moz-full-screen #timelineGraph {
 
 
 .overviewTable {
-	
+
 }
 .overviewTable th,
 .overviewTable td {
 	font-weight: normal;
 	text-align: center;
-	
-	border-bottom: 1px solid #ddd; 
+
+	border-bottom: 1px solid #ddd;
 	padding: 6px 0;
 	vertical-align: top;
 	font-size: 1em;
@@ -2312,7 +2312,7 @@ div:-moz-full-screen #timelineGraph {
 	content: '';
 	width: 0px;
 	height: 10px;
-	border-right: 1px solid #ddd;	
+	border-right: 1px solid #ddd;
 	left: 0;
 	bottom: 0;
 }
@@ -2322,7 +2322,7 @@ div:-moz-full-screen #timelineGraph {
 	content: '';
 	width: 10px;
 	height: 10px;
-	border-right: 1px solid #ddd;	
+	border-right: 1px solid #ddd;
 	right: 0;
 	bottom: 0;
 }
@@ -2397,23 +2397,23 @@ div:-moz-full-screen #timelineGraph {
 
 .labheader {
 	position: relative;
-	margin: -2.5em 0 0; 
-	height: 340px; 
-	background: url(/images/lab/header.jpg) top center; 
-	background-attachment: fixed; 
+	margin: -2.5em 0 0;
+	height: 340px;
+	background: url(/images/lab/header.jpg) top center;
+	background-attachment: fixed;
 }
 .labheader h2 {
-	position: absolute; 
-	bottom: 0; 
-	left: 0; 
-	padding: 10px 16px 4px; 
-	font-size: 4em; 
-	color: #fff; 
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 10px 16px 4px;
+	font-size: 4em;
+	color: #fff;
 	background: rgba(236,101,52,0.8)
 }
 
 .inbetween {
-	line-height: 180%; 
+	line-height: 180%;
 	margin: 16px 0;
 }
 
@@ -2426,14 +2426,14 @@ div:-moz-full-screen #timelineGraph {
 
 @media (max-width: 680px) {
 	.labheader {
-		background-attachment: scroll; 
+		background-attachment: scroll;
 		background-position: center bottom;
 		background-size: 450px 225px;
-		height: 265px; 
+		height: 265px;
 	}
 
 	.labheader h2 {
-		font-size: 3em; 
+		font-size: 3em;
 	}
 
 	.inbetween {
@@ -2443,7 +2443,7 @@ div:-moz-full-screen #timelineGraph {
 
 @media (max-width: 432px) {
 	.labheader h2 {
-		font-size: 2.5em; 
+		font-size: 2.5em;
 	}
 
 	.inbetween {
@@ -2452,14 +2452,14 @@ div:-moz-full-screen #timelineGraph {
 }
 
 .labrules {
-	background: #eee; 
-	margin: 20px -20px 20px; 
+	background: #eee;
+	margin: 20px -20px 20px;
 	padding: 20px;
 }
 .labrules ol {
-	text-align: center; 
-	font-size: 1.6em; 
-	line-height: 150%; 
+	text-align: center;
+	font-size: 1.6em;
+	line-height: 150%;
 	list-style-type: none;
 }
 .opening {
@@ -2597,13 +2597,13 @@ div:-moz-full-screen #timelineGraph {
 	padding: 10px;
 	text-align: center;
 	border-top: none;
-	border-bottom: 8px solid #d9d9d9; 
+	border-bottom: 8px solid #d9d9d9;
 	font-size: 0.8em;
 }
 .lab .qrcode {
 	position: relative;
 	box-sizing: border-box;
-	border-top: 8px solid #d9d9d9; 
+	border-top: 8px solid #d9d9d9;
 	display: block;
 
 	text-align: center;
@@ -2847,7 +2847,7 @@ li.hasInspect::before {
 	.deviceInfo {
 		width: 236px;
 	}
-	
+
 	.deviceInfo .image {
 		position: static;
 		width: 216px;
