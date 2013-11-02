@@ -191,6 +191,46 @@ body > .header ul li a {
 	text-decoration: none;
 }
 
+body > .header a#index {
+	display: block;
+	position: fixed;
+	top: 15px;
+	left: 0px;
+	padding: 0px 10px;
+	line-height: 32px;
+	text-decoration: none;
+	background-color: rgb(170, 170, 170);
+	color: #FFFFFF;
+}
+
+body > .header div#indexmenu {
+	position: fixed;
+	top: 50px;
+	left: 0px;
+	height: 80%;
+	overflow-y: scroll;
+	background-color: rgb(217, 217, 217);
+	z-index: 100000;
+}
+
+body > .header div#indexmenu li {
+	display: block;
+	float: none;
+	background-color: rgb(170, 170, 170);
+}
+
+body > .header div#indexmenu li ul li {
+	margin: 0px -20px;
+	padding: 0 0 0 20px;
+	line-height: 25px;
+	background-color: rgb(217, 217, 217);
+}
+
+body > .header div#indexmenu li ul li a {
+	display: block;
+	color: #000000;
+}
+
 @media (max-width: 680px) {
 	body > .header h1 {
 		width: 400px;

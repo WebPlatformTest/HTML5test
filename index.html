@@ -68,6 +68,35 @@
 
 		<div class='header'>
 			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+
+			<a href='javascript:toggleIndex()' id='index'>Index</a>
+			<div id='indexmenu' style='display: none'>
+				<ul>
+					<script>
+						for (var i = 0; i < tests.length; i++) {
+							document.write('<li><a href="#table-' + tests[i].items[0].id + '">' + tests[i].name + '\n');
+
+							document.write('<ul>\n');
+							for (var j = 0; j < tests[i].items.length; j++) {
+								document.write('<li><a href="#table-' + tests[i].items[j].id + '">' + tests[i].items[j].name + '</li>\n');
+							}
+							document.write('</ul>\n</li>\n');
+						}
+					</script>
+				</ul>
+			</div>
+
+			<script>
+				var indexMenu = document.getElementById('indexmenu');
+				function toggleIndex() {
+					if(indexMenu.style.display == 'none') {
+						indexMenu.style.display = 'block';
+					} else {
+						indexMenu.style.display = 'none';
+					}
+				}
+			</script>
+
 			<div class='navigation'>
 				<ul class='left'>
 					<li class='selected'><a href='/index.html' data-i18n>Your browser</a></li>
