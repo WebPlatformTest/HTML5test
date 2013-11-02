@@ -555,13 +555,19 @@
 				if (typeof tests[i].items != 'undefined') {
 					var tbody = document.createElement('tbody');
 					table.appendChild(tbody);
-
-					this.createItems(tbody, 0, tests[i].id, tests[i].items);
+					
+					var status = typeof tests[i].status != 'undefined' ? tests[i].status : '';
+					
+					this.createItems(tbody, 0, tests[i].items, {
+						id:		tests[i].id, 
+						status:	status,
+						urls:	[]
+					});
 				}
 			}
 		},
 		
-		createItems: function(parent, level, id, tests, parentUrls) {
+		createItems: function(parent, level, tests, data) {
 			var ids = [];
 			
 			for (var i = 0; i < tests.length; i++) {
@@ -587,7 +593,7 @@
 						tr.appendChild(td);
 					}
 					
-					tr.id = 'row-' + id + '-' + tests[i].id;
+					tr.id = 'row-' + data.id + '-' + tests[i].id;
 					
 					if (level > 0) {
 						tr.className = 'isChild';
@@ -604,9 +610,15 @@
 								urls = { 'w3c': tests[i].url };
 							}
 						}
-
+						
 						tr.className += 'hasChild';
-						var children = this.createItems(parent, level + 1, id + '-' + tests[i].id, tests[i].items, urls);
+						
+						var children = this.createItems(parent, level + 1, tests[i].items, {
+							id: 	data.id + '-' + tests[i].id, 
+							status:	typeof tests[i].status != 'undefined' ? tests[i].status : data.status, 
+							urls:	urls
+						});
+						
 						this.hideChildren(tr, children);
 						
 						(function(that, tr, th, children) {
@@ -616,26 +628,35 @@
 						})(this, tr, th, children);
 					} else {
 						var urls;
+						var value = 0;
 						var showLinks = false;
+	
+						if (typeof tests[i].value != 'undefined') {
+							value = tests[i].value;
+						}
 	
 						if (typeof tests[i].urls != 'undefined') {
 							urls = tests[i].urls;	
 							showLinks = true;
 						}						
 						else if (typeof tests[i].url != 'undefined') {
-							urls = { 'w3c': tests[i].url };
+							urls = [ [ 'w3c', tests[i].url ] ];
 							showLinks = true;
 						}
 						
-						if (showLinks) {
-							th.className = 'hasLink';
-							
-							(function(that, th, id, name, parentUrls, urls) {
-								th.onclick = function() {
-									that.showLinks(th, id, name, parentUrls, urls);
-								};		
-							})(this, th, id + '-' + tests[i].id, tests[i].name, parentUrls, urls);
-						}
+						th.className = 'hasLink';
+						
+						(function(that, th, data) {
+							th.onclick = function() {
+								that.showLinks(th, data);
+							};		
+						})(this, th, {
+							id:		data.id + '-' + tests[i].id,
+							name:	tests[i].name,
+							value:	value,
+							status:	typeof tests[i].status != 'undefined' ? tests[i].status : data.status,
+							urls:	(urls || []).concat(data.urls || [])
+						});
 					}
 					
 					ids.push(tr.id);
@@ -645,23 +666,33 @@
 			return ids;
 		},
 	
-		showLinks: function(parent, id, name, parentUrls, urls) {
+		showLinks: function(parent, data) {
 			if (this.panel) {
 				this.panel.parentNode.removeChild(this.panel);
 				this.panel = null;
 			}
 			
-			var result = {};
-			if (parentUrls) for (key in parentUrls) result[key] = parentUrls[key];
-			if (urls) for (key in urls) result[key] = urls[key];
+			var content = "";
+			content += "<div class='info'>";
+			content += "<div class='column left status " + data.status + "'><span>" + data.status + "</span></div>";
+			content += "<div class='column middle" + (data.value ? '' : ' none') + "'><em>" + ( data.value || '✘' ) + "</em> <span>" + (data.value != 1 ? 'Points' : 'Point') + "</span></div>";
+			content += "<div class='column right'><a href='/compare/feature/" + data.id +".html' class='compare'><span>" + t('Compare') + "</span></a></div>";
+			content += "</div>";
+			content += "<div class='links'>";
 			
-			var content = "<a href='/compare/feature/" + id +".html' class='compare'>" + t('Compare browsers') + "</a>";
-			if (typeof result.w3c != 'undefined') content += "<a href='" + result.w3c +"' class='w3c'>" + t('Go to the specification at W3C.org') + "</a>";
-			if (typeof result.whatwg != 'undefined') content += "<a href='" + result.whatwg +"' class='whatwg'>" + t('Go to the specification at Whatwg.org') + "</a>";
-			if (typeof result.khronos != 'undefined') content += "<a href='" + result.khronos +"' class='khronos'>" + t('Go to the specification at Khronos.org') + "</a>";
-			if (typeof result.wp != 'undefined') content += "<a href='http://docs.webplatform.org/wiki" + result.wp +"' class='wp'>" + t('Documentation at WebPlatform.org') + "</a>";
-			if (typeof result.mdn != 'undefined') content += "<a href='https://developer.mozilla.org/en-US/docs" + result.mdn +"' class='mdn'>" + t('Documentation at Mozilla Developer Network') + "</a>";
-		
+			for (var i = 0; i < data.urls.length; i++) {
+				if (data.urls[i][0] == 'w3c') content += "<a href='" + data.urls[i][1] + "' class='w3c'>" + t('Go to the specification at W3C.org') + "</a>";
+				if (data.urls[i][0] == 'whatwg') content += "<a href='" + data.urls[i][1] + "' class='whatwg'>" + t('Go to the specification at Whatwg.org') + "</a>";
+				if (data.urls[i][0] == 'khronos') content += "<a href='" + data.urls[i][1] +"' class='khronos'>" + t('Go to the specification at Khronos.org') + "</a>";
+				if (data.urls[i][0] == 'ietf') content += "<a href='" + data.urls[i][1] +"' class='ietf'>" + t('Go to the specification at IETF.org') + "</a>";
+				if (data.urls[i][0] == 'webm') content += "<a href='" + data.urls[i][1] +"' class='webm'>" + t('Go to the specification at WebMproject.org') + "</a>";
+				if (data.urls[i][0] == 'xiph') content += "<a href='" + data.urls[i][1] +"' class='xiph'>" + t('Go to the specification at Xiph.org') + "</a>";
+				if (data.urls[i][0] == 'wp') content += "<a href='http://docs.webplatform.org/wiki" + data.urls[i][1] +"' class='wp'>" + t('Documentation at WebPlatform.org') + "</a>";
+				if (data.urls[i][0] == 'mdn') content += "<a href='https://developer.mozilla.org/en-US/docs" + data.urls[i][1] +"' class='mdn'>" + t('Documentation at Mozilla Developer Network') + "</a>";
+			}
+			
+			content += "</div>";
+
 			this.panel = document.createElement('div');
 			this.panel.className = 'linksPanel popupPanel pointsLeft';
 			this.panel.innerHTML = content;
