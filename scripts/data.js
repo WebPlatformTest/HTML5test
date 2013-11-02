@@ -1,4 +1,5 @@
 
+
 var tests = [
 
 	{
@@ -9,27 +10,30 @@ var tests = [
 					{
 						id:		'parsing',
 						name:	'Parsing rules',
+						status:	'stable',
 						items:	[
 									{
 										id:		'doctype',
 										name: 	'<code>&lt;!DOCTYPE html&gt;</code> triggers standards mode', 
-										url:    'http://www.w3.org/TR/html5/syntax.html#the-doctype'
+										urls:   [
+													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#the-doctype' ]
+												]
 									}, {
 										id:		'tokenizer',
 										name: 	'HTML5 tokenizer', 
 										value:	5,
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/html5/syntax.html#parsing',
-													'mdn':	'/HTML/HTML5/HTML5_Parser'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#parsing' ],
+													[ 'mdn', '/HTML/HTML5/HTML5_Parser' ]
+												]
 									}, {
 										id:		'tree',
 										name: 	'HTML5 tree building', 
 										value:	5,
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/html5/syntax.html#parsing',
-													'mdn':	'/HTML/HTML5/HTML5_Parser'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#parsing' ],
+													[ 'mdn', '/HTML/HTML5/HTML5_Parser' ]
+												]
 									}, 
 									
 									'<em>HTML5 defines rules for embedding SVG and MathML inside a regular HTML document. Support for SVG and MathML is not required though, so no actual points are awarded if your browser supports embedding these two technologies.</em>',
@@ -37,32 +41,33 @@ var tests = [
 									{
 										id:		'svg',
 										name: 	'SVG in <code>text/html</code>', 
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#svg',
-													'mdn':	'/SVG'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#svg' ],
+													[ 'mdn', '/SVG' ]
+												]
 												
 									}, {
 										id:		'mathml',
 										name: 	'MathML in <code>text/html</code>', 
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#mathml',
-													'mdn':	'/MathML'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#mathml' ],
+													[ 'mdn', '/MathML' ]
+												]
 									}
 								]
 					}, {
 						id:		'elements',
 						name:	'Elements',
+						status:	'stable',
 						items:	[
 									{
 										id:		'dataset',
 										name: 	'Embedding custom non-visible data', 
 										value:	3, 
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/html5/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes',
-													'mdn':	'/DOM/element.dataset'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
+													[ 'mdn', '/DOM/element.dataset' ]
+												]
 									}, 
 									
 									'<strong>New or modified elements</strong>',
@@ -70,9 +75,9 @@ var tests = [
 									{
 										id:		'section',
 										name:	'Section elements',
-										urls:	{
-													'mdn':	'/Sections_and_Outlines_of_an_HTML5_document'
-												},
+										urls:	[
+													[ 'mdn', '/Sections_and_Outlines_of_an_HTML5_document' ]
+												],
 										items:	[
 													{
 														id:		'section',
@@ -110,9 +115,9 @@ var tests = [
 									}, {
 										id:		'grouping',
 										name:	'Grouping content elements',
-										urls:	{
-													'mdn':	'/Sections_and_Outlines_of_an_HTML5_document'
-												},
+										urls:	[
+													[ 'mdn', '/Sections_and_Outlines_of_an_HTML5_document' ]
+												],
 										items:	[
 													{
 														id:		'main',
@@ -144,12 +149,12 @@ var tests = [
 														id:		'download',
 														name: 	'<code>download</code> attribute on the <code>a</code> element', 
 														value:	1, 
-														urls:	{ 'whatwg': 'http://developers.whatwg.org/links.html#attr-hyperlink-download' }
+														urls:	[ [ 'whatwg', 'http://developers.whatwg.org/links.html#attr-hyperlink-download' ] ]
 													}, {
 														id:		'ping',
 														name: 	'<code>ping</code> attribute on the <code>a</code> element', 
 														value:	1, 
-														urls:	{ 'whatwg': 'http://developers.whatwg.org/links.html#ping' }
+														urls:	[ [ 'whatwg', 'http://developers.whatwg.org/links.html#ping' ] ]
 													}, {
 														id:		'mark',
 														name: 	'<code>mark</code> element', 
@@ -189,16 +194,19 @@ var tests = [
 													}, {
 														id:		'menutoolbar',
 														name: 	'<code>menu</code> element of type <code>toolbar</code>', 
+														status:	'proposal', 
 														value:	1, 
 														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element'
 													}, {
 														id:		'menupopup',
 														name: 	'<code>menu</code> element of type <code>popup</code>', 
+														status:	'proposal', 
 														value:	2, 
 														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element'
 													}, {
 														id:		'dialog',
 														name: 	'<code>dialog</code> element', 
+														status:	'proposal', 
 														value:	1, 
 														url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/commands.html#the-dialog-element'
 													}
@@ -220,12 +228,16 @@ var tests = [
 														id:		'outerHTML',
 														name: 	'<code>outerHTML</code> property', 
 														value:	1, 
-														urls:	{ 'whatwg': 'http://domparsing.spec.whatwg.org/#outerhtml' }
+														urls:	[
+																	[ 'whatwg', 'http://domparsing.spec.whatwg.org/#outerhtml' ]
+																]
 													}, {
 														id:		'insertAdjacentHTML',
 														name: 	'<code>insertAdjacentHTML</code> function', 
 														value:	1, 
-														urls:	{ 'whatwg': 'http://domparsing.spec.whatwg.org/#insertadjacenthtml%28%29' }
+														urls:	[ 
+																	['whatwg', 'http://domparsing.spec.whatwg.org/#insertadjacenthtml%28%29' ]
+																]
 													}
 												]
 									}
@@ -233,6 +245,7 @@ var tests = [
 					}, {
 						id:		'form',
 						name:	'Forms',
+						status:	'stable',
 						items:	[
 									'<strong>Field types</strong>',
 									
@@ -1002,6 +1015,7 @@ var tests = [
 					}, {
 						id:		'microdata',
 						name:	'Microdata',
+						status:	'rejected',
 						items:	[
 									{
 										id:			'microdata',
@@ -1023,39 +1037,41 @@ var tests = [
 					{
 						id:		'location',
 						name:	'Location and Orientation',
+						status:	'stable',
 						items:	[
 									{
 										id:			'geolocation',
 										name: 		'Geolocation',
 										value:		15, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/geolocation-API/',
-														'wp': 	'/apis/geolocation',
-														'mdn':	'/Using_geolocation'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/geolocation-API/' ],
+														[ 'wp',  '/apis/geolocation' ],
+														[ 'mdn', '/Using_geolocation' ]
+													]
 									}, {
 										id:			'orientation',
 										name: 		'Device Orientation',
 										value:		5, 
-										urls:		{
-														'w3c':	'http://dev.w3.org/geo/api/spec-source-orientation.html',
-														'mdn':	'/Mozilla_event_reference/devicemotion'
-													}
+										urls:		[
+														[ 'w3c', 'http://dev.w3.org/geo/api/spec-source-orientation.html' ],
+														[ 'mdn', '/Mozilla_event_reference/devicemotion' ]
+													]
 									}
 								]
 					}, {
 						id:		'output',
 						name:	'Output',
+						status:	'proposal',
 						items:	[
 									{
 										id:			'requestFullScreen',
 										name: 		'Full screen support', 
 										value:		5, 
-										urls:		{
-														'w3c':	'http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api',
-														'wp':	'/dom/methods/requestFullscreen',
-														'mdn':	'/DOM/Using_fullscreen_mode'
-													}
+										urls:		[
+														[ 'w3c', 'http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api' ],
+														[ 'wp',	 '/dom/methods/requestFullscreen' ],
+														[ 'mdn', '/DOM/Using_fullscreen_mode' ]
+													]
 									}, {
 										id:			'notifications',
 										name: 		'Web Notifications', 
@@ -1066,39 +1082,42 @@ var tests = [
 					}, {
 						id:		'input',
 						name:	'Input',
+						status:	'proposal',
 						items:	[
 									{
 										id:			'getUserMedia',
 										name: 		'Access the webcam',
 										value:		10, 
-										urls:		{
-														'w3c':	'http://dev.w3.org/2011/webrtc/editor/getusermedia.html',
-														'mdn':	'/WebRTC'
-													}
+										urls:		[
+														[ 'w3c', 'http://dev.w3.org/2011/webrtc/editor/getusermedia.html' ]
+														[ 'wp',  '/dom/methods/getUserMedia' ],
+														[ 'mdn', '/WebRTC' ]
+													]
 									}, {
 										id:			'getGamepads',
 										name: 		'Gamepad control', 
 										value:		2, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/gamepad/'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/gamepad/' ],
+														[ 'wp',  '/apis/gamepad' ]
+													]
 									}, {
 										id:			'pointerevents',
 										name: 		'Pointer Events', 
 										value:		5, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/pointerevents/',
-														'wp':	'/concepts/Pointer_Events'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/pointerevents/' ],
+														[ 'wp',  '/concepts/Pointer_Events' ]
+													]
 									}, {
 										id:			'pointerLock',
 										name: 		'Pointer Lock support', 
 										value:		3, 
-										urls:		{
-														'w3c':	'http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html',
-														'wp':	'/dom/methods/requestPointerLock',
-														'mdn':	'/API/Pointer_Lock_API'
-													}
+										urls:		[
+														[ 'w3c', 'http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html' ],
+														[ 'wp',	 '/dom/methods/requestPointerLock' ],
+														[ 'mdn', '/API/Pointer_Lock_API' ]
+													]
 									}
 								]
 					}
@@ -1113,40 +1132,55 @@ var tests = [
 					{
 						id:		'video',
 						name:	'Video',
+						status:	'stable',
 						items:	[
 									{
 										id:		'element',
 										name: 	'<code>video</code> element', 
 										value:	20,
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#the-video-element',
-													'wp': 	'/html/elements/video',
-													'mdn':	'/Using_HTML5_audio_and_video'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-video-element' ],
+													[ 'wp',  '/html/elements/video' ],
+													[ 'mdn', '/Using_HTML5_audio_and_video' ]
+												]
 									}, {
 										id:		'drm',
 										name: 	'DRM support', 
-										url:	'https://dvcs.w3.org/hg/html-media/raw-file/tip/encrypted-media/encrypted-media.html'
+										status:	'controversial', 
+										url:	'http://www.w3.org/TR/encrypted-media/'
 									}, {
 										id:		'mediasource',
 										name: 	'Media Source extensions', 
+										status:	'proposal', 
 										value:	2,
-										url:	'https://dvcs.w3.org/hg/html-media/raw-file/tip/media-source/media-source.html'
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
+													[ 'wp',  '/apis/media_source_extensions' ]
+												]
 									}, {
 										id:		'subtitle',
 										name: 	'Subtitle support', 
 										value:	8,
-										url:	'http://www.w3.org/TR/html5/embedded-content-0.html#the-track-element'
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-track-element' ],
+													[ 'wp',  '/html/elements/track' ]
+												]
 									}, {
 										id:		'poster',
 										name: 	'Poster image support', 
 										value:	1,
-										url:	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-video-poster'
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-video-poster' ],
+													[ 'wp',  '/dom/apis/audio-video/properties/poster' ]
+												]
 									}, {
 										id:		'canplaytype',
 										name: 	'Codec detection', 
 										value:	4,
-										url:	'http://www.w3.org/TR/html5/embedded-content-0.html#dom-navigator-canplaytype'
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#dom-navigator-canplaytype' ],
+													[ 'wp',  '/dom/apis/audio-video/methods/canPlayType' ]
+												]
 									}, 
 									
 									'<em>The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score.</em>',
@@ -1154,66 +1188,78 @@ var tests = [
 									{
 										id:		'mpeg4',
 										name: 	'MPEG-4 support',
+										status:	'optional', 
 									}, {
 										id:		'h264',
 										name: 	'H.264 support',
-										urls:	{
-													'other':	'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf'
-												}
+										status:	'optional', 
+										urls:	[
+													[ 'other', 'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf' ]
+												]
 									}, {
 										id:		'theora',
 										name: 	'Ogg Theora support',
-										urls:	{
-													'xiph':		'http://theora.org/doc/Theora.pdf'
-												}
+										status:	'optional', 
+										urls:	[
+													[ 'xiph', 'http://theora.org/doc/Theora.pdf' ]
+												]
 									}, {
 										id:		'webmvp8',
 										name: 	'WebM with VP8 support',
-										urls:	{
-													'webm':		'http://www.webmproject.org/',
-													'ietf':		'http://www.rfc-editor.org/rfc/rfc6386.txt'
-												}
+										status:	'optional', 
+										urls:	[
+													[ 'webm', 'http://www.webmproject.org/' ],
+													[ 'ietf', 'http://www.rfc-editor.org/rfc/rfc6386.txt' ]
+												]
 									}, {
 										id:		'webmvp9',
 										name: 	'WebM with VP9 support',
-										urls:	{
-													'webm':		'http://www.webmproject.org/',
-													'ietf':		'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt'
-												}
+										status:	'optional', 
+										urls:	[
+													[ 'webm', 'http://www.webmproject.org/' ],
+													[ 'ietf', 'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt' ]
+												]
 									}
 								]
 					}, {
 						id:		'audio',
 						name:	'Audio',
+						status:	'stable',
 						items:	[
 									{
 										id:		'element',
 										name: 	'<code>audio</code> element', 
 										value:	20,
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element',
-													'wp': 	'/html/elements/audio',
-													'mdn':	'/Using_HTML5_audio_and_video'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element' ],
+													[ 'wp',  '/html/elements/audio' ],
+													[ 'mdn', '/Using_HTML5_audio_and_video' ]
+												]
 									},
 									
 									{
 										id:		'webaudio',
 										name: 	'Web Audio API', 
+										status:	'proposal', 
 										value:	5,
-										url:	'https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html'
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/webaudio/' ],
+													[ 'wp',  '/apis/webaudio' ]
+												]
 									},
 				
 									{
 										id:		'speechrecognition',
 										name: 	'Speech Recognition', 
+										status:	'experimental', 
 										value:	3,
 										url:	'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
 									},
 				
 									{
 										id:		'speechsynthesis',
-										name: 	'Speech Synthesis', 
+										name: 	'Speech Synthesis',
+										status:	'experimental', 
 										value:	2,
 										url:	'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
 									},
@@ -1222,44 +1268,53 @@ var tests = [
 									
 									{
 										id:		'pcm',
-										name: 	'PCM audio support'
+										name: 	'PCM audio support',
+										status:	'optional' 
 									}, { 
 										id:		'aac',
-										name: 	'AAC support'
+										name: 	'AAC support',
+										status:	'optional'
 									}, { 
 										id:		'mp3',
-										name: 	'MP3 support'
+										name: 	'MP3 support',
+										status:	'optional'
 									}, { 
 										id:		'vorbis',
-										name: 	'Ogg Vorbis support'
+										name: 	'Ogg Vorbis support',
+										status:	'optional'
 									}, {
 										id:		'opus',
-										name: 	'Ogg Opus support'
+										name: 	'Ogg Opus support',
+										status:	'optional'
 									}, { 
 										id:		'webm',
-										name: 	'WebM support'
+										name: 	'WebM support',
+										status:	'optional'
 									}
 								]	
 					}, {
 						id:		'webrtc',
 						name:	'Peer To Peer',
+						status:	'proposal',
 						items:	[
 									{
 										id:		'peerconnection',
 										name: 	'WebRTC',
 										value:	10, 
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/webrtc/',
-													'mdn':	'/WebRTC'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
+													[ 'wp',  '/apis/webrtc/RTCPeerConnection' ],
+													[ 'mdn', '/WebRTC' ]
+												]
 									}, {
 										id:		'datachannel',
 										name: 	'Data channel',
 										value:	5, 
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/webrtc/',
-													'mdn':	'/WebRTC'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
+													[ 'wp',  '/apis/webrtc/RTCDataChannel' ],
+													[ 'mdn', '/WebRTC' ]
+												]
 									}
 								]
 					}
@@ -1274,16 +1329,17 @@ var tests = [
 					{
 						id:		'canvas',
 						name:	'2D Graphics',
+						status:	'stable',
 						items:	[
 									{
 										id:		'context',
 										name: 	'Canvas 2D graphics', 
 										value:	10,
-										urls:   {
-													'w3c':	'http://www.w3.org/TR/2dcontext/',
-													'wp': 	'/canvas',
-													'mdn':	'/HTML/Canvas'
-												}
+										urls:   [
+													[ 'w3c', 'http://www.w3.org/TR/2dcontext/' ],
+													[ 'wp',  '/apis/canvas' ],
+													[ 'mdn', '/HTML/Canvas' ]
+												]
 									}, 
 									
 									'<strong>Drawing primitives</strong>',
@@ -1292,48 +1348,58 @@ var tests = [
 										id:		'text',
 										name: 	'Text support', 
 										value:	2,
-										urls:	{
-													'w3c':	'http://www.w3.org/TR/2dcontext/#text'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#drawing-text-to-the-canvas' ],
+													[ 'wp',  '/apis/canvas/CanvasRenderingContext2D/fillText' ]
+												]
 									}, {
 										id:		'path',
-										name: 	'Path support', 
+										name: 	'Path support',
+										status:	'proposal', 
 										value:	2,
-										urls:	{
-													'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#path-objects'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#path-objects' ],
+													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#path-objects' ]
+												]
 									}, {
 										id:		'ellipse',
-										name: 	'Ellipse support', 
+										name: 	'Ellipse support',
+										status:	'proposal', 
 										value:	2,
-										urls:	{
-													'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-ellipse'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-ellipse' ],
+													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-ellipse' ]
+												]
 									}, {
 										id:		'dashed',
-										name: 	'Dashed line support', 
+										name: 	'Dashed line support',
+										status:	'proposal', 
 										value:	2,
-										urls:	{
-													'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-setlinedash'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-setlinedash' ],
+													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-setlinedash' ]
+												]
 									}, 
 									
 									'<strong>Features</strong>',
 									
 									{
 										id:		'hittest',
-										name: 	'Hit testing support', 
+										name: 	'Hit testing support',
+										status:	'proposal', 
 										value:	2,
-										urls:	{
-													'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-addhitregion'
-												}
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-addhitregion' ],
+													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-addhitregion' ]
+												]
 									}, {
 										id:		'blending',
-										name: 	'Blending modes', 
+										name: 	'Blending modes',
+										status:	'proposal', 
 										value:	5,
-										urls:	{
-													'w3c':	'https://dvcs.w3.org/hg/FXTF/rawfile/tip/compositing/index.html#canvascompositingandblending'
-												}
+										urls:	[ 
+													[ 'w3c', 'http://www.w3.org/TR/compositing-1/#canvascompositingandblending' ]
+												]
 									},
 
 									'<strong>File formats</strong>',
@@ -1351,43 +1417,44 @@ var tests = [
 								]
 					}, {
 						id:		'webgl',
+						status:	'stable',
 						name:	'3D Graphics',
 						items:	[
 									{
 										id:			'context',
 										name: 		'WebGL 3D graphics',
 										value:		20, 
-										urls:		{
-														'khronos':	'http://www.khronos.org/registry/webgl/specs/latest/',
-														'wp': 		'/webgl',
-														'mdn':		'/docs/WebGL'
-													}
+										urls:		[
+														[ 'khronos', 'http://www.khronos.org/registry/webgl/specs/latest/' ], 
+														[ 'wp',  '/webgl' ], 
+														[ 'mdn', '/docs/WebGL' ]
+													]
 				
 									}, {
 										id:			'context2',
 										name: 		'WebGL 2 3D graphics',
+										status:		'experimental',
 										value:		5, 
-										urls:		{
-														'khronos':	'http://www.khronos.org/registry/webgl/specs/latest/2.0/',
-														'wp': 		'/webgl',
-														'mdn':		'/docs/WebGL'
-													}
+										urls:		[
+														[ 'khronos', 'http://www.khronos.org/registry/webgl/specs/latest/2.0/' ]
+													]
 				
 									}
 								]
 					}, {
 						id:		'animation',
+						status:	'stable',
 						name: 	'Animation',
 						items:	[
 									{
 										id:			'requestAnimationFrame',
 										name: 		'<code>window.requestAnimationFrame</code>', 
 										value:		5, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/animation-timing/#requestAnimationFrame',
-														'wp': 	'/apis/timing/methods/requestAnimationFrame',
-														'mdn':	'/DOM/window.requestAnimationFrame'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/animation-timing/#requestAnimationFrame' ],
+														[ 'wp',  '/apis/timing/methods/requestAnimationFrame' ],
+														[ 'mdn', '/DOM/window.requestAnimationFrame' ]
+													]
 									}
 								]
 					}
@@ -1401,16 +1468,17 @@ var tests = [
 		items:	[
 					{
 						id:		'communication',
+						status:	'stable',
 						name: 	'Communication',
 						items:	[
 									{
 										id:			'eventSource',
 										name: 		'Server-Sent Events',
 										value:		8, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/eventsource/',
-														'mdn':	'/Server-sent_events/Using_server-sent_events'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/eventsource/' ],
+														[ 'mdn', '/Server-sent_events/Using_server-sent_events' ]
+													]
 									}, 
 									
 									'<strong>XMLHttpRequest Level 2</strong>',
@@ -1423,9 +1491,9 @@ var tests = [
 									}, {
 										id:			'xmlhttprequest2.response',
 										name:		'Response type support',
-										urls:		{
-														'mdn':	'/DOM/XMLHttpRequest'
-													},
+										urls:		[
+														[ 'mdn', '/DOM/XMLHttpRequest' ]
+													],
 										items:		[
 														{
 															id:			'text',
@@ -1457,18 +1525,18 @@ var tests = [
 										id:			'websocket.basic',
 										name: 		'Basic socket communication',
 										value:		10, 
-										urls:		{
-														'w3c':		'http://www.w3.org/TR/websockets/',
-														'mdn':		'/docs/WebSockets'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/websockets/' ],
+														[ 'mdn', '/docs/WebSockets' ]
+													]
 									}, {
 										id:			'websocket.binary',
 										name: 		'<code>ArrayBuffer</code> and <code>Blob</code> support',
 										value:		5, 
-										urls:		{
-														'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/multipage/network.html#dom-websocket-binarytype',
-														'mdn':		'/docs/WebSockets'
-													}
+										urls:		[
+														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/network.html#dom-websocket-binarytype' ],
+														[ 'mdn', '/docs/WebSockets' ]
+													]
 									}
 								]
 					}
@@ -1482,6 +1550,7 @@ var tests = [
 		items:	[
 					{
 						id:		'interaction',
+						status:	'stable',
 						name: 	'User interaction',
 						items:	[
 									'<strong>Drag and drop</strong>',
@@ -1489,9 +1558,9 @@ var tests = [
 									{
 										id:		'dragdrop.attributes',
 										name:	'Attributes',
-										urls:	{
-													'mdn':	'/DragDrop/Drag_and_Drop'
-												},
+										urls:	[
+													[ 'mdn', '/DragDrop/Drag_and_Drop' ]
+												],
 										items:	[
 													{
 														id:			'draggable',
@@ -1508,9 +1577,9 @@ var tests = [
 									}, {
 										id:		'dragdrop.events',
 										name:	'Events',
-										urls:	{
-													'mdn':	'/DragDrop/Drag_and_Drop'
-												},
+										urls:	[
+													[ 'mdn', '/DragDrop/Drag_and_Drop' ]
+												],
 										items:	[
 													{
 														id:			'ondrag',
@@ -1549,9 +1618,9 @@ var tests = [
 									{
 										id:		'editing.elements',
 										name:	'Editing elements',
-										urls:	{
-													'mdn':	'/HTML/Content_Editable'
-												},
+										urls:	[
+													[ 'mdn', '/HTML/Content_Editable' ]
+												],
 										items:	[
 													{
 														id:			'contentEditable',
@@ -1568,9 +1637,9 @@ var tests = [
 									}, {
 										id:		'editing.documents',
 										name:	'Editing documents',
-										urls:	{
-													'mdn':	'/HTML/Content_Editable'
-												},
+										urls:	[
+													[ 'mdn', '/HTML/Content_Editable' ]
+												],
 										items:	[
 													{
 														id:			'designMode',
@@ -1582,9 +1651,9 @@ var tests = [
 									}, {
 										id:		'editing.selectors',
 										name:	'CSS selectors',
-										urls:	{
-													'mdn':	'/HTML/Content_Editable'
-												},
+										urls:	[
+													[ 'mdn', '/HTML/Content_Editable' ]
+												],
 										items:	[
 													{
 														id:			'read-write',
@@ -1601,9 +1670,9 @@ var tests = [
 									}, {
 										id:		'editing.apis',
 										name:	'APIs',
-										urls:	{
-													'mdn':	'/HTML/Content_Editable'
-												},
+										urls:	[
+													[ 'mdn', '/HTML/Content_Editable' ]
+												],
 										items:	[
 													{
 														id:			'execCommand',
@@ -1650,62 +1719,64 @@ var tests = [
 								]
 					}, {
 						id:		'performance',
+						status:	'stable',
 						name:	'Performance',
 						items:	[
 									{
 										id:			'datatypes',
 										name:		'Native binary data',
+										status:		'proposal',
 										items:		[
 														{
 															id:			'ArrayBuffer',
 															name: 		'<code>ArrayBuffer</code>',
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#5' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#5' ] ]
 														}, {
 															id:			'Int8Array',
 															name: 		'<code>Int8Array</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#7' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
 															id:			'Uint8Array',
 															name: 		'<code>Uint8Array</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#7' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
 															id:			'Int16Array',
 															name: 		'<code>Int16Array</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#7' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
 															id:			'Uint16Array',
 															name: 		'<code>Uint16Array</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#7' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
 															id:			'Int32Array',
 															name: 		'<code>Int32Array</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#7' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
 															id:			'Uint32Array',
 															name: 		'<code>Uint32Array</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#7' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
 															id:			'Float32Array',
 															name: 		'<code>Float32Array</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#7' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
 															id:			'Float64Array',
 															name: 		'<code>Float64Array</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#7' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
 															id:			'DataView',
 															name: 		'<code>DataView</code>', 
 															value:		1, 
-															urls:    	{ 'khronos': 'http://www.khronos.org/registry/typedarray/specs/latest/#8' }
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}
 													]
 									},
@@ -1716,63 +1787,66 @@ var tests = [
 										id:			'worker',
 										name: 		'Web Workers',
 										value:		10, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/workers/#dedicated-workers-and-the-worker-interface',
-														'mdn':	'/DOM/Using_web_workers'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/workers/#dedicated-workers-and-the-worker-interface' ],
+														[ 'mdn', '/DOM/Using_web_workers' ]
+													]
 									}, {
 										id:			'sharedWorker',
 										name: 		'Shared Workers',
 										value:		5, 
-										urls:    	{
-														'w3c':	'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface',
-														'mdn':	'/DOM/Using_web_workers'
-													}
+										urls:    	[
+														[ 'w3c', 'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface' ],
+														[ 'mdn', '/DOM/Using_web_workers' ]
+													]
 									}
 								]
 					}, {
 						id:		'security',
+						status:	'stable',
 						name:	'Security',
 						items:	[
 									{
 										id:			'crypto',
 										name: 		'Web Cryptography API',
+										status:		'experimental',
 										value:		5, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/WebCryptoAPI/'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/WebCryptoAPI/' ]
+													]
 									}, {
 										id:			'csp10',
 										name: 		'Content Security Policy 1.0',
 										value:		3, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/CSP/',
-														'mdn':	'/Security/CSP'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/CSP/' ],
+														[ 'mdn', '/Security/CSP' ]
+													]
 									}, {
 										id:			'csp11',
 										name: 		'Content Security Policy 1.1',
+										status:		'proposal',
 										value:		2, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/CSP/',
-														'mdn':	'/Security/CSP'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/CSP/' ],
+														[ 'mdn', '/Security/CSP' ]
+													]
 									}, {
 										id:			'cors',
 										name: 		'Cross-Origin Resource Sharing',
 										value:		5, 
-										urls:		{
-														'mdn':	'/HTTP/Access_control_CORS'
-													}
+										urls:		[
+														[ 'mdn', '/HTTP/Access_control_CORS' ]
+													]
 									}, {
 										id:			'postMessage',
 										name: 		'Cross-document messaging',
 										value:		5, 
-										urls:    	{
-														'w3c':	'http://dev.w3.org/html5/postmsg/',
-														'wp':	'/apis/web-messaging',
-														'mdn':	'/DOM/window.postMessage'
-													}
+										urls:    	[
+														[ 'w3c', 'http://dev.w3.org/html5/postmsg/' ],
+														[ 'wp',  '/apis/web-messaging' ],
+														[ 'mdn', '/DOM/window.postMessage' ]
+													]
 									}, 
 															
 									'<strong>Iframes</strong>',
@@ -1781,41 +1855,42 @@ var tests = [
 										id:			'sandbox',
 										name: 		'Sandboxed <code>iframe</code>',
 										value:		10, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-sandbox',
-														'mdn':	'/HTML/Element/iframe'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-sandbox' ],
+														[ 'mdn', '/HTML/Element/iframe' ]
+													]
 									}, {
 										id:			'seamless',
 										name: 		'Seamless <code>iframe</code>',
 										value:		5, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-seamless',
-														'mdn':	'/HTML/Element/iframe'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-seamless' ],
+														[ 'mdn', '/HTML/Element/iframe' ]
+													]
 									}, {
 										id:			'srcdoc',
 										name: 		'<code>iframe</code> with inline contents',
 										value:		5, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-srcdoc',
-														'mdn':	'/HTML/Element/iframe'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-srcdoc' ],
+														[ 'mdn', '/HTML/Element/iframe' ]
+													]
 									}
 								]
 					}, {
 						id:		'history',
 						name: 	'History and navigation',
+						status:	'stable',
 						items:	[
 									{
 										id:			'history',
 										name: 		'Session history',
 										value:		10, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/browsers.html#the-history-interface',
-														'wp': 	'/dom/history',
-														'mdn':	'/DOM/Manipulating_the_browser_history'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#the-history-interface' ],
+														[ 'wp',  '/dom/history' ],
+														[ 'mdn', '/DOM/Manipulating_the_browser_history' ]
+													]
 									}
 								]
 					}
@@ -1830,44 +1905,46 @@ var tests = [
 					{
 						id:		'offline',
 						name: 	'Web applications',
+						status:	'stable',
 						items:	[
 									{
 										id:			'applicationCache',
 										name: 		'Application Cache',
 										value:		15, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/browsers.html#offline',
-														'wp': 	'/apis/appcache/ApplicationCache',
-														'mdn':	'/HTML/Using_the_application_cache'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#offline' ],
+														[ 'wp',  '/apis/appcache/ApplicationCache' ],
+														[ 'mdn', '/HTML/Using_the_application_cache' ]
+													]
 									}, {
 										id:			'registerProtocolHandler',
 										name: 		'Custom scheme handlers',
 										value:		2, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/webappapis.html#custom-handlers',
-														'mdn':	'/docs/Web-based_protocol_handlers'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
+														[ 'mdn', '/docs/Web-based_protocol_handlers' ]
+													]
 									}, {
 										id:			'registerContentHandler',
 										name: 		'Custom content handlers',
 										value:		2, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/webappapis.html#custom-handlers',
-														'mdn':	'/DOM/window.navigator.registerContentHandler'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
+														[ 'mdn', '/DOM/window.navigator.registerContentHandler' ]
+													]
 									}, {
 										id:			'addSearchProvider',
 										name: 		'Custom search providers',
 										value:		1, 
-										urls:		{
-														'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/#dom-external-addsearchprovider'
-													}
+										urls:		[
+														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/#dom-external-addsearchprovider' ]
+													]
 									}
 								]
 					}, {
 						id:		'storage',
 						name: 	'Storage',
+						status:	'stable',
 						items:	[
 									'<strong>Key-value storage</strong>',
 
@@ -1875,20 +1952,20 @@ var tests = [
 										id:			'sessionStorage',
 										name: 		'Session Storage',
 										value:		5, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute',
-														'wp': 	'/apis/web-storage',
-														'mdn':	'/DOM/Storage'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute' ],
+														[ 'wp',  '/apis/web-storage' ],
+														[ 'mdn', '/DOM/Storage' ]
+													]
 									}, {
 										id:			'localStorage',
 										name: 		'Local Storage',
 										value:		5, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/webstorage/#the-localstorage-attribute',
-														'wp': 	'/apis/web-storage',
-														'mdn':	'/DOM/Storage'
-													}
+										urls:		[ 
+														[ 'w3c', 'http://www.w3.org/TR/webstorage/#the-localstorage-attribute' ],
+														[ 'wp',  '/apis/web-storage' ],
+														[ 'mdn', '/DOM/Storage' ]
+													]
 									}, 
 
 									'<strong>Database storage</strong>',
@@ -1896,30 +1973,33 @@ var tests = [
 									{
 										id:			'indexedDB.basic',
 										name: 		'IndexedDB',
+										status:		'proposal',
 										value:		16, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/IndexedDB/',
-														'wp': 	'/apis/indexedDB',
-														'mdn':	'/IndexedDB'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
+														[ 'wp',  '/apis/indexedDB' ],
+														[ 'mdn', '/IndexedDB' ]
+													]
 									}, {
 										id:			'indexedDB.blob',
 										name: 		'Objectstore <code>Blob</code> support',
+										status:		'proposal',
 										value:		2, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/IndexedDB/',
-														'wp': 	'/apis/indexedDB',
-														'mdn':	'/IndexedDB'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
+														[ 'wp',  '/apis/indexedDB' ],
+														[ 'mdn', '/IndexedDB' ]
+													]
 									}, {
 										id:			'indexedDB.arraybuffer',
 										name: 		'Objectstore <code>ArrayBuffer</code> support',
+										status:		'proposal',
 										value:		2, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/IndexedDB/',
-														'wp': 	'/apis/indexedDB',
-														'mdn':	'/IndexedDB'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
+														[ 'wp',  '/apis/indexedDB' ],
+														[ 'mdn', '/IndexedDB' ]
+													]
 									},
 									
 									'<em>The Web SQL Database specification is no longer being updated and has been replaced by IndexedDB. Because at least 3 vendors have shipped implementations of this specification we still include it in this test.</em>',
@@ -1927,6 +2007,7 @@ var tests = [
 									{
 										id:			'sqlDatabase',
 										name: 		'Web SQL Database',
+										status:		'rejected',
 										value:		5, 
 										url:		'http://www.w3.org/TR/webdatabase/'
 									}
@@ -1934,16 +2015,17 @@ var tests = [
 					}, {
 						id:		'files',
 						name:	'Files',
+						status:	'stable',
 						items:	[
 									{
 										id:			'fileReader',
 										name: 		'File API',
 										value:		10, 
-										urls:		{
-														'w3c':	'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface',
-														'wp': 	'/apis/file',
-														'mdn':	'/Using_files_from_web_applications'
-													}
+										urls:		[
+														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface' ],
+														[ 'wp',  '/apis/file' ],
+														[ 'mdn', '/Using_files_from_web_applications' ]
+													]
 									}, 
 									
 									'<em>The Directories and System API proposal has failed to gain traction among browser vendors and is only supported in some Webkit based browsers. No additional points are awarded for supporting this API.</em>',
@@ -1951,7 +2033,11 @@ var tests = [
 									{
 										id:			'fileSystem',
 										name: 		'File API: Directories and System', 
-										url:    	'http://www.w3.org/TR/file-system-api/'
+										status:		'rejected',
+										url:    	[
+														[ 'w3c', 'http://www.w3.org/TR/file-system-api/' ]
+														[ 'wp',  '/apis/filesystem' ]
+													]
 									}
 								]
 					}
@@ -1966,17 +2052,18 @@ var tests = [
 					{
 						id:		'other',
 						name: 	'Other',
+						status:	'stable',
 						items:	[
 									'<strong>Styling</strong>',
 			
 									{
 										id:			'scoped',
 										name: 		'Scoped <code>style</code> element', 
-										value:		5, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/document-metadata.html#attr-style-scoped',
-														'wp':	'/Meta:HTML/Elements/style'
-													}
+										value:		4, 
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/document-metadata.html#attr-style-scoped' ],
+														[ 'wp',  '/Meta:HTML/Elements/style' ]
+													]
 									}, 
 									
 									'<strong>Scripts</strong>',
@@ -1985,51 +2072,51 @@ var tests = [
 										id:			'async',
 										name: 		'Asyncronous script execution', 
 										value:		3, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/scripting-1.html#attr-script-async',
-														'mdn':	'/HTML/Element/script',
-														'wp':	'/html/elements/script'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-async' ],
+														[ 'mdn', '/HTML/Element/script' ],
+														[ 'wp',  '/html/elements/script' ]
+													]
 									}, {
 										id:			'onerror',
 										name: 		'Runtime script error reporting', 
 										value:		1, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/webappapis.html#report-the-error',
-														'mdn':	'/DOM/window.onerror'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#report-the-error' ],
+														[ 'mdn', '/DOM/window.onerror' ]
+													]
 									}, {
 										id:			'executionevents',
 										name: 		'Script execution events', 
 										value:		2, 
-										urls:		{
-														'whatwg':	'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element',
-														'mdn':		'/Web/Reference/Events/beforescriptexecute'
-													}
+										urls:		[
+														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element' ],
+														[ 'mdn', '/Web/Reference/Events/beforescriptexecute' ]
+													]
 									}, {
 										id:			'base64',
 										name: 		'Base64 encoding and decoding', 
 										value:		1, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/html5/webappapis.html#atob',
-														'mdn':	'/DOM/window.atob'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#atob' ],
+														[ 'mdn', '/DOM/window.atob' ]
+													]
 									}, {
 										id:			'json',
 										name: 		'JSON encoding and decoding', 
 										value:		1, 
-										urls:		{
-														'mdn':	'/JSON',
-														'wp':	'/apis/json'
-													}
+										urls:		[
+														[ 'mdn', '/JSON' ],
+														[ 'wp',	 '/apis/json' ]
+													]
 									}, {
 										id: 		'mutationObserver',
 										name:   	'Mutation Observer',
 										value:		3, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/dom/#mutation-observers',
-														'mdn':	'/DOM/MutationObserver'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/dom/#mutation-observers' ],
+														[ 'mdn', '/DOM/MutationObserver' ]
+													]
 									},
 									
 									'<strong>Other</strong>',
@@ -2038,14 +2125,14 @@ var tests = [
 										id:			'pagevisiblity',
 										name: 		'Page Visibility', 
 										value:		2, 
-										urls:		{
-														'w3c':	'http://www.w3.org/TR/page-visibility/',
-														'mdn':	'/DOM/Using_the_Page_Visibility_API'
-													}
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/page-visibility/' ],
+														[ 'mdn', '/DOM/Using_the_Page_Visibility_API' ]
+													]
 									}, {
 										id:			'getSelection',
 										name: 		'Text selection', 
-										value:		4, 
+										value:		2, 
 										url:		'http://dvcs.w3.org/hg/editing/raw-file/tip/editing.html#selections'
 									}, {
 										id:			'scrollIntoView',
