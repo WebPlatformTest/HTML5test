@@ -51,6 +51,7 @@
 
 html {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	font-weight: 200;
 	font-size: 1.1em;
 }
 
@@ -558,7 +559,7 @@ body > .header ul li a {
 }
 .text table th,
 .text table td {
-	font-weight: normal;
+	font-weight: 200;
 	text-align: left;
 	
 	border-top: 1px solid #ddd; 
