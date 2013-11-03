@@ -227,6 +227,24 @@ body > .header div#indexmenu li ul li a {
 	color: #000000;
 }
 
+@media (max-width: 1040px) {
+	body > .header a#index {
+		position: absolute;
+		top: 0px;
+		left: auto;
+		right: 0px;
+	}
+	body > .header div#indexmenu {
+		position: absolute;
+		top: 35px;
+		left: auto;
+		right: 0px;
+	}
+	body > .header div#indexmenu ul {
+		width: 100%;
+	}
+}
+
 @media (max-width: 680px) {
 	body > .header h1 {
 		width: 400px;
@@ -261,17 +279,6 @@ body > .header div#indexmenu li ul li a {
 	}
 	body > .header ul.right li {
 		margin-left: 6px;
-	}
-	body > .header a#index {
-		position: absolute;
-		top: 0px;
-	}
-	body > .header div#indexmenu {
-		position: absolute;
-		top: 35px;
-	}
-	body > .header div#indexmenu ul {
-		width: 100%;
 	}
 }
 
