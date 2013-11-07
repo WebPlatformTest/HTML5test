@@ -2341,6 +2341,7 @@ Test = (function() {
 					res[5] = false;
 				}
 
+				element.setAttribute("type", "text");
 				element.setAttribute("readonly", "readonly");
 
 				try {
