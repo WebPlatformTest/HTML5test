@@ -2321,7 +2321,7 @@ Test = (function() {
 				}
 				
 				try {
-					element.setAttribute("type", "range");
+					element.setAttribute("type", "number");
 					element.setAttribute("min", "10");
 					element.setAttribute("max", "20");
 					element.setAttribute("value", "15");
@@ -2332,7 +2332,7 @@ Test = (function() {
 
 
 				try {
-					element.setAttribute("type", "range");
+					element.setAttribute("type", "number");
 					element.setAttribute("min", "10");
 					element.setAttribute("max", "20");
 					element.setAttribute("value", "25");
@@ -2341,6 +2341,7 @@ Test = (function() {
 					res[5] = false;
 				}
 
+				element.setAttribute("type", "text");
 				element.setAttribute("readonly", "readonly");
 
 				try {
