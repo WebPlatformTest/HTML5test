@@ -192,11 +192,11 @@ body > .header ul li a {
 	text-decoration: none;
 }
 
-body > .header a#index {
+body > .header a#indexbutton {
 	display: block;
 	position: fixed;
-	top: 15px;
-	left: 0px;
+	top: 0px;
+	right: 0px;
 	padding: 0px 10px;
 	line-height: 32px;
 	text-decoration: none;
@@ -204,10 +204,13 @@ body > .header a#index {
 	color: #FFFFFF;
 	z-index: 100000;
 }
+body > .header a#indexbutton.selected {
+	background-color: rgb(0, 146, 191);
+}
 body > .header div#indexmenu {
 	position: fixed;
-	top: 50px;
-	left: 0px;
+	top: 35px;
+	right: 0px;
 	height: 80%;
 	overflow-y: scroll;
 	background-color: #D9D9D9;
@@ -227,22 +230,6 @@ body > .header div#indexmenu li ul li {
 body > .header div#indexmenu li ul li a {
 	display: block;
 	color: #000000;
-}
-
-@media (max-width: 1040px) {
-	body > .header a#index {
-		top: 0px;
-		left: auto;
-		right: 0px;
-	}
-	body > .header div#indexmenu {
-		top: 35px;
-		left: auto;
-		right: 0px;
-	}
-	body > .header div#indexmenu ul {
-		width: 100%;
-	}
 }
 
 @media (max-width: 680px) {
@@ -301,7 +288,7 @@ body > .header div#indexmenu li ul li a {
 		padding: 0 8px;
 		line-height: 28px;
 	}
-	body > .header a#index {
+	body > .header a#indexbutton {
 		display: none;
 	}
 }

@@ -69,7 +69,7 @@
 		<div class='header'>
 			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
 
-			<a href='javascript:toggleIndex()' id='index'>Index</a>
+			<a href='javascript:toggleIndex()' id='indexbutton'>Index</a>
 			<div id='indexmenu' style='display: none'>
 				<ul>
 					<script>
@@ -87,12 +87,15 @@
 			</div>
 
 			<script>
-				var indexMenu = document.getElementById('indexmenu');
+				var indexButton = document.getElementById('indexbutton');
+				var indexMenu   = document.getElementById('indexmenu');
 				function toggleIndex() {
 					if(indexMenu.style.display == 'none') {
 						indexMenu.style.display = 'block';
+						indexButton.className = "selected";
 					} else {
 						indexMenu.style.display = 'none';
+						indexButton.className = "";
 					}
 				}
 			</script>
