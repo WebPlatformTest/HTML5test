@@ -28,6 +28,7 @@ RewriteRule ^results/mobile.html$			/backend/controllers/results.php?type=mobile
 RewriteRule ^results/tablet.html$			/backend/controllers/results.php?type=tablet
 RewriteRule ^results/gaming.html$			/backend/controllers/results.php?type=gaming
 RewriteRule ^results/television.html$		/backend/controllers/results.php?type=television
+RewriteRule ^results/latest.html$			/backend/controllers/latest.php
 RewriteRule ^devicelab/?$					/backend/controllers/lab.php
 
 

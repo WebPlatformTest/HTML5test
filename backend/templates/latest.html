@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title data-i18n>HTML5test - How well does your browser support HTML5?</title>	
+
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
+
+		<script src='/translation.js' type='text/javascript'></script>
+
+		<script src='/scripts/base.js' type='text/javascript'></script>
+		<script src='/scripts/reporting.js' type='text/javascript'></script>
+
+		<link rel="icon" href="/images/icon.png">
+		<link rel="apple-touch-icon" href="/images/button.png">
+	</head>
+	
+	<body>
+		<div class='header'>
+			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+			<div class='navigation'>
+				<ul class='left'>
+					<li><a href='/index.html' data-i18n>Your browser</a></li>
+					<li class='selected'><a href='/results/desktop.html' data-i18n>Other browsers</a></li>
+					<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
+				</ul>
+				<ul class='right'>
+					<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
+					<li><a href='/devicelab'>Device Lab</a></li>
+					<li><a href='/about.html' data-i18n>About<span> the test</span></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class='page'>
+			<div class='column'>
+				<div class='paper hasNavigation'>
+					<ul class='navigation'>
+						<li><a data-i18n href='/results/desktop.html'>Desktop<span> browsers</span></a></li>
+						<li><a data-i18n href='/results/tablet.html'>Tablets</a></li>
+						<li><a data-i18n href='/results/mobile.html'>Mobiles</a></li>
+						<li><a data-i18n href='/results/gaming.html'>Gaming</a></li>
+						<li><a data-i18n href='/results/television.html'>Television</a></li>
+						<li class='more selected'><a data-i18n href='/results/latest.html'>Latest</a></li>
+					</ul>
+
+					<div>
+						<div class='scorePanel'>
+
+							<h2 data-i18n>Latest results</h2>
+							
+							<div id='scoreToggle'></div>
+
+							<table class='scoreTable latestTable'>
+								<thead>
+									<tr>
+										<th class='points' data-i18n>Score</th>
+										<th class='nickname' data-i18n>Browser</th>
+										<th class='ago' data-i18n>When</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach($results as $item): ?>
+									<tr>
+										<td class='points'><a href='//html5te.st/<?php echo $item->uniqueid; ?>'><?php echo $item->score; ?></a></td>
+										<th class='nickname'><a href='//html5te.st/<?php echo $item->uniqueid; ?>'><?php echo $item->humanReadable; ?></a></th>
+										<td class='ago'><a href='//html5te.st/<?php echo $item->uniqueid; ?>'><?php echo $item->ago; ?> ago</a></td>
+									</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+
+						</div>
+
+						<script>
+						
+							new ToggleSwitch({
+								parent:		document.getElementById('scoreToggle'),
+								inactive:	'All results',
+								active:		'My results',
+								onChange:	function(active) {
+												reload(active ? 'my' : 'all');
+											}
+							});
+
+							function reload(type) {
+								var httpRequest;
+								if (window.XMLHttpRequest) {
+									httpRequest = new XMLHttpRequest();
+								} else if (window.ActiveXObject) {
+									httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+								}
+					
+							   	httpRequest.open('POST','/api/' + type + 'Results', true);
+								httpRequest.onreadystatechange = process;
+							   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+								httpRequest.send();
+
+								function process() {
+									if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
+										var data = JSON.parse(httpRequest.responseText);
+										refresh(data);
+									}
+								}
+							}
+							
+							function refresh(data) {
+								var contents = "";
+								for (var i = 0; i < data.length; i++) {
+									contents += 
+										"<tr>" +
+											"<td class='points'><a href='//html5te.st/" + data[i].uniqueid + "'>" + data[i].score + "</a></td>" +
+											"<th class='nickname'><a href='//html5te.st/" + data[i].uniqueid + "'>" + data[i].humanReadable + "</a></th>" +
+											"<td class='ago'><a href='//html5te.st/" + data[i].uniqueid + "'>" + data[i].ago + " ago</a></td>" +
+										"</tr>";
+
+								}
+								
+								var o = document.querySelector(".scoreTable tbody");
+								o.innerHTML = contents;
+							}
+
+						</script>
+					</div>
+				</div>
+				
+				<div class='footer'>
+					<div>
+						<div class='copyright'>
+							<p>
+								Created by Niels Leenheer. 
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
+		<script src='//www.google-analytics.com/ga.js'></script>
+		<script>
+		<!--
+			try {
+				var pageTracker = _gat._getTracker("UA-68192-4");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		//-->
+		</script>
+	</body>
+</html>

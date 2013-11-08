@@ -16,12 +16,21 @@
 	include('libraries/database.php');
 	include('libraries/tools.php');
 	include('models/lab.php');
+	include('models/raw.php');
 	include('models/browsers.php');
 	include('models/results.php');
 
 	
 	$method = $_REQUEST['method'];
 	switch($method) {
+	
+		case 'myResults':
+			echo json_encode(Raw::getMine());
+			break;
+	
+		case 'allResults':
+			echo json_encode(Raw::getAll());
+			break;
 	
 		case 'loadLabDevice':
 			if ($data = Lab::getDevice($_REQUEST['id'])) {
