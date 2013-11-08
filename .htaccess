@@ -8,7 +8,6 @@ RewriteRule ^ http://html5test.com%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{HTTP_HOST} ^(beta.)?cn.html5test.com
 RewriteRule ^translation.js$				/translations/cn/index.js
-
 RewriteRule ^translation.js$				/translations/en/index.js
 
 RewriteRule ^compare.html$					/compare/browser/index.html								[R]
