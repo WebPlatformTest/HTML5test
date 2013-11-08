@@ -31,6 +31,7 @@
 					case 'ereader': 	$row->type = 'E-reader'; break;
 					case 'gaming': 		$row->type = 'Gaming'; break;
 					case 'pda': 		$row->type = 'PDA'; break;
+					case 'television': 	$row->type = 'Television'; break;
 					default:			$row->type = 'Other';
 				}
 	
