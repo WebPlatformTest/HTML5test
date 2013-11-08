@@ -24,6 +24,10 @@
 	$method = $_REQUEST['method'];
 	switch($method) {
 	
+		case 'exportResults':
+			echo json_encode(Results::export($version));
+			break;
+	
 		case 'myResults':
 			echo json_encode(Raw::getMine());
 			break;
