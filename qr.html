@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title data-i18n>HTML5test - How well does your browser support HTML5?</title>	
+
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<style type="text/css">
+		
+html {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	font-weight: 200;
+	font-size: 1em;
+}
+
+body {
+	background: #d9d9d9;
+	text-align: center;
+	margin: 20px;
+}
+		
+p {
+	margin: 0 0 0.5em;
+}		
+a {
+	color: #0092bf;
+	text-decoration: none;
+}			
+code {
+	font-size: 1.2em;
+}
+		
+		</style>
+		<script src='/scripts/engine.js' type='text/javascript'></script>
+		<script src='http://api.whichbrowser.net/dev/detect.js?k=78ed279e82c387242d3d65792a13191b'></script>
+	</head>
+	
+
+	<body>
+		<div id="qr"></div>
+		<script>
+		<!--
+
+			window.addEventListener('load', function() {
+						
+				Browsers = new WhichBrowser({
+					useFeatures:		true,
+					detectCamouflage:	true
+				});
+	
+				start();
+			}, false);
+				
+			
+			function start() {
+				new Test(function(r) {
+					
+					document.getElementById('qr').innerHTML +=
+						"<p>You can see the results here:</p>" +
+						"<p><a href='http://html5te.st/" + r.uniqueid + "'>html5te.st/" + r.uniqueid + "</a></p>" + 
+						"<p>Or scan this QR-code:</p>" +
+						"<p>" + 
+						"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent("http://html5te.st/" + r.uniqueid) + "&choe=UTF-8' width='200' height='200'>" +
+						"</p>" +
+						"<p>The unique id for this test is:<br><code>" + r.uniqueid + "</code></p>";
+			
+	
+					var payload = '{' +
+								  '"version": "5",' +
+								  '"revision": "0",' +
+								  '"uniqueid": "' + r.uniqueid + '",' +
+								  '"score": ' + r.score + ',' +
+								  '"maximum": ' + r.maximum + ',' +
+								  '"camouflage": "' + (Browsers.camouflage ? '1' : '0') + '",' +
+								  '"features": "' + (Browsers.features.join(',')) + '",' +
+								  '"browserName": "' + (Browsers.browser.name ? Browsers.browser.name : '') + '",' +
+								  '"browserChannel": "' + (Browsers.browser.channel ? Browsers.browser.channel : '') + '",' +
+								  '"browserVersion": "' + (Browsers.browser.version ? Browsers.browser.version.toString() : '') + '",' +
+								  '"browserVersionType": "' + (Browsers.browser.version ? Browsers.browser.version.type : '') + '",' +
+								  '"browserVersionMajor": "' + (Browsers.browser.version ? Browsers.browser.version.major : '') + '",' +
+								  '"browserVersionMinor": "' + (Browsers.browser.version ? Browsers.browser.version.minor : '') + '",' +
+								  '"browserVersionOriginal": "' + (Browsers.browser.version ? Browsers.browser.version.original : '') + '",' +
+								  '"browserMode": "' + (Browsers.browser.mode ? Browsers.browser.mode : '') + '",' +
+								  '"engineName": "' + (Browsers.engine.name ? Browsers.engine.name : '') + '",' +
+								  '"engineVersion": "' + (Browsers.engine.version ? Browsers.engine.version.toString() : '') + '",' +
+								  '"osName": "' + (Browsers.os.name ? Browsers.os.name : '') + '",' +
+								  '"osVersion": "' + (Browsers.os.version ? Browsers.os.version.toString() : '') + '",' +
+								  '"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
+								  '"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
+								  '"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
+								  '"deviceIdentified": "' + (Browsers.device.identified ? '1' : '0' ) + '",' +
+								  '"deviceWidth": "' + (screen.width) + '",' +
+								  '"deviceHeight": "' + (screen.height) + '",' +
+								  '"useragent": "' + navigator.userAgent + '",' +
+								  '"humanReadable": "' + Browsers.toString() + '",' +
+								  '"points": "' + r.points + '",' +
+								  '"results": "' + r.results + '"' +
+								  '}';
+					
+					submit('submit', payload);
+					
+					function submit(method, payload) {
+						var httpRequest;
+						if (window.XMLHttpRequest) {
+							httpRequest = new XMLHttpRequest();
+						} else if (window.ActiveXObject) {
+							httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+						}
+	
+					   	httpRequest.open('POST','/api/' + method, true);
+					   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	   					httpRequest.send('payload=' + encodeURIComponent(payload));
+					}
+				}, 
+				
+				function(e) {
+					if (typeof console != 'undefined') console.log(e);
+					alert('Test has failed: ' + e.message);
+				});
+			}
+			
+
+		//-->
+		</script>
+	</body>
+</html>

@@ -14,14 +14,30 @@
 
 	include('config.php');
 	include('libraries/database.php');
-	include('libraries/model.php');
+	include('libraries/tools.php');
+	include('models/lab.php');
+	include('models/raw.php');
+	include('models/browsers.php');
+	include('models/results.php');
 
 	
 	$method = $_REQUEST['method'];
 	switch($method) {
 	
+		case 'exportResults':
+			echo json_encode(Results::export($version));
+			break;
+	
+		case 'myResults':
+			echo json_encode(Raw::getMine());
+			break;
+	
+		case 'allResults':
+			echo json_encode(Raw::getAll());
+			break;
+	
 		case 'loadLabDevice':
-			if ($data = getLabDevice($_REQUEST['id'])) {
+			if ($data = Lab::getDevice($_REQUEST['id'])) {
 				echo json_encode($data);
 			}
 			
@@ -30,19 +46,19 @@
 		case 'loadFeature':
 			echo json_encode(array(
 				'id'		=> $_REQUEST['id'],
-				'supported' => implode(',', getResultsForFeature($_REQUEST['id'], $version))
+				'supported' => implode(',', Results::getByFeature($_REQUEST['id'], $version))
 			));
 			
 			break;
 	
 		case 'loadBrowser':
 			if (substr($_REQUEST['id'], 0, 7) == 'custom:') {
-				if ($data = getResultsForUniqueId(substr($_REQUEST['id'], 7))) {
+				if ($data = Results::getByUniqueId(substr($_REQUEST['id'], 7))) {
 					echo json_encode($data);
 				}
 
 			} else {
-				if ($data = getResultsForBrowser($_REQUEST['id'], $version)) {
+				if ($data = Results::getByBrowser($_REQUEST['id'], $version)) {
 					echo json_encode($data);
 				}
 			}
@@ -79,7 +95,7 @@
 					SET 
 						version = "' . mysql_real_escape_string($payload->version) . '",
 						revision = "' . mysql_real_escape_string($payload->revision) . '",
-						ip = "' . mysql_real_escape_string($_SERVER['REMOTE_ADDR']) . '",
+						ip = "' . mysql_real_escape_string(get_ip_address()) . '",
 						uniqueid = "' . mysql_real_escape_string($payload->uniqueid) . '",
 						score = "' . mysql_real_escape_string($payload->score) . '",
 						maximum = "' . mysql_real_escape_string($payload->maximum) . '",

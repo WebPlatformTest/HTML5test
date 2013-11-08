@@ -459,6 +459,7 @@ body > .header div#indexmenu li ul li a {
 	margin: 0;
 	overflow:hidden;
 	list-style-type: none;
+	width: 100%;
 }
 .paper > ul.navigation li {
 	display: block;
@@ -472,6 +473,10 @@ body > .header div#indexmenu li ul li a {
 	text-transform: lowercase;
 
 	background: #aaa;
+}
+.paper > ul.navigation li.more {
+	float: right;
+	margin: 0 0 0 3px;
 }
 .paper > ul.navigation li.selected {
 	background: #fff;
@@ -1151,6 +1156,7 @@ body > .header div#indexmenu li ul li a {
 	display: block;
 	height: 94px;
 	position: relative;
+	overflow: hidden;
 }
 #share #twitter {
 	position: absolute;
@@ -1160,7 +1166,7 @@ body > .header div#indexmenu li ul li a {
 #share #facebook {
 	position: absolute;
 	top: 15px;
-	left: 75px;
+	left: 82px;
 }
 #share #google {
 	position: absolute;
@@ -1975,6 +1981,10 @@ body > .header div#indexmenu li ul li a {
 	.scoreTable .description {
 		display: none;
 	}
+}
+
+.latestTable .nickname {
+	width: 60%;
 }
 
 

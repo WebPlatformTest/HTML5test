@@ -8,7 +8,6 @@ RewriteRule ^ http://html5test.com%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{HTTP_HOST} ^(beta.)?cn.html5test.com
 RewriteRule ^translation.js$				/translations/cn/index.js
-
 RewriteRule ^translation.js$				/translations/en/index.js
 
 RewriteRule ^compare.html$					/compare/browser/index.html								[R]
@@ -18,18 +17,19 @@ RewriteRule ^results-tablets.html$			/results/tablet.html									[R]
 RewriteRule ^results-tv.html$				/results/television.html								[R]
 
 RewriteRule ^api/(.+)$ 						/backend/index.php?method=$1&%{QUERY_STRING}
-RewriteRule ^s/(.+).html$ 					/backend/saved.php?id=$1
-RewriteRule ^compare/browser/index.html$ 	/backend/browser.php?%{QUERY_STRING}
-RewriteRule ^compare/browser/(.+).html$ 	/backend/browser.php?show=$1&%{QUERY_STRING}
-RewriteRule ^compare/feature/index.html$ 	/backend/feature.php?%{QUERY_STRING}
-RewriteRule ^compare/feature/(.+).html$ 	/backend/feature.php?show=$1&%{QUERY_STRING}
-RewriteRule ^results/desktop.html$			/backend/results.php?type=desktop
-RewriteRule ^results/mobile.html$			/backend/results.php?type=mobile
-RewriteRule ^results/tablet.html$			/backend/results.php?type=tablet
-RewriteRule ^results/gaming.html$			/backend/results.php?type=gaming
-RewriteRule ^results/television.html$		/backend/results.php?type=television
+RewriteRule ^s/(.+).html$ 					/backend/controllers/saved.php?id=$1
+RewriteRule ^compare/browser/index.html$ 	/backend/controllers/browser.php?%{QUERY_STRING}
+RewriteRule ^compare/browser/(.+).html$ 	/backend/controllers/browser.php?show=$1&%{QUERY_STRING}
+RewriteRule ^compare/feature/index.html$ 	/backend/controllers/feature.php?%{QUERY_STRING}
+RewriteRule ^compare/feature/(.+).html$ 	/backend/controllers/feature.php?show=$1&%{QUERY_STRING}
+RewriteRule ^results/desktop.html$			/backend/controllers/results.php?type=desktop
+RewriteRule ^results/mobile.html$			/backend/controllers/results.php?type=mobile
+RewriteRule ^results/tablet.html$			/backend/controllers/results.php?type=tablet
+RewriteRule ^results/gaming.html$			/backend/controllers/results.php?type=gaming
+RewriteRule ^results/television.html$		/backend/controllers/results.php?type=television
+RewriteRule ^results/latest.html$			/backend/controllers/latest.php
+RewriteRule ^devicelab/?$					/backend/controllers/lab.php
 
-RewriteRule ^devicelab/?$					/backend/lab.php
 
 <FilesMatch "detect.html">
 <IfModule mod_headers.c>

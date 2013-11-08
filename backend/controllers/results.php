@@ -1,8 +1,8 @@
 <?php
 
-	include('config.php');
-	include('libraries/database.php');
-	include('libraries/template.php');
+	include('../config.php');
+	include('../libraries/database.php');
+	include('../libraries/template.php');
 	
 	
 	
@@ -11,7 +11,7 @@
 	
 	
 	
-	$tpl = new Template('templates/results.html');
+	$tpl = new Template('../templates/results.html');
 	$tpl->set('type', $type);
 	
 

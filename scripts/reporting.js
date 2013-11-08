@@ -133,7 +133,7 @@
 						"<div class='image'" + (data.image ? " style='background-image: url(/images/devices/" + data.image + ");'" : "") + "></div>" +
 						"<div class='information'>" +
 							"<table>" +
-								"<tr><th>Type</th><td>" + data.type + ", " + data.deviceSize + "&nbsp;inch</td></tr>" + 
+								"<tr><th>Type</th><td>" + data.type + (data.deviceSize ? ", " + data.deviceSize + "&nbsp;inch": "") + "</td></tr>" + 
 								"<tr><th>Display</th><td>" + (data.deviceWidth && data.deviceHeight ? data.deviceWidth + "&nbsp;x&nbsp;" + data.deviceHeight + "&nbsp;pixels" : "") + (data.devicePPI ? ", " + data.devicePPI + "&nbsp;ppi" : "") + "</td></tr>" + 
 								"<tr><th>OS</th><td>" + (data.osName ? data.osName + (data.osVersion ? " " + data.osVersion : "") : "-") + "</td></tr>" + 
 								"<tr><th>Wi-Fi</th><td>" + (data.hasWifi ? "<span class='check'>✔</span> Yes" : "<span class='ballot'>✘</span> No") + "</td></tr>" + 
@@ -232,8 +232,8 @@
 			
 			this.container.innerHTML = 
 				"<div class='background'></div>" +
-				"<div class='part first'>Most used</div>" +
-				"<div class='part second'>All browsers</div>";
+				"<div class='part first'>" + this.options.inactive + "</div>" +
+				"<div class='part second'>" + this.options.active + "</div>";
 				
 			
 			this.container.addEventListener("click", this.onToggle.bind(this), true);

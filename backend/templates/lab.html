@@ -43,9 +43,6 @@
 			<div id='contents' class='column'>
 				<div class='labheader'>
 					<h2>Open Device Lab</h2>
-					<div class='opening'>
-						We're open!
-					</div>	
 				</div>	
 			
 				<p class='inbetween'>
@@ -143,6 +140,9 @@
 													case 'netbook': 	echo 'netbook'; break;
 													case 'laptop': 		echo 'laptop'; break;
 													case 'ereader': 	echo 'e-reader'; break;
+													case 'gaming': 		echo 'gaming'; break;
+													case 'pda': 		echo 'pda'; break;
+													case 'television': 	echo 'television'; break;
 												}
 										?></td>
 										<td>
@@ -150,7 +150,11 @@
 											<!-- <?php echo $device->hasInspect ? '<span class="hasInspect"></span>' : ''; ?> -->
 											<?php echo $device->isPersonal ? '<span class="onRequest"></span>' : ''; ?> 
 										</td>
-										<td><?php echo (isset($device->contributor) ? $device->contributor : '-'); ?></td>
+										<td>
+											<?php if($device->contributorUrl != ''): ?><a href="<?php echo htmlentities($device->contributorUrl); ?>"><?php endif; ?>
+											<?php echo (isset($device->contributor) ? $device->contributor : '-'); ?>
+											<?php if($device->contributorUrl != ''): ?></a><?php endif; ?>
+										</td>
 									</tr>
 
 									<?php endwhile; ?>						
@@ -238,7 +242,7 @@
 						<li><a href='http://lab-up.org'><img src="/images/sponsors/labup.png" width='108' alt='LabUp!'></a></li>
 						<li><a href='http://google.com'><img src="/images/sponsors/google.svg" width='116' alt='Google'></a></li>
 						<li><a href='http://blackberry.com'><img src="/images/sponsors/blackberry.svg" width='140' alt='Blackberry'></a></li>
-						<li><a href='http://nokia.com'><img src="/upcoming/images/sponsors/nokia.svg" width='120' alt='Nokia'></a></li>
+						<li><a href='http://nokia.com'><img src="/images/sponsors/nokia.svg" width='120' alt='Nokia'></a></li>
 						<li><a href='http://salonhub.nl'><img src="/images/sponsors/salonhub.png" width='128' alt='Salonhub'></a></li>
 					</ul>
 				</div>

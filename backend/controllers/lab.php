@@ -1,10 +1,10 @@
 <?php
 
-	include('config.php');
-	include('libraries/database.php');
-	include('libraries/template.php');
+	include('../config.php');
+	include('../libraries/database.php');
+	include('../libraries/template.php');
 	
-	$tpl = new Template('templates/lab.html');
+	$tpl = new Template('../templates/lab.html');
 	
 	$devices = array();
 	$available = 0;
