@@ -147,7 +147,11 @@
 											<!-- <?php echo $device->hasInspect ? '<span class="hasInspect"></span>' : ''; ?> -->
 											<?php echo $device->isPersonal ? '<span class="onRequest"></span>' : ''; ?> 
 										</td>
-										<td><?php echo (isset($device->contributor) ? $device->contributor : '-'); ?></td>
+										<td>
+											<?php if($device->contributorUrl != ''): ?><a href="<?php echo htmlentities($device->contributorUrl); ?>"><?php endif; ?>
+											<?php echo (isset($device->contributor) ? $device->contributor : '-'); ?>
+											<?php if($device->contributorUrl != ''): ?></a><?php endif; ?>
+										</td>
 									</tr>
 
 									<?php endwhile; ?>						
