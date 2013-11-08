@@ -133,7 +133,7 @@
 						"<div class='image'" + (data.image ? " style='background-image: url(/images/devices/" + data.image + ");'" : "") + "></div>" +
 						"<div class='information'>" +
 							"<table>" +
-								"<tr><th>Type</th><td>" + data.type + ", " + data.deviceSize + "&nbsp;inch</td></tr>" + 
+								"<tr><th>Type</th><td>" + data.type + (data.deviceSize ? ", " + data.deviceSize + "&nbsp;inch": "") + "</td></tr>" + 
 								"<tr><th>Display</th><td>" + (data.deviceWidth && data.deviceHeight ? data.deviceWidth + "&nbsp;x&nbsp;" + data.deviceHeight + "&nbsp;pixels" : "") + (data.devicePPI ? ", " + data.devicePPI + "&nbsp;ppi" : "") + "</td></tr>" + 
 								"<tr><th>OS</th><td>" + (data.osName ? data.osName + (data.osVersion ? " " + data.osVersion : "") : "-") + "</td></tr>" + 
 								"<tr><th>Wi-Fi</th><td>" + (data.hasWifi ? "<span class='check'>✔</span> Yes" : "<span class='ballot'>✘</span> No") + "</td></tr>" + 
