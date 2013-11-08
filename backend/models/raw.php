@@ -39,7 +39,7 @@
 				FROM 
 					results
 				WHERE
-					ip = "' . mysql_real_escape_string($_SERVER['REMOTE_ADDR']) . '"
+					ip = "' . mysql_real_escape_string(get_ip_address()) . '"
 				ORDER BY 
 					timestamp DESC
 				LIMIT 100

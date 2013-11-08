@@ -25,4 +25,14 @@
 	}
 		
 		
+	function get_ip_address() {
+		$ip = $_SERVER['REMOTE_ADDR'];
 		
+		$headers = apache_request_headers();
+		if (isset($headers['X-Forwarded-For'])) $ip = $headers['X-Forwarded-For'];
+		if (isset($headers['Proxy-Client-IP'])) $ip = $headers['Proxy-Client-IP'];
+		if (isset($headers['X-Client-IP'])) $ip = $headers['X-Client-IP'];
+		if (isset($headers['Client-IP'])) $ip = $headers['Client-IP'];
+		
+		return $ip;
+	}

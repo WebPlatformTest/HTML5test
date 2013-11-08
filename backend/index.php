@@ -95,7 +95,7 @@
 					SET 
 						version = "' . mysql_real_escape_string($payload->version) . '",
 						revision = "' . mysql_real_escape_string($payload->revision) . '",
-						ip = "' . mysql_real_escape_string($_SERVER['REMOTE_ADDR']) . '",
+						ip = "' . mysql_real_escape_string(get_ip_address()) . '",
 						uniqueid = "' . mysql_real_escape_string($payload->uniqueid) . '",
 						score = "' . mysql_real_escape_string($payload->score) . '",
 						maximum = "' . mysql_real_escape_string($payload->maximum) . '",
