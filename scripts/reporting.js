@@ -232,8 +232,8 @@
 			
 			this.container.innerHTML = 
 				"<div class='background'></div>" +
-				"<div class='part first'>Most used</div>" +
-				"<div class='part second'>All browsers</div>";
+				"<div class='part first'>" + this.options.inactive + "</div>" +
+				"<div class='part second'>" + this.options.active + "</div>";
 				
 			
 			this.container.addEventListener("click", this.onToggle.bind(this), true);
