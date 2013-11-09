@@ -835,6 +835,8 @@ body > .header ul li a {
 .button.compare > span::before { content: '⚏'; }
 .button.save { background: #0092bf; color: #fff; }
 .button.save > span::before { content: '☁'; }
+.button.latest { background: #0092bf; color: #fff; }
+.button.latest > span::before { content: ''; }
 .button.share { background: #ec6534; color: #fff; }
 .button.share > span::before { content: ''; }
 .button.contact { background: #ec6534; color: #fff; }
