@@ -55,23 +55,30 @@
 
 							<div id='searchResults' style="display: none;">
 								<hr>
-	
-								<table class='scoreTable latestTable'>
-									<thead>
-										<tr>
-											<th class='points' data-i18n>Score</th>
-											<th class='nickname' data-i18n>Browser</th>
-											<th class='ago' data-i18n>When</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
+								
+								<div class='searchResults' style="display: none;">
+									<table class='scoreTable latestTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Browser</th>
+												<th class='ago' data-i18n>When</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
 									<p>
 										Please note that all data shown above are unconfirmed test results. They could be fake or
 										belong to a different browser than the one listed. 
 									</p>
+								</div>
+								
+								<div class='searchMessage notFound' style="display: none;">
+									No test results found that match your search criteria
+								</div>
 							</div>
+
 						</div>
 
 						<script>
@@ -128,8 +135,14 @@
 
 								}
 								
-								var t = document.querySelector("#searchResults");
-								t.style.display = "table";
+								var o = document.querySelector("#searchResults");
+								o.style.display = "block";
+
+								var o = document.querySelector(".searchMessage.notFound");
+								o.style.display = data.length ? 'none' : 'block';
+																
+								var o = document.querySelector(".searchResults");
+								o.style.display = data.length ? 'block' : 'none';
 																
 								var o = document.querySelector(".scoreTable tbody");
 								o.innerHTML = contents;
