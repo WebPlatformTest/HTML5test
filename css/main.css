@@ -716,10 +716,13 @@ body > .header div#indexmenu li ul li a {
 
 .search {
 	position: relative;
-	width: 200px;
+	width: 100%;
 	height: 40px;
 	line-height: 40px;
 	background: #eee;
+}
+.filters .search {
+	width: 200px;
 }
 .search input {
 	position: absolute;
@@ -763,6 +766,11 @@ body > .header div#indexmenu li ul li a {
 	border: none;
 	cursor: pointer;
 }
+
+#searchResults {
+	width: 100%;
+}
+
 
 /********************************************
  *
@@ -878,6 +886,8 @@ body > .header div#indexmenu li ul li a {
 .button.compare > span::before { content: '⚏'; }
 .button.save { background: #0092bf; color: #fff; }
 .button.save > span::before { content: '☁'; }
+.button.latest { background: #0092bf; color: #fff; }
+.button.latest > span::before { content: ''; }
 .button.share { background: #ec6534; color: #fff; }
 .button.share > span::before { content: ''; }
 .button.contact { background: #ec6534; color: #fff; }

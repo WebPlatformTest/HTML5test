@@ -75,11 +75,11 @@
 					"</div>",
 				r);
 					
-				var wrapper = document.createElement('div');
-				wrapper.className = 'useragent';
-				container.appendChild(wrapper);
+				var useragent = document.createElement('div');
+				useragent.className = 'useragent';
+				container.appendChild(useragent);
 	
-				wrapper.innerHTML = tim(
+				useragent.innerHTML = tim(
 					"<p>" + t('This score was recorded using') + " {{humanReadable}}</p>" +
 					"<div class='expandWidget'>▼</div>" + 
 					"<div class='expandedPanel'>" + 
@@ -90,16 +90,51 @@
 					"</div>",
 				r);
 	
-				wrapper.addEventListener('click', function() {
-					if (wrapper.className.indexOf(' expanded') == -1)
-						wrapper.className += ' expanded';
+				useragent.addEventListener('click', function() {
+					if (useragent.className.indexOf(' expanded') == -1)
+						useragent.className += ' expanded';
 					else
-						wrapper.className = wrapper.className.replace(' expanded', '');
+						useragent.className = useragent.className.replace(' expanded', '');
 				}, true);
 	
 				
+				var wrapper = document.createElement('div');
+				wrapper.className = 'wrapper';
+				container.appendChild(wrapper);
+
+				var buttons = document.createElement('div');
+				buttons.className = 'buttons';
+				wrapper.appendChild(buttons);
+
+				var button = document.createElement('a');
+				button.className = 'button latest';
+				button.href = '/results/latest.html';
+				button.innerHTML = '<span>Latest results...</span>';
+				buttons.appendChild(button);
+
+				var button = document.createElement('a');
+				button.className = 'button compare';
+				button.href = '/compare/browser/' + r.id + '.html';
+				button.innerHTML = '<span>Compare to...</span>';
+				buttons.appendChild(button);
+
+				var button = document.createElement('span');
+				button.className = 'button share';
+				button.innerHTML = '<span>Share</span>';
+				buttons.appendChild(button);
 				
+				new Share(button, {
+					score: 		r.score,
+					browser:	r.humanReadable
+				});
 				
+				var button = document.createElement('a');
+				button.className = 'button donate';
+				button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
+				button.innerHTML = '<span>Donate</span>';
+				buttons.appendChild(button);
+				
+			
 				var container = document.getElementById('results');
 				var div = document.createElement('div');
 				div.className = 'resultsTable detailsTable';
