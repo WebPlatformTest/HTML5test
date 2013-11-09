@@ -33,14 +33,20 @@
 						$where[] = 'score ' . $comparison . ' ' . intval($components[1]);	
 					}
 					
-					if (!in_array($components[0], array('browserName', 'engineName', 'osName', 'deviceManufacturer', 'deviceType', 'deviceModel', 'useragent'))) {
-						continue;
+					if (in_array($components[0], array('browserVersion', 'engineVersion', 'osVersion'))) {
+						if ($components[1] == "") {
+							$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';	
+						} else {
+							$where[] = $components[0] . ($negative ? ' NOT' : '') . ' LIKE "' . mysql_real_escape_string($components[1]) . '%"';	
+						}
 					}
-				
-					if ($components[1] == "") {
-						$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';	
-					} else {
-						$where[] = $components[0] . ($negative ? ' NOT' : '') . ' LIKE "%' . mysql_real_escape_string($components[1]) . '%"';	
+
+					if (in_array($components[0], array('browserName', 'engineName', 'osName', 'deviceManufacturer', 'deviceType', 'deviceModel', 'useragent'))) {
+						if ($components[1] == "") {
+							$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';	
+						} else {
+							$where[] = $components[0] . ($negative ? ' NOT' : '') . ' LIKE "%' . mysql_real_escape_string($components[1]) . '%"';	
+						}
 					}
 				}
 				
