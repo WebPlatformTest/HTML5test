@@ -85,6 +85,7 @@
 
 							var search = new SearchField({
 								parent:		document.getElementById('searchField'),
+								value:		<?php echo isset($_REQUEST['query']) ? '"' . addslashes($_REQUEST['query']) . '"' : 'null'; ?>,
 								onSubmit:	function(query) {
 												clearTable();
 
@@ -95,6 +96,10 @@
 							});
 
 							function clearTable() {
+								if (window.history && window.history.replaceState) {
+									window.history.replaceState([], document.title, '/results/search.html');
+								}
+								
 								var t = document.querySelector("#searchResults");
 								t.style.display = "none";
 								
@@ -103,6 +108,10 @@
 							}
 							
 							function searchResults(query) {
+								if (window.history && window.history.replaceState) {
+									window.history.replaceState([], document.title, '/results/search.html?query=' + encodeURIComponent(query));
+								}
+								
 								var httpRequest;
 								if (window.XMLHttpRequest) {
 									httpRequest = new XMLHttpRequest();
@@ -147,6 +156,12 @@
 								var o = document.querySelector(".scoreTable tbody");
 								o.innerHTML = contents;
 							}
+
+<?php if (isset($_REQUEST['query'])): ?>
+
+							searchResults(<?php echo '"' . addslashes($_REQUEST['query']) . '"'; ?>);
+
+<?php endif; ?>
 
 						</script>
 					</div>

@@ -165,6 +165,7 @@
 		initialize: function(options) {
 			this.parent = options.parent;
 			this.options = {
+				value:		options.value || null,
 				onQuery:	options.onQuery || null,
 				onSubmit:	options.onSubmit || null
 			}
@@ -176,7 +177,7 @@
 			this.parent.appendChild(this.container);
 			
 			this.container.innerHTML = 
-				"<input type='text' placeholder='Search...' value=''>" +
+				"<input type='text' placeholder='Search...' value='" + (this.options.value || "") + "'>" +
 				"<button>×</button>";
 				
 			this.container.firstChild.addEventListener("keyup", this.onUpdate.bind(this), true);
