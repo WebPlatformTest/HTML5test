@@ -673,10 +673,13 @@ body > .header ul li a {
 
 .search {
 	position: relative;
-	width: 200px;	
+	width: 100%;		
 	height: 40px;
 	line-height: 40px;
 	background: #eee;
+}
+.filters .search {
+	width: 200px;		
 }
 .search input {
 	position: absolute;
@@ -720,6 +723,11 @@ body > .header ul li a {
 	border: none;
 	cursor: pointer;
 }
+
+#searchResults {
+	width: 100%;
+}
+
 
 /********************************************
  *

@@ -165,7 +165,8 @@
 		initialize: function(options) {
 			this.parent = options.parent;
 			this.options = {
-				onQuery:	options.onQuery || null
+				onQuery:	options.onQuery || null,
+				onSubmit:	options.onSubmit || null
 			}
 			
 			this.interval = null;
@@ -183,12 +184,18 @@
 			this.container.firstChild.nextSibling.addEventListener("click", this.onClear.bind(this), true);
 		},
 		
-		onUpdate: function() {
+		onUpdate: function(e) {
 			if (this.interval) {
 				window.clearTimeout(this.interval);
 			}
 			
 			this.interval = window.setTimeout(this.onQuery.bind(this), 250);
+			
+			if (e.keyCode == 13) {
+				if (this.options.onSubmit) {
+					this.options.onSubmit(this.container.firstChild.value);
+				}	
+			}
 		},
 		
 		onClear: function() {
@@ -196,6 +203,10 @@
 
 			if (this.options.onQuery) {
 				this.options.onQuery('');
+			}	
+
+			if (this.options.onSubmit) {
+				this.options.onSubmit('');
 			}	
 		},
 		
