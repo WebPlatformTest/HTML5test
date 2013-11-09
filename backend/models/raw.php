@@ -6,38 +6,49 @@
 		function search($query) {
 			$parts = opt_explode(' ', $query);
 			$where = array();
-		
+			
 			for ($p = 0; $p < count($parts); $p++) {
-				if ('browserName:' == substr($parts[$p], 0, 12)) {
-					$where[] = 'browserName LIKE "%' . mysql_real_escape_string(substr($parts[$p], 12)) . '%"';
+				$components = preg_split("/[:=]/", $parts[$p]);
+				$negative = false;
+				
+				if (substr($components[0], 0, 1) == '-') {
+					$negative = true;
+					$components[0] = substr($components[0], 1);
 				}
-			
-				else if ('engineName:' == substr($parts[$p], 0, 11)) {
-					$where[] = 'engineName LIKE "%' . mysql_real_escape_string(substr($parts[$p], 11)) . '%"';
+				
+				if (count($components) > 1) {
+					if ($components[0] == 'score') {
+						$comparison = $negative ? '!=' : '=';
+						
+						if (substr($components[1], -1) == '+') {
+							$comparison = $negative ? '<=' : '>';
+							$components[1] = substr($components[1], 0, -1);
+						}
+					
+						if (substr($components[1], -1) == '-') {
+							$comparison = $negative ? '>=' : '<';
+							$components[1] = substr($components[1], 0, -1);
+						}
+					
+						$where[] = 'score ' . $comparison . ' ' . intval($components[1]);	
+					}
+					
+					if (!in_array($components[0], array('browserName', 'engineName', 'osName', 'deviceManufacturer', 'deviceType', 'deviceModel', 'useragent'))) {
+						continue;
+					}
+				
+					if ($components[1] == "") {
+						$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';	
+					} else {
+						$where[] = $components[0] . ($negative ? ' NOT' : '') . ' LIKE "%' . mysql_real_escape_string($components[1]) . '%"';	
+					}
 				}
-			
-				else if ('osName:' == substr($parts[$p], 0, 7)) {
-					$where[] = 'osName LIKE "%' . mysql_real_escape_string(substr($parts[$p], 7)) . '%"';
-				}
-			
-				else if ('deviceManufacturer:' == substr($parts[$p], 0, 19)) {
-					$where[] = 'deviceManufacturer LIKE "%' . mysql_real_escape_string(substr($parts[$p], 19)) . '%"';
-				}
-			
-				else if ('deviceModel:' == substr($parts[$p], 0, 12)) {
-					$where[] = 'deviceModel LIKE "%' . mysql_real_escape_string(substr($parts[$p], 12)) . '%"';
-				}
-			
-				else if ('useragent:' == substr($parts[$p], 0, 10)) {
-					$where[] = 'useragent LIKE "%' . mysql_real_escape_string(substr($parts[$p], 10)) . '%"';
-				}
-			
+				
 				else {
-					$where[] = 'humanReadable LIKE "%' . mysql_real_escape_string($parts[$p]) . '%"';
+					$where[] = 'humanReadable' . ($negative ? ' NOT' : '') . ' LIKE "%' . mysql_real_escape_string($components[0]) . '%"';
 				}
 			}
 	
-		
 			$results = array();
 			
 			$res = mysql_query('
