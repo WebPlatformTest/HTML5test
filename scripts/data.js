@@ -680,12 +680,12 @@ var tests = [
 													}, {
 														id:			'width',
 														name: 		'<code>width</code> property',
-														value:		1, 
+														value:		0, 
 														url:		'http://www.w3.org/TR/html5/embedded-content-0.html#attr-dim-width'
 													}, {
 														id:			'height',
 														name: 		'<code>height</code> property',
-														value:		1, 
+														value:		0, 
 														url:		'http://www.w3.org/TR/html5/embedded-content-0.html#attr-dim-height'
 													}
 												]

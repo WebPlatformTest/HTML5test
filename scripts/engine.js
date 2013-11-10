@@ -1913,13 +1913,13 @@ Test = (function() {
 			group.setItem({
 				id:			'width',
 				passed:		supportsWidth && element.field.offsetWidth == 100,
-				value: 		1
+				value: 		0
 			});
 
 			group.setItem({
 				id:			'height',
 				passed:		supportsHeight && element.field.offsetHeight == 100,
-				value: 		1
+				value: 		0
 			});
 			
 			this.removeInput(element);
