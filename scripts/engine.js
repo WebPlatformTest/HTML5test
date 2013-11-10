@@ -3426,7 +3426,7 @@ Test = (function() {
 
 			s.addEventListener('beforescriptexecute', function() {
 				before = true;
-			});
+			}, true);
 
 			s.addEventListener('afterscriptexecute', function() {
 				if (before) {
@@ -3434,7 +3434,7 @@ Test = (function() {
 						passed: true
 					});
 				}
-			});
+			}, true);
 			
 			document.body.appendChild(s);
 
