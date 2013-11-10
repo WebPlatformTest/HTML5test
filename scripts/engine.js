@@ -2788,13 +2788,17 @@ Test = (function() {
 				id:		'security'
 			});
 			
-			
-			var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
-			var passed = window.crypto ? YES : window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
-			
+			var passed = NO;
+			try {
+				var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
+				var available = window.crypto ? YES : window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
+				passed = !!crypto && 'encrypt' in crypto ? available : NO;
+			} catch(e) {
+			}
+
 			this.section.setItem({
 				id:			'crypto',
-				passed: 	!!crypto && 'encrypt' in crypto ? passed : NO,
+				passed: 	passed,
 				value: 		5
 			});
 
