@@ -1445,7 +1445,7 @@ var tests = [
 												]
 									},
 
-									'<strong>File formats</strong>',
+									'<strong>Image export formats</strong>',
 
 									{
 										id:		'png',
