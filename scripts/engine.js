@@ -1655,9 +1655,9 @@ Test = (function() {
 			this.removeInput(element);
 			
 			
-			/* input type=date, month, week, time and datetime-local */
+			/* input type=date, month, week, time, datetime and datetime-local */
 			
-			var types = ['date', 'month', 'week', 'time', 'datetime-local'];
+			var types = ['date', 'month', 'week', 'time', 'datetime', 'datetime-local'];
 			for (var t = 0; t < types.length; t++) {
 				var group = this.section.getGroup({
 					id:		types[t]
@@ -1673,14 +1673,14 @@ Test = (function() {
 				group.setItem({
 					id:			'element',
 					passed:		minimal,
-					value: 		3,
+					value: 		types[t] != 'datetime' ? 3 : 1,
 					required:	true
 				});
 				
 				group.setItem({
 					id:			'ui',
 					passed:		minimal && sanitization, 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
-					value: 		2
+					value: 		types[t] != 'datetime' ? 2 : 1
 				});
 
 				group.setItem({
@@ -1719,7 +1719,7 @@ Test = (function() {
 					required:	true
 				});
 				
-				if (t != 'datetime-local') {
+				if (t != 'datetime-local' && t != 'datetime') {
 					group.setItem({
 						id:			'valueAsDate',
 						passed:		minimal && 'valueAsDate' in element.field,
