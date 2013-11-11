@@ -70,7 +70,7 @@
 				<ul>
 					<script>
 						for (var i = 0; i < tests.length; i++) {
-							document.write('<li class="category ' + tests[i].id + '"><a href="#table-' + tests[i].items[0].id + '">' + tests[i].name + '</a>');
+							document.write('<li class="category ' + tests[i].id + '"><a href="#category-' + tests[i].id + '">' + tests[i].name + '</a>');
 
 							document.write('<ul>');
 							for (var j = 0; j < tests[i].items.length; j++) {
@@ -425,7 +425,7 @@
 				})();
 			}
 
-			// controling index menu
+			// controlling index menu
 			var index          = document.getElementById('index');
 			var indexMenu      = document.getElementById('indexmenu');
 			var contentWrapper = document.getElementById('contentwrapper');
@@ -439,13 +439,7 @@
 				}
 			}
 
-			if (contentWrapper.addEventListener) {
-				contentWrapper.addEventListener("click", closeIndex, false);
-			} else {
-				contentWrapper.attachEvent('onclick', closeIndex);
-			}
-
-			function closeIndex() {
+			contentWrapper.onclick = function() {
 				index.className = "";
 				contentWrapper.className = "";
 			}
