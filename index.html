@@ -65,41 +65,40 @@
 
 	<body>
 		<div id="fb-root"></div>
+		<div id='index'>
+			<div id='indexmenu' style='display: none'>
+				<ul>
+					<script>
+						for (var i = 0; i < tests.length; i++) {
+							document.write('<li class="category ' + tests[i].id + '"><a href="#table-' + tests[i].items[0].id + '">' + tests[i].name + '</a>');
+
+							document.write('<ul>');
+							for (var j = 0; j < tests[i].items.length; j++) {
+								document.write('<li><a href="#table-' + tests[i].items[j].id + '">' + tests[i].items[j].name + '</a></li>');
+							}
+							document.write('</ul></li>');
+						}
+					</script>
+				</ul>
+			</div>
+			<button onclick='javascript:toggleIndex()' id='indexbutton'></button>
+		</div>
+		<script>
+			var indexButton = document.getElementById('indexbutton');
+			var indexMenu   = document.getElementById('indexmenu');
+			function toggleIndex() {
+				if(indexMenu.style.display == 'none') {
+					indexMenu.style.display = 'block';
+					indexButton.className = "selected";
+				} else {
+					indexMenu.style.display = 'none';
+					indexButton.className = "";
+				}
+			}
+		</script>
 
 		<div class='header'>
 			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
-
-			<div id='index'>
-				<div id='indexmenu' style='display: none'>
-					<ul>
-						<script>
-							for (var i = 0; i < tests.length; i++) {
-								document.write('<li class="category ' + tests[i].id + '"><a href="#table-' + tests[i].items[0].id + '">' + tests[i].name + '</a>');
-
-								document.write('<ul>');
-								for (var j = 0; j < tests[i].items.length; j++) {
-									document.write('<li><a href="#table-' + tests[i].items[j].id + '">' + tests[i].items[j].name + '</a></li>');
-								}
-								document.write('</ul></li>');
-							}
-						</script>
-					</ul>
-				</div>
-				<button onclick='javascript:toggleIndex()' id='indexbutton'></button>
-			</div>
-			<script>
-				var indexButton = document.getElementById('indexbutton');
-				var indexMenu   = document.getElementById('indexmenu');
-				function toggleIndex() {
-					if(indexMenu.style.display == 'none') {
-						indexMenu.style.display = 'block';
-						indexButton.className = "selected";
-					} else {
-						indexMenu.style.display = 'none';
-						indexButton.className = "";
-					}
-				}
-			</script>
 
 			<div class='navigation'>
 				<ul class='left'>
