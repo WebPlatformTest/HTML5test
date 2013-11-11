@@ -105,17 +105,30 @@ tbody tr:hover th.details {
 	background-color: inherit;
 }
 
-
+body > div#contentwrapper {
+	opacity: 1;
+	-webkit-transform: rotateY(0deg);
+	transform: rotateY(0deg);
+	-webkit-transition: transform 1s;
+    transition: transform 1s;
+}
+body > div#contentwrapper.menu-open {
+	opacity: 0.7;
+	-webkit-transform: rotateY(35deg);
+	transform: rotateY(35deg);
+	-webkit-transition: transform 1s;
+    transition: transform 1s;
+}
 
 /********************************************
  *
  *   Header and navigation
  */
 
-body > .header {
+body > div#contentwrapper > .header {
 	background: #eee;
 }
-body > .header h1 {
+body > div#contentwrapper > .header h1 {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 	font-size: 0.9em;
@@ -126,17 +139,17 @@ body > .header h1 {
 	margin: 0 auto;
 	max-width: 900px;
 }
-body > .header h1 span {
+body > div#contentwrapper > .header h1 span {
 	margin-right: 10px;
 }
-body > .header h1 span,
-body > .header h1 em {
+body > div#contentwrapper > .header h1 span,
+body > div#contentwrapper > .header h1 em {
 	zoom: 1;
 	display: inline-block;
 	*display: inline;
 }
 
-body > .header h1 strong {
+body > div#contentwrapper > .header h1 strong {
 	font-family: html5test;
 	font-weight: normal;
 	font-size: 1.8em;
@@ -147,30 +160,30 @@ body > .header h1 strong {
 	top: 7px;
 }
 
-body > .header h1 em {
+body > div#contentwrapper > .header h1 em {
 	font-style: normal;
 	text-transform: lowercase;
 	font-size: 1.15em;
 	color: #bbb;
 }
-body > .header div {
+body > div#contentwrapper > .header div {
 	margin: 10px auto 0;
 	overflow: hidden;
 	max-width: 900px;
 	padding: 0 20px;
 }
-body > .header ul {
+body > div#contentwrapper > .header ul {
 	list-style-type: none;
 	margin-bottom: 8px;
 }
-body > .header ul.left {
+body > div#contentwrapper > .header ul.left {
 	float: left;
 }
-body > .header ul.right {
+body > div#contentwrapper > .header ul.right {
 	float: right;
 }
 
-body > .header ul li {
+body > div#contentwrapper > .header ul li {
 	display: block;
 	float: left;
 	margin: 0 3px 0 0;
@@ -181,13 +194,13 @@ body > .header ul li {
 	text-transform: lowercase;
 	background: #aaa;
 }
-body > .header ul li.selected {
+body > div#contentwrapper > .header ul li.selected {
 	background: #0092bf;
 }
-body > .header ul li:hover {
+body > div#contentwrapper > .header ul li:hover {
 	box-shadow: inset 0 32px 0px rgba(0,0,0,0.05);
 }
-body > .header ul li a {
+body > div#contentwrapper > .header ul li a {
 	color: #fff;
 	text-decoration: none;
 }
@@ -201,12 +214,20 @@ body > div#index div#indexmenu {
 	position: fixed;
 	top: 0px;
 	left: 0px;
-    width: 220px;
+    width: 0px;
     margin: -10px 0px 0px 0px;
     padding: 10px;
 	background-color: rgb(0, 146, 191);
 	color: #FFFFFF;
 	z-index: 100001;
+	-webkit-transition: display 1s, width 1s;
+	transition: display 1s, width 1s;
+}
+body > div#index.selected div#indexmenu {
+	display: block;
+	width: 220px;
+	-webkit-transition: display 1s, width 1s;
+	transition: display 1s, width 1s;
 }
 body > div#index div#indexmenu li {
 	display: block;
@@ -274,65 +295,69 @@ body > div#index button#indexbutton {
 	background-color: transparent;
 	border: none;
 	z-index: 100000;
+	-webkit-transition: left 1s;
+	transition: left 1s;
 }
-body > div#index button#indexbutton.selected {
+body > div#index.selected button#indexbutton {
 	left: 240px;
 	background-color: #EEEEEE;
+	-webkit-transition: left 1s;
+	transition: left 1s;
 }
 
 @media (max-width: 680px) {
-	body > .header h1 {
+	body > div#contentwrapper > .header h1 {
 		width: 400px;
 		padding-left: 0;
 		padding-right: 0;
 		text-align: center;
 	}
-	body > .header h1 em {
+	body > div#contentwrapper > .header h1 em {
 		font-size: 1em;
 	}
 
-	body > .header div {
+	body > div#contentwrapper > .header div {
 		width: auto;
 	}
-	body > .header ul {
+	body > div#contentwrapper > .header ul {
 		padding: 0 !important;
 		margin: 0 0 12px 0 !important;
 		width: 50%;
 	}
-	body > .header ul li {
+	body > div#contentwrapper > .header ul li {
 		line-height: 30px;
 		margin-bottom: 3px;
 		clear: left;
 	}
-	body > .header ul.right {
+	body > div#contentwrapper > .header ul.right {
 		padding-left: 10px;
 	}
-	body > .header ul.left li {
+	body > div#contentwrapper > .header ul.left li {
 		float: right;
 		clear: right;
 		margin-right: 6px;
 	}
-	body > .header ul.right li {
+	body > div#contentwrapper > .header ul.right li {
 		margin-left: 6px;
 	}
 }
 
 @media (max-width: 432px) {
-	body > .header h1 {
+	body > div#contentwrapper > .header h1 {
 		width: auto;
 		padding-left: 16px;
 		padding-right: 16px;
 	}
-	body > .header h1 em {
+	body > div#contentwrapper > .header h1 em {
 		font-size: 0.9em;
 	}
-	body > .header ul {
+	body > div#contentwrapper > .header ul {
 		font-size: 0.85em;
 	}
-	body > .header ul.left {
+	body > div#contentwrapper > .header ul.left {
 		padding-left: 16px;
 	}
-	body > .header ul li {
+	body > div#contentwrapper > .header ul li {
 		padding: 0 8px;
 		line-height: 28px;
 	}

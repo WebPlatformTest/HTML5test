@@ -84,124 +84,116 @@
 			<button onclick='javascript:toggleIndex()' id='indexbutton'></button>
 		</div>
 		<script>
-			var indexButton = document.getElementById('indexbutton');
-			var indexMenu   = document.getElementById('indexmenu');
-			function toggleIndex() {
-				if(indexMenu.style.display == 'none') {
-					indexMenu.style.display = 'block';
-					indexButton.className = "selected";
-				} else {
-					indexMenu.style.display = 'none';
-					indexButton.className = "";
-				}
-			}
+
 		</script>
 
-		<div class='header'>
-			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+		<div id='contentwrapper'>
+			<div class='header'>
+				<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
 
-			<div class='navigation'>
-				<ul class='left'>
-					<li class='selected'><a href='/index.html' data-i18n>Your browser</a></li>
-					<li><a href='/results/desktop.html' data-i18n>Other browsers</a></li>
-					<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
-				</ul>
-				<ul class='right'>
-					<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
-					<li><a href='/devicelab'>Device Lab</a></li>
-					<li><a href='/about.html' data-i18n>About the test</a></li>
-				</ul>
-			</div>
-		</div>
-
-		<div class='page'>
-			<noscript>
-				<h2>
-					To view the results of your browser you need to enable Javascript!
-				</h2>
-			</noscript>
-
-			<div id='loading'><div></div></div>
-
-			<div id='warning'></div>
-
-			<div id='contents' class='column' style='visibility: hidden;'>
-				<div id='score'></div>
-				<div id='results'></div>
-
-				<div id='headerad'>
-					<!-- BuySellAds.com Zone Code -->
-					<div id="bsap_1262954" class="bsarocks bsap_6c18c40d896c427f049e74e4c708ab51"></div>
-					<!-- End BuySellAds.com Zone Code -->
+				<div class='navigation'>
+					<ul class='left'>
+						<li class='selected'><a href='/index.html' data-i18n>Your browser</a></li>
+						<li><a href='/results/desktop.html' data-i18n>Other browsers</a></li>
+						<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
+					</ul>
+					<ul class='right'>
+						<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
+						<li><a href='/devicelab'>Device Lab</a></li>
+						<li><a href='/about.html' data-i18n>About the test</a></li>
+					</ul>
 				</div>
+			</div>
 
-				<div class='paper'>
-					<div>
-						<h2>About HTML5test</h2>
+			<div class='page'>
+				<noscript>
+					<h2>
+						To view the results of your browser you need to enable Javascript!
+					</h2>
+				</noscript>
 
-						<div class='text'>
-							<span id='html5'></span>
+				<div id='loading'><div></div></div>
 
-							<p data-i18n='index-intro-1'>
-								The HTML5 test score is an indication of how well your browser supports the
-								upcoming HTML5 standard and related specifications. Even though the specification
-								isn't finalized yet, many features are already supported and all major browser
-								manufacturers are making sure their
-								browser is ready for the future. Find out which parts of HTML5 are already
-								supported by your browser today and compare the results with other browsers.
-							</p>
+				<div id='warning'></div>
 
-							<p data-i18n='index-intro-2'>
-								The HTML5 test does not try to test all of the new features offered by HTML5, nor does it try to test the functionality of each feature it does detect.
-								Despite these shortcomings we hope that by quantifying the level of support users and web developers will get an idea of how hard the
-								browser manufacturers work on improving their browsers and the web as a development platform.
-							</p>
+				<div id='contents' class='column' style='visibility: hidden;'>
+					<div id='score'></div>
+					<div id='results'></div>
 
-							<p data-i18n='index-intro-3'>
-								The score is calculated by testing for the many new features of HTML5. Each feature is worth one or more points. Apart from the main HTML5
-								specification and other specifications created the W3C HTML Working Group, this test also awards points for supporting related drafts and
-								specifications.
-							</p>
-							<p data-i18n='index-intro-5'>
-								Please be aware that the specifications that are being tested are still in development and could change before receiving an official status.
-								In the future new tests will be added for the pieces of the specification that are currently still missing.
-								The maximum number of points that can be scored is <span id='total'>0</span> at this moment, but this is a moving goalpost.
-							</p>
+					<div id='headerad'>
+						<!-- BuySellAds.com Zone Code -->
+						<div id="bsap_1262954" class="bsarocks bsap_6c18c40d896c427f049e74e4c708ab51"></div>
+						<!-- End BuySellAds.com Zone Code -->
+					</div>
 
-							<h3>Help us improve HTML5 test by donating</h3>
-							<p>
-								This will allow us to spend more time on HTML5test.com and acquire more devices for our testing lab.
+					<div class='paper'>
+						<div>
+							<h2>About HTML5test</h2>
 
-							</p>
+							<div class='text'>
+								<span id='html5'></span>
+
+								<p data-i18n='index-intro-1'>
+									The HTML5 test score is an indication of how well your browser supports the
+									upcoming HTML5 standard and related specifications. Even though the specification
+									isn't finalized yet, many features are already supported and all major browser
+									manufacturers are making sure their
+									browser is ready for the future. Find out which parts of HTML5 are already
+									supported by your browser today and compare the results with other browsers.
+								</p>
+
+								<p data-i18n='index-intro-2'>
+									The HTML5 test does not try to test all of the new features offered by HTML5, nor does it try to test the functionality of each feature it does detect.
+									Despite these shortcomings we hope that by quantifying the level of support users and web developers will get an idea of how hard the
+									browser manufacturers work on improving their browsers and the web as a development platform.
+								</p>
+
+								<p data-i18n='index-intro-3'>
+									The score is calculated by testing for the many new features of HTML5. Each feature is worth one or more points. Apart from the main HTML5
+									specification and other specifications created the W3C HTML Working Group, this test also awards points for supporting related drafts and
+									specifications.
+								</p>
+								<p data-i18n='index-intro-5'>
+									Please be aware that the specifications that are being tested are still in development and could change before receiving an official status.
+									In the future new tests will be added for the pieces of the specification that are currently still missing.
+									The maximum number of points that can be scored is <span id='total'>0</span> at this moment, but this is a moving goalpost.
+								</p>
+
+								<h3>Help us improve HTML5 test by donating</h3>
+								<p>
+									This will allow us to spend more time on HTML5test.com and acquire more devices for our testing lab.
+
+								</p>
+							</div>
+						</div>
+
+						<div class='buttons'>
+							<a class='button donate' href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC"><span>Donate using Paypal</span></a>
+							<a class='button followme' href="http://www.twitter.com/html5test"><span>Follow me on Twitter</span></a>
+							<a class='button contact' href="mailto:info@html5test.com"><span>Contact me</span></a>
+							<a class='button developed' href="http://github.com/NielsLeenheer/html5test"><span>Developed at Github</span></a>
 						</div>
 					</div>
 
-					<div class='buttons'>
-						<a class='button donate' href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC"><span>Donate using Paypal</span></a>
-						<a class='button followme' href="http://www.twitter.com/html5test"><span>Follow me on Twitter</span></a>
-						<a class='button contact' href="mailto:info@html5test.com"><span>Contact me</span></a>
-						<a class='button developed' href="http://github.com/NielsLeenheer/html5test"><span>Developed at Github</span></a>
+					<div id='footerad'>
+						<!-- BuySellAds.com Zone Code -->
+						<div id="bsap_1262955" class="bsarocks bsap_6c18c40d896c427f049e74e4c708ab51"></div>
+						<!-- End BuySellAds.com Zone Code -->
 					</div>
-				</div>
-
-				<div id='footerad'>
-					<!-- BuySellAds.com Zone Code -->
-					<div id="bsap_1262955" class="bsarocks bsap_6c18c40d896c427f049e74e4c708ab51"></div>
-					<!-- End BuySellAds.com Zone Code -->
-				</div>
 
 
-				<div class='footer'>
-					<div>
-						<div class='copyright'>
-							<p>
-								October 2013 - version 5.0. Created by Niels Leenheer.
-								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
-								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
-							</p>
+					<div class='footer'>
+						<div>
+							<div class='copyright'>
+								<p>
+									October 2013 - version 5.0. Created by Niels Leenheer.
+									Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+									HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+								</p>
 
-							<div id='cloudvps'>
-								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+								<div id='cloudvps'>
+									<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -433,6 +425,33 @@
 				})();
 			}
 
+			// controling index menu
+			var index          = document.getElementById('index');
+			var indexMenu      = document.getElementById('indexmenu');
+			var contentWrapper = document.getElementById('contentwrapper');
+			function toggleIndex() {
+				if(indexMenu.style.display == 'none') {
+					indexMenu.style.display = 'block';
+					index.className = "selected";
+					contentWrapper.className = "menu-open";
+				} else {
+					indexMenu.style.display = 'none';
+					index.className = "";
+					contentWrapper.className = "";
+				}
+			}
+
+			if (contentWrapper.addEventListener) {
+				contentWrapper.addEventListener("click", closeIndex, false);
+			} else {
+				contentWrapper.attachEvent('onclick', closeIndex);
+			}
+
+			function closeIndex() {
+				indexMenu.style.display = 'none';
+				index.className = "";
+				contentWrapper.className = "";
+			}
 		//-->
 		</script>
 	</body>
