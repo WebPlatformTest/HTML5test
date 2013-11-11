@@ -215,19 +215,23 @@ body > div#index div#indexmenu {
 	top: 0px;
 	left: 0px;
     width: 0px;
+	height: 0px;
+	overflow-y: auto;
     margin: -10px 0px 0px 0px;
-    padding: 10px;
+    padding: 0px;
 	background-color: rgb(0, 146, 191);
 	color: #FFFFFF;
 	z-index: 100001;
-	-webkit-transition: display 1s, width 1s;
-	transition: display 1s, width 1s;
+	-webkit-transition: display 1s, padding 1s, width 1s;
+	transition: display 1s, padding 1s, width 1s;
 }
 body > div#index.selected div#indexmenu {
 	display: block;
 	width: 220px;
-	-webkit-transition: display 1s, width 1s;
-	transition: display 1s, width 1s;
+	height: 100%;
+	padding: 10px;
+	-webkit-transition: display 1s, padding 1s, width 1s;
+	transition: display 1s, padding 1s, width 1s;
 }
 body > div#index div#indexmenu li {
 	display: block;

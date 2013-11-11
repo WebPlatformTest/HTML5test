@@ -66,7 +66,7 @@
 	<body>
 		<div id="fb-root"></div>
 		<div id='index'>
-			<div id='indexmenu' style='display: none'>
+			<div id='indexmenu'>
 				<ul>
 					<script>
 						for (var i = 0; i < tests.length; i++) {
@@ -430,12 +430,10 @@
 			var indexMenu      = document.getElementById('indexmenu');
 			var contentWrapper = document.getElementById('contentwrapper');
 			function toggleIndex() {
-				if(indexMenu.style.display == 'none') {
-					indexMenu.style.display = 'block';
+				if (! index.classList.contains('selected')) {
 					index.className = "selected";
 					contentWrapper.className = "menu-open";
 				} else {
-					indexMenu.style.display = 'none';
 					index.className = "";
 					contentWrapper.className = "";
 				}
@@ -448,7 +446,6 @@
 			}
 
 			function closeIndex() {
-				indexMenu.style.display = 'none';
 				index.className = "";
 				contentWrapper.className = "";
 			}
