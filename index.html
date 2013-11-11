@@ -254,6 +254,46 @@
 			function start() {
 				new Test(function(r) {
 
+					/* Submit results */
+					try {
+						var payload = '{' +
+									  '"version": "5",' +
+									  '"revision": "0",' +
+									  '"uniqueid": "' + r.uniqueid + '",' +
+									  '"score": ' + r.score + ',' +
+									  '"maximum": ' + r.maximum + ',' +
+									  '"camouflage": "' + (Browsers.camouflage ? '1' : '0') + '",' +
+									  '"features": "' + (Browsers.features.join(',')) + '",' +
+									  '"browserName": "' + (Browsers.browser.name ? Browsers.browser.name : '') + '",' +
+									  '"browserChannel": "' + (Browsers.browser.channel ? Browsers.browser.channel : '') + '",' +
+									  '"browserVersion": "' + (Browsers.browser.version ? Browsers.browser.version.toString() : '') + '",' +
+									  '"browserVersionType": "' + (Browsers.browser.version ? Browsers.browser.version.type : '') + '",' +
+									  '"browserVersionMajor": "' + (Browsers.browser.version ? Browsers.browser.version.major : '') + '",' +
+									  '"browserVersionMinor": "' + (Browsers.browser.version ? Browsers.browser.version.minor : '') + '",' +
+									  '"browserVersionOriginal": "' + (Browsers.browser.version ? Browsers.browser.version.original : '') + '",' +
+									  '"browserMode": "' + (Browsers.browser.mode ? Browsers.browser.mode : '') + '",' +
+									  '"engineName": "' + (Browsers.engine.name ? Browsers.engine.name : '') + '",' +
+									  '"engineVersion": "' + (Browsers.engine.version ? Browsers.engine.version.toString() : '') + '",' +
+									  '"osName": "' + (Browsers.os.name ? Browsers.os.name : '') + '",' +
+									  '"osVersion": "' + (Browsers.os.version ? Browsers.os.version.toString() : '') + '",' +
+									  '"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
+									  '"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
+									  '"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
+									  '"deviceIdentified": "' + (Browsers.device.identified ? '1' : '0' ) + '",' +
+									  '"deviceWidth": "' + (screen.width) + '",' +
+									  '"deviceHeight": "' + (screen.height) + '",' +
+									  '"useragent": "' + navigator.userAgent + '",' +
+									  '"humanReadable": "' + Browsers.toString() + '",' +
+									  '"points": "' + r.points + '",' +
+									  '"results": "' + r.results + '"' +
+									  '}';
+
+						submit('submit', payload);
+					} catch(e) {
+						alert('Could not submit results: ' + e.message);
+					}
+
+
 					/* Update total score */
 					var container = document.getElementById('score');
 
@@ -312,42 +352,6 @@
 					button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
 					button.innerHTML = '<span>Donate</span>';
 					buttons.appendChild(button);
-
-
-					/* Submit results */
-					var payload = '{' +
-								  '"version": "5",' +
-								  '"revision": "0",' +
-								  '"uniqueid": "' + r.uniqueid + '",' +
-								  '"score": ' + r.score + ',' +
-								  '"maximum": ' + r.maximum + ',' +
-								  '"camouflage": "' + (Browsers.camouflage ? '1' : '0') + '",' +
-								  '"features": "' + (Browsers.features.join(',')) + '",' +
-								  '"browserName": "' + (Browsers.browser.name ? Browsers.browser.name : '') + '",' +
-								  '"browserChannel": "' + (Browsers.browser.channel ? Browsers.browser.channel : '') + '",' +
-								  '"browserVersion": "' + (Browsers.browser.version ? Browsers.browser.version.toString() : '') + '",' +
-								  '"browserVersionType": "' + (Browsers.browser.version ? Browsers.browser.version.type : '') + '",' +
-								  '"browserVersionMajor": "' + (Browsers.browser.version ? Browsers.browser.version.major : '') + '",' +
-								  '"browserVersionMinor": "' + (Browsers.browser.version ? Browsers.browser.version.minor : '') + '",' +
-								  '"browserVersionOriginal": "' + (Browsers.browser.version ? Browsers.browser.version.original : '') + '",' +
-								  '"browserMode": "' + (Browsers.browser.mode ? Browsers.browser.mode : '') + '",' +
-								  '"engineName": "' + (Browsers.engine.name ? Browsers.engine.name : '') + '",' +
-								  '"engineVersion": "' + (Browsers.engine.version ? Browsers.engine.version.toString() : '') + '",' +
-								  '"osName": "' + (Browsers.os.name ? Browsers.os.name : '') + '",' +
-								  '"osVersion": "' + (Browsers.os.version ? Browsers.os.version.toString() : '') + '",' +
-								  '"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
-								  '"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
-								  '"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
-								  '"deviceIdentified": "' + (Browsers.device.identified ? '1' : '0' ) + '",' +
-								  '"deviceWidth": "' + (screen.width) + '",' +
-								  '"deviceHeight": "' + (screen.height) + '",' +
-								  '"useragent": "' + navigator.userAgent + '",' +
-								  '"humanReadable": "' + Browsers.toString() + '",' +
-								  '"points": "' + r.points + '",' +
-								  '"results": "' + r.results + '"' +
-								  '}';
-
-					submit('submit', payload);
 
 					/* Show detailed report of scores */
 					var container = document.getElementById('results');

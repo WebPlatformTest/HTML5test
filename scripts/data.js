@@ -503,6 +503,49 @@ var tests = [
 													}
 												]
 									}, {
+										id:		'datetime',
+										name:	'<code>input type=datetime</code>',
+										items:	[
+													{
+														id:			'element',
+														name: 		'Minimal element support',
+														value:		1, 
+														url:		'http://www.w3.org/TR/html5/forms.html#date-and-time-state-(type=datetime)'
+													}, {
+														id:			'ui',
+														name: 		'Custom user-interface',
+														value:		1
+													}, {
+														id:			'sanitization',
+														name: 		'Value sanitization', 
+														url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
+													}, {
+														id:			'min',
+														name: 		'<code>min</code> attribute', 
+														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
+													}, {
+														id:			'max',
+														name: 		'<code>max</code> attribute', 
+														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
+													}, {
+														id:			'step',
+														name: 		'<code>step</code> attribute', 
+														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
+													}, {
+														id:			'stepDown',
+														name: 		'<code>stepDown()</code> method',
+														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
+													}, {
+														id:			'stepUp',
+														name: 		'<code>stepUp()</code> method',
+														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
+													}, {
+														id:			'valueAsNumber',
+														name: 		'<code>valueAsNumber()</code> method',
+														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
+													}
+												]
+									}, {
 										id:		'datetime-local',
 										name:	'<code>input type=datetime-local</code>',
 										items:	[
@@ -680,12 +723,12 @@ var tests = [
 													}, {
 														id:			'width',
 														name: 		'<code>width</code> property',
-														value:		1, 
+														value:		0, 
 														url:		'http://www.w3.org/TR/html5/embedded-content-0.html#attr-dim-width'
 													}, {
 														id:			'height',
 														name: 		'<code>height</code> property',
-														value:		1, 
+														value:		0, 
 														url:		'http://www.w3.org/TR/html5/embedded-content-0.html#attr-dim-height'
 													}
 												]
@@ -1402,7 +1445,7 @@ var tests = [
 												]
 									},
 
-									'<strong>File formats</strong>',
+									'<strong>Image export formats</strong>',
 
 									{
 										id:		'png',

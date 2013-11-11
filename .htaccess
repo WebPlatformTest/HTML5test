@@ -40,7 +40,8 @@ RewriteRule ^devicelab/?$					/backend/controllers/lab.php
 
 <FilesMatch "index.html">
 <IfModule mod_headers.c>
-    Header set Content-Security-Policy "default-src 'unsafe-inline' *; frame-src *"
-    Header set X-Content-Security-Policy "default-src 'unsafe-inline' *; frame-src *"
+    Header set X-WebKit-CSP "default-src 'unsafe-inline' *; frame-src *; options inline-script;"
+    Header set Content-Security-Policy "default-src 'unsafe-inline' *; frame-src *; options inline-script;"
+    Header set X-Content-Security-Policy "default-src 'unsafe-inline' *; frame-src *; options inline-script;"
 </IfModule>
 </FilesMatch>

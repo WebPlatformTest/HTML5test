@@ -1655,9 +1655,9 @@ Test = (function() {
 			this.removeInput(element);
 			
 			
-			/* input type=date, month, week, time and datetime-local */
+			/* input type=date, month, week, time, datetime and datetime-local */
 			
-			var types = ['date', 'month', 'week', 'time', 'datetime-local'];
+			var types = ['date', 'month', 'week', 'time', 'datetime', 'datetime-local'];
 			for (var t = 0; t < types.length; t++) {
 				var group = this.section.getGroup({
 					id:		types[t]
@@ -1673,14 +1673,14 @@ Test = (function() {
 				group.setItem({
 					id:			'element',
 					passed:		minimal,
-					value: 		3,
+					value: 		types[t] != 'datetime' ? 3 : 1,
 					required:	true
 				});
 				
 				group.setItem({
 					id:			'ui',
 					passed:		minimal && sanitization, 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
-					value: 		2
+					value: 		types[t] != 'datetime' ? 2 : 1
 				});
 
 				group.setItem({
@@ -1719,7 +1719,7 @@ Test = (function() {
 					required:	true
 				});
 				
-				if (t != 'datetime-local') {
+				if (t != 'datetime-local' && t != 'datetime') {
 					group.setItem({
 						id:			'valueAsDate',
 						passed:		minimal && 'valueAsDate' in element.field,
@@ -1913,13 +1913,13 @@ Test = (function() {
 			group.setItem({
 				id:			'width',
 				passed:		supportsWidth && element.field.offsetWidth == 100,
-				value: 		1
+				value: 		0
 			});
 
 			group.setItem({
 				id:			'height',
 				passed:		supportsHeight && element.field.offsetHeight == 100,
-				value: 		1
+				value: 		0
 			});
 			
 			this.removeInput(element);
@@ -2768,9 +2768,14 @@ Test = (function() {
 				value: 		2
 			});
 			
+			var passed = false;
+			try {
+				passed = !!(window.external && typeof window.external.AddSearchProvider != 'undefined' && typeof window.external.IsSearchProviderInstalled != 'undefined');
+			} catch(e) {
+			}
 			this.section.setItem({
 				id:			'addSearchProvider',
-				passed:		!!(window.external && typeof window.external.AddSearchProvider != 'undefined' && typeof window.external.IsSearchProviderInstalled != 'undefined'), 
+				passed:		passed,
 				value: 		1
 			});
 		}
@@ -2783,13 +2788,17 @@ Test = (function() {
 				id:		'security'
 			});
 			
-			
-			var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
-			var passed = window.crypto ? YES : window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
-			
+			var passed = NO;
+			try {
+				var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
+				var available = window.crypto ? YES : window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
+				passed = !!crypto && 'encrypt' in crypto ? available : NO;
+			} catch(e) {
+			}
+
 			this.section.setItem({
 				id:			'crypto',
-				passed: 	!!crypto && 'encrypt' in crypto ? passed : NO,
+				passed: 	passed,
 				value: 		5
 			});
 
@@ -3421,7 +3430,7 @@ Test = (function() {
 
 			s.addEventListener('beforescriptexecute', function() {
 				before = true;
-			});
+			}, true);
 
 			s.addEventListener('afterscriptexecute', function() {
 				if (before) {
@@ -3429,7 +3438,7 @@ Test = (function() {
 						passed: true
 					});
 				}
-			});
+			}, true);
 			
 			document.body.appendChild(s);
 
