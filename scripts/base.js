@@ -523,6 +523,7 @@
 
 				var div = document.createElement('div');
 				div.className = 'category ' + tests[i].id;
+				div.id = 'category-' + tests[i].id;
 				container.appendChild(div);
 
 				var h2 = document.createElement('h2');
