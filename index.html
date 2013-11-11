@@ -69,23 +69,24 @@
 		<div class='header'>
 			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
 
-			<a href='javascript:toggleIndex()' id='indexbutton'>Index</a>
-			<div id='indexmenu' style='display: none'>
-				<ul>
-					<script>
-						for (var i = 0; i < tests.length; i++) {
-							document.write('<li><a href="#table-' + tests[i].items[0].id + '">' + tests[i].name + '\n');
+			<div id='index'>
+				<div id='indexmenu' style='display: none'>
+					<ul>
+						<script>
+							for (var i = 0; i < tests.length; i++) {
+								document.write('<li class="category ' + tests[i].id + '"><a href="#table-' + tests[i].items[0].id + '">' + tests[i].name + '</a>');
 
-							document.write('<ul>\n');
-							for (var j = 0; j < tests[i].items.length; j++) {
-								document.write('<li><a href="#table-' + tests[i].items[j].id + '">' + tests[i].items[j].name + '</li>\n');
+								document.write('<ul>');
+								for (var j = 0; j < tests[i].items.length; j++) {
+									document.write('<li><a href="#table-' + tests[i].items[j].id + '">' + tests[i].items[j].name + '</a></li>');
+								}
+								document.write('</ul></li>');
 							}
-							document.write('</ul>\n</li>\n');
-						}
-					</script>
-				</ul>
+						</script>
+					</ul>
+				</div>
+				<button onclick='javascript:toggleIndex()' id='indexbutton'></button>
 			</div>
-
 			<script>
 				var indexButton = document.getElementById('indexbutton');
 				var indexMenu   = document.getElementById('indexmenu');

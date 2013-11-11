@@ -191,45 +191,80 @@ body > .header ul li a {
 	color: #fff;
 	text-decoration: none;
 }
-
-body > .header a#indexbutton {
+body > .header div#index {
 	display: block;
 	position: fixed;
 	top: 0px;
-	right: 0px;
-	padding: 0px 10px;
-	line-height: 32px;
-	text-decoration: none;
-	background-color: #AAAAAA;
-	color: #FFFFFF;
-	z-index: 100000;
-}
-body > .header a#indexbutton.selected {
-	background-color: rgb(0, 146, 191);
+	left: 0px;
 }
 body > .header div#indexmenu {
 	position: fixed;
-	top: 35px;
-	right: 0px;
-	height: 80%;
-	overflow-y: scroll;
-	background-color: #D9D9D9;
+	top: 0px;
+	left: 0px;
+    width: 220px;
+    margin: 0px;
+	background-color: rgb(0, 146, 191);
+	color: #FFFFFF;
 	z-index: 100001;
 }
 body > .header div#indexmenu li {
 	display: block;
 	float: none;
-	background-color: #AAAAAA;
+	background-color: rgb(0, 146, 191);
+	font-size: 14px;
+	font-weight: bold;
+    margin-left: -10px;
+}
+body > .header div#indexmenu li a::before {
+	font-family: html5test;
+	font-weight: normal;
+	font-size: 1.2em;
+	padding-right: 4px;
+	vertical-align: middle;
+
+	-webkit-font-smoothing: antialiased;
+}
+body > .header div#indexmenu li.category.semantics a:before { content: ''; }
+body > .header div#indexmenu li.category.offlinestorage a:before { content: ''; }
+body > .header div#indexmenu li.category.deviceaccess a:before { content: ''; }
+body > .header div#indexmenu li.category.connectivity a:before { content: ''; }
+body > .header div#indexmenu li.category.multimedia a:before { content: ''; }
+body > .header div#indexmenu li.category.graphicseffects a:before { content: ''; }
+body > .header div#indexmenu li.category.performanceintegration a:before { content: ''; }
+
+body > .header div#indexmenu li a {
+	display: block;
+	color: #FFFFFF;
 }
 body > .header div#indexmenu li ul li {
-	margin: 0px -20px;
-	padding: 0px 0px 0px 20px;
 	line-height: 25px;
-	background-color: #D9D9D9;
+	background-color: rgb(0, 146, 191);
+    line-height: 110%;
+	font-size: 12px;
+	font-weight: normal;
+    margin: 0px;
 }
 body > .header div#indexmenu li ul li a {
 	display: block;
-	color: #000000;
+	color: #FFFFFF;
+}
+body > .header div#indexmenu li ul li a::before {
+    content: '' !important;
+}
+body > .header button#indexbutton {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 48px;
+	height: 48px;
+	background-image: url('/images/hamburger.png');
+	background-color: transparent;
+	border: none;
+	z-index: 100000;
+}
+body > .header button#indexbutton.selected {
+	left: 260px;
+	background-color: #EEEEEE;
 }
 
 @media (max-width: 680px) {
@@ -288,7 +323,7 @@ body > .header div#indexmenu li ul li a {
 		padding: 0 8px;
 		line-height: 28px;
 	}
-	body > .header a#indexbutton {
+	body > .header div#index {
 		display: none;
 	}
 }
