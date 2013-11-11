@@ -884,7 +884,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:		'drm',
-				passed:	'addKey' in this.element ? YES : 'webkitAddKey' in this.element || 'mozAddKey' in this.element || 'msAddKey' in this.element ? YES | PREFIX : NO
+				passed:	'setMediaKeys' in this.element ? YES : 'webkitAddKey' in this.element || 'webkitSetMediaKeys' in this.element || 'mozSetMediaKeys' in this.element || 'msSetMediaKeys' in this.element ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
@@ -2341,8 +2341,13 @@ Test = (function() {
 					res[5] = false;
 				}
 
+				document.body.removeChild(element);
+
+				var element = document.createElement('input');
+				element.id = 'testFormInput';
 				element.setAttribute("type", "text");
 				element.setAttribute("readonly", "readonly");
+				document.body.appendChild(element);
 
 				try {
 					res[7] = !!document.querySelector("#testFormInput:read-only");
