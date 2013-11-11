@@ -2341,8 +2341,13 @@ Test = (function() {
 					res[5] = false;
 				}
 
+				document.body.removeChild(element);
+
+				var element = document.createElement('input');
+				element.id = 'testFormInput';
 				element.setAttribute("type", "text");
 				element.setAttribute("readonly", "readonly");
+				document.body.appendChild(element);
 
 				try {
 					res[7] = !!document.querySelector("#testFormInput:read-only");
