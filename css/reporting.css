@@ -1,0 +1,738 @@
+
+
+/********************************************
+ *
+ *   Other browsers: Table
+ */
+
+.scorePanel {
+	position: relative;
+}
+.scorePanel .left,
+.scorePanel .right {
+	float: left;
+}
+
+.scorePanel .left h3,
+.scorePanel .right h3 {
+	font-size: 1.6em;
+	text-transform: lowercase;
+	color: #888;
+}
+
+#scoreToggle {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.scoreTable {
+	margin: 0 0 50px;
+}
+.scoreTable tr.secondary {
+	display: none;
+}
+.scoreTable.showAll tr.secondary {
+	display: table-row;
+}
+.scoreTable th,
+.scoreTable td {
+	font-weight: normal;
+	text-align: left;
+
+	border-top: 1px solid #ddd;
+	padding: 4px 0;
+	vertical-align: top;
+	font-size: 1em;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.scoreTable thead th {
+	text-align: left;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	border-top: none;
+	font-weight: bold;
+	position: relative;
+}
+.scoreTable thead th::after {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 0px;
+	height: 10px;
+	border-right: 1px solid #ddd;
+	left: 0;
+	bottom: 0;
+}
+.scoreTable thead th:last-child::before {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 10px;
+	height: 10px;
+	border-right: 1px solid #ddd;
+	right: 0;
+	bottom: 0;
+}
+.scoreTable a {
+	color: inherit;
+	text-decoration: none;
+	display: block;
+}
+.scoreTable a span {
+	opacity: 0.4;
+	font-size: 120%;
+}
+.scoreTable em {
+	color: #888;
+}
+.scoreTable .nickname {
+	width: 30%;
+	padding-right: 10px;
+	white-space: nowrap;
+}
+.scoreTable .details {
+	width: 26%;
+	padding-right: 10px;
+}
+.scoreTable .description {
+	width: 28%;
+	padding-right: 10px;
+	font-size: 0.9em;
+}
+.scoreTable .description em {
+	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 190px;
+}
+.scoreTable th.points {
+	text-align: right;
+}
+.scoreTable td.points {
+	width: 5%;
+	text-align: right;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 1.1em;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	font-weight: bold;
+}
+
+@media (max-width: 680px) {
+	.scoreTable .description {
+		display: none;
+	}
+}
+
+.latestTable .nickname {
+	width: 60%;
+}
+
+
+/********************************************
+ *
+ *   Other browsers: Graph
+ */
+
+#fsCanvas {
+	position: relative;
+}
+#fsButton {
+	position: absolute;
+	top: 30px;
+	right: 8px;
+	z-index: 10000;
+
+	border: none;
+	background: none;
+	color: #888;
+	font-size: 26px;
+	font-weight: bold;
+
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+
+	cursor: pointer;
+}
+#fsButton::before {
+	display: inline;
+	content: '↔';
+}
+
+
+div:fullscreen {
+	background: #fff;
+	width: 100% !important;
+	height: 100% !important;
+}
+div:fullscreen h2 {
+	display: none;
+}
+div:fullscreen #fsButton {
+	top: 10px;
+	right: 40px;
+}
+div:fullscreen #fsButton::before {
+	content: '+';
+}
+div:fullscreen #timelineGraph {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	bottom: 30px;
+	right: 30px;
+	height: auto !important;
+}
+
+div:-webkit-full-screen {
+	background: #fff;
+	width: 100% !important;
+	height: 100% !important;
+}
+div:-webkit-full-screen h2 {
+	display: none;
+}
+div:-webkit-full-screen #fsButton {
+	top: 10px;
+	right: 40px;
+}
+div:-webkit-full-screen #fsButton::before {
+	content: '+';
+}
+div:-webkit-full-screen #timelineGraph {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	bottom: 30px;
+	right: 30px;
+	height: auto !important;
+}
+
+div:-moz-full-screen {
+	background: #fff;
+	width: 100% !important;
+	height: 100% !important;
+}
+div:-moz-full-screen h2 {
+	display: none;
+}
+div:-moz-full-screen #fsButton {
+	top: 10px;
+	right: 34px;
+}
+div:-moz-full-screen #fsButton::before {
+	content: '+';
+}
+div:-moz-full-screen #timelineGraph {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	bottom: 30px;
+	right: 30px;
+	height: auto !important;
+}
+
+
+
+
+/*******************************************************************************
+ *
+ *   Compare
+ */
+
+.comparisonTable {
+	position: relative;
+}
+.comparisonTable .filters {
+	height: 40px;
+}
+.comparisonTable .filters + hr {
+	border-top-width: 3px;
+}
+.comparisonTable #scoreToggle {
+	position: static;
+	float: left;
+}
+.comparisonTable #searchField {
+	position: static;
+	float: right;
+}
+.comparisonTable hr {
+	clear: both;
+}
+
+.comparisonTable table {
+	margin-top: 20px;
+	margin-bottom: 40px;
+	font-size: 1em;
+}
+.comparisonTable table th,
+.comparisonTable table td {
+	border-bottom: 1px solid #ddd;
+
+	padding: 5px 0;
+	font-weight: normal;
+	text-align: left;
+}
+.comparisonTable table th code {
+	font-size: 12px;
+}
+.comparisonTable table td {
+	width: 96px;
+	text-align: center;
+	border-right: 1px solid #fff;
+}
+.comparisonTable table td.used {
+	background-color: #eee;
+}
+.comparisonTable table th em {
+	font-style: normal;
+	font-size: 90%;
+	color: #888;
+}
+.comparisonTable table th.details {
+	padding-top: 15px;
+}
+.comparisonTable table th.details em {
+	color: #666;
+}
+.comparisonTable table tr.hasChild th {
+	cursor: pointer;
+	padding-left: 20px;
+}
+.comparisonTable table tr.hasChild th > * {
+	position: relative;
+}
+.comparisonTable table tr.hasChild th > ::before {
+	position: absolute;
+	top: -1px;
+	left: -18px;
+
+	display: block;
+	font-family: html5test;
+	font-size: 11px;
+	content: '▼';
+	color: #888;
+}
+.comparisonTable table tr.hasChild.hidden th > ::before {
+	content: '▶';
+}
+.comparisonTable table tr.isChild th {
+	font-size: 80%;
+	padding: 4px 8px 3px 20px;
+}
+.comparisonTable table tr.isChild td {
+	font-size: 80%;
+	padding: 4px 0;
+}
+.comparisonTable table tr.isChild td.used {
+	background-color: #f6f6f6;
+}
+.comparisonTable table tr.isChild th code {
+	font-size: 10px;
+}
+.comparisonTable table th a {
+	color: #000;
+	text-decoration: none;
+}
+.comparisonTable table th a:hover {
+	text-decoration: underline;
+}
+.comparisonTable table th a span {
+	color: #aaa;
+	font-size: 120%;
+	text-decoration: none !important;
+}
+.comparisonTable table thead th {
+	font-weight: bold;
+	font-size: 1.6em;
+	text-transform: lowercase;
+	color: #888;
+
+	background: none;
+	padding: 8px 0;
+}
+.comparisonTable table h3 {
+	font-weight: bold;
+	font-size: 1.6em;
+	text-transform: lowercase;
+	color: #888;
+	margin: 0;
+	padding: 16px 0 8px;
+}
+.comparisonTable table tr:first-child h3 {
+	padding: 0 0 8px;
+}
+.comparisonTable table thead td {
+    font-family: 'League Gothic', Impact;
+    font-weight: normal;
+	font-style: normal;
+	font-size: 2.4em;
+
+	color: #999;
+	background: none;
+	padding: 8px 0;
+	position: relative;
+}
+.comparisonTable table thead td::after {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 0px;
+	height: 10px;
+	border-right: 1px solid #ddd;
+	left: 0;
+	bottom: 0;
+}
+.comparisonTable table thead td:last-child::before {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 10px;
+	height: 10px;
+	border-right: 1px solid #ddd;
+	right: 0;
+	bottom: 0;
+}
+.comparisonTable h2 {
+	color: #0092bf;
+	clear: both;
+	margin: 0 !important;
+}
+.comparisonTable #table-header td,
+.comparisonTable #table-header th {
+	border-bottom: none;
+}
+.comparisonTable #table-header #row-header th {
+	padding: 0 40px 0 0;
+	background: none;
+	vertical-align: top;
+}
+.comparisonTable #table-header #row-header th p {
+	margin: 0;
+}
+.comparisonTable #table-header #row-header td {
+	background: #0092bf;
+	height: 80px;
+	cursor: pointer;
+}
+.comparisonTable #table-header #row-header td.empty {
+	background: #eee;
+}
+.comparisonTable #table-header #row-header div.name {
+	display: table;
+}
+.comparisonTable #table-header #row-header span {
+	display: block;
+	text-align: center;
+	width: 96px;
+	color: #b2ddeb;
+}
+.comparisonTable #table-header #row-header span.nickname {
+	position: absolute;
+	top: 58px;
+	font-weight: bold;
+	line-height: 105%;
+	padding: 0 10px;
+	width: 76px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.comparisonTable #table-header #row-header span.score {
+	position: absolute;
+	bottom: 46px;
+	font-size: 4em;
+	font-style: normal;
+    font-family: 'League Gothic', Impact;
+    font-weight: normal;
+	color: #fff;
+}
+.comparisonTable #table-header #row-header span.feature {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	font-weight: bold;
+	padding: 0 10px;
+	width: 76px;
+	display: table-cell;
+	vertical-align: middle;
+}
+.comparisonTable #table-header #row-header span.feature code {
+	font-size: 12px;
+}
+
+.comparisonTable #table-header #row-header span.bonus {
+	position: absolute;
+	bottom: 5px;
+	font-size: 90%;
+}
+.comparisonTable #table-header #row-header td {
+	padding: 0;
+}
+.comparisonTable #table-header #row-header td > div {
+	position: relative;
+	width: 96px;
+	height: 90px;
+}
+.comparisonTable #table-header #row-header td > div > div.name {
+	width: 96px;
+	height: 90px;
+}
+.comparisonTable #table-header #row-header td.empty > div > div.name::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	line-height: 90px;
+	width: 96px;
+	height: 90px;
+
+	display: block;
+	content: '+';
+	font-size: 3em;
+	color: #0092bf;
+
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+.comparisonTable #table-header #row-header td > div > div.name:hover::after {
+	background: #0092bf;
+	color: #b3deeb;
+}
+.comparisonTable #table-header #row-header td:not(.empty) > div > div.name::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	display: block;
+	content: '×';
+	font-size: 3em;
+
+	line-height: 90px;
+	width: 96px;
+	height: 90px;
+	z-index: 2;
+	opacity: 0;
+
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-ms-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}
+.comparisonTable #table-header #row-header td:not(.empty) > div > div.name:hover::after {
+	opacity: 0.8;
+}
+.comparisonTable #table-header #row-header td .popup {
+	display: none;
+
+	position: absolute;
+	top: 80px;
+	left: -138px;
+	z-index: 9;
+
+	width: 200px;
+}
+.comparisonTable #table-header #row-header td .popup.visible {
+	display: block;
+}
+.comparisonTable #table-header #row-header td .popup > div {
+	height: 400px;
+	overflow: hidden;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+.comparisonTable #table-header #row-header td .popup ul {
+	-webkit-transform: translate3d(0,0,0);
+	width: 200px;
+	margin: 0;
+	padding: 10px 0;
+
+	text-align: left;
+	line-height: 170%;
+	font-size: 0.9em;
+	cursor: default;
+}
+.comparisonTable #table-header #row-header td .popup ul li {
+	padding: 1px 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.comparisonTable #table-header #row-header td .popup ul li em {
+	font-style: normal;
+	font-size: 90%;
+	color: #888;
+}
+.comparisonTable #table-header #row-header td .popup ul li code {
+	font-size: 11px;
+}
+.comparisonTable #table-header #row-header td .popup ul li.indent-1 {
+	padding-left: 10px;
+}
+.comparisonTable #table-header #row-header td .popup ul li.indent-2 {
+	padding-left: 20px;
+}
+.comparisonTable #table-header #row-header td .popup ul li.indent-3 {
+	padding-left: 30px;
+}
+.comparisonTable #table-header #row-header td .popup ul li:hover {
+	background: #eee;
+	cursor: pointer;
+}
+.comparisonTable #table-header #row-header td .popup ul li.indent-0.title {
+	font-weight: bold;
+	color: #000;
+	font-size: 115%;
+	padding-top: 10px;
+}
+.comparisonTable #table-header #row-header td .popup ul li.title:hover {
+	background: #fff;
+	cursor: default;
+}
+
+
+@media (max-width: 880px) {
+	.comparisonTable table tr :nth-child(6) {
+		display: none;
+	}
+}
+@media (max-width: 780px) {
+	.comparisonTable table tr :nth-child(5) {
+		display: none;
+	}
+}
+@media (max-width: 680px) {
+	.comparisonTable table tr :nth-child(4) {
+		display: none;
+	}
+	.comparisonTable table {
+		font-size: 0.95em;
+	}
+	.comparisonTable table th code {
+		font-size: 10px;
+	}
+}
+@media (max-width: 432px) {
+	.comparisonTable table tr :nth-child(3) {
+		display: none;
+	}
+}
+
+
+
+
+
+
+
+
+
+.overviewTable {
+
+}
+.overviewTable th,
+.overviewTable td {
+	font-weight: normal;
+	text-align: center;
+
+	border-bottom: 1px solid #ddd;
+	padding: 6px 0;
+	vertical-align: top;
+	font-size: 1em;
+	white-space: nowrap;
+}
+.overviewTable thead th {
+	font-weight: bold;
+	padding-bottom: 10px;
+	white-space: inherit;
+	position: relative;
+}
+.overviewTable thead th::after {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 0px;
+	height: 10px;
+	border-right: 1px solid #ddd;
+	left: 0;
+	bottom: 0;
+}
+.overviewTable thead th:last-child::before {
+	display: block;
+	position: absolute;
+	content: '';
+	width: 10px;
+	height: 10px;
+	border-right: 1px solid #ddd;
+	right: 0;
+	bottom: 0;
+}
+.overviewTable tbody th {
+	text-align: right;
+	font-size: 0.8em;
+	font-weight: bold;
+	color: #888;
+	width: 60px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.overviewTable .development {
+	background: #eee;
+}
+.overviewTable .current {
+	background: #f6f6f6;
+}
+.overviewTable span.version {
+	display: inline-block;
+	width: 40px;
+	text-align: right;
+	font-size: 0.8em;
+}
+.overviewTable span.version span {
+}
+.overviewTable span.version span span {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	color: #fff;
+	background: #aaa;
+	padding: 2px 4px;
+}
+.overviewTable span.version > span::after {
+	content: '';
+	display: inline-block;
+	border-left: 4px solid #aaa;
+	border-top: 4px solid rgba(0,0,0,0);
+	border-bottom: 4px solid rgba(0,0,0,0);
+	width: 0;
+	height: 0;
+}
+.overviewTable span.points {
+	display: inline-block;
+	width: 40px;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	font-weight: bold;
+	text-align: left;
+}
+.overviewTable .current span.points {
+	font-size: 1.2em;
+}
+.overviewTable .current span.version span span {
+	background: #0092bf;
+}
+.overviewTable .current span.version > span::after {
+	border-left: 4px solid #0092bf;
+}
+
+
+.horizontalOverflow {
+	overflow: scroll;
+	overflow-y: visible;
+	/* -webkit-overflow-scrolling: */
+}
+
+
