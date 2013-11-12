@@ -105,6 +105,13 @@ tbody tr:hover > td, tbody tr:hover > th {
 tbody tr:hover th.details {
 	background-color: inherit;
 }
+
+
+/********************************************
+ *
+ *   Content wrapper
+ */
+
 body > div#contentwrapper {
 	-webkit-transition: -webkit-transform .4s, -webkit-filter 1.2s, opacity 1.2s;
 	transition: transform .4s, filter 1.2s, opacity 1.2s;
@@ -116,6 +123,12 @@ body > div#contentwrapper.menu-open {
 	transform: translateX(240px);
 	-webkit-filter: brightness(75%) saturate(0%);
 	filter: brightness(65%) saturate(15%);
+}
+
+@media (max-width: 680px) {
+    body > div#contentwrapper {
+        margin: auto;
+    }
 }
 
 /********************************************
@@ -385,11 +398,8 @@ body > div#index.selected button#indexbutton {
 		text-indent: -28px;
 	}
 }
-@media (max-width: 680px) {
-    body > div#contentwrapper {
-        margin: auto;
-    }
 
+@media (max-width: 680px) {
 	body > div#index button#indexbutton {
 		text-indent: 0;
 	}
