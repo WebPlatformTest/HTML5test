@@ -178,24 +178,7 @@
 				</div>
 			</div>
 		</div>
-		<div id='index'>
-			<div id='indexmenu'>
-				<ul>
-					<script>
-						for (var i = 0; i < tests.length; i++) {
-							document.write('<li class="category ' + tests[i].id + '"><a href="#category-' + tests[i].id + '" onclick="closeIndex()">' + tests[i].name + '</a>');
-
-							document.write('<ul>');
-							for (var j = 0; j < tests[i].items.length; j++) {
-								document.write('<li><a href="#table-' + tests[i].items[j].id + '" onclick="closeIndex()">' + tests[i].items[j].name + '</a></li>');
-							}
-							document.write('</ul></li>');
-						}
-					</script>
-				</ul>
-			</div>
-			<button onclick='javascript:toggleIndex()' id='indexbutton'></button>
-		</div>
+		<div id='index'></div>
 
 		<script>
 		<!--
@@ -360,6 +343,12 @@
 
 					table.updateColumn(0, r);
 
+					new Index({
+						tests:			tests,
+						index:			document.getElementById('index'),
+						wrapper:		document.getElementById('contentwrapper')
+					});
+
 
 					function submit(method, payload) {
 						var httpRequest;
@@ -418,23 +407,6 @@
 					ga.setAttribute('async', 'true');
 					document.documentElement.firstChild.appendChild(ga);
 				})();
-			}
-
-
-			// controlling index menu
-			var contentWrapper = document.getElementById('contentwrapper');
-			contentWrapper.onclick = closeIndex;
-	
-			function toggleIndex() {
-				if (document.body.className.indexOf(' indexVisible') == -1) {
-					document.body.className = document.body.className.replace(' indexVisible', '') + ' indexVisible';
-				} else {
-					document.body.className = document.body.className.replace(' indexVisible', '');
-				}
-			}
-
-			function closeIndex() {
-				document.body.className = document.body.className.replace(' indexVisible', '');
 			}
 
 		//-->

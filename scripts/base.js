@@ -136,6 +136,70 @@
 
 	/* Base UI functions */
 
+	var Index = function() { this.initialize.apply(this, arguments) };
+	Index.prototype = {
+		initialize: function(options) {
+			var that = this;
+			this.options = options;
+
+			var menu = document.createElement('div');
+			menu.id = 'indexmenu';
+			options.index.appendChild(menu);
+			
+			var categories = document.createElement('ul');
+			menu.appendChild(categories);
+
+			for (var i = 0; i < options.tests.length; i++) {
+				var category = document.createElement('li');
+				category.className = 'category ' + options.tests[i].id;
+				categories.appendChild(category);
+				
+				var link = document.createElement('a');
+				link.href = '#' + options.tests[i].id;
+				link.onclick = function () { that.closeIndex(); };
+				link.innerHTML = options.tests[i].name;
+				category.appendChild(link);
+
+				if (options.tests[i].items.length) {
+					var items = document.createElement('ul');
+					category.appendChild(items);
+				
+					for (var j = 0; j < options.tests[i].items.length; j++) {
+						var item = document.createElement('li');
+						items.appendChild(item);
+	
+						var link = document.createElement('a');
+						link.href = '#table-' + options.tests[i].items[j].id;
+						link.onclick = function () { that.closeIndex(); };
+						link.innerHTML = options.tests[i].items[j].name;
+						item.appendChild(link);
+					}
+				}
+			}
+						
+			var button = document.createElement('button');
+			button.innerHTML = '';
+			button.id = 'indexbutton';
+			button.onclick = this.toggleIndex;
+			options.index.appendChild(button);
+			
+			options.wrapper.onclick = this.closeIndex;
+		},
+
+		toggleIndex: function() {
+			if (document.body.className.indexOf(' indexVisible') == -1) {
+				document.body.className = document.body.className.replace(' indexVisible', '') + ' indexVisible';
+			} else {
+				document.body.className = document.body.className.replace(' indexVisible', '');
+			}
+		},
+
+		closeIndex: function() {
+			document.body.className = document.body.className.replace(' indexVisible', '');
+		}
+	}
+	
+	
 	var Confirm = function() { this.initialize.apply(this, arguments) };
 	Confirm.prototype = {
 		initialize: function(parent, options) {
