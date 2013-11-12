@@ -279,8 +279,10 @@
 
 					/* Show box for confirming useragent detection */
 					new Confirm(container, {
+						id:			r.uniqueid,
 						onConfirm:	function() { submit('confirm', '{"uniqueid": "' + r.uniqueid + '"}'); },
-						onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); }
+						onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); },
+						onFeedback:	function(value) { submit('feedback', JSON.stringify({ uniqueid: r.uniqueid, value: value })); }
 					});
 
 					/* Show action buttons */

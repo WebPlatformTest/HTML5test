@@ -1231,7 +1231,73 @@ body.indexVisible > div#index button#indexbutton {
 
 /********************************************
  *
- *   Your Browser: Share
+ *   Your Browser: Feedback
+ */
+
+.popupPanel.feedback {
+	width: 210px;
+	margin-top: 10px;
+	margin-left: -130px;
+	padding: 10px 10px 10px;
+
+	text-align: left;
+	color: #000;
+	cursor: auto;
+	font-size: 1.1em;
+}
+.popupPanel.feedback h3 {
+	margin: 0;
+}
+
+.popupPanel.feedback textarea {
+	width: 100%;
+	height: 160px;
+	padding: 10px;
+	margin: 10px 0;
+
+	font-size: 1em;
+	
+	border: none;
+	background: #eee;
+}
+.popupPanel.feedback button {
+	width: 100%;
+	border: none;
+	background: #33af33; 
+	
+	text-align: left;
+	font-size: 1em;
+	color: #fff;
+	padding: 10px;
+	
+	cursor: pointer;
+}
+.popupPanel.feedback button span {
+	font-family: html5test;
+	font-size: 1.2em;
+	margin-right: 4px;
+}
+/*
+.popupPanel.save a {
+	color: #0092bf;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	font-weight: bold;
+	text-decoration: none;
+}
+.popupPanel.save a:hover {
+	text-decoration: underline;
+}
+.popupPanel.save p {
+	margin-bottom: 1em;
+}
+.popupPanel.save code {
+	font-size: 1.5em;
+}
+*/
+
+/********************************************
+ *
+ *   Your Browser: Save
  */
 
 .popupPanel.save {
@@ -1356,7 +1422,7 @@ body.indexVisible > div#index button#indexbutton {
 	padding: 10px;
 }
 
-.useragent span {
+.useragent > span {
 	position: absolute;
 	right: 10px;
 	top: 8px;
@@ -1364,7 +1430,7 @@ body.indexVisible > div#index button#indexbutton {
 	color: #aaa;
 	line-height: 20px;
 }
-.useragent span a {
+.useragent > span a {
 	font-family: html5test;
 	font-weight: normal;
 	font-size: 1.6em;
@@ -1377,10 +1443,10 @@ body.indexVisible > div#index button#indexbutton {
 	-o-transition: all .3s ease-in-out;
 	transition: all .3s ease-in-out;
 }
-.useragent span a.correct:hover {
+.useragent > span a.correct:hover {
 	color: #1c8c1d;
 }
-.useragent span a.wrong:hover {
+.useragent > span a.wrong:hover {
 	color: #853333;
 }
 

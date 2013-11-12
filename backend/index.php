@@ -146,6 +146,23 @@
 
 			break;
 			
+		case 'feedback':	
+			$payload = json_decode($_REQUEST['payload']);
+
+			if (!$readonly) {
+				mysql_query('
+					UPDATE
+						results
+					SET 
+						status = -1,
+						comments = "' . mysql_real_escape_string($payload->value) . '"
+					WHERE
+						uniqueid = "' . mysql_real_escape_string($payload->uniqueid) . '"
+				');
+			}
+
+			break;
+			
 		case 'confirm':	
 			$payload = json_decode($_REQUEST['payload']);
 

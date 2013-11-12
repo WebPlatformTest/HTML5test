@@ -203,8 +203,6 @@
 	var Confirm = function() { this.initialize.apply(this, arguments) };
 	Confirm.prototype = {
 		initialize: function(parent, options) {
-			var that = this;
-
 			this.options = options;
 
 			this.useragent = document.createElement('p');
@@ -217,21 +215,13 @@
 			this.useragent.appendChild(this.confirm);
 
 			var correct = document.createElement('a');
-			if (correct.addEventListener) {
-				correct.addEventListener('click', function() { that.confirmUseragent.call(that); }, true);
-			} else {
-				correct.attachEvent('onclick', function() { that.confirmUseragent.call(that); });
-			}
+			correct.addEventListener('click', function() { this.confirmUseragent(); }.bind(this), true);
 			correct.className = 'correct';
 			correct.innerHTML = '✔';
 			this.confirm.appendChild(correct);
 
 			var wrong = document.createElement('a');
-			if (correct.addEventListener) {
-				wrong.addEventListener('click', function() { that.reportUseragent.call(that); }, true);
-			} else {
-				wrong.attachEvent('onclick', function() { that.reportUseragent.call(that); });
-			}
+			wrong.addEventListener('click', function(e) { e.stopPropagation(); this.reportUseragent(); }.bind(this), true);
 			wrong.className = 'wrong';
 			wrong.innerHTML = '✘';
 			this.confirm.appendChild(wrong);
@@ -249,17 +239,27 @@
 
 		reportUseragent: function() {
 			this.options.onReport();
-			this.showThanks();
+			
+			new Feedback(this.confirm, {
+				suggestion:	t('I am using') + ' ' + Browsers,
+				
+				onFeedback:	function(value) {
+								this.options.onFeedback(value);
+							}.bind(this),
+				
+				onClose:	function() {
+								this.showThanks();
+							}.bind(this)
+			});
 		},
 
 		showThanks: function() {
 			this.confirm.style.display = 'none';
 			this.thanks.style.display = 'inline';
 
-			var that = this;
 			window.setTimeout(function() {
-				that.thanks.style.display = 'none';
-			}, 2500);
+				this.thanks.style.display = 'none';
+			}.bind(this), 2500);
 		}
 	}
 
@@ -403,6 +403,66 @@
 
 		close: function(e) {
 			this.popup.style.display = 'none';
+		}
+	}
+
+
+
+	var Feedback = function() { this.initialize.apply(this, arguments) };
+	Feedback.prototype = {
+		initialize: function(parent, options) {
+			var that = this;
+
+			this.parent = parent;
+			this.options = options;
+
+			this.popup = document.createElement('div');
+			this.popup.className = 'popupPanel pointsRight feedback';
+			this.popup.style.display = 'none';
+			this.parent.appendChild(this.popup);
+
+			this.popup.addEventListener('click', function(e) { e.stopPropagation() }, false)
+			this.popup.addEventListener('touchstart', function(e) { e.stopPropagation() }, false)
+
+			document.addEventListener('click', this.close.bind(this), false)
+			document.addEventListener('touchstart', this.close.bind(this), false)
+			
+			this.create();
+		},
+
+		create: function() {
+			this.created = true;
+
+			this.popup.innerHTML +=
+				"<div id='feedback'>" +
+				"<h3>What is wrong with this identification?</h3>" +
+				"<textarea id='correction'>" + this.options.suggestion + "</textarea>"+
+				"<button id='sendCorrection'><span>✔</span>Send correction</button>" +
+				"</div>";
+
+			this.popup.style.display = 'block';
+			
+			var button = document.getElementById('sendCorrection')
+			button.addEventListener('click', this.send.bind(this), false);
+		},
+
+		send: function() {
+			var field = document.getElementById('correction')
+
+			if (this.options.onFeedback) {
+				this.options.onFeedback(field.value);
+			}
+
+			this.close();	
+		},
+
+		close: function(e) {
+			this.popup.style.display = 'none';
+			this.popup.parentNode.removeChild(this.popup);
+			
+			if (this.options.onClose) {
+				this.options.onClose();
+			}
 		}
 	}
 
