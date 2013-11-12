@@ -1132,7 +1132,7 @@ var tests = [
 										name: 		'Access the webcam',
 										value:		10, 
 										urls:		[
-														[ 'w3c', 'http://dev.w3.org/2011/webrtc/editor/getusermedia.html' ]
+														[ 'w3c', 'http://dev.w3.org/2011/webrtc/editor/getusermedia.html' ],
 														[ 'wp',  '/dom/methods/getUserMedia' ],
 														[ 'mdn', '/WebRTC' ]
 													]
