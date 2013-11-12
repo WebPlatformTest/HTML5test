@@ -65,28 +65,6 @@
 
 	<body>
 		<div id="fb-root"></div>
-		<div id='index'>
-			<div id='indexmenu'>
-				<ul>
-					<script>
-						for (var i = 0; i < tests.length; i++) {
-							document.write('<li class="category ' + tests[i].id + '"><a href="#category-' + tests[i].id + '" onclick="closeIndex()">' + tests[i].name + '</a>');
-
-							document.write('<ul>');
-							for (var j = 0; j < tests[i].items.length; j++) {
-								document.write('<li><a href="#table-' + tests[i].items[j].id + '" onclick="closeIndex()">' + tests[i].items[j].name + '</a></li>');
-							}
-							document.write('</ul></li>');
-						}
-					</script>
-				</ul>
-			</div>
-			<button onclick='javascript:toggleIndex()' id='indexbutton'></button>
-		</div>
-		<script>
-
-		</script>
-
 		<div id='contentwrapper'>
 			<div class='header'>
 				<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
@@ -200,7 +178,24 @@
 				</div>
 			</div>
 		</div>
+		<div id='index'>
+			<div id='indexmenu'>
+				<ul>
+					<script>
+						for (var i = 0; i < tests.length; i++) {
+							document.write('<li class="category ' + tests[i].id + '"><a href="#category-' + tests[i].id + '" onclick="closeIndex()">' + tests[i].name + '</a>');
 
+							document.write('<ul>');
+							for (var j = 0; j < tests[i].items.length; j++) {
+								document.write('<li><a href="#table-' + tests[i].items[j].id + '" onclick="closeIndex()">' + tests[i].items[j].name + '</a></li>');
+							}
+							document.write('</ul></li>');
+						}
+					</script>
+				</ul>
+			</div>
+			<button onclick='javascript:toggleIndex()' id='indexbutton'></button>
+		</div>
 
 		<script>
 		<!--
