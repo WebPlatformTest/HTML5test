@@ -2912,66 +2912,6 @@ div:-moz-full-screen #timelineGraph {
 }
 
 
-
-.lab .header {
-	background: none;
-	border-bottom: 1px solid #eee;
-}
-.lab .header h2 {
-	text-align: center;
-	font-size: 2.5em;
-	margin-bottom: 0.5em;
-}
-.lab .page {
-	margin-top: 1em;
-}
-.lab .useragent {
-	padding: 10px;
-	text-align: center;
-	border-top: none;
-	border-bottom: 8px solid #d9d9d9;
-	font-size: 0.8em;
-}
-.lab .qrcode {
-	position: relative;
-	box-sizing: border-box;
-	border-top: 8px solid #d9d9d9;
-	display: block;
-
-	text-align: center;
-	font-size: 0.8em;
-	color: #222;
-	padding: 20px 10px 0;
-	margin-bottom: 20px;
-	background: #fff;
-}
-.lab .links {
-	background: #fff;
-	margin-bottom: 20px;
-}
-.lab .links li {
-	border-bottom: 1px solid #d9d9d9;
-}
-.lab .links li:last-child {
-	border-bottom: none;
-}
-.lab .links li a {
-	display: block;
-	color: #000;
-	text-decoration: none;
-	font-size: 0.8em;
-	padding: 6px 10px;
-}
-.lab .links li a::before {
-	display: inline;
-	content: '';
-	color: #666;
-	font-family: html5test;
-	font-size: 1.2em;
-	margin-right: 6px;
-}
-
-
 ul.legend {
 	list-style-type: none;
 	margin-bottom: 1em;
