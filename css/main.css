@@ -295,7 +295,7 @@ body > div#index div#indexmenu {
 	width: 220px;
 	height: 100%;
     margin: -10px 0px 0px 0px;
-	padding: 10px;
+	padding: 20px 10px 10px;
 	background-color: rgb(0, 146, 191);
 	color: #FFFFFF;
 	z-index: 1;
@@ -383,6 +383,7 @@ body > div#index button#indexbutton {
 	border: none;
 	outline: none;
 	z-index: 100000;
+	cursor: pointer;
 	
 	-webkit-transition: -webkit-transform .4s, color .5s, text-indent .5s;
 	transition: transform .4s, color .5s, text-indent .5s;
