@@ -309,7 +309,16 @@ body > div#index.selected button#indexbutton {
 	transition: left 1s;
 }
 
+@media (max-width: 1000px) {
+    body > div#contentwrapper {
+        margin: 0px 48px;
+    }
+}
+
 @media (max-width: 680px) {
+    body > div#contentwrapper {
+        margin: auto;
+    }
 	body > div#contentwrapper > .header h1 {
 		width: 400px;
 		padding-left: 0;
@@ -346,6 +355,12 @@ body > div#index.selected button#indexbutton {
 	}
 }
 
+@media (max-width: 488px) {
+	body > div#index {
+		display: none;
+	}
+}
+
 @media (max-width: 432px) {
 	body > div#contentwrapper > .header h1 {
 		width: auto;
@@ -364,9 +379,6 @@ body > div#index.selected button#indexbutton {
 	body > div#contentwrapper > .header ul li {
 		padding: 0 8px;
 		line-height: 28px;
-	}
-	body > div#index {
-		display: none;
 	}
 }
 
