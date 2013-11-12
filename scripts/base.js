@@ -155,7 +155,7 @@
 				categories.appendChild(category);
 				
 				var link = document.createElement('a');
-				link.href = '#category-' + options.tests[i].id;
+				link.href = '#' + options.tests[i].id;
 				link.onclick = function () { that.closeIndex(); };
 				link.innerHTML = options.tests[i].name;
 				category.appendChild(link);
