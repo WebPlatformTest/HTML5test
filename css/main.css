@@ -110,14 +110,14 @@ body > div#contentwrapper {
 	-webkit-transform: rotateY(0deg);
 	transform: rotateY(0deg);
 	-webkit-transition: transform 1s;
-    transition: transform 1s;
+    transition: transform 1s, opacity 1s;
 }
 body > div#contentwrapper.menu-open {
 	opacity: 0.7;
 	-webkit-transform: rotateY(35deg);
 	transform: rotateY(35deg);
 	-webkit-transition: transform 1s;
-    transition: transform 1s;
+    transition: transform 1s, opacity 1s;
 }
 
 /********************************************
