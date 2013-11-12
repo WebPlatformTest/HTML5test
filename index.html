@@ -70,11 +70,11 @@
 				<ul>
 					<script>
 						for (var i = 0; i < tests.length; i++) {
-							document.write('<li class="category ' + tests[i].id + '"><a href="#category-' + tests[i].id + '">' + tests[i].name + '</a>');
+							document.write('<li class="category ' + tests[i].id + '"><a href="#category-' + tests[i].id + '" onclick="closeIndex()">' + tests[i].name + '</a>');
 
 							document.write('<ul>');
 							for (var j = 0; j < tests[i].items.length; j++) {
-								document.write('<li><a href="#table-' + tests[i].items[j].id + '">' + tests[i].items[j].name + '</a></li>');
+								document.write('<li><a href="#table-' + tests[i].items[j].id + '" onclick="closeIndex()">' + tests[i].items[j].name + '</a></li>');
 							}
 							document.write('</ul></li>');
 						}
@@ -439,7 +439,9 @@
 				}
 			}
 
-			contentWrapper.onclick = function() {
+			contentWrapper.onclick = closeIndex;
+
+			function closeIndex() {
 				index.className = "";
 				contentWrapper.className = "";
 			}
