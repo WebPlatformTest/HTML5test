@@ -215,13 +215,15 @@ body > div#index div#indexmenu {
 	left: 0px;
 	width: 220px;
 	height: 100%;
-	overflow-y: auto;
     margin: -10px 0px 0px 0px;
 	padding: 10px;
 	background-color: rgb(0, 146, 191);
 	color: #FFFFFF;
 	z-index: 1;
 	
+	-webkit-overflow-scrolling: touch;
+	overflow-y: auto;
+
 	-webkit-transform: translateX(-240px);
 	-webkit-transition: -webkit-transform .4s;
 	transform: translateX(-240px);
