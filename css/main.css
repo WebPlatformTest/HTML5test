@@ -123,10 +123,10 @@ body > div#contentwrapper.menu-open {
  *   Header and navigation
  */
 
-body > div#contentwrapper > .header {
+.header {
 	background: #eee;
 }
-body > div#contentwrapper > .header h1 {
+.header h1 {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 	font-size: 0.9em;
@@ -137,17 +137,17 @@ body > div#contentwrapper > .header h1 {
 	margin: 0 auto;
 	max-width: 900px;
 }
-body > div#contentwrapper > .header h1 span {
+.header h1 span {
 	margin-right: 10px;
 }
-body > div#contentwrapper > .header h1 span,
-body > div#contentwrapper > .header h1 em {
+.header h1 span,
+.header h1 em {
 	zoom: 1;
 	display: inline-block;
 	*display: inline;
 }
 
-body > div#contentwrapper > .header h1 strong {
+.header h1 strong {
 	font-family: html5test;
 	font-weight: normal;
 	font-size: 1.8em;
@@ -158,30 +158,30 @@ body > div#contentwrapper > .header h1 strong {
 	top: 7px;
 }
 
-body > div#contentwrapper > .header h1 em {
+.header h1 em {
 	font-style: normal;
 	text-transform: lowercase;
 	font-size: 1.15em;
 	color: #bbb;
 }
-body > div#contentwrapper > .header div {
+.header div {
 	margin: 10px auto 0;
 	overflow: hidden;
 	max-width: 900px;
 	padding: 0 40px;
 }
-body > div#contentwrapper > .header ul {
+.header ul {
 	list-style-type: none;
 	margin-bottom: 8px;
 }
-body > div#contentwrapper > .header ul.left {
+.header ul.left {
 	float: left;
 }
-body > div#contentwrapper > .header ul.right {
+.header ul.right {
 	float: right;
 }
 
-body > div#contentwrapper > .header ul li {
+.header ul li {
 	display: block;
 	float: left;
 	margin: 0 3px 0 0;
@@ -192,16 +192,82 @@ body > div#contentwrapper > .header ul li {
 	text-transform: lowercase;
 	background: #aaa;
 }
-body > div#contentwrapper > .header ul li.selected {
+.header ul li.selected {
 	background: #0092bf;
 }
-body > div#contentwrapper > .header ul li:hover {
+.header ul li:hover {
 	box-shadow: inset 0 32px 0px rgba(0,0,0,0.05);
 }
-body > div#contentwrapper > .header ul li a {
+.header ul li a {
 	color: #fff;
 	text-decoration: none;
 }
+
+@media (max-width: 680px) {
+	.header h1 {
+		width: 400px;
+		padding-left: 0;
+		padding-right: 0;
+		text-align: center;
+	}
+	.header h1 em {
+		font-size: 1em;
+	}
+
+	.header div {
+		width: auto;
+	}
+	.header ul {
+		padding: 0 !important;
+		margin: 0 0 12px 0 !important;
+		width: 50%;
+	}
+	.header ul li {
+		line-height: 30px;
+		margin-bottom: 3px;
+		clear: left;
+	}
+	.header ul.right {
+		padding-left: 10px;
+	}
+	.header ul.left li {
+		float: right;
+		clear: right;
+		margin-right: 6px;
+	}
+	.header ul.right li {
+		margin-left: 6px;
+	}
+}
+
+@media (max-width: 432px) {
+	.header h1 {
+		width: auto;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+	.header h1 em {
+		font-size: 0.9em;
+	}
+	.header ul {
+		font-size: 0.85em;
+	}
+	.header ul.left {
+		padding-left: 16px;
+	}
+	.header ul li {
+		padding: 0 8px;
+		line-height: 28px;
+	}
+}
+
+
+
+/********************************************
+ *
+ *   Index
+ */
+
 body > div#index {
 	display: block;
 	position: fixed;
@@ -323,41 +389,6 @@ body > div#index.selected button#indexbutton {
     body > div#contentwrapper {
         margin: auto;
     }
-	body > div#contentwrapper > .header h1 {
-		width: 400px;
-		padding-left: 0;
-		padding-right: 0;
-		text-align: center;
-	}
-	body > div#contentwrapper > .header h1 em {
-		font-size: 1em;
-	}
-
-	body > div#contentwrapper > .header div {
-		width: auto;
-	}
-	body > div#contentwrapper > .header ul {
-		padding: 0 !important;
-		margin: 0 0 12px 0 !important;
-		width: 50%;
-	}
-	body > div#contentwrapper > .header ul li {
-		line-height: 30px;
-		margin-bottom: 3px;
-		clear: left;
-	}
-	body > div#contentwrapper > .header ul.right {
-		padding-left: 10px;
-	}
-	body > div#contentwrapper > .header ul.left li {
-		float: right;
-		clear: right;
-		margin-right: 6px;
-	}
-	body > div#contentwrapper > .header ul.right li {
-		margin-left: 6px;
-	}
-
 
 	body > div#index button#indexbutton {
 		text-indent: 0;
@@ -367,27 +398,6 @@ body > div#index.selected button#indexbutton {
 @media (max-width: 488px) {
 	body > div#index button#indexbutton {
 		text-indent: -28px;
-	}
-}
-
-@media (max-width: 432px) {
-	body > div#contentwrapper > .header h1 {
-		width: auto;
-		padding-left: 16px;
-		padding-right: 16px;
-	}
-	body > div#contentwrapper > .header h1 em {
-		font-size: 0.9em;
-	}
-	body > div#contentwrapper > .header ul {
-		font-size: 0.85em;
-	}
-	body > div#contentwrapper > .header ul.left {
-		padding-left: 16px;
-	}
-	body > div#contentwrapper > .header ul li {
-		padding: 0 8px;
-		line-height: 28px;
 	}
 }
 
