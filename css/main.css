@@ -133,7 +133,7 @@ body > div#contentwrapper > .header h1 {
 	text-align: left;
 	text-transform: uppercase;
 	color: #666;
-	padding: 8px 20px;
+	padding: 8px 40px;
 	margin: 0 auto;
 	max-width: 900px;
 }
@@ -168,7 +168,7 @@ body > div#contentwrapper > .header div {
 	margin: 10px auto 0;
 	overflow: hidden;
 	max-width: 900px;
-	padding: 0 20px;
+	padding: 0 40px;
 }
 body > div#contentwrapper > .header ul {
 	list-style-type: none;
@@ -303,20 +303,20 @@ body > div#index button#indexbutton {
 	outline: none;
 	z-index: 100000;
 	
-	-webkit-transition: -webkit-transform .4s;
-	transition: transform .4s;
+	-webkit-transition: -webkit-transform .4s, color .5s, text-indent .5s;
+	transition: transform .4s, color .5s, text-indent .5s;
 }
 body > div#index.selected button#indexbutton {
-	-webkit-transform: translateX(240px) rotate(180deg);
+	-webkit-transform: translateX(240px);
 	transform: translateX(240px);
+	color: #eee;
 }
 
-@media (max-width: 1000px) {
-    body > div#contentwrapper {
-        margin: 0px 48px;
-    }
+@media (max-width: 1010px) {
+	body > div#index button#indexbutton {
+		text-indent: -28px;
+	}
 }
-
 @media (max-width: 680px) {
     body > div#contentwrapper {
         margin: auto;
@@ -355,11 +355,16 @@ body > div#index.selected button#indexbutton {
 	body > div#contentwrapper > .header ul.right li {
 		margin-left: 6px;
 	}
+
+
+	body > div#index button#indexbutton {
+		text-indent: 0;
+	}
 }
 
 @media (max-width: 488px) {
-	body > div#index {
-		display: none;
+	body > div#index button#indexbutton {
+		text-indent: -28px;
 	}
 }
 
@@ -466,7 +471,7 @@ body > div#index.selected button#indexbutton {
 .page {
 	margin: 2.5em auto 0;
 	max-width: 900px;
-	padding: 0 20px;
+	padding: 0 40px;
 }
 .page > .column {
 	position: relative;
