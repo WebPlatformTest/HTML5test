@@ -449,8 +449,10 @@
 		send: function() {
 			var field = document.getElementById('correction')
 
-			if (this.options.onFeedback) {
-				this.options.onFeedback(field.value);
+			if (field.value != this.options.suggestion) {
+				if (this.options.onFeedback) {
+					this.options.onFeedback(field.value);
+				}
 			}
 
 			this.close();	
