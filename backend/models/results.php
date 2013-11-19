@@ -9,7 +9,8 @@
 			
 			$res = mysql_query("
 				SELECT 
-					IF(f.results LIKE '%" . mysql_real_escape_string($id) . "=1%',1,IF(f.results LIKE '%" . mysql_real_escape_string($id) . "=-1%',-1,0)) AS supported, b.variant, IFNULL(b.version,'') AS version
+					IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(f.results,'" . mysql_real_escape_string($id) . "=',-1),',',1),0) as supported, 
+					b.variant, IFNULL(b.version,'') AS version
 				FROM 
 					browserVersions AS b			
 					LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
