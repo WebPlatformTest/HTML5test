@@ -48,7 +48,7 @@ Test = (function() {
 				
 				'interaction.dragdrop':				!(  Browsers.isType('desktop') ||
 														Browsers.isType('mobile', 'tablet', 'media') && (
-															Browsers.isBrowser('Opera')
+															Browsers.isBrowser('Opera') && Browsers.isEngine('Presto')
 														) 
 													),
 
