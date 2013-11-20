@@ -1176,7 +1176,7 @@ Test = (function() {
 
 				var passed = false;
 				try { 
-					passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && this.closesImplicitly(elements[e]);
+					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isBlock(element) && this.closesImplicitly(elements[e]);
 				} catch(error) {
 				}
 				
@@ -1201,7 +1201,7 @@ Test = (function() {
 
 				var passed = false;
 				try { 
-					passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e]));
+					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e]));
 				} catch(error) {
 				}
 
@@ -1245,7 +1245,7 @@ Test = (function() {
 
 			var passed = false;
 			try { 
-				passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color != 'transparent');
+				passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && (color = this.getStyle(element, 'background-color')) && (color != 'transparent');
 			} catch(error) {
 			}
 
@@ -1269,9 +1269,9 @@ Test = (function() {
 			var rpSupport = false;
 
 			try {
-				rubySupport = rubyElement && typeof HTMLElement != 'undefined' && rubyElement instanceof HTMLElement;
-				rtSupport = rtElement && typeof HTMLElement != 'undefined' && rtElement instanceof HTMLElement;
-				rpSupport = rpElement && typeof HTMLElement != 'undefined' && rpElement instanceof HTMLElement && this.isHidden(rpElement);
+				rubySupport = rubyElement && rubyElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
+				rtSupport = rtElement && rtElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
+				rpSupport = rpElement && rpElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isHidden(rpElement);
 			} catch(error) {				
 			}
 			
@@ -1301,7 +1301,7 @@ Test = (function() {
 
 			var passed = false;
 			try { 
-				passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement;
+				passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
 			} catch(error) {
 			}
 
@@ -1335,7 +1335,7 @@ Test = (function() {
 
 			var passed = false;
 			try { 
-				passed = typeof HTMLElement != 'undefined' && element instanceof HTMLElement;
+				passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
 			} catch(error) {
 			}
 
