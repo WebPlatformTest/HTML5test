@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title data-i18n>HTML5test - How well does your browser support HTML5?</title>	
+
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
+		<link rel="stylesheet" href="/css/reporting.css" type="text/css">
+
+		<script src='/translation.js' type='text/javascript'></script>
+
+		<script src='/scripts/base.js' type='text/javascript'></script>
+		<script src='/scripts/reporting.js' type='text/javascript'></script>
+
+		<script src='/scripts/jquery/jquery-1.7.2.min.js' type='text/javascript'></script>
+		<script src='/scripts/highcharts/highcharts.src.js' type='text/javascript'></script>
+		<script src="/scripts/highcharts/modules/exporting.js" type="text/javascript"></script>
+		<script src="/scripts/fullscreen.js" type="text/javascript"></script>
+
+		<link rel="icon" href="/images/icon.png">
+		<link rel="apple-touch-icon" href="/images/button.png">
+	</head>
+	
+	<body>
+		<div class='header'>
+			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+			<div class='navigation'>
+				<ul class='left'>
+					<li><a href='/index.html' data-i18n>Your browser</a></li>
+					<li class='selected'><a href='/results/desktop.html' data-i18n>Other<span> browser</span>s</a></li>
+					<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
+				</ul>
+				<ul class='right'>
+					<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
+					<li><a href='/devicelab'>Device Lab</a></li>
+					<li><a href='/about.html' data-i18n>About<span> the test</span></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class='page'>
+			<div class='column'>
+				<div class='paper hasNavigation'>
+					<ul class='navigation'>
+						<li class='<?php echo $type == 'desktop' ? 'selected' : ''; ?>'><a data-i18n href='/results/desktop.html'>Desktop<span> browsers</span></a></li>
+						<li class='<?php echo $type == 'tablet' ? 'selected' : ''; ?>'><a data-i18n href='/results/tablet.html'>Tablets</a></li>
+						<li class='<?php echo $type == 'mobile' ? 'selected' : ''; ?>'><a data-i18n href='/results/mobile.html'>Mobiles</a></li>
+						<li class='<?php echo $type == 'other' ? 'selected' : ''; ?>'><a data-i18n href='/results/other.html'>Other</a></li>
+						<li class='more'><a data-i18n href='/results/search.html'>Search</a></li>
+						<li class='more'><a data-i18n href='/results/latest.html'>Latest</a></li>
+					</ul>
+				
+					<div>
+						
+						<div class='scorePanel'>
+							<h2 id='gaming' data-i18n>Gaming</h2>
+							
+							<div class='left'>
+								<?php if (isset($consoles)): ?>
+								<div>
+									<h3 data-i18n>Consoles</h3>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Device</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($consoles as $item): ?>
+											<tr>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname'>
+													<?php if ($item->points != ''): ?>
+														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+													<?php else: ?>
+														<?php echo $item->nickname; ?>
+													<?php endif; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+								<?php endif; ?>
+							</div>
+							
+							<div class='right'>
+								<?php if (isset($portables)): ?>
+								<div>
+									<h3 data-i18n>Portable</h3>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Device</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($portables as $item): ?>
+											<tr>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname'>
+													<?php if ($item->points != ''): ?>
+														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+													<?php else: ?>
+														<?php echo $item->nickname; ?>
+													<?php endif; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+								<?php endif; ?>
+							</div>
+						</div>	
+
+						<hr>
+	
+						<div class='scorePanel'>
+							<h2 id='television' data-i18n>Television</h2>
+							
+							<div class='left'>
+								<?php if (isset($smarttvs)): ?>
+								<h3 data-i18n>Smart TVs</h3>
+								<div>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Device</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($smarttvs['current'] as $item): ?>
+											<tr>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname'>
+													<?php if ($item->points != ''): ?>
+														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+													<?php else: ?>
+														<?php echo $item->nickname; ?>
+													<?php endif; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+								<?php endif; ?>
+							</div>
+							
+							<div class='right'>
+								<?php if (isset($settopboxes)): ?>
+								<div>
+									<h3 data-i18n>Set-top boxes</h3>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Device</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($settopboxes as $item): ?>
+											<tr>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname'>
+													<?php if ($item->points != ''): ?>
+														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+													<?php else: ?>
+														<?php echo $item->nickname; ?>
+													<?php endif; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+								<?php endif; ?>
+							</div>
+						</div>	
+
+						<hr>
+
+						<div class='scorePanel'>
+							<h2 id='ereaders' data-i18n>E-readers</h2>
+							
+							<div class='left'>
+								<?php if (isset($ereaders)): ?>
+								<div>
+									<h3 data-i18n>E-paper readers</h3>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Device</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($ereaders as $item): ?>
+											<tr>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname'>
+													<?php if ($item->points != ''): ?>
+														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+													<?php else: ?>
+														<?php echo $item->nickname; ?>
+													<?php endif; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+								<?php endif; ?>
+							</div>
+							
+							<div class='right'>
+							</div>
+						</div>	
+
+						<hr>
+	
+						<h3 data-i18n>About these scores</h3>
+						<div class='text' data-i18n='score-explaination'>
+							The data above is compiled from automatically submitted test results. It is possible your results 
+							may differ slightly due to external factors such as settings and which operating system is used.
+							If you believe the data above is incorrect, or if you think we are missing an important browser
+							or device, please open a bug report at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>.
+						</div>
+					</div>
+				</div>
+				
+				<div class='footer'>
+					<div>
+						<div class='copyright'>
+							<p>
+								Created by Niels Leenheer. 
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
+		<script src='//www.google-analytics.com/ga.js'></script>
+		<script>
+		<!--
+			try {
+				var pageTracker = _gat._getTracker("UA-68192-4");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		//-->
+		</script>
+	</body>
+</html>

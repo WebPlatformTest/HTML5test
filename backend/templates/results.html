@@ -49,8 +49,7 @@
 						<li class='<?php echo $type == 'desktop' ? 'selected' : ''; ?>'><a data-i18n href='/results/desktop.html'>Desktop<span> browsers</span></a></li>
 						<li class='<?php echo $type == 'tablet' ? 'selected' : ''; ?>'><a data-i18n href='/results/tablet.html'>Tablets</a></li>
 						<li class='<?php echo $type == 'mobile' ? 'selected' : ''; ?>'><a data-i18n href='/results/mobile.html'>Mobiles</a></li>
-						<li class='<?php echo $type == 'gaming' ? 'selected' : ''; ?>'><a data-i18n href='/results/gaming.html'>Gaming</a></li>
-						<li class='<?php echo $type == 'television' ? 'selected' : ''; ?>'><a data-i18n href='/results/television.html'>Television</a></li>
+						<li class='<?php echo $type == 'other' ? 'selected' : ''; ?>'><a data-i18n href='/results/other.html'>Other</a></li>
 						<li class='more'><a data-i18n href='/results/search.html'>Search</a></li>
 						<li class='more'><a data-i18n href='/results/latest.html'>Latest</a></li>
 					</ul>
@@ -102,89 +101,95 @@
 
 							<div class='left'>
 								<?php if (isset($results['current'])): ?>
-								<h3 data-i18n>Current</h3>
-								<table class='scoreTable'>
-									<thead>
-										<tr>
-											<th class='points' data-i18n>Score</th>
-											<th class='nickname' data-i18n>Browser</th>
-											<th class='details'></th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php foreach($results['current'] as $item): ?>
-										<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
-											<td class='points'><?php echo $item->score; ?></td>
-											<th class='nickname'>
-												<?php if ($item->points != ''): ?>
-													<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-												<?php else: ?>
-													<?php echo $item->nickname; ?>
-												<?php endif; ?>
-											</th>
-											<th class='details'><?php echo $item->details; ?></th>
-										</tr>
-										<?php endforeach; ?>
-									</tbody>
-								</table>
+								<div>
+									<h3 data-i18n>Current</h3>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Browser</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($results['current'] as $item): ?>
+											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname'>
+													<?php if ($item->points != ''): ?>
+														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+													<?php else: ?>
+														<?php echo $item->nickname; ?>
+													<?php endif; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
 								<?php endif; ?>
 			
 								<?php if (isset($results['development'])): ?>
-								<h3 data-i18n>Upcoming</h3>
-								<table class='scoreTable'>
-									<thead>
-										<tr>
-											<th class='points' data-i18n>Score</th>
-											<th class='nickname' data-i18n>Browser</th>
-											<th class='details'></th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php foreach($results['development'] as $item): ?>
-										<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
-											<td class='points'><?php echo $item->score; ?></td>
-											<th class='nickname'>
-												<?php if ($item->points != ''): ?>
-													<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-												<?php else: ?>
-													<?php echo $item->nickname; ?>
-												<?php endif; ?>
-											</th>
-											<th class='details'><?php echo $item->details; ?></th>
-										</tr>
-										<?php endforeach; ?>
-									</tbody>
-								</table>
+								<div>
+									<h3 data-i18n>Upcoming</h3>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Browser</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($results['development'] as $item): ?>
+											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname'>
+													<?php if ($item->points != ''): ?>
+														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+													<?php else: ?>
+														<?php echo $item->nickname; ?>
+													<?php endif; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
 								<?php endif; ?>
 							</div>
 							
 							<div class='right'>
 								<?php if (isset($results['legacy'])): ?>
-								<h3 data-i18n>Older</h3>
-								<table class='scoreTable'>
-									<thead>
-										<tr>
-											<th class='points' data-i18n>Score</th>
-											<th class='nickname' data-i18n>Browser</th>
-											<th class='details'></th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php foreach($results['legacy'] as $item): ?>
-										<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
-											<td class='points'><?php echo $item->score; ?></td>
-											<th class='nickname'>
-												<?php if ($item->points != ''): ?>
-													<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-												<?php else: ?>
-													<?php echo $item->nickname; ?>
-												<?php endif; ?>
-											</th>
-											<th class='details'><?php echo $item->details; ?></th>
-										</tr>
-										<?php endforeach; ?>
-									</tbody>
-								</table>
+								<div>
+									<h3 data-i18n>Older</h3>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points' data-i18n>Score</th>
+												<th class='nickname' data-i18n>Browser</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($results['legacy'] as $item): ?>
+											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname'>
+													<?php if ($item->points != ''): ?>
+														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
+													<?php else: ?>
+														<?php echo $item->nickname; ?>
+													<?php endif; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
 								<?php endif; ?>
 							</div>
 						</div>	
