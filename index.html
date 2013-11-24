@@ -190,7 +190,22 @@
 		<script>
 		<!--
 
-			window.addEventListener('load', function() {
+
+			function waitForWhichBrowser(cb) {
+				var callback = cb;
+				
+				function wait() {
+					if (typeof WhichBrowser == 'undefined') 
+						window.setTimeout(wait, 100)
+					else 
+						callback();
+				}
+				
+				wait();
+			}
+
+
+			waitForWhichBrowser(function() {
 
 				Browsers = new WhichBrowser({
 					useFeatures:		true,
@@ -225,8 +240,8 @@
 				}
 
 				start();
-			}, false);
-
+			});
+			
 
 			function start() {
 				new Test(function(r) {
