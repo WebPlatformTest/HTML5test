@@ -39,7 +39,7 @@ Test = (function() {
 				'form.progress.element':			Browsers.isBrowser('Baidu Browser'),
 				'files.fileSystem':					Browsers.isOs('BlackBerry Tablet OS'),
 				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
-				'location.geolocation':				Browsers.isBrowser('Baidu Browser'),
+				'location.geolocation':				Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser'),
 				'location.orientation':				Browsers.isBrowser('Baidu Browser'),
 				'output.notifications':				Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
 				'output.requestFullScreen':			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
