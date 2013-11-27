@@ -1454,6 +1454,9 @@ var tests = [
 										id:		'jpeg',
 										name: 	'JPEG support'
 									}, {
+										id:		'jpegxr',
+										name: 	'JPEG-XR support'
+									}, {
 										id:		'webp',
 										name: 	'WebP support'
 									}

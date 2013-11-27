@@ -841,6 +841,22 @@ Test = (function() {
 			var passed = false;
 			if (this.canvas.getContext) {
 				try {
+					passed = this.canvas.toDataURL('image/vnd.ms-photo').substring(5,23) == 'image/vnd.ms-photo';
+				}
+				catch(e) {
+				}
+			}
+
+			this.section.setItem({
+				id:		'jpegxr',
+				passed:	passed, 
+				value: 	0
+			});
+
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
 					passed = this.canvas.toDataURL('image/webp').substring(5,15) == 'image/webp';
 				}
 				catch(e) {
