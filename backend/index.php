@@ -89,7 +89,7 @@
 				}
 			}
 			
-			if (!$readonly && intval($payload->version) >= 4) {
+			if (!$readonly && intval($payload->version) >= 5) {
 				$useragentHeader = $_SERVER['HTTP_USER_AGENT'];
 				$useragentId = preg_replace("/(; ?)[a-z][a-z](?:-[a-zA-Z][a-zA-Z])?([;)])/", '$1xx$2', $useragentHeader);
 			
