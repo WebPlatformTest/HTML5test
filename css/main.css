@@ -291,7 +291,7 @@ body > div#index div#indexmenu {
 	display: block;
 	position: fixed;
 	top: 0px;
-	left: 0px;
+	left: -240px;
 	width: 220px;
 	height: 100%;
     margin: -10px 0px 0px 0px;
@@ -303,14 +303,12 @@ body > div#index div#indexmenu {
 	-webkit-overflow-scrolling: touch;
 	overflow-y: auto;
 
-	-webkit-transform: translateX(-240px);
 	-webkit-transition: -webkit-transform .4s;
-	transform: translateX(-240px);
 	transition: transform .4s;
 }
 body.indexVisible > div#index div#indexmenu {
-	-webkit-transform: translateX(0px);
-	transform: translateX(0px);
+	-webkit-transform: translateX(240px);
+	transform: translateX(240px);
 }
 body > div#index div#indexmenu li {
 	display: block;
