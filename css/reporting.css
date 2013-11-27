@@ -13,8 +13,7 @@
 	float: left;
 }
 
-.scorePanel .left h3,
-.scorePanel .right h3 {
+.scorePanel h3 {
 	font-size: 1.6em;
 	text-transform: lowercase;
 	color: #888;
@@ -120,6 +119,11 @@
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 }
+.scoreTable .count,
+.scoreTable .percentage {
+	width: 20%;
+	text-align: right;
+}
 
 @media (max-width: 680px) {
 	.scoreTable .description {
@@ -127,6 +131,15 @@
 	}
 }
 
+.latestTable {
+	table-layout: fixed;
+}
+.latestTable th {
+}
+.latestTable a {
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
 .latestTable .nickname {
 	width: 60%;
 }

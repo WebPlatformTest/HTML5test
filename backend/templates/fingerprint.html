@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title data-i18n>HTML5test - How well does your browser support HTML5?</title>	
+
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
+		<link rel="stylesheet" href="/css/reporting.css" type="text/css">
+
+		<script src='/translation.js' type='text/javascript'></script>
+
+		<script src='/scripts/base.js' type='text/javascript'></script>
+		<script src='/scripts/reporting.js' type='text/javascript'></script>
+
+		<link rel="icon" href="/images/icon.png">
+		<link rel="apple-touch-icon" href="/images/button.png">
+	</head>
+	
+	<body>
+		<div class='header'>
+			<h1 data-i18n><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+			<div class='navigation'>
+				<ul class='left'>
+					<li><a href='/index.html' data-i18n>Your browser</a></li>
+					<li class='selected'><a href='/results/desktop.html' data-i18n>Other browsers</a></li>
+					<li><a href='/compare/browser/index.html' data-i18n>Compare</a></li>
+				</ul>
+				<ul class='right'>
+					<li><a href='http://blog.html5test.com/' data-i18n>News</a></li>
+					<li><a href='/devicelab'>Device Lab</a></li>
+					<li><a href='/about.html' data-i18n>About<span> the test</span></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class='page saved'>
+			<div id='contents' class='column'>
+				<div id='score'>
+					<div class='pointsPanel'>
+						<h2><span>This browser scored</span> <strong><?php echo $results->score; ?></strong> <span>out of <?php echo $results->maximum; ?> points</span></h2>
+						<hr>
+					</div>
+				</div>
+			
+				<div class='paper'>
+					<div>
+						<div class='scorePanel'>
+							
+							<h2 data-i18n>Related</h2>
+
+							<div class='left'>
+								<div>
+									<h3 data-i18n>Test results</h3>
+									<table class='scoreTable latestTable'>
+										<thead>
+											<tr>
+												<th class='nickname' data-i18n>Browser</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($fingerprint['results'] as $item): ?>
+											<tr>
+												<th class='nickname'><a href='//html5te.st/<?php echo $item->id; ?>'><?php echo $item->name; ?></a></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							
+							<div class='right'>
+								<div>
+		
+									<?php if ($fingerprint['browserVersion']['status'] != 'none'): ?>
+									<h3 data-i18n>Browsers</h3>
+									
+									<div class='column'>							
+										<table class='scoreTable'>
+											<thead>
+												<tr>
+													<th class='' data-i18n>Version</th>
+													<th class='count' data-i18n>Count</th>
+													<th class='percentage' data-i18n>Percentage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach($fingerprint['browserVersion']['items'] as $item): ?>
+												
+												<tr>
+													<td class=''><?php echo $item['name'] == '' ? 'Default' : $item['name']; ?></td>
+													<th class='count'><?php echo $item['value']; ?></th>
+													<th class='percentage'><?php echo $item['percentage']; ?>%</th>
+												</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+									<?php endif; ?>
+		
+		
+									<?php if ($fingerprint['osVersion']['status'] != 'none'): ?>
+									<h3 data-i18n>Operating Systems</h3>
+		
+									<div class='column'>							
+										<table class='scoreTable'>
+											<thead>
+												<tr>
+													<th class='' data-i18n>Version</th>
+													<th class='count' data-i18n>Count</th>
+													<th class='percentage' data-i18n>Percentage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach($fingerprint['osVersion']['items'] as $item): ?>
+												
+												<tr>
+													<td class=''><?php echo $item['name']; ?></td>
+													<th class='count'><?php echo $item['value']; ?></th>
+													<th class='percentage'><?php echo $item['percentage']; ?>%</th>
+												</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+									<?php endif; ?>
+		
+		
+									<?php if ($fingerprint['deviceModel']['status'] != 'none'): ?>
+									<h3 data-i18n>Devices</h3>
+									
+									<div class='column'>							
+										<table class='scoreTable'>
+											<thead>
+												<tr>
+													<th class='' data-i18n>Model</th>
+													<th class='count' data-i18n>Count</th>
+													<th class='percentage' data-i18n>Percentage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach($fingerprint['deviceModel']['items'] as $item): ?>
+												
+												<tr>
+													<td class=''><?php echo $item['name']; ?></td>
+													<th class='count'><?php echo $item['value']; ?></th>
+													<th class='percentage'><?php echo $item['percentage']; ?>%</th>
+												</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+									<?php endif; ?>
+								</div>
+							</div>
+
+							<hr>
+
+							<p>
+								Please note that all data shown above are unconfirmed test results. They could be fake or
+								belong to a different browser than the one listed. 
+							</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class='footer'>
+					<div>
+						<div class='copyright'>
+							<p>
+								Created by Niels Leenheer. 
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>
+							</p>
+							
+							<div id='cloudvps'>
+								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
+		<script src='//www.google-analytics.com/ga.js'></script>
+		<script>
+		<!--
+			try {
+				var pageTracker = _gat._getTracker("UA-68192-4");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		//-->
+		</script>
+	</body>
+</html>

@@ -98,7 +98,7 @@
 		function getByUniqueId($id) {
 			$res = mysql_query("
 				SELECT 
-					r.uniqueid AS id, 'Unique id' AS nickname, f.score, f.maximum, f.points, f.results, humanReadable, useragentHeader AS useragent, deviceWidth, deviceHeight 
+					r.uniqueid AS id, 'Unique id' AS nickname, f.score, f.maximum, f.points, f.results, humanReadable, useragentHeader AS useragent, deviceWidth, deviceHeight, f.fingerprint 
 				FROM 
 					results AS r
 					LEFT JOIN fingerprints AS f ON (r.fingerprint = f.fingerprint)
@@ -115,7 +115,7 @@
 		function getByFingerprint($id) {
 			$res = mysql_query("
 				SELECT 
-					score, points, results 
+					score, maximum, points, results 
 				FROM 
 					fingerprints
 				WHERE 
