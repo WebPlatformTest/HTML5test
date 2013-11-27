@@ -92,7 +92,7 @@ code {
 	
 					var payload = '{' +
 								  '"version": "5",' +
-								  '"revision": "0",' +
+								  '"revision": "' + (r.revision || '0') + '",' +
 								  '"uniqueid": "' + r.uniqueid + '",' +
 								  '"score": ' + r.score + ',' +
 								  '"maximum": ' + r.maximum + ',' +

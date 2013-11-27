@@ -8,6 +8,7 @@ Test = (function() {
 		PREFIX = 8, 
 		BLOCKED = 16;	
 	
+	var revision = 1;
 	
 	var blacklists = {};
 	
@@ -143,6 +144,7 @@ Test = (function() {
 			var uniqueid = (((1+Math.random())*0x1000000)|0).toString(16).substring(1) + ("0000000000" + (new Date().getTime() - new Date(2010,0,1).getTime()).toString(16)).slice(-10);
 
 			this.callback({
+				revision:	revision,
 				uniqueid:	uniqueid,
 				score:		this.results.points,
 				results:	results.join(','),
