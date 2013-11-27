@@ -28,7 +28,7 @@ Test = (function() {
 		
 		initialize: function(callback, error) {
 			blacklists = {
-				'form.file':						Browsers.isOs('iOS', '<', '6'), 
+				'form.file':						Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isOs('Windows Phone') || Browsers.isOs('iOS', '<', '6')  || Browsers.isOs('Android', '<', '2.2'), 
 				'form.date.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				'form.month.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				'form.week.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
