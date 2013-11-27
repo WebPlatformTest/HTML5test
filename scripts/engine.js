@@ -415,7 +415,7 @@ Test = (function() {
 		},
 		
 		getPoints: function() {
-			return this.data.passed > 0 ? this.data.award : 0;
+			return this.data.passed & YES ? this.data.award : 0;
 		},
 		
 		getMaximum: function() {
