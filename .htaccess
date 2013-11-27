@@ -33,6 +33,11 @@ RewriteRule ^results/search.html$			/backend/controllers/search.php
 RewriteRule ^results/related/(.+).html$ 	/backend/controllers/fingerprint.php?id=$1
 RewriteRule ^devicelab/?$					/backend/controllers/lab.php
 
+<FilesMatch ".+\.[woff|eot|svg|ttf]">
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatch>
 
 <FilesMatch "detect.html">
 <IfModule mod_headers.c>
