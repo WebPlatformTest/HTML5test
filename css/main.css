@@ -555,6 +555,16 @@ body.indexVisible > div#index button#indexbutton {
  *   Global: Text styles
  */
 
+.message {
+	background: #f6f6f6;
+	color: #000;
+
+	font-size: 0.75em;
+	line-height: 165%;
+	margin: 0;
+	padding: 10px;
+}
+
 .paper {
 	position:relative;
 	background: #fff;
