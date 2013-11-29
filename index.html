@@ -322,7 +322,8 @@
 					buttons.appendChild(button);
 
 					new Save(button, {
-						id:			r.uniqueid
+						id:			r.uniqueid,
+						onSave:		function() { submit('save', '{"uniqueid": "' + r.uniqueid + '"}'); }
 					});
 
 					var button = document.createElement('a');

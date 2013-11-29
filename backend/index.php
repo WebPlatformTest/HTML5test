@@ -99,6 +99,7 @@
 					SET 
 						version = "' . mysql_real_escape_string($payload->version) . '",
 						revision = "' . mysql_real_escape_string($payload->revision) . '",
+						timestamp = NOW(),
 						ip = "' . mysql_real_escape_string(get_ip_address()) . '",
 						uniqueid = "' . mysql_real_escape_string($payload->uniqueid) . '",
 						score = "' . mysql_real_escape_string($payload->score) . '",
@@ -156,6 +157,23 @@
 					SET 
 						status = -1,
 						comments = "' . mysql_real_escape_string($payload->value) . '"
+					WHERE
+						uniqueid = "' . mysql_real_escape_string($payload->uniqueid) . '"
+				');
+			}
+
+			break;
+			
+		case 'save':	
+			$payload = json_decode($_REQUEST['payload']);
+
+			if (!$readonly) {
+				mysql_query('
+					UPDATE
+						results
+					SET 
+						used = used + 1,
+						lastUsed = NOW()
 					WHERE
 						uniqueid = "' . mysql_real_escape_string($payload->uniqueid) . '"
 				');

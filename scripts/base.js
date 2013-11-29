@@ -377,6 +377,10 @@
 				"</p>" +
 				"<p>The unique id for this test is:<br><code>" + this.options.id + "</code></p>" +
 				"</div>";
+				
+			if (this.options.onSave) {
+				this.options.onSave();
+			}
 		},
 
 		open: function(e) {
