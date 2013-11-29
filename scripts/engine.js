@@ -72,6 +72,10 @@ Test = (function() {
 															Browsers.isBrowser('Espial') ||
 															Browsers.isBrowser('MachBlue XT') ||
 															Browsers.isEngine('Presto', '>=', '2.9')
+														) ||
+														Browsers.isType('gaming') && (
+															Browsers.isDevice('Xbox 360') || 
+															Browsers.isDevice('Xbox One')
 														)
 													)
 			};		
