@@ -1333,7 +1333,11 @@ var tests = [
 										id:		'webm',
 										name: 	'WebM support',
 										status:	'optional'
-									}
+									}, {
+                                                                                id:             'webmopus',
+                                                                                name:   'WebM Opus support',
+                                                                                status: 'optional'
+                                                                        }
 								]	
 					}, {
 						id:		'webrtc',
