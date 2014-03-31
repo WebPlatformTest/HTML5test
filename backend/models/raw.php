@@ -33,7 +33,7 @@
 						$where[] = 'score ' . $comparison . ' ' . intval($components[1]);	
 					}
 					
-					if (in_array($components[0], array('browserVersion', 'engineVersion', 'osVersion'))) {
+					if (in_array($components[0], array('browserVersion', 'engineVersion', 'osVersion', 'browserName', 'engineName', 'osName', 'deviceManufacturer', 'deviceType', 'deviceModel'))) {
 						if ($components[1] == "") {
 							$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';	
 						} else {
@@ -41,7 +41,7 @@
 						}
 					}
 
-					if (in_array($components[0], array('browserName', 'engineName', 'osName', 'deviceManufacturer', 'deviceType', 'deviceModel', 'useragent'))) {
+					if (in_array($components[0], array('useragent'))) {
 						if ($components[1] == "") {
 							$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';	
 						} else {
