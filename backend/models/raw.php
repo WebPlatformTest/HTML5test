@@ -94,6 +94,17 @@
 					'ago'			=>	time_ago(strtotime($row->timestamp))
 				);
 			}
+
+
+			mysql_query('
+				UPDATE
+					queries
+				SET
+					elapsedTime = ' . (time() - $start) . '
+				WHERE
+					id = ' . mysql_real_escape_string($id) . '
+			');
+			
 			
 			return $results;
 		}
@@ -121,17 +132,6 @@
 					'ago'			=>	time_ago(strtotime($row->timestamp))
 				);
 			}
-
-
-			mysql_query('
-				UPDATE
-					queries
-				SET
-					elapsedTime = ' . (time() - $start) . '
-				WHERE
-					id = ' . mysql_real_escape_string($id) . '
-			');
-			
 			
 			return $results;
 		}
