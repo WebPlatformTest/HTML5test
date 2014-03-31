@@ -55,6 +55,20 @@
 				}
 			}
 	
+			
+			
+			mysql_query('
+				INSERT INTO
+					queries
+				SET
+					query = "' . mysql_real_escape_string($query) . '",
+					compiledQuery = "' . mysql_real_escape_string(implode(' AND ', $where)) . '"
+			');
+			
+			$id = mysql_insert_id();
+			$start = time();
+
+
 			$results = array();
 			
 			$res = mysql_query('
@@ -106,6 +120,17 @@
 					'ago'			=>	time_ago(strtotime($row->timestamp))
 				);
 			}
+
+
+			mysql_query('
+				UPDATE
+					queries
+				SET
+					elapsedTime = ' . (time() - $start) . '
+				WHERE
+					id = ' . mysql_real_escape_string($id) . '
+			');
+			
 			
 			return $results;
 		}

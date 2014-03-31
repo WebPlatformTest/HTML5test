@@ -58,6 +58,14 @@ CREATE TABLE `fingerprints` (
   PRIMARY KEY (`fingerprint`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `queries` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `query` varchar(256) DEFAULT NULL,
+  `compiledQuery` varchar(512) DEFAULT NULL,
+  `elapsedTime` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `results` (
   `version` varchar(8) CHARACTER SET latin1 NOT NULL,
   `revision` int(11) NOT NULL DEFAULT '0',
