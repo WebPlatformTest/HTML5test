@@ -51,7 +51,7 @@
 				}
 				
 				else {
-					$where[] = 'humanReadable' . ($negative ? ' NOT' : '') . ' LIKE "%' . mysql_real_escape_string($components[0]) . '%"';
+					$where[] = ($negative ? '!' : '') . 'MATCH(humanReadable) AGAINST ("\"' . mysql_real_escape_string($components[0]) . '\"")';
 				}
 			}
 	

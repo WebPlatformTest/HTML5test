@@ -116,7 +116,9 @@ CREATE TABLE `results` (
   KEY `osVersion` (`osVersion`) USING BTREE,
   KEY `browserName` (`browserName`) USING BTREE,
   KEY `deviceManufacturerModel` (`deviceManufacturer`,`deviceModel`) USING BTREE,
-  KEY `deviceModel` (`deviceModel`) USING BTREE
+  KEY `deviceModel` (`deviceModel`) USING BTREE,
+  KEY `humanReadable` (`humanReadable`),
+  FULLTEXT KEY `humanReadableFulltext` (`humanReadable`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `scores` (
