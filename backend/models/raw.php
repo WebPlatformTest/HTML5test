@@ -77,7 +77,8 @@
 				FROM 
 					results
 				WHERE
-					' . implode(' AND ', $where) . '
+					' . implode(' AND ', $where) . ' AND
+					timestamp > DATE_SUB(NOW(), INTERVAL 2 MONTH)
 				ORDER BY 
 					timestamp DESC
 				LIMIT 100
