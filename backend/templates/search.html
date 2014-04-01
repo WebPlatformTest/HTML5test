@@ -68,6 +68,10 @@
 						<div class='scorePanel'>
 							<div id='searchField'></div>
 
+							<div id='searchBusy'>
+								<div id='loading'><div></div></div>
+							</div>
+
 							<div id='searchResults' style="display: none;">
 								<hr>
 								
@@ -115,6 +119,9 @@
 									window.history.replaceState([], document.title, '/results/search.html');
 								}
 								
+								var b = document.querySelector("#searchBusy");
+								b.className = "";
+
 								var t = document.querySelector("#searchResults");
 								t.style.display = "none";
 								
@@ -123,6 +130,9 @@
 							}
 							
 							function searchResults(query) {
+								var b = document.querySelector("#searchBusy");
+								b.className = "visible";
+							
 								if (window.history && window.history.replaceState) {
 									window.history.replaceState([], document.title, '/results/search.html?query=' + encodeURIComponent(query));
 								}
@@ -159,6 +169,9 @@
 
 								}
 								
+								var b = document.querySelector("#searchBusy");
+								b.className = "";
+
 								var o = document.querySelector("#searchResults");
 								o.style.display = "block";
 

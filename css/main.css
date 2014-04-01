@@ -827,7 +827,7 @@ body.indexVisible > div#index button#indexbutton {
 
 /********************************************
  *
- *   Global: UI elements > Search
+	 *   Global: UI elements > Search
  */
 
 .search {
@@ -885,6 +885,24 @@ body.indexVisible > div#index button#indexbutton {
 
 #searchResults {
 	width: 100%;
+}
+
+#searchBusy #loading {
+	min-height: inherit;
+	height: 0px;
+	overflow: hidden;
+	
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+#searchBusy.visible #loading {
+	height: 300px;
+}
+#searchBusy #loading div {
+	font-size: 22px !important;
 }
 
 
