@@ -847,6 +847,7 @@ body.indexVisible > div#index button#indexbutton {
 	right: 0;
 	height: 40px;
 	padding-left: 40px;
+	width: 100%;
 
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-size: 1em;
