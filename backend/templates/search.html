@@ -192,6 +192,34 @@
 <?php endif; ?>
 
 						</script>
+
+						<hr>
+	
+						<h3 data-i18n>Examples</h3>
+						<div class='text no-columns' data-i18n='search-explaination'>
+							<dl>
+								<dt><a href='?query=deviceType:mobile osName:Windows'><code>deviceType:mobile osName:Windows</code></a></dt>
+								<dd>All mobile devices running Windows</dd>
+								
+								<dt><a href='?query=deviceManufacturer:Samsung -osName:Android'><code>deviceManufacturer:Samsung -osName:Android</code></a></dt>
+								<dd>All non-Android devices created by Samsung</dd>
+								
+								<dt><a href='?query=osName:Android osVersion:4.4'><code>osName:Android osVersion:4.4</code></a></dt>
+								<dd>All devices running Android 4.4</dd>
+								
+								<dt><a href='?query=browserName:Chrome osName:"Mac OS X"'><code>browserName:Chrome osName:"Mac OS X"</code></a></dt>
+								<dd>Chrome running on OS X</dd>
+								
+								<dt><a href='?query=deviceModel:iPhone'><code>deviceModel:iPhone</code></a></dt>
+								<dd>All iPhones</dd>
+								
+								<dt><a href='?query=engineName:Gecko -browserName:Firefox'><code>engineName:Gecko -browserName:Firefox</code></a></dt>
+								<dd>All Gecko based browser except for Firefox</dd>
+								
+								<dt><a href='?query=score:500+'><code>score:500+</code></a></dt>
+								<dd>All results with a score higher than or equal to 500</dd>
+							</dd>
+						</div>
 					</div>
 				</div>
 				

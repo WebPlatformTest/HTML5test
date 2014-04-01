@@ -646,6 +646,12 @@ body.indexVisible > div#index button#indexbutton {
 	column-gap: 16px;
 }
 
+.paper > div .text.no-columns {
+	-webkit-column-count: 1 !important;
+	-moz-column-count: 1 !important;
+	column-count: 1 !important;
+}
+
 .break-2 {
 	-webkit-column-break-before: always;
 	break-before: always;
@@ -708,6 +714,17 @@ body.indexVisible > div#index button#indexbutton {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 	font-weight: bold;
 	color: #555;
+}
+
+
+.paper > div .text dl {
+}
+.paper > div .text dl dt {
+	margin: 1em 0 0;
+	
+}
+.paper > div .text dl dd {
+	font-size: 0.9em;
 }
 
 .break {
