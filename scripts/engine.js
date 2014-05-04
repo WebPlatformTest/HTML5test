@@ -550,6 +550,34 @@ Test = (function() {
 	};
 	
 	
+	function testResponsive (results) { this.initialize(results); }			
+	testResponsive.prototype = {
+		initialize: function(results) {
+			this.section = results.getSection({
+				id:		'responsive'
+			});
+			
+			this.section.setItem({
+				id:		'picture',
+				passed:	'HTMLPictureElement' in window, 
+				value: 	2
+			});
+
+			this.section.setItem({
+				id:		'srcset',
+				passed:	'srcset' in document.createElement('img'), 
+				value: 	2
+			});
+
+			this.section.setItem({
+				id:		'sizes',
+				passed:	'sizes' in document.createElement('img'), 
+				value: 	1
+			});
+		}
+	};
+
+							
 	function testCanvas (results) { this.initialize(results); }			
 	testCanvas.prototype = {
 		initialize: function(results) {
