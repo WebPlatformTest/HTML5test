@@ -1331,11 +1331,7 @@ var tests = [
 										status:	'optional'
 									}, { 
 										id:		'webm',
-										name: 	'WebM Vorbis support',
-										status:	'optional'
-									}, { 
-										id:		'webmopus',
-										name: 	'WebM Opus support',
+										name: 	'WebM support',
 										status:	'optional'
 									}
 								]	

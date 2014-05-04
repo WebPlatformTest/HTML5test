@@ -956,13 +956,6 @@ Test = (function() {
 			
 			this.section.setItem(item);
 
-			var item = {
-				id:		'webmopus',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="opus"') 
-			};
-			
-			this.section.setItem(item);
-
 
 			this.section.setItem({
 				id:			'webaudio',
