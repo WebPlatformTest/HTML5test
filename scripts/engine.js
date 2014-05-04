@@ -1054,7 +1054,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:   		'pointerevents',
-				passed:  	!!window.navigator.pointerEnabled ? YES : !!window.navigator.msPointerEnabled || !!window.navigator.mozPointerEnabled || !!window.navigator.webkitPointerEnabled ? YES | PREFIX : NO,
+				passed:  	!!window.navigator.maxTouchPoints  ? YES : !!window.navigator.msMaxTouchPoints || !!window.navigator.mozMaxTouchPoints || !!window.navigator.webkitMaxTouchPoints ? YES | PREFIX : NO,
 				value:   	5
 			});
 		}
