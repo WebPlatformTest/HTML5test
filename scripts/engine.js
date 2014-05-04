@@ -12,153 +12,9 @@ Test = (function() {
 	
 	var blacklists = {};
 	
-	function test (callback, error) { this.initialize(callback, error) }
-	test.prototype = {
-		tests: [
-
-			/* Semantics */						testParsing, testElements, testForm, testMicrodata,
-			/* Offline & Storage */				testOffline, testStorage, testFiles,
-			/* Device Access */					testGeolocation, testOutput, testInput,
-			/* Connectivity */					testCommunication,
-			/* Multimedia */					testVideo, testAudio, testWebRTC,
-			/* 3D, Graphics & Effects */		testCanvas, testWebGL, testAnimation,
-			/* Performance & Integration */		testInteraction, testPerformance, testSecurity, testHistory,
-			
-			testOther
-		],
-		
-		initialize: function(callback, error) {
-			blacklists = {
-				'form.file':						Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isOs('Windows Phone') || Browsers.isOs('iOS', '<', '6')  || Browsers.isOs('Android', '<', '2.2'), 
-				'form.date.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.month.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.week.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.time.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.datetime-local.ui':			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.color.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser'),
-				'form.range.ui':					Browsers.isBrowser('UC Browser'),
-				'form.progress.element':			Browsers.isBrowser('Baidu Browser'),
-				'files.fileSystem':					Browsers.isOs('BlackBerry Tablet OS'),
-				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
-				'location.geolocation':				Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser'),
-				'location.orientation':				Browsers.isBrowser('Baidu Browser'),
-				'output.notifications':				Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-				'output.requestFullScreen':			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
-				'video.subtitle':					Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-				'webgl.context':					Browsers.isBrowser('Baidu Browser'),
-				
-				'interaction.dragdrop':				!(  Browsers.isType('desktop') ||
-														Browsers.isType('mobile', 'tablet', 'media') && (
-															Browsers.isBrowser('Opera') && Browsers.isEngine('Presto')
-														) 
-													),
-
-				'interaction.editing':				!(	Browsers.isType('desktop') ||
-														Browsers.isType('mobile', 'tablet', 'media') && (
-															Browsers.isOs('iOS', '>=', '5') ||		
-															Browsers.isOs('Android', '>=', '4') || 
-															Browsers.isOs('Windows Phone', '>=', '7.5') || 
-															Browsers.isOs('BlackBerry') || 
-															Browsers.isOs('BlackBerry OS') || 
-															Browsers.isOs('BlackBerry Tablet OS') || 
-															Browsers.isOs('Meego') || 
-															Browsers.isOs('Tizen') || 
-															Browsers.isEngine('Gecko') ||
-															Browsers.isEngine('Presto') || 
-															Browsers.isBrowser('Chrome') ||
-															Browsers.isBrowser('Polaris', '>=', '8')
-														) ||
-														Browsers.isType('television') && (
-															Browsers.isBrowser('Espial') ||
-															Browsers.isBrowser('MachBlue XT') ||
-															Browsers.isEngine('Presto', '>=', '2.9')
-														) ||
-														Browsers.isType('gaming') && (
-															Browsers.isDevice('Xbox 360') || 
-															Browsers.isDevice('Xbox One')
-														)
-													)
-			};		
-			
-			try {
-				this.backgroundTasks = [];
-				this.backgroundIds = {};
-				this.backgroundId = 0;
-				
-				this.callback = callback;
-				
-				this.results = new results(this);
-				
-				for (var s = 0; s < this.tests.length; s++) {
-					new (this.tests[s])(this.results);
-				}
 	
-				this.waitForBackground();
-			}
-			catch(e) {
-				error(e);
-			}
-		},
-		
-		waitForBackground: function() {
-			var that = this;
 
-			window.setTimeout(function() {
-				that.checkForBackground.call(that);
-			}, 300);
-		},
-		
-		checkForBackground: function() {
-			var running = 0;
-			for (var task = 0; task < this.backgroundTasks.length; task++) { running += this.backgroundTasks[task] }
-
-			if (running) {
-				this.waitForBackground();
-			} else {
-				this.finished();
-			}				
-		},
-		
-		startBackground: function(id) {
-			var i = this.backgroundId++;
-			this.backgroundIds[id] = i;
-			this.backgroundTasks[i] = 1;
-		},
-		
-		stopBackground: function(id) {
-			this.backgroundTasks[this.backgroundIds[id]] = 0;
-		},
-		
-		finished: function() {
-			var results = [], points = [];
-			
-			collectResults(0, '', this.results);
-			function collectResults(level, prefix, data) {
-				if (data.items) {
-					for (var i = 0; i < data.items.length; i++) {
-						if (level == 0) points.push(data.items[i].data.id + '=' + data.items[i].points + '/' + data.items[i].max);
-						if (typeof data.items[i].data.passed != 'undefined') results.push(prefix + data.items[i].data.id + '=' + (+data.items[i].data.passed));
-						if (data.items[i].items) {
-							collectResults(level + 1, prefix + data.items[i].data.id + '-', data.items[i]);
-						}
-					}
-				}
-			}
-			
-			var uniqueid = (((1+Math.random())*0x1000000)|0).toString(16).substring(1) + ("0000000000" + (new Date().getTime() - new Date(2010,0,1).getTime()).toString(16)).slice(-10);
-
-			this.callback({
-				revision:	revision,
-				uniqueid:	uniqueid,
-				score:		this.results.points,
-				results:	results.join(','),
-				points:		points.join(','),
-				maximum:	this.results.max
-			});
-		}
-	}
-
-	function results (parent) { this.initialize(parent) }
+	function results (parent) { this.initialize(parent); }
 	results.prototype = {
 		initialize: function(parent) {
 			this.parent = parent;
@@ -180,7 +36,7 @@ Test = (function() {
 		},
 		
 		getSection: function(data) {
-			var i = new section(this, data)
+			var i = new section(this, data);
 			this.items.push(i);
 			return i;
 		},
@@ -202,7 +58,7 @@ Test = (function() {
 			var data = {
 				points:		this.points,
 				items:		{}
-			}
+			};
 			
 			for (var i = 0; i < this.items.length; i++) {
 				data.items[this.items[i].data.id] = this.items[i].retrieve();
@@ -210,9 +66,9 @@ Test = (function() {
 
 			return data;
 		}
-	}
+	};
 
-	function section (parent, data) { this.initialize(parent, data) }
+	function section (parent, data) { this.initialize(parent, data); }
 	section.prototype = {
 		initialize: function(parent, data) {
 			this.items = [];
@@ -282,9 +138,9 @@ Test = (function() {
 
 			return data;
 		}
-	}
+	};
 	
-	function group (parent, data) { this.initialize(parent, data) }
+	function group (parent, data) { this.initialize(parent, data); }
 	group.prototype = {
 		initialize: function(parent, data) {
 			this.items = [];
@@ -363,9 +219,9 @@ Test = (function() {
 
 			return data;
 		}
-	}
+	};
 	
-	function item (parent, data) { this.initialize(parent, data) }
+	function item (parent, data) { this.initialize(parent, data); }
 	item.prototype = {
 		initialize: function(parent, data) {
 			this.parent = parent;
@@ -381,7 +237,7 @@ Test = (function() {
 		},
 		
 		update: function(data) {
-			for (key in data) {
+			for (var key in data) {
 				this.data[key] = data[key];
 			}
 
@@ -449,7 +305,7 @@ Test = (function() {
 			
 			return data;
 		}
-	}
+	};
 	
 	
 	var isEventSupported = (function(){
@@ -526,7 +382,7 @@ Test = (function() {
 		return getRenderedStyle;
 	})();
 
-	function testParsing (results) { this.initialize(results) }			
+	function testParsing (results) { this.initialize(results); }			
 	testParsing.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -694,7 +550,7 @@ Test = (function() {
 	};
 	
 	
-	function testCanvas (results) { this.initialize(results) }			
+	function testCanvas (results) { this.initialize(results); }			
 	testCanvas.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -876,7 +732,7 @@ Test = (function() {
 	};
 
 							
-	function testVideo (results) { this.initialize(results) }			
+	function testVideo (results) { this.initialize(results); }			
 	testVideo.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -1003,7 +859,7 @@ Test = (function() {
 	};
 	
 	
-	function testAudio (results) { this.initialize(results) }			
+	function testAudio (results) { this.initialize(results); }			
 	testAudio.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -1107,7 +963,7 @@ Test = (function() {
 	};
 	
 	
-	function testWebRTC (results) { this.initialize(results) }			
+	function testWebRTC (results) { this.initialize(results); }			
 	testWebRTC.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -1134,9 +990,9 @@ Test = (function() {
 				value: 	5
 			});
 		}
-	}
+	};
 
-	function testInput (results) { this.initialize(results) }			
+	function testInput (results) { this.initialize(results); }			
 	testInput.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -1167,10 +1023,10 @@ Test = (function() {
 				value:   	5
 			});
 		}
-	}
+	};
 
 
-	function testElements (results) { this.initialize(results) }			
+	function testElements (results) { this.initialize(results); }			
 	testElements.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -1539,7 +1395,7 @@ Test = (function() {
 		}
 	};		
 	
-	function testForm (results) { this.initialize(results) }			
+	function testForm (results) { this.initialize(results); }			
 	testForm.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -2512,7 +2368,7 @@ Test = (function() {
 		}
 	};
 
-	function testInteraction (results) { this.initialize(results) }			
+	function testInteraction (results) { this.initialize(results); }			
 	testInteraction.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -2718,7 +2574,7 @@ Test = (function() {
 		}			
 	};
 
-	function testHistory (results) { this.initialize(results) }			
+	function testHistory (results) { this.initialize(results); }			
 	testHistory.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -2733,7 +2589,7 @@ Test = (function() {
 		}			
 	};
 
-	function testMicrodata (results) { this.initialize(results) }			
+	function testMicrodata (results) { this.initialize(results); }			
 	testMicrodata.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -2770,7 +2626,7 @@ Test = (function() {
 		}
 	};					
 
-	function testOffline (results) { this.initialize(results) }			
+	function testOffline (results) { this.initialize(results); }			
 	testOffline.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -2808,7 +2664,7 @@ Test = (function() {
 		}
 	};
 
-	function testSecurity (results) { this.initialize(results) }			
+	function testSecurity (results) { this.initialize(results); }			
 	testSecurity.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -2875,7 +2731,7 @@ Test = (function() {
 		}
 	};
 
-	function testGeolocation (results) { this.initialize(results) }			
+	function testGeolocation (results) { this.initialize(results); }			
 	testGeolocation.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -2896,7 +2752,7 @@ Test = (function() {
 		}
 	};
 
-	function testWebGL (results) { this.initialize(results) }			
+	function testWebGL (results) { this.initialize(results); }			
 	testWebGL.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -2926,7 +2782,7 @@ Test = (function() {
 		}
 	};
 
-	function testCommunication (results) { this.initialize(results) }			
+	function testCommunication (results) { this.initialize(results); }			
 	testCommunication.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -3161,7 +3017,7 @@ Test = (function() {
 		}
 	};		
 
-	function testFiles (results) { this.initialize(results) }			
+	function testFiles (results) { this.initialize(results); }			
 	testFiles.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -3182,7 +3038,7 @@ Test = (function() {
 		}
 	};
 	
-	function testStorage (results) { this.initialize(results) }			
+	function testStorage (results) { this.initialize(results); }			
 	testStorage.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -3290,7 +3146,7 @@ Test = (function() {
 		}
 	};
 
-	function testPerformance (results) { this.initialize(results) }			
+	function testPerformance (results) { this.initialize(results); }			
 	testPerformance.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -3375,7 +3231,7 @@ Test = (function() {
 		}
 	};
 	
-	function testOutput (results) { this.initialize(results) }			
+	function testOutput (results) { this.initialize(results); }			
 	testOutput.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -3399,7 +3255,7 @@ Test = (function() {
 	};			
 	
 
-	function testOther (results) { this.initialize(results) }			
+	function testOther (results) { this.initialize(results); }			
 	testOther.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -3492,7 +3348,7 @@ Test = (function() {
 	};			
 	
 	
-	function testAnimation (results) { this.initialize(results) }			
+	function testAnimation (results) { this.initialize(results); }			
 	testAnimation.prototype = {
 		initialize: function(results) {
 			this.section = results.getSection({
@@ -3503,6 +3359,154 @@ Test = (function() {
 				id:			'requestAnimationFrame',
 				passed:		!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO,
 				value: 		5
+			});
+		}
+	};
+	
+	
+	function test (callback, error) { this.initialize(callback, error); }
+	test.prototype = {
+		tests: [
+
+			/* Semantics */						testParsing, testElements, testForm, testMicrodata,
+			/* Offline & Storage */				testOffline, testStorage, testFiles,
+			/* Device Access */					testGeolocation, testOutput, testInput,
+			/* Connectivity */					testCommunication,
+			/* Multimedia */					testVideo, testAudio, testWebRTC,
+			/* 3D, Graphics & Effects */		testResponsive, testCanvas, testWebGL, testAnimation,
+			/* Performance & Integration */		testInteraction, testPerformance, testSecurity, testHistory,
+			
+			testOther
+		],
+		
+		initialize: function(callback, error) {
+			blacklists = {
+				'form.file':						Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isDevice('Playstation 4') || Browsers.isOs('Windows Phone') || Browsers.isOs('iOS', '<', '6')  || Browsers.isOs('Android', '<', '2.2'), 
+				'form.date.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.month.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.week.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.time.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.datetime-local.ui':			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+				'form.color.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser'),
+				'form.range.ui':					Browsers.isBrowser('UC Browser'),
+				'form.progress.element':			Browsers.isBrowser('Baidu Browser'),
+				'files.fileSystem':					Browsers.isOs('BlackBerry Tablet OS'),
+				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
+				'location.geolocation':				Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser'),
+				'location.orientation':				Browsers.isBrowser('Baidu Browser'),
+				'output.notifications':				Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+				'output.requestFullScreen':			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
+				'video.subtitle':					Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+				'webgl.context':					Browsers.isBrowser('Baidu Browser'),
+				
+				'interaction.dragdrop':				!(  Browsers.isType('desktop') ||
+														Browsers.isType('mobile', 'tablet', 'media') && (
+															Browsers.isBrowser('Opera') && Browsers.isEngine('Presto')
+														) 
+													),
+
+				'interaction.editing':				!(	Browsers.isType('desktop') ||
+														Browsers.isType('mobile', 'tablet', 'media') && (
+															Browsers.isOs('iOS', '>=', '5') ||		
+															Browsers.isOs('Android', '>=', '4') || 
+															Browsers.isOs('Windows Phone', '>=', '7.5') || 
+															Browsers.isOs('BlackBerry') || 
+															Browsers.isOs('BlackBerry OS') || 
+															Browsers.isOs('BlackBerry Tablet OS') || 
+															Browsers.isOs('Meego') || 
+															Browsers.isOs('Tizen') || 
+															Browsers.isEngine('Gecko') ||
+															Browsers.isEngine('Presto') || 
+															Browsers.isBrowser('Chrome') ||
+															Browsers.isBrowser('Polaris', '>=', '8')
+														) ||
+														Browsers.isType('television') && (
+															Browsers.isBrowser('Espial') ||
+															Browsers.isBrowser('MachBlue XT') ||
+															Browsers.isEngine('Presto', '>=', '2.9')
+														) ||
+														Browsers.isType('gaming') && (
+															Browsers.isDevice('Xbox 360') || 
+															Browsers.isDevice('Xbox One') || 
+															Browsers.isDevice('Playstation 4')
+														)
+													)
+			};		
+			
+			try {
+				this.backgroundTasks = [];
+				this.backgroundIds = {};
+				this.backgroundId = 0;
+				
+				this.callback = callback;
+				
+				this.results = new results(this);
+				
+				for (var s = 0; s < this.tests.length; s++) {
+					new (this.tests[s])(this.results);
+				}
+	
+				this.waitForBackground();
+			}
+			catch(e) {
+				error(e);
+			}
+		},
+		
+		waitForBackground: function() {
+			var that = this;
+
+			window.setTimeout(function() {
+				that.checkForBackground.call(that);
+			}, 300);
+		},
+		
+		checkForBackground: function() {
+			var running = 0;
+			for (var task = 0; task < this.backgroundTasks.length; task++) { running += this.backgroundTasks[task] }
+
+			if (running) {
+				this.waitForBackground();
+			} else {
+				this.finished();
+			}				
+		},
+		
+		startBackground: function(id) {
+			var i = this.backgroundId++;
+			this.backgroundIds[id] = i;
+			this.backgroundTasks[i] = 1;
+		},
+		
+		stopBackground: function(id) {
+			this.backgroundTasks[this.backgroundIds[id]] = 0;
+		},
+		
+		finished: function() {
+			var results = [], points = [];
+			
+			collectResults(0, '', this.results);
+			function collectResults(level, prefix, data) {
+				if (data.items) {
+					for (var i = 0; i < data.items.length; i++) {
+						if (level == 0) points.push(data.items[i].data.id + '=' + data.items[i].points + '/' + data.items[i].max);
+						if (typeof data.items[i].data.passed != 'undefined') results.push(prefix + data.items[i].data.id + '=' + (+data.items[i].data.passed));
+						if (data.items[i].items) {
+							collectResults(level + 1, prefix + data.items[i].data.id + '-', data.items[i]);
+						}
+					}
+				}
+			}
+			
+			var uniqueid = (((1+Math.random())*0x1000000)|0).toString(16).substring(1) + ("0000000000" + (new Date().getTime() - new Date(2010,0,1).getTime()).toString(16)).slice(-10);
+
+			this.callback({
+				revision:	revision,
+				uniqueid:	uniqueid,
+				score:		this.results.points,
+				results:	results.join(','),
+				points:		points.join(','),
+				maximum:	this.results.max
 			});
 		}
 	};
