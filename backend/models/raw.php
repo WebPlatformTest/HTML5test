@@ -75,10 +75,9 @@
 				SELECT
 					timestamp, uniqueid, score, humanReadable
 				FROM 
-					results
+					indices
 				WHERE
-					' . implode(' AND ', $where) . ' AND
-					timestamp > DATE_SUB(NOW(), INTERVAL 2 MONTH)
+					' . implode(' AND ', $where) . '
 				ORDER BY 
 					timestamp DESC
 				LIMIT 100

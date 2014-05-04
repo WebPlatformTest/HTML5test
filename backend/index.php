@@ -133,6 +133,26 @@
 				');
 
 				mysql_query('
+					REPLACE INTO 
+						indices
+					SET 
+						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
+						score = "' . mysql_real_escape_string($payload->score) . '",
+						humanReadable = "' . mysql_real_escape_string($payload->humanReadable) . '",
+						browserName = "' . mysql_real_escape_string($payload->browserName) . '",
+						browserVersion = "' . mysql_real_escape_string($payload->browserVersion) . '",
+						engineName = "' . mysql_real_escape_string($payload->engineName) . '",
+						engineVersion = "' . mysql_real_escape_string($payload->engineVersion) . '",
+						osName = "' . mysql_real_escape_string($payload->osName) . '",
+						osVersion = "' . mysql_real_escape_string($payload->osVersion) . '",
+						deviceManufacturer = "' . mysql_real_escape_string($payload->deviceManufacturer) . '",
+						deviceModel = "' . mysql_real_escape_string($payload->deviceModel) . '",
+						deviceType = "' . mysql_real_escape_string($payload->deviceType) . '",
+						timestamp = NOW(),
+						uniqueid = "' . mysql_real_escape_string($payload->uniqueid) . '"
+				');
+				
+				mysql_query('
 					INSERT INTO 
 						fingerprints
 					SET 

@@ -58,18 +58,35 @@ CREATE TABLE `fingerprints` (
   PRIMARY KEY (`fingerprint`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `queries` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `query` varchar(256) DEFAULT NULL,
-  `compiledQuery` varchar(512) DEFAULT NULL,
-  `elapsedTime` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+CREATE TABLE `indices` (
+  `fingerprint` char(32) NOT NULL DEFAULT '',
+  `score` int(11) NOT NULL,
+  `humanReadable` char(128) NOT NULL DEFAULT '',
+  `browserName` char(64) NOT NULL,
+  `browserVersion` char(20) NOT NULL,
+  `engineName` char(60) NOT NULL,
+  `engineVersion` char(20) NOT NULL,
+  `osName` char(64) NOT NULL,
+  `osVersion` char(20) NOT NULL,
+  `deviceManufacturer` char(60) NOT NULL,
+  `deviceModel` char(64) NOT NULL,
+  `deviceType` char(16) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `uniqueid` char(20) NOT NULL,
+  PRIMARY KEY (`fingerprint`,`humanReadable`),
+  KEY `timestamp` (`timestamp`) USING BTREE,
+  KEY `browser` (`browserName`,`browserVersion`) USING BTREE,
+  KEY `os` (`osName`,`osVersion`) USING BTREE,
+  KEY `engine` (`engineName`,`engineVersion`) USING BTREE,
+  KEY `device` (`deviceManufacturer`,`deviceModel`) USING BTREE,
+  KEY `deviceModel` (`deviceModel`) USING BTREE,
+  FULLTEXT KEY `humanReadable` (`humanReadable`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `results` (
   `version` varchar(8) CHARACTER SET latin1 NOT NULL,
   `revision` int(11) NOT NULL DEFAULT '0',
-  `timestamp` datetime NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip` varchar(16) CHARACTER SET latin1 NOT NULL,
   `uniqueid` varchar(20) CHARACTER SET latin1 NOT NULL,
   `score` int(11) NOT NULL,
@@ -100,10 +117,9 @@ CREATE TABLE `results` (
   `camouflage` int(11) DEFAULT NULL,
   `features` varchar(64) NOT NULL DEFAULT '',
   `headers` text NOT NULL,
-  `comments` text,
   `fingerprint` varchar(32) NOT NULL DEFAULT '',
-  `used` int(11) DEFAULT '0',
-  `lastUsed` datetime DEFAULT NULL,
+  `points` text,
+  `results` text,
   PRIMARY KEY (`uniqueid`),
   UNIQUE KEY `uniqueid` (`uniqueid`),
   KEY `timestamp` (`timestamp`) USING BTREE,
@@ -116,9 +132,7 @@ CREATE TABLE `results` (
   KEY `osVersion` (`osVersion`) USING BTREE,
   KEY `browserName` (`browserName`) USING BTREE,
   KEY `deviceManufacturerModel` (`deviceManufacturer`,`deviceModel`) USING BTREE,
-  KEY `deviceModel` (`deviceModel`) USING BTREE,
-  KEY `humanReadable` (`humanReadable`),
-  FULLTEXT KEY `humanReadableFulltext` (`humanReadable`)
+  KEY `deviceModel` (`deviceModel`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `scores` (
