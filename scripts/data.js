@@ -1402,7 +1402,7 @@ var tests = [
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#path-objects' ],
-													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#path2d-objects' ]
+													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#path-objects' ]
 												]
 									}, {
 										id:		'ellipse',
