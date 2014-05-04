@@ -2923,26 +2923,6 @@ Test = (function() {
 				passed:		passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO,
 				value: 		20
 			});
-
-
-
-			var contexts = ['webgl2']; 
-			var passed = false;
-    
-	        for (var b = -1, len = contexts.length; ++b < len;) {
-	            try {
-	                if (element.getContext(contexts[b])) {
-	                	passed = true;
-	                	break;
-	                };	
-	            } catch(e){	}
-	        }
-				
-			this.section.setItem({
-				id:			'context2',
-				passed:		passed, 
-				value: 		5
-			});
 		}
 	};
 

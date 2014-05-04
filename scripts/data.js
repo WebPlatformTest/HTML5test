@@ -1370,6 +1370,32 @@ var tests = [
 		column:	'right',
 		items:	[
 					{
+						id:		'responsive',
+						status:	'proposal',
+						name: 	'Responsive images',
+						items:	[
+									{
+										id:			'picture',
+										name: 		'<code>video</code> element', 
+										value:		2, 
+										urls:		[
+														[ 'ricg', 'http://picture.responsiveimages.org' ]
+													]
+									}, {
+										id:			'srcset',
+										name: 		'<code>srcset</code> attribute',
+										value:		2, 
+										url:		'http://www.w3.org/html/wg/drafts/srcset/w3c-srcset/'
+									}, {
+										id:			'sizes',
+										name: 		'<code>sizes</code> attribute',
+										value:		1, 
+										urls:		[
+														[ 'ricg', 'http://picture.responsiveimages.org/#parse-sizes-attr' ]
+													]
+									} 
+								]
+					}, {
 						id:		'canvas',
 						name:	'2D Graphics',
 						status:	'stable',
@@ -1474,15 +1500,6 @@ var tests = [
 														[ 'khronos', 'http://www.khronos.org/registry/webgl/specs/latest/' ], 
 														[ 'wp',  '/webgl' ], 
 														[ 'mdn', '/docs/WebGL' ]
-													]
-				
-									}, {
-										id:			'context2',
-										name: 		'WebGL 2 3D graphics',
-										status:		'experimental',
-										value:		5, 
-										urls:		[
-														[ 'khronos', 'http://www.khronos.org/registry/webgl/specs/latest/2.0/' ]
 													]
 				
 									}
