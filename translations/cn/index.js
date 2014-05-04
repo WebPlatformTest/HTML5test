@@ -49,6 +49,8 @@ var translation = {
 	'H.264 support':							'支持 H.264',
 	'Ogg Theora support':						'支持 Ogg Theora',
 	'WebM support':								'支持 WebM',
+	'WebM with VP8 support':					'支持 WebM VP8',
+	'WebM with VP9 support':					'支持 WebM VP9',
 	
 	'Audio':									'音频',
 	'<code>audio</code> element':				'音频元素',
@@ -58,6 +60,8 @@ var translation = {
 	'MP3 support':								'支持 MP3',
 	'Ogg Vorbis support':						'支持 Ogg Vorbis',
 	'WebM support':								'支持 WebM',
+	'WebM with Vorbis support':				        '支持 WebM Vorbis',
+	'WebM with Opus support':					'支持 WebM Opus',
 	
 	'Elements':									'元素',
 	'Embedding custom non-visible data':		'嵌入不可见的自定义数据',
