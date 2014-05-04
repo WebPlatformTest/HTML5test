@@ -1380,7 +1380,7 @@ var tests = [
 						items:	[
 									{
 										id:			'picture',
-										name: 		'<code>video</code> element', 
+										name: 		'<code>picture</code> element', 
 										value:		2, 
 										urls:		[
 														[ 'ricg', 'http://picture.responsiveimages.org' ]
