@@ -961,7 +961,7 @@ Test = (function() {
 				/* Known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string */
 				if (this.element.canPlayType('video/nonsense') == 'no') passed = false;
 				
-				/* Known bug in Gecko that always says "probably" when asked about WebM, even when the codecs string is not present */
+				/* Known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present */
 				if (this.element.canPlayType('video/webm') == 'probably') passed = false;
 				
 				/* Known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around */
@@ -1068,6 +1068,13 @@ Test = (function() {
 			var item = {
 				id:		'webm',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
+			};
+			
+			this.section.setItem(item);
+
+			var item = {
+				id:		'webmopus',
+				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="opus"') 
 			};
 			
 			this.section.setItem(item);
