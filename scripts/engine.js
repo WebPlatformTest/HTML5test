@@ -3379,6 +3379,33 @@ Test = (function() {
 				value:  	3 
 			});
 
+
+
+			var passed = 'Promise' in window ? YES | OLD : NO;
+
+			if ('Promise' in window &&
+			    'resolve' in window.Promise &&
+			    'reject' in window.Promise &&
+			    'all' in window.Promise &&
+			    'race' in window.Promise &&
+			    (function() {
+			      var resolve;
+			      new window.Promise(function(r) { resolve = r; });
+			      return typeof resolve === 'function';
+			    }())) 
+			{
+				passed = YES;	    
+			}
+    
+			this.section.setItem({
+				id:   		'promises',
+				passed:   	passed,
+				value:  	1 
+			});
+    
+    
+
+
 			this.section.setItem({
 				id:			'pagevisiblity',
 				passed:		'visibilityState' in document ? YES : 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document ? YES | PREFIX : NO,

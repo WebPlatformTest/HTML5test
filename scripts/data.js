@@ -2184,6 +2184,14 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/dom/#mutation-observers' ],
 														[ 'mdn', '/DOM/MutationObserver' ]
 													]
+									}, {
+										id: 		'promises',
+										name:   	'Promises',
+										status:		'experimental',
+										value:		1, 
+										urls:		[
+														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Promise' ]
+													]
 									},
 									
 									'<strong>Other</strong>',
