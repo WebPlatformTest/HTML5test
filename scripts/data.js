@@ -2101,8 +2101,8 @@ var tests = [
 										id:			'fileSystem',
 										name: 		'File API: Directories and System', 
 										status:		'rejected',
-										url:    	[
-														[ 'w3c', 'http://www.w3.org/TR/file-system-api/' ]
+										urls:    	[
+														[ 'w3c', 'http://www.w3.org/TR/file-system-api/' ],
 														[ 'wp',  '/apis/filesystem' ]
 													]
 									}
