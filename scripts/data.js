@@ -36,11 +36,11 @@ var tests = [
 												]
 									}, 
 									
-									'<em>HTML5 defines rules for embedding SVG and MathML inside a regular HTML document. Support for SVG and MathML is not required though, so no actual points are awarded if your browser supports embedding these two technologies.</em>',
+									'<em>HTML5 defines rules for embedding SVG and MathML inside a regular HTML document. The following tests only check if the browser is following the HTML5 parsing rules for inline SVG and MathML, not if the browser can actually understand and render it.</em>',
 									
 									{
 										id:		'svg',
-										name: 	'SVG in <code>text/html</code>', 
+										name: 	'Parsing inline SVG', 
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#svg' ],
 													[ 'mdn', '/SVG' ]
@@ -48,7 +48,7 @@ var tests = [
 												
 									}, {
 										id:		'mathml',
-										name: 	'MathML in <code>text/html</code>', 
+										name: 	'Parsing inline MathML', 
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#mathml' ],
 													[ 'mdn', '/MathML' ]
