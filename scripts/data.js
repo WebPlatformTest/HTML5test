@@ -2093,7 +2093,14 @@ var tests = [
 														[ 'wp',  '/apis/file' ],
 														[ 'mdn', '/Using_files_from_web_applications' ]
 													]
-									}, 
+									}, {
+										id:			'getFileSystem',
+										name: 		'FileSystem API', 
+										status:		'experimental',
+										urls:    	[
+														[ 'w3c', 'http://w3c.github.io/filesystem-api/Overview.html' ],
+													]
+									},
 									
 									'<em>The Directories and System API proposal has failed to gain traction among browser vendors and is only supported in some Webkit based browsers. No additional points are awarded for supporting this API.</em>',
 				

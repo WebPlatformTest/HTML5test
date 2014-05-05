@@ -3090,6 +3090,12 @@ Test = (function() {
 				passed:		!! window.requestFileSystem ? YES : !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem ? YES | PREFIX : NO, 
 				value: 		0
 			});
+
+			this.section.setItem({
+				id:			'getFileSystem',
+				passed:		!! navigator.getFileSystem ? YES : !! navigator.webkitGetFileSystem || !! navigator.mozGetFileSystem || !! window.msGetFileSystem ? YES | PREFIX : NO, 
+				value: 		0
+			});
 		}
 	};
 	
