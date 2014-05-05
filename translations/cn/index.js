@@ -45,7 +45,7 @@ var translation = {
 	'Subtitle support':							'字幕支持',
 	'Poster image support':						'海报图像支持',
 	'<em>The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score. If browser support for one or more video codecs is detected, two bonus points are awarded for each codec.</em>': '<em>下面的测试超出了HTML5规范的要求，并没有计算在总成绩以内。如果浏览器支持一个或多个视频编解码器，将会给每个解码器两分的额外奖励。</em>',
-	'MPEG-4 support':							'支持 MPEG-4',
+	'MPEG-4 ASP support':						'支持 MPEG-4 ASP',
 	'H.264 support':							'支持 H.264',
 	'Ogg Theora support':						'支持 Ogg Theora',
 	'WebM support':								'支持 WebM',

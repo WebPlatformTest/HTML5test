@@ -1230,7 +1230,7 @@ var tests = [
 									
 									{
 										id:		'mpeg4',
-										name: 	'MPEG-4 support',
+										name: 	'MPEG-4 ASP support',
 										status:	'optional'
 									}, {
 										id:		'h264',
