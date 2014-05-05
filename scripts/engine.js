@@ -3452,6 +3452,40 @@ Test = (function() {
 	};
 	
 	
+	function testComponents (results) { this.initialize(results); }			
+	testComponents.prototype = {
+		initialize: function(results) {
+			this.section = results.getSection({
+				id:		'components'
+			});
+			
+			this.section.setItem({
+				id:			'custom',
+				passed:		'registerElement' in document,
+				value: 		2
+			});
+
+			this.section.setItem({
+				id:			'shadowdom',
+				passed:		'createShadowRoot' in document.createElement('div') ? YES : 'webkitCreateShadowRoot' in document.createElement('div') ? YES | PREFIX : NO,
+				value: 		1
+			});
+
+			this.section.setItem({
+				id:			'template',
+				passed:		'content' in document.createElement('template'),
+				value: 		1
+			});
+
+			this.section.setItem({
+				id:			'imports',
+				passed:		'import' in document.createElement('link'),
+				value: 		1
+			});
+		}
+	};
+	
+	
 	function test (callback, error) { this.initialize(callback, error); }
 	test.prototype = {
 		tests: [
@@ -3462,7 +3496,7 @@ Test = (function() {
 			/* Connectivity */					testCommunication,
 			/* Multimedia */					testVideo, testAudio, testWebRTC,
 			/* 3D, Graphics & Effects */		testResponsive, testCanvas, testWebGL, testAnimation,
-			/* Performance & Integration */		testInteraction, testPerformance, testSecurity, testHistory,
+			/* Performance & Integration */		testInteraction, testPerformance, testSecurity, testHistory, testComponents,
 			
 			testOther
 		],

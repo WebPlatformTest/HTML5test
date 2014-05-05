@@ -1960,6 +1960,41 @@ var tests = [
 													]
 									}
 								]
+					}, {
+						id:		'components',
+						status:	'experimental',
+						name: 	'Web Components',
+						items:	[
+									{
+										id:			'custom',
+										name: 		'Custom elements', 
+										value:		2, 
+										urls:		[
+														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/custom/' ]
+													]
+									}, {
+										id:			'shadowdom',
+										name: 		'Shadow DOM', 
+										value:		1, 
+										urls:		[
+														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/shadow/' ]
+													]
+									}, {
+										id:			'template',
+										name: 		'HTML templates', 
+										value:		1, 
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ]
+													]
+									}, {
+										id:			'imports',
+										name: 		'HTML imports', 
+										value:		1, 
+										urls:		[
+														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/imports/' ]
+													]
+									}
+								]
 					}
 				]
 	},
