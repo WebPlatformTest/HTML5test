@@ -2124,16 +2124,50 @@ var tests = [
 						name:	'Files',
 						status:	'stable',
 						items:	[
+									'<strong>Reading files</strong>',
+
 									{
 										id:			'fileReader',
-										name: 		'File API',
-										value:		10, 
+										name: 		'Basic support for reading files',
+										value:		6, 
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface' ],
 														[ 'wp',  '/apis/file' ],
 														[ 'mdn', '/Using_files_from_web_applications' ]
 													]
 									}, {
+										id:			'fileReader.blob',
+										name: 		'Create a <code>Blob</code> from a file',
+										value:		1, 
+										urls:		[
+														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#dfn-Blob' ],
+													]
+									}, {
+										id:			'fileReader.dataURL',
+										name: 		'Create a Data URL from a <code>Blob</code>', 
+										value:		1, 
+										urls:    	[
+														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#dfn-readAsDataURL' ],
+													]
+									}, {
+										id:			'fileReader.arraybuffer',
+										name: 		'Create an <code>ArrayBuffer</code> from a <code>Blob</code>', 
+										value:		1, 
+										urls:    	[
+														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#dfn-readAsArrayBuffer' ],
+													]
+									}, {
+										id:			'fileReader.objectURL',
+										name: 		'Create a Blob URL from a <code>Blob</code>', 
+										value:		1, 
+										urls:    	[
+														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#dfn-createObjectURL' ],
+													]
+									}, 
+									
+									'<strong>Accessing the file system</strong>',
+
+									{
 										id:			'getFileSystem',
 										name: 		'FileSystem API', 
 										status:		'experimental',

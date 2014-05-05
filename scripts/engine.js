@@ -3082,7 +3082,31 @@ Test = (function() {
 			this.section.setItem({
 				id:			'fileReader',
 				passed:		'FileReader' in window, 
-				value: 		10
+				value: 		6
+			});
+
+			this.section.setItem({
+				id:			'fileReader.blob',
+				passed:		'Blob' in window, 
+				value: 		1
+			});
+
+			this.section.setItem({
+				id:			'fileReader.dataURL',
+				passed:		'FileReader' in window && 'readAsDataURL' in (new FileReader()),
+				value: 		1
+			});
+
+			this.section.setItem({
+				id:			'fileReader.arraybuffer',
+				passed:		'FileReader' in window && 'readAsArrayBuffer' in (new FileReader()),
+				value: 		1
+			});
+
+			this.section.setItem({
+				id:			'fileReader.objectURL',
+				passed:		'URL' in window && 'createObjectURL' in URL, 
+				value: 		1
 			});
 
 			this.section.setItem({
