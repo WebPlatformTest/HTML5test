@@ -3318,7 +3318,7 @@ Test = (function() {
 			var executionevents = this.section.setItem({
 				id:			'executionevents',
 				passed:		false, 
-				value: 		2
+				value: 		1
 			});
 
 			var before = false;

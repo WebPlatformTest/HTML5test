@@ -2155,7 +2155,7 @@ var tests = [
 									}, {
 										id:			'executionevents',
 										name: 		'Script execution events', 
-										value:		2, 
+										value:		1, 
 										urls:		[
 														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element' ],
 														[ 'mdn', '/Web/Reference/Events/beforescriptexecute' ]
