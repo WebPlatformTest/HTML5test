@@ -3249,6 +3249,12 @@ Test = (function() {
 			});
 			
 			group.setItem({
+				id:			'Uint8ClampedArray',
+				passed:		typeof Uint8ClampedArray != 'undefined', 
+				value: 		1
+			});
+			
+			group.setItem({
 				id:			'Int16Array',
 				passed:		typeof Int16Array != 'undefined', 
 				value: 		1

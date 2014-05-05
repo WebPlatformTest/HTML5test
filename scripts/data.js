@@ -1810,6 +1810,11 @@ var tests = [
 															value:		1, 
 															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
 														}, {
+															id:			'Uint8ClampedArray',
+															name: 		'<code>Uint8ClampedArray</code>', 
+															value:		1, 
+															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7.1' ] ]
+														}, {
 															id:			'Int16Array',
 															name: 		'<code>Int16Array</code>', 
 															value:		1, 
