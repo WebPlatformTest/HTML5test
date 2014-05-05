@@ -1063,7 +1063,7 @@ var tests = [
 									{
 										id:			'microdata',
 										name: 		'Microdata',
-										value:		5, 
+										value:		0, 
 										url:    	'http://www.w3.org/TR/microdata/'
 									}
 								]
