@@ -2218,7 +2218,7 @@ var tests = [
 			
 									{
 										id:			'async',
-										name: 		'Asyncronous script execution', 
+										name: 		'Asynchronous script execution', 
 										value:		3, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-async' ],
