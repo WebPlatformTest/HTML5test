@@ -2181,7 +2181,7 @@ Test = (function() {
 			}
 
 			var selectors = "valid invalid optional required in-range out-of-range read-write read-only".split(" ");
-			var res = [false, false, false, false, false, false, false, false];
+			var res = [NO, NO, NO, NO, NO, NO, NO, NO];
 			var unknown = false;
 				
 			/*  At this time we are not testing enabled, disabled, checked and indeterminate,
@@ -2198,13 +2198,18 @@ Test = (function() {
 				try {
 					res[0] = !!document.querySelector("#testFormInput:valid");
 				} catch(e) {
-					res[0] = false;
+					res[0] = NO;
 				}
 
 				try {
 					res[6] = !!document.querySelector("#testFormInput:read-write");
 				} catch(e) {
-					res[6] = false;
+					res[6] = NO;
+
+					try {
+						res[6] = document.querySelector("#testFormInput:-moz-read-write") ? YES | PREFIX : NO;
+					} catch(e) {
+					}
 				}
 
 				if ("validity" in element && "setCustomValidity" in element) {
@@ -2213,16 +2218,16 @@ Test = (function() {
 					try {
 						res[1] = !!document.querySelector("#testFormInput:invalid");
 					} catch(e) {
-						res[1] = false;
+						res[1] = NO;
 					}
 				} else {
-					res[1] = false;
+					res[1] = NO;
 				}
 											
 				try {
 					res[2] = !!document.querySelector("#testFormInput:optional");
 				} catch(e) {
-					res[2] = false;
+					res[2] = NO;
 				}
 
 				element.setAttribute("required", "true");
@@ -2230,7 +2235,7 @@ Test = (function() {
 				try {
 					res[3] = !!document.querySelector("#testFormInput:required");
 				} catch(e) {
-					res[3] = false;
+					res[3] = NO;
 				}
 				
 				try {
@@ -2240,7 +2245,7 @@ Test = (function() {
 					element.setAttribute("value", "15");
 					res[4] = !!document.querySelector("#testFormInput:in-range");
 				} catch(e) {
-					res[4] = false;
+					res[4] = NO;
 				}
 
 
@@ -2251,7 +2256,7 @@ Test = (function() {
 					element.setAttribute("value", "25");
 					res[5] = !!document.querySelector("#testFormInput:out-of-range");
 				} catch(e) {
-					res[5] = false;
+					res[5] = NO;
 				}
 
 				document.body.removeChild(element);
@@ -2265,7 +2270,12 @@ Test = (function() {
 				try {
 					res[7] = !!document.querySelector("#testFormInput:read-only");
 				} catch(e) {
-					res[7] = false;
+					res[7] = NO;
+
+					try {
+						res[7] = document.querySelector("#testFormInput:-moz-read-only") ? YES | PREFIX : NO;
+					} catch(e) {
+					}
 				}
 				
 				document.body.removeChild(element);
@@ -2572,13 +2582,23 @@ Test = (function() {
 				try {
 					res[0] = document.querySelector("#testDivElement:read-write") == element;
 				} catch(e) {
-					res[0] = false;
+					res[0] = NO;
+
+					try {
+						res[0] = document.querySelector("#testDivElement:-moz-read-write") == element ? YES | PREFIX : NO;
+					} catch(e) {
+					}
 				}
 
 				try {
 					res[1] = document.querySelector("#testDivNested:read-only") == nested;
 				} catch(e) {
-					res[1] = false;
+					res[1] = NO;
+
+					try {
+						res[1] = document.querySelector("#testDivNested:-moz-read-only") == nested ? YES | PREFIX : NO;
+					} catch(e) {
+					}
 				}
 
 				document.body.removeChild(element);
