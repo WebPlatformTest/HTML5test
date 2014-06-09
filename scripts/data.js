@@ -1900,7 +1900,7 @@ var tests = [
 										status:		'proposal',
 										value:		2, 
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/CSP/' ],
+														[ 'w3c', 'http://www.w3.org/TR/CSP11/' ],
 														[ 'mdn', '/Security/CSP' ]
 													]
 									}, {
