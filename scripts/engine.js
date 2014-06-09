@@ -2730,7 +2730,7 @@ Test = (function() {
 			try {
 				var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
 				var available = window.crypto ? YES : window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
-				passed = !!crypto && 'encrypt' in crypto ? available : NO;
+				passed = !!crypto && 'subtle' in crypto ? available : NO;
 			} catch(e) {
 			}
 
