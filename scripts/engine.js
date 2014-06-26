@@ -69,6 +69,7 @@ Test = (function() {
 															Browsers.isBrowser('Polaris', '>=', '8')
 														) ||
 														Browsers.isType('television') && (
+															Browsers.isOs('Tizen') || 
 															Browsers.isBrowser('Espial') ||
 															Browsers.isBrowser('MachBlue XT') ||
 															Browsers.isEngine('Presto', '>=', '2.9')
