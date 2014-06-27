@@ -2748,7 +2748,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'csp11',
-				passed:		'SecurityPolicy' in document, 
+				passed:		'SecurityPolicyViolationEvent' in window,
 				value: 		2	
 			});
 
