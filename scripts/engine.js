@@ -3376,7 +3376,9 @@ Test = (function() {
 				passed:		false, 
 				value: 		1
 			});
-
+	
+			executionevents.startBackground();
+	
 			var before = false;
 			
 			var s = document.createElement('script');
@@ -3392,6 +3394,8 @@ Test = (function() {
 						passed: true
 					});
 				}
+				
+				executionevents.stopBackground();
 			}, true);
 			
 			document.body.appendChild(s);
