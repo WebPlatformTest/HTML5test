@@ -3175,11 +3175,15 @@ Test = (function() {
 				value: 		2
 			});
 
-			var arrayitem = this.section.setItem({
+			blobitem.startBackground();
+
+				var arrayitem = this.section.setItem({
 				id:			'indexedDB.arraybuffer',
 				passed:		false, 
 				value: 		2
 			});
+
+			arrayitem.startBackground();
 
 
 			if (indexedDB && 'deleteDatabase' in indexedDB) {
@@ -3199,6 +3203,8 @@ Test = (function() {
 							blobitem.update({
 								passed: true
 							});
+
+							blobitem.stopBackground();
 						} catch (e) {
 						}
 						
@@ -3208,6 +3214,8 @@ Test = (function() {
 							arrayitem.update({
 								passed: true
 							});
+							
+							arrayitem.stopBackground();
 						} catch (e) {
 						}
 						
