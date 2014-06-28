@@ -3539,11 +3539,11 @@ Test = (function() {
 				'form.week.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				'form.time.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				'form.datetime-local.ui':			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.color.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser'),
-				'form.range.ui':					Browsers.isBrowser('UC Browser'),
+				'form.color.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8'),
+				'form.range.ui':					Browsers.isBrowser('UC Browser', '<', '9.8'),
 				'form.progress.element':			Browsers.isBrowser('Baidu Browser'),
 				'files.fileSystem':					Browsers.isOs('BlackBerry Tablet OS'),
-				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser') || Browsers.isBrowser('Dolphin'),
+				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8') || Browsers.isBrowser('Dolphin'),
 				'location.geolocation':				Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser'),
 				'location.orientation':				Browsers.isBrowser('Baidu Browser'),
 				'output.notifications':				Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
@@ -3573,6 +3573,7 @@ Test = (function() {
 															Browsers.isBrowser('Polaris', '>=', '8')
 														) ||
 														Browsers.isType('television') && (
+															Browsers.isOs('Tizen') || 
 															Browsers.isBrowser('Espial') ||
 															Browsers.isBrowser('MachBlue XT') ||
 															Browsers.isEngine('Presto', '>=', '2.9')
