@@ -728,7 +728,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:		'path',
-				passed:	typeof Path2D != "undefined", 
+				passed:	typeof Path != "undefined", 
 				value: 	2
 			});
 
