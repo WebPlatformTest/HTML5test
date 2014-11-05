@@ -2064,6 +2064,19 @@ var tests = [
 														[ 'mdn', '/HTML/Using_the_application_cache' ]
 													]
 									}, {
+										id:			'serviceWorkers',
+										name: 		'Service Workers',
+										status:		'experimental',
+										value:		10, 
+										urls:		[
+														[ 'w3c', 'https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#service-worker-obj' ],
+														[ 'mdn', '/Web/API/ServiceWorker_API' ]
+													]
+									}, 
+									
+									'<strong>Content and Scheme handlers</strong>',
+									
+									{
 										id:			'registerProtocolHandler',
 										name: 		'Custom scheme handlers',
 										value:		2, 

@@ -2768,7 +2768,13 @@ Test = (function() {
 			this.section.setItem({
 				id:			'applicationCache',
 				passed:		!!window.applicationCache, 
-				value: 		15
+				value: 		10
+			});
+
+			this.section.setItem({
+				id:			'serviceWorkers',
+				passed:		!!window.navigator.serviceWorker, 
+				value: 		10
 			});
 
 			this.section.setItem({
