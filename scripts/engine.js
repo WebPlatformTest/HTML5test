@@ -476,7 +476,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'tokenizer',
 				passed:	result, 
-				value: 	5
+				value: 	3
 			});
 
 			var result = true;
@@ -540,7 +540,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'tree',
 				passed:	result, 
-				value: 	5
+				value: 	2
 			});
 
 			var e = document.createElement('div');
@@ -574,19 +574,19 @@ Test = (function() {
 			this.section.setItem({
 				id:		'picture',
 				passed:	'HTMLPictureElement' in window, 
-				value: 	2
+				value: 	5
 			});
 
 			this.section.setItem({
 				id:		'srcset',
 				passed:	'srcset' in document.createElement('img'), 
-				value: 	2
+				value: 	5
 			});
 
 			this.section.setItem({
 				id:		'sizes',
 				passed:	'sizes' in document.createElement('img'), 
-				value: 	1
+				value: 	5
 			});
 		}
 	};
@@ -689,7 +689,7 @@ Test = (function() {
 			this.section.setItem({
 				id:		'hittest',
 				passed:	passed, 
-				value: 	2
+				value: 	1
 			});
 
 
@@ -1109,7 +1109,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'getUserMedia',
 				passed:		!!navigator.getUserMedia ? YES : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO, 
-				value: 		10
+				value: 		15
 			});
 
 			this.section.setItem({
@@ -1708,7 +1708,7 @@ Test = (function() {
 				group.setItem({
 					id:			'element',
 					passed:		minimal,
-					value: 		types[t] != 'datetime' ? 3 : 1,
+					value: 		types[t] != 'datetime' ? 2 : 1,
 					required:	true
 				});
 				
@@ -2237,7 +2237,8 @@ Test = (function() {
 			}
 
 			var group = this.section.getGroup({
-				id:		'association'
+				id:		'association',
+				value:	2
 			});
 			
 			var field = document.createElement('input');
@@ -2250,8 +2251,7 @@ Test = (function() {
 			
 			group.setItem({
 				id:			'control',
-				passed:		label.control == field,
-				value: 		1
+				passed:		label.control == field
 			});
 			
 			document.body.removeChild(field);
@@ -2262,8 +2262,7 @@ Test = (function() {
 			element.innerHTML = '<form id="form"></form><input form="form">';
 			group.setItem({
 				id:			'form',
-				passed:		element.lastChild.form == element.firstChild,
-				value: 		1
+				passed:		element.lastChild.form == element.firstChild
 			});
 			document.body.removeChild(element);
 
@@ -2274,8 +2273,7 @@ Test = (function() {
 			for (var p = 0; p < props.length; p++) {
 					group.setItem({
 					id:			props[p],
-					passed:		!!(props[p] in element), 
-					value: 		1
+					passed:		!!(props[p] in element)
 				});
 			}
 
@@ -2288,23 +2286,22 @@ Test = (function() {
 			document.body.appendChild(label);
 			group.setItem({
 				id:			'labels',
-				passed:		(!!element.labels && element.labels.length == 1 && element.labels[0] == label),
-				value: 		1
+				passed:		(!!element.labels && element.labels.length == 1 && element.labels[0] == label)
 			});
 			
 			document.body.removeChild(label);
 			document.body.removeChild(element);
 			
 			var group = this.section.getGroup({
-				id:		'other'
+				id:		'other',
+				value:	2
 			});
 
 			var element = document.createElement('input');
 
 			group.setItem({
 				id:			'autofocus',
-				passed:		!!('autofocus' in element), 
-				value: 		1
+				passed:		!!('autofocus' in element)
 			});
 
 			var props = 'autocomplete placeholder multiple dirName'.split(' ');
@@ -2313,8 +2310,8 @@ Test = (function() {
 				var prop = props[p].toLowerCase();
 				group.setItem({
 					id:			prop,
-					passed:		!!(props[p] in element), 
-					value: 		1
+					passed:		!!(props[p] in element),
+					required:	props[p] != 'dirName'
 				});
 			}
 
@@ -2422,39 +2419,37 @@ Test = (function() {
 			}
 			
 			var group = this.section.getGroup({
-				id:		'selectors'
+				id:		'selectors',
+				value:	2
 			});
 			
 			for (var i = 0; i < selectors.length; i++) {
 				group.setItem({
 					id:			selectors[i],
 					passed:		res[i],
-					value: 		2,
 					custom:		unknown ? 'unknown' : false
 				});
 			}
 
 
 			var group = this.section.getGroup({
-				id:		'events'
+				id:		'events',
+				value:	2
 			});
 			
 			var inputItem = group.setItem({
 				id:			'oninput',
-				passed:		isEventSupported('input'), 
-				value: 		1
+				passed:		isEventSupported('input')
 			});
 
 			var changeItem = group.setItem({
 				id:			'onchange',
-				passed:		isEventSupported('change'), 
-				value: 		1
+				passed:		isEventSupported('change')
 			});
 
 			var invalidItem = group.setItem({
 				id:			'oninvalid',
-				passed:		isEventSupported('invalid'), 
-				value: 		1
+				passed:		isEventSupported('invalid')
 			});
 
 			try {
@@ -2515,13 +2510,13 @@ Test = (function() {
 			group.setItem({
 				id:			'checkValidity',
 				passed:		'checkValidity' in element, 
-				value: 		8
+				value: 		3
 			});
 			
 			group.setItem({
 				id:			'noValidate',
 				passed:		'noValidate' in element, 
-				value: 		2
+				value: 		1
 			});
 		}, 				
 			
@@ -2568,7 +2563,7 @@ Test = (function() {
 			group.setItem({
 				id:			'draggable',
 				passed:		'draggable' in element,
-				value:		2
+				value:		1
 			});
 
 			group.setItem({
@@ -2589,44 +2584,37 @@ Test = (function() {
 
 			group.setItem({
 				id:			'ondrag',
-				passed:		isEventSupported('drag') && supported, 
-				value: 		0
+				passed:		isEventSupported('drag') && supported
 			});
 			
 			group.setItem({
 				id:			'ondragstart',
-				passed:		isEventSupported('dragstart') && supported, 
-				value: 		0
+				passed:		isEventSupported('dragstart') && supported
 			});
 			
 			group.setItem({
 				id:			'ondragenter',
-				passed:		isEventSupported('dragenter') && supported, 
-				value: 		0
+				passed:		isEventSupported('dragenter') && supported
 			});
 			
 			group.setItem({
 				id:			'ondragover',
-				passed:		isEventSupported('dragover') && supported, 
-				value: 		0
+				passed:		isEventSupported('dragover') && supported
 			});
 			
 			group.setItem({
 				id:			'ondragleave',
-				passed:		isEventSupported('dragleave') && supported, 
-				value: 		0
+				passed:		isEventSupported('dragleave') && supported
 			});
 			
 			group.setItem({
 				id:			'ondragend',
-				passed:		isEventSupported('dragend') && supported, 
-				value: 		0
+				passed:		isEventSupported('dragend') && supported
 			});
 			
 			group.setItem({
 				id:			'ondrop',
-				passed:		isEventSupported('drop') && supported, 
-				value: 		0
+				passed:		isEventSupported('drop') && supported
 			});
 
 			
@@ -2641,7 +2629,7 @@ Test = (function() {
 			group.setItem({
 				id:			'contentEditable',
 				passed:		'contentEditable' in element, 
-				value: 		9
+				value: 		5
 			});
 
 			group.setItem({
@@ -2657,47 +2645,42 @@ Test = (function() {
 			group.setItem({
 				id:			'designMode',
 				passed:		'designMode' in document, 
-				value: 		2
+				value: 		1
 			});
 			
 			var group = this.section.getGroup({
-				id:		'editing.apis'
+				id:		'editing.apis',
+				value:	2
 			});
 
 			group.setItem({
 				id:			'execCommand',
-				passed:		'execCommand' in document, 
-				value: 		1
+				passed:		'execCommand' in document
 			});
 
 			group.setItem({
 				id:			'queryCommandEnabled',
-				passed:		'queryCommandEnabled' in document, 
-				value: 		1
+				passed:		'queryCommandEnabled' in document
 			});
 
 			group.setItem({
 				id:			'queryCommandIndeterm',
-				passed:		'queryCommandIndeterm' in document, 
-				value: 		1
+				passed:		'queryCommandIndeterm' in document
 			});
 
 			group.setItem({
 				id:			'queryCommandState',
-				passed:		'queryCommandState' in document, 
-				value: 		1
+				passed:		'queryCommandState' in document
 			});
 
 			group.setItem({
 				id:			'queryCommandSupported',
-				passed:		'queryCommandSupported' in document, 
-				value: 		1
+				passed:		'queryCommandSupported' in document
 			});
 
 			group.setItem({
 				id:			'queryCommandValue',
-				passed:		'queryCommandValue' in document, 
-				value: 		1
+				passed:		'queryCommandValue' in document
 			});
 
 
@@ -3008,7 +2991,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'eventSource',
 				passed:		'EventSource' in window, 
-				value: 		8
+				value: 		6
 			});
 			
 			this.section.setItem({
@@ -3264,31 +3247,31 @@ Test = (function() {
 			this.section.setItem({
 				id:			'fileReader',
 				passed:		'FileReader' in window, 
-				value: 		6
+				value: 		7
 			});
 
 			this.section.setItem({
 				id:			'fileReader.blob',
 				passed:		'Blob' in window, 
-				value: 		1
+				value: 		2
 			});
 
 			this.section.setItem({
 				id:			'fileReader.dataURL',
 				passed:		'FileReader' in window && 'readAsDataURL' in (new FileReader()),
-				value: 		1
+				value: 		2
 			});
 
 			this.section.setItem({
 				id:			'fileReader.arraybuffer',
 				passed:		'FileReader' in window && 'readAsArrayBuffer' in (new FileReader()),
-				value: 		1
+				value: 		2
 			});
 
 			this.section.setItem({
 				id:			'fileReader.objectURL',
 				passed:		'URL' in window && 'createObjectURL' in URL, 
-				value: 		1
+				value: 		2
 			});
 
 			this.section.setItem({
@@ -3471,7 +3454,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'sharedWorker',
 				passed:		!!window.SharedWorker, 
-				value: 		5
+				value: 		4
 			});
 
 			var group = this.section.getGroup({
@@ -3580,7 +3563,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'scoped',
 				passed:		'scoped' in document.createElement('style'), 
-				value: 		4
+				value: 		2
 			});
 
 			this.section.setItem({
@@ -3644,7 +3627,7 @@ Test = (function() {
 			this.section.setItem({
 				id:   		'mutationObserver',
 				passed:   	'MutationObserver' in window ? YES : 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window ? YES | PREFIX : NO,
-				value:  	3 
+				value:  	2 
 			});
 
 			this.section.setItem({
@@ -3674,7 +3657,7 @@ Test = (function() {
 			this.section.setItem({
 				id:   		'promises',
 				passed:   	passed,
-				value:  	1 
+				value:  	2
 			});
     
     

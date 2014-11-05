@@ -21,7 +21,7 @@ var tests = [
 									}, {
 										id:		'tokenizer',
 										name: 	'HTML5 tokenizer', 
-										value:	5,
+										value:	3,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#parsing' ],
 													[ 'mdn', '/HTML/HTML5/HTML5_Parser' ]
@@ -29,7 +29,7 @@ var tests = [
 									}, {
 										id:		'tree',
 										name: 	'HTML5 tree building', 
-										value:	5,
+										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#parsing' ],
 													[ 'mdn', '/HTML/HTML5/HTML5_Parser' ]
@@ -321,7 +321,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		3, 
+														value:		2, 
 														url:		'http://www.w3.org/TR/html5/forms.html#date-state-(type=date)'
 													}, {
 														id:			'ui',
@@ -368,7 +368,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		3, 
+														value:		2, 
 														url:		'http://www.w3.org/TR/html5/forms.html#month-state-(type=month)'
 													}, {
 														id:			'ui',
@@ -415,7 +415,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		3, 
+														value:		2, 
 														url:		'http://www.w3.org/TR/html5/forms.html#week-state-(type=week)'
 													}, {
 														id:			'ui',
@@ -462,7 +462,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		3, 
+														value:		2, 
 														url:		'http://www.w3.org/TR/html5/forms.html#time-state-(type=time)'
 													}, {
 														id:			'ui',
@@ -552,7 +552,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		3, 
+														value:		2, 
 														url:		'http://www.w3.org/TR/html5/forms.html#local-date-and-time-state-(type=datetime-local)'
 													}, {
 														id:			'ui',
@@ -892,144 +892,124 @@ var tests = [
 									}, {
 										id:		'association',
 										name:	'Association of controls and forms',
+										value:	2, 
 										items:	[
 													{
 														id:			'control',
 														name: 		'<code>control</code> property on labels',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-label-control'
 													}, {
 														id:			'form',
 														name: 		'<code>form</code> property on fields',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-fae-form'
 													}, {
 														id:			'formAction',
 														name: 		'<code>formAction</code> property on fields',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formaction'
 													}, {
 														id:			'formEnctype',
 														name: 		'<code>formEnctype</code> property on fields',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formenctype'
 													}, {
 														id:			'formMethod',
 														name: 		'<code>formMethod</code> property on fields',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formmethod'
 													}, {
 														id:			'formNoValidate',
 														name: 		'<code>formNoValidate</code> property on fields',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formnovalidate'
 													}, {
 														id:			'formTarget',
 														name: 		'<code>formTarget</code> property on fields',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-fs-formtarget'
 													}, {
 														id:			'labels',
 														name: 		'<code>labels</code> property on fields',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-lfe-labels'
 													}
 												]
 									}, {
 										id:		'other',
 										name:	'Other attributes',
+										value:	2, 
 										items:	[
 													{
 														id:			'autofocus',
 														name: 		'<code>autofocus</code> attribute',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-fe-autofocus'
 													}, {
 														id:			'autocomplete',
 														name: 		'<code>autocomplete</code> attribute',
-														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-autocomplete'
 													}, {
 														id:			'placeholder',
 														name: 		'<code>placeholder</code> attribute',
-														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-placeholder'
 													}, {
 														id:			'multiple',
 														name: 		'<code>multiple</code> attribute',
-														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-multiple'
 													}, {
 														id:			'dirname',
 														name: 		'<code>dirName</code> attribute',
-														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-dirname'
 													}
 												]
 									}, {
 										id:		'selectors',
 										name:	'CSS selectors',
+										value:	2, 
 										items:	[
 													{
 														id:			'valid',
 														name: 		'<code>:valid</code> selector',
-														value:		2, 
 														url:		'http://www.w3.org/TR/html5/links.html#selector-valid'
 													}, {
 														id:			'invalid',
 														name: 		'<code>:invalid</code> selector',
-														value:		2, 
 														url:		'http://www.w3.org/TR/html5/links.html#selector-invalid'
 													}, {
 														id:			'optional',
 														name: 		'<code>:optional</code> selector',
-														value:		2, 
 														url:		'http://www.w3.org/TR/html5/links.html#selector-optional'
 													}, {
 														id:			'required',
 														name: 		'<code>:required</code> selector',
-														value:		2, 
 														url:		'http://www.w3.org/TR/html5/links.html#selector-required'
 													}, {
 														id:			'in-range',
 														name: 		'<code>:in-range</code> selector',
-														value:		2, 
 														url:		'http://www.w3.org/TR/html5/links.html#selector-in-range'
 													}, {
 														id:			'out-of-range',
 														name: 		'<code>:out-of-range</code> selector',
-														value:		2, 
 														url:		'http://www.w3.org/TR/html5/links.html#selector-out-of-range'
 													}, {
 														id:			'read-write',
 														name: 		'<code>:read-write</code> selector',
-														value:		2, 
 														url:		'http://www.w3.org/TR/html5/links.html#selector-read-write'
 													}, {
 														id:			'read-only',
 														name: 		'<code>:read-only</code> selector',
-														value:		2, 
 														url:		'http://www.w3.org/TR/html5/links.html#selector-read-only'
 													}
 												]
 									}, {
 										id:		'events',
 										name:	'Events',
+										value:	2, 
 										items:	[
 													{
 														id:			'oninput',
 														name: 		'<code>oninput</code> event',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#event-input-input'
 													}, {
 														id:			'onchange',
 														name: 		'<code>onchange</code> event',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#event-input-change'
 													}, {
 														id:			'oninvalid',
 														name: 		'<code>oninvalid</code> event',
-														value:		1, 
 														url:		'http://www.w3.org/TR/html5/webappapis.html#events'
 													}
 												]
@@ -1044,12 +1024,12 @@ var tests = [
 													{
 														id:			'checkValidity',
 														name: 		'<code>checkValidity</code> method',
-														value:		8, 
+														value:		3, 
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-form-checkvalidity'
 													}, {
 														id:			'noValidate',
 														name: 		'<code>noValidate</code> attribute',
-														value:		2, 
+														value:		1, 
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-fs-novalidate'
 													}
 												]
@@ -1138,7 +1118,7 @@ var tests = [
 									{
 										id:			'getUserMedia',
 										name: 		'Access the webcam',
-										value:		10, 
+										value:		15, 
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/2011/webrtc/editor/getusermedia.html' ],
 														[ 'wp',  '/dom/methods/getUserMedia' ],
@@ -1395,19 +1375,19 @@ var tests = [
 									{
 										id:			'picture',
 										name: 		'<code>picture</code> element', 
-										value:		2, 
+										value:		5, 
 										urls:		[
 														[ 'ricg', 'http://picture.responsiveimages.org' ]
 													]
 									}, {
 										id:			'srcset',
 										name: 		'<code>srcset</code> attribute',
-										value:		2, 
 										url:		'http://www.w3.org/html/wg/drafts/srcset/w3c-srcset/'
+										value:		5, 
 									}, {
 										id:			'sizes',
 										name: 		'<code>sizes</code> attribute',
-										value:		1, 
+										value:		5, 
 										urls:		[
 														[ 'ricg', 'http://picture.responsiveimages.org/#parse-sizes-attr' ]
 													]
@@ -1482,7 +1462,7 @@ var tests = [
 										id:		'hittest',
 										name: 	'Hit testing support',
 										status:	'proposal', 
-										value:	2,
+										value:	1,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-addhitregion' ],
 													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-addhitregion' ]
@@ -1563,7 +1543,7 @@ var tests = [
 									{
 										id:			'eventSource',
 										name: 		'Server-Sent Events',
-										value:		8, 
+										value:		6, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/eventsource/' ],
 														[ 'mdn', '/Server-sent_events/Using_server-sent_events' ]
@@ -1698,7 +1678,7 @@ var tests = [
 													{
 														id:			'draggable',
 														name: 		'<code>draggable</code> attribute',
-														value:		2, 
+														value:		1, 
 														url:		'http://www.w3.org/TR/html5/editing.html#the-draggable-attribute'
 													}, {
 														id:			'dropzone',
@@ -1758,7 +1738,7 @@ var tests = [
 													{
 														id:			'contentEditable',
 														name: 		'<code>contentEditable</code> attribute',
-														value:		9, 
+														value:		5, 
 														url:		'http://www.w3.org/TR/html5/editing.html#contenteditable'
 													}, {
 														id:			'isContentEditable',
@@ -1777,7 +1757,7 @@ var tests = [
 													{
 														id:			'designMode',
 														name: 		'<code>designMode</code> attribute',
-														value:		2, 
+														value:		1, 
 														url:		'http://www.w3.org/TR/html5/editing.html#designMode'
 													}
 												]
@@ -1803,6 +1783,7 @@ var tests = [
 									}, {
 										id:		'editing.apis',
 										name:	'APIs',
+										value:	2,
 										urls:	[
 													[ 'mdn', '/HTML/Content_Editable' ]
 												],
@@ -1810,32 +1791,26 @@ var tests = [
 													{
 														id:			'execCommand',
 														name: 		'<code>execCommand</code> method',
-														value:		1, 
 														url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 													}, {
 														id:			'queryCommandEnabled',
 														name: 		'<code>queryCommandEnabled</code> method',
-														value:		1, 
 														url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 													}, {
 														id:			'queryCommandIndeterm',
 														name: 		'<code>queryCommandIndeterm</code> method',
-														value:		1, 
 														url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 													}, {
 														id:			'queryCommandState',
 														name: 		'<code>queryCommandState</code> method',
-														value:		1, 
 														url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 													}, {
 														id:			'queryCommandSupported',
 														name: 		'<code>queryCommandSupported</code> method',
-														value:		1, 
 														url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 													}, {
 														id:			'queryCommandValue',
 														name: 		'<code>queryCommandValue</code> method',
-														value:		1, 
 														url:		'https://dvcs.w3.org/hg/editing/raw-file/tip/editing.html'
 													}
 												]
@@ -1941,7 +1916,7 @@ var tests = [
 									}, {
 										id:			'sharedWorker',
 										name: 		'Shared Workers',
-										value:		5, 
+										value:		4, 
 										urls:    	[
 														[ 'w3c', 'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface' ],
 														[ 'mdn', '/DOM/Using_web_workers' ]
@@ -2057,7 +2032,7 @@ var tests = [
 									{
 										id:			'applicationCache',
 										name: 		'Application Cache',
-										value:		15, 
+										value:		10, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#offline' ],
 														[ 'wp',  '/apis/appcache/ApplicationCache' ],
@@ -2182,7 +2157,7 @@ var tests = [
 									{
 										id:			'fileReader',
 										name: 		'Basic support for reading files',
-										value:		6, 
+										value:		7, 
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface' ],
 														[ 'wp',  '/apis/file' ],
@@ -2191,28 +2166,28 @@ var tests = [
 									}, {
 										id:			'fileReader.blob',
 										name: 		'Create a <code>Blob</code> from a file',
-										value:		1, 
+										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#dfn-Blob' ],
 													]
 									}, {
 										id:			'fileReader.dataURL',
 										name: 		'Create a Data URL from a <code>Blob</code>', 
-										value:		1, 
+										value:		2, 
 										urls:    	[
 														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#dfn-readAsDataURL' ],
 													]
 									}, {
 										id:			'fileReader.arraybuffer',
 										name: 		'Create an <code>ArrayBuffer</code> from a <code>Blob</code>', 
-										value:		1, 
+										value:		2, 
 										urls:    	[
 														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#dfn-readAsArrayBuffer' ],
 													]
 									}, {
 										id:			'fileReader.objectURL',
 										name: 		'Create a Blob URL from a <code>Blob</code>', 
-										value:		1, 
+										value:		2, 
 										urls:    	[
 														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#dfn-createObjectURL' ],
 													]
@@ -2316,7 +2291,7 @@ var tests = [
 									{
 										id:			'scoped',
 										name: 		'Scoped <code>style</code> element', 
-										value:		4, 
+										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/document-metadata.html#attr-style-scoped' ],
 														[ 'wp',  '/Meta:HTML/Elements/style' ]
@@ -2376,7 +2351,7 @@ var tests = [
 									}, {
 										id: 		'mutationObserver',
 										name:   	'Mutation Observer',
-										value:		3, 
+										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/dom/#mutation-observers' ],
 														[ 'mdn', '/DOM/MutationObserver' ]
@@ -2385,7 +2360,7 @@ var tests = [
 										id: 		'promises',
 										name:   	'Promises',
 										status:		'experimental',
-										value:		1, 
+										value:		2, 
 										urls:		[
 														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Promise' ]
 													]
