@@ -1156,12 +1156,18 @@ Test = (function() {
 			var elements = 'section nav article aside header footer'.split(' ');
 			
 			for (var e = 0; e < elements.length; e++) {
-				var element = document.createElement(elements[e]);
-				document.body.appendChild(element);
-
 				var passed = false;
+				
 				try { 
-					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isBlock(element) && this.closesImplicitly(elements[e]);
+					var element = document.createElement(elements[e]);
+					document.body.appendChild(element);
+
+					try { 
+						passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isBlock(element) && this.closesImplicitly(elements[e]);
+					} catch(error) {
+					}
+					
+					document.body.removeChild(element);
 				} catch(error) {
 				}
 				
@@ -1170,8 +1176,6 @@ Test = (function() {
 					passed:	passed, 
 					value: 	1
 				});
-
-				document.body.removeChild(element);
 			}
 
 			var group = this.section.getGroup({
@@ -1181,12 +1185,18 @@ Test = (function() {
 			var elements = 'main figure figcaption'.split(' ');
 			
 			for (var e = 0; e < elements.length; e++) {
-				var element = document.createElement(elements[e]);
-				document.body.appendChild(element);
-
 				var passed = false;
+
 				try { 
-					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e]));
+					var element = document.createElement(elements[e]);
+					document.body.appendChild(element);
+	
+					try { 
+						passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e]));
+					} catch(error) {
+					}
+
+					document.body.removeChild(element);
 				} catch(error) {
 				}
 
@@ -1195,8 +1205,6 @@ Test = (function() {
 					passed:	passed, 
 					value: 	1
 				});
-
-				document.body.removeChild(element);
 			}
 
 
@@ -1225,12 +1233,18 @@ Test = (function() {
 			});
 
 
-			var element = document.createElement('mark');
-			document.body.appendChild(element);
-
 			var passed = false;
+
 			try { 
-				passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && (color = this.getStyle(element, 'background-color')) && (color != 'transparent');
+				var element = document.createElement('mark');
+				document.body.appendChild(element);
+	
+				try { 
+					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && (color = this.getStyle(element, 'background-color')) && (color != 'transparent');
+				} catch(error) {
+				}
+
+				document.body.removeChild(element);
 			} catch(error) {
 			}
 
@@ -1240,8 +1254,7 @@ Test = (function() {
 				value: 	1
 			});
 
-			document.body.removeChild(element);
-			
+
 			var container = document.createElement('div');
 			document.body.appendChild(container);
 			container.innerHTML = "<ruby id='ruby'><rp id='rp'></rp><rt id='rt'></rt></ruby>";
@@ -1268,11 +1281,16 @@ Test = (function() {
 				value: 	3
 			});
 
-			var element = document.createElement('time');
 
 			var passed = false;
+
 			try { 
-				passed = typeof HTMLTimeElement != 'undefined' && element instanceof HTMLTimeElement;
+				var element = document.createElement('time');
+	
+				try { 
+					passed = typeof HTMLTimeElement != 'undefined' && element instanceof HTMLTimeElement;
+				} catch(error) {
+				}
 			} catch(error) {
 			}
 
@@ -1282,11 +1300,16 @@ Test = (function() {
 				value: 	1
 			});
 			
-			var element = document.createElement('wbr');
 
 			var passed = false;
+
 			try { 
-				passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
+				var element = document.createElement('wbr');
+	
+				try { 
+					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
+				} catch(error) {
+				}
 			} catch(error) {
 			}
 
@@ -1299,28 +1322,43 @@ Test = (function() {
 			var group = this.section.getGroup({
 				id:		'interactive'
 			});
+			
 
-			var element = document.createElement('details');
-			element.innerHTML = '<summary>a</summary>b';
-			document.body.appendChild(element);
-			var height = element.offsetHeight;
-			element.open = true;
-			var supported = height != element.offsetHeight;
+			var passed = false;
+
+			try { 
+				var element = document.createElement('details');
+				element.innerHTML = '<summary>a</summary>b';
+				document.body.appendChild(element);
+
+				var height = element.offsetHeight;
+				element.open = true;
+
+				passed = height != element.offsetHeight;
+				
+				document.body.removeChild(element);
+			} catch(error) {
+			}
 
 			group.setItem({
 				id:		'details',
-				passed:	supported, 
+				passed:	passed, 
 				value: 	1
 			});
 
-			document.body.removeChild(element);
-			
-			var element = document.createElement('summary');
-			document.body.appendChild(element);
 
 			var passed = false;
+
 			try { 
-				passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
+				var element = document.createElement('summary');
+				document.body.appendChild(element);
+
+				try { 
+					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
+				} catch(error) {
+				}
+
+				document.body.removeChild(element);					
 			} catch(error) {
 			}
 
@@ -1330,36 +1368,41 @@ Test = (function() {
 				value: 	1
 			});
 
-			document.body.removeChild(element);					
-
-			var element = document.createElement('menu');
-			document.body.appendChild(element);
 
 			var passed = false;
+
 			try { 
-				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
+				var element = document.createElement('menu');
+				document.body.appendChild(element);
+	
+				try { 
+					passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
+				} catch(error) {
+				}
+	
+				// Check default type
+				if (passed && element.type != 'toolbar') passed = false;	
+				
+				// Check type sanitization
+				try {
+					element.type = 'foobar';
+				} catch(error) {
+				}
+				
+				if (passed && element.type == 'foobar') passed = false;	
+	
+				// Check if correct type sticks
+				try {
+					element.type = 'toolbar';
+				} catch(error) {
+					passed = false;
+				}
+	
+				if (passed && element.type != 'toolbar') passed = false;	
+
+				document.body.removeChild(element);					
 			} catch(error) {
 			}
-
-			// Check default type
-			if (passed && element.type != 'toolbar') passed = false;	
-			
-			// Check type sanitization
-			try {
-				element.type = 'foobar';
-			} catch(error) {
-			}
-			
-			if (passed && element.type == 'foobar') passed = false;	
-
-			// Check if correct type sticks
-			try {
-				element.type = 'toolbar';
-			} catch(error) {
-				passed = false;
-			}
-
-			if (passed && element.type != 'toolbar') passed = false;	
 
 			group.setItem({
 				id:		'menutoolbar',
@@ -1367,53 +1410,58 @@ Test = (function() {
 				value: 	1
 			});
 
-			document.body.removeChild(element);					
 
-
-
-			var element = document.createElement('menu');
-			document.body.appendChild(element);
 
 			var passed = false;
+
 			try { 
-				passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
-			} catch(error) {
-			}
-
-			try {
-				element.type = 'popup';
-			} catch(error) {
-			}
-			
-			// Check default type
-			var second = document.createElement('menu');
-			element.appendChild(second);
-			if (passed && second.type != 'popup') passed = false;	
-			element.removeChild(second);					
+				var element = document.createElement('menu');
+				document.body.appendChild(element);
+	
+				var passed = false;
+				try { 
+					passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
+				} catch(error) {
+				}
+	
+				try {
+					element.type = 'popup';
+				} catch(error) {
+				}
 				
-			// Check type sanitization
-			try {
-				element.type = 'foobar';
+				// Check default type
+				var second = document.createElement('menu');
+				element.appendChild(second);
+				if (passed && second.type != 'popup') passed = false;	
+				element.removeChild(second);					
+					
+				// Check type sanitization
+				try {
+					element.type = 'foobar';
+				} catch(error) {
+				}
+	
+				if (passed && element.type == 'foobar') passed = false;	
+	
+				// Check if correct type sticks
+				try {
+					element.type = 'popup';
+				} catch(error) {
+					passed = false;
+				}
+	
+				if (passed && element.type != 'popup') passed = false;	
+	
+	
+				if (passed) {
+					var item = document.createElement('menuitem');
+					element.appendChild(item);
+					
+					if (typeof HTMLMenuItemElement == 'undefined' || ! item instanceof HTMLMenuItemElement) passed = false;
+				}
+
+				document.body.removeChild(element);					
 			} catch(error) {
-			}
-
-			if (passed && element.type == 'foobar') passed = false;	
-
-			// Check if correct type sticks
-			try {
-				element.type = 'popup';
-			} catch(error) {
-				passed = false;
-			}
-
-			if (passed && element.type != 'popup') passed = false;	
-
-
-			if (passed) {
-				var item = document.createElement('menuitem');
-				element.appendChild(item);
-				
-				if (typeof HTMLMenuItemElement == 'undefined' || ! item instanceof HTMLMenuItemElement) passed = false;
 			}
 
 			group.setItem({
@@ -1422,14 +1470,16 @@ Test = (function() {
 				value: 	2
 			});
 
-			document.body.removeChild(element);					
-
-
-			var element = document.createElement('dialog');
 
 			var passed = false;
+
 			try { 
-				passed = typeof HTMLDialogElement != 'undefined' && element instanceof HTMLDialogElement;
+				var element = document.createElement('dialog');
+	
+				try { 
+					passed = typeof HTMLDialogElement != 'undefined' && element instanceof HTMLDialogElement;
+				} catch(error) {
+				}
 			} catch(error) {
 			}
 			
@@ -1517,7 +1567,7 @@ Test = (function() {
 			/* input type=text */
 			
 			var group = this.section.getGroup({
-				id:		'text'
+				id:		'text',
 			});
 			
 			var element = this.createInput('text');
@@ -2032,11 +2082,15 @@ Test = (function() {
 				id:		'datalist'
 			});
 			
-			var element = document.createElement('datalist');
-			
 			var passed = false;
+			
 			try { 
-				passed = (typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length;
+				var element = document.createElement('datalist');
+			
+				try { 
+					passed = (typeof HTMLDataListElement != 'undefined' && element instanceof HTMLDataListElement) || element.childNodes.length;
+				} catch(error) {
+				}
 			} catch(error) {
 			}
 
@@ -2098,11 +2152,15 @@ Test = (function() {
 				id:		'output'
 			});
 			
-			var element = document.createElement('output');
-
 			var passed = false;
+
 			try { 
-				passed = typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement;
+				var element = document.createElement('output');
+	
+				try { 
+					passed = typeof HTMLOutputElement != 'undefined' && element instanceof HTMLOutputElement;
+				} catch(error) {
+				}
 			} catch(error) {
 			}
 
@@ -2119,11 +2177,15 @@ Test = (function() {
 				id:		'progress'
 			});
 			
-			var element = document.createElement('progress');
-
 			var passed = false;
+
 			try { 
-				passed = typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement;
+				var element = document.createElement('progress');
+	
+				try { 
+					passed = typeof HTMLProgressElement != 'undefined' && element instanceof HTMLProgressElement;
+				} catch(error) {
+				}
 			} catch(error) {
 			}
 
@@ -2140,11 +2202,15 @@ Test = (function() {
 				id:		'meter'
 			});
 			
-			var element = document.createElement('meter');
-
 			var passed = false;
+
 			try { 
-				passed = typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement;
+				var element = document.createElement('meter');
+	
+				try { 
+					passed = typeof HTMLMeterElement != 'undefined' && element instanceof HTMLMeterElement;
+				} catch(error) {
+				}
 			} catch(error) {
 			}
 
