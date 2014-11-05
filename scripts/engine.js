@@ -157,6 +157,9 @@ Test = (function() {
 			var max = 0;
 			var count = 0;
 			
+			var hasRequired = false;
+
+			var passedAll = true;
 			var passedAllRequiredFields = true;
 			var passedPartially = false;
 			
@@ -166,15 +169,26 @@ Test = (function() {
 				count += this.items[i].getPassed() > 0 ? 1 : 0;
 			
 				if (this.items[i].getRequired()) {
+					hasRequired = true;
 					passedAllRequiredFields &= this.items[i].getPassed() > 0;
 				}
 				
+				passedAll &= this.items[i].getPassed() > 0;
 				passedPartially |= this.items[i].getPartiallyPassed();
 			}
 			
 			if (!passedAllRequiredFields) {
 				points = 0;
 			}
+			
+			if (this.data.value && this.items.length) {
+				if (hasRequired ? passedAllRequiredFields : passedAll) {
+					points += this.data.value;
+				}
+				
+				max += this.data.value;
+			}
+
 			
 			this.points = points;
 			this.max = max;
