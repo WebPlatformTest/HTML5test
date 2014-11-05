@@ -1842,7 +1842,7 @@ var tests = [
 									{
 										id:			'datatypes',
 										name:		'Native binary data',
-										status:		'proposal',
+										status:		'stable',
 										items:		[
 														{
 															id:			'ArrayBuffer',
