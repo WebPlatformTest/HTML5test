@@ -1180,37 +1180,37 @@ var tests = [
 									{
 										id:		'element',
 										name: 	'<code>video</code> element', 
-										value:	20,
+										value:	16,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-video-element' ],
 													[ 'wp',  '/html/elements/video' ],
 													[ 'mdn', '/Using_HTML5_audio_and_video' ]
 												]
 									}, {
-										id:		'drm',
-										name: 	'DRM support', 
-										status:	'controversial', 
-										url:	'http://www.w3.org/TR/encrypted-media/'
-									}, {
-										id:		'mediasource',
-										name: 	'Media Source extensions', 
-										status:	'proposal', 
-										value:	2,
-										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
-													[ 'wp',  '/apis/media_source_extensions' ]
-												]
-									}, {
 										id:		'subtitle',
-										name: 	'Subtitle support', 
+										name: 	'Subtitles', 
 										value:	8,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-track-element' ],
 													[ 'wp',  '/html/elements/track' ]
 												]
 									}, {
+										id:		'audiotracks',
+										name: 	'Audio track selection', 
+										value:	2,
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#dom-media-audiotracks' ]
+												]
+									}, {
+										id:		'videotracks',
+										name: 	'Video track selection', 
+										value:	2,
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#dom-media-videotracks' ]
+												]
+									}, {
 										id:		'poster',
-										name: 	'Poster image support', 
+										name: 	'Poster images', 
 										value:	1,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-video-poster' ],
@@ -1226,7 +1226,25 @@ var tests = [
 												]
 									}, 
 									
-									'<em>The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score.</em>',
+									'<strong>Advanced</strong>',
+
+									{
+										id:		'drm',
+										name: 	'DRM support', 
+										status:	'controversial', 
+										url:	'http://www.w3.org/TR/encrypted-media/'
+									}, {
+										id:		'mediasource',
+										name: 	'Media Source extensions', 
+										status:	'proposal', 
+										value:	2,
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
+													[ 'wp',  '/apis/media_source_extensions' ]
+												]
+									}, 
+									
+									'<strong>Codecs</strong>',
 									
 									{
 										id:		'mpeg4',

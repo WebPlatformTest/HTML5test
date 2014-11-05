@@ -802,9 +802,21 @@ Test = (function() {
 			this.section.setItem({
 				id:		'element',
 				passed:	!!this.element.canPlayType, 
-				value: 	20
+				value: 	16
 			});
 
+			this.section.setItem({
+				id:		'audiotracks',
+				passed:	'audioTracks' in this.element, 
+				value: 	2
+			});
+			
+			this.section.setItem({
+				id:		'videotracks',
+				passed:	'videoTracks' in this.element, 
+				value: 	2
+			});
+			
 			this.section.setItem({
 				id:		'subtitle',
 				passed:	'track' in document.createElement('track'), 
@@ -871,21 +883,30 @@ Test = (function() {
 			var passed = true;
 					
 			if (!!this.element.canPlayType) {
-
-				/* Known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string */
-				if (this.element.canPlayType('video/nonsense') == 'no') passed = false;
+				if (this.element.canPlayType('video/nonsense') == 'no') { 
+					passed = false; 
+					if (console && console.log) console.log('Codec detection is buggy: known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string') 
+				}
 				
-				/* Known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present */
-				if (this.element.canPlayType('video/webm') == 'probably') passed = false;
+				if (this.element.canPlayType('video/webm') == 'probably') { 
+					passed = false; 
+					if (console && console.log) console.log('Codec detection is buggy: known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present') 
+				}
 				
-				/* Known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around */
-				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'probably') passed = false;
+				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'probably') {
+					passed = false;
+					if (console && console.log) console.log('Codec detection is buggy: known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around') 
+				}
 			
-				/* Known bug in Android where no better answer than "maybe" is given */
-				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'maybe') passed = false;
-			
-				/* Known bug in Internet Explorer 9 that requires both audio and video codec on test */
-				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') passed = false;
+				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'maybe') {
+					passed = false;
+					if (console && console.log) console.log('Codec detection is buggy: known bug in Android where no better answer than "maybe" is given') 
+				}
+						
+				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') {
+					passed = false;
+					if (console && console.log) console.log('Codec detection is buggy: known bug in Internet Explorer 9 that requires both audio and video codec on test') 
+				}
 	
 				/* This test should always return an empty string, if not the codecs string is ignored */
 				// if (this.element.canPlayType('video/mp4; codecs="whatthewhat"') != '') passed = false;
