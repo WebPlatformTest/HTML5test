@@ -3558,6 +3558,10 @@ Test = (function() {
 			
 			document.body.appendChild(s);
 
+			window.setTimeout(function() {
+				executionevents.stopBackground();
+			}, 500);
+
 
 			this.section.setItem({
 				id:			'base64',
