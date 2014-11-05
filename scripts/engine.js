@@ -3576,25 +3576,32 @@ Test = (function() {
 			this.section.setItem({
 				id:			'custom',
 				passed:		'registerElement' in document,
-				value: 		2
+				value: 		4
 			});
 
 			this.section.setItem({
 				id:			'shadowdom',
 				passed:		'createShadowRoot' in document.createElement('div') ? YES : 'webkitCreateShadowRoot' in document.createElement('div') ? YES | PREFIX : NO,
-				value: 		1
+				value: 		2
 			});
+			
+			var passed = false;
+
+			try {
+				passed = 'content' in document.createElement('template');
+			} catch(error) {
+			}
 
 			this.section.setItem({
 				id:			'template',
-				passed:		'content' in document.createElement('template'),
-				value: 		1
+				passed:		passed,
+				value: 		2
 			});
 
 			this.section.setItem({
 				id:			'imports',
 				passed:		'import' in document.createElement('link'),
-				value: 		1
+				value: 		2
 			});
 		}
 	};
