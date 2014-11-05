@@ -1533,7 +1533,7 @@ var tests = [
 	{
 		id:		'connectivity',
 		name:	'Connectivity',
-		column:	'right',
+		column:	'left',
 		items:	[
 					{
 						id:		'communication',
