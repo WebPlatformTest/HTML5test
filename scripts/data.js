@@ -1570,6 +1570,18 @@ var tests = [
 													]
 									}, 
 									
+									{
+										id:			'beacon',
+										name: 		'Beacon',
+										value:		2, 
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/beacon/' ],
+														[ 'mdn', '/Web/API/navigator.sendBeacon' ]
+													]
+									}, 
+									
+									
+									
 									'<strong>XMLHttpRequest Level 2</strong>',
 
 									{

@@ -2923,6 +2923,12 @@ Test = (function() {
 			});
 
 			this.section.setItem({
+				id:			'beacon',
+				passed:		'sendBeacon' in navigator, 
+				value: 		2
+			});
+			
+			this.section.setItem({
 				id:			'eventSource',
 				passed:		'EventSource' in window, 
 				value: 		8
