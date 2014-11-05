@@ -1841,6 +1841,15 @@ var tests = [
 												]
 									}, 
 									
+									'<strong>Clipboard</strong>',
+									
+									{
+										id:			'clipboard',
+										name: 		'Clipboard API and events',
+										value:		5, 
+										url:		'http://dev.w3.org/2006/webapi/clipops/clipops.html'
+									},
+									
 									'<strong>Spellcheck</strong>',
 									
 									{

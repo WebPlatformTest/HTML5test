@@ -2691,6 +2691,11 @@ Test = (function() {
 				});
 			}
 			
+			this.section.setItem({
+				id:			'clipboard',
+				passed:		!!('ClipboardEvent' in window), 
+				value: 		5
+			});
 			
 
 			this.section.setItem({
