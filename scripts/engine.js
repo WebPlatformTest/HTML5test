@@ -3702,8 +3702,8 @@ Test = (function() {
 			/* Semantics */						testParsing, testElements, testForm, testMicrodata,
 			/* Offline & Storage */				testOffline, testStorage, testFiles, testStreams,
 			/* Device Access */					testGeolocation, testOutput, testInput,
-			/* Connectivity */					testCommunication,
-			/* Multimedia */					testVideo, testAudio, testWebRTC,
+			/* Connectivity */					testCommunication, testWebRTC,
+			/* Multimedia */					testVideo, testAudio,
 			/* 3D, Graphics & Effects */		testResponsive, testCanvas, testWebGL, testAnimation,
 			/* Performance & Integration */		testInteraction, testPerformance, testSecurity, testHistory, testComponents,
 			
