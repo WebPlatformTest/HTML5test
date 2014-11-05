@@ -664,6 +664,22 @@ Test = (function() {
 			var passed = false;
 			if (this.canvas.getContext) {
 				try {
+					passed = typeof this.canvas.getContext('2d').drawSystemFocusRing != 'undefined';
+				}
+				catch(e) {
+				}
+			}
+			
+			this.section.setItem({
+				id:		'focusring',
+				passed:	passed, 
+				value: 	1
+			});
+
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
 					passed = typeof this.canvas.getContext('2d').addHitRegion != 'undefined';
 				}
 				catch(e) {

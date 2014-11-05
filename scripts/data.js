@@ -1452,6 +1452,14 @@ var tests = [
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-setlinedash' ],
 													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-setlinedash' ]
 												]
+									}, {
+										id:		'focusring',
+										name: 	'System focus ring support',
+										status:	'proposal', 
+										value:	2,
+										urls:	[
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-drawsystemfocusring' ]
+												]
 									}, 
 									
 									'<strong>Features</strong>',
