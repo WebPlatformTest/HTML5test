@@ -2092,7 +2092,7 @@ var tests = [
 										id:			'indexedDB.basic',
 										name: 		'IndexedDB',
 										status:		'proposal',
-										value:		16, 
+										value:		21, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
 														[ 'wp',  '/apis/indexedDB' ],
