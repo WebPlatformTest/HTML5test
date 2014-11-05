@@ -16,7 +16,8 @@ var tests = [
 										id:		'doctype',
 										name: 	'<code>&lt;!DOCTYPE html&gt;</code> triggers standards mode', 
 										urls:   [
-													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#the-doctype' ]
+													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#the-doctype' ],
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/syntax.html#the-doctype' ]
 												]
 									}, {
 										id:		'tokenizer',
@@ -24,6 +25,7 @@ var tests = [
 										value:	3,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#parsing' ],
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/syntax.html#parsing' ],
 													[ 'mdn', '/HTML/HTML5/HTML5_Parser' ]
 												]
 									}, {
@@ -32,6 +34,7 @@ var tests = [
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#parsing' ],
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/syntax.html#parsing' ],
 													[ 'mdn', '/HTML/HTML5/HTML5_Parser' ]
 												]
 									}, 
@@ -43,6 +46,7 @@ var tests = [
 										name: 	'Parsing inline SVG', 
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#svg' ],
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#svg-0' ],
 													[ 'mdn', '/SVG' ]
 												]
 												
@@ -51,6 +55,7 @@ var tests = [
 										name: 	'Parsing inline MathML', 
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#mathml' ],
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#mathml' ],
 													[ 'mdn', '/MathML' ]
 												]
 									}
@@ -66,6 +71,7 @@ var tests = [
 										value:	3, 
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
 													[ 'mdn', '/DOM/element.dataset' ]
 												]
 									}, 
@@ -83,32 +89,50 @@ var tests = [
 														id:		'section',
 														name: 	'<code>section</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/sections.html#the-section-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/sections.html#the-section-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-section-element' ]
+																]
 													}, {
 														id:		'nav',
 														name: 	'<code>nav</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/sections.html#the-nav-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/sections.html#the-nav-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-nav-element' ]
+																]
 													}, {
 														id:		'article',
 														name: 	'<code>article</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/sections.html#the-article-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/sections.html#the-article-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-article-element' ]
+																]
 													}, {
 														id:		'aside',
 														name: 	'<code>aside</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/sections.html#the-aside-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/sections.html#the-aside-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-aside-element' ]
+																]
 													}, {
 														id:		'header',
 														name: 	'<code>header</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/sections.html#the-header-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/sections.html#the-header-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-header-element' ]
+																]
 													}, {
 														id:		'footer',
 														name: 	'<code>footer</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/sections.html#the-footer-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/sections.html#the-footer-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-footer-element' ]
+																]
 													}
 												]
 										
@@ -1377,19 +1401,25 @@ var tests = [
 										name: 		'<code>picture</code> element', 
 										value:		5, 
 										urls:		[
-														[ 'ricg', 'http://picture.responsiveimages.org' ]
+														[ 'ricg', 'http://responsiveimages.org/' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#the-picture-element' ]
 													]
 									}, {
 										id:			'srcset',
 										name: 		'<code>srcset</code> attribute',
-										url:		'http://www.w3.org/html/wg/drafts/srcset/w3c-srcset/'
 										value:		5, 
+										urls:		[
+														[ 'ricg', 'http://responsiveimages.org/' ],
+														[ 'w3c', 'http://www.w3.org/html/wg/drafts/srcset/w3c-srcset/' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-srcset' ]
+													]
 									}, {
 										id:			'sizes',
 										name: 		'<code>sizes</code> attribute',
 										value:		5, 
 										urls:		[
-														[ 'ricg', 'http://picture.responsiveimages.org/#parse-sizes-attr' ]
+														[ 'ricg', 'http://responsiveimages.org/' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-sizes' ],
 													]
 									} 
 								]
@@ -1426,7 +1456,7 @@ var tests = [
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#path-objects' ],
-													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#path2d-objects' ]
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#path2d-objects' ]
 												]
 									}, {
 										id:		'ellipse',
@@ -1435,7 +1465,7 @@ var tests = [
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-ellipse' ],
-													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-ellipse' ]
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-ellipse' ]
 												]
 									}, {
 										id:		'dashed',
@@ -1444,7 +1474,7 @@ var tests = [
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-setlinedash' ],
-													[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#dom-context-2d-setlinedash' ]
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-setlinedash' ]
 												]
 									}, {
 										id:		'focusring',
@@ -1950,7 +1980,7 @@ var tests = [
 										status:		'proposal',
 										value:		2, 
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/CSP11/' ],
+														[ 'w3c', 'http://www.w3.org/TR/CSP/' ],
 														[ 'mdn', '/Security/CSP' ]
 													]
 									}, {
@@ -2386,7 +2416,8 @@ var tests = [
 									}, {
 										id:			'scrollIntoView',
 										name: 		'Scroll into view',
-										value:		1
+										value:		1,
+										url:		'http://dev.w3.org/csswg/cssom-view/#dom-element-scrollintoview'
 									}
 								]
 					}
