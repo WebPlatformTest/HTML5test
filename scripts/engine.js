@@ -3144,6 +3144,27 @@ Test = (function() {
 		}
 	};		
 
+	function testStreams (results) { this.initialize(results); }			
+	testStreams.prototype = {
+		initialize: function(results) {
+			this.section = results.getSection({
+				id:		'streams'
+			});
+
+			this.section.setItem({
+				id:			'streams.readable',
+				passed:		'ReadableStream' in window,
+				value: 		3
+			});
+
+			this.section.setItem({
+				id:			'streams.writeable',
+				passed:		'WriteableStream' in window, 
+				value: 		2
+			});
+		}
+	};
+	
 	function testFiles (results) { this.initialize(results); }			
 	testFiles.prototype = {
 		initialize: function(results) {
@@ -3652,7 +3673,7 @@ Test = (function() {
 		tests: [
 
 			/* Semantics */						testParsing, testElements, testForm, testMicrodata,
-			/* Offline & Storage */				testOffline, testStorage, testFiles,
+			/* Offline & Storage */				testOffline, testStorage, testFiles, testStreams,
 			/* Device Access */					testGeolocation, testOutput, testInput,
 			/* Connectivity */					testCommunication,
 			/* Multimedia */					testVideo, testAudio, testWebRTC,

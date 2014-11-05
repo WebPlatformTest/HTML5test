@@ -2199,6 +2199,27 @@ var tests = [
 													]
 									}
 								]
+					}, {
+						id:		'streams',
+						status:	'experimental',
+						name: 	'Streams',
+						items:	[
+									{
+										id:			'streams.readable',
+										name: 		'Readable streams', 
+										value:		3, 
+										urls:		[
+														[ 'w3c', 'https://streams.spec.whatwg.org/' ]
+													]
+									}, {
+										id:			'streams.writeable',
+										name: 		'Writable streams', 
+										value:		2, 
+										urls:		[
+														[ 'w3c', 'https://streams.spec.whatwg.org/' ]
+													]
+									}
+								]
 					}
 				]
 	},
