@@ -3499,6 +3499,12 @@ Test = (function() {
 				value:  	3 
 			});
 
+			this.section.setItem({
+				id:   		'url',
+				passed:   	'URL' in window ? YES : 'WebKitURL' in window || 'MozURL' in window || 'oURL' in window || 'msURL' in window ? YES | PREFIX : NO,
+				value:  	2 
+			});
+
 
 
 			var passed = 'Promise' in window ? YES | OLD : NO;

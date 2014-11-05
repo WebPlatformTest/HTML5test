@@ -2304,6 +2304,13 @@ var tests = [
 														[ 'wp',	 '/apis/json' ]
 													]
 									}, {
+										id: 		'url',
+										name:   	'URL API',
+										value:		2, 
+										urls:		[
+														[ 'w3c', 'w3ctag.github.io/url/' ]
+													]
+									}, {
 										id: 		'mutationObserver',
 										name:   	'Mutation Observer',
 										value:		3, 
