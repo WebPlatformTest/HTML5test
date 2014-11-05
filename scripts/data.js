@@ -1094,7 +1094,15 @@ var tests = [
 									}, {
 										id:			'orientation',
 										name: 		'Device Orientation',
-										value:		5, 
+										value:		3, 
+										urls:		[
+														[ 'w3c', 'http://dev.w3.org/geo/api/spec-source-orientation.html' ],
+														[ 'mdn', '/Mozilla_event_reference/devicemotion' ]
+													]
+									}, {
+										id:			'motion',
+										name: 		'Device Motion',
+										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/geo/api/spec-source-orientation.html' ],
 														[ 'mdn', '/Mozilla_event_reference/devicemotion' ]

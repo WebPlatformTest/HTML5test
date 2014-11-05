@@ -2874,7 +2874,13 @@ Test = (function() {
 			this.section.setItem({
 				id:			'orientation',
 				passed:		!!window.DeviceOrientationEvent, 
-				value: 		5
+				value: 		3
+			});
+
+			this.section.setItem({
+				id:			'motion',
+				passed:		!!window.DeviceMotionEvent, 
+				value: 		2
 			});
 		}
 	};
