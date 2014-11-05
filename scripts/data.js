@@ -1290,13 +1290,26 @@ var tests = [
 									{
 										id:		'element',
 										name: 	'<code>audio</code> element', 
-										value:	20,
+										value:	18,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element' ],
 													[ 'wp',  '/html/elements/audio' ],
 													[ 'mdn', '/Using_HTML5_audio_and_video' ]
 												]
+									}, {
+										id:		'loop',
+										name: 	'Loop audio', 
+										value:	1,
+										url:	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-media-loop'
+									}, {
+										id:		'preload',
+										name: 	'Preload in the background', 
+										value:	1,
+										url:	'http://www.w3.org/TR/html5/embedded-content-0.html#attr-media-preload'
 									},
+
+									
+									'<strong>Advanced</strong>',
 									
 									{
 										id:		'webaudio',
@@ -1325,7 +1338,7 @@ var tests = [
 										url:	'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
 									},
 				
-									'<em>The following tests go beyond the requirements of the HTML5 specification and are not counted towards the total score.</em>',
+									'<strong>Codecs</strong>',
 									
 									{
 										id:		'pcm',

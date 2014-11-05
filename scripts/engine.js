@@ -693,7 +693,6 @@ Test = (function() {
 			});
 
 
-
 			var passed = false;
 
 			if (this.canvas.getContext) {
@@ -950,9 +949,21 @@ Test = (function() {
 			this.section.setItem({
 				id:		'element',
 				passed:	!!this.element.canPlayType, 
-				value: 	20
+				value: 	18
 			});
 			
+			this.section.setItem({
+				id:		'loop',
+				passed:	'loop' in this.element, 
+				value: 	1
+			});
+
+			this.section.setItem({
+				id:		'preload',
+				passed:	'preload' in this.element, 
+				value: 	1
+			});
+
 			var item = {
 				id:		'pcm',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
