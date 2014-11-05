@@ -2029,6 +2029,8 @@ var tests = [
 						name: 	'Web applications',
 						status:	'stable',
 						items:	[
+									'<strong>Offline resources</strong>',
+
 									{
 										id:			'applicationCache',
 										name: 		'Application Cache',
