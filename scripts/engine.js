@@ -1056,10 +1056,20 @@ Test = (function() {
 				id:		'webrtc'
 			});
 			
+			var webrtc = !!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO;
+			var objectrtc = !!window.RTCIceTransport ? YES : !!window.webkitRTCIceTransport || !!window.mozRTCIceTransport || !!window.msRTCIceTransport || !!window.oRTCIceTransport ? YES | PREFIX : NO;
+			
 			this.section.setItem({
-				id:		'peerconnection',
-				passed:	!!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO, 
+				id:		'webrtc',
+				passed:	webrtc, 
 				value: 	10
+			});
+			
+			this.section.setItem({
+				id:		'objectrtc',
+				passed:	objectrtc, 
+				value: 	5,
+				award:  webrtc == NO ? 15 : 5	/* Award extra 10 points when WebRTC is not supported */
 			});
 			
 			var passed = false;

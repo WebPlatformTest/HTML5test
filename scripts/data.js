@@ -1352,36 +1352,11 @@ var tests = [
 										name: 	'WebM with Vorbis support',
 										status:	'optional'
 									}, {
-                                                                                id:             'webmopus',
-                                                                                name:   'WebM with Opus support',
-                                                                                status: 'optional'
-                                                                        }
-								]	
-					}, {
-						id:		'webrtc',
-						name:	'Peer To Peer',
-						status:	'proposal',
-						items:	[
-									{
-										id:		'peerconnection',
-										name: 	'WebRTC',
-										value:	10, 
-										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
-													[ 'wp',  '/apis/webrtc/RTCPeerConnection' ],
-													[ 'mdn', '/WebRTC' ]
-												]
-									}, {
-										id:		'datachannel',
-										name: 	'Data channel',
-										value:	5, 
-										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
-													[ 'wp',  '/apis/webrtc/RTCDataChannel' ],
-													[ 'mdn', '/WebRTC' ]
-												]
+                                        id:             'webmopus',
+                                        name:   'WebM with Opus support',
+                                        status: 'optional'
 									}
-								]
+								]	
 					}
 				]
 	},
@@ -1630,6 +1605,38 @@ var tests = [
 														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/network.html#dom-websocket-binarytype' ],
 														[ 'mdn', '/docs/WebSockets' ]
 													]
+									}
+								]
+					}, {
+						id:		'webrtc',
+						name:	'Peer To Peer',
+						status:	'proposal',
+						items:	[
+									{
+										id:		'webrtc',
+										name: 	'WebRTC 1.0',
+										value:	10, 
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
+													[ 'wp',  '/apis/webrtc/RTCPeerConnection' ],
+													[ 'mdn', '/WebRTC' ]
+												]
+									}, {
+										id:		'objectrtc',
+										name: 	'ObjectRTC API for WebRTC',
+										value:	15, 
+										urls:	[
+													[ 'w3c', 'http://ortc.org/wp-content/uploads/2014/10/ortc.html' ]
+												]
+									}, {
+										id:		'datachannel',
+										name: 	'Data channel',
+										value:	5, 
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
+													[ 'wp',  '/apis/webrtc/RTCDataChannel' ],
+													[ 'mdn', '/WebRTC' ]
+												]
 									}
 								]
 					}
