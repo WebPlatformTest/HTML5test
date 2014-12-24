@@ -1267,9 +1267,9 @@ Test = (function() {
 			var rpSupport = false;
 
 			try {
-				rubySupport = rubyElement && rubyElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
-				rtSupport = rtElement && rtElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
-				rpSupport = rpElement && rpElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isHidden(rpElement);
+				rubySupport = rubyElement && rubyElement instanceof HTMLElement;
+				rtSupport = rtElement && rtElement instanceof HTMLElement;
+				rpSupport = rpElement && rpElement instanceof HTMLElement && this.isHidden(rpElement);
 			} catch(error) {				
 			}
 			
