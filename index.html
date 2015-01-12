@@ -131,10 +131,7 @@
 
 								<p data-i18n='index-intro-1'>
 									The HTML5 test score is an indication of how well your browser supports the
-									upcoming HTML5 standard and related specifications. Even though the specification
-									isn't finalized yet, many features are already supported and all major browser
-									manufacturers are making sure their
-									browser is ready for the future. Find out which parts of HTML5 are already
+									HTML5 standard and related specifications. Find out which parts of HTML5 are 
 									supported by your browser today and compare the results with other browsers.
 								</p>
 
@@ -146,13 +143,13 @@
 
 								<p data-i18n='index-intro-3'>
 									The score is calculated by testing for the many new features of HTML5. Each feature is worth one or more points. Apart from the main HTML5
-									specification and other specifications created the W3C HTML Working Group, this test also awards points for supporting related drafts and
+									specification and other specifications created the W3C HTML Working Group or WHATWG, this test also awards points for supporting related drafts and
 									specifications.
 								</p>
 								<p data-i18n='index-intro-5'>
-									Please be aware that the specifications that are being tested are still in development and could change before receiving an official status.
-									In the future new tests will be added for the pieces of the specification that are currently still missing.
-									The maximum number of points that can be scored is <span id='total'>0</span> at this moment, but this is a moving goalpost.
+									Please be aware that although the HTML5 specification is now an official recommendation, other specifications that are being tested are still in development 
+									and could change before receiving an official status.
+									In the future new tests will be added for new specifications and existing tests will be updated when the specifications change.
 								</p>
 
 								<h3>Help us improve HTML5 test by donating</h3>
@@ -256,7 +253,7 @@
 
 			function start() {
 				new Test(function(r) {
-
+				
 					/* Submit results */
 					try {
 						var payload = '{' +
@@ -306,9 +303,6 @@
 						"</div>",
 					r);
 
-
-					var total = document.getElementById('total');
-					total.innerHTML = r.maximum;
 
 					/* Show box for confirming useragent detection */
 					new Confirm(container, {
