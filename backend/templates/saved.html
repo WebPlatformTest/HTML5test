@@ -13,8 +13,8 @@
 		<script src='/translation.js' type='text/javascript'></script>
 
 		<script src='/scripts/base.js' type='text/javascript'></script>
-		<script src='/scripts/data.js' type='text/javascript'></script>
-		<script src='/scripts/engine.js' type='text/javascript'></script>
+		<script src='/scripts/<?php echo $version; ?>/data.js' type='text/javascript'></script>
+		<script src='/scripts/<?php echo $version; ?>/engine.js' type='text/javascript'></script>
 		<script src='/scripts/reporting.js' type='text/javascript'></script>
 
 		<meta name="application-name" content="HTML5test"/>
@@ -52,6 +52,16 @@
 				</ul>
 			</div>
 		</div>
+
+		<?php if (isset($legacy) && $legacy): ?> 
+		<div class='page'>
+			<div class='message'>
+				The following results were created in an older version of the test suite. If you test the same browser
+				on the current site, it may get a different score and different results.
+			</div>
+		</div>
+		<?php endif; ?>
+
 		
 		<div class='page saved'>
 			<div id='contents' class='column'>
