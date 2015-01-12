@@ -1887,6 +1887,10 @@ body.indexVisible > div#index button#indexbutton {
 	font-family: html5test;
 	font-size: 29px;
 }
+.resultsTable .linksPanel .info .status.recommendation::after {
+	content: '';
+	color: #33af33;
+}
 .resultsTable .linksPanel .info .status.stable::after {
 	content: '';
 	color: #33af33;
