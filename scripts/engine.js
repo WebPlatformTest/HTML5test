@@ -2874,7 +2874,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'csp10',
-				passed:		!(function() { try { return eval('true'); } catch (e) {} })(),
+				passed:		!(function() { try { return eval('true'); } catch (e) {} return false; })(),
 				value: 		3
 			});
 
