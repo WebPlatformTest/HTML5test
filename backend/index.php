@@ -137,6 +137,7 @@
 						indices
 					SET 
 						fingerprint = "' . mysql_real_escape_string(md5($payload->results.$payload->points)) . '",
+						version = "' . mysql_real_escape_string($payload->version) . '",
 						score = "' . mysql_real_escape_string($payload->score) . '",
 						humanReadable = "' . mysql_real_escape_string($payload->humanReadable) . '",
 						browserName = "' . mysql_real_escape_string($payload->browserName) . '",
