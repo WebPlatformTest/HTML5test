@@ -1567,7 +1567,7 @@ Test = (function() {
 			/* input type=text */
 			
 			var group = this.section.getGroup({
-				id:		'text',
+				id:		'text'
 			});
 			
 			var element = this.createInput('text');
