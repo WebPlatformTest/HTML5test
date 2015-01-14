@@ -3782,7 +3782,10 @@ Test = (function() {
 				'interaction.dragdrop':				!(  Browsers.isType('desktop') ||
 														Browsers.isType('mobile', 'tablet', 'media') && (
 															Browsers.isBrowser('Opera') && Browsers.isEngine('Presto')
-														) 
+														) ||
+														Browsers.isType('television') && (
+															Browsers.isDevice('webOS TV')
+														)
 													),
 
 				'interaction.editing':				!(	Browsers.isType('desktop') ||
@@ -3802,6 +3805,7 @@ Test = (function() {
 														) ||
 														Browsers.isType('television') && (
 															Browsers.isOs('Tizen') || 
+															Browsers.isDevice('webOS TV') || 
 															Browsers.isBrowser('Espial') ||
 															Browsers.isBrowser('MachBlue XT') ||
 															Browsers.isEngine('Presto', '>=', '2.9')
