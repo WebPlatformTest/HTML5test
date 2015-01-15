@@ -112,7 +112,7 @@
 						}
 
 						if (data.defaultFingerprint) {
-							browsers += "<div class='score'><a href='http://html5te.st/" + data.defaultFingerprint + "'>" +  data.defaultResults.score + "</a></div>";
+							browsers += "<div class='score'><a href='" + document.location.protocol + "//html5te.st/" + data.defaultFingerprint + "'>" +  data.defaultResults.score + "</a></div>";
 						}
 						
 						browsers += "</li>";

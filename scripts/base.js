@@ -293,7 +293,7 @@
 
 				"<div id='twitter'>" +
 				"<a href='https://twitter.com/share' class='twitter-share-button' " +
-					"data-url='http://html5test.com' " +
+					"data-url='https://html5test.com' " +
 					"data-related='rakaz' " +
 					"data-text='" + this.options.browser + " scored " + this.options.score + " points. How well does your browser support HTML5?' " +
 					"data-lang='en' "+
@@ -302,12 +302,12 @@
 				"</div>" +
 
 				"<div id='facebook'>" +
-				"<iframe src='//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhtml5test.com&amp;width=60&amp;height=65&amp;colorscheme=light&amp;layout=box_count&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=202643099847776' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:The pixel width of the pluginpx; height:65px;' allowTransparency='true'></iframe>" +
+				"<iframe src='//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fhtml5test.com&amp;width=60&amp;height=65&amp;colorscheme=light&amp;layout=box_count&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=202643099847776' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:The pixel width of the pluginpx; height:65px;' allowTransparency='true'></iframe>" +
 				"</div>" +
 
 				"<div id='google'>" +
 				"<div class='g-plusone' " +
-					"data-href='http://html5test.com' " +
+					"data-href='https://html5test.com' " +
 					"data-size='tall'" +
 					"></div>" +
 				"</div>" +
@@ -370,10 +370,10 @@
 			this.popup.innerHTML +=
 				"<div id='save'>" +
 				"<p>You can see the results here:</p>" +
-				"<p><a href='http://html5te.st/" + this.options.id + "'>html5te.st/" + this.options.id + "</a></p>" +
+				"<p><a href='" + document.location.protocol + "//html5te.st/" + this.options.id + "'>html5te.st/" + this.options.id + "</a></p>" +
 				"<p>Or scan this QR-code:</p>" +
 				"<p>" +
-				"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent("http://html5te.st/" + this.options.id) + "&choe=UTF-8' width='200' height='200'>" +
+				"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(document.location.protocol + "//html5te.st/" + this.options.id) + "&choe=UTF-8' width='200' height='200'>" +
 				"</p>" +
 				"<p>The unique id for this test is:<br><code>" + this.options.id + "</code></p>" +
 				"</div>";
