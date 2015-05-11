@@ -7,9 +7,9 @@
 	include('../models/browsers.php');
 	include('../models/results.php');
 
-	header ("X-WebKit-CSP: default-src 'unsafe-inline' *; frame-src *; options inline-script;");
-	header ("Content-Security-Policy: default-src 'unsafe-inline' *; frame-src *; options inline-script;");
-	header ("X-Content-Security-Policy: default-src 'unsafe-inline' *; frame-src *; options inline-script;");
+	header ("X-WebKit-CSP: default-src 'unsafe-inline' data: *; frame-src *; options inline-script;");
+	header ("Content-Security-Policy: default-src 'unsafe-inline' data: *; frame-src *; options inline-script;");
+	header ("X-Content-Security-Policy: default-src 'unsafe-inline' data: *; frame-src *; options inline-script;");
 
 	$tpl = new Template('../templates/browser.html');
 	
