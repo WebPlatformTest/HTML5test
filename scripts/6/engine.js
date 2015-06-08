@@ -1039,11 +1039,40 @@ Test = (function() {
 				value: 		3
 			});
 
-			this.section.setItem({
-				id:			'speechsynthesis',
-				passed:		'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO, 
-				value: 		2
+			var group = this.section.getGroup({
+			  id: 'speechsynthesis'
 			});
+
+			group.setItem({
+        id:     'api',
+        passed:   'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO, 
+        value:    2
+      });
+
+			var voices = {
+        id:     'voices',
+        passed:   ((window.speechSynthesis || window.webkitSpeechSynthesis || window.mozSpeechSynthesis || window.oSpeechSynthesis || window.msSpeechSynthesis) &&
+            (window.speechSynthesis || window.webkitSpeechSynthesis || window.mozSpeechSynthesis || window.oSpeechSynthesis || window.msSpeechSynthesis).getVoices().length > 0), 
+        value:    1
+      };
+			var voicesItem = group.setItem(voices);
+
+			/*
+        The voices are returned asynchronously as of the errata in the Web Speech API Specification (E11 2013-10-17), so getVoices() needs to be called twice.
+        See https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi-errata.html.
+			 */
+			if (window.speechSynthesis.addEventListener && !voices.passed) {
+  			window.speechSynthesis.addEventListener("voiceschanged", function() {
+  			  voicesItem.update({
+            'passed': ((window.speechSynthesis || window.webkitSpeechSynthesis || window.mozSpeechSynthesis || window.oSpeechSynthesis || window.msSpeechSynthesis) &&
+                (window.speechSynthesis || window.webkitSpeechSynthesis || window.mozSpeechSynthesis || window.oSpeechSynthesis || window.msSpeechSynthesis).getVoices().length > 0)
+          });
+          voicesItem.stopBackground();
+  			});
+
+  			window.speechSynthesis.getVoices();
+        voicesItem.startBackground();
+			}
 		},
 		
 		canPlayType: function(t) {
