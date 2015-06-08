@@ -1342,13 +1342,25 @@ var tests = [
 										url:	'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
 									},
 				
-									{
-										id:		'speechsynthesis',
-										name: 	'Speech Synthesis',
-										status:	'experimental', 
-										value:	2,
-										url:	'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
-									},
+                  {
+                    id:   'speechsynthesis',
+                    name:   'Speech Synthesis',
+                    status: 'experimental', 
+                    items: [
+                      {
+                        id: 'api',
+                        name: 'API',
+                        value:  2,
+                        url:  'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
+                      },
+                      {
+                        id: 'voices',
+                        name: 'Voices',
+                        value:  1,
+                        url:  'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
+                      }
+                    ]
+                  },
 				
 									'<strong>Codecs</strong>',
 									
