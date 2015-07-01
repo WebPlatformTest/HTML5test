@@ -1968,7 +1968,7 @@ var tests = [
 													]
 									}, {
 										id:			'csp10',
-										name: 		'Content Security Policy 1.0',
+										name: 		'Content Security Policy 1',
 										value:		3, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/CSP/' ],
@@ -1976,7 +1976,7 @@ var tests = [
 													]
 									}, {
 										id:			'csp11',
-										name: 		'Content Security Policy 1.1',
+										name: 		'Content Security Policy 2',
 										status:		'proposal',
 										value:		2, 
 										urls:		[
