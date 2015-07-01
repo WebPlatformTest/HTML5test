@@ -2244,7 +2244,7 @@ var tests = [
 										name: 		'FileSystem API', 
 										status:		'experimental',
 										urls:    	[
-														[ 'w3c', 'http://w3c.github.io/filesystem-api/Overview.html' ],
+														[ 'w3c', 'http://w3c.github.io/filesystem-api/' ],
 													]
 									},
 									
