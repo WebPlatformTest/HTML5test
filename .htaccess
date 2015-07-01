@@ -39,6 +39,9 @@ RewriteRule ^apple-touch-icon(.*)$			/images/icons/apple-touch-icon$1
 RewriteRule ^mstile-(.*)$					/images/icons/mstile-$1
 RewriteRule ^browserconfig.xml				/images/icons/browserconfig.xml
 
+RewriteRule ^scripts/useragents				http://api.whichbrowser.net/warning.js
+
+
 <FilesMatch ".+\.[woff|eot|svg|ttf]">
 <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "*"
