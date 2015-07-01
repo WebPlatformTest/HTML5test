@@ -1061,11 +1061,37 @@ Test = (function() {
 				value: 		3
 			});
 
-			this.section.setItem({
+
+			var speechSynthesis = window.speechSynthesis || window.webkitSpeechSynthesis || window.mozSpeechSynthesis || window.oSpeechSynthesis || window.msSpeechSynthesis; 
+			var available = 'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO;
+			var voices = speechSynthesis ? speechSynthesis.getVoices().length : 0;
+			
+			var speechItem = this.section.setItem({
 				id:			'speechsynthesis',
-				passed:		'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO, 
+				passed:		speechSynthesis && voices ? available : NO, 
 				value: 		2
 			});
+			
+			if (speechSynthesis && !voices) {
+				if (speechSynthesis.addEventListener) {
+					
+					speechItem.startBackground();
+					
+					speechSynthesis.addEventListener("voiceschanged", function() {
+						voices = speechSynthesis.getVoices().length;
+	
+						speechItem.update({
+							passed: voices ? available : NO, 
+						});
+	
+						speechItem.stopBackground();
+					});
+					
+					window.setTimeout(function() {
+						speechItem.stopBackground();
+					}, 1000);
+				}
+			}
 		},
 		
 		canPlayType: function(t) {
