@@ -1361,12 +1361,20 @@ var tests = [
 										name: 	'PCM audio support',
 										status:	'optional' 
 									}, { 
+										id:		'mp3',
+										name: 	'MP3 support',
+										status:	'optional'
+									}, { 
 										id:		'aac',
 										name: 	'AAC support',
 										status:	'optional'
 									}, { 
-										id:		'mp3',
-										name: 	'MP3 support',
+										id:		'ac3',
+										name: 	'Dolby Digital support',
+										status:	'optional'
+									}, { 
+										id:		'ec3',
+										name: 	'Dolby Digital Plus support',
 										status:	'optional'
 									}, { 
 										id:		'vorbis',

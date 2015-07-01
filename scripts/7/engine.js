@@ -1006,6 +1006,20 @@ Test = (function() {
 			this.section.setItem(item);
 
 			var item = {
+				id:		'ac3',
+				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="ac-3"')
+			};
+			
+			this.section.setItem(item);
+
+			var item = {
+				id:		'ec3',
+				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="ec-3"')
+			};
+			
+			this.section.setItem(item);
+
+			var item = {
 				id:		'vorbis',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
 			};
