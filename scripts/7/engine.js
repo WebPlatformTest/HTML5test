@@ -1174,7 +1174,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:   		'pointerevents',
-				passed:  	'maxTouchPoints' in window.navigator ? YES : 'msMaxTouchPoints' in window.navigator || 'mozMaxTouchPoints' in window.navigator || 'webkitMaxTouchPoints' in window.navigator ? YES | PREFIX : NO,
+				passed:		!!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO, 
 				value:   	5
 			});
 		}
