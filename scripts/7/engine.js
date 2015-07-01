@@ -858,6 +858,14 @@ Test = (function() {
 			this.section.setItem(item);
 
 			var item = {
+				id:		'h265',
+				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="hvc1.1.L0.0"') || this.canPlayType('video/mp4; codecs="hev1.1.L0.0"'))
+				
+			};
+			
+			this.section.setItem(item);
+
+			var item = {
 				id:		'theora',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
 			};

@@ -1270,6 +1270,10 @@ var tests = [
 													[ 'other', 'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf' ]
 												]
 									}, {
+										id:		'h265',
+										name: 	'H.265 support',
+										status:	'optional'
+									}, {
 										id:		'theora',
 										name: 	'Ogg Theora support',
 										status:	'optional', 
