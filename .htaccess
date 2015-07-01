@@ -31,6 +31,7 @@ RewriteRule ^results/other.html$			/backend/controllers/results.php?type=other
 RewriteRule ^results/latest.html$			/backend/controllers/latest.php
 RewriteRule ^results/search.html$			/backend/controllers/search.php
 RewriteRule ^results/related/(.+).html$ 	/backend/controllers/fingerprint.php?id=$1
+RewriteRule ^devicelab/inventory.html$		/backend/controllers/lab-inventory.php
 RewriteRule ^devicelab/?$					/backend/controllers/lab.php
 
 RewriteRule ^favicon(.*)$					/images/icons/favicon$1
