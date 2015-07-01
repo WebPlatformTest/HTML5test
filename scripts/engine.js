@@ -3769,15 +3769,15 @@ Test = (function() {
 				'form.datetime-local.ui':			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
 				'form.color.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8'),
 				'form.range.ui':					Browsers.isBrowser('UC Browser', '<', '9.8'),
-				'form.progress.element':			Browsers.isBrowser('Baidu Browser'),
+				'form.progress.element':			Browsers.isBrowser('Baidu Browser', '<', '5.5'),
 				'files.fileSystem':					Browsers.isOs('BlackBerry Tablet OS'),
-				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8') || Browsers.isBrowser('Dolphin'),
-				'location.geolocation':				Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser'),
-				'location.orientation':				Browsers.isBrowser('Baidu Browser'),
-				'output.notifications':				Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser', '<', '5.5') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8') || Browsers.isBrowser('Dolphin'),
+				'location.geolocation':				Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser', '<', '5.5'),
+				'location.orientation':				Browsers.isBrowser('Baidu Browser', '<', '5.5'),
+				'output.notifications':				Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser', '<', '5.5') || Browsers.isBrowser('Sogou Explorer'),
 				'output.requestFullScreen':			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
-				'video.subtitle':					Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-				'webgl.context':					Browsers.isBrowser('Baidu Browser'),
+				'video.subtitle':					Browsers.isBrowser('Baidu Browser', '<', '5.5') || Browsers.isBrowser('Sogou Explorer'),
+				'webgl.context':					Browsers.isBrowser('Baidu Browser', '<', '5.5'),
 				
 				'interaction.dragdrop':				!(  Browsers.isType('desktop') ||
 														Browsers.isType('mobile', 'tablet', 'media') && (
