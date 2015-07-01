@@ -3043,6 +3043,12 @@ Test = (function() {
 			});
 			
 			this.section.setItem({
+				id:			'fetch',
+				passed:		'Promise' in window && typeof window.fetch === 'function' && window.fetch('') instanceof Promise, 
+				value: 		6
+			});
+			
+			this.section.setItem({
 				id:			'xmlhttprequest2.upload',
 				passed:		window.XMLHttpRequest && 'upload' in new XMLHttpRequest(), 
 				value: 		5

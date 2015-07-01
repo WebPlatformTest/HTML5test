@@ -1581,16 +1581,6 @@ var tests = [
 									}, 
 									
 									{
-										id:			'fetch',
-										name: 		'Fetch',
-										value:		6, 
-										urls:		[
-														[ 'whatwg', 'https://fetch.spec.whatwg.org/' ],
-														[ 'mdn', '/Web/API/Fetch_API' ]
-													]
-									}, 
-									
-									{
 										id:			'beacon',
 										name: 		'Beacon',
 										value:		2, 

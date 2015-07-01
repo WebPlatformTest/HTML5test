@@ -1602,6 +1602,15 @@ var tests = [
 													]
 									}, 
 									
+									{
+										id:			'fetch',
+										name: 		'Fetch',
+										value:		6, 
+										urls:		[
+														[ 'whatwg', 'https://fetch.spec.whatwg.org/' ],
+														[ 'mdn', '/Web/API/Fetch_API' ]
+													]
+									}, 
 									
 									
 									'<strong>XMLHttpRequest Level 2</strong>',
