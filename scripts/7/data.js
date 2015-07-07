@@ -2027,17 +2027,9 @@ var tests = [
 									{
 										id:			'sandbox',
 										name: 		'Sandboxed <code>iframe</code>',
-										value:		10, 
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-sandbox' ],
-														[ 'mdn', '/HTML/Element/iframe' ]
-													]
-									}, {
-										id:			'seamless',
-										name: 		'Seamless <code>iframe</code>',
 										value:		5, 
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-seamless' ],
+														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-sandbox' ],
 														[ 'mdn', '/HTML/Element/iframe' ]
 													]
 									}, {

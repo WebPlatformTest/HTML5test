@@ -2953,12 +2953,6 @@ Test = (function() {
 			});
 
 			this.section.setItem({
-				id:			'seamless',
-				passed:		'seamless' in document.createElement('iframe'), 
-				value: 		5
-			});
-
-			this.section.setItem({
 				id:			'srcdoc',
 				passed:		'srcdoc' in document.createElement('iframe'), 
 				value: 		5
