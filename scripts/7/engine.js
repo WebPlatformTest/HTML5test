@@ -2949,7 +2949,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'sandbox',
 				passed:		'sandbox' in document.createElement('iframe'), 
-				value: 		10
+				value: 		5
 			});
 
 			this.section.setItem({
