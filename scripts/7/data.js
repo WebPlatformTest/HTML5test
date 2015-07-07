@@ -1585,7 +1585,7 @@ var tests = [
 									{
 										id:			'eventSource',
 										name: 		'Server-Sent Events',
-										value:		6, 
+										value:		5, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/eventsource/' ],
 														[ 'mdn', '/Server-sent_events/Using_server-sent_events' ]

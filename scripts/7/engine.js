@@ -3033,7 +3033,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'eventSource',
 				passed:		'EventSource' in window, 
-				value: 		6
+				value: 		5
 			});
 			
 			this.section.setItem({
