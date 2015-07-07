@@ -1492,7 +1492,7 @@ var tests = [
 										id:		'focusring',
 										name: 	'System focus ring support',
 										status:	'proposal', 
-										value:	2,
+										value:	1,
 										urls:	[
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-drawsystemfocusring' ]
 												]
