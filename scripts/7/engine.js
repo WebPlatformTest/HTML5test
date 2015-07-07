@@ -3615,12 +3615,6 @@ Test = (function() {
 			});
 			
 			this.section.setItem({
-				id:			'scoped',
-				passed:		'scoped' in document.createElement('style'), 
-				value: 		2
-			});
-
-			this.section.setItem({
 				id:			'async',
 				passed:		'async' in document.createElement('script'), 
 				value: 		3

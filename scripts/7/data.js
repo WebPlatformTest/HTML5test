@@ -2339,18 +2339,6 @@ var tests = [
 						name: 	'Other',
 						status:	'stable',
 						items:	[
-									'<strong>Styling</strong>',
-			
-									{
-										id:			'scoped',
-										name: 		'Scoped <code>style</code> element', 
-										value:		2, 
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/document-metadata.html#attr-style-scoped' ],
-														[ 'wp',  '/Meta:HTML/Elements/style' ]
-													]
-									}, 
-									
 									'<strong>Scripts</strong>',
 			
 									{
