@@ -749,6 +749,13 @@
 			
 			return count;	
 		},
+		
+		askForUniqueId: function(c) {
+			var id = prompt(t('Enter the unique id of the results you want to see'))
+			if (id) {
+				this.loadColumn(c, 'custom:' + id);
+			}
+		},
 			
 		createCategories: function(parent, tests) {
 			var table = document.createElement('table');
@@ -812,10 +819,7 @@
 					div.addEventListener('click', function(e) { 
 						if (that.data[c] == null) {
 							if (e.altKey) {
-								var id = prompt(t('Enter the unique id of the results you want to see'))
-								if (id) {
-									that.loadColumn(c, 'custom:' + id);
-								}
+								that.askForUniqueId(c);
 							}
 							else
 								menu.className += ' visible';
@@ -845,6 +849,12 @@
 
 								if (action == 'calculate') {
 									that.calculateColumn(c);
+								}
+
+								if (action == 'custom') {
+									window.setTimeout(function() {
+										that.askForUniqueId(c);
+									}, 0);
 								}
 
 								if (action == 'load') {
