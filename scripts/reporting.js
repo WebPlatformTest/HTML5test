@@ -847,9 +847,8 @@
 				})(this, c, menu);
 			}
 		},
-	
+				
 		createSections: function(parent, tests) {
-		
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] == 'string') {
 					var h2 = document.createElement('h2');
@@ -880,13 +879,19 @@
 						var tbody = document.createElement('tbody');
 						table.appendChild(tbody);
 	
-						this.createItems(tbody, 0, tests[i].id ? tests[i].id : '', tests[i].items);
+						var status = typeof tests[i].status != 'undefined' ? tests[i].status : '';
+	
+						this.createItems(tbody, 0, tests[i].items, {
+							id:		tests[i].id,
+							status:	status,
+							urls:	[]
+						});
 					}
 				}
 			}
 		},
 		
-		createItems: function(parent, level, id, tests, parentUrls) {
+		createItems: function(parent, level, tests, data) {
 			var ids = [];
 			
 			for (var i = 0; i < tests.length; i++) {
@@ -912,7 +917,7 @@
 						tr.appendChild(td);
 					}
 					
-					tr.id = 'row-' + (id ? id + '-' : '') + tests[i].id;
+					tr.id = 'row-' + (data.id ? data.id + '-' : '') + tests[i].id;
 					
 					if (level > 0) {
 						tr.className = 'isChild';
@@ -931,7 +936,13 @@
 						}
 
 						tr.className += 'hasChild';
-						var children = this.createItems(parent, level + 1, (id ? id + '-' : '') + tests[i].id, tests[i].items, urls);
+
+						var children = this.createItems(parent, level + 1, tests[i].items, {
+							id: 	(data.id ? data.id + '-' : '') + tests[i].id,
+							status:	typeof tests[i].status != 'undefined' ? tests[i].status : data.status,
+							urls:	urls
+						});
+
 						this.hideChildren(tr, children);
 						
 						(function(that, tr, th, children) {
