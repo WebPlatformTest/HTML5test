@@ -750,3 +750,89 @@ div:-moz-full-screen #timelineGraph {
 }
 
 
+
+.diffTable {
+	padding-left: 70px;
+}
+.diffTable table {
+	width: 100%;
+	margin-top: 22px;
+	border-top: 1px solid #ddd;
+}
+.diffTable table th,
+.diffTable table td {
+	padding: 6px 0;
+	border-bottom: 1px solid #ddd;
+}
+.diffTable table th {
+	text-align: left;
+	font-weight: inherit;
+	max-width: 0;
+	width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.diffTable table th code {
+	font-size: 1.1em;
+}
+.diffTable table a {
+	color: inherit;
+	text-decoration: none;
+}
+.diffTable table td {
+	text-align: right;
+    white-space: nowrap;
+}
+.diffTable table td div {
+	display: inline-block;
+	margin: 0 1em;
+	width: 70px;
+	text-align: center;
+}
+
+.diffHeader {
+	position: relative;
+	height: 38px;
+}
+
+.diffHeader .points {
+    font-family: 'League Gothic', Impact;
+    font-weight: normal;
+	font-style: normal;
+	font-size: 4em;
+	color: #0092bf;
+	
+	position: absolute;
+	top: 10px;
+	left: 0;
+}
+.diffHeader h3 {
+	font-size: 1.3em;
+	margin: 0 !important;
+	
+	position: absolute;
+	top: -0.3em;
+	left: 70px;
+}
+.diffHeader h3 a {
+	color: inherit;
+	text-decoration: none;
+}
+.diffHeader h3 a:hover {
+	text-decoration: underline;
+}
+.diffHeader h3 span {
+	color: #aaa;
+}
+
+.diffHeader p {
+	position: absolute;
+	top: 1.6em;
+	left: 70px;
+}
+
+h2 span {
+	color: #aaa;
+	font-size: 80%;
+}

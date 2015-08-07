@@ -3,6 +3,81 @@
 	class Results {
 		
 		
+		
+		function getTimeline($id, $type, $version) {
+			$results = array();
+
+			$res = mysql_query("
+				SELECT 
+					b.variant, IFNULL(b.version,'') AS version, b.nickname, b.release, b.status, f.score, f.results
+				FROM 
+					browserVariants AS v
+					LEFT JOIN browserVersions AS b ON (v.id = b.variant)
+					LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					LEFT JOIN fingerprints AS f ON (s.fingerprint = f.fingerprint)
+				WHERE 
+					(v.id = '" . mysql_real_escape_string($id) . "' OR v.replaced = '" . mysql_real_escape_string($id) . "') AND
+					FIND_IN_SET('" . mysql_real_escape_string($type) . "',v.type) AND
+					FIND_IN_SET('" . mysql_real_escape_string($type) . "',b.type) AND
+					s.release = '" . $version . "'
+				ORDER BY
+					IF(b.status='development',1,0) DESC, b.release DESC, v.replaced, b.version DESC			
+			");
+			
+			while ($row = mysql_fetch_object($res)) {
+				$results[] = $row;
+			}
+	
+			for ($i = 0; $i < count($results) - 1; $i++) {
+				$results[$i]->changes = Results::getDiff($results[$i]->results, $results[$i + 1]->results);
+			}
+	
+			for ($i = 0; $i < count($results); $i++) {
+				unset($results[$i]->results);
+			}
+			
+			return $results;		
+		}
+		
+		function getArray($string) {
+			$result = array();
+			
+			$array = explode(',', $string);
+			
+			for ($i = 0; $i < count($array); $i++) {
+				$item = explode('=', $array[$i]);
+				$result[$item[0]] = $item[1];	
+			}
+			
+			return $result;
+		}
+		
+		function getDiff($current, $previous) {
+			$ignore = array(
+				'audio-pcm', 'audio-mp3', 'audio-aac', 'audio-vorbis', 'audio-webm', 'audio-webmopus', 'audio-opus',
+				'video-mpeg4', 'video-h264', 'video-theora', 'video-webmvp8', 'video-webmvp9'
+			);
+			
+			$current = Results::getArray($current);
+			$previous = Results::getArray($previous);
+			
+			$changes = array();
+			
+			foreach ($previous AS $p => $value) {
+				if (in_array($p, $ignore)) continue;
+				
+				if ($previous[$p] != $current[$p]) {
+					$changes[] = (object) array(
+						'id'	=> $p, 
+						'from'	=> $previous[$p], 
+						'to'	=> $current[$p]
+					);
+				}
+			}
+			
+			return $changes;
+		}
+		
 			
 		function getByFeature($id, $version) {
 			$results = array();
