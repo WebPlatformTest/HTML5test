@@ -192,6 +192,7 @@ var tests = [
 													}, {
 														id:		'ping',
 														name: 	'<code>ping</code> attribute on the <code>a</code> element', 
+														status:	'proposal',
 														value:	1, 
 														urls:	[ 
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#ping' ] 
@@ -1653,6 +1654,7 @@ var tests = [
 									{
 										id:			'beacon',
 										name: 		'Beacon',
+										status:		'experimental',
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/beacon/' ],
@@ -1663,6 +1665,7 @@ var tests = [
 									{
 										id:			'fetch',
 										name: 		'Fetch',
+										status:		'experimental',
 										value:		6, 
 										urls:		[
 														[ 'whatwg', 'https://fetch.spec.whatwg.org/' ],
@@ -2404,6 +2407,7 @@ var tests = [
 									}, {
 										id:			'template',
 										name: 		'HTML templates', 
+										status: 	'stable',
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
@@ -2490,7 +2494,6 @@ var tests = [
 									}, {
 										id: 		'promises',
 										name:   	'Promises',
-										status:		'experimental',
 										value:		2, 
 										urls:		[
 														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects' ],
