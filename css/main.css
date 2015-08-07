@@ -1713,7 +1713,7 @@ body.indexVisible > div#index button#indexbutton {
 .resultsTable table tr th.hasLink:hover {
 	cursor: pointer;
 }
-.resultsTable table tr th.hasLink:hover span {
+.resultsTable table tr th.hasLink:hover > div > span {
 	text-decoration: underline;
 }
 .resultsTable table tr.hasChild th > * {
@@ -1780,18 +1780,18 @@ body.indexVisible > div#index button#indexbutton {
 	text-decoration: underline;
 }
 
-.resultsTable .linksPanel {
+.linksPanel {
 	max-width: 120%;
 	min-width: 291px;
 	padding: 4px 0;
 	margin-top: 9px;
 	margin-left: -2px;
 }
-.resultsTable .linksPanel.popupPanel.pointsLeft::after, .resultsTable .linksPanel.popupPanel.pointsRight::after {
+.linksPanel.popupPanel.pointsLeft::after, .linksPanel.popupPanel.pointsRight::after {
 	border-bottom: 8px solid #f6f6f6;
 }
 
-.resultsTable .linksPanel .info {
+.linksPanel .info {
 	position: relative;
 	border-bottom: 4px solid #eee;
 	background: #f6f6f6;
@@ -1800,7 +1800,7 @@ body.indexVisible > div#index button#indexbutton {
 	height: 66px;
 	margin-bottom: 6px;
 }
-.resultsTable .linksPanel .info .column {
+.linksPanel .info .column {
 	position: absolute;
 	width: 33%;
 	height: 66px;
@@ -1810,27 +1810,27 @@ body.indexVisible > div#index button#indexbutton {
 	border-left: 2px solid #eee;
 	border-right: 2px solid #eee;
 }
-.resultsTable .linksPanel .info .left {
+.linksPanel .info .left {
 	left: 0;
 	border-left: none;
 }
-.resultsTable .linksPanel .info .middle {
+.linksPanel .info .middle {
 	left: 33%;
 	width: 34%;
 }
-.resultsTable .linksPanel .info .right {
+.linksPanel .info .right {
 	left: 67%;
 	border-right: none;
 }
-.resultsTable .linksPanel .info .column a {
+.linksPanel .info .column a {
 	display: block;
 	width: 100%;
 	height: 66px;
 }
-.resultsTable .linksPanel .info .column a:hover {
+.linksPanel .info .column a:hover {
 	background: #eee;
 }
-.resultsTable .linksPanel .info .column span {
+.linksPanel .info .column span {
 	position: absolute;
 	left: 0;
 	width: 100%;
@@ -1841,7 +1841,7 @@ body.indexVisible > div#index button#indexbutton {
 	font-size: 0.9em;
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
 }
-.resultsTable .linksPanel .info .middle em {
+.linksPanel .info .middle em {
 	position: absolute;
 	top: 10px;
 	left: 50%;
@@ -1859,7 +1859,7 @@ body.indexVisible > div#index button#indexbutton {
     font-size: 2.5em;
 	z-index: 2;
 }
-.resultsTable .linksPanel .info .middle em::before {
+.linksPanel .info .middle em::before {
 	position: absolute;
 	top: 0;
 	display: block;
@@ -1870,14 +1870,14 @@ body.indexVisible > div#index button#indexbutton {
 	border-radius: 16px;
 	z-index: -1;
 }
-.resultsTable .linksPanel .info .middle.none em::before {
+.linksPanel .info .middle.none em::before {
 	border: 16px solid #aaa;
 }
-.resultsTable .linksPanel .info .middle.none em {
+.linksPanel .info .middle.none em {
 	font-family: html5test;
 	font-size: 1.5em;
 }
-.resultsTable .linksPanel .info .status::after {
+.linksPanel .info .status::after {
 	position: absolute;
 	top: 12px;
 	width: 100%;
@@ -1887,35 +1887,35 @@ body.indexVisible > div#index button#indexbutton {
 	font-family: html5test;
 	font-size: 29px;
 }
-.resultsTable .linksPanel .info .status.recommendation::after {
+.linksPanel .info .status.recommendation::after {
 	content: '';
 	color: #33af33;
 }
-.resultsTable .linksPanel .info .status.stable::after {
+.linksPanel .info .status.stable::after {
 	content: '';
 	color: #33af33;
 }
-.resultsTable .linksPanel .info .status.proposal::after {
+.linksPanel .info .status.proposal::after {
 	content: '';
 	color: #88b038;
 }
-.resultsTable .linksPanel .info .status.experimental::after {
+.linksPanel .info .status.experimental::after {
 	content: '';
 	color: #ec6534;
 }
-.resultsTable .linksPanel .info .status.controversial::after {
+.linksPanel .info .status.controversial::after {
 	content: '';
 	color: #ec6534;
 }
-.resultsTable .linksPanel .info .status.optional::after {
+.linksPanel .info .status.optional::after {
 	content: '';
 	color: #aaa;
 }
-.resultsTable .linksPanel .info .status.rejected::after {
+.linksPanel .info .status.rejected::after {
 	content: '';
 	color: #853333;
 }
-.resultsTable .linksPanel .info .column a.compare::before {
+.linksPanel .info .column a.compare::before {
 	position: absolute;
 	top: 12px;
 	width: 100%;
@@ -1926,12 +1926,12 @@ body.indexVisible > div#index button#indexbutton {
 	font-size: 30px;
 	color: #33af33;
 }
-.resultsTable .linksPanel h3 {
+.linksPanel h3 {
 	line-height: 32px;
 	padding: 0 10px;
 	border-bottom: 1px solid #eee;
 }
-.resultsTable .linksPanel .links a {
+.linksPanel .links a {
 	display: block;
 	white-space: nowrap;
 	line-height: 30px;
@@ -1944,40 +1944,40 @@ body.indexVisible > div#index button#indexbutton {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.resultsTable .linksPanel .links a:hover {
+.linksPanel .links a:hover {
 	background-color: #eee;
 	text-decoration: none;
 }
 /*
-.resultsTable .linksPanel a.compare {
+.linksPanel a.compare {
 	border-bottom: 1px solid #eee;
 }
 */
-.resultsTable .linksPanel .links a.w3c {
+.linksPanel .links a.w3c {
 	background-image: url(/images/external/w3c.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
-.resultsTable .linksPanel .links a.whatwg {
+.linksPanel .links a.whatwg {
 	background-image: url(/images/external/whatwg.svg);
 	background-size: 20px 20px;
 	text-indent: 32px;
 }
-.resultsTable .linksPanel .links a.khronos {
+.linksPanel .links a.khronos {
 	background-image: url(/images/external/khronos.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
-.resultsTable .linksPanel .links a.wp {
+.linksPanel .links a.wp {
 	background-image: url(/images/external/wp.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
-.resultsTable .linksPanel .links a.mdn {
+.linksPanel .links a.mdn {
 	background-image: url(/images/external/mdn.png);
 	text-indent: 32px;
 }
-.resultsTable .linksPanel .links a.ricg {
+.linksPanel .links a.ricg {
 	background-image: url(/images/external/ricg.svg);
 	background-size: 30px 30px;
 	text-indent: 32px;
