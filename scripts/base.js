@@ -848,8 +848,8 @@
 				if (data.urls[i][0] == 'ietf') content += "<a href='" + data.urls[i][1] +"' class='ietf'>" + t('Go to the specification at IETF.org') + "</a>";
 				if (data.urls[i][0] == 'webm') content += "<a href='" + data.urls[i][1] +"' class='webm'>" + t('Go to the specification at WebMproject.org') + "</a>";
 				if (data.urls[i][0] == 'xiph') content += "<a href='" + data.urls[i][1] +"' class='xiph'>" + t('Go to the specification at Xiph.org') + "</a>";
-				if (data.urls[i][0] == 'ricg') content += "<a href='" + data.urls[i][1] +"' class='ricg'>" + t('Go to the specification at ResponsiveImages.org') + "</a>";
-				if (data.urls[i][0] == 'wp') content += "<a href='http://docs.webplatform.org/wiki" + data.urls[i][1] +"' class='wp'>" + t('Documentation at WebPlatform.org') + "</a>";
+				if (data.urls[i][0] == 'ricg') content += "<a href='" + data.urls[i][1] +"' class='ricg'>" + t('Go to Responsive Images Community Group') + "</a>";
+				if (data.urls[i][0] == 'wp') content += "<a href='https://docs.webplatform.org/wiki" + data.urls[i][1] +"' class='wp'>" + t('Documentation at WebPlatform.org') + "</a>";
 				if (data.urls[i][0] == 'mdn') content += "<a href='https://developer.mozilla.org/en-US/docs" + data.urls[i][1] +"' class='mdn'>" + t('Documentation at Mozilla Developer Network') + "</a>";
 			}
 
