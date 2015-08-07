@@ -1977,6 +1977,10 @@ body.indexVisible > div#index button#indexbutton {
 	background-image: url(/images/external/mdn.png);
 	text-indent: 32px;
 }
+.linksPanel .links a.ecma {
+	background-image: url(/images/external/ecma.png);
+	text-indent: 32px;
+}
 .linksPanel .links a.ricg {
 	background-image: url(/images/external/ricg.svg);
 	background-size: 30px 30px;
