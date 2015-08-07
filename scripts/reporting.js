@@ -1314,3 +1314,45 @@
 		}
 	}
 
+
+
+	var BrowserPopup = function() { this.initialize.apply(this, arguments) };
+	BrowserPopup.current = null;
+	BrowserPopup.prototype = {
+		initialize: function(parent, type, data) {
+			if (BrowserPopup.current) {
+				BrowserPopup.current.close();
+			}
+
+			var browser = data.variant + (data.version ? "-" + data.version : "");
+
+			var content = "";
+			content += "<div class='info'>";
+			content += "<div class='column left score'><h2>" + data.score + "</h2><span>" + t('Points') + "</span></div>";
+			content += "<div class='column middle'><a href='/results/" + type + "/timeline/" + data.id +".html' class='timeline'><span>" + t('Timeline') + "</span></a></div>";
+			content += "<div class='column right'><a href='/compare/browser/" + browser +".html' class='compare'><span>" + t('Compare') + "</span></a></div>";
+			content += "</div>";
+			content += "<div class='links'>";
+
+			for (var i = 0; i < data.urls.length; i++) {
+			}
+
+			content += "</div>";
+
+			this.panel = document.createElement('div');
+			this.panel.className = 'linksPanel popupPanel pointsLeft';
+			this.panel.innerHTML = content;
+			parent.appendChild(this.panel);
+			
+			BrowserPopup.current = this;
+		},
+		
+		close: function() {
+			this.panel.parentNode.removeChild(this.panel);
+			BrowserPopup.current = null;
+		}
+	}
+	
+	document.addEventListener('click', function() { if (BrowserPopup.current) BrowserPopup.current.close() }, true)
+	document.addEventListener('touchstart', function() { if (BrowserPopup.current) BrowserPopup.current.close() }, true)
+	
