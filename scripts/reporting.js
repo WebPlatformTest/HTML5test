@@ -434,7 +434,7 @@
 			var id = browser;
 			
 			if (typeof browser == 'object') {
-				id = browser.variant + '-' + browser.version;	
+				id = browser.variant + (browser.version ? '-' + browser.version : '');	
 			}
 			
 			var that = this;
