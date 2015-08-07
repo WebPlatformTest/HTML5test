@@ -501,8 +501,6 @@
 				onChange:		options.onChange || false
 			}
 
-			this.panel = null;
-
 			var that = this;
 
 			function close(e) {
@@ -779,7 +777,7 @@
 
 						(function(that, th, data) {
 							th.onclick = function() {
-								that.showLinks(th, data);
+								new FeaturePopup(th, data);
 							};
 						})(this, th, {
 							id:		data.id + '-' + tests[i].id,
@@ -795,40 +793,6 @@
 			}
 
 			return ids;
-		},
-
-		showLinks: function(parent, data) {
-			if (this.panel) {
-				this.panel.parentNode.removeChild(this.panel);
-				this.panel = null;
-			}
-
-			var content = "";
-			content += "<div class='info'>";
-			content += "<div class='column left status " + data.status + "'><span>" + data.status + "</span></div>";
-			content += "<div class='column middle" + (data.value ? '' : ' none') + "'><em>" + ( data.value || '✘' ) + "</em> <span>" + (data.value != 1 ? 'Points' : 'Point') + "</span></div>";
-			content += "<div class='column right'><a href='/compare/feature/" + data.id +".html' class='compare'><span>" + t('Compare') + "</span></a></div>";
-			content += "</div>";
-			content += "<div class='links'>";
-
-			for (var i = 0; i < data.urls.length; i++) {
-				if (data.urls[i][0] == 'w3c') content += "<a href='" + data.urls[i][1] + "' class='w3c'>" + t('Go to the specification at W3C.org') + "</a>";
-				if (data.urls[i][0] == 'whatwg') content += "<a href='" + data.urls[i][1] + "' class='whatwg'>" + t('Go to the specification at Whatwg.org') + "</a>";
-				if (data.urls[i][0] == 'khronos') content += "<a href='" + data.urls[i][1] +"' class='khronos'>" + t('Go to the specification at Khronos.org') + "</a>";
-				if (data.urls[i][0] == 'ietf') content += "<a href='" + data.urls[i][1] +"' class='ietf'>" + t('Go to the specification at IETF.org') + "</a>";
-				if (data.urls[i][0] == 'webm') content += "<a href='" + data.urls[i][1] +"' class='webm'>" + t('Go to the specification at WebMproject.org') + "</a>";
-				if (data.urls[i][0] == 'xiph') content += "<a href='" + data.urls[i][1] +"' class='xiph'>" + t('Go to the specification at Xiph.org') + "</a>";
-				if (data.urls[i][0] == 'ricg') content += "<a href='" + data.urls[i][1] +"' class='ricg'>" + t('Go to the specification at ResponsiveImages.org') + "</a>";
-				if (data.urls[i][0] == 'wp') content += "<a href='http://docs.webplatform.org/wiki" + data.urls[i][1] +"' class='wp'>" + t('Documentation at WebPlatform.org') + "</a>";
-				if (data.urls[i][0] == 'mdn') content += "<a href='https://developer.mozilla.org/en-US/docs" + data.urls[i][1] +"' class='mdn'>" + t('Documentation at Mozilla Developer Network') + "</a>";
-			}
-
-			content += "</div>";
-
-			this.panel = document.createElement('div');
-			this.panel.className = 'linksPanel popupPanel pointsLeft';
-			this.panel.innerHTML = content;
-			parent.appendChild(this.panel);
 		},
 
 		toggleChildren: function(element, ids) {
@@ -858,3 +822,53 @@
 			}
 		}
 	}
+
+
+
+	var FeaturePopup = function() { this.initialize.apply(this, arguments) };
+	FeaturePopup.current = null;
+	FeaturePopup.prototype = {
+		initialize: function(parent, data) {
+			if (FeaturePopup.current) {
+				FeaturePopup.current.close();
+			}
+
+			var content = "";
+			content += "<div class='info'>";
+			content += "<div class='column left status " + data.status + "'><span>" + data.status + "</span></div>";
+			content += "<div class='column middle" + (data.value ? '' : ' none') + "'><em>" + ( data.value || '✘' ) + "</em> <span>" + (data.value != 1 ? 'Points' : 'Point') + "</span></div>";
+			content += "<div class='column right'><a href='/compare/feature/" + data.id +".html' class='compare'><span>" + t('Compare') + "</span></a></div>";
+			content += "</div>";
+			content += "<div class='links'>";
+
+			for (var i = 0; i < data.urls.length; i++) {
+				if (data.urls[i][0] == 'w3c') content += "<a href='" + data.urls[i][1] + "' class='w3c'>" + t('Go to the specification at W3C.org') + "</a>";
+				if (data.urls[i][0] == 'whatwg') content += "<a href='" + data.urls[i][1] + "' class='whatwg'>" + t('Go to the specification at Whatwg.org') + "</a>";
+				if (data.urls[i][0] == 'khronos') content += "<a href='" + data.urls[i][1] +"' class='khronos'>" + t('Go to the specification at Khronos.org') + "</a>";
+				if (data.urls[i][0] == 'ietf') content += "<a href='" + data.urls[i][1] +"' class='ietf'>" + t('Go to the specification at IETF.org') + "</a>";
+				if (data.urls[i][0] == 'webm') content += "<a href='" + data.urls[i][1] +"' class='webm'>" + t('Go to the specification at WebMproject.org') + "</a>";
+				if (data.urls[i][0] == 'xiph') content += "<a href='" + data.urls[i][1] +"' class='xiph'>" + t('Go to the specification at Xiph.org') + "</a>";
+				if (data.urls[i][0] == 'ricg') content += "<a href='" + data.urls[i][1] +"' class='ricg'>" + t('Go to the specification at ResponsiveImages.org') + "</a>";
+				if (data.urls[i][0] == 'wp') content += "<a href='http://docs.webplatform.org/wiki" + data.urls[i][1] +"' class='wp'>" + t('Documentation at WebPlatform.org') + "</a>";
+				if (data.urls[i][0] == 'mdn') content += "<a href='https://developer.mozilla.org/en-US/docs" + data.urls[i][1] +"' class='mdn'>" + t('Documentation at Mozilla Developer Network') + "</a>";
+			}
+
+			content += "</div>";
+
+			this.panel = document.createElement('div');
+			this.panel.className = 'linksPanel popupPanel pointsLeft';
+			this.panel.innerHTML = content;
+			parent.appendChild(this.panel);
+			
+			FeaturePopup.current = this;
+		},
+		
+		close: function() {
+			this.panel.parentNode.removeChild(this.panel);
+			FeaturePopup.current = null;
+		}
+	}
+	
+	document.addEventListener('click', function() { if (FeaturePopup.current) FeaturePopup.current.close() }, true)
+	document.addEventListener('touchstart', function() { if (FeaturePopup.current) FeaturePopup.current.close() }, true)
+	
