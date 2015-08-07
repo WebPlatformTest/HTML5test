@@ -951,7 +951,33 @@
 							};		
 						})(this, tr, th, children);
 					} else {
-						th.innerHTML = "<div><a href='/compare/feature/" + id + '-' + tests[i].id + ".html'>" + t(tests[i].name) + " <span>»</span></a></div>";
+						var urls;
+						var value = 0;
+
+						if (typeof tests[i].value != 'undefined') {
+							value = tests[i].value;
+						}
+
+						if (typeof tests[i].urls != 'undefined') {
+							urls = tests[i].urls;
+						}
+						else if (typeof tests[i].url != 'undefined') {
+							urls = [ [ 'w3c', tests[i].url ] ];
+						}
+
+						th.className = 'hasLink';
+
+						(function(th, data){
+							th.onclick = function() {
+								new FeaturePopup(th, data);
+							};
+						})(th, { 
+							id:		(data.id ? data.id + '-' : '') + tests[i].id,
+							name:	tests[i].name,
+							value:	value,
+							status:	typeof tests[i].status != 'undefined' ? tests[i].status : data.status,
+							urls:	(urls || []).concat(data.urls || [])
+						});
 					}
 					
 					ids.push(tr.id);
