@@ -899,11 +899,12 @@ var tests = [
 									}, {
 										id:		'keygen',
 										name:	'<code>keygen</code>',
+										status:	'rejected',
 										items:	[
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		2, 
+														value:		0, 
 														url:		'http://www.w3.org/TR/html5/forms.html#the-keygen-element'
 													}, {
 														id:			'challenge',

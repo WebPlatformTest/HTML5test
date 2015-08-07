@@ -2195,7 +2195,7 @@ Test = (function() {
 			group.setItem({
 				id:			'element',
 				passed:		passed, 
-				value: 		2,
+				value: 		0,
 				required:	true
 			});
 
