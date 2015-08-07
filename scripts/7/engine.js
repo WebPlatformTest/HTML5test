@@ -1352,6 +1352,25 @@ Test = (function() {
 			var passed = false;
 
 			try { 
+				var element = document.createElement('data');
+	
+				try { 
+					passed = typeof HTMLDataElement != 'undefined' && element instanceof HTMLDataElement;
+				} catch(error) {
+				}
+			} catch(error) {
+			}
+
+			group.setItem({
+				id:		'data',
+				passed:	passed, 
+				value: 	1
+			});
+			
+
+			var passed = false;
+
+			try { 
 				var element = document.createElement('wbr');
 	
 				try { 

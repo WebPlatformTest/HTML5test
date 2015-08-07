@@ -221,6 +221,14 @@ var tests = [
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-time-element' ]
 																]
 													}, {
+														id:		'data',
+														name: 	'<code>data</code> element', 
+														value:	1, 
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/text-level-semantics.html#the-data-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-data-element' ]
+																]
+													}, {
 														id:		'wbr',
 														name: 	'<code>wbr</code> element', 
 														value:	1, 
