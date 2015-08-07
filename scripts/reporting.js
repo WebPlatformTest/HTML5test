@@ -1155,9 +1155,22 @@
 				tbody.appendChild(tr);
 	
 				var th = document.createElement('th');					
-				th.innerHTML = "<a href='/compare/browser/" + this.browsers[i].variant + (this.browsers[i].version ? "-" + this.browsers[i].version : "") + ".html'>" + this.browsers[i].nickname + (this.browsers[i].details ? ' <em>(' + this.browsers[i].details + ')</em>' : '') + " <span>»</span></a>";
+				th.innerHTML =  this.browsers[i].nickname + (this.browsers[i].details ? ' <em>(' + this.browsers[i].details + ')</em>' : '');
 				tr.appendChild(th);
 				
+				(function(th, type, data){
+					th.onclick = function() {
+						new BrowserPopup(th, type, data);
+					};
+				})(th, type, { 
+					variant:	this.browsers[i].variant,
+					version:	this.browsers[i].version,
+					id:			this.browsers[i].id,
+					name:		this.browsers[i].nickname,
+					score:		this.browsers[i].score,
+					urls:		[]
+				});
+
 				for (var c = 0; c < this.options.columns; c++) {
 					var td = document.createElement('td');
 					tr.appendChild(td);
