@@ -1799,6 +1799,7 @@ body.indexVisible > div#index button#indexbutton {
 	font-size: 0.75em;
 	height: 66px;
 	margin-bottom: 6px;
+	line-height: 15px;
 }
 .linksPanel .info .column {
 	position: absolute;
@@ -1822,10 +1823,16 @@ body.indexVisible > div#index button#indexbutton {
 	left: 67%;
 	border-right: none;
 }
+.linksPanel .info .column span {
+	color: #000;
+	text-decoration: none;
+}
 .linksPanel .info .column a {
 	display: block;
 	width: 100%;
 	height: 66px;
+	color: #000;
+	text-decoration: none;
 }
 .linksPanel .info .column a:hover {
 	background: #eee;
@@ -1840,6 +1847,10 @@ body.indexVisible > div#index button#indexbutton {
 	text-decoration: none;
 	font-size: 0.9em;
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+}
+.linksPanel .info .left h2 {
+	text-align: center;
+	padding-top: 0.3em;
 }
 .linksPanel .info .middle em {
 	position: absolute;
@@ -1879,7 +1890,7 @@ body.indexVisible > div#index button#indexbutton {
 }
 .linksPanel .info .status::after {
 	position: absolute;
-	top: 12px;
+	top: 19px;
 	width: 100%;
 	text-align: center;
 	display: block;
@@ -1917,7 +1928,7 @@ body.indexVisible > div#index button#indexbutton {
 }
 .linksPanel .info .column a.compare::before {
 	position: absolute;
-	top: 12px;
+	top: 19px;
 	width: 100%;
 	text-align: center;
 	display: block;
@@ -1926,6 +1937,18 @@ body.indexVisible > div#index button#indexbutton {
 	font-size: 30px;
 	color: #33af33;
 }
+.linksPanel .info .column a.timeline::before {
+	position: absolute;
+	top: 19px;
+	width: 100%;
+	text-align: center;
+	display: block;
+	content: '';
+	font-family: html5test;
+	font-size: 30px;
+	color: #33af33;
+}
+
 .linksPanel h3 {
 	line-height: 32px;
 	padding: 0 10px;
