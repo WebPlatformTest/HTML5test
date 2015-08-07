@@ -335,11 +335,13 @@
 			
 			var result = [];
 			var path = [];
+			var status = [];
 		
 			function retrieveItems(items, level) {
 				for (var i = 0; i < items.length; i++) {
 					if (typeof items[i] == 'object') {
 						path[level] = items[i].id;
+						status[level] = items[i].status || null; 
 				
 						if (!filterItem(items[i], level)) {
 							if (items[i].items) {
@@ -354,12 +356,23 @@
 				for (var i = 0; i < items.length; i++) {
 					if (typeof items[i] == 'object') {
 						path[level] = items[i].id;
+						status[level] = items[i].status || null; 
 						
 						if (level > 1) {
+							var s = "";
+							for (var l = level; l >= 0; l--) {
+								if (status[l]) {
+									s = status[l];
+									break;
+								}
+							}
+
 							var r = {
 								id:		path.slice(1, level + 1).join('-'),
-								name:	items[i].name
+								name:	items[i].name,
+								status:	s
 							}
+							if (items[i].value) r.value = items[i].value;
 							if (items[i].url) r.url = items[i].url;
 							if (items[i].urls) r.urls = items[i].urls;
 							if (items[i].items) r.items = items[i].items;
@@ -377,15 +390,26 @@
 			
 			function filterItem(item, level) {
 				path[level] = item.id;
+				status[level] = item.status || null; 
 				
 				var selected = item.name.toLowerCase().indexOf(filter) != -1;
 
 				if (selected) {
 					if (level > 1) {
+						var s = "";
+						for (var l = level; l >= 0; l--) {
+							if (status[l]) {
+								s = status[l];
+								break;
+							}
+						}
+						
 						var r = {
 							id:		path.slice(1, level + 1).join('-'),
-							name:	item.name
+							name:	item.name,
+							status:	s
 						}
+						if (item.value) r.value = item.value;
 						if (item.url) r.url = item.url;
 						if (item.urls) r.urls = item.urls;
 						if (item.items) r.items = item.items;
