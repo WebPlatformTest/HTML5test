@@ -180,6 +180,8 @@
 				"<input type='text' placeholder='Search...' value='" + (this.options.value || "") + "'>" +
 				"<button>×</button>";
 				
+			this.container.addEventListener("click", this.onClick.bind(this), false);
+
 			this.container.firstChild.addEventListener("keyup", this.onUpdate.bind(this), true);
 			this.container.firstChild.addEventListener("change", this.onUpdate.bind(this), true);
 			this.container.firstChild.nextSibling.addEventListener("click", this.onClear.bind(this), true);
@@ -199,7 +201,13 @@
 			}
 		},
 		
-		onClear: function() {
+		onClick: function(e) {
+			e.stopPropagation();
+		},
+		
+		onClear: function(e) {
+			e.stopPropagation();
+			
 			this.clear();
 
 			if (this.options.onQuery) {
@@ -759,6 +767,8 @@
 			tr.appendChild(th);
 
 			for (var c = 0; c < this.options.columns; c++) {
+				var that = this;
+				
 				var td = document.createElement('td');
 				td.className = 'empty';
 				tr.appendChild(td);
@@ -771,62 +781,33 @@
 				wrapper.appendChild(div);
 							
 				var menu = document.createElement('div');
-				menu.className = 'popup popupPanel pointsRight';
+				menu.className = 'popup popupPanel pointsRight hasSearch';
 				wrapper.appendChild(menu);
 				
+				var header = document.createElement('div');
+				header.className = 'toolbar';
+				menu.appendChild(header);
+
 				var scroll = document.createElement('div');
+				scroll.className = 'scroll';
 				menu.appendChild(scroll);
 				
-					var list = document.createElement('ul');
+				var list = document.createElement('ul');
 				scroll.appendChild(list);	
-				
-				var item = document.createElement('li');
-				item.innerHTML = t('My browser');
-				list.appendChild(item);
 
-				(function(c, menu, item, that) {
-					item.addEventListener('click', function(e) { 
-						menu.className = menu.className.replace(' visible', '');
-						that.calculateColumn(c);
-						e.stopPropagation();
-					}, true);
-				})(c, menu, item, this);
 
-				var type = null;
-				for (var i = 0; i < this.options.browsers.length; i++) {
-					if (type != this.options.browsers[i].type) {
-						var item = document.createElement('li');
-						item.className = 'indent-0 title';
-						list.appendChild(item);
-						
-						switch(this.options.browsers[i].type) {
-							case 'desktop':		item.innerHTML = t('Desktop browsers'); break;
-							case 'gaming':		item.innerHTML = t('Gaming'); break;
-							case 'mobile':		item.innerHTML = t('Mobiles'); break;
-							case 'tablet':		item.innerHTML = t('Tablets'); break;
-							case 'television':	item.innerHTML = t('Television'); break;
-						}
-					}
+				(function(c, menu, list, header) {
+					var search = new SearchField({
+						parent:		header,
+						onQuery:	function(query) {
+										build(list, that.options.browsers, query != "", query);
+									}
+					});
 					
-					var item = document.createElement('li');
-					item.innerHTML = this.options.browsers[i].nickname + (this.options.browsers[i].details ? ' <em>(' + this.options.browsers[i].details + ')</em>' : '');
-					list.appendChild(item);
-
-					(function(c, menu, item, browser, that) {
-						item.addEventListener('click', function(e) { 
-							menu.className = menu.className.replace(' visible', '');
-							that.loadColumn(c, browser);
-							e.stopPropagation();
-						}, true);
-					})(c, menu, item, this.options.browsers[i], this);
-
-					type = this.options.browsers[i].type;
-				}
-
-				(function(that, c, menu) {
+	
 					document.body.addEventListener('click', function(e) { 
 						menu.className = menu.className.replace(' visible', '');
-					}, true);
+					}, false);
 					
 					div.addEventListener('click', function(e) { 
 						if (that.data[c] == null) {
@@ -844,7 +825,108 @@
 
 						e.stopPropagation();
 					}, true);
-				})(this, c, menu);
+
+					list.addEventListener('click', function(e) { 
+						var close = true;
+
+						if (e.target) {
+							if (e.target.hasAttribute('data-action')) {
+								var action = e.target.getAttribute('data-action');
+								
+								if (action == 'more') {
+									build(list, that.options.browsers, true);
+									close = false;
+								}
+
+								if (action == 'less') {
+									build(list, that.options.browsers, false);
+									close = false;
+								}
+
+								if (action == 'calculate') {
+									that.calculateColumn(c);
+								}
+
+								if (action == 'load') {
+									var id = e.target.getAttribute('data-id');
+									that.loadColumn(c, that.options.browsers[id]);
+								}
+							}
+						}
+						
+						if (close) {
+							menu.className = menu.className.replace(' visible', '');
+						}
+						
+						e.stopPropagation();
+					}, true);
+				})(c, menu, list, header);
+
+				
+				build(list, this.options.browsers, false);
+
+
+				function build(list, browsers, all, filter) {
+					list.innerHTML = '';
+									
+					if (!filter) {
+						var item = document.createElement('li');
+						item.setAttribute('data-action', 'calculate');
+						item.innerHTML = t('My browser');
+						list.appendChild(item);
+
+						var item = document.createElement('li');
+						item.setAttribute('data-action', 'custom');
+						item.innerHTML = t('Enter unique id...');
+						list.appendChild(item);
+					}
+					
+					var type = null;
+
+					for (var i = 0; i < browsers.length; i++) {
+						if (!filter || browsers[i].nickname.toLowerCase().indexOf(filter.toLowerCase()) != -1) {
+							if (all || browsers[i].listed) {
+								if (type != browsers[i].type) {
+									var item = document.createElement('li');
+									item.className = 'indent-0 title';
+									list.appendChild(item);
+									
+									switch(browsers[i].type) {
+										case 'desktop':		item.innerHTML = t('Desktop browsers'); break;
+										case 'gaming':		item.innerHTML = t('Gaming'); break;
+										case 'mobile':		item.innerHTML = t('Mobiles'); break;
+										case 'tablet':		item.innerHTML = t('Tablets'); break;
+										case 'television':	item.innerHTML = t('Television'); break;
+									}
+								}
+	
+								var item = document.createElement('li');
+								item.setAttribute('data-action', 'load');
+								item.setAttribute('data-id', i);
+								item.innerHTML = browsers[i].nickname + (browsers[i].details ? ' <em>(' + browsers[i].details + ')</em>' : '');
+								list.appendChild(item);
+	
+								type = browsers[i].type;
+							}
+						}
+					}	
+					
+					if (!filter) {
+						if (!all) {
+							var item = document.createElement('li');
+							item.className = 'more';
+							item.setAttribute('data-action', 'more');
+							item.innerHTML = t('Show more');
+							list.appendChild(item);
+						} else {
+							var item = document.createElement('li');
+							item.className = 'less';
+							item.setAttribute('data-action', 'less');
+							item.innerHTML = t('Show less');
+							list.appendChild(item);
+						}
+					}
+				}
 			}
 		},
 				
@@ -1000,7 +1082,7 @@
 			
 			for (var i = 0; i < ids.length; i++) {
 				var e = document.getElementById(ids[i]);
-				e.style.display = 'table-row';
+				e.style.display = '';
 			}
 		},
 	
@@ -1174,6 +1256,9 @@
 		},
 
 		createSections: function(parent) {
+			var that = this;
+			var tests = this.getList(this.options.tests);
+
 			if (this.options.header) {
 				var table = document.createElement('table');
 				table.id = 'table-header';
@@ -1203,53 +1288,92 @@
 					wrapper.appendChild(div);
 								
 					var menu = document.createElement('div');
-					menu.className = 'popup popupPanel pointsRight';
+					menu.className = 'popup popupPanel pointsRight hasSearch';
 					wrapper.appendChild(menu);
 					
+					var header = document.createElement('div');
+					header.className = 'toolbar';
+					menu.appendChild(header);
+	
 					var scroll = document.createElement('div');
+					scroll.className = 'scroll';
 					menu.appendChild(scroll);
 					
- 					var list = document.createElement('ul');
+					var list = document.createElement('ul');
 					scroll.appendChild(list);	
-					
-					var tests = this.getList(this.options.tests);
-					
-					for (var i = 0; i < tests.length; i++) {
-						var item = document.createElement('li');
-						item.className = 'indent-' + tests[i].indent;
-						item.innerHTML = t(tests[i].name);
-						list.appendChild(item);
-
+	
+	
+					(function(c, menu, list, header) {
+						var search = new SearchField({
+							parent:		header,
+							onQuery:	function(query) {
+											build(list, tests, query);
+										}
+						});
 						
-						if (typeof tests[i].id == 'undefined') {
-							item.className += ' title';
-						}
-
-						(function(c, menu, item, id, that) {
-							item.addEventListener('click', function(e) { 
-								if (id) {
-									menu.className = menu.className.replace(' visible', '');
-									that.loadColumn(c, id);
-								}
-								e.stopPropagation();
-							}, true);
-						})(c, menu, item, tests[i].id, this);
-					}
-
-					(function(that, c, menu) {
+		
 						document.body.addEventListener('click', function(e) { 
 							menu.className = menu.className.replace(' visible', '');
-						}, true);
+						}, false);
 						
 						div.addEventListener('click', function(e) { 
-							if (that.data[c] == null) 
+							if (that.data[c] == null)
 								menu.className += ' visible';
 							else
 								that.clearColumn(c);
-
+	
 							e.stopPropagation();
 						}, true);
-					})(this, c, menu);
+	
+						list.addEventListener('click', function(e) { 
+							var close = true;
+	
+							if (e.target) {
+								if (e.target.hasAttribute('data-action')) {
+									var action = e.target.getAttribute('data-action');
+									
+									if (action == 'load') {
+										var id = e.target.getAttribute('data-id');
+										that.loadColumn(c, id);
+									}
+								}
+							}
+							
+							if (close) {
+								menu.className = menu.className.replace(' visible', '');
+							}
+							
+							e.stopPropagation();
+						}, true);
+					})(c, menu, list, header);
+
+
+					build(list, tests);
+	
+	
+					function build(list, tests, filter) {
+						list.innerHTML = '';
+										
+						var type = null;
+	
+						for (var i = 0; i < tests.length; i++) {
+							if (!filter || (typeof tests[i].id != 'undefined' && tests[i].name.toLowerCase().indexOf(filter.toLowerCase()) != -1)) {
+								var item = document.createElement('li');
+								
+								if (!filter) item.className = 'indent-' + tests[i].indent;
+								
+								if (typeof tests[i].id != 'undefined') {
+									item.setAttribute('data-action', 'load');
+									item.setAttribute('data-id', tests[i].id);
+								} else {
+									item.className += ' title';
+								}
+								
+								item.innerHTML = t(tests[i].name);
+								list.appendChild(item);
+							}
+						}	
+					}
 				}
 			}
 		

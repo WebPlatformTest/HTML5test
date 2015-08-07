@@ -556,7 +556,7 @@ div:-moz-full-screen #timelineGraph {
 .comparisonTable #table-header #row-header td .popup.visible {
 	display: block;
 }
-.comparisonTable #table-header #row-header td .popup > div {
+.comparisonTable #table-header #row-header td .popup > div.scroll {
 	height: 400px;
 	overflow: hidden;
 	overflow-y: scroll;
@@ -610,7 +610,6 @@ div:-moz-full-screen #timelineGraph {
 	background: #fff;
 	cursor: default;
 }
-
 
 @media (max-width: 880px) {
 	.comparisonTable table tr :nth-child(6) {
@@ -666,6 +665,10 @@ div:-moz-full-screen #timelineGraph {
 	padding-bottom: 10px;
 	white-space: inherit;
 	position: relative;
+}
+.overviewTable thead th a {
+	color: inherit;
+	text-decoration: none;
 }
 .overviewTable thead th::after {
 	display: block;
