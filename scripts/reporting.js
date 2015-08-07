@@ -303,6 +303,8 @@
 			}
 
 			this.panel = null;
+			
+			this.diff = [];
 
 			this.data = [];
 			for (var i = 0; i < this.options.columns; i++) {
@@ -316,8 +318,10 @@
 			this.filter(options.filter || '');
 		},
 		
-		filter: function(filter) {
-			if (this.options.filter == filter) {
+		filter: function(filter, force) {
+			var that = this;
+						
+			if (!force && this.options.filter == filter) {
 				return;
 			}
 			
@@ -392,7 +396,12 @@
 				path[level] = item.id;
 				status[level] = item.status || null; 
 				
-				var selected = item.name.toLowerCase().indexOf(filter) != -1;
+				var selected = true;
+				if (filter == ':diff')
+					selected = level > 1 ? that.diff[path.slice(1, level + 1).join('-')] : false;
+				else
+					selected = item.name.toLowerCase().indexOf(filter) != -1;
+
 
 				if (selected) {
 					if (level > 1) {
@@ -425,7 +434,7 @@
 			retrieveItems(this.tests, 0);
 			
 			this.results.innerHTML = '';
-			this.createSections(this.results, [{ name: filter, items: result }]);
+			this.createSections(this.results, [{ name: filter == ':diff' ? t('Difference') : filter, items: result }]);
 			
 			this.update();
 		},
@@ -454,7 +463,11 @@
 			function process() {
 				if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
 					var data = JSON.parse(httpRequest.responseText);
+					
+					var f = that.options.filter;
+					that.filter('');			
 					that.updateColumn(column, data);
+					that.filter(f);			
 				}
 			}
 		},
@@ -477,6 +490,7 @@
 		
 		clearColumn: function(column) {
 			this.data[column] = null;
+			this.diff = [];
 			
 			if (this.options.onChange) {
 				var ids = [];
@@ -515,13 +529,17 @@
 						this.clearItems(column, test.id, test.items);
 					}
 				}
-			}				
+			}	
+			
+			this.filter(this.options.filter, true);			
 		},
 		
 		clearItems: function(column, id, tests) {
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] != 'string') {
-					var row = document.getElementById('row-' + id + '-' + tests[i].id);
+					var key = id + '-' + tests[i].id;
+
+					var row = document.getElementById('row-' + key);
 					if (row) {
 						var cell = row.childNodes[column + 1];
 						cell.innerHTML = '';
@@ -529,8 +547,32 @@
 					}
 					
 					if (typeof tests[i].items != 'undefined') {
-						this.clearItems(column, id + '-' + tests[i].id, tests[i].items);
+						this.clearItems(column, key, tests[i].items);
 					}
+
+
+					var base = null;
+					var diff = false;
+					
+					for (var c = 0; c < this.options.columns; c++) {
+						if (this.data[c]) {
+							if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.data[c].results)) {
+								var result = parseInt(match[1], 10);
+								
+								if (base === null) {
+									base = result;
+								}
+								else {
+									if (result != base) {
+										diff = true;
+										break;
+									}
+								}
+							}
+						}
+					}
+					
+					this.diff[key] = diff;
 				}
 			}
 		},
@@ -545,6 +587,7 @@
 		
 		updateColumn: function(column, data) {
 			this.data[column] = data;
+			this.diff = [];
 
 			if (this.options.onChange) {
 				var ids = [];
@@ -625,6 +668,7 @@
 				if (typeof tests[i] != 'string') {
 					var row = document.getElementById('row-' + id + '-' + tests[i].id);
 					if (row) {
+						var key = id + '-' + tests[i].id;
 						var cell = row.childNodes[column + 1];
 	
 						cell.className = 'used';
@@ -641,7 +685,7 @@
 						} 
 						
 						else {
-							var key = id + '-' + tests[i].id;
+							
 								
 							if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(data.results)) {
 								var result = parseInt(match[1], 10);
@@ -661,6 +705,30 @@
 								cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';
 							}
 						}
+						
+
+						var base = null;
+						var diff = false;
+						
+						for (var c = 0; c < this.options.columns; c++) {
+							if (this.data[c]) {
+								if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.data[c].results)) {
+									var result = parseInt(match[1], 10);
+									
+									if (base === null) {
+										base = result;
+									}
+									else {
+										if (result != base) {
+											diff = true;
+											break;
+										}
+									}
+								}
+							}
+						}
+						
+						this.diff[key] = diff;
 					} else {
 						if (typeof tests[i].items != 'undefined') {
 							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);					

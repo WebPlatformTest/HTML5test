@@ -82,6 +82,7 @@
 						<div id='comparison' class='comparisonTable detailsTable'>
 							<div class='filters'>
 								<div id='searchField'></div>
+								<div id='scoreToggle'></div>
 							</div>
 							<hr>
 						</div>
@@ -130,7 +131,18 @@
 							var search = new SearchField({
 								parent:		document.getElementById('searchField'),
 								onQuery:	function(query) {
+												toggle.deactivate();
 												table.filter(query);
+											}
+							});
+
+							var toggle = new ToggleSwitch({
+								parent:		document.getElementById('scoreToggle'),
+								inactive:	'Show all',
+								active:		'Difference',
+								onChange:	function(active) {
+												search.clear();
+												table.filter(active ? ':diff' : '');
 											}
 							});
 	
