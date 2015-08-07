@@ -145,11 +145,11 @@
 	
 		$res = mysql_query("
 			SELECT 
-				b.status, IFNULL(v.nickname,v.name) AS name, b.variant, IFNULL(b.version,'') AS version, f.score
+				b.status, IFNULL(v.nickname,v.name) AS name, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, f.score
 			FROM 
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND b.version = s.version)
+				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE 
 				v.importance > 0 AND
@@ -163,7 +163,7 @@
 		$count = 0;
 		
 		while ($row = mysql_fetch_object($res)) {
-			$names[$row->name] = $row->name;
+			$names[$row->name] = array($row->name, $row->id);
 			
 			if (!isset($main[$row->name])) {
 				$main[$row->name] = array(null, null);
