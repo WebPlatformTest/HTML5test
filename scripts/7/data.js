@@ -26,7 +26,7 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#parsing' ],
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/syntax.html#parsing' ],
-													[ 'mdn', '/HTML/HTML5/HTML5_Parser' ]
+													[ 'mdn', '/Web/Guide/HTML/HTML5/HTML5_Parser' ]
 												]
 									}, {
 										id:		'tree',
@@ -35,7 +35,7 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/syntax.html#parsing' ],
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/syntax.html#parsing' ],
-													[ 'mdn', '/HTML/HTML5/HTML5_Parser' ]
+													[ 'mdn', '/Web/Guide/HTML/HTML5/HTML5_Parser' ]
 												]
 									}, 
 									
@@ -47,7 +47,7 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#svg' ],
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#svg-0' ],
-													[ 'mdn', '/SVG' ]
+													[ 'mdn', '/Web/SVG' ]
 												]
 												
 									}, {
@@ -56,7 +56,7 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#mathml' ],
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#mathml' ],
-													[ 'mdn', '/MathML' ]
+													[ 'mdn', '/Web/MathML' ]
 												]
 									}
 								]
@@ -72,7 +72,7 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
-													[ 'mdn', '/DOM/element.dataset' ]
+													[ 'mdn', '/Web/API/HTMLElement/dataset' ]
 												]
 									}, 
 									
@@ -82,7 +82,7 @@ var tests = [
 										id:		'section',
 										name:	'Section elements',
 										urls:	[
-													[ 'mdn', '/Sections_and_Outlines_of_an_HTML5_document' ]
+													[ 'mdn', '/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document' ]
 												],
 										items:	[
 													{
@@ -140,29 +140,41 @@ var tests = [
 										id:		'grouping',
 										name:	'Grouping content elements',
 										urls:	[
-													[ 'mdn', '/Sections_and_Outlines_of_an_HTML5_document' ]
+													[ 'mdn', '/Web/Guide/HTML/Sections_and_Outlines_of_an_HTML5_document' ]
 												],
 										items:	[
 													{
 														id:		'main',
 														name: 	'<code>main</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-main-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-main-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-main-element' ]
+																]
 													}, {
 														id:		'figure',
 														name: 	'<code>figure</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/grouping-content.html#the-figure-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/grouping-content.html#the-figure-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-figure-element' ]
+																]
 													}, {
 														id:		'figcaption',
 														name: 	'<code>figcaption</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/grouping-content.html#the-figcaption-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/grouping-content.html#the-figcaption-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-figcaption-element' ]
+																]
 													}, {
 														id:		'ol',
 														name: 	'<code>reversed</code> attribute on the <code>ol</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/grouping-content.html#the-ol-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/grouping-content.html#the-ol-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-ol-element' ]
+																]
 													}
 												]					
 									}, {
@@ -173,32 +185,49 @@ var tests = [
 														id:		'download',
 														name: 	'<code>download</code> attribute on the <code>a</code> element', 
 														value:	1, 
-														urls:	[ [ 'whatwg', 'http://developers.whatwg.org/links.html#attr-hyperlink-download' ] ]
+														urls:	[ 
+																	[ 'w3c', 'http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element' ],
+																	[ 'whatwg', 'http://developers.whatwg.org/links.html#attr-hyperlink-download' ] 
+																]
 													}, {
 														id:		'ping',
 														name: 	'<code>ping</code> attribute on the <code>a</code> element', 
 														value:	1, 
-														urls:	[ [ 'whatwg', 'http://developers.whatwg.org/links.html#ping' ] ]
+														urls:	[ 
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#ping' ] 
+																]
 													}, {
 														id:		'mark',
 														name: 	'<code>mark</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-mark-element' ]
+																]
 													}, {
 														id:		'ruby',
 														name: 	'<code>ruby</code>, <code>rt</code> and <code>rp</code> elements', 
 														value:	3, 
-														url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-ruby-element' ]
+																]
 													}, {
 														id:		'time',
 														name: 	'<code>time</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-time-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/text-level-semantics.html#the-time-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-time-element' ]
+																]
 													}, {
 														id:		'wbr',
 														name: 	'<code>wbr</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-wbr-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/text-level-semantics.html#the-wbr-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#the-wbr-element' ]
+																]
 													}
 												]					
 									}, {
@@ -209,30 +238,45 @@ var tests = [
 														id:		'details',
 														name: 	'<code>details</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-details-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/interactive-elements.html#the-details-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-details-element' ]
+																]
 													}, {
 														id:		'summary',
 														name: 	'<code>summary</code> element', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-summary-element' ]
+																]
 													}, {
 														id:		'menutoolbar',
 														name: 	'<code>menu</code> element of type <code>toolbar</code>', 
 														status:	'proposal', 
 														value:	1, 
-														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
+																]
 													}, {
 														id:		'menupopup',
 														name: 	'<code>menu</code> element of type <code>popup</code>', 
 														status:	'proposal', 
 														value:	2, 
-														url:	'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
+																]
 													}, {
 														id:		'dialog',
 														name: 	'<code>dialog</code> element', 
 														status:	'proposal', 
 														value:	1, 
-														url:	'http://www.whatwg.org/specs/web-apps/current-work/multipage/commands.html#the-dialog-element'
+														urls:	[
+																	[ 'w3c', 'http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-dialog-element' ],
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-dialog-element' ]
+																]
 													}
 												]					
 									},
@@ -243,7 +287,10 @@ var tests = [
 										id:		'hidden',
 										name: 	'<code>hidden</code> attribute', 
 										value:	1, 
-										url:	'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute'
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute' ],
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute' ]
+												]
 									}, {
 										id:		'dynamic',
 										name:	'Dynamic markup insertion',
@@ -253,14 +300,14 @@ var tests = [
 														name: 	'<code>outerHTML</code> property', 
 														value:	1, 
 														urls:	[
-																	[ 'whatwg', 'http://domparsing.spec.whatwg.org/#outerhtml' ]
+																	[ 'w3c', 'https://dvcs.w3.org/hg/innerhtml/raw-file/tip/index.html#widl-Element-outerHTML' ]
 																]
 													}, {
 														id:		'insertAdjacentHTML',
 														name: 	'<code>insertAdjacentHTML</code> function', 
 														value:	1, 
 														urls:	[ 
-																	['whatwg', 'http://domparsing.spec.whatwg.org/#insertadjacenthtml%28%29' ]
+																	[ 'w3c', 'https://dvcs.w3.org/hg/innerhtml/raw-file/tip/index.html#widl-Element-insertAdjacentHTML-void-DOMString-position-DOMString-text' ]
 																]
 													}
 												]
@@ -1093,7 +1140,7 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/geolocation-API/' ],
 														[ 'wp',  '/apis/geolocation' ],
-														[ 'mdn', '/Using_geolocation' ]
+														[ 'mdn', '/Web/API/Geolocation/Using_geolocation' ]
 													]
 									}, {
 										id:			'orientation',
@@ -1101,7 +1148,7 @@ var tests = [
 										value:		3, 
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/geo/api/spec-source-orientation.html' ],
-														[ 'mdn', '/Mozilla_event_reference/devicemotion' ]
+														[ 'mdn', '/Web/API/DeviceOrientationEvent' ]
 													]
 									}, {
 										id:			'motion',
@@ -1109,7 +1156,7 @@ var tests = [
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/geo/api/spec-source-orientation.html' ],
-														[ 'mdn', '/Mozilla_event_reference/devicemotion' ]
+														[ 'mdn', '/Web/API/DeviceMotionEvent' ]
 													]
 									}
 								]
@@ -1124,8 +1171,8 @@ var tests = [
 										value:		5, 
 										urls:		[
 														[ 'w3c', 'http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api' ],
-														[ 'wp',	 '/dom/methods/requestFullscreen' ],
-														[ 'mdn', '/DOM/Using_fullscreen_mode' ]
+														[ 'wp',	 '/dom/Element/requestFullscreen' ],
+														[ 'mdn', '/Web/Guide/API/DOM/Using_full_screen_mode' ]
 													]
 									}, {
 										id:			'notifications',
@@ -1145,8 +1192,8 @@ var tests = [
 										value:		15, 
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/2011/webrtc/editor/getusermedia.html' ],
-														[ 'wp',  '/dom/methods/getUserMedia' ],
-														[ 'mdn', '/WebRTC' ]
+														[ 'wp',  '/dom/Navigator/getUserMedia' ],
+														[ 'mdn', '/Web/Guide/API/WebRTC' ]
 													]
 									}, {
 										id:			'getGamepads',
@@ -1170,8 +1217,8 @@ var tests = [
 										value:		3, 
 										urls:		[
 														[ 'w3c', 'http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html' ],
-														[ 'wp',	 '/dom/methods/requestPointerLock' ],
-														[ 'mdn', '/API/Pointer_Lock_API' ]
+														[ 'wp',	 '/dom/Element/requestPointerLock' ],
+														[ 'mdn', '/Web/API/Pointer_Lock_API' ]
 													]
 									}
 								]
@@ -1196,7 +1243,7 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-video-element' ],
 													[ 'wp',  '/html/elements/video' ],
-													[ 'mdn', '/Using_HTML5_audio_and_video' ]
+													[ 'mdn', '/Web/Guide/HTML/Using_HTML5_audio_and_video' ]
 												]
 									}, {
 										id:		'subtitle',
@@ -1226,7 +1273,7 @@ var tests = [
 										value:	1,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-video-poster' ],
-													[ 'wp',  '/dom/apis/audio-video/properties/poster' ]
+													[ 'wp',  '/dom/HTMLVideoElement/poster' ]
 												]
 									}, {
 										id:		'canplaytype',
@@ -1234,7 +1281,7 @@ var tests = [
 										value:	4,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#dom-navigator-canplaytype' ],
-													[ 'wp',  '/dom/apis/audio-video/methods/canPlayType' ]
+													[ 'wp',  '/dom/HTMLMediaElement/canPlayType' ]
 												]
 									}, 
 									
@@ -1310,7 +1357,7 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element' ],
 													[ 'wp',  '/html/elements/audio' ],
-													[ 'mdn', '/Using_HTML5_audio_and_video' ]
+													[ 'mdn', '/Web/Guide/HTML/Using_HTML5_audio_and_video' ]
 												]
 									}, {
 										id:		'loop',
@@ -1414,6 +1461,7 @@ var tests = [
 										value:		5, 
 										urls:		[
 														[ 'ricg', 'http://responsiveimages.org/' ],
+														[ 'w3c', 'http://www.w3.org/html/wg/drafts/html/master/single-page.html#the-picture-element' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#the-picture-element' ]
 													]
 									}, {
@@ -1431,6 +1479,7 @@ var tests = [
 										value:		5, 
 										urls:		[
 														[ 'ricg', 'http://responsiveimages.org/' ],
+														[ 'w3c', 'http://www.w3.org/html/wg/drafts/html/master/single-page.html#valid-source-size-list' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/embedded-content.html#dom-img-sizes' ],
 													]
 									} 
@@ -1447,7 +1496,7 @@ var tests = [
 										urls:   [
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/' ],
 													[ 'wp',  '/apis/canvas' ],
-													[ 'mdn', '/HTML/Canvas' ]
+													[ 'mdn', '/Web/API/Canvas_API' ]
 												]
 									}, 
 									
@@ -1545,9 +1594,9 @@ var tests = [
 										name: 		'WebGL 3D graphics',
 										value:		20, 
 										urls:		[
-														[ 'khronos', 'http://www.khronos.org/registry/webgl/specs/latest/' ], 
+														[ 'khronos', 'https://www.khronos.org/registry/webgl/specs/latest/1.0/' ], 
 														[ 'wp',  '/webgl' ], 
-														[ 'mdn', '/docs/WebGL' ]
+														[ 'mdn', '/Web/API/WebGL_API' ]
 													]
 				
 									}
@@ -1563,8 +1612,8 @@ var tests = [
 										value:		5, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/animation-timing/#requestAnimationFrame' ],
-														[ 'wp',  '/apis/timing/methods/requestAnimationFrame' ],
-														[ 'mdn', '/DOM/window.requestAnimationFrame' ]
+														[ 'wp',  '/dom/Window/requestAnimationFrame' ],
+														[ 'mdn', '/Web/API/window/requestAnimationFrame' ]
 													]
 									}
 								]
@@ -1588,7 +1637,7 @@ var tests = [
 										value:		5, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/eventsource/' ],
-														[ 'mdn', '/Server-sent_events/Using_server-sent_events' ]
+														[ 'mdn', '/Web/API/Server-sent_events/Using_server-sent_events' ]
 													]
 									}, 
 									
@@ -1598,7 +1647,7 @@ var tests = [
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/beacon/' ],
-														[ 'mdn', '/Web/API/navigator.sendBeacon' ]
+														[ 'mdn', '/Web/API/Navigator/sendBeacon' ]
 													]
 									}, 
 									
@@ -1624,7 +1673,7 @@ var tests = [
 										id:			'xmlhttprequest2.response',
 										name:		'Response type support',
 										urls:		[
-														[ 'mdn', '/DOM/XMLHttpRequest' ]
+														[ 'mdn', '/Web/API/XMLHttpRequest' ]
 													],
 										items:		[
 														{
@@ -1659,15 +1708,15 @@ var tests = [
 										value:		10, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/websockets/' ],
-														[ 'mdn', '/docs/WebSockets' ]
+														[ 'mdn', '/Web/API/WebSockets_API' ]
 													]
 									}, {
 										id:			'websocket.binary',
 										name: 		'<code>ArrayBuffer</code> and <code>Blob</code> support',
 										value:		5, 
 										urls:		[
-														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/network.html#dom-websocket-binarytype' ],
-														[ 'mdn', '/docs/WebSockets' ]
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/comms.html#dom-websocket-binarytype' ],
+														[ 'mdn', '/Web/API/WebSockets_API' ]
 													]
 									}
 								]
@@ -1683,7 +1732,7 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
 													[ 'wp',  '/apis/webrtc/RTCPeerConnection' ],
-													[ 'mdn', '/WebRTC' ]
+													[ 'mdn', '/Web/Guide/API/WebRTC' ]
 												]
 									}, {
 										id:		'objectrtc',
@@ -1697,9 +1746,9 @@ var tests = [
 										name: 	'Data channel',
 										value:	5, 
 										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
+													[ 'w3c', 'http://www.w3.org/TR/webrtc/#peer-to-peer-data-api' ],
 													[ 'wp',  '/apis/webrtc/RTCDataChannel' ],
-													[ 'mdn', '/WebRTC' ]
+													[ 'mdn', '/Web/Guide/API/WebRTC' ]
 												]
 									}
 								]
@@ -1723,7 +1772,7 @@ var tests = [
 										id:		'dragdrop.attributes',
 										name:	'Attributes',
 										urls:	[
-													[ 'mdn', '/DragDrop/Drag_and_Drop' ]
+													[ 'mdn', '/Web/Guide/HTML/Drag_and_drop' ]
 												],
 										items:	[
 													{
@@ -1742,7 +1791,7 @@ var tests = [
 										id:		'dragdrop.events',
 										name:	'Events',
 										urls:	[
-													[ 'mdn', '/DragDrop/Drag_and_Drop' ]
+													[ 'mdn', '/Web/Guide/HTML/Drag_and_drop' ]
 												],
 										items:	[
 													{
@@ -1783,7 +1832,7 @@ var tests = [
 										id:		'editing.elements',
 										name:	'Editing elements',
 										urls:	[
-													[ 'mdn', '/HTML/Content_Editable' ]
+													[ 'mdn', '/Web/Guide/HTML/Content_Editable' ]
 												],
 										items:	[
 													{
@@ -1802,7 +1851,7 @@ var tests = [
 										id:		'editing.documents',
 										name:	'Editing documents',
 										urls:	[
-													[ 'mdn', '/HTML/Content_Editable' ]
+													[ 'mdn', '/Web/Guide/HTML/Content_Editable' ]
 												],
 										items:	[
 													{
@@ -1816,7 +1865,7 @@ var tests = [
 										id:		'editing.selectors',
 										name:	'CSS selectors',
 										urls:	[
-													[ 'mdn', '/HTML/Content_Editable' ]
+													[ 'mdn', '/Web/Guide/HTML/Content_Editable' ]
 												],
 										items:	[
 													{
@@ -1836,7 +1885,7 @@ var tests = [
 										name:	'APIs',
 										value:	2,
 										urls:	[
-													[ 'mdn', '/HTML/Content_Editable' ]
+													[ 'mdn', '/Web/Guide/HTML/Content_Editable' ]
 												],
 										items:	[
 													{
@@ -1873,7 +1922,7 @@ var tests = [
 										id:			'clipboard',
 										name: 		'Clipboard API and events',
 										value:		5, 
-										url:		'http://dev.w3.org/2006/webapi/clipops/clipops.html'
+										url:		'https://w3c.github.io/clipboard-apis/'
 									},
 									
 									'<strong>Spellcheck</strong>',
@@ -1899,57 +1948,90 @@ var tests = [
 															id:			'ArrayBuffer',
 															name: 		'<code>ArrayBuffer</code>',
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#5' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#5' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-arraybuffer-constructor' ]
+																		]
 														}, {
 															id:			'Int8Array',
 															name: 		'<code>Int8Array</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'Uint8Array',
 															name: 		'<code>Uint8Array</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'Uint8ClampedArray',
 															name: 		'<code>Uint8ClampedArray</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7.1' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7.1' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'Int16Array',
 															name: 		'<code>Int16Array</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'Uint16Array',
 															name: 		'<code>Uint16Array</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'Int32Array',
 															name: 		'<code>Int32Array</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'Uint32Array',
 															name: 		'<code>Uint32Array</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'Float32Array',
 															name: 		'<code>Float32Array</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'Float64Array',
 															name: 		'<code>Float64Array</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
 														}, {
 															id:			'DataView',
 															name: 		'<code>DataView</code>', 
 															value:		1, 
-															urls:    	[ [ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ] ]
+															urls:    	[ 
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-dataview-constructor' ]
+																		]
 														}
 													]
 									},
@@ -1962,7 +2044,7 @@ var tests = [
 										value:		10, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/workers/#dedicated-workers-and-the-worker-interface' ],
-														[ 'mdn', '/DOM/Using_web_workers' ]
+														[ 'mdn', '/Web/API/Web_Workers_API/Using_web_workers' ]
 													]
 									}, {
 										id:			'sharedWorker',
@@ -1970,7 +2052,7 @@ var tests = [
 										value:		4, 
 										urls:    	[
 														[ 'w3c', 'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface' ],
-														[ 'mdn', '/DOM/Using_web_workers' ]
+														[ 'mdn', '/Web/API/Web_Workers_API/Using_web_workers' ]
 													]
 									}
 								]
@@ -1992,8 +2074,8 @@ var tests = [
 										name: 		'Content Security Policy 1',
 										value:		3, 
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/CSP/' ],
-														[ 'mdn', '/Security/CSP' ]
+														[ 'w3c', 'http://www.w3.org/TR/CSP1/' ],
+														[ 'mdn', '/Web/Security/CSP' ]
 													]
 									}, {
 										id:			'csp11',
@@ -2001,15 +2083,15 @@ var tests = [
 										status:		'proposal',
 										value:		2, 
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/CSP/' ],
-														[ 'mdn', '/Security/CSP' ]
+														[ 'w3c', 'http://www.w3.org/TR/CSP2/' ],
+														[ 'mdn', '/Web/Security/CSP' ]
 													]
 									}, {
 										id:			'cors',
 										name: 		'Cross-Origin Resource Sharing',
 										value:		5, 
 										urls:		[
-														[ 'mdn', '/HTTP/Access_control_CORS' ]
+														[ 'mdn', '/Web/HTTP/Access_control_CORS' ]
 													]
 									}, {
 										id:			'postMessage',
@@ -2018,7 +2100,7 @@ var tests = [
 										urls:    	[
 														[ 'w3c', 'http://dev.w3.org/html5/postmsg/' ],
 														[ 'wp',  '/apis/web-messaging' ],
-														[ 'mdn', '/DOM/window.postMessage' ]
+														[ 'mdn', '/Web/API/Window/postMessage' ]
 													]
 									}, 
 															
@@ -2030,7 +2112,7 @@ var tests = [
 										value:		5, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-sandbox' ],
-														[ 'mdn', '/HTML/Element/iframe' ]
+														[ 'mdn', '/Web/HTML/Element/iframe' ]
 													]
 									}, {
 										id:			'srcdoc',
@@ -2038,7 +2120,7 @@ var tests = [
 										value:		5, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-srcdoc' ],
-														[ 'mdn', '/HTML/Element/iframe' ]
+														[ 'mdn', '/Web/HTML/Element/iframe' ]
 													]
 									}
 								]
@@ -2053,8 +2135,8 @@ var tests = [
 										value:		10, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#the-history-interface' ],
-														[ 'wp',  '/dom/history' ],
-														[ 'mdn', '/DOM/Manipulating_the_browser_history' ]
+														[ 'wp',  '/dom/History' ],
+														[ 'mdn', '/Web/Guide/API/DOM/Manipulating_the_browser_history' ]
 													]
 									}
 								]
@@ -2081,7 +2163,7 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#offline' ],
 														[ 'wp',  '/apis/appcache/ApplicationCache' ],
-														[ 'mdn', '/HTML/Using_the_application_cache' ]
+														[ 'mdn', '/Web/HTML/Using_the_application_cache' ]
 													]
 									}, {
 										id:			'serviceWorkers',
@@ -2090,7 +2172,7 @@ var tests = [
 										value:		10, 
 										urls:		[
 														[ 'w3c', 'https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#service-worker-obj' ],
-														[ 'mdn', '/Web/API/ServiceWorker_API' ]
+														[ 'mdn', '/Web/API/Service_Worker_API' ]
 													]
 									}, 
 									
@@ -2102,7 +2184,7 @@ var tests = [
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
-														[ 'mdn', '/docs/Web-based_protocol_handlers' ]
+														[ 'mdn', '/Web-based_protocol_handlers' ]
 													]
 									}, {
 										id:			'registerContentHandler',
@@ -2110,7 +2192,7 @@ var tests = [
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
-														[ 'mdn', '/DOM/window.navigator.registerContentHandler' ]
+														[ 'mdn', '/Web/API/Navigator/registerContentHandler' ]
 													]
 									}, {
 										id:			'addSearchProvider',
@@ -2135,7 +2217,7 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute' ],
 														[ 'wp',  '/apis/web-storage' ],
-														[ 'mdn', '/DOM/Storage' ]
+														[ 'mdn', '/Web/API/Web_Storage_API' ]
 													]
 									}, {
 										id:			'localStorage',
@@ -2144,7 +2226,7 @@ var tests = [
 										urls:		[ 
 														[ 'w3c', 'http://www.w3.org/TR/webstorage/#the-localstorage-attribute' ],
 														[ 'wp',  '/apis/web-storage' ],
-														[ 'mdn', '/DOM/Storage' ]
+														[ 'mdn', '/Web/API/Web_Storage_API' ]
 													]
 									}, 
 
@@ -2157,8 +2239,8 @@ var tests = [
 										value:		21, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
-														[ 'wp',  '/apis/indexedDB' ],
-														[ 'mdn', '/IndexedDB' ]
+														[ 'wp',  '/apis/indexeddb' ],
+														[ 'mdn', '/Web/API/IndexedDB_API' ]
 													]
 									}, {
 										id:			'indexedDB.blob',
@@ -2167,8 +2249,8 @@ var tests = [
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
-														[ 'wp',  '/apis/indexedDB' ],
-														[ 'mdn', '/IndexedDB' ]
+														[ 'wp',  '/apis/indexeddb' ],
+														[ 'mdn', '/Web/API/IndexedDB_API' ]
 													]
 									}, {
 										id:			'indexedDB.arraybuffer',
@@ -2177,8 +2259,8 @@ var tests = [
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
-														[ 'wp',  '/apis/indexedDB' ],
-														[ 'mdn', '/IndexedDB' ]
+														[ 'wp',  '/apis/indexeddb' ],
+														[ 'mdn', '/Web/API/IndexedDB_API' ]
 													]
 									},
 									
@@ -2271,14 +2353,14 @@ var tests = [
 										name: 		'Readable streams', 
 										value:		3, 
 										urls:		[
-														[ 'w3c', 'https://streams.spec.whatwg.org/' ]
+														[ 'whatwg', 'https://streams.spec.whatwg.org/' ]
 													]
 									}, {
 										id:			'streams.writeable',
 										name: 		'Writable streams', 
 										value:		2, 
 										urls:		[
-														[ 'w3c', 'https://streams.spec.whatwg.org/' ]
+														[ 'whatwg', 'https://streams.spec.whatwg.org/' ]
 													]
 									}
 								]
@@ -2315,7 +2397,9 @@ var tests = [
 										name: 		'HTML templates', 
 										value:		2, 
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ]
+														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#the-template-element' ],
+														[ 'wp', '/tutorials/webcomponents/htmlimports' ]
 													]
 									}, {
 										id:			'imports',
@@ -2339,7 +2423,8 @@ var tests = [
 										value:		3, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-async' ],
-														[ 'mdn', '/HTML/Element/script' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async' ],
+														[ 'mdn', '/Web/HTML/Element/script' ],
 														[ 'wp',  '/html/elements/script' ]
 													]
 									}, {
@@ -2347,16 +2432,18 @@ var tests = [
 										name: 		'Runtime script error reporting', 
 										value:		1, 
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#report-the-error' ],
-														[ 'mdn', '/DOM/window.onerror' ]
+														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#runtime-script-errors' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/webappapis.html#runtime-script-errors' ],
+														[ 'mdn', '/Web/API/GlobalEventHandlers/onerror' ]
 													]
 									}, {
 										id:			'executionevents',
 										name: 		'Script execution events', 
 										value:		1, 
 										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#the-script-element' ],
 														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element' ],
-														[ 'mdn', '/Web/Reference/Events/beforescriptexecute' ]
+														[ 'mdn', '/Web/Events/beforescriptexecute' ]
 													]
 									}, {
 										id:			'base64',
@@ -2364,13 +2451,15 @@ var tests = [
 										value:		1, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#atob' ],
-														[ 'mdn', '/DOM/window.atob' ]
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/webappapis.html#atob' ],
+														[ 'mdn', '/Web/API/WindowBase64/atob' ]
 													]
 									}, {
 										id:			'json',
 										name: 		'JSON encoding and decoding', 
 										value:		1, 
 										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-json-object' ],
 														[ 'mdn', '/JSON' ],
 														[ 'wp',	 '/apis/json' ]
 													]
@@ -2379,7 +2468,7 @@ var tests = [
 										name:   	'URL API',
 										value:		2, 
 										urls:		[
-														[ 'w3c', 'w3ctag.github.io/url/' ]
+														[ 'w3c', 'http://www.w3.org/TR/url/' ]
 													]
 									}, {
 										id: 		'mutationObserver',
@@ -2387,7 +2476,7 @@ var tests = [
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/dom/#mutation-observers' ],
-														[ 'mdn', '/DOM/MutationObserver' ]
+														[ 'mdn', '/Web/API/MutationObserver' ]
 													]
 									}, {
 										id: 		'promises',
@@ -2395,6 +2484,7 @@ var tests = [
 										status:		'experimental',
 										value:		2, 
 										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects' ],
 														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Promise' ]
 													]
 									},
@@ -2407,7 +2497,7 @@ var tests = [
 										value:		2, 
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/page-visibility/' ],
-														[ 'mdn', '/DOM/Using_the_Page_Visibility_API' ]
+														[ 'mdn', '/Web/Guide/User_experience/Using_the_Page_Visibility_API' ]
 													]
 									}, {
 										id:			'getSelection',
