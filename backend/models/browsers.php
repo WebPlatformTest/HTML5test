@@ -10,9 +10,10 @@
 			foreach($types AS $type) {
 				$res = mysql_query("
 					SELECT 
-						b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed
+						b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, IFNULL(v.replaced,v.id) AS id, f.score
 					FROM 
-						browserVersions AS b
+						browserVariants AS v
+						LEFT JOIN browserVersions AS b ON (v.id = b.variant)
 						LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE 
