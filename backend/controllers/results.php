@@ -25,14 +25,15 @@
 	
 		$res = mysql_query("
 			SELECT 
-				b.status, b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
 			FROM 
 				browserVersions AS b
+				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE 
 				s.release = '" . $version . "' AND
-				FIND_IN_SET('gaming-console',type)
+				FIND_IN_SET('gaming-console',b.type)
 			ORDER BY 
 				score DESC
 		");
@@ -47,14 +48,15 @@
 	
 		$res = mysql_query("
 			SELECT 
-				b.status, b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
 			FROM 
 				browserVersions AS b
+				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE 
 				s.release = '" . $version . "' AND
-				FIND_IN_SET('gaming-portable',type)
+				FIND_IN_SET('gaming-portable',b.type)
 			ORDER BY 
 				score DESC
 		");
@@ -69,14 +71,15 @@
 	
 		$res = mysql_query("
 			SELECT 
-				b.status, b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
 			FROM 
 				browserVersions AS b
+				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE 
 				s.release = '" . $version . "' AND
-				FIND_IN_SET('television-smart',type)
+				FIND_IN_SET('television-smart',b.type)
 			ORDER BY 
 				score DESC
 		");
@@ -91,14 +94,15 @@
 	
 		$res = mysql_query("
 			SELECT 
-				b.status, b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
 			FROM 
 				browserVersions AS b
+				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE 
 				s.release = '" . $version . "' AND
-				FIND_IN_SET('television-box',type)
+				FIND_IN_SET('television-box',b.type)
 			ORDER BY 
 				score DESC
 		");
@@ -113,14 +117,15 @@
 	
 		$res = mysql_query("
 			SELECT 
-				b.status, b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
 			FROM 
 				browserVersions AS b
+				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE 
 				s.release = '" . $version . "' AND
-				FIND_IN_SET('ereader',type)
+				FIND_IN_SET('ereader',b.type)
 			ORDER BY 
 				score DESC
 		");
@@ -194,14 +199,15 @@
 	
 		$res = mysql_query("
 			SELECT 
-				b.status, b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results 
 			FROM 
 				browserVersions AS b
+				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE 
 				s.release = '" . $version . "' AND
-				FIND_IN_SET('" . $type . "',type)
+				FIND_IN_SET('" . $type . "',b.type)
 			ORDER BY 
 				score DESC
 		");
@@ -223,7 +229,7 @@
 	
 		$res = mysql_query("
 			SELECT 
-				v.importance, IFNULL(v.nickname,v.name) AS name, b.grouped, b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
+				v.importance, IFNULL(v.nickname,v.name) AS name, b.grouped, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
 			FROM 
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)

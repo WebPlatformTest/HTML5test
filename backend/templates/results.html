@@ -137,12 +137,8 @@
 											<?php foreach($results['current'] as $item): ?>
 											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname'>
-													<?php if ($item->points != ''): ?>
-														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-													<?php else: ?>
-														<?php echo $item->nickname; ?>
-													<?php endif; ?>
+												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
 											</tr>
@@ -167,12 +163,8 @@
 											<?php foreach($results['development'] as $item): ?>
 											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname'>
-													<?php if ($item->points != ''): ?>
-														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-													<?php else: ?>
-														<?php echo $item->nickname; ?>
-													<?php endif; ?>
+												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
 											</tr>
@@ -199,12 +191,8 @@
 											<?php foreach($results['legacy'] as $item): ?>
 											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname'>
-													<?php if ($item->points != ''): ?>
-														<a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a>
-													<?php else: ?>
-														<?php echo $item->nickname; ?>
-													<?php endif; ?>
+												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
 											</tr>
