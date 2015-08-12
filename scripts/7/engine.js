@@ -2047,6 +2047,12 @@ Test = (function() {
 				value: 		1
 			});
 
+			group.setItem({
+				id:			'directory',
+				passed:		'directory' in element.field && window.Directory,
+				value: 		1
+			});
+
 			this.removeInput(element);
 			
 
