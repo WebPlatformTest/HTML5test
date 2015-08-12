@@ -1621,13 +1621,16 @@
 			content += "<div class='column middle'><a href='/results/" + type + "/timeline/" + data.id +".html' class='timeline'><span>" + t('Timeline') + "</span></a></div>";
 			content += "<div class='column right'><a href='/compare/browser/" + browser +".html' class='compare'><span>" + t('Compare') + "</span></a></div>";
 			content += "</div>";
-			content += "<div class='links'>";
-
-			for (var i = 0; i < data.urls.length; i++) {
+			
+			if (typeof data.urls != 'undefined') {
+				content += "<div class='links'>";
+	
+				for (var i = 0; i < data.urls.length; i++) {
+				}
+	
+				content += "</div>";
 			}
-
-			content += "</div>";
-
+			
 			this.panel = document.createElement('div');
 			this.panel.className = 'linksPanel popupPanel pointsLeft';
 			this.panel.innerHTML = content;
