@@ -474,12 +474,14 @@
 
 
 
-	var NO = 0,
-		YES = 1,
-		OLD = 2,
-		BUGGY = 4,
-		PREFIX = 8,
-		BLOCKED = 16;
+	var NO = 0, 
+		YES = 1, 
+		OLD = 2, 
+		BUGGY = 4, 
+		PREFIX = 8, 
+		BLOCKED = 16,
+		DISABLED = 32,	
+		UNCONFIRMED = 64;	
 
 	var ResultsTable = function() { this.initialize.apply(this, arguments) };
 	ResultsTable.prototype = {
@@ -609,14 +611,18 @@
 
 							if (result & YES) {
 								switch(true) {
-									case !! (result & OLD):		cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;
-									case !! (result & BUGGY):	cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;
-									case !! (result & PREFIX):	cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; count[1]++; break;
-									default:					cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
+									case !! (result & OLD):			cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
+									case !! (result & BUGGY):		cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
+									case !! (result & PREFIX):		cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; count[1]++; break;
+									default:						cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
 								}
 							}
 							else {
-								cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
+								switch(true) {
+									case !! (result & BLOCKED):		cell.innerHTML = '<div>' + t('Not functional') + ' <span class="buggy">!</span></div>'; break;
+									case !! (result & DISABLED):	cell.innerHTML = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
+									default:						cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+								}
 							}
 						} else {
 							cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';

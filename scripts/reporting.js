@@ -700,14 +700,18 @@
 								
 								if (result & YES) {
 									switch(true) {
-										case !! (result & OLD):		cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
-										case !! (result & BUGGY):	cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
-										case !! (result & PREFIX):	cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; count[1]++; break;
-										default:					cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
+										case !! (result & OLD):			cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
+										case !! (result & BUGGY):		cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
+										case !! (result & PREFIX):		cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; count[1]++; break;
+										default:						cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
 									}
 								}
 								else {
-									cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
+									switch(true) {
+										case !! (result & BLOCKED):		cell.innerHTML = '<div>' + t('Broken') + ' <span class="buggy">!</span></div>'; break;
+										case !! (result & DISABLED):	cell.innerHTML = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
+										default:						cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+									}
 								}
 							} else {
 								cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';
@@ -1250,14 +1254,18 @@
 							
 					if (result & YES) {
 						switch(true) {
-							case !! (result & OLD):		cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
-							case !! (result & BUGGY):	cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
-							case !! (result & PREFIX):	cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; break;
-							default:					cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; break;
+							case !! (result & OLD):			cell.innerHTML = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;								
+							case !! (result & BUGGY):		cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;								
+							case !! (result & PREFIX):		cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; break;
+							default:						cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; break;
 						}
 					}
 					else {
-						cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
+						switch(true) {
+							case !! (result & BLOCKED):		cell.innerHTML = '<div>' + t('Not functional') + ' <span class="buggy">!</span></div>'; break;
+							case !! (result & DISABLED):	cell.innerHTML = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
+							default:						cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+						}
 					}
 				}
 				else
@@ -1576,14 +1584,18 @@
 
 			if (status & YES) {
 				switch(true) {
-					case !! (status & OLD):		html = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;
-					case !! (status & BUGGY):	html = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;
-					case !! (status & PREFIX):	html = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; break;
-					default:					html = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; break;
+					case !! (status & OLD):			html = '<div>' + t('Incomplete') + ' <span class="buggy">!</span></div>'; break;
+					case !! (status & BUGGY):		html = '<div>' + t('Buggy') + ' <span class="buggy">!</span></div>'; break;
+					case !! (status & PREFIX):		html = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; break;
+					default:						html = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; break;
 				}
 			}
 			else {
-				html = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
+				switch(true) {
+					case !! (result & BLOCKED):		html = '<div>' + t('Not functional') + ' <span class="buggy">!</span></div>'; break;
+					case !! (result & DISABLED):	html = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
+					default:						html = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+				}
 			}
 			
 			return html;
