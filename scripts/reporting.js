@@ -1425,7 +1425,8 @@
 				tr.id = 'row-' + this.browsers[i].uid;
 				tbody.appendChild(tr);
 	
-				var th = document.createElement('th');					
+				var th = document.createElement('th');		
+				th.className = 'hasLink';			
 				th.innerHTML =  this.browsers[i].nickname + (this.browsers[i].details ? ' <em>(' + this.browsers[i].details + ')</em>' : '');
 				tr.appendChild(th);
 				

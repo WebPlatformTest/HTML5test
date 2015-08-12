@@ -89,6 +89,7 @@
 	width: 30%;
 	padding-right: 10px;
 	white-space: nowrap;
+	cursor: pointer;
 }
 .scoreTable .details {
 	width: 26%;
@@ -292,6 +293,9 @@ div:-moz-full-screen #timelineGraph {
 	padding: 5px 0;
 	font-weight: normal;
 	text-align: left;
+}
+.comparisonTable table th.hasLink {
+	cursor: pointer;
 }
 .comparisonTable table th code {
 	font-size: 12px;
