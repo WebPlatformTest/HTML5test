@@ -6,11 +6,13 @@ Test = (function() {
 		OLD = 2, 
 		BUGGY = 4, 
 		PREFIX = 8, 
-		BLOCKED = 16;	
+		BLOCKED = 16,
+		DISABLED = 32,	
+		UNCONFIRMED = 64;	
 	
 	var revision = 1;
 	
-	var blacklists = {};
+	var blacklists = [];
 	
 	
 
@@ -247,7 +249,12 @@ Test = (function() {
 			if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
 			if (typeof this.data.passed == 'undefined') this.data.padded = false;
 
-			if (this.data.passed && this.isOnBlacklist()) this.data.passed = BLOCKED;
+			if (this.data.passed) {
+				var blacklist = this.isOnBlacklist();
+				if (blacklist) {
+					this.data.passed = blacklist;
+				}
+			}
 		},
 		
 		update: function(data) {
@@ -259,7 +266,12 @@ Test = (function() {
 			if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
 			if (typeof this.data.passed == 'undefined') this.data.passed = false;
 
-			if (this.data.passed && this.isOnBlacklist()) this.data.passed = BLOCKED;
+			if (this.data.passed) {
+				var blacklist = this.isOnBlacklist();
+				if (blacklist) {
+					this.data.passed = blacklist;
+				}
+			}
 			
 			this.parent.update();
 		},
@@ -270,9 +282,12 @@ Test = (function() {
 			for (var i = 0; i < parts.length; i++) {
 				part += (i == 0 ? '' : '.') + parts[i];
 
-				if (typeof blacklists[part] != 'undefined') {
-					if (blacklists[part]) {
-						return true;
+				for (var k = 0; k < blacklists.length; k++) {
+					if (typeof blacklists[k][1][part] != 'undefined') {
+						if (blacklists[k][1][part]) {
+							if (console && console.log) console.log('BLOCKED TEST: ' + part + '!');
+							return blacklists[k][0];
+						}
 					}
 				}
 			}
@@ -3827,63 +3842,81 @@ Test = (function() {
 		],
 		
 		initialize: function(callback, error) {
-			blacklists = {
-				'form.file':						Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isDevice('Playstation 4') || Browsers.isOs('Windows Phone', '<', '8.1') || Browsers.isOs('iOS', '<', '6')  || Browsers.isOs('Android', '<', '2.2'), 
-				'form.date.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.month.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.week.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.time.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.datetime-local.ui':			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
-				'form.color.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8'),
-				'form.range.ui':					Browsers.isBrowser('UC Browser', '<', '9.8'),
-				'form.progress.element':			Browsers.isBrowser('Baidu Browser'),
-				'files.fileSystem':					Browsers.isOs('BlackBerry Tablet OS'),
-				'input.getUserMedia':				Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8') || Browsers.isBrowser('Dolphin'),
-				'location.geolocation':				Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser'),
-				'location.orientation':				Browsers.isBrowser('Baidu Browser'),
-				'output.notifications':				Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-				'output.requestFullScreen':			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
-				'video.subtitle':					Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-				'webgl.context':					Browsers.isBrowser('Baidu Browser'),
+			blacklists = [
+				[
+					BLOCKED,
+					{
+						'form.file':						Browsers.isDevice('Xbox 360') || Browsers.isDevice('Xbox One') || Browsers.isDevice('Playstation 4') || Browsers.isOs('Windows Phone', '<', '8.1') || Browsers.isOs('iOS', '<', '6')  || Browsers.isOs('Android', '<', '2.2'), 
+						'form.date.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+						'form.month.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+						'form.week.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+						'form.time.ui':						Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+						'form.datetime-local.ui':			Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || Browsers.isBrowser('UC Browser', '<', '8.6'),
+						'form.color.ui':					Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8'),
+						'form.range.ui':					Browsers.isBrowser('UC Browser', '<', '9.8'),
+						'form.progress.element':			Browsers.isBrowser('Baidu Browser'),
+						'files.fileSystem':					Browsers.isOs('BlackBerry Tablet OS'),
+						'input.getUserMedia':				Browsers.isDevice('webOS TV') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8') || Browsers.isBrowser('Dolphin'),
+						'input.getGamepads':				Browsers.isDevice('webOS TV') || Browsers.isDevice('Playstation 4') || Browsers.isDevice('Wii U'),
+						'location.geolocation':				Browsers.isDevice('webOS TV') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser') || Browsers.isOs('Google TV'),
+						'location.orientation':				Browsers.isBrowser('Baidu Browser'),
+						'output.notifications':				Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+						'output.requestFullScreen':			Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
+						'video.subtitle':					Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+						'webgl.context':					Browsers.isBrowser('Baidu Browser'),
+					}
+				],
 				
-				'interaction.dragdrop':				!(  Browsers.isType('desktop') ||
-														Browsers.isType('mobile', 'tablet', 'media') && (
-															Browsers.isBrowser('Opera') && Browsers.isEngine('Presto')
-														) ||
-														Browsers.isType('television') && (
-															Browsers.isDevice('webOS TV')
-														)
-													),
-
-				'interaction.editing':				!(	Browsers.isType('desktop') ||
-														Browsers.isType('mobile', 'tablet', 'media') && (
-															Browsers.isOs('iOS', '>=', '5') ||		
-															Browsers.isOs('Android', '>=', '4') || 
-															Browsers.isOs('Windows Phone', '>=', '7.5') || 
-															Browsers.isOs('BlackBerry') || 
-															Browsers.isOs('BlackBerry OS') || 
-															Browsers.isOs('BlackBerry Tablet OS') || 
-															Browsers.isOs('Meego') || 
-															Browsers.isOs('Tizen') || 
-															Browsers.isEngine('Gecko') ||
-															Browsers.isEngine('Presto') || 
-															Browsers.isBrowser('Chrome') ||
-															Browsers.isBrowser('Polaris', '>=', '8')
-														) ||
-														Browsers.isType('television') && (
-															Browsers.isOs('Tizen') || 
-															Browsers.isDevice('webOS TV') || 
-															Browsers.isBrowser('Espial') ||
-															Browsers.isBrowser('MachBlue XT') ||
-															Browsers.isEngine('Presto', '>=', '2.9')
-														) ||
-														Browsers.isType('gaming') && (
-															Browsers.isDevice('Xbox 360') || 
-															Browsers.isDevice('Xbox One') || 
-															Browsers.isDevice('Playstation 4')
-														)
-													)
-			};		
+				[
+					DISABLED,
+					{
+						'elements.semantic.ping':			Browsers.isBrowser('Firefox') || Browsers.isBrowser('Firefox Mobile')
+					}	
+				],
+				
+				[
+					UNCONFIRMED,
+					{
+						'interaction.dragdrop':				!(  Browsers.isType('desktop') ||
+																Browsers.isType('mobile', 'tablet', 'media') && (
+																	Browsers.isBrowser('Opera') && Browsers.isEngine('Presto')
+																) ||
+																Browsers.isType('television') && (
+																	Browsers.isDevice('webOS TV')
+																)
+															),
+		
+						'interaction.editing':				!(	Browsers.isType('desktop') ||
+																Browsers.isType('mobile', 'tablet', 'media') && (
+																	Browsers.isOs('iOS', '>=', '5') ||		
+																	Browsers.isOs('Android', '>=', '4') || 
+																	Browsers.isOs('Windows Phone', '>=', '7.5') || 
+																	Browsers.isOs('BlackBerry') || 
+																	Browsers.isOs('BlackBerry OS') || 
+																	Browsers.isOs('BlackBerry Tablet OS') || 
+																	Browsers.isOs('Meego') || 
+																	Browsers.isOs('Tizen') || 
+																	Browsers.isEngine('Gecko') ||
+																	Browsers.isEngine('Presto') || 
+																	Browsers.isBrowser('Chrome') ||
+																	Browsers.isBrowser('Polaris', '>=', '8')
+																) ||
+																Browsers.isType('television') && (
+																	Browsers.isOs('Tizen') || 
+																	Browsers.isDevice('webOS TV') || 
+																	Browsers.isBrowser('Espial') ||
+																	Browsers.isBrowser('MachBlue XT') ||
+																	Browsers.isEngine('Presto', '>=', '2.9')
+																) ||
+																Browsers.isType('gaming') && (
+																	Browsers.isDevice('Xbox 360') || 
+																	Browsers.isDevice('Xbox One') || 
+																	Browsers.isDevice('Playstation 4')
+																)
+															)
+					}
+				]
+			];		
 			
 			try {
 				this.backgroundTasks = [];
