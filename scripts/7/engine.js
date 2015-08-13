@@ -1796,14 +1796,14 @@ Test = (function() {
 				group.setItem({
 					id:			'element',
 					passed:		minimal,
-					value: 		types[t] != 'datetime' ? 2 : 1,
+					value: 		types[t] != 'datetime' ? 2 : 0,
 					required:	true
 				});
 				
 				group.setItem({
 					id:			'ui',
 					passed:		minimal && sanitization, 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
-					value: 		types[t] != 'datetime' ? 2 : 1
+					value: 		types[t] != 'datetime' ? 2 : 0
 				});
 
 				group.setItem({

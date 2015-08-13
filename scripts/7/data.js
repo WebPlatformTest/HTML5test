@@ -585,16 +585,17 @@ var tests = [
 									}, {
 										id:		'datetime',
 										name:	'<code>input type=datetime</code>',
+										status: 'rejected',
 										items:	[
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		1, 
+														value:		0, 
 														url:		'http://www.w3.org/TR/html5/forms.html#date-and-time-state-(type=datetime)'
 													}, {
 														id:			'ui',
 														name: 		'Custom user-interface',
-														value:		1
+														value:		0
 													}, {
 														id:			'sanitization',
 														name: 		'Value sanitization', 
