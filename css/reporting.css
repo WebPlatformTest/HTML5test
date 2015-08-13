@@ -300,8 +300,21 @@ div:-moz-full-screen #timelineGraph {
 .comparisonTable table th code {
 	font-size: 12px;
 }
+.comparisonTable table th {
+	max-width: 0;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.comparisonTable table th > div {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 .comparisonTable table td {
 	width: 96px;
+	min-width: 96px;
+	max-width: 96px;
 	text-align: center;
 	border-right: 1px solid #fff;
 }
@@ -321,6 +334,8 @@ div:-moz-full-screen #timelineGraph {
 }
 .comparisonTable table tr.hasChild th {
 	cursor: pointer;
+}
+.comparisonTable table tr.hasChild th > div {
 	padding-left: 20px;
 }
 .comparisonTable table tr.hasChild th > * {
@@ -329,7 +344,7 @@ div:-moz-full-screen #timelineGraph {
 .comparisonTable table tr.hasChild th > ::before {
 	position: absolute;
 	top: -1px;
-	left: -18px;
+	left: 2px;
 
 	display: block;
 	font-family: html5test;
@@ -438,6 +453,7 @@ div:-moz-full-screen #timelineGraph {
 	padding: 0 40px 0 0;
 	background: none;
 	vertical-align: top;
+	white-space: normal;
 }
 .comparisonTable #table-header #row-header th p {
 	margin: 0;
@@ -452,6 +468,7 @@ div:-moz-full-screen #timelineGraph {
 }
 .comparisonTable #table-header #row-header div.name {
 	display: table;
+	overflow: hidden;
 }
 .comparisonTable #table-header #row-header span {
 	display: block;
@@ -480,16 +497,24 @@ div:-moz-full-screen #timelineGraph {
 }
 .comparisonTable #table-header #row-header span.feature {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+	font-size: 80%;
 	font-weight: bold;
-	padding: 0 10px;
-	width: 76px;
+	line-height: 140%;
+	padding: 0 4px;
+	width: 89px;
 	display: table-cell;
 	vertical-align: middle;
 }
 .comparisonTable #table-header #row-header span.feature code {
-	font-size: 12px;
+	font-size: 11px;
 }
-
+.comparisonTable #table-header #row-header span.feature hr {
+	border: none;
+	border-top: 1px solid #fff;
+	margin: 4px -4px;
+	padding: 0;
+	opacity: 0.3;
+}
 .comparisonTable #table-header #row-header span.bonus {
 	position: absolute;
 	bottom: 5px;
@@ -781,7 +806,7 @@ div:-moz-full-screen #timelineGraph {
 }
 .diffTable table th {
 	text-align: left;
-	font-weight: inherit;
+	font-weight: normal;
 	max-width: 0;
 	width: 100%;
     overflow: hidden;
