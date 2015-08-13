@@ -1774,7 +1774,7 @@ var tests = [
 									}, {
 										id:		'objectrtc',
 										name: 	'ObjectRTC API for WebRTC',
-										value:	15, 
+										value:	10, 
 										urls:	[
 													[ 'w3c', 'http://ortc.org/wp-content/uploads/2014/10/ortc.html' ]
 												]

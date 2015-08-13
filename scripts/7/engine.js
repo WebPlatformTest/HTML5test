@@ -1142,14 +1142,14 @@ Test = (function() {
 			this.section.setItem({
 				id:		'webrtc',
 				passed:	webrtc, 
-				value: 	10
+				value: 	15
 			});
 			
 			this.section.setItem({
 				id:		'objectrtc',
 				passed:	objectrtc, 
-				value: 	5,
-				award:  webrtc == NO ? 15 : 5	/* Award extra 10 points when WebRTC is not supported */
+				value: 	0,
+				award:  webrtc == NO ? 15 : 0	/* Only award 15 points when WebRTC is not supported */
 			});
 			
 			var passed = false;
