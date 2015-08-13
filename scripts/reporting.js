@@ -348,11 +348,13 @@
 			var result = [];
 			var path = [];
 			var status = [];
+			var name = [];
 		
 			function retrieveItems(items, level) {
 				for (var i = 0; i < items.length; i++) {
 					if (typeof items[i] == 'object') {
 						path[level] = items[i].id;
+						name[level] = items[i].name;
 						status[level] = items[i].status || null; 
 				
 						if (!filterItem(items[i], level)) {
@@ -368,6 +370,7 @@
 				for (var i = 0; i < items.length; i++) {
 					if (typeof items[i] == 'object') {
 						path[level] = items[i].id;
+						name[level] = items[i].name;
 						status[level] = items[i].status || null; 
 						
 						if (level > 1) {
@@ -402,6 +405,7 @@
 			
 			function filterItem(item, level) {
 				path[level] = item.id;
+				name[level] = item.name;
 				status[level] = item.status || null; 
 				
 				var selected = true;
@@ -423,7 +427,7 @@
 						
 						var r = {
 							id:		path.slice(1, level + 1).join('-'),
-							name:	item.name,
+							name:	name.slice(2, level + 1).join(' ▸ '),
 							status:	s
 						}
 						if (item.value) r.value = item.value;
@@ -1534,7 +1538,7 @@
 
 			var tbody = document.createElement('tbody');
 			table.appendChild(tbody);
-
+			
 			for (var i = 0; i < this.data.length; i++) {
 				var tr = document.createElement('tr');
 				tbody.appendChild(tr);
