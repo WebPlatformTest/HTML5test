@@ -3724,6 +3724,12 @@ Test = (function() {
 				value:  	2 
 			});
 
+			this.section.setItem({
+				id:   		'encoding',
+				passed:   	'TextEncoder' in window && 'TextDecoder' in window ? YES : NO,
+				value:  	2 
+			});
+
 
 
 			var passed = 'Promise' in window ? YES | OLD : NO;

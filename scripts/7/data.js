@@ -2509,6 +2509,14 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/url/' ]
 													]
 									}, {
+										id: 		'encoding',
+										name:   	'Encoding API',
+										value:		2, 
+										urls:		[
+														[ 'whatwg', 'https://encoding.spec.whatwg.org' ],
+														[ 'mdn', '/Web/API/TextDecoder' ]
+													]
+									}, {
 										id: 		'mutationObserver',
 										name:   	'Mutation Observer',
 										value:		2, 
