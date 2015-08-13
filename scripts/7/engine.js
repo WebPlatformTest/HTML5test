@@ -3763,7 +3763,7 @@ Test = (function() {
 			this.section.setItem({
 				id:   		'promises',
 				passed:   	passed,
-				value:  	2
+				value:  	3
 			});
     
     

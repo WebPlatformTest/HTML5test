@@ -2545,7 +2545,7 @@ var tests = [
 									}, {
 										id: 		'promises',
 										name:   	'Promises',
-										value:		2, 
+										value:		3, 
 										urls:		[
 														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects' ],
 														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Promise' ]
