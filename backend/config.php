@@ -1,7 +1,7 @@
 <?php
 
-	$version = '7.00';
 	$readonly = false;
+	$version = '6.00';
 	
 	$mysql['server'] = 'localhost';
 	$mysql['username'] = '******';
