@@ -248,7 +248,6 @@ var tests = [
 														name: 	'<code>details</code> element', 
 														value:	1, 
 														urls:	[
-																	[ 'w3c', 'http://www.w3.org/TR/html5/interactive-elements.html#the-details-element' ],
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-details-element' ]
 																]
 													}, {
@@ -256,7 +255,6 @@ var tests = [
 														name: 	'<code>summary</code> element', 
 														value:	1, 
 														urls:	[
-																	[ 'w3c', 'http://www.w3.org/TR/html5/interactive-elements.html#the-summary-element' ],
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-summary-element' ]
 																]
 													}, {
@@ -265,7 +263,6 @@ var tests = [
 														status:	'proposal', 
 														value:	1, 
 														urls:	[
-																	[ 'w3c', 'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element' ],
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
 																]
 													}, {
@@ -274,7 +271,6 @@ var tests = [
 														status:	'proposal', 
 														value:	2, 
 														urls:	[
-																	[ 'w3c', 'http://www.w3.org/TR/html5/interactive-elements.html#the-menu-element' ],
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
 																]
 													}, {
