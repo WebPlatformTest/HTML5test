@@ -3830,7 +3830,7 @@ Test = (function() {
 
 			this.section.setItem({
 				id:			'shadowdom',
-				passed:		'createShadowRoot' in document.createElement('div') ? YES : 'webkitCreateShadowRoot' in document.createElement('div') ? YES | PREFIX : NO,
+				passed:		'attachShadow' in document.createElement('div') ? YES : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') ? YES | OLD : NO,
 				value: 		2
 			});
 			
