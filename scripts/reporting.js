@@ -1237,9 +1237,16 @@
 				var cell = row.childNodes[column + 1];
 				cell.className = '';
 				
-				var item;
+				var item, parent;
 				if (item = this.getItemById(this.options.tests, data.id)) {
-					cell.firstChild.firstChild.innerHTML = '<span class="feature">' + t(item.name) + '</span>';
+					if (data.id.split('-').length > 2) {
+						if (parent = this.getItemById(this.options.tests, data.id.split('-').slice(0,-1).join('-'))) {
+							cell.firstChild.firstChild.innerHTML = '<span class="feature">' + t(parent.name) + '<hr>' + t(item.name) + '</span>';
+						}
+					}
+					else {
+						cell.firstChild.firstChild.innerHTML = '<span class="feature">' + t(item.name) + '</span>';
+					}
 				}
 			}
 			
