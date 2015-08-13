@@ -1600,8 +1600,8 @@
 			}
 			else {
 				switch(true) {
-					case !! (result & BLOCKED):		html = '<div>' + t('Not functional') + ' <span class="buggy">!</span></div>'; break;
-					case !! (result & DISABLED):	html = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
+					case !! (status & BLOCKED):		html = '<div>' + t('Not functional') + ' <span class="buggy">!</span></div>'; break;
+					case !! (status & DISABLED):	html = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
 					default:						html = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
 				}
 			}
