@@ -3661,6 +3661,12 @@ Test = (function() {
 			});
 
 			this.section.setItem({
+				id:			'defer',
+				passed:		'defer' in document.createElement('script'), 
+				value: 		1
+			});
+
+			this.section.setItem({
 				id:			'onerror',
 				passed:		isEventSupported('error'), 
 				value: 		1

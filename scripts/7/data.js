@@ -2466,6 +2466,16 @@ var tests = [
 														[ 'wp',  '/html/elements/script' ]
 													]
 									}, {
+										id:			'defer',
+										name: 		'Defered script execution', 
+										value:		1, 
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-defer' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer' ],
+														[ 'mdn', '/Web/HTML/Element/script' ],
+														[ 'wp',  '/html/elements/script' ]
+													]
+									}, {
 										id:			'onerror',
 										name: 		'Runtime script error reporting', 
 										value:		1, 
