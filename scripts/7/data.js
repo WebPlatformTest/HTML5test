@@ -1403,7 +1403,6 @@ var tests = [
 									{
 										id:		'webaudio',
 										name: 	'Web Audio API', 
-										status:	'proposal', 
 										value:	5,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/webaudio/' ],
