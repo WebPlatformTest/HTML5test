@@ -1314,7 +1314,6 @@ var tests = [
 									}, {
 										id:		'mediasource',
 										name: 	'Media Source extensions', 
-										status:	'proposal', 
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
