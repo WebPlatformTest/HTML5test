@@ -1457,14 +1457,47 @@ Test = (function() {
 			});
 
 
-			var passed = false;
+			var passed = legacy = false;
 
 			try { 
 				var element = document.createElement('menu');
 				document.body.appendChild(element);
 	
 				try { 
-					passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
+					 legacy = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
+				} catch(error) {
+				}
+	
+				// Check default type
+				if (legacy && element.type != 'list') legacy = false;	
+				
+				// Check type sanitization
+				try {
+					element.type = 'foobar';
+				} catch(error) {
+				}
+				
+				if (legacy && element.type == 'foobar') legacy = false;	
+	
+				// Check if correct type sticks
+				try {
+					element.type = 'list';
+				} catch(error) {
+					legacy = false;
+				}
+	
+				if (legacy && element.type != 'list') legacy = false;	
+
+				document.body.removeChild(element);					
+			} catch(error) {
+			}
+
+			try { 
+				var element = document.createElement('menu');
+				document.body.appendChild(element);
+	
+				try { 
+					 passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
 				} catch(error) {
 				}
 	
@@ -1494,19 +1527,48 @@ Test = (function() {
 
 			group.setItem({
 				id:		'menutoolbar',
-				passed:	passed, 
+				passed:	passed ? YES : legacy ? YES | OLD : NO, 
 				value: 	1
 			});
 
 
 
-			var passed = false;
+			var passed = legacy = false;
 
 			try { 
 				var element = document.createElement('menu');
 				document.body.appendChild(element);
 	
-				var passed = false;
+				try { 
+					legacy = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
+				} catch(error) {
+				}
+	
+				// Check if correct type sticks
+				try {
+					element.type = 'context';
+				} catch(error) {
+					legacy = false;
+				}
+	
+				if (legacy && element.type != 'context') legacy = false;	
+	
+	
+				if (legacy) {
+					var item = document.createElement('menuitem');
+					element.appendChild(item);
+					
+					if (typeof HTMLMenuItemElement == 'undefined' || ! item instanceof HTMLMenuItemElement) legacy = false;
+				}
+
+				document.body.removeChild(element);					
+			} catch(error) {
+			}
+			
+			try { 
+				var element = document.createElement('menu');
+				document.body.appendChild(element);
+	
 				try { 
 					passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
 				} catch(error) {
@@ -1554,7 +1616,7 @@ Test = (function() {
 
 			group.setItem({
 				id:		'menupopup',
-				passed:	passed, 
+				passed:	passed ? YES : legacy ? YES | OLD : NO, 
 				value: 	2
 			});
 
