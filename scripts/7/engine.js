@@ -3548,7 +3548,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'sharedWorker',
 				passed:		!!window.SharedWorker, 
-				value: 		4
+				value: 		2
 			});
 
 			var group = this.section.getGroup({
