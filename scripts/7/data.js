@@ -2517,6 +2517,14 @@ var tests = [
 														[ 'mdn', '/Web/API/TextDecoder' ]
 													]
 									}, {
+										id: 		'i18n',
+										name:   	'Internationalization API',
+										value:		2, 
+										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-402/1.0/' ],
+														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Intl' ]
+													]
+									}, {
 										id: 		'mutationObserver',
 										name:   	'Mutation Observer',
 										value:		2, 

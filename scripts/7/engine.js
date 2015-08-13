@@ -3730,6 +3730,12 @@ Test = (function() {
 				value:  	2 
 			});
 
+			this.section.setItem({
+				id:   		'i18n',
+				passed:   	'Intl' in window ? YES : NO,
+				value:  	2 
+			});
+
 
 
 			var passed = 'Promise' in window ? YES | OLD : NO;
