@@ -855,6 +855,12 @@ Test = (function() {
 				value: 	2
 			});
 
+			this.section.setItem({
+				id:			'recorder',
+				passed:		'MediaRecorder' in window, 
+				value: 		2
+			});
+
 
 			/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 			var item = {

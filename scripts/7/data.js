@@ -1319,6 +1319,14 @@ var tests = [
 													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
 													[ 'wp',  '/apis/media_source_extensions' ]
 												]
+									}, {
+										id:		'recorder',
+										name: 	'Media Stream recorder', 
+										status:	'proposal',
+										value:	2, 
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/mediastream-recording/' ]
+												]
 									}, 
 									
 									'<strong>Codecs</strong>',
