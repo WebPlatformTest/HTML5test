@@ -1634,6 +1634,14 @@ var tests = [
 						name: 	'Animation',
 						items:	[
 									{
+										id:			'webanimation',
+										name: 		'Web Animations API', 
+										status:		'experimental',
+										value:		2, 
+										urls:		[
+														[ 'w3c', 'https://w3c.github.io/web-animations/' ]
+													]
+									}, {
 										id:			'requestAnimationFrame',
 										name: 		'<code>window.requestAnimationFrame</code>', 
 										value:		5, 

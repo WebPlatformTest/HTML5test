@@ -3783,6 +3783,12 @@ Test = (function() {
 			});
 			
 			this.section.setItem({
+				id:			'webanimation',
+				passed:		'animate' in document.createElement('div'),
+				value: 		2
+			});
+
+			this.section.setItem({
 				id:			'requestAnimationFrame',
 				passed:		!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO,
 				value: 		5
