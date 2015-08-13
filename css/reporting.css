@@ -336,9 +336,17 @@ div:-moz-full-screen #timelineGraph {
 	font-size: 11px;
 	content: '▼';
 	color: #888;
+	
+	-webkit-transition: -webkit-transform 200ms ease;
+	-moz-transition: -moz-transform 200ms ease;
+	-ms-transition: -ms-transform 200ms ease;
+	transition: transform 200ms ease;
 }
 .comparisonTable table tr.hasChild.hidden th > ::before {
-	content: '▶';
+	-webkit-transform: rotate(-90deg) translateX(-1px);
+	-moz-transform: rotate(-90deg) translateX(-1px);
+	-ms-transform: rotate(-90deg) translateX(-1px);
+	transform: rotate(-90deg) translateX(-1px);
 }
 .comparisonTable table tr.isChild th {
 	font-size: 80%;

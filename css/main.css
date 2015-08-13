@@ -1768,9 +1768,17 @@ body.indexVisible > div#index button#indexbutton {
 	font-size: 11px;
 	content: '▼';
 	color: #888;
+
+	-webkit-transition: -webkit-transform 200ms ease;
+	-moz-transition: -moz-transform 200ms ease;
+	-ms-transition: -ms-transform 200ms ease;
+	transition: transform 200ms ease;
 }
 .resultsTable table tr.hasChild.hidden th > ::before {
-	content: '▶';
+	-webkit-transform: rotate(-90deg) translateX(-1px);
+	-moz-transform: rotate(-90deg) translateX(-1px);
+	-ms-transform: rotate(-90deg) translateX(-1px);
+	transform: rotate(-90deg) translateX(-1px);
 }
 .resultsTable table tr.hasChild th,
 .resultsTable table tr.hasChild td {
