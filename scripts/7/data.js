@@ -2505,7 +2505,7 @@ var tests = [
 									}, {
 										id:			'json',
 										name: 		'JSON encoding and decoding', 
-										value:		1, 
+										value:		2, 
 										urls:		[
 														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-json-object' ],
 														[ 'mdn', '/JSON' ],

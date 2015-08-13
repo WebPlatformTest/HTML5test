@@ -3715,7 +3715,7 @@ Test = (function() {
 			this.section.setItem({
 				id:			'json',
 				passed:		'JSON' in window && 'parse' in JSON, 
-				value: 		1
+				value: 		2
 			});
 
 			this.section.setItem({
