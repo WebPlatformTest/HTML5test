@@ -1,5 +1,5 @@
 
-Test = (function() {			
+Test7 = (function() {			
 	
 	var NO = 0, 
 		YES = 1, 
