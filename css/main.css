@@ -2143,6 +2143,7 @@ body.indexVisible > div#index button#indexbutton {
 	margin: 0 5px;
 	display: inline-block;
 	float: none;
+	vertical-align: middle;
 }
 
 @media (max-width: 680px) {
