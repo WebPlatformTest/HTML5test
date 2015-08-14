@@ -10,7 +10,7 @@ Test7 = (function() {
 		DISABLED = 32,	
 		UNCONFIRMED = 64;	
 	
-	var revision = 1;
+	var revision = 0;
 	
 	var blacklists = [];
 	
