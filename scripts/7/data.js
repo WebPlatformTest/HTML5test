@@ -827,9 +827,7 @@ var tests = [
 														status:		'experimental',
 														name: 		'Directory upload support',
 														value:		1, 
-														urls:		[
-																		[ 'other', 'https://microsoftedge.github.io/directory-upload/proposal.html' ]
-																	]
+														url:		'https://wicg.github.io/directory-upload/proposal.html'
 													}
 												]
 									}, {
