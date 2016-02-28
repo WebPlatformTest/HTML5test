@@ -3119,7 +3119,7 @@ Test7 = (function() {
 				
 			this.section.setItem({
 				id:			'context',
-				passed:		passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO,
+				passed:		passed ? (context == 'webgl' || context == 'experimental-webgl' ? YES : YES | PREFIX) : NO,
 				value: 		20
 			});
 		}
