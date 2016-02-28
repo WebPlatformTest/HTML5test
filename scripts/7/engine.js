@@ -247,6 +247,7 @@ Test7 = (function() {
 			this.data = data;
 			if (typeof this.data.value == 'undefined') this.data.value = 0;
 			if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
+			if (this.data.passed === 9 || this.data.passed === 3) this.data.award = Math.floor(this.data.award / 2);
 			if (typeof this.data.passed == 'undefined') this.data.padded = false;
 
 			if (this.data.passed) {
@@ -3119,7 +3120,7 @@ Test7 = (function() {
 				
 			this.section.setItem({
 				id:			'context',
-				passed:		passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO,
+				passed:		passed ? (context == 'webgl' || context == 'experimental-webgl' ? YES : YES | PREFIX) : NO,
 				value: 		20
 			});
 		}
