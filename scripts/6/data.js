@@ -1482,7 +1482,7 @@ var tests = [
 										status:	'proposal', 
 										value:	2,
 										urls:	[
-													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-drawsystemfocusring' ]
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#drawing-focus-rings-and-scrolling-paths-into-view' ]
 												]
 									}, 
 									
