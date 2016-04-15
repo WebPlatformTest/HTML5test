@@ -1177,7 +1177,7 @@ Test7 = (function() {
 			
 			this.section.setItem({
 				id:			'getUserMedia',
-				passed:		!!navigator.getUserMedia ? YES : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO, 
+				passed:		!!navigator.mediaDevices.getUserMedia ? YES : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO, 
 				value: 		15
 			});
 
