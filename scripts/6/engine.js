@@ -664,7 +664,7 @@ Test = (function() {
 			var passed = false;
 			if (this.canvas.getContext) {
 				try {
-					passed = typeof this.canvas.getContext('2d').drawSystemFocusRing != 'undefined';
+					passed = typeof this.canvas.getContext('2d').drawFocusIfNeeded != 'undefined';
 				}
 				catch(e) {
 				}
