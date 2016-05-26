@@ -292,19 +292,19 @@ body > div#index div#indexmenu {
 	position: fixed;
 	top: 0px;
 	left: -240px;
-	width: 220px;
+	width: 240px;
 	height: 100%;
-    margin: -10px 0px 0px 0px;
-	padding: 20px 10px 10px;
+	padding: 10px;
 	background-color: rgb(0, 146, 191);
 	color: #FFFFFF;
 	z-index: 1;
-	
 	-webkit-overflow-scrolling: touch;
 	overflow-y: auto;
-
 	-webkit-transition: -webkit-transform .4s;
 	transition: transform .4s;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 body.indexVisible > div#index div#indexmenu {
 	-webkit-transform: translateX(240px);
