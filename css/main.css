@@ -302,9 +302,8 @@ body > div#index div#indexmenu {
 	overflow-y: auto;
 	-webkit-transition: -webkit-transform .4s;
 	transition: transform .4s;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 }
 body.indexVisible > div#index div#indexmenu {
 	-webkit-transform: translateX(240px);
