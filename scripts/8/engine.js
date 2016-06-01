@@ -3006,8 +3006,8 @@ Test8 = (function() {
 			var passed = NO;
 			try {
 				var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
-				var available = window.crypto ? YES : window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
-				passed = !!crypto && 'subtle' in crypto ? available : NO;
+				var available = window.crypto ? YES : window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
+				passed = !!crypto && 'subtle' in crypto ? available : !!crypto && 'webkitSubtle' in crypto ? YES | PREFIX : NO;
 			} catch(e) {
 			}
 
