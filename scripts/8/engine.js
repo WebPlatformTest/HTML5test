@@ -2993,17 +2993,6 @@ Test8 = (function() {
 				passed:		!!window.navigator.registerContentHandler, 
 				value: 		2
 			});
-			
-			var passed = false;
-			try {
-				passed = !!(window.external && typeof window.external.AddSearchProvider != 'undefined' && typeof window.external.IsSearchProviderInstalled != 'undefined');
-			} catch(e) {
-			}
-			this.section.setItem({
-				id:			'addSearchProvider',
-				passed:		passed,
-				value: 		1
-			});
 		}
 	};
 

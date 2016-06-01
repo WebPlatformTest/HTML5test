@@ -2225,13 +2225,6 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
 														[ 'mdn', '/Web/API/Navigator/registerContentHandler' ]
 													]
-									}, {
-										id:			'addSearchProvider',
-										name: 		'Custom search providers',
-										value:		1, 
-										urls:		[
-														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/#dom-external-addsearchprovider' ]
-													]
 									}
 								]
 					}, {
