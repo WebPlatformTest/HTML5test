@@ -35,7 +35,7 @@ code {
 }
 		
 		</style>
-		<script src='/scripts/7/engine.js' type='text/javascript'></script>
+		<script src='/scripts/8/engine.js' type='text/javascript'></script>
 
 		<script>
 			(function(){var p=[],w=window,d=document,e=f=0;p.push('ua='+encodeURIComponent(navigator.userAgent));e|=w.ActiveXObject?1:0;e|=w.opera?2:0;e|=w.chrome?4:0;
@@ -78,7 +78,7 @@ code {
 			});
 			
 			function start() {
-				new Test7(function(r) {
+				new Test8(function(r) {
 					
 					document.getElementById('qr').innerHTML +=
 						"<p>You can see the results here:</p>" +
@@ -91,7 +91,7 @@ code {
 			
 	
 					var payload = '{' +
-								  '"version": "7",' +
+								  '"version": "8",' +
 								  '"revision": "' + (r.revision || '0') + '",' +
 								  '"uniqueid": "' + r.uniqueid + '",' +
 								  '"score": ' + r.score + ',' +
