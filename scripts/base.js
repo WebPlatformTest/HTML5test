@@ -102,6 +102,16 @@
 
 
 
+	var NO = 0, 
+		YES = 1, 
+		OLD = 2, 
+		BUGGY = 4, 
+		PREFIX = 8, 
+		BLOCKED = 16,
+		DISABLED = 32,	
+		UNCONFIRMED = 64;	
+
+
 	var Calculate = function() { this.initialize.apply(this, arguments) };
 	Calculate.prototype = {
 		initialize: function(test, data) {
@@ -498,15 +508,6 @@
 	}
 
 
-
-	var NO = 0, 
-		YES = 1, 
-		OLD = 2, 
-		BUGGY = 4, 
-		PREFIX = 8, 
-		BLOCKED = 16,
-		DISABLED = 32,	
-		UNCONFIRMED = 64;	
 
 	var ResultsTable = function() { this.initialize.apply(this, arguments) };
 	ResultsTable.prototype = {
