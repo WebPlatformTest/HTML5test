@@ -102,6 +102,63 @@
 
 
 
+	var Calculate = function() { this.initialize.apply(this, arguments) };
+	Calculate.prototype = {
+		initialize: function(test, data) {
+			this.parameters = {
+				test: 		test,
+				data:		data
+			};
+			
+			this.maximum = 0;
+			this.score = 0;
+			this.points = [];
+			
+			for (var i = 0; i < this.parameters.data.length; i++) {
+				this.iterate(this.parameters.data[i].items, '');
+			}
+			
+			this.points = this.points.join(',');
+		},
+		
+		iterate: function(data, prefix) {
+			for (var i = 0; i < data.length; i++) {
+				if (typeof data[i].id != 'undefined') {
+					if (prefix == '') {
+						var score = this.score;
+						var maximum = this.maximum;
+					}
+					
+					if (typeof data[i].value != 'undefined') {
+						this.calculate(prefix + (prefix == '' ? '' : '.') + data[i].id, data[i]);
+					}
+
+					if (typeof data[i].items != 'undefined') {
+						this.iterate(data[i].items, prefix + (prefix == '' ? '' : '.') + data[i].id);
+					}
+
+					if (prefix == '') {
+						this.points.push(data[i].id + '=' + (this.score - score) + '/' + (this.maximum - maximum));
+					}
+				}
+			}
+		},
+		
+		calculate: function(key, data) {
+			this.maximum += data.value;
+
+			if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.parameters.test.results)) {
+				var result = parseInt(match[1], 10);
+				
+				if (result & YES) {
+					this.score += data.value;	
+				}
+			}
+		}
+	};
+
+
+
 	/* Base UI functions */
 
 	var Index = function() { this.initialize.apply(this, arguments) };
