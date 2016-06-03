@@ -63,38 +63,6 @@
 
 	/* Utility functions */
 
-	(function() {
-		window.t = function(s) { return (translation[s] ? translation[s] : s); };
-
-		if(document.addEventListener) {
-		    document.addEventListener("DOMContentLoaded", function()
-		    {
-		        document.removeEventListener( "DOMContentLoaded", arguments.callee, false);
-		        translate();
-		    }, false);
-		}
-		else if(document.attachEvent) {
-		    document.attachEvent("onreadystatechange", function()
-		    {
-		        if(document.readyState === "complete") {
-		            document.detachEvent("onreadystatechange", arguments.callee);
-		            translate();
-		        }
-		    });
-		}
-
-		function translate() {
-			if (document.querySelectorAll) {
-				var elements = document.querySelectorAll('[data-i18n]');
-				for (var i = 0; i < elements.length; i++) {
-					var id = elements[i].getAttribute('data-i18n');
-					if (id == '') id = elements[i].innerHTML;
-					if (id && translation[id]) elements[i].innerHTML = translation[id];
-				}
-			}
-		}
-	})();
-
 	var tim = (function(){
 	    var starts  = "\\{\\{",
 	        ends    = "\\}\\}",
@@ -208,10 +176,10 @@
 			this.useragent = document.createElement('p');
 			this.useragent.className = 'useragent';
 			parent.appendChild(this.useragent);
-			this.useragent.innerHTML = t('You are using') + ' ' + Browsers;
+			this.useragent.innerHTML = 'You are using ' + Browsers;
 
 			this.confirm = document.createElement('span');
-			this.confirm.innerHTML = t('Correct?');
+			this.confirm.innerHTML = 'Correct?';
 			this.useragent.appendChild(this.confirm);
 
 			var correct = document.createElement('a');
@@ -228,7 +196,7 @@
 
 			this.thanks = document.createElement('span');
 			this.thanks.style.display = 'none';
-			this.thanks.innerHTML = t('Thanks!');
+			this.thanks.innerHTML = 'Thanks!';
 			this.useragent.appendChild(this.thanks);
 		},
 
@@ -596,11 +564,11 @@
 						var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
 
 						if (results[0] == results[1])
-							cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>';
+							cell.innerHTML = '<div>Yes <span class="check">✔</span></div>';
 						else if (results[1] == 0)
-							cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
+							cell.innerHTML = '<div>No <span class="ballot">✘</span></div>';
 						else
-							cell.innerHTML = '<div><span class="partially">' + t('Partial') + '</span> <span class="partial">○</span></div>';
+							cell.innerHTML = '<div><span class="partially">Partial</span> <span class="partial">○</span></div>';
 					}
 
 					else {
@@ -611,21 +579,21 @@
 
 							if (result & YES) {
 								switch(true) {
-									case !! (result & BUGGY):		cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy"></span></div>'; break;								
-									case !! (result & OLD):			cell.innerHTML = '<div>' + t('Partial') + ' <span class="partial">○</span></div>'; count[1]++; break;								
-									case !! (result & PREFIX):		cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; count[1]++; break;
-									default:						cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
+									case !! (result & BUGGY):		cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;								
+									case !! (result & OLD):			cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; count[1]++; break;								
+									case !! (result & PREFIX):		cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; count[1]++; break;
+									default:						cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; count[1]++; break;
 								}
 							}
 							else {
 								switch(true) {
-									case !! (result & BLOCKED):		cell.innerHTML = '<div>' + t('Not functional') + ' <span class="buggy">!</span></div>'; break;
-									case !! (result & DISABLED):	cell.innerHTML = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
-									default:						cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+									case !! (result & BLOCKED):		cell.innerHTML = '<div>Not functional <span class="buggy">!</span></div>'; break;
+									case !! (result & DISABLED):	cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
+									default:						cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
 								}
 							}
 						} else {
-							cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';
+							cell.innerHTML = '<div><span class="partially">Unknown</span> <span class="partial">?</span></div>';
 						}
 					}
 
@@ -661,7 +629,7 @@
 				container.appendChild(div);
 
 				var h2 = document.createElement('h2');
-				h2.innerHTML = t(tests[i].name);
+				h2.innerHTML = tests[i].name;
 				div.appendChild(h2);
 
 				this.createSections(div, tests[i].items);
@@ -683,7 +651,7 @@
 				thead.appendChild(tr);
 
 				var th = document.createElement('th');
-				th.innerHTML = t(tests[i].name) + "<div></div>";
+				th.innerHTML = tests[i].name + "<div></div>";
 				th.colSpan = this.options.columns + 1;
 				tr.appendChild(th);
 
@@ -716,11 +684,11 @@
 						th.className = 'details';
 						tr.appendChild(th);
 
-						th.innerHTML = t(tests[i]);
+						th.innerHTML = tests[i];
 					}
 				} else {
 					var th = document.createElement('th');
-					th.innerHTML = "<div><span>" + t(tests[i].name) + "</span></div>";
+					th.innerHTML = "<div><span>" + tests[i].name + "</span></div>";
 					tr.appendChild(th);
 
 					for (var c = 0; c < this.options.columns; c++) {
@@ -843,21 +811,21 @@
 			content += "<div class='info'>";
 			content += "<div class='column left status " + data.status + "'><span>" + data.status + "</span></div>";
 			content += "<div class='column middle" + (data.value ? '' : ' none') + "'><em>" + ( data.value || '✘' ) + "</em> <span>" + (data.value != 1 ? 'Points' : 'Point') + "</span></div>";
-			content += "<div class='column right'><a href='/compare/feature/" + data.id +".html' class='compare'><span>" + t('Compare') + "</span></a></div>";
+			content += "<div class='column right'><a href='/compare/feature/" + data.id +".html' class='compare'><span>Compare</span></a></div>";
 			content += "</div>";
 			content += "<div class='links'>";
 
 			for (var i = 0; i < data.urls.length; i++) {
-				if (data.urls[i][0] == 'w3c') content += "<a href='" + data.urls[i][1] + "' class='w3c'>" + t('Go to the specification at W3C.org') + "</a>";
-				if (data.urls[i][0] == 'whatwg') content += "<a href='" + data.urls[i][1] + "' class='whatwg'>" + t('Go to the specification at Whatwg.org') + "</a>";
-				if (data.urls[i][0] == 'khronos') content += "<a href='" + data.urls[i][1] +"' class='khronos'>" + t('Go to the specification at Khronos.org') + "</a>";
-				if (data.urls[i][0] == 'ietf') content += "<a href='" + data.urls[i][1] +"' class='ietf'>" + t('Go to the specification at IETF.org') + "</a>";
-				if (data.urls[i][0] == 'webm') content += "<a href='" + data.urls[i][1] +"' class='webm'>" + t('Go to the specification at WebMproject.org') + "</a>";
-				if (data.urls[i][0] == 'xiph') content += "<a href='" + data.urls[i][1] +"' class='xiph'>" + t('Go to the specification at Xiph.org') + "</a>";
-				if (data.urls[i][0] == 'ecma') content += "<a href='" + data.urls[i][1] +"' class='ecma'>" + t('Go to the specification at ECMA') + "</a>";
-				if (data.urls[i][0] == 'ricg') content += "<a href='" + data.urls[i][1] +"' class='ricg'>" + t('Go to Responsive Images Community Group') + "</a>";
-				if (data.urls[i][0] == 'wp') content += "<a href='https://docs.webplatform.org/wiki" + data.urls[i][1] +"' class='wp'>" + t('Documentation at WebPlatform.org') + "</a>";
-				if (data.urls[i][0] == 'mdn') content += "<a href='https://developer.mozilla.org/en-US/docs" + data.urls[i][1] +"' class='mdn'>" + t('Documentation at Mozilla Developer Network') + "</a>";
+				if (data.urls[i][0] == 'w3c') content += "<a href='" + data.urls[i][1] + "' class='w3c'>Go to the specification at W3C.org</a>";
+				if (data.urls[i][0] == 'whatwg') content += "<a href='" + data.urls[i][1] + "' class='whatwg'>Go to the specification at Whatwg.org</a>";
+				if (data.urls[i][0] == 'khronos') content += "<a href='" + data.urls[i][1] +"' class='khronos'>Go to the specification at Khronos.org</a>";
+				if (data.urls[i][0] == 'ietf') content += "<a href='" + data.urls[i][1] +"' class='ietf'>Go to the specification at IETF.org</a>";
+				if (data.urls[i][0] == 'webm') content += "<a href='" + data.urls[i][1] +"' class='webm'>Go to the specification at WebMproject.org</a>";
+				if (data.urls[i][0] == 'xiph') content += "<a href='" + data.urls[i][1] +"' class='xiph'>Go to the specification at Xiph.org</a>";
+				if (data.urls[i][0] == 'ecma') content += "<a href='" + data.urls[i][1] +"' class='ecma'>Go to the specification at ECMA</a>";
+				if (data.urls[i][0] == 'ricg') content += "<a href='" + data.urls[i][1] +"' class='ricg'>Go to Responsive Images Community Group</a>";
+				if (data.urls[i][0] == 'wp') content += "<a href='https://docs.webplatform.org/wiki" + data.urls[i][1] +"' class='wp'>Documentation at WebPlatform.org</a>";
+				if (data.urls[i][0] == 'mdn') content += "<a href='https://developer.mozilla.org/en-US/docs" + data.urls[i][1] +"' class='mdn'>Documentation at Mozilla Developer Network</a>";
 			}
 
 			content += "</div>";
