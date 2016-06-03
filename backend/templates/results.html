@@ -293,7 +293,7 @@
 											enabled: false
 										},
 										title: {
-											text: t('HTML5test.com score over the years')
+											text: 'HTML5test.com score over the years'
 										},
 										legend: {
 											borderWidth: 0,
@@ -309,14 +309,14 @@
 										},
 										yAxis: {
 											title: {
-												text: t('Score (points)')
+												text: 'Score (points)'
 											},
 											min: 0
 										},
 										tooltip: {
 											formatter: function() {
 													return '<b>'+ this.key +'</b><br/>'+
-													(this.point.status != 'development' ? Highcharts.dateFormat('%b %Y', this.x) : t('Unreleased'))  +'<br>' + 
+													(this.point.status != 'development' ? Highcharts.dateFormat('%b %Y', this.x) : 'Unreleased')  +'<br>' + 
 													this.y +' points';
 											}
 										},

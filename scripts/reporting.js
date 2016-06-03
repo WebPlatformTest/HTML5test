@@ -446,7 +446,7 @@
 			retrieveItems(this.tests, 0);
 			
 			this.results.innerHTML = '';
-			this.createSections(this.results, [{ name: filter == ':diff' ? t('Difference') : filter, items: result }]);
+			this.createSections(this.results, [{ name: filter == ':diff' ? 'Difference' : filter, items: result }]);
 			
 			this.update();
 		},
@@ -689,11 +689,11 @@
 							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
 						
 							if (results[0] == results[1])
-								cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>';
+								cell.innerHTML = '<div>' + 'Yes' + ' <span class="check">✔</span></div>';
 							else if (results[1] == 0)
-								cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>';
+								cell.innerHTML = '<div>' + 'No' + ' <span class="ballot">✘</span></div>';
 							else
-								cell.innerHTML = '<div><span class="partially">' + t('Partial') + '</span> <span class="partial">○</span></div>';
+								cell.innerHTML = '<div><span class="partially">' + 'Partial' + '</span> <span class="partial">○</span></div>';
 						} 
 						
 						else {
@@ -704,21 +704,21 @@
 								
 								if (result & YES) {
 									switch(true) {
-										case !! (result & BUGGY):		cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy"></span></div>'; break;								
-										case !! (result & OLD):			cell.innerHTML = '<div>' + t('Partial') + ' <span class="partial">○</span></div>'; count[1]++; break;								
-										case !! (result & PREFIX):		cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; count[1]++; break;
-										default:						cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; count[1]++; break;
+										case !! (result & BUGGY):		cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;								
+										case !! (result & OLD):			cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; count[1]++; break;								
+										case !! (result & PREFIX):		cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; count[1]++; break;
+										default:						cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; count[1]++; break;
 									}
 								}
 								else {
 									switch(true) {
-										case !! (result & BLOCKED):		cell.innerHTML = '<div>' + t('Broken') + ' <span class="buggy">!</span></div>'; break;
-										case !! (result & DISABLED):	cell.innerHTML = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
-										default:						cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+										case !! (result & BLOCKED):		cell.innerHTML = '<div>Broken <span class="buggy">!</span></div>'; break;
+										case !! (result & DISABLED):	cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
+										default:						cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
 									}
 								}
 							} else {
-								cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';
+								cell.innerHTML = '<div><span class="partially">Unknown</span> <span class="partial">?</span></div>';
 							}
 						}
 						
@@ -890,12 +890,12 @@
 					if (!filter) {
 						var item = document.createElement('li');
 						item.setAttribute('data-action', 'calculate');
-						item.innerHTML = t('My browser');
+						item.innerHTML = 'My browser';
 						list.appendChild(item);
 
 						var item = document.createElement('li');
 						item.setAttribute('data-action', 'custom');
-						item.innerHTML = t('Enter unique id...');
+						item.innerHTML = 'Enter unique id...';
 						list.appendChild(item);
 					}
 					
@@ -910,11 +910,11 @@
 									list.appendChild(item);
 									
 									switch(browsers[i].type) {
-										case 'desktop':		item.innerHTML = t('Desktop browsers'); break;
-										case 'gaming':		item.innerHTML = t('Gaming'); break;
-										case 'mobile':		item.innerHTML = t('Mobiles'); break;
-										case 'tablet':		item.innerHTML = t('Tablets'); break;
-										case 'television':	item.innerHTML = t('Television'); break;
+										case 'desktop':		item.innerHTML = 'Desktop browsers'; break;
+										case 'gaming':		item.innerHTML = 'Gaming'; break;
+										case 'mobile':		item.innerHTML = 'Mobiles'; break;
+										case 'tablet':		item.innerHTML = 'Tablets'; break;
+										case 'television':	item.innerHTML = 'Television'; break;
 									}
 								}
 	
@@ -934,13 +934,13 @@
 							var item = document.createElement('li');
 							item.className = 'more';
 							item.setAttribute('data-action', 'more');
-							item.innerHTML = t('Show more');
+							item.innerHTML = 'Show more';
 							list.appendChild(item);
 						} else {
 							var item = document.createElement('li');
 							item.className = 'less';
 							item.setAttribute('data-action', 'less');
-							item.innerHTML = t('Show less');
+							item.innerHTML = 'Show less';
 							list.appendChild(item);
 						}
 					}
@@ -1265,22 +1265,22 @@
 							
 					if (result & YES) {
 						switch(true) {
-							case !! (result & BUGGY):		cell.innerHTML = '<div>' + t('Buggy') + ' <span class="buggy"></span></div>'; break;								
-							case !! (result & OLD):			cell.innerHTML = '<div>' + t('Partial') + ' <span class="partial">○</span></div>'; break;								
-							case !! (result & PREFIX):		cell.innerHTML = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; break;
-							default:						cell.innerHTML = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; break;
+							case !! (result & BUGGY):		cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;								
+							case !! (result & OLD):			cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; break;								
+							case !! (result & PREFIX):		cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; break;
+							default:						cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; break;
 						}
 					}
 					else {
 						switch(true) {
-							case !! (result & BLOCKED):		cell.innerHTML = '<div>' + t('Not functional') + ' <span class="buggy">!</span></div>'; break;
-							case !! (result & DISABLED):	cell.innerHTML = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
-							default:						cell.innerHTML = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+							case !! (result & BLOCKED):		cell.innerHTML = '<div>Not functional <span class="buggy">!</span></div>'; break;
+							case !! (result & DISABLED):	cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
+							default:						cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
 						}
 					}
 				}
 				else
-					cell.innerHTML = '<div><span class="partially">' + t('Unknown') + '</span> <span class="partial">?</span></div>';
+					cell.innerHTML = '<div><span class="partially">Unknown</span> <span class="partial">?</span></div>';
 			}
 		},
 
@@ -1424,11 +1424,11 @@
 					tr.appendChild(th);
 					
 					switch(this.browsers[i].type) {
-						case 'desktop':		th.innerHTML = '<h3>' + t('Desktop browsers') + '</h3>'; break;
-						case 'gaming':		th.innerHTML = '<h3>' + t('Gaming') + '</h3>'; break;
-						case 'mobile':		th.innerHTML = '<h3>' + t('Mobiles') + '</h3>'; break;
-						case 'tablet':		th.innerHTML = '<h3>' + t('Tablets') + '</h3>'; break;
-						case 'television':	th.innerHTML = '<h3>' + t('Television') + '</h3>'; break;
+						case 'desktop':		th.innerHTML = '<h3>Desktop browsers</h3>'; break;
+						case 'gaming':		th.innerHTML = '<h3>Gaming</h3>'; break;
+						case 'mobile':		th.innerHTML = '<h3>Mobiles</h3>'; break;
+						case 'tablet':		th.innerHTML = '<h3>Tablets</h3>'; break;
+						case 'television':	th.innerHTML = '<h3>Television</h3>'; break;
 					}
 				}
 	
@@ -1596,17 +1596,17 @@
 
 			if (status & YES) {
 				switch(true) {
-					case !! (status & BUGGY):		html = '<div>' + t('Buggy') + ' <span class="buggy"></span></div>'; break;
-					case !! (status & OLD):			html = '<div>' + t('Partial') + ' <span class="partial">○</span></div>'; break;
-					case !! (status & PREFIX):		html = '<div>' + t('Prefixed') + ' <span class="check">✔</span></div>'; break;
-					default:						html = '<div>' + t('Yes') + ' <span class="check">✔</span></div>'; break;
+					case !! (status & BUGGY):		html = '<div>Buggy <span class="buggy"></span></div>'; break;
+					case !! (status & OLD):			html = '<div>Partial <span class="partial">○</span></div>'; break;
+					case !! (status & PREFIX):		html = '<div>Prefixed <span class="check">✔</span></div>'; break;
+					default:						html = '<div>Yes <span class="check">✔</span></div>'; break;
 				}
 			}
 			else {
 				switch(true) {
-					case !! (status & BLOCKED):		html = '<div>' + t('Not functional') + ' <span class="buggy">!</span></div>'; break;
-					case !! (status & DISABLED):	html = '<div>' + t('Disabled') + ' <span class="ballot">✘</span></div>'; break;
-					default:						html = '<div>' + t('No') + ' <span class="ballot">✘</span></div>'; break;
+					case !! (status & BLOCKED):		html = '<div>Not functional <span class="buggy">!</span></div>'; break;
+					case !! (status & DISABLED):	html = '<div>Disabled <span class="ballot">✘</span></div>'; break;
+					default:						html = '<div>No <span class="ballot">✘</span></div>'; break;
 				}
 			}
 			
@@ -1628,9 +1628,9 @@
 
 			var content = "";
 			content += "<div class='info'>";
-			content += "<div class='column left score'><h2>" + data.score + "</h2><span>" + t('Points') + "</span></div>";
-			content += "<div class='column middle'><a href='/results/" + type + "/timeline/" + data.id +".html' class='timeline'><span>" + t('Timeline') + "</span></a></div>";
-			content += "<div class='column right'><a href='/compare/browser/" + browser +".html' class='compare'><span>" + t('Compare') + "</span></a></div>";
+			content += "<div class='column left score'><h2>" + data.score + "</h2><span>Points</span></div>";
+			content += "<div class='column middle'><a href='/results/" + type + "/timeline/" + data.id +".html' class='timeline'><span>Timeline</span></a></div>";
+			content += "<div class='column right'><a href='/compare/browser/" + browser +".html' class='compare'><span>Compare</span></a></div>";
 			content += "</div>";
 			
 			if (typeof data.urls != 'undefined') {

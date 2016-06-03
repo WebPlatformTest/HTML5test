@@ -97,7 +97,7 @@
 				var container = document.getElementById('score');
 				container.innerHTML = tim(
 					"<div class='pointsPanel'>" + 
-					"<h2><span>" + t('This browser scored') + "</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" + 
+					"<h2><span>This browser scored</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" + 
 					"</div>",
 				r);
 					
@@ -106,12 +106,12 @@
 				container.appendChild(useragent);
 	
 				useragent.innerHTML = tim(
-					"<p>" + t('This score was recorded using') + " {{humanReadable}}</p>" +
+					"<p>This score was recorded using" {{humanReadable}}</p>" +
 					"<div class='expandWidget'>▼</div>" + 
 					"<div class='expandedPanel'>" + 
 					"<table><tbody>" + 
-					"<tr><th>" + t('Useragent') + ":</th><td>{{useragent}}</td></tr>" +
-					(r.deviceHeight > 0 && r.deviceWidth > 0 ? "<tr><th>" + t('Screen size') + ":</th><td>{{deviceWidth}} x {{deviceHeight}} px</td></tr>" : "") +
+					"<tr><th>Useragent:</th><td>{{useragent}}</td></tr>" +
+					(r.deviceHeight > 0 && r.deviceWidth > 0 ? "<tr><th>Screen size:</th><td>{{deviceWidth}} x {{deviceHeight}} px</td></tr>" : "") +
 					"</tbody></table>" +
 					"</div>",
 				r);
