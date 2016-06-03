@@ -174,8 +174,14 @@
 			if (result & YES) {
 				var valid = true;	
 				
-				if (result & YES) {
-					this.score += data.value;	
+				if (typeof data.value.conditional == 'string') {
+					if (data.value.conditional.substr(0, 1) == '!') {
+						var conditional = this.getResult(data.value.conditional.substr(1));
+						
+						if (conditional & YES) {
+							valid = false;
+						}
+					}
 				}
 				
 				if (valid) {
