@@ -2456,8 +2456,7 @@ Test8 = (function() {
 			for (var i = 0; i < selectors.length; i++) {
 				group.setItem({
 					id:			selectors[i],
-					passed:		res[i],
-					custom:		unknown ? 'unknown' : false
+					passed:		res[i]
 				});
 			}
 
@@ -2756,8 +2755,7 @@ Test8 = (function() {
 			for (var i = 0; i < selectors.length; i++) {
 				group.setItem({
 					id:			selectors[i],
-					passed:		res[i],
-					custom:		unknown ? 'unknown' : false
+					passed:		res[i]
 				});
 			}
 			
