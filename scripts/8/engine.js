@@ -1726,14 +1726,12 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		element.field.type == 'url',
-				required:	true
+				passed:		element.field.type == 'url'
 			});
 			
 			group.setItem({
 				id:			'validation',
-				passed:		validation,
-				required:	true
+				passed:		validation
 			});
 			
 			this.removeInput(element);
@@ -1760,14 +1758,12 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		element.field.type == 'email',
-				required:	true
+				passed:		element.field.type == 'email'
 			});
 			
 			group.setItem({
 				id:			'validation',
-				passed:		validation,
-				required:	true
+				passed:		validation
 			});
 			
 			this.removeInput(element);
@@ -1790,8 +1786,7 @@ Test8 = (function() {
 
 				group.setItem({
 					id:			'element',
-					passed:		minimal,
-					required:	true
+					passed:		minimal
 				});
 				
 				group.setItem({
@@ -1801,52 +1796,44 @@ Test8 = (function() {
 
 				group.setItem({
 					id:			'sanitization',
-					passed:		minimal && sanitization,
-					required:	true
+					passed:		minimal && sanitization
 				});
 				
 				group.setItem({
 					id:			'min',
-					passed:		minimal && 'min' in element.field,
-					required:	true
+					passed:		minimal && 'min' in element.field
 				});
 				
 				group.setItem({
 					id:			'max',
-					passed:		minimal && 'max' in element.field,
-					required:	true
+					passed:		minimal && 'max' in element.field
 				});
 				
 				group.setItem({
 					id:			'step',
-					passed:		minimal && 'step' in element.field,
-					required:	true
+					passed:		minimal && 'step' in element.field
 				});
 
 				group.setItem({
 					id:			'stepDown',
-					passed:		minimal && 'stepDown' in element.field,
-					required:	true
+					passed:		minimal && 'stepDown' in element.field
 				});
 
 				group.setItem({
 					id:			'stepUp',
-					passed:		minimal && 'stepUp' in element.field,
-					required:	true
+					passed:		minimal && 'stepUp' in element.field
 				});
 				
 				if (t != 'datetime-local' && t != 'datetime') {
 					group.setItem({
 						id:			'valueAsDate',
-						passed:		minimal && 'valueAsDate' in element.field,
-						required:	true
+						passed:		minimal && 'valueAsDate' in element.field
 					});
 				}
 				
 				group.setItem({
 					id:			'valueAsNumber',
-					passed:		minimal && 'valueAsNumber' in element.field,
-					required:	true
+					passed:		minimal && 'valueAsNumber' in element.field
 				});
 
 				this.removeInput(element);
@@ -1884,8 +1871,7 @@ Test8 = (function() {
 				
 				group.setItem({
 					id:			'element',
-					passed:		minimal,
-					required:	true
+					passed:		minimal
 				});
 				
 				group.setItem({
@@ -1895,52 +1881,44 @@ Test8 = (function() {
 
 				group.setItem({
 					id:			'sanitization',
-					passed:		minimal && sanitization,
-					required:	true
+					passed:		minimal && sanitization
 				});
 				
 				if (types[t] != 'range') {
 					group.setItem({
 						id:			'validation',
-						passed:		minimal && validation,
-						required:	true
+						passed:		minimal && validation
 					});
 				}
 
 				group.setItem({
 					id:			'min',
-					passed:		minimal && 'min' in element.field,
-					required:	true
+					passed:		minimal && 'min' in element.field
 				});
 				
 				group.setItem({
 					id:			'max',
-					passed:		minimal && 'max' in element.field,
-					required:	true
+					passed:		minimal && 'max' in element.field
 				});
 				
 				group.setItem({
 					id:			'step',
-					passed:		minimal && 'step' in element.field,
-					required:	true
+					passed:		minimal && 'step' in element.field
 				});
 
 				group.setItem({
 					id:			'stepDown',
-					passed:		minimal && 'stepDown' in element.field,
-					required:	true
+					passed:		minimal && 'stepDown' in element.field
 				});
 
 				group.setItem({
 					id:			'stepUp',
-					passed:		minimal && 'stepUp' in element.field,
-					required:	true
+					passed:		minimal && 'stepUp' in element.field
 				});
 				
 				group.setItem({
 					id:			'valueAsNumber',
-					passed:		minimal && 'valueAsNumber' in element.field,
-					required:	true
+					passed:		minimal && 'valueAsNumber' in element.field
 				});
 
 				this.removeInput(element);
@@ -2162,16 +2140,14 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed,
-				required:	true
+				passed:		passed
 			});
 
 			var element = document.createElement('input');
 
 			group.setItem({
 				id:			'list',
-				passed:		!!("list" in element),
-				required:	true				
+				passed:		!!("list" in element)
 			});
 
 
@@ -2192,20 +2168,17 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed, 
-				required:	true
+				passed:		passed
 			});
 
 			group.setItem({
 				id:			'challenge',
-				passed:		element.firstChild && 'challenge' in element.firstChild,
-				required:	true
+				passed:		element.firstChild && 'challenge' in element.firstChild
 			});
 				
 			group.setItem({
 				id:			'keytype',
-				passed:		element.firstChild && 'keytype' in element.firstChild,
-				required:	true
+				passed:		element.firstChild && 'keytype' in element.firstChild
 			});
 				
 			
@@ -2369,8 +2342,7 @@ Test8 = (function() {
 				var prop = props[p].toLowerCase();
 				group.setItem({
 					id:			prop,
-					passed:		!!(props[p] in element),
-					required:	props[p] != 'dirName'
+					passed:		!!(props[p] in element)
 				});
 			}
 
