@@ -21,8 +21,6 @@ Test8 = (function() {
 		initialize: function(parent) {
 			this.parent = parent;
 			this.items = [];
-			this.points = 0;
-			this.max = 0;
 		
 			this.backgroundTasks = 0;
 
@@ -420,8 +418,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'doctype',
-				passed:	document.compatMode == 'CSS1Compat', 
-				value: 	0
+				passed:	document.compatMode == 'CSS1Compat'
 			});
 
 			var result = true;
@@ -490,8 +487,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'tokenizer',
-				passed:	result, 
-				value: 	3
+				passed:	result
 			});
 
 			var result = true;
@@ -554,8 +550,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'tree',
-				passed:	result, 
-				value: 	2
+				passed:	result
 			});
 
 			var e = document.createElement('div');
@@ -588,20 +583,17 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'picture',
-				passed:	'HTMLPictureElement' in window, 
-				value: 	5
+				passed:	'HTMLPictureElement' in window
 			});
 
 			this.section.setItem({
 				id:		'srcset',
-				passed:	'srcset' in document.createElement('img'), 
-				value: 	5
+				passed:	'srcset' in document.createElement('img')
 			});
 
 			this.section.setItem({
 				id:		'sizes',
-				passed:	'sizes' in document.createElement('img'), 
-				value: 	5
+				passed:	'sizes' in document.createElement('img')
 			});
 		}
 	};
@@ -618,8 +610,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'context',
-				passed:	!! (this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D), 
-				value: 	10
+				passed:	!! (this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D)
 			});
 
 			var passed = false;
@@ -633,15 +624,13 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'text',
-				passed:	passed, 
-				value: 	2
+				passed:	passed
 			});
 
 
 			this.section.setItem({
 				id:		'path',
-				passed:	typeof Path2D != "undefined" ? YES : typeof Path != "undefined" ? YES | OLD : NO, 
-				value: 	2
+				passed:	typeof Path2D != "undefined" ? YES : typeof Path != "undefined" ? YES | OLD : NO
 			});
 
 
@@ -656,8 +645,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'ellipse',
-				passed:	passed, 
-				value: 	2
+				passed:	passed
 			});
 
 
@@ -672,8 +660,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'dashed',
-				passed:	passed, 
-				value: 	2
+				passed:	passed
 			});
 
 			var passed = false;
@@ -687,8 +674,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'focusring',
-				passed:	passed, 
-				value: 	1
+				passed:	passed
 			});
 
 
@@ -703,8 +689,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'hittest',
-				passed:	passed, 
-				value: 	1
+				passed:	passed
 			});
 
 
@@ -732,8 +717,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'blending',
-				passed:	passed, 
-				value: 	5
+				passed:	passed
 			});
 			
 			
@@ -750,8 +734,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'png',
-				passed:	passed, 
-				value: 	0
+				passed:	passed
 			});
 
 			var passed = false;
@@ -765,8 +748,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'jpeg',
-				passed:	passed, 
-				value: 	0
+				passed:	passed
 			});
 
 
@@ -781,8 +763,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'jpegxr',
-				passed:	passed, 
-				value: 	0
+				passed:	passed
 			});
 
 
@@ -797,8 +778,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'webp',
-				passed:	passed, 
-				value: 	0
+				passed:	passed
 			});
 		}
 	};
@@ -815,32 +795,27 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'element',
-				passed:	!!this.element.canPlayType, 
-				value: 	16
+				passed:	!!this.element.canPlayType
 			});
 
 			this.section.setItem({
 				id:		'audiotracks',
-				passed:	'audioTracks' in this.element, 
-				value: 	2
+				passed:	'audioTracks' in this.element
 			});
 			
 			this.section.setItem({
 				id:		'videotracks',
-				passed:	'videoTracks' in this.element, 
-				value: 	2
+				passed:	'videoTracks' in this.element
 			});
 			
 			this.section.setItem({
 				id:		'subtitle',
-				passed:	'track' in document.createElement('track'), 
-				value: 	8
+				passed:	'track' in document.createElement('track')
 			});
 			
 			this.section.setItem({
 				id:		'poster',
-				passed:	'poster' in this.element, 
-				value: 	1
+				passed:	'poster' in this.element
 			});
 
 
@@ -851,14 +826,12 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:		'mediasource',
-				passed:	'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO, 
-				value: 	2
+				passed:	'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:			'recorder',
-				passed:		'MediaRecorder' in window, 
-				value: 		2
+				passed:		'MediaRecorder' in window
 			});
 
 
@@ -872,8 +845,7 @@ Test8 = (function() {
 		
 			var item = {
 				id:		'h264',
-				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
-				
+				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))				
 			};
 			
 			this.section.setItem(item);
@@ -881,7 +853,6 @@ Test8 = (function() {
 			var item = {
 				id:		'h265',
 				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="hvc1.1.L0.0"') || this.canPlayType('video/mp4; codecs="hev1.1.L0.0"'))
-				
 			};
 			
 			this.section.setItem(item);
@@ -945,8 +916,7 @@ Test8 = (function() {
 			
 			var item = {
 				id:		'canplaytype',
-				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO,
-				value:	4
+				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
 			};
 		
 			this.section.setItem(item);
@@ -977,20 +947,17 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'element',
-				passed:	!!this.element.canPlayType, 
-				value: 	18
+				passed:	!!this.element.canPlayType
 			});
 			
 			this.section.setItem({
 				id:		'loop',
-				passed:	'loop' in this.element, 
-				value: 	1
+				passed:	'loop' in this.element
 			});
 
 			this.section.setItem({
 				id:		'preload',
-				passed:	'preload' in this.element, 
-				value: 	1
+				passed:	'preload' in this.element
 			});
 
 			var item = {
@@ -1071,15 +1038,13 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'webaudio',
-				passed:		'AudioContext' in window ? YES : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window ? YES | PREFIX : NO, 
-				value: 		5
+				passed:		'AudioContext' in window ? YES : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window ? YES | PREFIX : NO
 			});
 
 
 			this.section.setItem({
 				id:			'speechrecognition',
-				passed:		'SpeechRecognition' in window ? YES : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window ? YES | PREFIX : NO, 
-				value: 		3
+				passed:		'SpeechRecognition' in window ? YES : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window ? YES | PREFIX : NO
 			});
 
 
@@ -1089,8 +1054,7 @@ Test8 = (function() {
 			
 			var speechItem = this.section.setItem({
 				id:			'speechsynthesis',
-				passed:		speechSynthesis && voices ? available : NO, 
-				value: 		2
+				passed:		speechSynthesis && voices ? available : NO
 			});
 			
 			if (speechSynthesis && !voices) {
@@ -1141,15 +1105,12 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'webrtc',
-				passed:	webrtc, 
-				value: 	15
+				passed:	webrtc
 			});
 			
 			this.section.setItem({
 				id:		'objectrtc',
-				passed:	objectrtc, 
-				value: 	0,
-				award:  webrtc == NO ? 15 : 0	/* Only award 15 points when WebRTC is not supported */
+				passed:	objectrtc
 			});
 			
 			var passed = false;
@@ -1162,8 +1123,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'datachannel',
-				passed:	passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO, 
-				value: 	5
+				passed:	passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO
 			});
 		}
 	};
@@ -1177,26 +1137,22 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:			'getUserMedia',
-				passed:		!!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia ? YES : !!navigator.getUserMedia ? YES | OLD : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO, 
-				value: 		15
+				passed:		!!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia ? YES : !!navigator.getUserMedia ? YES | OLD : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:			'getGamepads',
-				passed:		!!navigator.getGamepads ? YES : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads ? YES | PREFIX : NO, 
-				value: 		2
+				passed:		!!navigator.getGamepads ? YES : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:   		'pointerLock',
-				passed:  	'pointerLockElement' in document ? YES : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document ? YES | PREFIX : NO,
-				value:   	3
+				passed:  	'pointerLockElement' in document ? YES : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:   		'pointerevents',
-				passed:		!!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO, 
-				value:   	5
+				passed:		!!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO
 			});
 		}
 	};
@@ -1214,8 +1170,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'dataset',
-				passed:	'dataset' in element, 
-				value: 	3
+				passed:	'dataset' in element
 			});
 
 			var group = this.section.getGroup({
@@ -1271,8 +1226,7 @@ Test8 = (function() {
 
 				group.setItem({
 					id:		elements[e],
-					passed:	passed, 
-					value: 	1
+					passed:	passed
 				});
 			}
 
@@ -1280,8 +1234,7 @@ Test8 = (function() {
 			var element = document.createElement('ol');
 			group.setItem({
 				id:		'ol',
-				passed:	'reversed' in element, 
-				value: 	1
+				passed:	'reversed' in element
 			});
 
 			var group = this.section.getGroup({
@@ -1291,14 +1244,12 @@ Test8 = (function() {
 			var element = document.createElement('a');
 			group.setItem({
 				id:		'download',
-				passed:	'download' in element, 
-				value: 	1
+				passed:	'download' in element
 			});
 			
 			group.setItem({
 				id:		'ping',
-				passed:	'ping' in element, 
-				value: 	1
+				passed:	'ping' in element
 			});
 
 
@@ -1319,8 +1270,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'mark',
-				passed:	passed, 
-				value: 	1
+				passed:	passed
 			});
 
 
@@ -1346,8 +1296,7 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:		'ruby',
-				passed:	rubySupport && rtSupport && rpSupport, 
-				value: 	3
+				passed:	rubySupport && rtSupport && rpSupport
 			});
 
 
@@ -1365,8 +1314,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'time',
-				passed:	passed, 
-				value: 	1
+				passed:	passed
 			});
 			
 
@@ -1384,8 +1332,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'data',
-				passed:	passed, 
-				value: 	1
+				passed:	passed
 			});
 			
 
@@ -1403,8 +1350,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'wbr',
-				passed:	passed, 
-				value: 	1
+				passed:	passed
 			});
 
 			var group = this.section.getGroup({
@@ -1430,8 +1376,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'details',
-				passed:	passed, 
-				value: 	1
+				passed:	passed
 			});
 
 
@@ -1452,8 +1397,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'summary',
-				passed:	passed, 
-				value: 	1
+				passed:	passed
 			});
 
 
@@ -1527,8 +1471,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'menutoolbar',
-				passed:	passed ? YES : legacy ? YES | OLD : NO, 
-				value: 	1
+				passed:	passed ? YES : legacy ? YES | OLD : NO
 			});
 
 
@@ -1616,8 +1559,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'menupopup',
-				passed:	passed ? YES : legacy ? YES | OLD : NO, 
-				value: 	2
+				passed:	passed ? YES : legacy ? YES | OLD : NO
 			});
 
 
@@ -1635,8 +1577,7 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'dialog',
-				passed:		passed, 
-				value: 		1
+				passed:		passed
 			});
 			
 			
@@ -1644,8 +1585,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:		'hidden',
-				passed:	'hidden' in element, 
-				value: 	1
+				passed:	'hidden' in element
 			});
 
 			var group = this.section.getGroup({
@@ -1656,14 +1596,12 @@ Test8 = (function() {
 
 			group.setItem({
 				id:		'outerHTML',
-				passed:	!!('outerHTML' in element), 
-				value: 	1
+				passed:	!!('outerHTML' in element)
 			});
 				
 			group.setItem({
 				id:		'insertAdjacentHTML',
-				passed:	!!('insertAdjacentHTML' in element), 
-				value: 	1
+				passed:	!!('insertAdjacentHTML' in element)
 			});
 		},
 		
@@ -1729,8 +1667,7 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'selection',
-				passed:		'selectionDirection' in element.field,
-				value: 		2
+				passed:		'selectionDirection' in element.field
 			});
 			
 			this.removeInput(element);
@@ -1746,8 +1683,7 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		element.field.type == 'search',
-				value: 		2
+				passed:		element.field.type == 'search'
 			});
 			
 			this.removeInput(element);
@@ -1763,8 +1699,7 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		element.field.type == 'tel',
-				value: 		2
+				passed:		element.field.type == 'tel'
 			});
 			
 			this.removeInput(element);
@@ -1792,7 +1727,6 @@ Test8 = (function() {
 			group.setItem({
 				id:			'element',
 				passed:		element.field.type == 'url',
-				value: 		2,
 				required:	true
 			});
 			
@@ -1827,7 +1761,6 @@ Test8 = (function() {
 			group.setItem({
 				id:			'element',
 				passed:		element.field.type == 'email',
-				value: 		2,
 				required:	true
 			});
 			
@@ -1858,14 +1791,12 @@ Test8 = (function() {
 				group.setItem({
 					id:			'element',
 					passed:		minimal,
-					value: 		types[t] != 'datetime' ? 2 : 0,
 					required:	true
 				});
 				
 				group.setItem({
 					id:			'ui',
 					passed:		minimal && sanitization, 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
-					value: 		types[t] != 'datetime' ? 2 : 0
 				});
 
 				group.setItem({
@@ -1954,14 +1885,12 @@ Test8 = (function() {
 				group.setItem({
 					id:			'element',
 					passed:		minimal,
-					value: 		2,
 					required:	true
 				});
 				
 				group.setItem({
 					id:			'ui',
 					passed:		minimal && sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
-					value: 		2
 				});
 
 				group.setItem({
@@ -2031,20 +1960,17 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		element.field.type == 'color',
-				value: 		2
+				passed:		element.field.type == 'color'
 			});
 			
 			group.setItem({
 				id:			'ui',
 				passed:		sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
-				value: 		2
 			});
 				
 			group.setItem({
 				id:			'sanitization',
-				passed:		sanitization,
-				required:	true
+				passed:		sanitization
 			});
 				
 			this.removeInput(element);
@@ -2061,14 +1987,12 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		element.field.type == 'checkbox',
-				value: 		0
+				passed:		element.field.type == 'checkbox'
 			});
 
 			group.setItem({
 				id:			'indeterminate',
-				passed:		'indeterminate' in element.field,
-				value: 		1
+				passed:		'indeterminate' in element.field
 			});
 
 			this.removeInput(element);
@@ -2091,20 +2015,17 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		element.field.type == 'image',
-				value: 		0
+				passed:		element.field.type == 'image'
 			});
 
 			group.setItem({
 				id:			'width',
-				passed:		supportsWidth && element.field.offsetWidth == 100,
-				value: 		0
+				passed:		supportsWidth && element.field.offsetWidth == 100
 			});
 
 			group.setItem({
 				id:			'height',
-				passed:		supportsHeight && element.field.offsetHeight == 100,
-				value: 		0
+				passed:		supportsHeight && element.field.offsetHeight == 100
 			});
 			
 			this.removeInput(element);
@@ -2120,20 +2041,17 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'element',
-				passed:		element.field.type == 'file',
-				value: 		0
+				passed:		element.field.type == 'file'
 			});
 
 			group.setItem({
 				id:			'files',
-				passed:		element.field.files && element.field.files instanceof FileList,
-				value: 		1
+				passed:		element.field.files && element.field.files instanceof FileList
 			});
 
 			group.setItem({
 				id:			'directory',
-				passed:		'directory' in element.field && window.Directory,
-				value: 		1
+				passed:		'directory' in element.field && window.Directory
 			});
 
 			this.removeInput(element);
@@ -2155,20 +2073,17 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed, 
-				value: 		0
+				passed:		passed
 			});
 
 			group.setItem({
 				id:			'maxlength',
-				passed:		'maxLength' in element,
-				value:		1
+				passed:		'maxLength' in element
 			});
 
 			group.setItem({
 				id:			'wrap',
-				passed:		'wrap' in element,
-				value:		1
+				passed:		'wrap' in element
 			});
 
 
@@ -2188,14 +2103,12 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed, 
-				value: 		0
+				passed:		passed
 			});
 
 			group.setItem({
 				id:			'required',
-				passed:		'required' in element,
-				value:		1
+				passed:		'required' in element
 			});
 
 
@@ -2215,20 +2128,17 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed, 
-				value: 		0
+				passed:		passed
 			});
 
 			group.setItem({
 				id:			'elements',
-				passed:		'elements' in element,
-				value:		1
+				passed:		'elements' in element
 			});
 
 			group.setItem({
 				id:			'disabled',
-				passed:		'disabled' in element,
-				value:		1
+				passed:		'disabled' in element
 			});
 
 
@@ -2252,8 +2162,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed, 
-				value: 		2,
+				passed:		passed,
 				required:	true
 			});
 
@@ -2284,7 +2193,6 @@ Test8 = (function() {
 			group.setItem({
 				id:			'element',
 				passed:		passed, 
-				value: 		0,
 				required:	true
 			});
 
@@ -2322,8 +2230,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed, 
-				value: 		2
+				passed:		passed
 			});
 
 
@@ -2347,8 +2254,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed, 
-				value: 		2
+				passed:		passed
 			});
 			
 			
@@ -2372,8 +2278,7 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'element',
-				passed:		passed, 
-				value: 		2
+				passed:		passed
 			});
 
 			var group = this.section.getGroup({
@@ -2387,8 +2292,7 @@ Test8 = (function() {
 			for (var p = 0; p < props.length; p++) {
 					group.setItem({
 					id:			props[p],
-					passed:		!!(props[p] in element), 
-					value: 		1
+					passed:		!!(props[p] in element)
 				});
 			}
 
@@ -2449,8 +2353,7 @@ Test8 = (function() {
 			document.body.removeChild(element);
 			
 			var group = this.section.getGroup({
-				id:		'other',
-				value:	2
+				id:		'other'
 			});
 
 			var element = document.createElement('input');
@@ -2575,8 +2478,7 @@ Test8 = (function() {
 			}
 			
 			var group = this.section.getGroup({
-				id:		'selectors',
-				value:	2
+				id:		'selectors'
 			});
 			
 			for (var i = 0; i < selectors.length; i++) {
@@ -2665,14 +2567,12 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'checkValidity',
-				passed:		'checkValidity' in element, 
-				value: 		3
+				passed:		'checkValidity' in element
 			});
 			
 			group.setItem({
 				id:			'noValidate',
-				passed:		'noValidate' in element, 
-				value: 		1
+				passed:		'noValidate' in element
 			});
 		}, 				
 			
@@ -2718,14 +2618,12 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'draggable',
-				passed:		'draggable' in element,
-				value:		1
+				passed:		'draggable' in element
 			});
 
 			group.setItem({
 				id:			'dropzone',
-				passed:		'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO,
-				value:		1
+				passed:		'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO
 			});
 
 			var group = this.section.getGroup({
@@ -2784,14 +2682,12 @@ Test8 = (function() {
 			
 			group.setItem({
 				id:			'contentEditable',
-				passed:		'contentEditable' in element, 
-				value: 		5
+				passed:		'contentEditable' in element
 			});
 
 			group.setItem({
 				id:			'isContentEditable',
-				passed:		'isContentEditable' in element, 
-				value: 		1
+				passed:		'isContentEditable' in element
 			});
 			
 			var group = this.section.getGroup({
@@ -2800,13 +2696,11 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'designMode',
-				passed:		'designMode' in document, 
-				value: 		1
+				passed:		'designMode' in document
 			});
 			
 			var group = this.section.getGroup({
-				id:		'editing.apis',
-				value:	2
+				id:		'editing.apis'
 			});
 
 			group.setItem({
@@ -2891,22 +2785,19 @@ Test8 = (function() {
 				group.setItem({
 					id:			selectors[i],
 					passed:		res[i],
-					value: 		1,
 					custom:		unknown ? 'unknown' : false
 				});
 			}
 			
 			this.section.setItem({
 				id:			'clipboard',
-				passed:		!!('ClipboardEvent' in window), 
-				value: 		5
+				passed:		!!('ClipboardEvent' in window)
 			});
 			
 
 			this.section.setItem({
 				id:			'spellcheck',
-				passed:		!!('spellcheck' in element), 
-				value: 		2
+				passed:		!!('spellcheck' in element)
 			});
 		}			
 	};
@@ -2920,8 +2811,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:			'history',
-				passed:		!!(window.history && history.pushState), 
-				value: 		10
+				passed:		!!(window.history && history.pushState)
 			});
 		}			
 	};
@@ -2957,8 +2847,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'microdata',
-				passed:		r, 
-				value: 		0
+				passed:		r
 			});
 		}
 	};					
@@ -2972,26 +2861,22 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'applicationCache',
-				passed:		!!window.applicationCache, 
-				value: 		10
+				passed:		!!window.applicationCache
 			});
 
 			this.section.setItem({
 				id:			'serviceWorkers',
-				passed:		!!window.navigator.serviceWorker, 
-				value: 		10
+				passed:		!!window.navigator.serviceWorker
 			});
 
 			this.section.setItem({
 				id:			'registerProtocolHandler',
-				passed:		!!window.navigator.registerProtocolHandler, 
-				value: 		2
+				passed:		!!window.navigator.registerProtocolHandler
 			});
 
 			this.section.setItem({
 				id:			'registerContentHandler',
-				passed:		!!window.navigator.registerContentHandler, 
-				value: 		2
+				passed:		!!window.navigator.registerContentHandler
 			});
 		}
 	};
@@ -3013,46 +2898,39 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'crypto',
-				passed: 	passed,
-				value: 		5
+				passed: 	passed
 			});
 
 			this.section.setItem({
 				id:			'csp10',
-				passed:		!(function() { try { return eval('true'); } catch (e) {} return false; })(),
-				value: 		3
+				passed:		!(function() { try { return eval('true'); } catch (e) {} return false; })()
 			});
 
 			this.section.setItem({
 				id:			'csp11',
-				passed:		'SecurityPolicyViolationEvent' in window,
-				value: 		2	
+				passed:		'SecurityPolicyViolationEvent' in window
 			});
 
 			this.section.setItem({
 				id:			'cors',
-				passed:		!!(window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest()), 
-				value: 		5
+				passed:		!!(window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest())
 			});
 
 			this.section.setItem({
 				id:			'postMessage',
-				passed:		!!window.postMessage, 
-				value: 		5
+				passed:		!!window.postMessage
 			});
 
 
 
 			this.section.setItem({
 				id:			'sandbox',
-				passed:		'sandbox' in document.createElement('iframe'), 
-				value: 		5
+				passed:		'sandbox' in document.createElement('iframe')
 			});
 
 			this.section.setItem({
 				id:			'srcdoc',
-				passed:		'srcdoc' in document.createElement('iframe'), 
-				value: 		5
+				passed:		'srcdoc' in document.createElement('iframe')
 			});
 		}
 	};
@@ -3066,20 +2944,17 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:			'geolocation',
-				passed:		!!navigator.geolocation, 
-				value: 		15
+				passed:		!!navigator.geolocation
 			});
 
 			this.section.setItem({
 				id:			'orientation',
-				passed:		!!window.DeviceOrientationEvent, 
-				value: 		3
+				passed:		!!window.DeviceOrientationEvent
 			});
 
 			this.section.setItem({
 				id:			'motion',
-				passed:		!!window.DeviceMotionEvent, 
-				value: 		2
+				passed:		!!window.DeviceMotionEvent
 			});
 		}
 	};
@@ -3108,8 +2983,7 @@ Test8 = (function() {
 				
 			this.section.setItem({
 				id:			'context',
-				passed:		passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO,
-				value: 		20
+				passed:		passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
 			});
 		}
 	};
@@ -3123,26 +2997,22 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'beacon',
-				passed:		'sendBeacon' in navigator, 
-				value: 		2
+				passed:		'sendBeacon' in navigator
 			});
 			
 			this.section.setItem({
 				id:			'eventSource',
-				passed:		'EventSource' in window, 
-				value: 		5
+				passed:		'EventSource' in window
 			});
 			
 			this.section.setItem({
 				id:			'fetch',
-				passed:		'Promise' in window && typeof window.fetch === 'function' && window.fetch('') instanceof Promise, 
-				value: 		6
+				passed:		'Promise' in window && typeof window.fetch === 'function' && window.fetch('') instanceof Promise
 			});
 			
 			this.section.setItem({
 				id:			'xmlhttprequest2.upload',
-				passed:		window.XMLHttpRequest && 'upload' in new XMLHttpRequest(), 
-				value: 		5
+				passed:		window.XMLHttpRequest && 'upload' in new XMLHttpRequest()
 			});
 
 			var group = this.section.getGroup({
@@ -3151,32 +3021,28 @@ Test8 = (function() {
 
 			var item = group.setItem({
 				id:			'text',
-				passed:		false, 
-				value: 		1
+				passed:		false
 			});
 			
 			this.testResponseTypeText(item);
 
 			var item = group.setItem({
 				id:			'document',
-				passed:		false, 
-				value: 		2
+				passed:		false
 			});
 			
 			this.testResponseTypeDocument(item);
 
 			var item = group.setItem({
 				id:			'array',
-				passed:		false, 
-				value: 		2
+				passed:		false
 			});
 			
 			this.testResponseTypeArrayBuffer(item);
 
 			var item = group.setItem({
 				id:			'blob',
-				passed:		false, 
-				value: 		2
+				passed:		false
 			});
 			
 			this.testResponseTypeBlob(item);
@@ -3188,8 +3054,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'websocket.basic',
-				passed:		passed,
-				value: 		10
+				passed:		passed
 			});
 
 
@@ -3211,8 +3076,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'websocket.binary',
-				passed:		passed, 
-				value: 		5
+				passed:		passed
 			});
 		},
 		
@@ -3370,14 +3234,12 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'streams.readable',
-				passed:		'ReadableStream' in window,
-				value: 		3
+				passed:		'ReadableStream' in window
 			});
 
 			this.section.setItem({
 				id:			'streams.writeable',
-				passed:		'WriteableStream' in window, 
-				value: 		2
+				passed:		'WriteableStream' in window
 			});
 		}
 	};
@@ -3391,44 +3253,37 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'fileReader',
-				passed:		'FileReader' in window, 
-				value: 		7
+				passed:		'FileReader' in window
 			});
 
 			this.section.setItem({
 				id:			'fileReader.blob',
-				passed:		'Blob' in window, 
-				value: 		2
+				passed:		'Blob' in window
 			});
 
 			this.section.setItem({
 				id:			'fileReader.dataURL',
-				passed:		'FileReader' in window && 'readAsDataURL' in (new FileReader()),
-				value: 		2
+				passed:		'FileReader' in window && 'readAsDataURL' in (new FileReader())
 			});
 
 			this.section.setItem({
 				id:			'fileReader.arraybuffer',
-				passed:		'FileReader' in window && 'readAsArrayBuffer' in (new FileReader()),
-				value: 		2
+				passed:		'FileReader' in window && 'readAsArrayBuffer' in (new FileReader())
 			});
 
 			this.section.setItem({
 				id:			'fileReader.objectURL',
-				passed:		'URL' in window && 'createObjectURL' in URL, 
-				value: 		2
+				passed:		'URL' in window && 'createObjectURL' in URL
 			});
 
 			this.section.setItem({
 				id:			'fileSystem',
-				passed:		!! window.requestFileSystem ? YES : !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem ? YES | PREFIX : NO, 
-				value: 		0
+				passed:		!! window.requestFileSystem ? YES : !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:			'getFileSystem',
-				passed:		!! navigator.getFileSystem ? YES : !! navigator.webkitGetFileSystem || !! navigator.mozGetFileSystem || !! window.msGetFileSystem ? YES | PREFIX : NO, 
-				value: 		0
+				passed:		!! navigator.getFileSystem ? YES : !! navigator.webkitGetFileSystem || !! navigator.mozGetFileSystem || !! window.msGetFileSystem ? YES | PREFIX : NO
 			});
 		}
 	};
@@ -3445,8 +3300,7 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:			'sessionStorage',
-				passed:		'sessionStorage' in window && window.sessionStorage != null, 
-				value: 		5
+				passed:		'sessionStorage' in window && window.sessionStorage != null
 			});
 
 			var passed = false;
@@ -3461,8 +3315,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'localStorage',
-				passed:		passed, 
-				value: 		5
+				passed:		passed
 			});
 
 
@@ -3475,20 +3328,17 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'indexedDB.basic',
-				passed:		passed,
-				value: 		21
+				passed:		passed
 			});
 
 			var blobitem = this.section.setItem({
 				id:			'indexedDB.blob',
-				passed:		false, 
-				value: 		2
+				passed:		false
 			});
 
 			var arrayitem = this.section.setItem({
 				id:			'indexedDB.arraybuffer',
-				passed:		false, 
-				value: 		2
+				passed:		false
 			});
 
 			if (indexedDB && 'deleteDatabase' in indexedDB) {
@@ -3576,9 +3426,7 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'sqlDatabase',
-				passed:		!!window.openDatabase, 
-				value: 		0,
-				award:  	! indexedDB ? 5 : 0	/* only award points if IndexedDB is not implemented */
+				passed:		!!window.openDatabase
 			});
 		}
 	};
@@ -3592,14 +3440,12 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'worker',
-				passed:		!!window.Worker, 
-				value: 		10
+				passed:		!!window.Worker
 			});
 
 			this.section.setItem({
 				id:			'sharedWorker',
-				passed:		!!window.SharedWorker, 
-				value: 		2
+				passed:		!!window.SharedWorker
 			});
 
 			var group = this.section.getGroup({
@@ -3608,68 +3454,57 @@ Test8 = (function() {
 
 			group.setItem({
 				id:			'ArrayBuffer',
-				passed:		typeof ArrayBuffer != 'undefined', 
-				value: 		1
+				passed:		typeof ArrayBuffer != 'undefined'
 			});
 
 			group.setItem({
 				id:			'Int8Array',
-				passed:		typeof Int8Array != 'undefined', 
-				value: 		1
+				passed:		typeof Int8Array != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'Uint8Array',
-				passed:		typeof Uint8Array != 'undefined', 
-				value: 		1
+				passed:		typeof Uint8Array != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'Uint8ClampedArray',
-				passed:		typeof Uint8ClampedArray != 'undefined', 
-				value: 		1
+				passed:		typeof Uint8ClampedArray != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'Int16Array',
-				passed:		typeof Int16Array != 'undefined', 
-				value: 		1
+				passed:		typeof Int16Array != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'Uint16Array',
-				passed:		typeof Uint16Array != 'undefined', 
-				value: 		1
+				passed:		typeof Uint16Array != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'Int32Array',
-				passed:		typeof Int32Array != 'undefined', 
-				value: 		1
+				passed:		typeof Int32Array != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'Uint32Array',
-				passed:		typeof Uint32Array != 'undefined', 
-				value: 		1
+				passed:		typeof Uint32Array != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'Float32Array',
-				passed:		typeof Float32Array != 'undefined', 
-				value: 		1
+				passed:		typeof Float32Array != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'Float64Array',
-				passed:		typeof Float64Array != 'undefined', 
-				value: 		1
+				passed:		typeof Float64Array != 'undefined'
 			});
 			
 			group.setItem({
 				id:			'DataView',
-				passed:		typeof DataView != 'undefined', 
-				value: 		1
+				passed:		typeof DataView != 'undefined'
 			});
 		}
 	};
@@ -3683,16 +3518,14 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:			'requestFullScreen',
-				passed:		!! document.documentElement.requestFullscreen ? YES : !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullscreen ? YES | PREFIX : NO, 
-				value: 		5
+				passed:		!! document.documentElement.requestFullscreen ? YES : !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullscreen ? YES | PREFIX : NO
 			});
 			
 
 			/* W3C standard is "new Notification()", WebKit pre-standard is "window.webkitNotifications.createNotification()", Gecko pre-standard is "window.navigator.mozNotification.createNotification()" */
 			this.section.setItem({
 				id:			'notifications',
-				passed:		'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO, 
-				value: 		5
+				passed:		'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO
 			});
 		}
 	};			
@@ -3707,26 +3540,22 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:			'async',
-				passed:		'async' in document.createElement('script'), 
-				value: 		3
+				passed:		'async' in document.createElement('script')
 			});
 
 			this.section.setItem({
 				id:			'defer',
-				passed:		'defer' in document.createElement('script'), 
-				value: 		1
+				passed:		'defer' in document.createElement('script')
 			});
 
 			this.section.setItem({
 				id:			'onerror',
-				passed:		isEventSupported('error'), 
-				value: 		1
+				passed:		isEventSupported('error')
 			});
 
 			var executionevents = this.section.setItem({
 				id:			'executionevents',
-				passed:		false, 
-				value: 		1
+				passed:		false
 			});
 	
 			executionevents.startBackground();
@@ -3759,38 +3588,32 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'base64',
-				passed:		'btoa' in window && 'atob' in window, 
-				value: 		1
+				passed:		'btoa' in window && 'atob' in window
 			});
 
 			this.section.setItem({
 				id:			'json',
-				passed:		'JSON' in window && 'parse' in JSON, 
-				value: 		2
+				passed:		'JSON' in window && 'parse' in JSON
 			});
 
 			this.section.setItem({
 				id:   		'mutationObserver',
-				passed:   	'MutationObserver' in window ? YES : 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window ? YES | PREFIX : NO,
-				value:  	2 
+				passed:   	'MutationObserver' in window ? YES : 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:   		'url',
-				passed:   	'URL' in window ? YES : 'WebKitURL' in window || 'MozURL' in window || 'oURL' in window || 'msURL' in window ? YES | PREFIX : NO,
-				value:  	2 
+				passed:   	'URL' in window ? YES : 'WebKitURL' in window || 'MozURL' in window || 'oURL' in window || 'msURL' in window ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:   		'encoding',
-				passed:   	'TextEncoder' in window && 'TextDecoder' in window ? YES : NO,
-				value:  	2 
+				passed:   	'TextEncoder' in window && 'TextDecoder' in window ? YES : NO
 			});
 
 			this.section.setItem({
 				id:   		'i18n',
-				passed:   	'Intl' in window ? YES : NO,
-				value:  	2 
+				passed:   	'Intl' in window ? YES : NO
 			});
 
 
@@ -3813,8 +3636,7 @@ Test8 = (function() {
     
 			this.section.setItem({
 				id:   		'promises',
-				passed:   	passed,
-				value:  	3
+				passed:   	passed
 			});
     
     
@@ -3822,22 +3644,19 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'pagevisiblity',
-				passed:		'visibilityState' in document ? YES : 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document ? YES | PREFIX : NO,
-				value: 		2
+				passed:		'visibilityState' in document ? YES : 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document ? YES | PREFIX : NO
 			});
 
 			this.section.setItem({
 				id:			'getSelection',
-				passed:		!!window.getSelection, 
-				value: 		2
+				passed:		!!window.getSelection
 			});
 
 			var element = document.createElement('div');
 			
 			this.section.setItem({
 				id:			'scrollIntoView',
-				passed:		!!element.scrollIntoView, 
-				value: 		1
+				passed:		!!element.scrollIntoView
 			});
 			
 		}
@@ -3853,14 +3672,12 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:			'webanimation',
-				passed:		'animate' in document.createElement('div'),
-				value: 		2
+				passed:		'animate' in document.createElement('div')
 			});
 
 			this.section.setItem({
 				id:			'requestAnimationFrame',
-				passed:		!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO,
-				value: 		5
+				passed:		!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO
 			});
 		}
 	};
@@ -3875,14 +3692,12 @@ Test8 = (function() {
 			
 			this.section.setItem({
 				id:			'custom',
-				passed:		'registerElement' in document,
-				value: 		4
+				passed:		'registerElement' in document
 			});
 
 			this.section.setItem({
 				id:			'shadowdom',
-				passed:		'attachShadow' in document.createElement('div') ? YES : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') ? YES | OLD : NO,
-				value: 		2
+				passed:		'attachShadow' in document.createElement('div') ? YES : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') ? YES | OLD : NO
 			});
 			
 			var passed = false;
@@ -3894,14 +3709,12 @@ Test8 = (function() {
 
 			this.section.setItem({
 				id:			'template',
-				passed:		passed,
-				value: 		2
+				passed:		passed
 			});
 
 			this.section.setItem({
 				id:			'imports',
-				passed:		'import' in document.createElement('link'),
-				value: 		2
+				passed:		'import' in document.createElement('link')
 			});
 		}
 	};
