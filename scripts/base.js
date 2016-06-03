@@ -155,15 +155,41 @@
 		},
 		
 		calculate: function(key, data) {
-			this.maximum += data.value;
-
-			if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.parameters.test.results)) {
-				var result = parseInt(match[1], 10);
+			var result = true;			
+			var value = typeof data.value == 'object' ? data.value : { maximum: data.value };  
+			
+			if (typeof data.value.conditional == 'undefined') {
+				this.maximum += value.maximum;
+			}
+			
+			if (typeof data.items == 'object') {
+				for (var i = 0; i < data.items.length; i++) {
+					result &= this.getResult(key + '.' + data.items[i].id) & YES;
+				}
+			}
+			else {
+				result = this.getResult(key);
+			}
+						
+			if (result & YES) {
+				var valid = true;	
 				
 				if (result & YES) {
 					this.score += data.value;	
 				}
+				
+				if (valid) {
+					this.score += value.maximum;
+				}	
 			}
+		},
+		
+		getResult: function(key) {
+			if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.parameters.test.results)) {
+				return parseInt(match[1], 10);
+			}
+			
+			return null;
 		}
 	};
 
