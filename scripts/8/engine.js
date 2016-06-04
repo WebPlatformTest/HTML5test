@@ -147,43 +147,9 @@ Test8 = (function() {
 		return isEventSupported;
 	})();
 
-	var getRenderedStyle = (function(){
-	
-		function getRenderedStyle(elem, name) {
-		    if (document.defaultView && document.defaultView.getComputedStyle) {
-		        s = document.defaultView.getComputedStyle(elem, "");
-		        r = [];
-		        
-		        if (s.length) {
-			        for (var i = 0; i < s.length; i++) {
-			        	try {
-				        	v = s.getPropertyValue(s[i]);
-				        	if (v != '') {
-				        		r.push(s[i] + ': ' + v);
-				        	}
-			        	} catch(e) {
-			        	};
-			        }
-		        } else {
-			        for (var i in s) {
-			        	try {
-				        	v = s.getPropertyValue(i);
-				        	if (v != '') {
-				        		r.push(i + ': ' + v);
-				        	}
-			        	} catch(e) {
-			        	};
-			        }
-		        }
-		        
-		        return r.join('; ') + ';';
-		    } else {
-		        return null;
-		    }
-		}
-		
-		return getRenderedStyle;
-	})();
+
+
+
 
 	function testParsing (results) { this.initialize(results); }			
 	testParsing.prototype = {
@@ -1367,10 +1333,6 @@ Test8 = (function() {
 	function testForm (results) { this.initialize(results); }			
 	testForm.prototype = {
 		initialize: function(results) {
-			var element = this.createInput('text');
-			var baseline = { field: getRenderedStyle(element.field), wrapper: getRenderedStyle(element.wrapper) };
-			this.removeInput(element);
-			
 			
 			/* input type=text */
 			
