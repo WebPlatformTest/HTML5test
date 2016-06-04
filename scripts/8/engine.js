@@ -1,6 +1,8 @@
 
 Test8 = (function() {			
 	
+	var revision = 0;
+	
 	var NO = 0, 
 		YES = 1, 
 		OLD = 2, 
@@ -10,242 +12,50 @@ Test8 = (function() {
 		DISABLED = 32,	
 		UNCONFIRMED = 64;	
 	
-	var revision = 0;
-	
 	var blacklists = [];
 	
 	
+
 
 	function results (parent) { this.initialize(parent); }
 	results.prototype = {
 		initialize: function(parent) {
 			this.parent = parent;
 			this.items = [];
-		
-			this.backgroundTasks = 0;
-
-			this.update();
-		},
-		
-		startBackground: function(id) {
-			this.parent.startBackground(id);
-		},
-		
-		stopBackground: function(id) {
-			this.parent.stopBackground(id);
-		},
-		
-		getSection: function(data) {
-			var i = new section(this, data);
-			this.items.push(i);
-			return i;
-		},
-
-		update: function() {
-			var points = 0;
-			var max = 0;
-			
-			for (var i = 0; i < this.items.length; i++) {
-				points += this.items[i].getPoints();
-				max += this.items[i].getMaximum();	
-			}
-
-			this.points = points;
-			this.max = max;
-		},
-		
-		retrieve: function() {
-			var data = {
-				points:		this.points,
-				items:		{}
-			};
-			
-			for (var i = 0; i < this.items.length; i++) {
-				data.items[this.items[i].data.id] = this.items[i].retrieve();
-			}
-
-			return data;
-		}
-	};
-
-	function section (parent, data) { this.initialize(parent, data); }
-	section.prototype = {
-		initialize: function(parent, data) {
-			this.items = [];
-			this.points = 0;
-			this.max = 0;
-		
-			this.parent = parent;
-			this.data = data;
-			this.path = data.id;
-		},
-		
-		startBackground: function(id) {
-			this.parent.startBackground(id);
-		},
-		
-		stopBackground: function(id) {
-			this.parent.stopBackground(id);
 		},
 		
 		setItem: function(result) {
 			var i = new item(this, result);
 			this.items.push(i);
-			
-			this.update();
-			
 			return i;
 		},
-		
-		getGroup: function(data) {
-			var i = new group(this, data);
-			this.items.push(i);
-			return i;
-		},
-		
-		update: function() {
-			var points = 0;
-			var max = 0;
-			
-			for (var i = 0; i < this.items.length; i++) {
-				points += this.items[i].getPoints();
-				max += this.items[i].getMaximum();	
-			}
-			
-			this.points = points;
-			this.max = max;
-			
-			this.parent.update();
-		},
-		
-		getPoints: function() {
-			return this.points;
-		},
-		
-		getMaximum: function() {
-			return this.max;
-		},
-		
-		retrieve: function() {
-			var data = {
-				points:		this.points,
-				items: 		{}
-			};
-			
-			for (var i = 0; i < this.items.length; i++) {
-				data.items[this.items[i].data.id] = this.items[i].retrieve();
-			}
 
-			return data;
+		startBackground: function(key) {
+			this.parent.startBackground(key);
+		},
+		
+		stopBackground: function(key) {
+			this.parent.stopBackground(key);
+		},
+		
+		toString: function() {
+			var results = [];
+			
+			for (var i = 0; i < this.items.length; i++) {
+				if (typeof this.items[i].data.passed != 'undefined') results.push(this.items[i].data.key + '=' + (+this.items[i].data.passed));
+			}
+			
+			return results.join(',');
 		}
 	};
-	
-	function group (parent, data) { this.initialize(parent, data); }
-	group.prototype = {
-		initialize: function(parent, data) {
-			this.items = [];
-			this.points = 0;
-			this.max = 0;
-			
-			this.data = data;
-			this.parent = parent;
-			this.path = parent.path + '.' + data.id;
-		},
-		
-		update: function() {
-			var points = 0;
-			var max = 0;
-			var count = 0;
-			
-			var hasRequired = false;
 
-			var passedAll = true;
-			var passedAllRequiredFields = true;
-			var passedPartially = false;
-			
-			for (var i = 0; i < this.items.length; i++) {
-				points += this.items[i].getPoints();
-				max += this.items[i].getMaximum();	
-				count += this.items[i].getPassed() > 0 ? 1 : 0;
-			
-				if (this.items[i].getRequired()) {
-					hasRequired = true;
-					passedAllRequiredFields &= this.items[i].getPassed() > 0;
-				}
-				
-				passedAll &= this.items[i].getPassed() > 0;
-				passedPartially |= this.items[i].getPartiallyPassed();
-			}
-			
-			if (!passedAllRequiredFields) {
-				points = 0;
-			}
-			
-			if (this.data.value && this.items.length) {
-				if (hasRequired ? passedAllRequiredFields : passedAll) {
-					points += this.data.value;
-				}
-				
-				max += this.data.value;
-			}
-
-			
-			this.points = points;
-			this.max = max;
-			
-			this.parent.update();
-		},
-		
-		startBackground: function(id) {
-			this.parent.startBackground(id);
-		},
-		
-		stopBackground: function(id) {
-			this.parent.stopBackground(id);
-		},
-		
-		setItem: function(result) {
-			var i = new item(this, result);
-			this.items.push(i);
-			
-			this.update();
-			
-			return i;
-		},
-		
-		getPoints: function() {
-			return this.points;
-		},
-		
-		getMaximum: function() {
-			return this.max;
-		},
-		
-		retrieve: function() {
-			var data = {
-				points:		this.points,
-				items: 		{}
-			};
-			
-			for (var i = 0; i < this.items.length; i++) {
-				data.items[this.items[i].data.id] = this.items[i].retrieve();
-			}
-
-			return data;
-		}
-	};
-	
 	function item (parent, data) { this.initialize(parent, data); }
 	item.prototype = {
 		initialize: function(parent, data) {
 			this.parent = parent;
-			
-			this.path = parent.path + '.' + data.id;
-			
 			this.data = data;
-			if (typeof this.data.value == 'undefined') this.data.value = 0;
-			if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
-			if (typeof this.data.passed == 'undefined') this.data.padded = false;
+
+			if (typeof this.data.passed == 'undefined') this.data.passed = false;
 
 			if (this.data.passed) {
 				var blacklist = this.isOnBlacklist();
@@ -260,8 +70,6 @@ Test8 = (function() {
 				this.data[key] = data[key];
 			}
 
-			if (typeof this.data.value == 'undefined') this.data.value = 0;
-			if (typeof this.data.award == 'undefined') this.data.award = this.data.value;
 			if (typeof this.data.passed == 'undefined') this.data.passed = false;
 
 			if (this.data.passed) {
@@ -270,13 +78,11 @@ Test8 = (function() {
 					this.data.passed = blacklist;
 				}
 			}
-			
-			this.parent.update();
 		},
 		
 		isOnBlacklist: function() {
 			var part = '';
-			var parts = this.path.split('.');
+			var parts = this.data.key.split('.');
 			for (var i = 0; i < parts.length; i++) {
 				part += (i == 0 ? '' : '.') + parts[i];
 
@@ -294,45 +100,14 @@ Test8 = (function() {
 		},
 			
 		startBackground: function() {
-			this.parent.startBackground(this.data.id);
+			this.parent.startBackground(this.data.key);
 		},
 		
 		stopBackground: function() {
-			this.parent.stopBackground(this.data.id);
-		},
-		
-		getPoints: function() {
-			return this.data.passed & YES ? this.data.award : 0;
-		},
-		
-		getMaximum: function() {
-			return this.data.value;
-		},
-		
-		getPassed: function() {
-			return this.data.passed;
-		},
-		
-		getPartiallyPassed: function() {
-			if (this.data.custom && this.data.custom == 'partial') {
-				return true;
-			}
-			
-			return this.getPassed();
-		},
-		
-		getRequired: function() {
-			return !!this.data.required;
-		},
-		
-		retrieve: function() {
-			var data = {
-				points:	this.getPoints()
-			};
-			
-			return data;
+			this.parent.stopBackground(this.data.key);
 		}
 	};
+
 	
 	
 	var isEventSupported = (function(){
@@ -412,12 +187,8 @@ Test8 = (function() {
 	function testParsing (results) { this.initialize(results); }			
 	testParsing.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'parsing'
-			});
-			
-			this.section.setItem({
-				id:		'doctype',
+			results.setItem({
+				key:	'parsing-doctype',
 				passed:	document.compatMode == 'CSS1Compat'
 			});
 
@@ -485,8 +256,8 @@ Test8 = (function() {
 				result = false;
 			}
 
-			this.section.setItem({
-				id:		'tokenizer',
+			results.setItem({
+				key:	'parsing-tokenizer',
 				passed:	result
 			});
 
@@ -548,8 +319,8 @@ Test8 = (function() {
 			e.innerHTML = "<div></div>";
 			result &= e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == "http://www.w3.org/1999/xhtml";
 
-			this.section.setItem({
-				id:		'tree',
+			results.setItem({
+				key:	'parsing-tree',
 				passed:	result
 			});
 
@@ -557,8 +328,8 @@ Test8 = (function() {
 			e.innerHTML = '<svg></svg>';
 			var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/2000/svg';
 			
-			this.section.setItem({
-				id:		'svg',
+			results.setItem({
+				key:	'parsing-svg',
 				passed:	passed
 			});
 
@@ -566,8 +337,8 @@ Test8 = (function() {
 			e.innerHTML = '<math></math>';
 			var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/1998/Math/MathML';
 			
-			this.section.setItem({
-				id:		'mathml',
+			results.setItem({
+				key:	'parsing-mathml',
 				passed:	passed
 			});
 		}
@@ -577,22 +348,18 @@ Test8 = (function() {
 	function testResponsive (results) { this.initialize(results); }			
 	testResponsive.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'responsive'
-			});
-			
-			this.section.setItem({
-				id:		'picture',
+			results.setItem({
+				key:	'responsive-picture',
 				passed:	'HTMLPictureElement' in window
 			});
 
-			this.section.setItem({
-				id:		'srcset',
+			results.setItem({
+				key:	'responsive-srcset',
 				passed:	'srcset' in document.createElement('img')
 			});
 
-			this.section.setItem({
-				id:		'sizes',
+			results.setItem({
+				key:	'responsive-sizes',
 				passed:	'sizes' in document.createElement('img')
 			});
 		}
@@ -602,14 +369,10 @@ Test8 = (function() {
 	function testCanvas (results) { this.initialize(results); }			
 	testCanvas.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'canvas'
-			});
-
 			this.canvas = document.createElement('canvas');
 
-			this.section.setItem({
-				id:		'context',
+			results.setItem({
+				key:	'canvas-context',
 				passed:	!! (this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D)
 			});
 
@@ -622,14 +385,14 @@ Test8 = (function() {
 				}
 			}
 			
-			this.section.setItem({
-				id:		'text',
+			results.setItem({
+				key:	'canvas-text',
 				passed:	passed
 			});
 
 
-			this.section.setItem({
-				id:		'path',
+			results.setItem({
+				key:	'canvas-path',
 				passed:	typeof Path2D != "undefined" ? YES : typeof Path != "undefined" ? YES | OLD : NO
 			});
 
@@ -643,8 +406,8 @@ Test8 = (function() {
 				}
 			}
 			
-			this.section.setItem({
-				id:		'ellipse',
+			results.setItem({
+				key:	'canvas-ellipse',
 				passed:	passed
 			});
 
@@ -658,8 +421,8 @@ Test8 = (function() {
 				}
 			}
 			
-			this.section.setItem({
-				id:		'dashed',
+			results.setItem({
+				key:	'canvas-dashed',
 				passed:	passed
 			});
 
@@ -672,8 +435,8 @@ Test8 = (function() {
 				}
 			}
 			
-			this.section.setItem({
-				id:		'focusring',
+			results.setItem({
+				key:	'canvas-focusring',
 				passed:	passed
 			});
 
@@ -687,8 +450,8 @@ Test8 = (function() {
 				}
 			}
 			
-			this.section.setItem({
-				id:		'hittest',
+			results.setItem({
+				key:	'canvas-hittest',
 				passed:	passed
 			});
 
@@ -715,8 +478,8 @@ Test8 = (function() {
 				}
 			}
 			
-			this.section.setItem({
-				id:		'blending',
+			results.setItem({
+				key:	'canvas-blending',
 				passed:	passed
 			});
 			
@@ -732,8 +495,8 @@ Test8 = (function() {
 			}
 
 
-			this.section.setItem({
-				id:		'png',
+			results.setItem({
+				key:	'canvas-png',
 				passed:	passed
 			});
 
@@ -746,8 +509,8 @@ Test8 = (function() {
 				}
 			}
 
-			this.section.setItem({
-				id:		'jpeg',
+			results.setItem({
+				key:	'canvas-jpeg',
 				passed:	passed
 			});
 
@@ -761,8 +524,8 @@ Test8 = (function() {
 				}
 			}
 
-			this.section.setItem({
-				id:		'jpegxr',
+			results.setItem({
+				key:	'canvas-jpegxr',
 				passed:	passed
 			});
 
@@ -776,8 +539,8 @@ Test8 = (function() {
 				}
 			}
 
-			this.section.setItem({
-				id:		'webp',
+			results.setItem({
+				key:	'canvas-webp',
 				passed:	passed
 			});
 		}
@@ -787,96 +550,92 @@ Test8 = (function() {
 	function testVideo (results) { this.initialize(results); }			
 	testVideo.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'video'
-			});
-			
 			this.element = document.createElement('video');
 
-			this.section.setItem({
-				id:		'element',
+			results.setItem({
+				key:	'video-element',
 				passed:	!!this.element.canPlayType
 			});
 
-			this.section.setItem({
-				id:		'audiotracks',
+			results.setItem({
+				key:	'video-audiotracks',
 				passed:	'audioTracks' in this.element
 			});
 			
-			this.section.setItem({
-				id:		'videotracks',
+			results.setItem({
+				key:	'video-videotracks',
 				passed:	'videoTracks' in this.element
 			});
 			
-			this.section.setItem({
-				id:		'subtitle',
+			results.setItem({
+				key:	'video-subtitle',
 				passed:	'track' in document.createElement('track')
 			});
 			
-			this.section.setItem({
-				id:		'poster',
+			results.setItem({
+				key:	'video-poster',
 				passed:	'poster' in this.element
 			});
 
 
-			this.section.setItem({
-				id:		'drm',
+			results.setItem({
+				key:	'video-drm',
 				passed:	'setMediaKeys' in this.element ? YES : 'webkitAddKey' in this.element || 'webkitSetMediaKeys' in this.element || 'mozSetMediaKeys' in this.element || 'msSetMediaKeys' in this.element ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:		'mediasource',
+			results.setItem({
+				key:	'video-mediasource',
 				passed:	'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:			'recorder',
+			results.setItem({
+				key:		'video-recorder',
 				passed:		'MediaRecorder' in window
 			});
 
 
 			/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 			var item = {
-				id:		'mpeg4',
+				key:	'video-mpeg4',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 		
 			var item = {
-				id:		'h264',
+				key:	'video-h264',
 				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))				
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'h265',
+				key:	'video-h265',
 				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="hvc1.1.L0.0"') || this.canPlayType('video/mp4; codecs="hev1.1.L0.0"'))
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'theora',
+				key:	'video-theora',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'webmvp8',
+				key:	'video-webmvp8',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp8"')
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'webmvp9',
+				key:	'video-webmvp9',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp9"')
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 		
 		
 			var passed = true;
@@ -915,11 +674,11 @@ Test8 = (function() {
 			}
 			
 			var item = {
-				id:		'canplaytype',
+				key:	'video-canplaytype',
 				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
 			};
 		
-			this.section.setItem(item);
+			results.setItem(item);
 		},
 		
 		canPlayType: function(t) {
@@ -939,33 +698,29 @@ Test8 = (function() {
 	function testAudio (results) { this.initialize(results); }			
 	testAudio.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'audio'
-			});
-			
 			this.element = document.createElement('audio');
 			
-			this.section.setItem({
-				id:		'element',
+			results.setItem({
+				key:	'audio-element',
 				passed:	!!this.element.canPlayType
 			});
 			
-			this.section.setItem({
-				id:		'loop',
+			results.setItem({
+				key:	'audio-loop',
 				passed:	'loop' in this.element
 			});
 
-			this.section.setItem({
-				id:		'preload',
+			results.setItem({
+				key:	'audio-preload',
 				passed:	'preload' in this.element
 			});
 
 			var item = {
-				id:		'pcm',
+				key:	'audio-pcm',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var r = false;
 			if (this.element.canPlayType) {
@@ -980,70 +735,70 @@ Test8 = (function() {
 			}
 		
 			var item = {
-				id:		'mp3',
+				key:	'audio-mp3',
 				passed:	r
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'aac',
+				key:	'audio-aac',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'ac3',
+				key:	'audio-ac3',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="ac-3"')
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'ec3',
+				key:	'audio-ec3',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="ec-3"')
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'vorbis',
+				key:	'audio-vorbis',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'opus',
+				key:	'audio-opus',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="opus"') 
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'webm',
+				key:	'audio-webm',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 			var item = {
-				id:		'webmopus',
+				key:	'audio-webmopus',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="opus"') 
 			};
 			
-			this.section.setItem(item);
+			results.setItem(item);
 
 
-			this.section.setItem({
-				id:			'webaudio',
+			results.setItem({
+				key:		'audio-webaudio',
 				passed:		'AudioContext' in window ? YES : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window ? YES | PREFIX : NO
 			});
 
 
-			this.section.setItem({
-				id:			'speechrecognition',
+			results.setItem({
+				key:		'audio-speechrecognition',
 				passed:		'SpeechRecognition' in window ? YES : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window ? YES | PREFIX : NO
 			});
 
@@ -1052,8 +807,8 @@ Test8 = (function() {
 			var available = 'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO;
 			var voices = speechSynthesis ? speechSynthesis.getVoices().length : 0;
 			
-			var speechItem = this.section.setItem({
-				id:			'speechsynthesis',
+			var speechItem = results.setItem({
+				key:		'audio-speechsynthesis',
 				passed:		speechSynthesis && voices ? available : NO
 			});
 			
@@ -1096,20 +851,16 @@ Test8 = (function() {
 	function testWebRTC (results) { this.initialize(results); }			
 	testWebRTC.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'webrtc'
-			});
-			
 			var webrtc = !!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO;
 			var objectrtc = !!window.RTCIceTransport ? YES : !!window.webkitRTCIceTransport || !!window.mozRTCIceTransport || !!window.msRTCIceTransport || !!window.oRTCIceTransport ? YES | PREFIX : NO;
 			
-			this.section.setItem({
-				id:		'webrtc',
+			results.setItem({
+				key:	'webrtc-webrtc',
 				passed:	webrtc
 			});
 			
-			this.section.setItem({
-				id:		'objectrtc',
+			results.setItem({
+				key:	'webrtc-objectrtc',
 				passed:	objectrtc
 			});
 			
@@ -1121,8 +872,8 @@ Test8 = (function() {
 			catch(e) {
 			}
 			
-			this.section.setItem({
-				id:		'datachannel',
+			results.setItem({
+				key:	'webrtc-datachannel',
 				passed:	passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO
 			});
 		}
@@ -1131,27 +882,23 @@ Test8 = (function() {
 	function testInput (results) { this.initialize(results); }			
 	testInput.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'input'
-			});
-			
-			this.section.setItem({
-				id:			'getUserMedia',
+			results.setItem({
+				key:		'input-getUserMedia',
 				passed:		!!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia ? YES : !!navigator.getUserMedia ? YES | OLD : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:			'getGamepads',
+			results.setItem({
+				key:		'input-getGamepads',
 				passed:		!!navigator.getGamepads ? YES : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:   		'pointerLock',
+			results.setItem({
+				key:		'input-pointerLock',
 				passed:  	'pointerLockElement' in document ? YES : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:   		'pointerevents',
+			results.setItem({
+				key:		'input-pointerevents',
 				passed:		!!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO
 			});
 		}
@@ -1161,22 +908,14 @@ Test8 = (function() {
 	function testElements (results) { this.initialize(results); }			
 	testElements.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'elements'
-			});
-			
 			var element = document.createElement('div');
 			element.setAttribute('data-test', 'test');
 			
-			this.section.setItem({
-				id:		'dataset',
+			results.setItem({
+				key:	'elements-dataset',
 				passed:	'dataset' in element
 			});
 
-			var group = this.section.getGroup({
-				id:		'section'
-			});
-			
 			var elements = 'section nav article aside header footer'.split(' ');
 			
 			for (var e = 0; e < elements.length; e++) {
@@ -1195,17 +934,13 @@ Test8 = (function() {
 				} catch(error) {
 				}
 				
-				group.setItem({
-					id:		elements[e],
+				results.setItem({
+					key:	'elements-section-' + elements[e],
 					passed:	passed, 
 					value: 	1
 				});
 			}
 
-			var group = this.section.getGroup({
-				id:		'grouping'
-			});
-			
 			var elements = 'main figure figcaption'.split(' ');
 			
 			for (var e = 0; e < elements.length; e++) {
@@ -1224,31 +959,27 @@ Test8 = (function() {
 				} catch(error) {
 				}
 
-				group.setItem({
-					id:		elements[e],
+				results.setItem({
+					key:	'elements-grouping-' + elements[e],
 					passed:	passed
 				});
 			}
 
 
 			var element = document.createElement('ol');
-			group.setItem({
-				id:		'ol',
+			results.setItem({
+				key:	'elements-grouping-ol',
 				passed:	'reversed' in element
 			});
 
-			var group = this.section.getGroup({
-				id:		'semantic'
-			});
-			
 			var element = document.createElement('a');
-			group.setItem({
-				id:		'download',
+			results.setItem({
+				key:	'elements-semantic-download',
 				passed:	'download' in element
 			});
 			
-			group.setItem({
-				id:		'ping',
+			results.setItem({
+				key:	'elements-semantic-ping',
 				passed:	'ping' in element
 			});
 
@@ -1268,8 +999,8 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'mark',
+			results.setItem({
+				key:	'elements-semantic-mark',
 				passed:	passed
 			});
 
@@ -1294,8 +1025,8 @@ Test8 = (function() {
 			
 			document.body.removeChild(container);					
 			
-			group.setItem({
-				id:		'ruby',
+			results.setItem({
+				key:	'elements-semantic-ruby',
 				passed:	rubySupport && rtSupport && rpSupport
 			});
 
@@ -1312,8 +1043,8 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'time',
+			results.setItem({
+				key:	'elements-semantic-time',
 				passed:	passed
 			});
 			
@@ -1330,8 +1061,8 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'data',
+			results.setItem({
+				key:	'elements-semantic-data',
 				passed:	passed
 			});
 			
@@ -1348,15 +1079,11 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'wbr',
+			results.setItem({
+				key:	'elements-semantic-wbr',
 				passed:	passed
 			});
 
-			var group = this.section.getGroup({
-				id:		'interactive'
-			});
-			
 
 			var passed = false;
 
@@ -1374,8 +1101,8 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'details',
+			results.setItem({
+				key:	'elements-interactive-details',
 				passed:	passed
 			});
 
@@ -1395,8 +1122,8 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'summary',
+			results.setItem({
+				key:	'elements-interactive-summary',
 				passed:	passed
 			});
 
@@ -1469,8 +1196,8 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'menutoolbar',
+			results.setItem({
+				key:	'elements-interactive-menutoolbar',
 				passed:	passed ? YES : legacy ? YES | OLD : NO
 			});
 
@@ -1557,8 +1284,8 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:		'menupopup',
+			results.setItem({
+				key:	'elements-interactive-menupopup',
 				passed:	passed ? YES : legacy ? YES | OLD : NO
 			});
 
@@ -1575,32 +1302,28 @@ Test8 = (function() {
 			} catch(error) {
 			}
 			
-			group.setItem({
-				id:			'dialog',
-				passed:		passed
+			results.setItem({
+				key:	'elements-interactive-dialog',
+				passed:	passed
 			});
 			
 			
 			var element = document.createElement('div');
 			
-			this.section.setItem({
-				id:		'hidden',
+			results.setItem({
+				key:	'elements-hidden',
 				passed:	'hidden' in element
 			});
 
-			var group = this.section.getGroup({
-				id:		'dynamic'
-			});
-			
 			var element = document.createElement('div');
 
-			group.setItem({
-				id:		'outerHTML',
+			results.setItem({
+				key:	'elements-dynamic-outerHTML',
 				passed:	!!('outerHTML' in element)
 			});
 				
-			group.setItem({
-				id:		'insertAdjacentHTML',
+			results.setItem({
+				key:	'elements-dynamic-insertAdjacentHTML',
 				passed:	!!('insertAdjacentHTML' in element)
 			});
 		},
@@ -1643,10 +1366,6 @@ Test8 = (function() {
 	function testForm (results) { this.initialize(results); }			
 	testForm.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'form'
-			});
-
 			var element = this.createInput('text');
 			var baseline = { field: getRenderedStyle(element.field), wrapper: getRenderedStyle(element.wrapper) };
 			this.removeInput(element);
@@ -1654,19 +1373,15 @@ Test8 = (function() {
 			
 			/* input type=text */
 			
-			var group = this.section.getGroup({
-				id:		'text'
-			});
-			
 			var element = this.createInput('text');
 			
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-text-element',
 				passed:		element.field.type == 'text'
 			});
 			
-			group.setItem({
-				id:			'selection',
+			results.setItem({
+				key:		'form-text-selection',
 				passed:		'selectionDirection' in element.field
 			});
 			
@@ -1675,14 +1390,10 @@ Test8 = (function() {
 			
 			/* input type=search */
 			
-			var group = this.section.getGroup({
-				id:		'search'
-			});
-			
 			var element = this.createInput('search');
 			
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-search-element',
 				passed:		element.field.type == 'search'
 			});
 			
@@ -1691,14 +1402,10 @@ Test8 = (function() {
 			
 			/* input type=tel */
 			
-			var group = this.section.getGroup({
-				id:		'tel'
-			});
-			
 			var element = this.createInput('tel');
 			
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-tel-element',
 				passed:		element.field.type == 'tel'
 			});
 			
@@ -1706,10 +1413,6 @@ Test8 = (function() {
 			
 			
 			/* input type=url */
-			
-			var group = this.section.getGroup({
-				id:		'url'
-			});
 			
 			var element = this.createInput('url');
 			
@@ -1724,13 +1427,13 @@ Test8 = (function() {
 				validation &= element.field.validity.valid
 			}
 			
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-url-element',
 				passed:		element.field.type == 'url'
 			});
 			
-			group.setItem({
-				id:			'validation',
+			results.setItem({
+				key:		'form-url-validation',
 				passed:		validation
 			});
 			
@@ -1738,10 +1441,6 @@ Test8 = (function() {
 			
 			
 			/* input type=email */
-			
-			var group = this.section.getGroup({
-				id:		'email'
-			});
 			
 			var element = this.createInput('email');
 													
@@ -1756,13 +1455,13 @@ Test8 = (function() {
 				validation &= element.field.validity.valid
 			}
 			
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-email-element',
 				passed:		element.field.type == 'email'
 			});
 			
-			group.setItem({
-				id:			'validation',
+			results.setItem({
+				key:		'form-email-validation',
 				passed:		validation
 			});
 			
@@ -1773,10 +1472,6 @@ Test8 = (function() {
 			
 			var types = ['date', 'month', 'week', 'time', 'datetime', 'datetime-local'];
 			for (var t = 0; t < types.length; t++) {
-				var group = this.section.getGroup({
-					id:		types[t]
-				});
-				
 				var element = this.createInput(types[t]);
 				
 				element.field.value = "foobar";							
@@ -1784,55 +1479,55 @@ Test8 = (function() {
 				
 				var minimal = element.field.type == types[t];
 
-				group.setItem({
-					id:			'element',
+				results.setItem({
+					key:		'form-' + types[t] + '-element',
 					passed:		minimal
 				});
 				
-				group.setItem({
-					id:			'ui',
+				results.setItem({
+					key:		'form-' + types[t] + '-ui',
 					passed:		minimal && sanitization, 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
 				});
 
-				group.setItem({
-					id:			'sanitization',
+				results.setItem({
+					key:		'form-' + types[t] + '-sanitization',
 					passed:		minimal && sanitization
 				});
 				
-				group.setItem({
-					id:			'min',
+				results.setItem({
+					key:		'form-' + types[t] + '-min',
 					passed:		minimal && 'min' in element.field
 				});
 				
-				group.setItem({
-					id:			'max',
+				results.setItem({
+					key:		'form-' + types[t] + '-max',
 					passed:		minimal && 'max' in element.field
 				});
 				
-				group.setItem({
-					id:			'step',
+				results.setItem({
+					key:		'form-' + types[t] + '-step',
 					passed:		minimal && 'step' in element.field
 				});
 
-				group.setItem({
-					id:			'stepDown',
+				results.setItem({
+					key:		'form-' + types[t] + '-stepDown',
 					passed:		minimal && 'stepDown' in element.field
 				});
 
-				group.setItem({
-					id:			'stepUp',
+				results.setItem({
+					key:		'form-' + types[t] + '-stepUp',
 					passed:		minimal && 'stepUp' in element.field
 				});
 				
 				if (t != 'datetime-local' && t != 'datetime') {
-					group.setItem({
-						id:			'valueAsDate',
+					results.setItem({
+						key:		'form-' + types[t] + '-valueAsDate',
 						passed:		minimal && 'valueAsDate' in element.field
 					});
 				}
 				
-				group.setItem({
-					id:			'valueAsNumber',
+				results.setItem({
+					key:		'form-' + types[t] + '-valueAsNumber',
 					passed:		minimal && 'valueAsNumber' in element.field
 				});
 
@@ -1844,11 +1539,6 @@ Test8 = (function() {
 			
 			var types = ['number', 'range'];
 			for (var t = 0; t < types.length; t++) {
-				var group = this.section.getGroup({
-					id:		types[t],
-					name:	'<code>input type=' + types[t] + '</code>'
-				});
-				
 				var element = this.createInput(types[t]);
 				
 				element.field.value = "foobar";							
@@ -1869,55 +1559,55 @@ Test8 = (function() {
 				
 				var minimal = element.field.type == types[t];
 				
-				group.setItem({
-					id:			'element',
+				results.setItem({
+					key:		'form-' + types[t] + '-element',
 					passed:		minimal
 				});
 				
-				group.setItem({
-					id:			'ui',
+				results.setItem({
+					key:		'form-' + types[t] + '-ui',
 					passed:		minimal && sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
 				});
 
-				group.setItem({
-					id:			'sanitization',
+				results.setItem({
+					key:		'form-' + types[t] + '-sanitization',
 					passed:		minimal && sanitization
 				});
 				
 				if (types[t] != 'range') {
-					group.setItem({
-						id:			'validation',
+					results.setItem({
+						key:		'form-' + types[t] + '-validation',
 						passed:		minimal && validation
 					});
 				}
 
-				group.setItem({
-					id:			'min',
+				results.setItem({
+					key:		'form-' + types[t] + '-min',
 					passed:		minimal && 'min' in element.field
 				});
 				
-				group.setItem({
-					id:			'max',
+				results.setItem({
+					key:		'form-' + types[t] + '-max',
 					passed:		minimal && 'max' in element.field
 				});
 				
-				group.setItem({
-					id:			'step',
+				results.setItem({
+					key:		'form-' + types[t] + '-step',
 					passed:		minimal && 'step' in element.field
 				});
 
-				group.setItem({
-					id:			'stepDown',
+				results.setItem({
+					key:		'form-' + types[t] + '-stepDown',
 					passed:		minimal && 'stepDown' in element.field
 				});
 
-				group.setItem({
-					id:			'stepUp',
+				results.setItem({
+					key:		'form-' + types[t] + '-stepUp',
 					passed:		minimal && 'stepUp' in element.field
 				});
 				
-				group.setItem({
-					id:			'valueAsNumber',
+				results.setItem({
+					key:		'form-' + types[t] + '-valueAsNumber',
 					passed:		minimal && 'valueAsNumber' in element.field
 				});
 
@@ -1927,27 +1617,23 @@ Test8 = (function() {
 			
 			/* input type=color */
 			
-			var group = this.section.getGroup({
-				id:		'color'
-			});
-			
 			var element = this.createInput('color');
 									
 			element.field.value = "foobar";					
 			var sanitization = element.field.value != 'foobar';
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-color-element',
 				passed:		element.field.type == 'color'
 			});
 			
-			group.setItem({
-				id:			'ui',
+			results.setItem({
+				key:		'form-color-ui',
 				passed:		sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
 			});
 				
-			group.setItem({
-				id:			'sanitization',
+			results.setItem({
+				key:		'form-color-sanitization',
 				passed:		sanitization
 			});
 				
@@ -1957,19 +1643,15 @@ Test8 = (function() {
 			
 			/* input type=checkbox */
 			
-			var group = this.section.getGroup({
-				id:		'checkbox'
-			});
-			
 			var element = this.createInput('checkbox');
 			
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-checkbox-element',
 				passed:		element.field.type == 'checkbox'
 			});
 
-			group.setItem({
-				id:			'indeterminate',
+			results.setItem({
+				key:		'form-checkbox-indeterminate',
 				passed:		'indeterminate' in element.field
 			});
 
@@ -1977,10 +1659,6 @@ Test8 = (function() {
 			
 
 			/* input type=image */
-			
-			var group = this.section.getGroup({
-				id:		'image'
-			});
 			
 			var element = this.createInput('image');
 			element.field.style.display = 'inline-block';
@@ -1991,18 +1669,18 @@ Test8 = (function() {
 			element.field.setAttribute('width', '100');
 			element.field.setAttribute('height', '100');
 			
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-image-element',
 				passed:		element.field.type == 'image'
 			});
 
-			group.setItem({
-				id:			'width',
+			results.setItem({
+				key:		'form-image-width',
 				passed:		supportsWidth && element.field.offsetWidth == 100
 			});
 
-			group.setItem({
-				id:			'height',
+			results.setItem({
+				key:		'form-image-height',
 				passed:		supportsHeight && element.field.offsetHeight == 100
 			});
 			
@@ -2011,24 +1689,20 @@ Test8 = (function() {
 
 			/* input type=file */
 			
-			var group = this.section.getGroup({
-				id:		'file'
-			});
-			
 			var element = this.createInput('file');
 			
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-file-element',
 				passed:		element.field.type == 'file'
 			});
 
-			group.setItem({
-				id:			'files',
+			results.setItem({
+				key:		'form-file-files',
 				passed:		element.field.files && element.field.files instanceof FileList
 			});
 
-			group.setItem({
-				id:			'directory',
+			results.setItem({
+				key:		'form-file-directory',
 				passed:		'directory' in element.field && window.Directory
 			});
 
@@ -2036,10 +1710,6 @@ Test8 = (function() {
 			
 
 			/* textarea */
-			
-			var group = this.section.getGroup({
-				id:		'textarea'
-			});
 			
 			var element = document.createElement('textarea');
 
@@ -2049,27 +1719,23 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-textarea-element',
 				passed:		passed
 			});
 
-			group.setItem({
-				id:			'maxlength',
+			results.setItem({
+				key:		'form-textarea-maxlength',
 				passed:		'maxLength' in element
 			});
 
-			group.setItem({
-				id:			'wrap',
+			results.setItem({
+				key:		'form-textarea-wrap',
 				passed:		'wrap' in element
 			});
 
 
 			/* select */
-			
-			var group = this.section.getGroup({
-				id:		'select'
-			});
 			
 			var element = document.createElement('select');
 
@@ -2079,22 +1745,18 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-select-element',
 				passed:		passed
 			});
 
-			group.setItem({
-				id:			'required',
+			results.setItem({
+				key:		'form-select-required',
 				passed:		'required' in element
 			});
 
 
 			/* fieldset */
-			
-			var group = this.section.getGroup({
-				id:		'fieldset'
-			});
 			
 			var element = document.createElement('fieldset');
 
@@ -2104,27 +1766,23 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-fieldset-element',
 				passed:		passed
 			});
 
-			group.setItem({
-				id:			'elements',
+			results.setItem({
+				key:		'form-fieldset-elements',
 				passed:		'elements' in element
 			});
 
-			group.setItem({
-				id:			'disabled',
+			results.setItem({
+				key:		'form-fieldset-disabled',
 				passed:		'disabled' in element
 			});
 
 
 			/* datalist */
-			
-			var group = this.section.getGroup({
-				id:		'datalist'
-			});
 			
 			var passed = false;
 			
@@ -2138,24 +1796,20 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-datalist-element',
 				passed:		passed
 			});
 
 			var element = document.createElement('input');
 
-			group.setItem({
-				id:			'list',
+			results.setItem({
+				key:		'form-datalist-list',
 				passed:		!!("list" in element)
 			});
 
 
 			/* keygen */
-			
-			var group = this.section.getGroup({
-				id:		'keygen'
-			});
 			
 			var element = document.createElement('div');
 			element.innerHTML = '<keygen>';
@@ -2166,28 +1820,24 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-keygen-element',
 				passed:		passed
 			});
 
-			group.setItem({
-				id:			'challenge',
+			results.setItem({
+				key:		'form-keygen-challenge',
 				passed:		element.firstChild && 'challenge' in element.firstChild
 			});
 				
-			group.setItem({
-				id:			'keytype',
+			results.setItem({
+				key:		'form-keygen-keytype',
 				passed:		element.firstChild && 'keytype' in element.firstChild
 			});
 				
 			
 			
 			/* output */
-			
-			var group = this.section.getGroup({
-				id:		'output'
-			});
 			
 			var passed = false;
 
@@ -2201,17 +1851,13 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-output-element',
 				passed:		passed
 			});
 
 
 			/* progress */
-			
-			var group = this.section.getGroup({
-				id:		'progress'
-			});
 			
 			var passed = false;
 
@@ -2225,17 +1871,13 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-progress-element',
 				passed:		passed
 			});
 			
 			
 			/* meter */
-			
-			var group = this.section.getGroup({
-				id:		'meter'
-			});
 			
 			var passed = false;
 
@@ -2249,31 +1891,22 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			group.setItem({
-				id:			'element',
+			results.setItem({
+				key:		'form-meter-element',
 				passed:		passed
 			});
 
-			var group = this.section.getGroup({
-				id:		'validation'
-			});
-			
 			var element = document.createElement('input');
 
 			var props = 'pattern required'.split(' ');
 			
 			for (var p = 0; p < props.length; p++) {
-					group.setItem({
-					id:			props[p],
+				results.setItem({
+					key:		'form-validation-' + props[p],
 					passed:		!!(props[p] in element)
 				});
 			}
 
-			var group = this.section.getGroup({
-				id:		'association',
-				value:	2
-			});
-			
 			var field = document.createElement('input');
 			field.id = "a";
 			document.body.appendChild(field);
@@ -2282,8 +1915,8 @@ Test8 = (function() {
 			label.setAttribute('for', 'a');
 			document.body.appendChild(label);
 			
-			group.setItem({
-				id:			'control',
+			results.setItem({
+				key:		'form-association-control',
 				passed:		label.control == field
 			});
 			
@@ -2293,8 +1926,8 @@ Test8 = (function() {
 			var element = document.createElement('div');
 			document.body.appendChild(element);
 			element.innerHTML = '<form id="form"></form><input form="form">';
-			group.setItem({
-				id:			'form',
+			results.setItem({
+				key:		'form-association-form',
 				passed:		element.lastChild.form == element.firstChild
 			});
 			document.body.removeChild(element);
@@ -2304,8 +1937,8 @@ Test8 = (function() {
 			var element = document.createElement('input');
 
 			for (var p = 0; p < props.length; p++) {
-					group.setItem({
-					id:			props[p],
+				results.setItem({
+					key:		'form-association-' + props[p],
 					passed:		!!(props[p] in element)
 				});
 			}
@@ -2317,22 +1950,18 @@ Test8 = (function() {
 			var label = document.createElement("label");
 			label.setAttribute('for', 'testFormInput');
 			document.body.appendChild(label);
-			group.setItem({
-				id:			'labels',
+			results.setItem({
+				key:		'form-association-labels',
 				passed:		(!!element.labels && element.labels.length == 1 && element.labels[0] == label)
 			});
 			
 			document.body.removeChild(label);
 			document.body.removeChild(element);
 			
-			var group = this.section.getGroup({
-				id:		'other'
-			});
-
 			var element = document.createElement('input');
 
-			group.setItem({
-				id:			'autofocus',
+			results.setItem({
+				key:		'form-other-autofocus',
 				passed:		!!('autofocus' in element)
 			});
 
@@ -2340,8 +1969,8 @@ Test8 = (function() {
 				
 			for (var p = 0; p < props.length; p++) {
 				var prop = props[p].toLowerCase();
-				group.setItem({
-					id:			prop,
+				results.setItem({
+					key:		'form-other-' + prop,
 					passed:		!!(props[p] in element)
 				});
 			}
@@ -2449,35 +2078,26 @@ Test8 = (function() {
 				unknown = true;	
 			}
 			
-			var group = this.section.getGroup({
-				id:		'selectors'
-			});
-			
 			for (var i = 0; i < selectors.length; i++) {
-				group.setItem({
-					id:			selectors[i],
+				results.setItem({
+					key:		'form-selectors-' + selectors[i],
 					passed:		res[i]
 				});
 			}
 
 
-			var group = this.section.getGroup({
-				id:		'events',
-				value:	2
-			});
-			
-			var inputItem = group.setItem({
-				id:			'oninput',
+			var inputItem = results.setItem({
+				key:		'form-events-oninput',
 				passed:		isEventSupported('input')
 			});
 
-			var changeItem = group.setItem({
-				id:			'onchange',
+			var changeItem = results.setItem({
+				key:		'form-events-onchange',
 				passed:		isEventSupported('change')
 			});
 
-			var invalidItem = group.setItem({
-				id:			'oninvalid',
+			var invalidItem = results.setItem({
+				key:		'form-events-oninvalid',
 				passed:		isEventSupported('invalid')
 			});
 
@@ -2530,19 +2150,15 @@ Test8 = (function() {
 				changeItem.stopBackground();
 			}
 
-			var group = this.section.getGroup({
-				id:		'formvalidation'
-			});
-			
 			var element = document.createElement('form');
 			
-			group.setItem({
-				id:			'checkValidity',
+			results.setItem({
+				key:		'form-formvalidation-checkValidity',
 				passed:		'checkValidity' in element
 			});
 			
-			group.setItem({
-				id:			'noValidate',
+			results.setItem({
+				key:		'form-formvalidation-noValidate',
 				passed:		'noValidate' in element
 			});
 		}, 				
@@ -2576,30 +2192,20 @@ Test8 = (function() {
 	function testInteraction (results) { this.initialize(results); }			
 	testInteraction.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'interaction'
-			});
-			
+
 			/* Drag and drop */
 			var element = document.createElement('div');
 			
-			var group = this.section.getGroup({
-				id:		'dragdrop.attributes'
-			});
-			
-			group.setItem({
-				id:			'draggable',
+			results.setItem({
+				key:		'interaction-dragdrop.attributes-draggable',
 				passed:		'draggable' in element
 			});
 
-			group.setItem({
-				id:			'dropzone',
+			results.setItem({
+				key:		'interaction-dragdrop.attributes-dropzone',
 				passed:		'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO
 			});
 
-			var group = this.section.getGroup({
-				id:		'dragdrop.events'
-			});
 			
 			/* We need to check if the draggable attribute is supported, because older versions of IE do
 			   support the incompatible versions of the events below. IE 9 and up do support the HTML5
@@ -2607,38 +2213,38 @@ Test8 = (function() {
 			
 			var supported = 'draggable' in element;
 
-			group.setItem({
-				id:			'ondrag',
+			results.setItem({
+				key:		'interaction-dragdrop.events-ondrag',
 				passed:		isEventSupported('drag') && supported
 			});
 			
-			group.setItem({
-				id:			'ondragstart',
+			results.setItem({
+				key:		'interaction-dragdrop.events-ondragstart',
 				passed:		isEventSupported('dragstart') && supported
 			});
 			
-			group.setItem({
-				id:			'ondragenter',
+			results.setItem({
+				key:		'interaction-dragdrop.events-ondragenter',
 				passed:		isEventSupported('dragenter') && supported
 			});
 			
-			group.setItem({
-				id:			'ondragover',
+			results.setItem({
+				key:		'interaction-dragdrop.events-ondragover',
 				passed:		isEventSupported('dragover') && supported
 			});
 			
-			group.setItem({
-				id:			'ondragleave',
+			results.setItem({
+				key:		'interaction-dragdrop.events-ondragleave',
 				passed:		isEventSupported('dragleave') && supported
 			});
 			
-			group.setItem({
-				id:			'ondragend',
+			results.setItem({
+				key:		'interaction-dragdrop.events-ondragend',
 				passed:		isEventSupported('dragend') && supported
 			});
 			
-			group.setItem({
-				id:			'ondrop',
+			results.setItem({
+				key:		'interaction-dragdrop.events-ondrop',
 				passed:		isEventSupported('drop') && supported
 			});
 
@@ -2647,60 +2253,48 @@ Test8 = (function() {
 
 			var element = document.createElement('div');
 
-			var group = this.section.getGroup({
-				id:		'editing.elements'
-			});
-			
-			group.setItem({
-				id:			'contentEditable',
+			results.setItem({
+				key:		'interaction-editing.elements-contentEditable',
 				passed:		'contentEditable' in element
 			});
 
-			group.setItem({
-				id:			'isContentEditable',
+			results.setItem({
+				key:		'interaction-editing.elements-isContentEditable',
 				passed:		'isContentEditable' in element
 			});
 			
-			var group = this.section.getGroup({
-				id:		'editing.documents'
-			});
-
-			group.setItem({
-				id:			'designMode',
+			results.setItem({
+				key:		'interaction-editing.documents-designMode',
 				passed:		'designMode' in document
 			});
 			
-			var group = this.section.getGroup({
-				id:		'editing.apis'
-			});
-
-			group.setItem({
-				id:			'execCommand',
+			results.setItem({
+				key:		'interaction-editing.apis-execCommand',
 				passed:		'execCommand' in document
 			});
 
-			group.setItem({
-				id:			'queryCommandEnabled',
+			results.setItem({
+				key:		'interaction-editing.apis-queryCommandEnabled',
 				passed:		'queryCommandEnabled' in document
 			});
 
-			group.setItem({
-				id:			'queryCommandIndeterm',
+			results.setItem({
+				key:		'interaction-editing.apis-queryCommandIndeterm',
 				passed:		'queryCommandIndeterm' in document
 			});
 
-			group.setItem({
-				id:			'queryCommandState',
+			results.setItem({
+				key:		'interaction-editing.apis-queryCommandState',
 				passed:		'queryCommandState' in document
 			});
 
-			group.setItem({
-				id:			'queryCommandSupported',
+			results.setItem({
+				key:		'interaction-editing.apis-queryCommandSupported',
 				passed:		'queryCommandSupported' in document
 			});
 
-			group.setItem({
-				id:			'queryCommandValue',
+			results.setItem({
+				key:		'interaction-editing.apis-queryCommandValue',
 				passed:		'queryCommandValue' in document
 			});
 
@@ -2748,25 +2342,21 @@ Test8 = (function() {
 				unknown = true;	
 			}
 			
-			var group = this.section.getGroup({
-				id:		'editing.selectors'
-			});
-			
 			for (var i = 0; i < selectors.length; i++) {
-				group.setItem({
-					id:			selectors[i],
+				results.setItem({
+					key:		'interaction-editing.selectors-' + selectors[i],
 					passed:		res[i]
 				});
 			}
 			
-			this.section.setItem({
-				id:			'clipboard',
+			results.setItem({
+				key:		'interaction-clipboard',
 				passed:		!!('ClipboardEvent' in window)
 			});
 			
 
-			this.section.setItem({
-				id:			'spellcheck',
+			results.setItem({
+				key:		'interaction-spellcheck',
 				passed:		!!('spellcheck' in element)
 			});
 		}			
@@ -2775,12 +2365,8 @@ Test8 = (function() {
 	function testHistory (results) { this.initialize(results); }			
 	testHistory.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'history'
-			});
-			
-			this.section.setItem({
-				id:			'history',
+			results.setItem({
+				key:		'history-history',
 				passed:		!!(window.history && history.pushState)
 			});
 		}			
@@ -2789,10 +2375,6 @@ Test8 = (function() {
 	function testMicrodata (results) { this.initialize(results); }			
 	testMicrodata.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'microdata'
-			});
-			
 			var container = document.createElement('div');
 			container.innerHTML = '<div id="microdataItem" itemscope itemtype="http://example.net/user"><p>My name is <span id="microdataProperty" itemprop="name">Elizabeth</span>.</p></div>';
 			document.body.appendChild(container);
@@ -2815,8 +2397,8 @@ Test8 = (function() {
 										
 			document.body.removeChild(container);
 
-			this.section.setItem({
-				id:			'microdata',
+			results.setItem({
+				key:		'microdata-microdata',
 				passed:		r
 			});
 		}
@@ -2825,27 +2407,23 @@ Test8 = (function() {
 	function testOffline (results) { this.initialize(results); }			
 	testOffline.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'offline'
-			});
-
-			this.section.setItem({
-				id:			'applicationCache',
+			results.setItem({
+				key:		'offline-applicationCache',
 				passed:		!!window.applicationCache
 			});
 
-			this.section.setItem({
-				id:			'serviceWorkers',
+			results.setItem({
+				key:		'offline-serviceWorkers',
 				passed:		!!window.navigator.serviceWorker
 			});
 
-			this.section.setItem({
-				id:			'registerProtocolHandler',
+			results.setItem({
+				key:		'offline-registerProtocolHandler',
 				passed:		!!window.navigator.registerProtocolHandler
 			});
 
-			this.section.setItem({
-				id:			'registerContentHandler',
+			results.setItem({
+				key:		'offline-registerContentHandler',
 				passed:		!!window.navigator.registerContentHandler
 			});
 		}
@@ -2854,10 +2432,6 @@ Test8 = (function() {
 	function testSecurity (results) { this.initialize(results); }			
 	testSecurity.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'security'
-			});
-			
 			var passed = NO;
 			try {
 				var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
@@ -2866,40 +2440,40 @@ Test8 = (function() {
 			} catch(e) {
 			}
 
-			this.section.setItem({
-				id:			'crypto',
+			results.setItem({
+				key:		'security-crypto',
 				passed: 	passed
 			});
 
-			this.section.setItem({
-				id:			'csp10',
+			results.setItem({
+				key:		'security-csp10',
 				passed:		!(function() { try { return eval('true'); } catch (e) {} return false; })()
 			});
 
-			this.section.setItem({
-				id:			'csp11',
+			results.setItem({
+				key:		'security-csp11',
 				passed:		'SecurityPolicyViolationEvent' in window
 			});
 
-			this.section.setItem({
-				id:			'cors',
+			results.setItem({
+				key:		'security-cors',
 				passed:		!!(window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest())
 			});
 
-			this.section.setItem({
-				id:			'postMessage',
+			results.setItem({
+				key:		'security-postMessage',
 				passed:		!!window.postMessage
 			});
 
 
 
-			this.section.setItem({
-				id:			'sandbox',
+			results.setItem({
+				key:		'security-sandbox',
 				passed:		'sandbox' in document.createElement('iframe')
 			});
 
-			this.section.setItem({
-				id:			'srcdoc',
+			results.setItem({
+				key:		'security-srcdoc',
 				passed:		'srcdoc' in document.createElement('iframe')
 			});
 		}
@@ -2908,22 +2482,18 @@ Test8 = (function() {
 	function testGeolocation (results) { this.initialize(results); }			
 	testGeolocation.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'location'
-			});
-			
-			this.section.setItem({
-				id:			'geolocation',
+			results.setItem({
+				key:		'location-geolocation',
 				passed:		!!navigator.geolocation
 			});
 
-			this.section.setItem({
-				id:			'orientation',
+			results.setItem({
+				key:		'location-orientation',
 				passed:		!!window.DeviceOrientationEvent
 			});
 
-			this.section.setItem({
-				id:			'motion',
+			results.setItem({
+				key:		'location-motion',
 				passed:		!!window.DeviceMotionEvent
 			});
 		}
@@ -2932,10 +2502,6 @@ Test8 = (function() {
 	function testWebGL (results) { this.initialize(results); }			
 	testWebGL.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'webgl'
-			});
-			
 			var element = document.createElement('canvas');
 			var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
 			var context = '';
@@ -2951,8 +2517,8 @@ Test8 = (function() {
 	            } catch(e){	}
 	        }
 				
-			this.section.setItem({
-				id:			'context',
+			results.setItem({
+				key:		'webgl-context',
 				passed:		passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
 			});
 		}
@@ -2961,57 +2527,49 @@ Test8 = (function() {
 	function testCommunication (results) { this.initialize(results); }			
 	testCommunication.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'communication'
-			});
-
-			this.section.setItem({
-				id:			'beacon',
+			results.setItem({
+				key:		'communication-beacon',
 				passed:		'sendBeacon' in navigator
 			});
 			
-			this.section.setItem({
-				id:			'eventSource',
+			results.setItem({
+				key:		'communication-eventSource',
 				passed:		'EventSource' in window
 			});
 			
-			this.section.setItem({
-				id:			'fetch',
+			results.setItem({
+				key:		'communication-fetch',
 				passed:		'Promise' in window && typeof window.fetch === 'function' && window.fetch('') instanceof Promise
 			});
 			
-			this.section.setItem({
-				id:			'xmlhttprequest2.upload',
+			results.setItem({
+				key:		'communication-xmlhttprequest2.upload',
 				passed:		window.XMLHttpRequest && 'upload' in new XMLHttpRequest()
 			});
 
-			var group = this.section.getGroup({
-				id:			'xmlhttprequest2.response'
-			});
-
-			var item = group.setItem({
-				id:			'text',
+			var item = results.setItem({
+				key:		'communication-xmlhttprequest2.response-text',
 				passed:		false
 			});
 			
 			this.testResponseTypeText(item);
 
-			var item = group.setItem({
-				id:			'document',
+			var item = results.setItem({
+				key:		'communication-xmlhttprequest2.response-document',
 				passed:		false
 			});
 			
 			this.testResponseTypeDocument(item);
 
-			var item = group.setItem({
-				id:			'array',
+			var item = results.setItem({
+				key:		'communication-xmlhttprequest2.response-array',
 				passed:		false
 			});
 			
 			this.testResponseTypeArrayBuffer(item);
 
-			var item = group.setItem({
-				id:			'blob',
+			var item = results.setItem({
+				key:		'communication-xmlhttprequest2.response-blob',
 				passed:		false
 			});
 			
@@ -3022,8 +2580,8 @@ Test8 = (function() {
 			var passed = 'WebSocket' in window ? YES : 'MozWebSocket' in window ? YES | PREFIX : NO;
 			if (websocket && websocket.CLOSING !== 2) passed |= OLD;
 
-			this.section.setItem({
-				id:			'websocket.basic',
+			results.setItem({
+				key:		'communication-websocket.basic',
 				passed:		passed
 			});
 
@@ -3044,8 +2602,8 @@ Test8 = (function() {
 	          	}
 	        }
 
-			this.section.setItem({
-				id:			'websocket.binary',
+			results.setItem({
+				key:		'communication-websocket.binary',
 				passed:		passed
 			});
 		},
@@ -3198,17 +2756,13 @@ Test8 = (function() {
 	function testStreams (results) { this.initialize(results); }			
 	testStreams.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'streams'
-			});
-
-			this.section.setItem({
-				id:			'streams.readable',
+			results.setItem({
+				key:		'streams-streams.readable',
 				passed:		'ReadableStream' in window
 			});
 
-			this.section.setItem({
-				id:			'streams.writeable',
+			results.setItem({
+				key:		'streams-streams.writeable',
 				passed:		'WriteableStream' in window
 			});
 		}
@@ -3217,42 +2771,38 @@ Test8 = (function() {
 	function testFiles (results) { this.initialize(results); }			
 	testFiles.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'files'
-			});
-
-			this.section.setItem({
-				id:			'fileReader',
+			results.setItem({
+				key:		'files-fileReader',
 				passed:		'FileReader' in window
 			});
 
-			this.section.setItem({
-				id:			'fileReader.blob',
+			results.setItem({
+				key:		'files-fileReader.blob',
 				passed:		'Blob' in window
 			});
 
-			this.section.setItem({
-				id:			'fileReader.dataURL',
+			results.setItem({
+				key:		'files-fileReader.dataURL',
 				passed:		'FileReader' in window && 'readAsDataURL' in (new FileReader())
 			});
 
-			this.section.setItem({
-				id:			'fileReader.arraybuffer',
+			results.setItem({
+				key:		'files-fileReader.arraybuffer',
 				passed:		'FileReader' in window && 'readAsArrayBuffer' in (new FileReader())
 			});
 
-			this.section.setItem({
-				id:			'fileReader.objectURL',
+			results.setItem({
+				key:		'files-fileReader.objectURL',
 				passed:		'URL' in window && 'createObjectURL' in URL
 			});
 
-			this.section.setItem({
-				id:			'fileSystem',
+			results.setItem({
+				key:		'files-fileSystem',
 				passed:		!! window.requestFileSystem ? YES : !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:			'getFileSystem',
+			results.setItem({
+				key:		'files-getFileSystem',
 				passed:		!! navigator.getFileSystem ? YES : !! navigator.webkitGetFileSystem || !! navigator.mozGetFileSystem || !! window.msGetFileSystem ? YES | PREFIX : NO
 			});
 		}
@@ -3261,15 +2811,11 @@ Test8 = (function() {
 	function testStorage (results) { this.initialize(results); }			
 	testStorage.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'storage'
-			});
-			
 			
 			/* Key-value storage */
 			
-			this.section.setItem({
-				id:			'sessionStorage',
+			results.setItem({
+				key:		'storage-sessionStorage',
 				passed:		'sessionStorage' in window && window.sessionStorage != null
 			});
 
@@ -3283,8 +2829,8 @@ Test8 = (function() {
 				}
 			}
 
-			this.section.setItem({
-				id:			'localStorage',
+			results.setItem({
+				key:		'storage-localStorage',
 				passed:		passed
 			});
 
@@ -3296,18 +2842,18 @@ Test8 = (function() {
 			var passed = !! window.indexedDB ? YES : !! window.webkitIndexedDB || !! window.mozIndexedDB || !! window.moz_indexedDB || !! window.oIndexedDB || !! window.msIndexedDB ? YES | PREFIX : NO;
 			if (indexedDB && ! 'deleteDatabase' in indexedDB) passed != BUGGY;
 
-			this.section.setItem({
-				id:			'indexedDB.basic',
+			results.setItem({
+				key:		'storage-indexedDB.basic',
 				passed:		passed
 			});
 
-			var blobitem = this.section.setItem({
-				id:			'indexedDB.blob',
+			var blobitem = results.setItem({
+				key:		'storage-indexedDB.blob',
 				passed:		false
 			});
 
-			var arrayitem = this.section.setItem({
-				id:			'indexedDB.arraybuffer',
+			var arrayitem = results.setItem({
+				key:		'storage-indexedDB.arraybuffer',
 				passed:		false
 			});
 
@@ -3394,8 +2940,8 @@ Test8 = (function() {
 
 			/* WebSQL */
 
-			this.section.setItem({
-				id:			'sqlDatabase',
+			results.setItem({
+				key:		'storage-sqlDatabase',
 				passed:		!!window.openDatabase
 			});
 		}
@@ -3404,76 +2950,68 @@ Test8 = (function() {
 	function testPerformance (results) { this.initialize(results); }			
 	testPerformance.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'performance'
-			});
-
-			this.section.setItem({
-				id:			'worker',
+			results.setItem({
+				key:		'performance-worker',
 				passed:		!!window.Worker
 			});
 
-			this.section.setItem({
-				id:			'sharedWorker',
+			results.setItem({
+				key:		'performance-sharedWorker',
 				passed:		!!window.SharedWorker
 			});
 
-			var group = this.section.getGroup({
-				id:		'datatypes'
-			});
-
-			group.setItem({
-				id:			'ArrayBuffer',
+			results.setItem({
+				key:		'performance-datatypes-ArrayBuffer',
 				passed:		typeof ArrayBuffer != 'undefined'
 			});
 
-			group.setItem({
-				id:			'Int8Array',
+			results.setItem({
+				key:		'performance-datatypes-Int8Array',
 				passed:		typeof Int8Array != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'Uint8Array',
+			results.setItem({
+				key:		'performance-datatypes-Uint8Array',
 				passed:		typeof Uint8Array != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'Uint8ClampedArray',
+			results.setItem({
+				key:		'performance-datatypes-Uint8ClampedArray',
 				passed:		typeof Uint8ClampedArray != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'Int16Array',
+			results.setItem({
+				key:		'performance-datatypes-Int16Array',
 				passed:		typeof Int16Array != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'Uint16Array',
+			results.setItem({
+				key:		'performance-datatypes-Uint16Array',
 				passed:		typeof Uint16Array != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'Int32Array',
+			results.setItem({
+				key:		'performance-datatypes-Int32Array',
 				passed:		typeof Int32Array != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'Uint32Array',
+			results.setItem({
+				key:		'performance-datatypes-Uint32Array',
 				passed:		typeof Uint32Array != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'Float32Array',
+			results.setItem({
+				key:		'performance-datatypes-Float32Array',
 				passed:		typeof Float32Array != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'Float64Array',
+			results.setItem({
+				key:		'performance-datatypes-Float64Array',
 				passed:		typeof Float64Array != 'undefined'
 			});
 			
-			group.setItem({
-				id:			'DataView',
+			results.setItem({
+				key:		'performance-datatypes-DataView',
 				passed:		typeof DataView != 'undefined'
 			});
 		}
@@ -3482,19 +3020,15 @@ Test8 = (function() {
 	function testOutput (results) { this.initialize(results); }			
 	testOutput.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'output'
-			});
-			
-			this.section.setItem({
-				id:			'requestFullScreen',
+			results.setItem({
+				key:		'output-requestFullScreen',
 				passed:		!! document.documentElement.requestFullscreen ? YES : !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullscreen ? YES | PREFIX : NO
 			});
 			
 
 			/* W3C standard is "new Notification()", WebKit pre-standard is "window.webkitNotifications.createNotification()", Gecko pre-standard is "window.navigator.mozNotification.createNotification()" */
-			this.section.setItem({
-				id:			'notifications',
+			results.setItem({
+				key:		'output-notifications',
 				passed:		'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO
 			});
 		}
@@ -3504,27 +3038,23 @@ Test8 = (function() {
 	function testOther (results) { this.initialize(results); }			
 	testOther.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'other'
-			});
-			
-			this.section.setItem({
-				id:			'async',
+			results.setItem({
+				key:		'other-async',
 				passed:		'async' in document.createElement('script')
 			});
 
-			this.section.setItem({
-				id:			'defer',
+			results.setItem({
+				key:		'other-defer',
 				passed:		'defer' in document.createElement('script')
 			});
 
-			this.section.setItem({
-				id:			'onerror',
+			results.setItem({
+				key:		'other-onerror',
 				passed:		isEventSupported('error')
 			});
 
-			var executionevents = this.section.setItem({
-				id:			'executionevents',
+			var executionevents = results.setItem({
+				key:		'other-executionevents',
 				passed:		false
 			});
 	
@@ -3556,33 +3086,33 @@ Test8 = (function() {
 			}, 500);
 
 
-			this.section.setItem({
-				id:			'base64',
+			results.setItem({
+				key:		'other-base64',
 				passed:		'btoa' in window && 'atob' in window
 			});
 
-			this.section.setItem({
-				id:			'json',
+			results.setItem({
+				key:		'other-json',
 				passed:		'JSON' in window && 'parse' in JSON
 			});
 
-			this.section.setItem({
-				id:   		'mutationObserver',
+			results.setItem({
+				key:		'other-mutationObserver',
 				passed:   	'MutationObserver' in window ? YES : 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:   		'url',
+			results.setItem({
+				key:		'other-url',
 				passed:   	'URL' in window ? YES : 'WebKitURL' in window || 'MozURL' in window || 'oURL' in window || 'msURL' in window ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:   		'encoding',
+			results.setItem({
+				key:		'other-encoding',
 				passed:   	'TextEncoder' in window && 'TextDecoder' in window ? YES : NO
 			});
 
-			this.section.setItem({
-				id:   		'i18n',
+			results.setItem({
+				key:		'other-i18n',
 				passed:   	'Intl' in window ? YES : NO
 			});
 
@@ -3604,28 +3134,28 @@ Test8 = (function() {
 				passed = YES;	    
 			}
     
-			this.section.setItem({
-				id:   		'promises',
+			results.setItem({
+				key:		'other-promises',
 				passed:   	passed
 			});
     
     
 
 
-			this.section.setItem({
-				id:			'pagevisiblity',
+			results.setItem({
+				key:		'other-pagevisiblity',
 				passed:		'visibilityState' in document ? YES : 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document ? YES | PREFIX : NO
 			});
 
-			this.section.setItem({
-				id:			'getSelection',
+			results.setItem({
+				key:		'other-getSelection',
 				passed:		!!window.getSelection
 			});
 
 			var element = document.createElement('div');
 			
-			this.section.setItem({
-				id:			'scrollIntoView',
+			results.setItem({
+				key:		'other-scrollIntoView',
 				passed:		!!element.scrollIntoView
 			});
 			
@@ -3636,17 +3166,13 @@ Test8 = (function() {
 	function testAnimation (results) { this.initialize(results); }			
 	testAnimation.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'animation'
-			});
-			
-			this.section.setItem({
-				id:			'webanimation',
+			results.setItem({
+				key:		'animation-webanimation',
 				passed:		'animate' in document.createElement('div')
 			});
 
-			this.section.setItem({
-				id:			'requestAnimationFrame',
+			results.setItem({
+				key:		'animation-requestAnimationFrame',
 				passed:		!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO
 			});
 		}
@@ -3656,17 +3182,13 @@ Test8 = (function() {
 	function testComponents (results) { this.initialize(results); }			
 	testComponents.prototype = {
 		initialize: function(results) {
-			this.section = results.getSection({
-				id:		'components'
-			});
-			
-			this.section.setItem({
-				id:			'custom',
+			results.setItem({
+				key:		'components-custom',
 				passed:		'registerElement' in document
 			});
 
-			this.section.setItem({
-				id:			'shadowdom',
+			results.setItem({
+				key:		'components-shadowdom',
 				passed:		'attachShadow' in document.createElement('div') ? YES : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') ? YES | OLD : NO
 			});
 			
@@ -3677,13 +3199,13 @@ Test8 = (function() {
 			} catch(error) {
 			}
 
-			this.section.setItem({
-				id:			'template',
+			results.setItem({
+				key:		'components-template',
 				passed:		passed
 			});
 
-			this.section.setItem({
-				id:			'imports',
+			results.setItem({
+				key:		'components-imports',
 				passed:		'import' in document.createElement('link')
 			});
 		}
@@ -3832,30 +3354,12 @@ Test8 = (function() {
 		},
 		
 		finished: function() {
-			var results = [], points = [];
-			
-			collectResults(0, '', this.results);
-			function collectResults(level, prefix, data) {
-				if (data.items) {
-					for (var i = 0; i < data.items.length; i++) {
-						if (level == 0) points.push(data.items[i].data.id + '=' + data.items[i].points + '/' + data.items[i].max);
-						if (typeof data.items[i].data.passed != 'undefined') results.push(prefix + data.items[i].data.id + '=' + (+data.items[i].data.passed));
-						if (data.items[i].items) {
-							collectResults(level + 1, prefix + data.items[i].data.id + '-', data.items[i]);
-						}
-					}
-				}
-			}
-			
 			var uniqueid = (((1+Math.random())*0x1000000)|0).toString(16).substring(1) + ("0000000000" + (new Date().getTime() - new Date(2010,0,1).getTime()).toString(16)).slice(-10);
 
 			this.callback({
 				revision:	revision,
 				uniqueid:	uniqueid,
-				score:		this.results.points,
-				results:	results.join(','),
-				points:		points.join(','),
-				maximum:	this.results.max
+				results:	this.results.toString(),
 			});
 		}
 	};
