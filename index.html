@@ -258,8 +258,8 @@
 					/* Submit results */
 					try {
 						var payload = '{' +
-									  '"version": "8",' +
-									  '"revision": "' + (r.revision || '0') + '",' +
+									  '"version": "' + r.version + '",' +
+									  '"revision": "' + r.revision + '",' +
 									  '"uniqueid": "' + r.uniqueid + '",' +
 									  '"score": ' + c.score + ',' +
 									  '"maximum": ' + c.maximum + ',' +
