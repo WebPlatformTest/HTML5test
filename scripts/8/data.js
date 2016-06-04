@@ -1759,7 +1759,7 @@ var tests = [
 									{
 										id:		'webrtc',
 										name: 	'WebRTC 1.0',
-										value:	10, 
+										value:	15, 
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
 													[ 'wp',  '/apis/webrtc/RTCPeerConnection' ],
@@ -1768,7 +1768,7 @@ var tests = [
 									}, {
 										id:		'objectrtc',
 										name: 	'ObjectRTC API for WebRTC',
-										value:	10, 
+										value:	{ maximum: 15, conditional: '!webrtc.webrtc' },
 										urls:	[
 													[ 'w3c', 'http://ortc.org/wp-content/uploads/2014/10/ortc.html' ]
 												]
@@ -2294,7 +2294,8 @@ var tests = [
 										id:			'sqlDatabase',
 										name: 		'Web SQL Database',
 										status:		'rejected',
-										value:		5, 
+										value:		{ maximum: 5, conditional: '!storage.indexedDB.basic' },
+													 
 										url:		'http://www.w3.org/TR/webdatabase/'
 									}
 								]

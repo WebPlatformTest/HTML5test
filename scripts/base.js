@@ -102,6 +102,105 @@
 
 
 
+	var NO = 0, 
+		YES = 1, 
+		OLD = 2, 
+		BUGGY = 4, 
+		PREFIX = 8, 
+		BLOCKED = 16,
+		DISABLED = 32,	
+		UNCONFIRMED = 64;	
+
+
+	var Calculate = function() { this.initialize.apply(this, arguments) };
+	Calculate.prototype = {
+		initialize: function(test, data) {
+			this.parameters = {
+				test: 		test,
+				data:		data
+			};
+			
+			this.maximum = 0;
+			this.score = 0;
+			this.points = [];
+			
+			for (var i = 0; i < this.parameters.data.length; i++) {
+				this.iterate(this.parameters.data[i].items, '');
+			}
+			
+			this.points = this.points.join(',');
+		},
+		
+		iterate: function(data, prefix) {
+			for (var i = 0; i < data.length; i++) {
+				if (typeof data[i].id != 'undefined') {
+					if (prefix == '') {
+						var score = this.score;
+						var maximum = this.maximum;
+					}
+					
+					if (typeof data[i].value != 'undefined') {
+						this.calculate(prefix + (prefix == '' ? '' : '.') + data[i].id, data[i]);
+					}
+
+					if (typeof data[i].items != 'undefined') {
+						this.iterate(data[i].items, prefix + (prefix == '' ? '' : '.') + data[i].id);
+					}
+
+					if (prefix == '') {
+						this.points.push(data[i].id + '=' + (this.score - score) + '/' + (this.maximum - maximum));
+					}
+				}
+			}
+		},
+		
+		calculate: function(key, data) {
+			var result = true;			
+			var value = typeof data.value == 'object' ? data.value : { maximum: data.value };  
+			
+			if (typeof data.value.conditional == 'undefined') {
+				this.maximum += value.maximum;
+			}
+			
+			if (typeof data.items == 'object') {
+				for (var i = 0; i < data.items.length; i++) {
+					result &= this.getResult(key + '.' + data.items[i].id) & YES;
+				}
+			}
+			else {
+				result = this.getResult(key);
+			}
+						
+			if (result & YES) {
+				var valid = true;	
+				
+				if (typeof data.value.conditional == 'string') {
+					if (data.value.conditional.substr(0, 1) == '!') {
+						var conditional = this.getResult(data.value.conditional.substr(1));
+						
+						if (conditional & YES) {
+							valid = false;
+						}
+					}
+				}
+				
+				if (valid) {
+					this.score += value.maximum;
+				}	
+			}
+		},
+		
+		getResult: function(key) {
+			if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.parameters.test.results)) {
+				return parseInt(match[1], 10);
+			}
+			
+			return null;
+		}
+	};
+
+
+
 	/* Base UI functions */
 
 	var Index = function() { this.initialize.apply(this, arguments) };
@@ -441,15 +540,6 @@
 	}
 
 
-
-	var NO = 0, 
-		YES = 1, 
-		OLD = 2, 
-		BUGGY = 4, 
-		PREFIX = 8, 
-		BLOCKED = 16,
-		DISABLED = 32,	
-		UNCONFIRMED = 64;	
 
 	var ResultsTable = function() { this.initialize.apply(this, arguments) };
 	ResultsTable.prototype = {
