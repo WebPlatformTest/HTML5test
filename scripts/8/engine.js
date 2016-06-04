@@ -562,47 +562,35 @@ Test8 = (function() {
 
 
 			/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
-			var item = {
+			results.setItem({
 				key:	'video-mpeg4',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
-			};
-			
-			results.setItem(item);
+			});
 		
-			var item = {
+			results.setItem({
 				key:	'video-h264',
 				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))				
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'video-h265',
 				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="hvc1.1.L0.0"') || this.canPlayType('video/mp4; codecs="hev1.1.L0.0"'))
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'video-theora',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'video-webmvp8',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp8"')
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'video-webmvp9',
 				passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp9"')
-			};
-			
-			results.setItem(item);
+			});
 		
 		
 			var passed = true;
@@ -640,12 +628,10 @@ Test8 = (function() {
 				// if (this.element.canPlayType('video/huh') != '') passed = false;
 			}
 			
-			var item = {
+			results.setItem({
 				key:	'video-canplaytype',
 				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
-			};
-		
-			results.setItem(item);
+			});
 		},
 		
 		canPlayType: function(t) {
@@ -682,12 +668,10 @@ Test8 = (function() {
 				passed:	'preload' in this.element
 			});
 
-			var item = {
+			results.setItem({
 				key:	'audio-pcm',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
-			};
-			
-			results.setItem(item);
+			});
 
 			var r = false;
 			if (this.element.canPlayType) {
@@ -701,62 +685,45 @@ Test8 = (function() {
 				}
 			}
 		
-			var item = {
+			results.setItem({
 				key:	'audio-mp3',
 				passed:	r
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'audio-aac',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'audio-ac3',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="ac-3"')
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'audio-ec3',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="ec-3"')
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'audio-vorbis',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'audio-opus',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="opus"') 
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'audio-webm',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
-			};
-			
-			results.setItem(item);
+			});
 
-			var item = {
+			results.setItem({
 				key:	'audio-webmopus',
 				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="opus"') 
-			};
-			
-			results.setItem(item);
-
+			});
 
 			results.setItem({
 				key:		'audio-webaudio',
