@@ -148,7 +148,13 @@ Test8 = (function() {
 	})();
 
 
-
+	var log = (function(){
+		if (console && console.log) {
+			return console.log;
+		}
+		
+		return function() {};
+	})();
 
 
 
@@ -701,27 +707,27 @@ Test8 = (function() {
 			if (!!this.element.canPlayType) {
 				if (this.element.canPlayType('video/nonsense') == 'no') { 
 					passed = false; 
-					if (console && console.log) console.log('Codec detection is buggy: known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string') 
+					log('Codec detection is buggy: known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string') 
 				}
 				
 				if (this.element.canPlayType('video/webm') == 'probably') { 
 					passed = false; 
-					if (console && console.log) console.log('Codec detection is buggy: known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present') 
+					log('Codec detection is buggy: known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present') 
 				}
 				
 				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'probably') {
 					passed = false;
-					if (console && console.log) console.log('Codec detection is buggy: known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around') 
+					log('Codec detection is buggy: known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around') 
 				}
 			
 				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'maybe') {
 					passed = false;
-					if (console && console.log) console.log('Codec detection is buggy: known bug in Android where no better answer than "maybe" is given') 
+					log('Codec detection is buggy: known bug in Android where no better answer than "maybe" is given') 
 				}
 						
 				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') {
 					passed = false;
-					if (console && console.log) console.log('Codec detection is buggy: known bug in Internet Explorer 9 that requires both audio and video codec on test') 
+					log('Codec detection is buggy: known bug in Internet Explorer 9 that requires both audio and video codec on test') 
 				}
 			}
 			
@@ -3197,17 +3203,17 @@ Test8 = (function() {
 			});
 
 			if (indexedDB && 'deleteDatabase' in indexedDB) {
-				if (console && console.log) console.log('IndexedDB: starting tests');
+				log('IndexedDB: starting tests');
 			
 				try {
 					blobitem.startBackground();
 					arrayitem.startBackground();
 
-					if (console && console.log) console.log('IndexedDB: delete existing database (if exists)');
+					log('IndexedDB: delete existing database (if exists)');
 					var request = indexedDB.deleteDatabase('html5test');
 						
 					request.onerror = function(e) {
-						if (console && console.log) console.log('IndexedDB: error, could not delete database', e);
+						log('IndexedDB: error, could not delete database', e);
 
 						blobitem.stopBackground();
 						arrayitem.stopBackground();
@@ -3215,48 +3221,48 @@ Test8 = (function() {
 						
 					request.onsuccess = function () {
 						var request = indexedDB.open('html5test', 1);
-						if (console && console.log) console.log('IndexedDB: opening new database');
+						log('IndexedDB: opening new database');
 						
 						request.onupgradeneeded = function() {
-							if (console && console.log) console.log('IndexedDB: creating objectStore');
+							log('IndexedDB: creating objectStore');
 							request.result.createObjectStore("store");
 						};
 						
 						request.onerror = function(event) {
-							if (console && console.log) console.log('IndexedDB: error opening database', event);
+							log('IndexedDB: error opening database', event);
 
 							blobitem.stopBackground();
 							arrayitem.stopBackground();
 						};
 						
 						request.onsuccess = function() {
-							if (console && console.log) console.log('IndexedDB: database opened');
+							log('IndexedDB: database opened');
 
 							var db = request.result;
 							
 							try {
 								db.transaction("store", "readwrite").objectStore("store").put(new Blob(), "key");
 		
-								if (console && console.log) console.log('IndexedDB: objectStore with Blob passed');
+								log('IndexedDB: objectStore with Blob passed');
 
 								blobitem.update({
 									passed: true
 								});
 							} catch (e) {
-								if (console && console.log) console.log('IndexedDB: objectStore with Blob failed');
+								log('IndexedDB: objectStore with Blob failed');
 							}
 							
 							try {
 								db.transaction("store", "readwrite").objectStore("store").put(new ArrayBuffer(), "key");
 		
-								if (console && console.log) console.log('IndexedDB: objectStore with ArrayBuffer passed');
+								log('IndexedDB: objectStore with ArrayBuffer passed');
 
 									arrayitem.update({
 									passed: true
 								});
 								
 							} catch (e) {
-								if (console && console.log) console.log('IndexedDB: objectStore with ArrayBuffer failed');
+								log('IndexedDB: objectStore with ArrayBuffer failed');
 							}
 							
 							blobitem.stopBackground();
@@ -3267,7 +3273,7 @@ Test8 = (function() {
 						};
 					};
 				} catch (e) {
-					if (console && console.log) console.log('IndexedDB: exception reached during test', e);
+					log('IndexedDB: exception reached during test', e);
 
 					blobitem.stopBackground();
 					arrayitem.stopBackground();
