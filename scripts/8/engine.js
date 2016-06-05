@@ -2553,7 +2553,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'history-history',
-				passed:	window.history && history.pushState
+				passed:	!!(window.history && history.pushState)
 			});
 		}			
 	};
