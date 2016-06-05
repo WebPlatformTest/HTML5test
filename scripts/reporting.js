@@ -712,6 +712,7 @@
 								}
 								else {
 									switch(true) {
+										case !! (result & UNKNOWN):		cell.innerHTML = '<div>Unknown <span class="buggy">?</span></div>'; break;
 										case !! (result & BLOCKED):		cell.innerHTML = '<div>Broken <span class="buggy">!</span></div>'; break;
 										case !! (result & DISABLED):	cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
 										default:						cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
@@ -1273,6 +1274,7 @@
 					}
 					else {
 						switch(true) {
+							case !! (result & UNKNOWN):		cell.innerHTML = '<div>Unknown <span class="partial">?</span></div>'; break;
 							case !! (result & BLOCKED):		cell.innerHTML = '<div>Not functional <span class="buggy">!</span></div>'; break;
 							case !! (result & DISABLED):	cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
 							default:						cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
@@ -1604,6 +1606,7 @@
 			}
 			else {
 				switch(true) {
+					case !! (status & UNKNOWN):		html = '<div>Unknown <span class="partial">?</span></div>'; break;
 					case !! (status & BLOCKED):		html = '<div>Not functional <span class="buggy">!</span></div>'; break;
 					case !! (status & DISABLED):	html = '<div>Disabled <span class="ballot">✘</span></div>'; break;
 					default:						html = '<div>No <span class="ballot">✘</span></div>'; break;
