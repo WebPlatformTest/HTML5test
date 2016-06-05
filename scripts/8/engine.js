@@ -1515,16 +1515,14 @@ Test8 = (function() {
 			
 			results.setItem({
 				key:		'form-text-element',
-				passed:		element.field.type == 'text'
+				passed:		element.type == 'text'
 			});
 			
 			results.setItem({
 				key:		'form-text-selection',
-				passed:		'selectionDirection' in element.field
+				passed:		'selectionDirection' in element
 			});
-			
-			this.removeInput(element);
-			
+						
 			
 			/* input type=search */
 			
@@ -1532,11 +1530,9 @@ Test8 = (function() {
 			
 			results.setItem({
 				key:		'form-search-element',
-				passed:		element.field.type == 'search'
+				passed:		element.type == 'search'
 			});
-			
-			this.removeInput(element);
-			
+						
 			
 			/* input type=tel */
 			
@@ -1544,67 +1540,61 @@ Test8 = (function() {
 			
 			results.setItem({
 				key:		'form-tel-element',
-				passed:		element.field.type == 'tel'
+				passed:		element.type == 'tel'
 			});
-			
-			this.removeInput(element);
-			
+						
 			
 			/* input type=url */
 			
 			var element = this.createInput('url');
 			
 			var validation = false;
-			if ('validity' in element.field) {
+			if ('validity' in element) {
 				validation = true;
 				
-				element.field.value = "foo";
-				validation &= !element.field.validity.valid
+				element.value = "foo";
+				validation &= !element.validity.valid
 						
-				element.field.value = "http://foo.org";
-				validation &= element.field.validity.valid
+				element.value = "http://foo.org";
+				validation &= element.validity.valid
 			}
 			
 			results.setItem({
 				key:		'form-url-element',
-				passed:		element.field.type == 'url'
+				passed:		element.type == 'url'
 			});
 			
 			results.setItem({
 				key:		'form-url-validation',
 				passed:		validation
 			});
-			
-			this.removeInput(element);
-			
+						
 			
 			/* input type=email */
 			
 			var element = this.createInput('email');
 													
 			var validation = false;
-			if ('validity' in element.field) {
+			if ('validity' in element) {
 				validation = true;
 				
-				element.field.value = "foo";
-				validation &= !element.field.validity.valid
+				element.value = "foo";
+				validation &= !element.validity.valid
 
-				element.field.value = "foo@bar.org";
-				validation &= element.field.validity.valid
+				element.value = "foo@bar.org";
+				validation &= element.validity.valid
 			}
 			
 			results.setItem({
 				key:		'form-email-element',
-				passed:		element.field.type == 'email'
+				passed:		element.type == 'email'
 			});
 			
 			results.setItem({
 				key:		'form-email-validation',
 				passed:		validation
 			});
-			
-			this.removeInput(element);
-			
+						
 			
 			/* input type=date, month, week, time, datetime and datetime-local */
 			
@@ -1612,10 +1602,10 @@ Test8 = (function() {
 			for (var t = 0; t < types.length; t++) {
 				var element = this.createInput(types[t]);
 				
-				element.field.value = "foobar";							
-				var sanitization = element.field.value == '';
+				element.value = "foobar";							
+				var sanitization = element.value == '';
 				
-				var minimal = element.field.type == types[t];
+				var minimal = element.type == types[t];
 
 				results.setItem({
 					key:		'form-' + types[t] + '-element',
@@ -1634,42 +1624,40 @@ Test8 = (function() {
 				
 				results.setItem({
 					key:		'form-' + types[t] + '-min',
-					passed:		minimal && 'min' in element.field
+					passed:		minimal && 'min' in element
 				});
 				
 				results.setItem({
 					key:		'form-' + types[t] + '-max',
-					passed:		minimal && 'max' in element.field
+					passed:		minimal && 'max' in element
 				});
 				
 				results.setItem({
 					key:		'form-' + types[t] + '-step',
-					passed:		minimal && 'step' in element.field
+					passed:		minimal && 'step' in element
 				});
 
 				results.setItem({
 					key:		'form-' + types[t] + '-stepDown',
-					passed:		minimal && 'stepDown' in element.field
+					passed:		minimal && 'stepDown' in element
 				});
 
 				results.setItem({
 					key:		'form-' + types[t] + '-stepUp',
-					passed:		minimal && 'stepUp' in element.field
+					passed:		minimal && 'stepUp' in element
 				});
 				
 				if (t != 'datetime-local' && t != 'datetime') {
 					results.setItem({
 						key:		'form-' + types[t] + '-valueAsDate',
-						passed:		minimal && 'valueAsDate' in element.field
+						passed:		minimal && 'valueAsDate' in element
 					});
 				}
 				
 				results.setItem({
 					key:		'form-' + types[t] + '-valueAsNumber',
-					passed:		minimal && 'valueAsNumber' in element.field
+					passed:		minimal && 'valueAsNumber' in element
 				});
-
-				this.removeInput(element);
 			}
 			
 			
@@ -1679,23 +1667,23 @@ Test8 = (function() {
 			for (var t = 0; t < types.length; t++) {
 				var element = this.createInput(types[t]);
 				
-				element.field.value = "foobar";							
-				var sanitization = element.field.value != 'foobar';
+				element.value = "foobar";							
+				var sanitization = element.value != 'foobar';
 				
 				var validation = false;
-				if ('validity' in element.field) {
+				if ('validity' in element) {
 					validation = true;
 					
-					element.field.min = 40;
-					element.field.max = 50;
-					element.field.value = 100;
-					validation &= !element.field.validity.valid
+					element.min = 40;
+					element.max = 50;
+					element.value = 100;
+					validation &= !element.validity.valid
 
-					element.field.value = 42;
-					validation &= element.field.validity.valid
+					element.value = 42;
+					validation &= element.validity.valid
 				}
 				
-				var minimal = element.field.type == types[t];
+				var minimal = element.type == types[t];
 				
 				results.setItem({
 					key:		'form-' + types[t] + '-element',
@@ -1721,35 +1709,33 @@ Test8 = (function() {
 
 				results.setItem({
 					key:		'form-' + types[t] + '-min',
-					passed:		minimal && 'min' in element.field
+					passed:		minimal && 'min' in element
 				});
 				
 				results.setItem({
 					key:		'form-' + types[t] + '-max',
-					passed:		minimal && 'max' in element.field
+					passed:		minimal && 'max' in element
 				});
 				
 				results.setItem({
 					key:		'form-' + types[t] + '-step',
-					passed:		minimal && 'step' in element.field
+					passed:		minimal && 'step' in element
 				});
 
 				results.setItem({
 					key:		'form-' + types[t] + '-stepDown',
-					passed:		minimal && 'stepDown' in element.field
+					passed:		minimal && 'stepDown' in element
 				});
 
 				results.setItem({
 					key:		'form-' + types[t] + '-stepUp',
-					passed:		minimal && 'stepUp' in element.field
+					passed:		minimal && 'stepUp' in element
 				});
 				
 				results.setItem({
 					key:		'form-' + types[t] + '-valueAsNumber',
-					passed:		minimal && 'valueAsNumber' in element.field
+					passed:		minimal && 'valueAsNumber' in element
 				});
-
-				this.removeInput(element);
 			}					
 			
 			
@@ -1757,12 +1743,12 @@ Test8 = (function() {
 			
 			var element = this.createInput('color');
 									
-			element.field.value = "foobar";					
-			var sanitization = element.field.value != 'foobar';
+			element.value = "foobar";					
+			var sanitization = element.value != 'foobar';
 
 			results.setItem({
 				key:		'form-color-element',
-				passed:		element.field.type == 'color'
+				passed:		element.type == 'color'
 			});
 			
 			results.setItem({
@@ -1774,8 +1760,6 @@ Test8 = (function() {
 				key:		'form-color-sanitization',
 				passed:		sanitization
 			});
-				
-			this.removeInput(element);
 			
 			
 			/* input type=checkbox */
@@ -1784,44 +1768,40 @@ Test8 = (function() {
 			
 			results.setItem({
 				key:		'form-checkbox-element',
-				passed:		element.field.type == 'checkbox'
+				passed:		element.type == 'checkbox'
 			});
 
 			results.setItem({
 				key:		'form-checkbox-indeterminate',
-				passed:		'indeterminate' in element.field
+				passed:		'indeterminate' in element
 			});
-
-			this.removeInput(element);
 			
 
 			/* input type=image */
 			
 			var element = this.createInput('image');
-			element.field.style.display = 'inline-block';
+			element.style.display = 'inline-block';
 			
-			var supportsWidth = 'width' in element.field;
-			var supportsHeight = 'height' in element.field;
+			var supportsWidth = 'width' in element;
+			var supportsHeight = 'height' in element;
 			
-			element.field.setAttribute('width', '100');
-			element.field.setAttribute('height', '100');
+			element.setAttribute('width', '100');
+			element.setAttribute('height', '100');
 			
 			results.setItem({
 				key:		'form-image-element',
-				passed:		element.field.type == 'image'
+				passed:		element.type == 'image'
 			});
 
 			results.setItem({
 				key:		'form-image-width',
-				passed:		supportsWidth && element.field.offsetWidth == 100
+				passed:		supportsWidth && element.offsetWidth == 100
 			});
 
 			results.setItem({
 				key:		'form-image-height',
-				passed:		supportsHeight && element.field.offsetHeight == 100
+				passed:		supportsHeight && element.offsetHeight == 100
 			});
-			
-			this.removeInput(element);
 			
 
 			/* input type=file */
@@ -1830,20 +1810,18 @@ Test8 = (function() {
 			
 			results.setItem({
 				key:		'form-file-element',
-				passed:		element.field.type == 'file'
+				passed:		element.type == 'file'
 			});
 
 			results.setItem({
 				key:		'form-file-files',
-				passed:		element.field.files && element.field.files instanceof FileList
+				passed:		element.files && element.files instanceof FileList
 			});
 
 			results.setItem({
 				key:		'form-file-directory',
-				passed:		'directory' in element.field && window.Directory
+				passed:		'directory' in element && window.Directory
 			});
-
-			this.removeInput(element);
 			
 
 			/* textarea */
@@ -2330,28 +2308,14 @@ Test8 = (function() {
 		}, 				
 			
 		createInput: function(type) {
-			var wrapper = document.createElement('div');
-			document.body.appendChild(wrapper)
-
 			var field = document.createElement('input');
-			wrapper.appendChild(field);
 			
 			try {
 				field.setAttribute('type', type);
 			} catch(e) {
 			}
 			
-			/* Make sure our field is position absolutely for CSS style comparison */
-			wrapper.style.position = 'absolute';
-			wrapper.style.display = 'inline-block';
-			wrapper.style.top = '0px';
-			wrapper.style.left = '0px';
-			
-			return { field: field, wrapper: wrapper };
-		},
-		
-		removeInput: function(e) {
-			document.body.removeChild(e.wrapper);
+			return field;
 		}
 	};
 
