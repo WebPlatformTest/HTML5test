@@ -3635,8 +3635,8 @@ Test8 = (function () {
         }
     };
 
-    function Test(callback, error) { this.initialize(callback, error); }
-    Test.prototype = {
+    function Runner(callback, error) { this.initialize(callback, error); }
+    Runner.prototype = {
         initialize: function (callback, error) {
             blacklists = [
                 [
@@ -3775,5 +3775,5 @@ Test8 = (function () {
         }
     };
 
-    return Test;
+    return Runner;
 })();
