@@ -2348,11 +2348,11 @@ Test8 = (function () {
         /* video element */
 
         function (results) {
-            this.element = document.createElement('video');
+            var element = document.createElement('video');
 
             results.setItem({
                 key: 'video-element',
-                passed: !!this.element.canPlayType
+                passed: !!element.canPlayType
             });
 
 
@@ -2360,7 +2360,7 @@ Test8 = (function () {
 
             results.setItem({
                 key: 'video-audiotracks',
-                passed: 'audioTracks' in this.element
+                passed: 'audioTracks' in element
             });
 
 
@@ -2368,7 +2368,7 @@ Test8 = (function () {
 
             results.setItem({
                 key: 'video-videotracks',
-                passed: 'videoTracks' in this.element
+                passed: 'videoTracks' in element
             });
 
 
@@ -2384,7 +2384,7 @@ Test8 = (function () {
 
             results.setItem({
                 key: 'video-poster',
-                passed: 'poster' in this.element
+                passed: 'poster' in element
             });
 
 
@@ -2392,7 +2392,7 @@ Test8 = (function () {
 
             results.setItem({
                 key: 'video-drm',
-                passed: 'setMediaKeys' in this.element ? YES : 'webkitAddKey' in this.element || 'webkitSetMediaKeys' in this.element || 'mozSetMediaKeys' in this.element || 'msSetMediaKeys' in this.element ? YES | PREFIX : NO
+                passed: 'setMediaKeys' in element ? YES : 'webkitAddKey' in element || 'webkitSetMediaKeys' in element || 'mozSetMediaKeys' in element || 'msSetMediaKeys' in element ? YES | PREFIX : NO
             });
 
 
@@ -2416,13 +2416,13 @@ Test8 = (function () {
         /* video codecs */
 
         function (results) {
-            this.element = document.createElement('video');
+            var element = document.createElement('video');
 
             /* mpeg-4 codec */
 
             results.setItem({
                 key: 'video-mpeg4',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'video/mp4; codecs="mp4v.20.8"')
+                passed: !!element.canPlayType && canPlayType(element, 'video/mp4; codecs="mp4v.20.8"')
             });
 
             /* h.264 codec */
@@ -2431,63 +2431,63 @@ Test8 = (function () {
 
             results.setItem({
                 key: 'video-h264',
-                passed: !!this.element.canPlayType && (canPlayType(this.element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(this.element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
+                passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
             });
 
             /* h.265 codec */
 
             results.setItem({
                 key: 'video-h265',
-                passed: !!this.element.canPlayType && (canPlayType(this.element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(this.element, 'video/mp4; codecs="hev1.1.L0.0"'))
+                passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"'))
             });
 
             /* theora codec */
 
             results.setItem({
                 key: 'video-theora',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'video/ogg; codecs="theora"')
+                passed: !!element.canPlayType && canPlayType(element, 'video/ogg; codecs="theora"')
             });
 
             /* vp8 in webm codec */
 
             results.setItem({
                 key: 'video-webmvp8',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'video/webm; codecs="vp8"')
+                passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp8"')
             });
 
             /* vp9 in webm codec */
 
             results.setItem({
                 key: 'video-webmvp9',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'video/webm; codecs="vp9"')
+                passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp9"')
             });
 
             /* does codec detection work properly? */
 
             var passed = true;
 
-            if (!!this.element.canPlayType) {
-                if (this.element.canPlayType('video/nonsense') == 'no') {
+            if (!!element.canPlayType) {
+                if (element.canPlayType('video/nonsense') == 'no') {
                     passed = false;
                     log('Codec detection is buggy: known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string')
                 }
 
-                if (this.element.canPlayType('video/webm') == 'probably') {
+                if (element.canPlayType('video/webm') == 'probably') {
                     passed = false;
                     log('Codec detection is buggy: known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present')
                 }
 
-                if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'probably') {
+                if (element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && element.canPlayType('video/mp4') == 'probably') {
                     passed = false;
                     log('Codec detection is buggy: known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around')
                 }
 
-                if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'maybe') {
+                if (element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && element.canPlayType('video/mp4') == 'maybe') {
                     passed = false;
                     log('Codec detection is buggy: known bug in Android where no better answer than "maybe" is given')
                 }
 
-                if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') {
+                if (element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') {
                     passed = false;
                     log('Codec detection is buggy: known bug in Internet Explorer 9 that requires both audio and video codec on test')
                 }
@@ -2495,7 +2495,7 @@ Test8 = (function () {
 
             results.setItem({
                 key: 'video-canplaytype',
-                passed: this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
+                passed: element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
             });
         },
 
@@ -2503,25 +2503,25 @@ Test8 = (function () {
         /* audio element */
 
         function (results) {
-            this.element = document.createElement('audio');
+            var element = document.createElement('audio');
 
             results.setItem({
                 key: 'audio-element',
-                passed: !!this.element.canPlayType
+                passed: !!element.canPlayType
             });
 
             /* loop property */
 
             results.setItem({
                 key: 'audio-loop',
-                passed: 'loop' in this.element
+                passed: 'loop' in element
             });
 
             /* preload property */
 
             results.setItem({
                 key: 'audio-preload',
-                passed: 'preload' in this.element
+                passed: 'preload' in element
             });
         },
 
@@ -2529,20 +2529,20 @@ Test8 = (function () {
         /* audio codecs */
 
         function (results) {
-            this.element = document.createElement('audio');
+            var element = document.createElement('audio');
 
             /* pcm codec */
 
             results.setItem({
                 key: 'audio-pcm',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'audio/wav; codecs="1"')
+                passed: !!element.canPlayType && canPlayType(element, 'audio/wav; codecs="1"')
             });
 
             /* mp3 codec */
 
             var r = false;
-            if (this.element.canPlayType) {
-                var t = this.element.canPlayType('audio/mpeg');
+            if (element.canPlayType) {
+                var t = element.canPlayType('audio/mpeg');
                 if (t == 'maybe') {
                     // We need to check if the browser really supports playing MP3s by loading one and seeing if the
                     // loadedmetadata event is triggered... but for now assume it does support it...
@@ -2561,49 +2561,49 @@ Test8 = (function () {
 
             results.setItem({
                 key: 'audio-aac',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="mp4a.40.2"')
+                passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="mp4a.40.2"')
             });
 
             /* ac3 codec */
 
             results.setItem({
                 key: 'audio-ac3',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="ac-3"')
+                passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ac-3"')
             });
 
             /* enhanced ac3 codec */
 
             results.setItem({
                 key: 'audio-ec3',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="ec-3"')
+                passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ec-3"')
             });
 
             /* ogg vorbis codec */
 
             results.setItem({
                 key: 'audio-vorbis',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'audio/ogg; codecs="vorbis"')
+                passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="vorbis"')
             });
 
             /* ogg opus codec */
 
             results.setItem({
                 key: 'audio-opus',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'audio/ogg; codecs="opus"')
+                passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="opus"')
             });
 
             /* webm vorbis codec */
 
             results.setItem({
                 key: 'audio-webm',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'audio/webm; codecs="vorbis"')
+                passed: !!element.canPlayType && canPlayType(element, 'audio/webm; codecs="vorbis"')
             });
 
             /* webm opus codec */
 
             results.setItem({
                 key: 'audio-webmopus',
-                passed: !!this.element.canPlayType && canPlayType(this.element, 'audio/webm; codecs="opus"')
+                passed: !!element.canPlayType && canPlayType(element, 'audio/webm; codecs="opus"')
             });
         },
 
@@ -2695,11 +2695,11 @@ Test8 = (function () {
         /* canvas element and 2d context */
 
         function (results) {
-            this.canvas = document.createElement('canvas');
+            var canvas = document.createElement('canvas');
 
             results.setItem({
                 key: 'canvas-context',
-                passed: !!(this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D)
+                passed: !!(canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && canvas.getContext('2d') instanceof CanvasRenderingContext2D)
             });
         },
 
@@ -2707,14 +2707,14 @@ Test8 = (function () {
         /* canvas drawing functions */
 
         function (results) {
-            this.canvas = document.createElement('canvas');
+            var canvas = document.createElement('canvas');
 
             /* text support */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = typeof this.canvas.getContext('2d').fillText == 'function';
+                    passed = typeof canvas.getContext('2d').fillText == 'function';
                 }
                 catch (e) {
                 }
@@ -2728,9 +2728,9 @@ Test8 = (function () {
             /* ellipse support */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = typeof this.canvas.getContext('2d').ellipse != 'undefined';
+                    passed = typeof canvas.getContext('2d').ellipse != 'undefined';
                 }
                 catch (e) {
                 }
@@ -2744,9 +2744,9 @@ Test8 = (function () {
             /* dashed support */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = typeof this.canvas.getContext('2d').setLineDash != 'undefined';
+                    passed = typeof canvas.getContext('2d').setLineDash != 'undefined';
                 }
                 catch (e) {
                 }
@@ -2760,9 +2760,9 @@ Test8 = (function () {
             /* focusring support */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = typeof this.canvas.getContext('2d').drawFocusIfNeeded != 'undefined';
+                    passed = typeof canvas.getContext('2d').drawFocusIfNeeded != 'undefined';
                 }
                 catch (e) {
                 }
@@ -2776,9 +2776,9 @@ Test8 = (function () {
             /* hittest support */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = typeof this.canvas.getContext('2d').addHitRegion != 'undefined';
+                    passed = typeof canvas.getContext('2d').addHitRegion != 'undefined';
                 }
                 catch (e) {
                 }
@@ -2804,16 +2804,16 @@ Test8 = (function () {
         /* blending support */
 
         function (results) {
-            this.canvas = document.createElement('canvas');
+            var canvas = document.createElement('canvas');
 
             var passed = false;
 
-            if (this.canvas.getContext) {
-                this.canvas.width = 1;
-                this.canvas.height = 1;
+            if (canvas.getContext) {
+                canvas.width = 1;
+                canvas.height = 1;
 
                 try {
-                    var ctx = this.canvas.getContext('2d');
+                    var ctx = canvas.getContext('2d');
                     ctx.fillStyle = '#fff';
                     ctx.fillRect(0, 0, 1, 1);
                     ctx.globalCompositeOperation = 'screen';
@@ -2838,14 +2838,14 @@ Test8 = (function () {
         /* export to image format */
 
         function (results) {
-            this.canvas = document.createElement('canvas');
+            var canvas = document.createElement('canvas');
 
             /* export to png */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = this.canvas.toDataURL('image/png').substring(5, 14) == 'image/png';
+                    passed = canvas.toDataURL('image/png').substring(5, 14) == 'image/png';
                 }
                 catch (e) {
                 }
@@ -2859,9 +2859,9 @@ Test8 = (function () {
             /* export to jpeg */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = this.canvas.toDataURL('image/jpeg').substring(5, 15) == 'image/jpeg';
+                    passed = canvas.toDataURL('image/jpeg').substring(5, 15) == 'image/jpeg';
                 }
                 catch (e) {
                 }
@@ -2875,9 +2875,9 @@ Test8 = (function () {
             /* export to jpeg xr */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = this.canvas.toDataURL('image/vnd.ms-photo').substring(5, 23) == 'image/vnd.ms-photo';
+                    passed = canvas.toDataURL('image/vnd.ms-photo').substring(5, 23) == 'image/vnd.ms-photo';
                 }
                 catch (e) {
                 }
@@ -2891,9 +2891,9 @@ Test8 = (function () {
             /* export to webp */
 
             var passed = false;
-            if (this.canvas.getContext) {
+            if (canvas.getContext) {
                 try {
-                    passed = this.canvas.toDataURL('image/webp').substring(5, 15) == 'image/webp';
+                    passed = canvas.toDataURL('image/webp').substring(5, 15) == 'image/webp';
                 }
                 catch (e) {
                 }
