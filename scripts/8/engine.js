@@ -202,619 +202,6 @@ Test8 = (function() {
 
 
 
-		
-		function(results) {
-			
-			/* picture element */
-
-			results.setItem({
-				key:	'responsive-picture',
-				passed:	'HTMLPictureElement' in window
-			});
-
-
-			/* srcset attribute */
-
-			results.setItem({
-				key:	'responsive-srcset',
-				passed:	'srcset' in document.createElement('img')
-			});
-
-
-			/* sizes attribute */
-
-			results.setItem({
-				key:	'responsive-sizes',
-				passed:	'sizes' in document.createElement('img')
-			});
-		},
-		
-		function(results) {
-			this.canvas = document.createElement('canvas');
-
-
-			/* canvas element and 2d context */
-
-			results.setItem({
-				key:	'canvas-context',
-				passed:	!! (this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D)
-			});
-
-
-			/* text support */
-
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = typeof this.canvas.getContext('2d').fillText == 'function';
-				}
-				catch(e) {
-				}
-			}
-			
-			results.setItem({
-				key:	'canvas-text',
-				passed:	passed
-			});
-
-
-			/* path support */
-
-			results.setItem({
-				key:	'canvas-path',
-				passed:	typeof Path2D != "undefined" ? YES : typeof Path != "undefined" ? YES | OLD : NO
-			});
-
-
-			/* ellipse support */
-
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = typeof this.canvas.getContext('2d').ellipse != 'undefined';
-				}
-				catch(e) {
-				}
-			}
-			
-			results.setItem({
-				key:	'canvas-ellipse',
-				passed:	passed
-			});
-
-
-			/* dashed support */
-
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = typeof this.canvas.getContext('2d').setLineDash != 'undefined';
-				}
-				catch(e) {
-				}
-			}
-			
-			results.setItem({
-				key:	'canvas-dashed',
-				passed:	passed
-			});
-
-
-			/* focusring support */
-
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = typeof this.canvas.getContext('2d').drawFocusIfNeeded != 'undefined';
-				}
-				catch(e) {
-				}
-			}
-			
-			results.setItem({
-				key:	'canvas-focusring',
-				passed:	passed
-			});
-
-
-			/* hittest support */
-
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = typeof this.canvas.getContext('2d').addHitRegion != 'undefined';
-				}
-				catch(e) {
-				}
-			}
-			
-			results.setItem({
-				key:	'canvas-hittest',
-				passed:	passed
-			});
-
-
-			/* blending support */
-
-			var passed = false;
-
-			if (this.canvas.getContext) {
-				this.canvas.width = 1;
-				this.canvas.height = 1;			
-
-				try {
-					var ctx = this.canvas.getContext('2d');
-					ctx.fillStyle = '#fff';
-					ctx.fillRect(0,0,1,1);	
-					ctx.globalCompositeOperation = 'screen';
-					ctx.fillStyle = '#000';
-					ctx.fillRect(0,0,1,1);	
-					
-					var data = ctx.getImageData(0,0,1,1);
-					
-					passed = ctx.globalCompositeOperation == 'screen' && data.data[0] == 255;
-				}
-				catch(e) {
-				}
-			}
-			
-			results.setItem({
-				key:	'canvas-blending',
-				passed:	passed
-			});
-			
-			
-			/* export to png */
-			
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = this.canvas.toDataURL('image/png').substring(5,14) == 'image/png';
-				}
-				catch(e) {
-				}
-			}
-
-			results.setItem({
-				key:	'canvas-png',
-				passed:	passed
-			});
-
-
-			/* export to jpeg */
-			
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = this.canvas.toDataURL('image/jpeg').substring(5,15) == 'image/jpeg';
-				}
-				catch(e) {
-				}
-			}
-
-			results.setItem({
-				key:	'canvas-jpeg',
-				passed:	passed
-			});
-
-
-			/* export to jpeg xr */
-			
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = this.canvas.toDataURL('image/vnd.ms-photo').substring(5,23) == 'image/vnd.ms-photo';
-				}
-				catch(e) {
-				}
-			}
-
-			results.setItem({
-				key:	'canvas-jpegxr',
-				passed:	passed
-			});
-
-
-			/* export to webp */
-			
-			var passed = false;
-			if (this.canvas.getContext) {
-				try {
-					passed = this.canvas.toDataURL('image/webp').substring(5,15) == 'image/webp';
-				}
-				catch(e) {
-				}
-			}
-
-			results.setItem({
-				key:	'canvas-webp',
-				passed:	passed
-			});
-		},
-		
-		function(results) {
-			this.element = document.createElement('video');
-
-
-			/* video element */
-
-			results.setItem({
-				key:	'video-element',
-				passed:	!!this.element.canPlayType
-			});
-
-
-			/* audioTracks property */
-
-			results.setItem({
-				key:	'video-audiotracks',
-				passed:	'audioTracks' in this.element
-			});
-			
-
-			/* videoTracks property */
-
-			results.setItem({
-				key:	'video-videotracks',
-				passed:	'videoTracks' in this.element
-			});
-			
-
-			/* subtitles */
-			
-			results.setItem({
-				key:	'video-subtitle',
-				passed:	'track' in document.createElement('track')
-			});
-			
-
-			/* poster */
-			
-			results.setItem({
-				key:	'video-poster',
-				passed:	'poster' in this.element
-			});
-
-
-			/* drm */
-
-			results.setItem({
-				key:	'video-drm',
-				passed:	'setMediaKeys' in this.element ? YES : 'webkitAddKey' in this.element || 'webkitSetMediaKeys' in this.element || 'mozSetMediaKeys' in this.element || 'msSetMediaKeys' in this.element ? YES | PREFIX : NO
-			});
-
-
-			/* mediasource */
-			
-			results.setItem({
-				key:	'video-mediasource',
-				passed:	'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
-			});
-
-
-			/* recorder */
-
-			results.setItem({
-				key:	'video-recorder',
-				passed:	'MediaRecorder' in window
-			});
-
-
-			/* mpeg-4 codec */
-			
-			results.setItem({
-				key:	'video-mpeg4',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/mp4; codecs="mp4v.20.8"')
-			});
-		
-		
-			/* h.264 codec */
-
-			/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
-
-			results.setItem({
-				key:	'video-h264',
-				passed:	!!this.element.canPlayType && (canPlayType(this.element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(this.element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))				
-			});
-
-
-			/* h.265 codec */
-
-			results.setItem({
-				key:	'video-h265',
-				passed:	!!this.element.canPlayType && (canPlayType(this.element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(this.element, 'video/mp4; codecs="hev1.1.L0.0"'))
-			});
-
-
-			/* theora codec */
-
-			results.setItem({
-				key:	'video-theora',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/ogg; codecs="theora"')
-			});
-
-
-			/* vp8 in webm codec */
-
-			results.setItem({
-				key:	'video-webmvp8',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/webm; codecs="vp8"')
-			});
-
-
-			/* vp9 in webm codec */
-
-			results.setItem({
-				key:	'video-webmvp9',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/webm; codecs="vp9"')
-			});
-		
-		
-			/* does codec detection work properly? */
-
-			var passed = true;
-					
-			if (!!this.element.canPlayType) {
-				if (this.element.canPlayType('video/nonsense') == 'no') { 
-					passed = false; 
-					log('Codec detection is buggy: known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string') 
-				}
-				
-				if (this.element.canPlayType('video/webm') == 'probably') { 
-					passed = false; 
-					log('Codec detection is buggy: known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present') 
-				}
-				
-				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'probably') {
-					passed = false;
-					log('Codec detection is buggy: known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around') 
-				}
-			
-				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'maybe') {
-					passed = false;
-					log('Codec detection is buggy: known bug in Android where no better answer than "maybe" is given') 
-				}
-						
-				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') {
-					passed = false;
-					log('Codec detection is buggy: known bug in Internet Explorer 9 that requires both audio and video codec on test') 
-				}
-			}
-			
-			results.setItem({
-				key:	'video-canplaytype',
-				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
-			});
-		},
-		
-		function(results) {
-			this.element = document.createElement('audio');
-			
-
-			/* video element */
-
-			results.setItem({
-				key:	'audio-element',
-				passed:	!!this.element.canPlayType
-			});
-			
-
-			/* loop property */
-
-			results.setItem({
-				key:	'audio-loop',
-				passed:	'loop' in this.element
-			});
-
-
-			/* preload property */
-
-			results.setItem({
-				key:	'audio-preload',
-				passed:	'preload' in this.element
-			});
-
-
-			/* pcm codec */
-
-			results.setItem({
-				key:	'audio-pcm',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/wav; codecs="1"')
-			});
-
-
-			/* mp3 codec */
-
-			var r = false;
-			if (this.element.canPlayType) {
-				var t = this.element.canPlayType('audio/mpeg');
-				if (t == 'maybe') {
-					// We need to check if the browser really supports playing MP3s by loading one and seeing if the
-					// loadedmetadata event is triggered... but for now assume it does support it...
-					r = true;
-				} else if (t == 'probably') {
-					r = true;
-				}
-			}
-		
-			results.setItem({
-				key:	'audio-mp3',
-				passed:	r
-			});
-
-
-			/* aac codec */
-
-			results.setItem({
-				key:	'audio-aac',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="mp4a.40.2"')
-			});
-
-
-			/* ac3 codec */
-
-			results.setItem({
-				key:	'audio-ac3',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="ac-3"')
-			});
-
-
-			/* enhanced ac3 codec */
-
-			results.setItem({
-				key:	'audio-ec3',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="ec-3"')
-			});
-
-
-			/* ogg vorbis codec */
-
-			results.setItem({
-				key:	'audio-vorbis',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/ogg; codecs="vorbis"') 
-			});
-
-
-			/* ogg opus codec */
-
-			results.setItem({
-				key:	'audio-opus',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/ogg; codecs="opus"') 
-			});
-
-
-			/* webm vorbis codec */
-
-			results.setItem({
-				key:	'audio-webm',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/webm; codecs="vorbis"') 
-			});
-
-
-			/* webm opus codec */
-
-			results.setItem({
-				key:	'audio-webmopus',
-				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/webm; codecs="opus"') 
-			});
-
-
-			/* webaudio */
-
-			results.setItem({
-				key:		'audio-webaudio',
-				passed:		'AudioContext' in window ? YES : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window ? YES | PREFIX : NO
-			});
-
-
-			/* speech recognition */
-
-			results.setItem({
-				key:		'audio-speechrecognition',
-				passed:		'SpeechRecognition' in window ? YES : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window ? YES | PREFIX : NO
-			});
-
-
-			/* speech synthesis */
-
-			var speechSynthesis = window.speechSynthesis || window.webkitSpeechSynthesis || window.mozSpeechSynthesis || window.oSpeechSynthesis || window.msSpeechSynthesis; 
-			var available = 'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO;
-			var voices = speechSynthesis ? speechSynthesis.getVoices().length : 0;
-			
-			var speechItem = results.setItem({
-				key:		'audio-speechsynthesis',
-				passed:		speechSynthesis && voices ? available : NO
-			});
-			
-			if (speechSynthesis && !voices) {
-				if (speechSynthesis.addEventListener) {
-					speechItem.startBackground();
-					
-					speechSynthesis.addEventListener("voiceschanged", function() {
-						voices = speechSynthesis.getVoices().length;
-	
-						speechItem.update({
-							passed: voices ? available : NO, 
-						});
-	
-						speechItem.stopBackground();
-					});
-					
-					window.setTimeout(function() {
-						speechItem.stopBackground();
-					}, 1000);
-				}
-			}
-		},
-		
-		function(results) {
-
-			/* webrtc */
-
-			results.setItem({
-				key:	'webrtc-webrtc',
-				passed:	!!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO
-			});
-			
-
-			/* objectrtc */
-
-			results.setItem({
-				key:	'webrtc-objectrtc',
-				passed:	!!window.RTCIceTransport ? YES : !!window.webkitRTCIceTransport || !!window.mozRTCIceTransport || !!window.msRTCIceTransport || !!window.oRTCIceTransport ? YES | PREFIX : NO
-			});
-			
-
-			/* datachannel */
-
-			var passed = false;
-			try {
-				o = new (window.RTCPeerConnection || window.msRTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection)(null);
-				passed = 'createDataChannel' in o;
-			}
-			catch(e) {
-			}
-			
-			results.setItem({
-				key:	'webrtc-datachannel',
-				passed:	passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO
-			});
-		},
-		
-		function(results) {
-
-			/* getUserMedia */
-
-			results.setItem({
-				key:		'input-getUserMedia',
-				passed:		!!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia ? YES : !!navigator.getUserMedia ? YES | OLD : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO
-			});
-
-
-			/* getGamepads */
-
-			results.setItem({
-				key:		'input-getGamepads',
-				passed:		!!navigator.getGamepads ? YES : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads ? YES | PREFIX : NO
-			});
-
-
-			/* pointerLock */
-
-			results.setItem({
-				key:		'input-pointerLock',
-				passed:  	'pointerLockElement' in document ? YES : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document ? YES | PREFIX : NO
-			});
-
-			
-			/* pointerevents */
-
-			results.setItem({
-				key:		'input-pointerevents',
-				passed:		!!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO
-			});
-		},
-		
 		function(results) {
 
 			/* dataset */
@@ -2085,235 +1472,6 @@ Test8 = (function() {
 		},
 		
 		function(results) {
-			var element = document.createElement('div');
-
-
-			/* Draggable */
-			
-			var passed = 'draggable' in element;
-
-			results.setItem({
-				key:	'interaction-dragdrop.attributes-draggable',
-				passed:	passed
-			});
-
-			/* Dropzone */
-			
-			results.setItem({
-				key:	'interaction-dragdrop.attributes-dropzone',
-				passed:	'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO
-			});
-
-
-			/* We need to check if the draggable attribute is supported, because older versions of IE do
-			   support the incompatible versions of the events below. IE 9 and up do support the HTML5
-			   events in combination with the draggable attribute */
-			
-
-			/* ondrag event */
-
-			results.setItem({
-				key:	'interaction-dragdrop.events-ondrag',
-				passed:	isEventSupported('drag') && passed
-			});
-			
-
-			/* ondragstart event */
-
-			results.setItem({
-				key:	'interaction-dragdrop.events-ondragstart',
-				passed:	isEventSupported('dragstart') && passed
-			});
-			
-
-			/* ondragenter event */
-
-			results.setItem({
-				key:	'interaction-dragdrop.events-ondragenter',
-				passed:	isEventSupported('dragenter') && passed
-			});
-			
-
-			/* ondragover event */
-
-			results.setItem({
-				key:	'interaction-dragdrop.events-ondragover',
-				passed:	isEventSupported('dragover') && passed
-			});
-			
-
-			/* ondragleave event */
-
-			results.setItem({
-				key:	'interaction-dragdrop.events-ondragleave',
-				passed:	isEventSupported('dragleave') && passed
-			});
-			
-
-			/* ondragend event */
-
-			results.setItem({
-				key:	'interaction-dragdrop.events-ondragend',
-				passed:	isEventSupported('dragend') && passed
-			});
-			
-
-			/* ondrop event */
-
-			results.setItem({
-				key:	'interaction-dragdrop.events-ondrop',
-				passed:	isEventSupported('drop') && passed
-			});
-
-			
-			/* contentEditable */
-
-			results.setItem({
-				key:	'interaction-editing.elements-contentEditable',
-				passed:	'contentEditable' in document.createElement('div')
-			});
-
-
-			/* isContentEditable */
-
-			results.setItem({
-				key:	'interaction-editing.elements-isContentEditable',
-				passed:	'isContentEditable' in document.createElement('div')
-			});
-			
-
-			/* designMode */
-
-			results.setItem({
-				key:	'interaction-editing.documents-designMode',
-				passed:	'designMode' in document
-			});
-			
-
-			/* execCommand */
-
-			results.setItem({
-				key:	'interaction-editing.apis-execCommand',
-				passed:	'execCommand' in document
-			});
-
-
-			/* queryCommandEnabled */
-
-			results.setItem({
-				key:	'interaction-editing.apis-queryCommandEnabled',
-				passed:	'queryCommandEnabled' in document
-			});
-
-
-			/* queryCommandIndeterm */
-
-			results.setItem({
-				key:	'interaction-editing.apis-queryCommandIndeterm',
-				passed:	'queryCommandIndeterm' in document
-			});
-
-
-			/* queryCommandState */
-
-			results.setItem({
-				key:	'interaction-editing.apis-queryCommandState',
-				passed:	'queryCommandState' in document
-			});
-
-
-			/* queryCommandSupported */
-
-			results.setItem({
-				key:	'interaction-editing.apis-queryCommandSupported',
-				passed:	'queryCommandSupported' in document
-			});
-
-
-			/* queryCommandValue */
-
-			results.setItem({
-				key:	'interaction-editing.apis-queryCommandValue',
-				passed:	'queryCommandValue' in document
-			});
-
-
-			/* read-write and read-only selectors */
-
-			var selectors = "read-write read-only".split(" ");
-			var passed = [ NO | UNKNOWN, NO | UNKNOWN ];
-				
-			if ('querySelector' in document) {
-				var element = document.createElement('div');
-				element.id = 'testDivElement';
-				element.contentEditable = true;
-				document.body.appendChild(element);
-
-				var nested = document.createElement('div');
-				nested.id = 'testDivNested';
-				nested.contentEditable = false;
-				element.appendChild(nested);
-
-				try {
-					passed[0] = document.querySelector("#testDivElement:read-write") == element;
-				} catch(e) {
-					passed[0] = NO;
-
-					try {
-						passed[0] = document.querySelector("#testDivElement:-moz-read-write") == element ? YES | PREFIX : NO;
-					} catch(e) {
-					}
-				}
-
-				try {
-					passed[1] = document.querySelector("#testDivNested:read-only") == nested;
-				} catch(e) {
-					passed[1] = NO;
-
-					try {
-						passed[1] = document.querySelector("#testDivNested:-moz-read-only") == nested ? YES | PREFIX : NO;
-					} catch(e) {
-					}
-				}
-
-				document.body.removeChild(element);
-			}
-			
-			for (var i = 0; i < selectors.length; i++) {
-				results.setItem({
-					key:	'interaction-editing.selectors-' + selectors[i],
-					passed:	passed[i]
-				});
-			}
-			
-
-			/* ClipboardEvent */
-
-			results.setItem({
-				key:	'interaction-clipboard',
-				passed:	'ClipboardEvent' in window
-			});
-			
-
-			/* spellcheck */
-
-			results.setItem({
-				key:	'interaction-spellcheck',
-				passed:	'spellcheck' in element
-			});
-		},
-		
-		function(results) {
-
-			/* history */
-
-			results.setItem({
-				key:	'history-history',
-				passed:	!!(window.history && history.pushState)
-			});
-		},
-		
-		function(results) {
 
 			/* microdata */
 
@@ -2347,106 +1505,6 @@ Test8 = (function() {
 		
 		function(results) {
 
-			/* applicationCache */
-
-			results.setItem({
-				key:	'offline-applicationCache',
-				passed:	!!window.applicationCache
-			});
-
-
-			/* serviceWorker */
-
-			results.setItem({
-				key:	'offline-serviceWorkers',
-				passed:	!!window.navigator.serviceWorker
-			});
-
-
-			/* registerProtocolHandler */
-
-			results.setItem({
-				key:	'offline-registerProtocolHandler',
-				passed:	!!window.navigator.registerProtocolHandler
-			});
-
-
-			/* registerContentHandler */
-
-			results.setItem({
-				key:	'offline-registerContentHandler',
-				passed:	!!window.navigator.registerContentHandler
-			});
-		},
-		
-		function(results) {
-
-			/* crypto */
-
-			var passed = NO;
-			try {
-				var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
-				var available = window.crypto ? YES : window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
-				passed = !!crypto && 'subtle' in crypto ? available : !!crypto && 'webkitSubtle' in crypto ? YES | PREFIX : NO;
-			} catch(e) {
-			}
-
-			results.setItem({
-				key:	'security-crypto',
-				passed: passed
-			});
-
-
-			/* csp 1.0 */
-
-			results.setItem({
-				key:	'security-csp10',
-				passed:	!(function() { try { return eval('true'); } catch (e) {} return false; })()
-			});
-
-
-			/* csp 1.1 */
-
-			results.setItem({
-				key:	'security-csp11',
-				passed:	'SecurityPolicyViolationEvent' in window
-			});
-
-
-			/* cors */
-
-			results.setItem({
-				key:	'security-cors',
-				passed:	window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest()
-			});
-
-
-			/* postMessage */
-
-			results.setItem({
-				key:	'security-postMessage',
-				passed:	!!window.postMessage
-			});
-
-
-			/* sandboxed iframe */
-
-			results.setItem({
-				key:	'security-sandbox',
-				passed:	'sandbox' in document.createElement('iframe')
-			});
-
-
-			/* srcdoc iframe */
-
-			results.setItem({
-				key:	'security-srcdoc',
-				passed:	'srcdoc' in document.createElement('iframe')
-			});
-		},
-		
-		function(results) {
-
 			/* geolocation */
 
 			results.setItem({
@@ -2470,29 +1528,56 @@ Test8 = (function() {
 				passed:	!!window.DeviceMotionEvent
 			});
 		},
+						
+		function(results) {
+
+			/* fullscreen */
+
+			results.setItem({
+				key:	'output-requestFullScreen',
+				passed:	!! document.documentElement.requestFullscreen ? YES : !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullscreen ? YES | PREFIX : NO
+			});
+			
+
+			/* notifications */
+
+			results.setItem({
+				key:	'output-notifications',
+				passed:	'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO
+			});
+		},
 		
 		function(results) {
 
-			/* webgl */
+			/* getUserMedia */
 
-			var element = document.createElement('canvas');
-			var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
-			var context = '';
-			var passed = false;
-    
-	        for (var b = -1, len = contexts.length; ++b < len;) {
-	            try {
-	                if (element.getContext(contexts[b])) {
-	                	context = contexts[b];
-	                	passed = true;
-	                	break;
-	                };	
-	            } catch(e){	}
-	        }
-				
 			results.setItem({
-				key:	'webgl-context',
-				passed:	passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
+				key:		'input-getUserMedia',
+				passed:		!!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia ? YES : !!navigator.getUserMedia ? YES | OLD : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO
+			});
+
+
+			/* getGamepads */
+
+			results.setItem({
+				key:		'input-getGamepads',
+				passed:		!!navigator.getGamepads ? YES : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads ? YES | PREFIX : NO
+			});
+
+
+			/* pointerLock */
+
+			results.setItem({
+				key:		'input-pointerLock',
+				passed:  	'pointerLockElement' in document ? YES : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document ? YES | PREFIX : NO
+			});
+
+			
+			/* pointerevents */
+
+			results.setItem({
+				key:		'input-pointerevents',
+				passed:		!!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO
 			});
 		},
 		
@@ -2749,80 +1834,1030 @@ Test8 = (function() {
 				}
 			}
 		},
-		
+						
 		function(results) {
 
-			/* readable streams */
+			/* webrtc */
 
 			results.setItem({
-				key:	'streams-streams.readable',
-				passed:	'ReadableStream' in window
+				key:	'webrtc-webrtc',
+				passed:	!!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO
+			});
+			
+
+			/* objectrtc */
+
+			results.setItem({
+				key:	'webrtc-objectrtc',
+				passed:	!!window.RTCIceTransport ? YES : !!window.webkitRTCIceTransport || !!window.mozRTCIceTransport || !!window.msRTCIceTransport || !!window.oRTCIceTransport ? YES | PREFIX : NO
+			});
+			
+
+			/* datachannel */
+
+			var passed = false;
+			try {
+				o = new (window.RTCPeerConnection || window.msRTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection)(null);
+				passed = 'createDataChannel' in o;
+			}
+			catch(e) {
+			}
+			
+			results.setItem({
+				key:	'webrtc-datachannel',
+				passed:	passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO
+			});
+		},
+		
+		function(results) {
+			var element = document.createElement('div');
+
+
+			/* Draggable */
+			
+			var passed = 'draggable' in element;
+
+			results.setItem({
+				key:	'interaction-dragdrop.attributes-draggable',
+				passed:	passed
+			});
+
+			/* Dropzone */
+			
+			results.setItem({
+				key:	'interaction-dragdrop.attributes-dropzone',
+				passed:	'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO
 			});
 
 
-			/* writeable streams */
+			/* We need to check if the draggable attribute is supported, because older versions of IE do
+			   support the incompatible versions of the events below. IE 9 and up do support the HTML5
+			   events in combination with the draggable attribute */
+			
+
+			/* ondrag event */
 
 			results.setItem({
-				key:	'streams-streams.writeable',
-				passed:	'WriteableStream' in window
+				key:	'interaction-dragdrop.events-ondrag',
+				passed:	isEventSupported('drag') && passed
+			});
+			
+
+			/* ondragstart event */
+
+			results.setItem({
+				key:	'interaction-dragdrop.events-ondragstart',
+				passed:	isEventSupported('dragstart') && passed
+			});
+			
+
+			/* ondragenter event */
+
+			results.setItem({
+				key:	'interaction-dragdrop.events-ondragenter',
+				passed:	isEventSupported('dragenter') && passed
+			});
+			
+
+			/* ondragover event */
+
+			results.setItem({
+				key:	'interaction-dragdrop.events-ondragover',
+				passed:	isEventSupported('dragover') && passed
+			});
+			
+
+			/* ondragleave event */
+
+			results.setItem({
+				key:	'interaction-dragdrop.events-ondragleave',
+				passed:	isEventSupported('dragleave') && passed
+			});
+			
+
+			/* ondragend event */
+
+			results.setItem({
+				key:	'interaction-dragdrop.events-ondragend',
+				passed:	isEventSupported('dragend') && passed
+			});
+			
+
+			/* ondrop event */
+
+			results.setItem({
+				key:	'interaction-dragdrop.events-ondrop',
+				passed:	isEventSupported('drop') && passed
+			});
+
+			
+			/* contentEditable */
+
+			results.setItem({
+				key:	'interaction-editing.elements-contentEditable',
+				passed:	'contentEditable' in document.createElement('div')
+			});
+
+
+			/* isContentEditable */
+
+			results.setItem({
+				key:	'interaction-editing.elements-isContentEditable',
+				passed:	'isContentEditable' in document.createElement('div')
+			});
+			
+
+			/* designMode */
+
+			results.setItem({
+				key:	'interaction-editing.documents-designMode',
+				passed:	'designMode' in document
+			});
+			
+
+			/* execCommand */
+
+			results.setItem({
+				key:	'interaction-editing.apis-execCommand',
+				passed:	'execCommand' in document
+			});
+
+
+			/* queryCommandEnabled */
+
+			results.setItem({
+				key:	'interaction-editing.apis-queryCommandEnabled',
+				passed:	'queryCommandEnabled' in document
+			});
+
+
+			/* queryCommandIndeterm */
+
+			results.setItem({
+				key:	'interaction-editing.apis-queryCommandIndeterm',
+				passed:	'queryCommandIndeterm' in document
+			});
+
+
+			/* queryCommandState */
+
+			results.setItem({
+				key:	'interaction-editing.apis-queryCommandState',
+				passed:	'queryCommandState' in document
+			});
+
+
+			/* queryCommandSupported */
+
+			results.setItem({
+				key:	'interaction-editing.apis-queryCommandSupported',
+				passed:	'queryCommandSupported' in document
+			});
+
+
+			/* queryCommandValue */
+
+			results.setItem({
+				key:	'interaction-editing.apis-queryCommandValue',
+				passed:	'queryCommandValue' in document
+			});
+
+
+			/* read-write and read-only selectors */
+
+			var selectors = "read-write read-only".split(" ");
+			var passed = [ NO | UNKNOWN, NO | UNKNOWN ];
+				
+			if ('querySelector' in document) {
+				var element = document.createElement('div');
+				element.id = 'testDivElement';
+				element.contentEditable = true;
+				document.body.appendChild(element);
+
+				var nested = document.createElement('div');
+				nested.id = 'testDivNested';
+				nested.contentEditable = false;
+				element.appendChild(nested);
+
+				try {
+					passed[0] = document.querySelector("#testDivElement:read-write") == element;
+				} catch(e) {
+					passed[0] = NO;
+
+					try {
+						passed[0] = document.querySelector("#testDivElement:-moz-read-write") == element ? YES | PREFIX : NO;
+					} catch(e) {
+					}
+				}
+
+				try {
+					passed[1] = document.querySelector("#testDivNested:read-only") == nested;
+				} catch(e) {
+					passed[1] = NO;
+
+					try {
+						passed[1] = document.querySelector("#testDivNested:-moz-read-only") == nested ? YES | PREFIX : NO;
+					} catch(e) {
+					}
+				}
+
+				document.body.removeChild(element);
+			}
+			
+			for (var i = 0; i < selectors.length; i++) {
+				results.setItem({
+					key:	'interaction-editing.selectors-' + selectors[i],
+					passed:	passed[i]
+				});
+			}
+			
+
+			/* ClipboardEvent */
+
+			results.setItem({
+				key:	'interaction-clipboard',
+				passed:	'ClipboardEvent' in window
+			});
+			
+
+			/* spellcheck */
+
+			results.setItem({
+				key:	'interaction-spellcheck',
+				passed:	'spellcheck' in element
+			});
+		},
+						
+		function(results) {
+
+			/* webworker */
+
+			results.setItem({
+				key:	'performance-worker',
+				passed:	!!window.Worker
+			});
+
+
+			/* sharedworker */
+
+			results.setItem({
+				key:	'performance-sharedWorker',
+				passed:	!!window.SharedWorker
+			});
+
+
+			/* datatypes */
+
+			results.setItem({
+				key:	'performance-datatypes-ArrayBuffer',
+				passed:	typeof ArrayBuffer != 'undefined'
+			});
+
+			results.setItem({
+				key:	'performance-datatypes-Int8Array',
+				passed:	typeof Int8Array != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-Uint8Array',
+				passed:	typeof Uint8Array != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-Uint8ClampedArray',
+				passed:	typeof Uint8ClampedArray != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-Int16Array',
+				passed:	typeof Int16Array != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-Uint16Array',
+				passed:	typeof Uint16Array != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-Int32Array',
+				passed:	typeof Int32Array != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-Uint32Array',
+				passed:	typeof Uint32Array != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-Float32Array',
+				passed:	typeof Float32Array != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-Float64Array',
+				passed:	typeof Float64Array != 'undefined'
+			});
+			
+			results.setItem({
+				key:	'performance-datatypes-DataView',
+				passed:	typeof DataView != 'undefined'
 			});
 		},
 		
 		function(results) {
 
-			/* file reader */
+			/* crypto */
+
+			var passed = NO;
+			try {
+				var crypto = window.crypto || window.webkitCrypto || window.mozCrypto || window.msCrypto || window.oCrypto;
+				var available = window.crypto ? YES : window.mozCrypto || window.msCrypto || window.oCrypto ? YES | PREFIX : NO;
+				passed = !!crypto && 'subtle' in crypto ? available : !!crypto && 'webkitSubtle' in crypto ? YES | PREFIX : NO;
+			} catch(e) {
+			}
 
 			results.setItem({
-				key:	'files-fileReader',
-				passed:	'FileReader' in window
+				key:	'security-crypto',
+				passed: passed
+			});
+
+
+			/* csp 1.0 */
+
+			results.setItem({
+				key:	'security-csp10',
+				passed:	!(function() { try { return eval('true'); } catch (e) {} return false; })()
+			});
+
+
+			/* csp 1.1 */
+
+			results.setItem({
+				key:	'security-csp11',
+				passed:	'SecurityPolicyViolationEvent' in window
+			});
+
+
+			/* cors */
+
+			results.setItem({
+				key:	'security-cors',
+				passed:	window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest()
+			});
+
+
+			/* postMessage */
+
+			results.setItem({
+				key:	'security-postMessage',
+				passed:	!!window.postMessage
+			});
+
+
+			/* sandboxed iframe */
+
+			results.setItem({
+				key:	'security-sandbox',
+				passed:	'sandbox' in document.createElement('iframe')
+			});
+
+
+			/* srcdoc iframe */
+
+			results.setItem({
+				key:	'security-srcdoc',
+				passed:	'srcdoc' in document.createElement('iframe')
+			});
+		},
+						
+		function(results) {
+
+			/* history */
+
+			results.setItem({
+				key:	'history-history',
+				passed:	!!(window.history && history.pushState)
+			});
+		},
+				
+		function(results) {
+			this.element = document.createElement('video');
+
+
+			/* video element */
+
+			results.setItem({
+				key:	'video-element',
+				passed:	!!this.element.canPlayType
+			});
+
+
+			/* audioTracks property */
+
+			results.setItem({
+				key:	'video-audiotracks',
+				passed:	'audioTracks' in this.element
 			});
 			
 
-			/* file reader as blob */
+			/* videoTracks property */
 
 			results.setItem({
-				key:	'files-fileReader.blob',
-				passed:	'Blob' in window
+				key:	'video-videotracks',
+				passed:	'videoTracks' in this.element
 			});
 			
 
-			/* file reader as data url */
-
+			/* subtitles */
+			
 			results.setItem({
-				key:	'files-fileReader.dataURL',
-				passed:	'FileReader' in window && 'readAsDataURL' in (new FileReader())
+				key:	'video-subtitle',
+				passed:	'track' in document.createElement('track')
 			});
 			
 
-			/* file reader as array buffer */
+			/* poster */
+			
+			results.setItem({
+				key:	'video-poster',
+				passed:	'poster' in this.element
+			});
+
+
+			/* drm */
 
 			results.setItem({
-				key:	'files-fileReader.arraybuffer',
-				passed:	'FileReader' in window && 'readAsArrayBuffer' in (new FileReader())
+				key:	'video-drm',
+				passed:	'setMediaKeys' in this.element ? YES : 'webkitAddKey' in this.element || 'webkitSetMediaKeys' in this.element || 'mozSetMediaKeys' in this.element || 'msSetMediaKeys' in this.element ? YES | PREFIX : NO
+			});
+
+
+			/* mediasource */
+			
+			results.setItem({
+				key:	'video-mediasource',
+				passed:	'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
+			});
+
+
+			/* recorder */
+
+			results.setItem({
+				key:	'video-recorder',
+				passed:	'MediaRecorder' in window
+			});
+
+
+			/* mpeg-4 codec */
+			
+			results.setItem({
+				key:	'video-mpeg4',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/mp4; codecs="mp4v.20.8"')
+			});
+		
+		
+			/* h.264 codec */
+
+			/* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
+
+			results.setItem({
+				key:	'video-h264',
+				passed:	!!this.element.canPlayType && (canPlayType(this.element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(this.element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))				
+			});
+
+
+			/* h.265 codec */
+
+			results.setItem({
+				key:	'video-h265',
+				passed:	!!this.element.canPlayType && (canPlayType(this.element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(this.element, 'video/mp4; codecs="hev1.1.L0.0"'))
+			});
+
+
+			/* theora codec */
+
+			results.setItem({
+				key:	'video-theora',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/ogg; codecs="theora"')
+			});
+
+
+			/* vp8 in webm codec */
+
+			results.setItem({
+				key:	'video-webmvp8',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/webm; codecs="vp8"')
+			});
+
+
+			/* vp9 in webm codec */
+
+			results.setItem({
+				key:	'video-webmvp9',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/webm; codecs="vp9"')
+			});
+		
+		
+			/* does codec detection work properly? */
+
+			var passed = true;
+					
+			if (!!this.element.canPlayType) {
+				if (this.element.canPlayType('video/nonsense') == 'no') { 
+					passed = false; 
+					log('Codec detection is buggy: known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string') 
+				}
+				
+				if (this.element.canPlayType('video/webm') == 'probably') { 
+					passed = false; 
+					log('Codec detection is buggy: known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present') 
+				}
+				
+				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'probably') {
+					passed = false;
+					log('Codec detection is buggy: known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around') 
+				}
+			
+				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && this.element.canPlayType('video/mp4') == 'maybe') {
+					passed = false;
+					log('Codec detection is buggy: known bug in Android where no better answer than "maybe" is given') 
+				}
+						
+				if (this.element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && this.element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') {
+					passed = false;
+					log('Codec detection is buggy: known bug in Internet Explorer 9 that requires both audio and video codec on test') 
+				}
+			}
+			
+			results.setItem({
+				key:	'video-canplaytype',
+				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
+			});
+		},
+		
+		function(results) {
+			this.element = document.createElement('audio');
+			
+
+			/* video element */
+
+			results.setItem({
+				key:	'audio-element',
+				passed:	!!this.element.canPlayType
 			});
 			
 
-			/* file reader as object url */
+			/* loop property */
 
 			results.setItem({
-				key:	'files-fileReader.objectURL',
-				passed:	'URL' in window && 'createObjectURL' in URL
+				key:	'audio-loop',
+				passed:	'loop' in this.element
 			});
 
 
-			/* request file system */
+			/* preload property */
 
 			results.setItem({
-				key:	'files-fileSystem',
-				passed:	!! window.requestFileSystem ? YES : !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem ? YES | PREFIX : NO
+				key:	'audio-preload',
+				passed:	'preload' in this.element
 			});
 
 
-			/* get file system */
+			/* pcm codec */
 
 			results.setItem({
-				key:	'files-getFileSystem',
-				passed:	!! navigator.getFileSystem ? YES : !! navigator.webkitGetFileSystem || !! navigator.mozGetFileSystem || !! window.msGetFileSystem ? YES | PREFIX : NO
+				key:	'audio-pcm',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/wav; codecs="1"')
+			});
+
+
+			/* mp3 codec */
+
+			var r = false;
+			if (this.element.canPlayType) {
+				var t = this.element.canPlayType('audio/mpeg');
+				if (t == 'maybe') {
+					// We need to check if the browser really supports playing MP3s by loading one and seeing if the
+					// loadedmetadata event is triggered... but for now assume it does support it...
+					r = true;
+				} else if (t == 'probably') {
+					r = true;
+				}
+			}
+		
+			results.setItem({
+				key:	'audio-mp3',
+				passed:	r
+			});
+
+
+			/* aac codec */
+
+			results.setItem({
+				key:	'audio-aac',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="mp4a.40.2"')
+			});
+
+
+			/* ac3 codec */
+
+			results.setItem({
+				key:	'audio-ac3',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="ac-3"')
+			});
+
+
+			/* enhanced ac3 codec */
+
+			results.setItem({
+				key:	'audio-ec3',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="ec-3"')
+			});
+
+
+			/* ogg vorbis codec */
+
+			results.setItem({
+				key:	'audio-vorbis',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/ogg; codecs="vorbis"') 
+			});
+
+
+			/* ogg opus codec */
+
+			results.setItem({
+				key:	'audio-opus',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/ogg; codecs="opus"') 
+			});
+
+
+			/* webm vorbis codec */
+
+			results.setItem({
+				key:	'audio-webm',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/webm; codecs="vorbis"') 
+			});
+
+
+			/* webm opus codec */
+
+			results.setItem({
+				key:	'audio-webmopus',
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/webm; codecs="opus"') 
+			});
+
+
+			/* webaudio */
+
+			results.setItem({
+				key:		'audio-webaudio',
+				passed:		'AudioContext' in window ? YES : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window ? YES | PREFIX : NO
+			});
+
+
+			/* speech recognition */
+
+			results.setItem({
+				key:		'audio-speechrecognition',
+				passed:		'SpeechRecognition' in window ? YES : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window ? YES | PREFIX : NO
+			});
+
+
+			/* speech synthesis */
+
+			var speechSynthesis = window.speechSynthesis || window.webkitSpeechSynthesis || window.mozSpeechSynthesis || window.oSpeechSynthesis || window.msSpeechSynthesis; 
+			var available = 'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO;
+			var voices = speechSynthesis ? speechSynthesis.getVoices().length : 0;
+			
+			var speechItem = results.setItem({
+				key:		'audio-speechsynthesis',
+				passed:		speechSynthesis && voices ? available : NO
+			});
+			
+			if (speechSynthesis && !voices) {
+				if (speechSynthesis.addEventListener) {
+					speechItem.startBackground();
+					
+					speechSynthesis.addEventListener("voiceschanged", function() {
+						voices = speechSynthesis.getVoices().length;
+	
+						speechItem.update({
+							passed: voices ? available : NO, 
+						});
+	
+						speechItem.stopBackground();
+					});
+					
+					window.setTimeout(function() {
+						speechItem.stopBackground();
+					}, 1000);
+				}
+			}
+		},
+						
+		function(results) {
+			
+			/* picture element */
+
+			results.setItem({
+				key:	'responsive-picture',
+				passed:	'HTMLPictureElement' in window
+			});
+
+
+			/* srcset attribute */
+
+			results.setItem({
+				key:	'responsive-srcset',
+				passed:	'srcset' in document.createElement('img')
+			});
+
+
+			/* sizes attribute */
+
+			results.setItem({
+				key:	'responsive-sizes',
+				passed:	'sizes' in document.createElement('img')
+			});
+		},
+		
+		function(results) {
+			this.canvas = document.createElement('canvas');
+
+
+			/* canvas element and 2d context */
+
+			results.setItem({
+				key:	'canvas-context',
+				passed:	!! (this.canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && this.canvas.getContext('2d') instanceof CanvasRenderingContext2D)
+			});
+
+
+			/* text support */
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').fillText == 'function';
+				}
+				catch(e) {
+				}
+			}
+			
+			results.setItem({
+				key:	'canvas-text',
+				passed:	passed
+			});
+
+
+			/* path support */
+
+			results.setItem({
+				key:	'canvas-path',
+				passed:	typeof Path2D != "undefined" ? YES : typeof Path != "undefined" ? YES | OLD : NO
+			});
+
+
+			/* ellipse support */
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').ellipse != 'undefined';
+				}
+				catch(e) {
+				}
+			}
+			
+			results.setItem({
+				key:	'canvas-ellipse',
+				passed:	passed
+			});
+
+
+			/* dashed support */
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').setLineDash != 'undefined';
+				}
+				catch(e) {
+				}
+			}
+			
+			results.setItem({
+				key:	'canvas-dashed',
+				passed:	passed
+			});
+
+
+			/* focusring support */
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').drawFocusIfNeeded != 'undefined';
+				}
+				catch(e) {
+				}
+			}
+			
+			results.setItem({
+				key:	'canvas-focusring',
+				passed:	passed
+			});
+
+
+			/* hittest support */
+
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = typeof this.canvas.getContext('2d').addHitRegion != 'undefined';
+				}
+				catch(e) {
+				}
+			}
+			
+			results.setItem({
+				key:	'canvas-hittest',
+				passed:	passed
+			});
+
+
+			/* blending support */
+
+			var passed = false;
+
+			if (this.canvas.getContext) {
+				this.canvas.width = 1;
+				this.canvas.height = 1;			
+
+				try {
+					var ctx = this.canvas.getContext('2d');
+					ctx.fillStyle = '#fff';
+					ctx.fillRect(0,0,1,1);	
+					ctx.globalCompositeOperation = 'screen';
+					ctx.fillStyle = '#000';
+					ctx.fillRect(0,0,1,1);	
+					
+					var data = ctx.getImageData(0,0,1,1);
+					
+					passed = ctx.globalCompositeOperation == 'screen' && data.data[0] == 255;
+				}
+				catch(e) {
+				}
+			}
+			
+			results.setItem({
+				key:	'canvas-blending',
+				passed:	passed
+			});
+			
+			
+			/* export to png */
+			
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = this.canvas.toDataURL('image/png').substring(5,14) == 'image/png';
+				}
+				catch(e) {
+				}
+			}
+
+			results.setItem({
+				key:	'canvas-png',
+				passed:	passed
+			});
+
+
+			/* export to jpeg */
+			
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = this.canvas.toDataURL('image/jpeg').substring(5,15) == 'image/jpeg';
+				}
+				catch(e) {
+				}
+			}
+
+			results.setItem({
+				key:	'canvas-jpeg',
+				passed:	passed
+			});
+
+
+			/* export to jpeg xr */
+			
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = this.canvas.toDataURL('image/vnd.ms-photo').substring(5,23) == 'image/vnd.ms-photo';
+				}
+				catch(e) {
+				}
+			}
+
+			results.setItem({
+				key:	'canvas-jpegxr',
+				passed:	passed
+			});
+
+
+			/* export to webp */
+			
+			var passed = false;
+			if (this.canvas.getContext) {
+				try {
+					passed = this.canvas.toDataURL('image/webp').substring(5,15) == 'image/webp';
+				}
+				catch(e) {
+				}
+			}
+
+			results.setItem({
+				key:	'canvas-webp',
+				passed:	passed
+			});
+		},
+				
+		function(results) {
+
+			/* webgl */
+
+			var element = document.createElement('canvas');
+			var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d']; 
+			var context = '';
+			var passed = false;
+    
+	        for (var b = -1, len = contexts.length; ++b < len;) {
+	            try {
+	                if (element.getContext(contexts[b])) {
+	                	context = contexts[b];
+	                	passed = true;
+	                	break;
+	                };	
+	            } catch(e){	}
+	        }
+				
+			results.setItem({
+				key:	'webgl-context',
+				passed:	passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
+			});
+		},
+		
+		function(results) {
+
+			/* animation api */
+
+			results.setItem({
+				key:	'animation-webanimation',
+				passed:	'animate' in document.createElement('div')
+			});
+
+
+			/* requestAnimationFrame */
+
+			results.setItem({
+				key:	'animation-requestAnimationFrame',
+				passed:	!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO
+			});
+		},
+		
+		function(results) {
+
+			/* applicationCache */
+
+			results.setItem({
+				key:	'offline-applicationCache',
+				passed:	!!window.applicationCache
+			});
+
+
+			/* serviceWorker */
+
+			results.setItem({
+				key:	'offline-serviceWorkers',
+				passed:	!!window.navigator.serviceWorker
+			});
+
+
+			/* registerProtocolHandler */
+
+			results.setItem({
+				key:	'offline-registerProtocolHandler',
+				passed:	!!window.navigator.registerProtocolHandler
+			});
+
+
+			/* registerContentHandler */
+
+			results.setItem({
+				key:	'offline-registerContentHandler',
+				passed:	!!window.navigator.registerContentHandler
 			});
 		},
 		
@@ -2967,98 +3002,121 @@ Test8 = (function() {
 		
 		function(results) {
 
-			/* webworker */
+			/* file reader */
 
 			results.setItem({
-				key:	'performance-worker',
-				passed:	!!window.Worker
+				key:	'files-fileReader',
+				passed:	'FileReader' in window
+			});
+			
+
+			/* file reader as blob */
+
+			results.setItem({
+				key:	'files-fileReader.blob',
+				passed:	'Blob' in window
+			});
+			
+
+			/* file reader as data url */
+
+			results.setItem({
+				key:	'files-fileReader.dataURL',
+				passed:	'FileReader' in window && 'readAsDataURL' in (new FileReader())
+			});
+			
+
+			/* file reader as array buffer */
+
+			results.setItem({
+				key:	'files-fileReader.arraybuffer',
+				passed:	'FileReader' in window && 'readAsArrayBuffer' in (new FileReader())
+			});
+			
+
+			/* file reader as object url */
+
+			results.setItem({
+				key:	'files-fileReader.objectURL',
+				passed:	'URL' in window && 'createObjectURL' in URL
 			});
 
 
-			/* sharedworker */
+			/* request file system */
 
 			results.setItem({
-				key:	'performance-sharedWorker',
-				passed:	!!window.SharedWorker
+				key:	'files-fileSystem',
+				passed:	!! window.requestFileSystem ? YES : !! window.webkitRequestFileSystem || !! window.mozRequestFileSystem || !! window.oRequestFileSystem || !! window.msRequestFileSystem ? YES | PREFIX : NO
 			});
 
 
-			/* datatypes */
+			/* get file system */
 
 			results.setItem({
-				key:	'performance-datatypes-ArrayBuffer',
-				passed:	typeof ArrayBuffer != 'undefined'
-			});
-
-			results.setItem({
-				key:	'performance-datatypes-Int8Array',
-				passed:	typeof Int8Array != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-Uint8Array',
-				passed:	typeof Uint8Array != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-Uint8ClampedArray',
-				passed:	typeof Uint8ClampedArray != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-Int16Array',
-				passed:	typeof Int16Array != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-Uint16Array',
-				passed:	typeof Uint16Array != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-Int32Array',
-				passed:	typeof Int32Array != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-Uint32Array',
-				passed:	typeof Uint32Array != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-Float32Array',
-				passed:	typeof Float32Array != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-Float64Array',
-				passed:	typeof Float64Array != 'undefined'
-			});
-			
-			results.setItem({
-				key:	'performance-datatypes-DataView',
-				passed:	typeof DataView != 'undefined'
+				key:	'files-getFileSystem',
+				passed:	!! navigator.getFileSystem ? YES : !! navigator.webkitGetFileSystem || !! navigator.mozGetFileSystem || !! window.msGetFileSystem ? YES | PREFIX : NO
 			});
 		},
 		
 		function(results) {
 
-			/* fullscreen */
+			/* readable streams */
 
 			results.setItem({
-				key:	'output-requestFullScreen',
-				passed:	!! document.documentElement.requestFullscreen ? YES : !! document.documentElement.webkitRequestFullScreen || !! document.documentElement.mozRequestFullScreen || !! document.documentElement.msRequestFullscreen ? YES | PREFIX : NO
+				key:	'streams-streams.readable',
+				passed:	'ReadableStream' in window
+			});
+
+
+			/* writeable streams */
+
+			results.setItem({
+				key:	'streams-streams.writeable',
+				passed:	'WriteableStream' in window
+			});
+		},
+
+		function(results) {
+
+			/* custom elements */
+
+			results.setItem({
+				key:	'components-custom',
+				passed:	'registerElement' in document
+			});
+
+
+			/* shadow dom */
+
+			results.setItem({
+				key:	'components-shadowdom',
+				passed:	'attachShadow' in document.createElement('div') ? YES : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') ? YES | OLD : NO
 			});
 			
 
-			/* notifications */
+			/* templates */
+
+			var passed = false;
+
+			try {
+				passed = 'content' in document.createElement('template');
+			} catch(error) {
+			}
 
 			results.setItem({
-				key:	'output-notifications',
-				passed:	'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO
+				key:	'components-template',
+				passed:	passed
+			});
+
+
+			/* html imports */
+
+			results.setItem({
+				key:	'components-imports',
+				passed:	'import' in document.createElement('link')
 			});
 		},
-		
+				
 		function(results) {
 
 			/* async scripts */
@@ -3213,65 +3271,6 @@ Test8 = (function() {
 			results.setItem({
 				key:	'other-scrollIntoView',
 				passed:	'scrollIntoView' in document.createElement('div')
-			});
-		},
-		
-		function(results) {
-
-			/* animation api */
-
-			results.setItem({
-				key:	'animation-webanimation',
-				passed:	'animate' in document.createElement('div')
-			});
-
-
-			/* requestAnimationFrame */
-
-			results.setItem({
-				key:	'animation-requestAnimationFrame',
-				passed:	!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO
-			});
-		},
-		
-		function(results) {
-
-			/* custom elements */
-
-			results.setItem({
-				key:	'components-custom',
-				passed:	'registerElement' in document
-			});
-
-
-			/* shadow dom */
-
-			results.setItem({
-				key:	'components-shadowdom',
-				passed:	'attachShadow' in document.createElement('div') ? YES : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') ? YES | OLD : NO
-			});
-			
-
-			/* templates */
-
-			var passed = false;
-
-			try {
-				passed = 'content' in document.createElement('template');
-			} catch(error) {
-			}
-
-			results.setItem({
-				key:	'components-template',
-				passed:	passed
-			});
-
-
-			/* html imports */
-
-			results.setItem({
-				key:	'components-imports',
-				passed:	'import' in document.createElement('link')
 			});
 		}
 	];
