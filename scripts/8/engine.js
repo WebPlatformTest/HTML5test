@@ -148,9 +148,9 @@ Test8 = (function() {
 	})();
 
 
-	var log = (function(){
+	var log = function(m){
 		if (console && console.log) {
-			return console.log;
+			console.log(m);
 		}
 		
 		return function() {};
