@@ -21,7 +21,7 @@ Test8 = (function () {
         /* doctype */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'parsing-doctype',
                 passed: document.compatMode == 'CSS1Compat'
             });
@@ -95,7 +95,7 @@ Test8 = (function () {
                 result = false;
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'parsing-tokenizer',
                 passed: result
             });
@@ -163,7 +163,7 @@ Test8 = (function () {
             e.innerHTML = "<div></div>";
             result &= e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == "http://www.w3.org/1999/xhtml";
 
-            results.setItem({
+            results.addItem({
                 key: 'parsing-tree',
                 passed: result
             });
@@ -177,7 +177,7 @@ Test8 = (function () {
             e.innerHTML = '<svg></svg>';
             var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/2000/svg';
 
-            results.setItem({
+            results.addItem({
                 key: 'parsing-svg',
                 passed: passed
             });
@@ -191,7 +191,7 @@ Test8 = (function () {
             e.innerHTML = '<math></math>';
             var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/1998/Math/MathML';
 
-            results.setItem({
+            results.addItem({
                 key: 'parsing-mathml',
                 passed: passed
             });
@@ -203,7 +203,7 @@ Test8 = (function () {
             var element = document.createElement('div');
             element.setAttribute('data-test', 'test');
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-dataset',
                 passed: 'dataset' in element
             });
@@ -231,7 +231,7 @@ Test8 = (function () {
                 } catch (error) {
                 }
 
-                results.setItem({
+                results.addItem({
                     key: 'elements-section-' + elements[e],
                     passed: passed,
                     value: 1
@@ -262,7 +262,7 @@ Test8 = (function () {
                 } catch (error) {
                 }
 
-                results.setItem({
+                results.addItem({
                     key: 'elements-grouping-' + elements[e],
                     passed: passed
                 });
@@ -274,7 +274,7 @@ Test8 = (function () {
         /* ol grouping */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'elements-grouping-ol',
                 passed: 'reversed' in document.createElement('ol')
             });
@@ -285,7 +285,7 @@ Test8 = (function () {
         /* a download */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'elements-semantic-download',
                 passed: 'download' in document.createElement('a')
             });
@@ -295,7 +295,7 @@ Test8 = (function () {
         /* a ping */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'elements-semantic-ping',
                 passed: 'ping' in document.createElement('a')
             });
@@ -320,7 +320,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-semantic-mark',
                 passed: passed
             });
@@ -350,7 +350,7 @@ Test8 = (function () {
 
             document.body.removeChild(container);
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-semantic-ruby',
                 passed: rubySupport && rtSupport && rpSupport
             });
@@ -372,7 +372,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-semantic-time',
                 passed: passed
             });
@@ -394,7 +394,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-semantic-data',
                 passed: passed
             });
@@ -416,7 +416,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-semantic-wbr',
                 passed: passed
             });
@@ -442,7 +442,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-interactive-details',
                 passed: passed
             });
@@ -467,7 +467,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-interactive-summary',
                 passed: passed
             });
@@ -545,7 +545,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-interactive-menutoolbar',
                 passed: passed ? YES : legacy ? YES | OLD : NO
             });
@@ -636,7 +636,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-interactive-menupopup',
                 passed: passed ? YES : legacy ? YES | OLD : NO
             });
@@ -658,7 +658,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'elements-interactive-dialog',
                 passed: passed
             });
@@ -668,7 +668,7 @@ Test8 = (function () {
         /* hidden attribute */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'elements-hidden',
                 passed: 'hidden' in document.createElement('div')
             });
@@ -678,7 +678,7 @@ Test8 = (function () {
         /* outerHTML property */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'elements-dynamic-outerHTML',
                 passed: 'outerHTML' in document.createElement('div')
             });
@@ -688,7 +688,7 @@ Test8 = (function () {
         /* insertAdjacentHTML property */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'elements-dynamic-insertAdjacentHTML',
                 passed: 'insertAdjacentHTML' in document.createElement('div')
             });
@@ -700,12 +700,12 @@ Test8 = (function () {
         function (results) {
             var element = createInput('text');
 
-            results.setItem({
+            results.addItem({
                 key: 'form-text-element',
                 passed: element.type == 'text'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-text-selection',
                 passed: 'selectionDirection' in element
             });
@@ -717,7 +717,7 @@ Test8 = (function () {
         function (results) {
             var element = createInput('search');
 
-            results.setItem({
+            results.addItem({
                 key: 'form-search-element',
                 passed: element.type == 'search'
             });
@@ -729,7 +729,7 @@ Test8 = (function () {
         function (results) {
             var element = createInput('tel');
 
-            results.setItem({
+            results.addItem({
                 key: 'form-tel-element',
                 passed: element.type == 'tel'
             });
@@ -752,12 +752,12 @@ Test8 = (function () {
                 validation &= element.validity.valid
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-url-element',
                 passed: element.type == 'url'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-url-validation',
                 passed: validation
             });
@@ -780,12 +780,12 @@ Test8 = (function () {
                 validation &= element.validity.valid
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-email-element',
                 passed: element.type == 'email'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-email-validation',
                 passed: validation
             });
@@ -804,54 +804,54 @@ Test8 = (function () {
 
                 var minimal = element.type == types[t];
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-element',
                     passed: minimal
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-ui',
                     passed: minimal && sanitization, 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-sanitization',
                     passed: minimal && sanitization
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-min',
                     passed: minimal && 'min' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-max',
                     passed: minimal && 'max' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-step',
                     passed: minimal && 'step' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-stepDown',
                     passed: minimal && 'stepDown' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-stepUp',
                     passed: minimal && 'stepUp' in element
                 });
 
                 if (t != 'datetime-local' && t != 'datetime') {
-                    results.setItem({
+                    results.addItem({
                         key: 'form-' + types[t] + '-valueAsDate',
                         passed: minimal && 'valueAsDate' in element
                     });
                 }
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-valueAsNumber',
                     passed: minimal && 'valueAsNumber' in element
                 });
@@ -884,54 +884,54 @@ Test8 = (function () {
 
                 var minimal = element.type == types[t];
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-element',
                     passed: minimal
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-ui',
                     passed: minimal && sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-sanitization',
                     passed: minimal && sanitization
                 });
 
                 if (types[t] != 'range') {
-                    results.setItem({
+                    results.addItem({
                         key: 'form-' + types[t] + '-validation',
                         passed: minimal && validation
                     });
                 }
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-min',
                     passed: minimal && 'min' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-max',
                     passed: minimal && 'max' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-step',
                     passed: minimal && 'step' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-stepDown',
                     passed: minimal && 'stepDown' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-stepUp',
                     passed: minimal && 'stepUp' in element
                 });
 
-                results.setItem({
+                results.addItem({
                     key: 'form-' + types[t] + '-valueAsNumber',
                     passed: minimal && 'valueAsNumber' in element
                 });
@@ -947,17 +947,17 @@ Test8 = (function () {
             element.value = "foobar";
             var sanitization = element.value != 'foobar';
 
-            results.setItem({
+            results.addItem({
                 key: 'form-color-element',
                 passed: element.type == 'color'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-color-ui',
                 passed: sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-color-sanitization',
                 passed: sanitization
             });
@@ -969,12 +969,12 @@ Test8 = (function () {
         function (results) {
             var element = createInput('checkbox');
 
-            results.setItem({
+            results.addItem({
                 key: 'form-checkbox-element',
                 passed: element.type == 'checkbox'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-checkbox-indeterminate',
                 passed: 'indeterminate' in element
             });
@@ -993,17 +993,17 @@ Test8 = (function () {
             element.setAttribute('width', '100');
             element.setAttribute('height', '100');
 
-            results.setItem({
+            results.addItem({
                 key: 'form-image-element',
                 passed: element.type == 'image'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-image-width',
                 passed: supportsWidth && element.offsetWidth == 100
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-image-height',
                 passed: supportsHeight && element.offsetHeight == 100
             });
@@ -1015,17 +1015,17 @@ Test8 = (function () {
         function (results) {
             var element = createInput('file');
 
-            results.setItem({
+            results.addItem({
                 key: 'form-file-element',
                 passed: element.type == 'file'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-file-files',
                 passed: element.files && element.files instanceof FileList
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-file-directory',
                 passed: 'directory' in element && window.Directory
             });
@@ -1043,17 +1043,17 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-textarea-element',
                 passed: passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-textarea-maxlength',
                 passed: 'maxLength' in element
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-textarea-wrap',
                 passed: 'wrap' in element
             });
@@ -1071,12 +1071,12 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-select-element',
                 passed: passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-select-required',
                 passed: 'required' in element
             });
@@ -1094,17 +1094,17 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-fieldset-element',
                 passed: passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-fieldset-elements',
                 passed: 'elements' in element
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-fieldset-disabled',
                 passed: 'disabled' in element
             });
@@ -1126,14 +1126,14 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-datalist-element',
                 passed: passed
             });
 
             var element = document.createElement('input');
 
-            results.setItem({
+            results.addItem({
                 key: 'form-datalist-list',
                 passed: !!("list" in element)
             });
@@ -1152,17 +1152,17 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-keygen-element',
                 passed: passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-keygen-challenge',
                 passed: element.firstChild && 'challenge' in element.firstChild
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'form-keygen-keytype',
                 passed: element.firstChild && 'keytype' in element.firstChild
             });
@@ -1184,7 +1184,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-output-element',
                 passed: passed
             });
@@ -1206,7 +1206,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-progress-element',
                 passed: passed
             });
@@ -1228,7 +1228,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'form-meter-element',
                 passed: passed
             });
@@ -1243,7 +1243,7 @@ Test8 = (function () {
             var props = 'pattern required'.split(' ');
 
             for (var p = 0; p < props.length; p++) {
-                results.setItem({
+                results.addItem({
                     key: 'form-validation-' + props[p],
                     passed: !!(props[p] in element)
                 });
@@ -1262,7 +1262,7 @@ Test8 = (function () {
             label.setAttribute('for', 'a');
             document.body.appendChild(label);
 
-            results.setItem({
+            results.addItem({
                 key: 'form-association-control',
                 passed: label.control == field
             });
@@ -1279,7 +1279,7 @@ Test8 = (function () {
             document.body.appendChild(element);
             element.innerHTML = '<form id="form"></form><input form="form">';
 
-            results.setItem({
+            results.addItem({
                 key: 'form-association-form',
                 passed: element.lastChild.form == element.firstChild
             });
@@ -1296,7 +1296,7 @@ Test8 = (function () {
             var element = document.createElement('input');
 
             for (var p = 0; p < props.length; p++) {
-                results.setItem({
+                results.addItem({
                     key: 'form-association-' + props[p],
                     passed: !!(props[p] in element)
                 });
@@ -1315,7 +1315,7 @@ Test8 = (function () {
             label.setAttribute('for', 'testFormInput');
             document.body.appendChild(label);
 
-            results.setItem({
+            results.addItem({
                 key: 'form-association-labels',
                 passed: (!!element.labels && element.labels.length == 1 && element.labels[0] == label)
             });
@@ -1330,7 +1330,7 @@ Test8 = (function () {
         function (results) {
             var element = document.createElement('input');
 
-            results.setItem({
+            results.addItem({
                 key: 'form-other-autofocus',
                 passed: !!('autofocus' in element)
             });
@@ -1346,7 +1346,7 @@ Test8 = (function () {
 
             for (var p = 0; p < props.length; p++) {
                 var prop = props[p].toLowerCase();
-                results.setItem({
+                results.addItem({
                     key: 'form-other-' + prop,
                     passed: !!(props[p] in element)
                 });
@@ -1458,7 +1458,7 @@ Test8 = (function () {
             }
 
             for (var i = 0; i < selectors.length; i++) {
-                results.setItem({
+                results.addItem({
                     key: 'form-selectors-' + selectors[i],
                     passed: passed[i]
                 });
@@ -1469,17 +1469,17 @@ Test8 = (function () {
         /* oninput, onchange and oninvalid events */
 
         function (results) {
-            var inputItem = results.setItem({
+            var inputItem = results.addItem({
                 key: 'form-events-oninput',
                 passed: isEventSupported('input')
             });
 
-            var changeItem = results.setItem({
+            var changeItem = results.addItem({
                 key: 'form-events-onchange',
                 passed: isEventSupported('change')
             });
 
-            var invalidItem = results.setItem({
+            var invalidItem = results.addItem({
                 key: 'form-events-oninvalid',
                 passed: isEventSupported('invalid')
             });
@@ -1538,7 +1538,7 @@ Test8 = (function () {
         /* checkValidity property */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'form-formvalidation-checkValidity',
                 passed: 'checkValidity' in document.createElement('form')
             });
@@ -1548,7 +1548,7 @@ Test8 = (function () {
         /* noValidate property */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'form-formvalidation-noValidate',
                 passed: 'noValidate' in document.createElement('form')
             });
@@ -1580,7 +1580,7 @@ Test8 = (function () {
 
             document.body.removeChild(container);
 
-            results.setItem({
+            results.addItem({
                 key: 'microdata-microdata',
                 passed: passed
             });
@@ -1590,7 +1590,7 @@ Test8 = (function () {
         /* geolocation */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'location-geolocation',
                 passed: !!navigator.geolocation
             });
@@ -1600,7 +1600,7 @@ Test8 = (function () {
         /* device orientation */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'location-orientation',
                 passed: !!window.DeviceOrientationEvent
             });
@@ -1610,7 +1610,7 @@ Test8 = (function () {
         /* device motion */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'location-motion',
                 passed: !!window.DeviceMotionEvent
             });
@@ -1620,7 +1620,7 @@ Test8 = (function () {
         /* fullscreen */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'output-requestFullScreen',
                 passed: !!document.documentElement.requestFullscreen ? YES : !!document.documentElement.webkitRequestFullScreen || !!document.documentElement.mozRequestFullScreen || !!document.documentElement.msRequestFullscreen ? YES | PREFIX : NO
             });
@@ -1630,7 +1630,7 @@ Test8 = (function () {
         /* notifications */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'output-notifications',
                 passed: 'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO
             });
@@ -1640,7 +1640,7 @@ Test8 = (function () {
         /* getUserMedia */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'input-getUserMedia',
                 passed: !!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia ? YES : !!navigator.getUserMedia ? YES | OLD : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO
             });
@@ -1650,7 +1650,7 @@ Test8 = (function () {
         /* getGamepads */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'input-getGamepads',
                 passed: !!navigator.getGamepads ? YES : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads ? YES | PREFIX : NO
             });
@@ -1660,7 +1660,7 @@ Test8 = (function () {
         /* pointerLock */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'input-pointerLock',
                 passed: 'pointerLockElement' in document ? YES : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document ? YES | PREFIX : NO
             });
@@ -1670,7 +1670,7 @@ Test8 = (function () {
         /* pointerevents */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'input-pointerevents',
                 passed: !!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO
             });
@@ -1680,7 +1680,7 @@ Test8 = (function () {
         /* beacon */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'communication-beacon',
                 passed: 'sendBeacon' in navigator
             });
@@ -1690,7 +1690,7 @@ Test8 = (function () {
         /* eventSource */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'communication-eventSource',
                 passed: 'EventSource' in window
             });
@@ -1700,7 +1700,7 @@ Test8 = (function () {
         /* fetch */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'communication-fetch',
                 passed: 'Promise' in window && typeof window.fetch === 'function' && window.fetch('') instanceof Promise
             });
@@ -1710,7 +1710,7 @@ Test8 = (function () {
         /* xmlhttprequest upload */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'communication-xmlhttprequest2.upload',
                 passed: window.XMLHttpRequest && 'upload' in new XMLHttpRequest()
             });
@@ -1720,7 +1720,7 @@ Test8 = (function () {
         /* xmlhttprequest response text */
 
         function (results) {
-            var item = results.setItem({
+            var item = results.addItem({
                 key: 'communication-xmlhttprequest2.response-text',
                 passed: false
             });
@@ -1764,7 +1764,7 @@ Test8 = (function () {
         /* xmlhttprequest response document */
 
         function (results) {
-            var item = results.setItem({
+            var item = results.addItem({
                 key: 'communication-xmlhttprequest2.response-document',
                 passed: false
             });
@@ -1808,7 +1808,7 @@ Test8 = (function () {
         /* xmlhttprequest response array */
 
         function (results) {
-            var item = results.setItem({
+            var item = results.addItem({
                 key: 'communication-xmlhttprequest2.response-array',
                 passed: false
             });
@@ -1852,7 +1852,7 @@ Test8 = (function () {
         /* xmlhttprequest response blob */
 
         function (results) {
-            var item = results.setItem({
+            var item = results.addItem({
                 key: 'communication-xmlhttprequest2.response-blob',
                 passed: false
             });
@@ -1900,7 +1900,7 @@ Test8 = (function () {
             var passed = 'WebSocket' in window ? YES : 'MozWebSocket' in window ? YES | PREFIX : NO;
             if (websocket && websocket.CLOSING !== 2) passed |= OLD;
 
-            results.setItem({
+            results.addItem({
                 key: 'communication-websocket.basic',
                 passed: passed
             });
@@ -1925,7 +1925,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'communication-websocket.binary',
                 passed: passed
             });
@@ -1935,7 +1935,7 @@ Test8 = (function () {
 
             /* webrtc */
 
-            results.setItem({
+            results.addItem({
                 key: 'webrtc-webrtc',
                 passed: !!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO
             });
@@ -1946,7 +1946,7 @@ Test8 = (function () {
 
             /* objectrtc */
 
-            results.setItem({
+            results.addItem({
                 key: 'webrtc-objectrtc',
                 passed: !!window.RTCIceTransport ? YES : !!window.webkitRTCIceTransport || !!window.mozRTCIceTransport || !!window.msRTCIceTransport || !!window.oRTCIceTransport ? YES | PREFIX : NO
             });
@@ -1965,7 +1965,7 @@ Test8 = (function () {
             catch (e) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'webrtc-datachannel',
                 passed: passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO
             });
@@ -1975,7 +1975,7 @@ Test8 = (function () {
         /* Draggable */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.attributes-draggable',
                 passed: 'draggable' in document.createElement('div')
             });
@@ -1987,7 +1987,7 @@ Test8 = (function () {
         function (results) {
             var element = document.createElement('div');
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.attributes-dropzone',
                 passed: 'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO
             });
@@ -2004,37 +2004,37 @@ Test8 = (function () {
 			   events in combination with the draggable attribute */
 
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.events-ondrag',
                 passed: isEventSupported('drag') && passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.events-ondragstart',
                 passed: isEventSupported('dragstart') && passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.events-ondragenter',
                 passed: isEventSupported('dragenter') && passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.events-ondragover',
                 passed: isEventSupported('dragover') && passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.events-ondragleave',
                 passed: isEventSupported('dragleave') && passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.events-ondragend',
                 passed: isEventSupported('dragend') && passed
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-dragdrop.events-ondrop',
                 passed: isEventSupported('drop') && passed
             });
@@ -2044,7 +2044,7 @@ Test8 = (function () {
         /* contentEditable */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.elements-contentEditable',
                 passed: 'contentEditable' in document.createElement('div')
             });
@@ -2054,7 +2054,7 @@ Test8 = (function () {
         /* isContentEditable */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.elements-isContentEditable',
                 passed: 'isContentEditable' in document.createElement('div')
             });
@@ -2064,7 +2064,7 @@ Test8 = (function () {
         /* designMode */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.documents-designMode',
                 passed: 'designMode' in document
             });
@@ -2074,32 +2074,32 @@ Test8 = (function () {
         /* execCommand and queryCommand API */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.apis-execCommand',
                 passed: 'execCommand' in document
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.apis-queryCommandEnabled',
                 passed: 'queryCommandEnabled' in document
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.apis-queryCommandIndeterm',
                 passed: 'queryCommandIndeterm' in document
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.apis-queryCommandState',
                 passed: 'queryCommandState' in document
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.apis-queryCommandSupported',
                 passed: 'queryCommandSupported' in document
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'interaction-editing.apis-queryCommandValue',
                 passed: 'queryCommandValue' in document
             });
@@ -2149,7 +2149,7 @@ Test8 = (function () {
             }
 
             for (var i = 0; i < selectors.length; i++) {
-                results.setItem({
+                results.addItem({
                     key: 'interaction-editing.selectors-' + selectors[i],
                     passed: passed[i]
                 });
@@ -2160,7 +2160,7 @@ Test8 = (function () {
         /* ClipboardEvent */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'interaction-clipboard',
                 passed: 'ClipboardEvent' in window
             });
@@ -2170,7 +2170,7 @@ Test8 = (function () {
         /* spellcheck */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'interaction-spellcheck',
                 passed: 'spellcheck' in document.createElement('div')
             });
@@ -2180,7 +2180,7 @@ Test8 = (function () {
         /* webworker */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'performance-worker',
                 passed: !!window.Worker
             });
@@ -2190,7 +2190,7 @@ Test8 = (function () {
         /* sharedworker */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'performance-sharedWorker',
                 passed: !!window.SharedWorker
             });
@@ -2200,57 +2200,57 @@ Test8 = (function () {
         /* datatypes */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-ArrayBuffer',
                 passed: typeof ArrayBuffer != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Int8Array',
                 passed: typeof Int8Array != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Uint8Array',
                 passed: typeof Uint8Array != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Uint8ClampedArray',
                 passed: typeof Uint8ClampedArray != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Int16Array',
                 passed: typeof Int16Array != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Uint16Array',
                 passed: typeof Uint16Array != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Int32Array',
                 passed: typeof Int32Array != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Uint32Array',
                 passed: typeof Uint32Array != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Float32Array',
                 passed: typeof Float32Array != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-Float64Array',
                 passed: typeof Float64Array != 'undefined'
             });
 
-            results.setItem({
+            results.addItem({
                 key: 'performance-datatypes-DataView',
                 passed: typeof DataView != 'undefined'
             });
@@ -2268,7 +2268,7 @@ Test8 = (function () {
             } catch (e) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'security-crypto',
                 passed: passed
             });
@@ -2278,7 +2278,7 @@ Test8 = (function () {
         /* csp 1.0 */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'security-csp10',
                 passed: !(function () { try { return eval('true'); } catch (e) { } return false; })()
             });
@@ -2288,7 +2288,7 @@ Test8 = (function () {
         /* csp 1.1 */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'security-csp11',
                 passed: 'SecurityPolicyViolationEvent' in window
             });
@@ -2298,7 +2298,7 @@ Test8 = (function () {
         /* cors */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'security-cors',
                 passed: window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest()
             });
@@ -2308,7 +2308,7 @@ Test8 = (function () {
         /* postMessage */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'security-postMessage',
                 passed: !!window.postMessage
             });
@@ -2318,7 +2318,7 @@ Test8 = (function () {
         /* sandboxed iframe */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'security-sandbox',
                 passed: 'sandbox' in document.createElement('iframe')
             });
@@ -2328,7 +2328,7 @@ Test8 = (function () {
         /* srcdoc iframe */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'security-srcdoc',
                 passed: 'srcdoc' in document.createElement('iframe')
             });
@@ -2338,7 +2338,7 @@ Test8 = (function () {
         /* history */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'history-history',
                 passed: !!(window.history && history.pushState)
             });
@@ -2350,7 +2350,7 @@ Test8 = (function () {
         function (results) {
             var element = document.createElement('video');
 
-            results.setItem({
+            results.addItem({
                 key: 'video-element',
                 passed: !!element.canPlayType
             });
@@ -2358,7 +2358,7 @@ Test8 = (function () {
 
             /* audioTracks property */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-audiotracks',
                 passed: 'audioTracks' in element
             });
@@ -2366,7 +2366,7 @@ Test8 = (function () {
 
             /* videoTracks property */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-videotracks',
                 passed: 'videoTracks' in element
             });
@@ -2374,7 +2374,7 @@ Test8 = (function () {
 
             /* subtitles */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-subtitle',
                 passed: 'track' in document.createElement('track')
             });
@@ -2382,7 +2382,7 @@ Test8 = (function () {
 
             /* poster */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-poster',
                 passed: 'poster' in element
             });
@@ -2390,7 +2390,7 @@ Test8 = (function () {
 
             /* drm */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-drm',
                 passed: 'setMediaKeys' in element ? YES : 'webkitAddKey' in element || 'webkitSetMediaKeys' in element || 'mozSetMediaKeys' in element || 'msSetMediaKeys' in element ? YES | PREFIX : NO
             });
@@ -2398,7 +2398,7 @@ Test8 = (function () {
 
             /* mediasource */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-mediasource',
                 passed: 'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
             });
@@ -2406,7 +2406,7 @@ Test8 = (function () {
 
             /* recorder */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-recorder',
                 passed: 'MediaRecorder' in window
             });
@@ -2420,7 +2420,7 @@ Test8 = (function () {
 
             /* mpeg-4 codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-mpeg4',
                 passed: !!element.canPlayType && canPlayType(element, 'video/mp4; codecs="mp4v.20.8"')
             });
@@ -2429,35 +2429,35 @@ Test8 = (function () {
 
             /* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-h264',
                 passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
             });
 
             /* h.265 codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-h265',
                 passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"'))
             });
 
             /* theora codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-theora',
                 passed: !!element.canPlayType && canPlayType(element, 'video/ogg; codecs="theora"')
             });
 
             /* vp8 in webm codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-webmvp8',
                 passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp8"')
             });
 
             /* vp9 in webm codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'video-webmvp9',
                 passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp9"')
             });
@@ -2493,7 +2493,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'video-canplaytype',
                 passed: element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
             });
@@ -2505,21 +2505,21 @@ Test8 = (function () {
         function (results) {
             var element = document.createElement('audio');
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-element',
                 passed: !!element.canPlayType
             });
 
             /* loop property */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-loop',
                 passed: 'loop' in element
             });
 
             /* preload property */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-preload',
                 passed: 'preload' in element
             });
@@ -2533,7 +2533,7 @@ Test8 = (function () {
 
             /* pcm codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-pcm',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/wav; codecs="1"')
             });
@@ -2552,56 +2552,56 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-mp3',
                 passed: r
             });
 
             /* aac codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-aac',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="mp4a.40.2"')
             });
 
             /* ac3 codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-ac3',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ac-3"')
             });
 
             /* enhanced ac3 codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-ec3',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ec-3"')
             });
 
             /* ogg vorbis codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-vorbis',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="vorbis"')
             });
 
             /* ogg opus codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-opus',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="opus"')
             });
 
             /* webm vorbis codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-webm',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/webm; codecs="vorbis"')
             });
 
             /* webm opus codec */
 
-            results.setItem({
+            results.addItem({
                 key: 'audio-webmopus',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/webm; codecs="opus"')
             });
@@ -2611,7 +2611,7 @@ Test8 = (function () {
         /* webaudio */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'audio-webaudio',
                 passed: 'AudioContext' in window ? YES : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window ? YES | PREFIX : NO
             });
@@ -2621,7 +2621,7 @@ Test8 = (function () {
         /* speech recognition */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'audio-speechrecognition',
                 passed: 'SpeechRecognition' in window ? YES : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window ? YES | PREFIX : NO
             });
@@ -2635,7 +2635,7 @@ Test8 = (function () {
             var available = 'speechSynthesis' in window ? YES : 'webkitSpeechSynthesis' in window || 'mozSpeechSynthesis' in window || 'oSpeechSynthesis' in window || 'msSpeechSynthesis' in window ? YES | PREFIX : NO;
             var voices = speechSynthesis ? speechSynthesis.getVoices().length : 0;
 
-            var speechItem = results.setItem({
+            var speechItem = results.addItem({
                 key: 'audio-speechsynthesis',
                 passed: speechSynthesis && voices ? available : NO
             });
@@ -2665,7 +2665,7 @@ Test8 = (function () {
         /* picture element */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'responsive-picture',
                 passed: 'HTMLPictureElement' in window
             });
@@ -2675,7 +2675,7 @@ Test8 = (function () {
         /* srcset attribute */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'responsive-srcset',
                 passed: 'srcset' in document.createElement('img')
             });
@@ -2685,7 +2685,7 @@ Test8 = (function () {
         /* sizes attribute */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'responsive-sizes',
                 passed: 'sizes' in document.createElement('img')
             });
@@ -2697,7 +2697,7 @@ Test8 = (function () {
         function (results) {
             var canvas = document.createElement('canvas');
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-context',
                 passed: !!(canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && canvas.getContext('2d') instanceof CanvasRenderingContext2D)
             });
@@ -2720,7 +2720,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-text',
                 passed: passed
             });
@@ -2736,7 +2736,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-ellipse',
                 passed: passed
             });
@@ -2752,7 +2752,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-dashed',
                 passed: passed
             });
@@ -2768,7 +2768,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-focusring',
                 passed: passed
             });
@@ -2784,7 +2784,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-hittest',
                 passed: passed
             });
@@ -2794,7 +2794,7 @@ Test8 = (function () {
         /* path support */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'canvas-path',
                 passed: typeof Path2D != "undefined" ? YES : typeof Path != "undefined" ? YES | OLD : NO
             });
@@ -2828,7 +2828,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-blending',
                 passed: passed
             });
@@ -2851,7 +2851,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-png',
                 passed: passed
             });
@@ -2867,7 +2867,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-jpeg',
                 passed: passed
             });
@@ -2883,7 +2883,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-jpegxr',
                 passed: passed
             });
@@ -2899,7 +2899,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'canvas-webp',
                 passed: passed
             });
@@ -2924,7 +2924,7 @@ Test8 = (function () {
                 } catch (e) { }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'webgl-context',
                 passed: passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
             });
@@ -2934,7 +2934,7 @@ Test8 = (function () {
         /* animation api */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'animation-webanimation',
                 passed: 'animate' in document.createElement('div')
             });
@@ -2944,7 +2944,7 @@ Test8 = (function () {
         /* requestAnimationFrame */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'animation-requestAnimationFrame',
                 passed: !!window.requestAnimationFrame ? YES : !!window.webkitRequestAnimationFrame || !!window.mozRequestAnimationFrame || !!window.msRequestAnimationFrame || !!window.oRequestAnimationFrame ? YES | PREFIX : NO
             });
@@ -2954,7 +2954,7 @@ Test8 = (function () {
         /* applicationCache */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'offline-applicationCache',
                 passed: !!window.applicationCache
             });
@@ -2964,7 +2964,7 @@ Test8 = (function () {
         /* serviceWorker */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'offline-serviceWorkers',
                 passed: !!window.navigator.serviceWorker
             });
@@ -2974,7 +2974,7 @@ Test8 = (function () {
         /* registerProtocolHandler */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'offline-registerProtocolHandler',
                 passed: !!window.navigator.registerProtocolHandler
             });
@@ -2984,7 +2984,7 @@ Test8 = (function () {
         /* registerContentHandler */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'offline-registerContentHandler',
                 passed: !!window.navigator.registerContentHandler
             });
@@ -2994,7 +2994,7 @@ Test8 = (function () {
         /* session storage */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'storage-sessionStorage',
                 passed: 'sessionStorage' in window && window.sessionStorage != null
             });
@@ -3015,7 +3015,7 @@ Test8 = (function () {
                 }
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'storage-localStorage',
                 passed: passed
             });
@@ -3029,19 +3029,19 @@ Test8 = (function () {
             var passed = !!window.indexedDB ? YES : !!window.webkitIndexedDB || !!window.mozIndexedDB || !!window.moz_indexedDB || !!window.oIndexedDB || !!window.msIndexedDB ? YES | PREFIX : NO;
             if (indexedDB && ! 'deleteDatabase' in indexedDB) passed != BUGGY;
 
-            results.setItem({
+            results.addItem({
                 key: 'storage-indexedDB.basic',
                 passed: passed
             });
 
             /* indexeddb blob and arraybuffer storage */
 
-            var blobitem = results.setItem({
+            var blobitem = results.addItem({
                 key: 'storage-indexedDB.blob',
                 passed: false
             });
 
-            var arrayitem = results.setItem({
+            var arrayitem = results.addItem({
                 key: 'storage-indexedDB.arraybuffer',
                 passed: false
             });
@@ -3129,7 +3129,7 @@ Test8 = (function () {
         /* websql */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'storage-sqlDatabase',
                 passed: !!window.openDatabase
             });
@@ -3139,35 +3139,35 @@ Test8 = (function () {
         /* file reader */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'files-fileReader',
                 passed: 'FileReader' in window
             });
 
             /* file reader as blob */
 
-            results.setItem({
+            results.addItem({
                 key: 'files-fileReader.blob',
                 passed: 'Blob' in window
             });
 
             /* file reader as data url */
 
-            results.setItem({
+            results.addItem({
                 key: 'files-fileReader.dataURL',
                 passed: 'FileReader' in window && 'readAsDataURL' in (new FileReader())
             });
 
             /* file reader as array buffer */
 
-            results.setItem({
+            results.addItem({
                 key: 'files-fileReader.arraybuffer',
                 passed: 'FileReader' in window && 'readAsArrayBuffer' in (new FileReader())
             });
 
             /* file reader as object url */
 
-            results.setItem({
+            results.addItem({
                 key: 'files-fileReader.objectURL',
                 passed: 'URL' in window && 'createObjectURL' in URL
             });
@@ -3177,7 +3177,7 @@ Test8 = (function () {
         /* request file system */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'files-fileSystem',
                 passed: !!window.requestFileSystem ? YES : !!window.webkitRequestFileSystem || !!window.mozRequestFileSystem || !!window.oRequestFileSystem || !!window.msRequestFileSystem ? YES | PREFIX : NO
             });
@@ -3187,7 +3187,7 @@ Test8 = (function () {
         /* get file system */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'files-getFileSystem',
                 passed: !!navigator.getFileSystem ? YES : !!navigator.webkitGetFileSystem || !!navigator.mozGetFileSystem || !!window.msGetFileSystem ? YES | PREFIX : NO
             });
@@ -3197,7 +3197,7 @@ Test8 = (function () {
         /* readable streams */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'streams-streams.readable',
                 passed: 'ReadableStream' in window
             });
@@ -3208,7 +3208,7 @@ Test8 = (function () {
         /* writeable streams */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'streams-streams.writeable',
                 passed: 'WriteableStream' in window
             });
@@ -3218,7 +3218,7 @@ Test8 = (function () {
         /* custom elements */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'components-custom',
                 passed: 'registerElement' in document
             });
@@ -3228,7 +3228,7 @@ Test8 = (function () {
         /* shadow dom */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'components-shadowdom',
                 passed: 'attachShadow' in document.createElement('div') ? YES : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') ? YES | OLD : NO
             });
@@ -3245,7 +3245,7 @@ Test8 = (function () {
             } catch (error) {
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'components-template',
                 passed: passed
             });
@@ -3255,7 +3255,7 @@ Test8 = (function () {
         /* html imports */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'components-imports',
                 passed: 'import' in document.createElement('link')
             });
@@ -3265,7 +3265,7 @@ Test8 = (function () {
         /* async scripts */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-async',
                 passed: 'async' in document.createElement('script')
             });
@@ -3275,7 +3275,7 @@ Test8 = (function () {
         /* deferred scripts */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-defer',
                 passed: 'defer' in document.createElement('script')
             });
@@ -3285,7 +3285,7 @@ Test8 = (function () {
         /* script error reporting */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-onerror',
                 passed: isEventSupported('error')
             });
@@ -3295,7 +3295,7 @@ Test8 = (function () {
         /* script execution events */
 
         function (results) {
-            var executionevents = results.setItem({
+            var executionevents = results.addItem({
                 key: 'other-executionevents',
                 passed: false
             });
@@ -3332,7 +3332,7 @@ Test8 = (function () {
         /* base64 encoding and decoding */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-base64',
                 passed: 'btoa' in window && 'atob' in window
             });
@@ -3342,7 +3342,7 @@ Test8 = (function () {
         /* json encoding and decoding */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-json',
                 passed: 'JSON' in window && 'parse' in JSON
             });
@@ -3352,7 +3352,7 @@ Test8 = (function () {
         /* mutation observer */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-mutationObserver',
                 passed: 'MutationObserver' in window ? YES : 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window ? YES | PREFIX : NO
             });
@@ -3362,7 +3362,7 @@ Test8 = (function () {
         /* url api */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-url',
                 passed: 'URL' in window ? YES : 'WebKitURL' in window || 'MozURL' in window || 'oURL' in window || 'msURL' in window ? YES | PREFIX : NO
             });
@@ -3372,7 +3372,7 @@ Test8 = (function () {
         /* text encoding api */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-encoding',
                 passed: 'TextEncoder' in window && 'TextDecoder' in window ? YES : NO
             });
@@ -3382,7 +3382,7 @@ Test8 = (function () {
         /* internationalisation api */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-i18n',
                 passed: 'Intl' in window ? YES : NO
             });
@@ -3407,7 +3407,7 @@ Test8 = (function () {
                 passed = YES;
             }
 
-            results.setItem({
+            results.addItem({
                 key: 'other-promises',
                 passed: passed
             });
@@ -3417,7 +3417,7 @@ Test8 = (function () {
         /* page visiblity */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-pagevisiblity',
                 passed: 'visibilityState' in document ? YES : 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document ? YES | PREFIX : NO
             });
@@ -3427,7 +3427,7 @@ Test8 = (function () {
         /* selection */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-getSelection',
                 passed: !!window.getSelection
             });
@@ -3437,7 +3437,7 @@ Test8 = (function () {
         /* scrollIntoView */
 
         function (results) {
-            results.setItem({
+            results.addItem({
                 key: 'other-scrollIntoView',
                 passed: 'scrollIntoView' in document.createElement('div')
             });
@@ -3559,7 +3559,7 @@ Test8 = (function () {
             this.items = [];
         },
 
-        setItem: function (result) {
+        addItem: function (result) {
             var i = new item(this, result);
             this.items.push(i);
             return i;
