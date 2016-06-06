@@ -208,12 +208,9 @@ Test8 = (function() {
 
 
 
-
-
-	function testParsing (results) { this.initialize(results); }			
-	testParsing.prototype = {
-		initialize: function(results) {
-
+	var testsuite = [
+		function(results) {
+			
 			/* doctype */
 
 			results.setItem({
@@ -382,15 +379,11 @@ Test8 = (function() {
 				key:	'parsing-mathml',
 				passed:	passed
 			});
-		}
-	};
 
-
-
-	function testResponsive (results) { this.initialize(results); }			
-	testResponsive.prototype = {
-		initialize: function(results) {
-
+		},
+		
+		function(results) {
+			
 			/* picture element */
 
 			results.setItem({
@@ -413,14 +406,9 @@ Test8 = (function() {
 				key:	'responsive-sizes',
 				passed:	'sizes' in document.createElement('img')
 			});
-		}
-	};
-
-
-							
-	function testCanvas (results) { this.initialize(results); }			
-	testCanvas.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 			this.canvas = document.createElement('canvas');
 
 
@@ -621,14 +609,9 @@ Test8 = (function() {
 				key:	'canvas-webp',
 				passed:	passed
 			});
-		}
-	};
-
-
-							
-	function testVideo (results) { this.initialize(results); }			
-	testVideo.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 			this.element = document.createElement('video');
 
 
@@ -781,14 +764,9 @@ Test8 = (function() {
 				key:	'video-canplaytype',
 				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
 			});
-		}
-	};
-	
-	
-	
-	function testAudio (results) { this.initialize(results); }			
-	testAudio.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 			this.element = document.createElement('audio');
 			
 
@@ -946,14 +924,9 @@ Test8 = (function() {
 					}, 1000);
 				}
 			}
-		}
-	};
-	
-	
-	
-	function testWebRTC (results) { this.initialize(results); }			
-	testWebRTC.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* webrtc */
 
@@ -985,14 +958,9 @@ Test8 = (function() {
 				key:	'webrtc-datachannel',
 				passed:	passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO
 			});
-		}
-	};
-
-
-
-	function testInput (results) { this.initialize(results); }			
-	testInput.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* getUserMedia */
 
@@ -1024,14 +992,9 @@ Test8 = (function() {
 				key:		'input-pointerevents',
 				passed:		!!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO
 			});
-		}
-	};
-
-
-
-	function testElements (results) { this.initialize(results); }			
-	testElements.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* dataset */
 
@@ -1488,18 +1451,23 @@ Test8 = (function() {
 				key:	'elements-dynamic-insertAdjacentHTML',
 				passed:	'insertAdjacentHTML' in document.createElement('div')
 			});
-		}
-	};		
-	
-	
-	
-	function testForm (results) { this.initialize(results); }			
-	testForm.prototype = {
-		initialize: function(results) {
-			
+		},
+		
+		function(results) {
+			function createInput(type) {
+				var field = document.createElement('input');
+				
+				try {
+					field.setAttribute('type', type);
+				} catch(e) {
+				}
+				
+				return field;
+			}
+		
 			/* input type=text */
 			
-			var element = this.createInput('text');
+			var element = createInput('text');
 			
 			results.setItem({
 				key:		'form-text-element',
@@ -1514,7 +1482,7 @@ Test8 = (function() {
 			
 			/* input type=search */
 			
-			var element = this.createInput('search');
+			var element = createInput('search');
 			
 			results.setItem({
 				key:		'form-search-element',
@@ -1524,7 +1492,7 @@ Test8 = (function() {
 			
 			/* input type=tel */
 			
-			var element = this.createInput('tel');
+			var element = createInput('tel');
 			
 			results.setItem({
 				key:		'form-tel-element',
@@ -1534,7 +1502,7 @@ Test8 = (function() {
 			
 			/* input type=url */
 			
-			var element = this.createInput('url');
+			var element = createInput('url');
 			
 			var validation = false;
 			if ('validity' in element) {
@@ -1560,7 +1528,7 @@ Test8 = (function() {
 			
 			/* input type=email */
 			
-			var element = this.createInput('email');
+			var element = createInput('email');
 													
 			var validation = false;
 			if ('validity' in element) {
@@ -1588,7 +1556,7 @@ Test8 = (function() {
 			
 			var types = ['date', 'month', 'week', 'time', 'datetime', 'datetime-local'];
 			for (var t = 0; t < types.length; t++) {
-				var element = this.createInput(types[t]);
+				var element = createInput(types[t]);
 				
 				element.value = "foobar";							
 				var sanitization = element.value == '';
@@ -1653,7 +1621,7 @@ Test8 = (function() {
 			
 			var types = ['number', 'range'];
 			for (var t = 0; t < types.length; t++) {
-				var element = this.createInput(types[t]);
+				var element = createInput(types[t]);
 				
 				element.value = "foobar";							
 				var sanitization = element.value != 'foobar';
@@ -1729,7 +1697,7 @@ Test8 = (function() {
 			
 			/* input type=color */
 			
-			var element = this.createInput('color');
+			var element = createInput('color');
 									
 			element.value = "foobar";					
 			var sanitization = element.value != 'foobar';
@@ -1752,7 +1720,7 @@ Test8 = (function() {
 			
 			/* input type=checkbox */
 			
-			var element = this.createInput('checkbox');
+			var element = createInput('checkbox');
 			
 			results.setItem({
 				key:		'form-checkbox-element',
@@ -1767,7 +1735,7 @@ Test8 = (function() {
 
 			/* input type=image */
 			
-			var element = this.createInput('image');
+			var element = createInput('image');
 			element.style.display = 'inline-block';
 			
 			var supportsWidth = 'width' in element;
@@ -1794,7 +1762,7 @@ Test8 = (function() {
 
 			/* input type=file */
 			
-			var element = this.createInput('file');
+			var element = createInput('file');
 			
 			results.setItem({
 				key:		'form-file-element',
@@ -2293,25 +2261,9 @@ Test8 = (function() {
 				key:		'form-formvalidation-noValidate',
 				passed:		'noValidate' in document.createElement('form')
 			});
-		}, 				
-			
-		createInput: function(type) {
-			var field = document.createElement('input');
-			
-			try {
-				field.setAttribute('type', type);
-			} catch(e) {
-			}
-			
-			return field;
-		}
-	};
-
-
-
-	function testInteraction (results) { this.initialize(results); }			
-	testInteraction.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 			var element = document.createElement('div');
 
 
@@ -2528,14 +2480,9 @@ Test8 = (function() {
 				key:	'interaction-spellcheck',
 				passed:	'spellcheck' in element
 			});
-		}			
-	};
-
-
-
-	function testHistory (results) { this.initialize(results); }			
-	testHistory.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* history */
 
@@ -2543,14 +2490,9 @@ Test8 = (function() {
 				key:	'history-history',
 				passed:	!!(window.history && history.pushState)
 			});
-		}			
-	};
-
-
-
-	function testMicrodata (results) { this.initialize(results); }			
-	testMicrodata.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* microdata */
 
@@ -2580,14 +2522,9 @@ Test8 = (function() {
 				key:	'microdata-microdata',
 				passed:	passed
 			});
-		}
-	};					
-
-
-
-	function testOffline (results) { this.initialize(results); }			
-	testOffline.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* applicationCache */
 
@@ -2619,14 +2556,9 @@ Test8 = (function() {
 				key:	'offline-registerContentHandler',
 				passed:	!!window.navigator.registerContentHandler
 			});
-		}
-	};
-
-
-
-	function testSecurity (results) { this.initialize(results); }			
-	testSecurity.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* crypto */
 
@@ -2690,14 +2622,9 @@ Test8 = (function() {
 				key:	'security-srcdoc',
 				passed:	'srcdoc' in document.createElement('iframe')
 			});
-		}
-	};
-
-
-
-	function testGeolocation (results) { this.initialize(results); }			
-	testGeolocation.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* geolocation */
 
@@ -2721,14 +2648,9 @@ Test8 = (function() {
 				key:	'location-motion',
 				passed:	!!window.DeviceMotionEvent
 			});
-		}
-	};
-
-
-
-	function testWebGL (results) { this.initialize(results); }			
-	testWebGL.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* webgl */
 
@@ -2751,14 +2673,9 @@ Test8 = (function() {
 				key:	'webgl-context',
 				passed:	passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
 			});
-		}
-	};
-
-
-
-	function testCommunication (results) { this.initialize(results); }			
-	testCommunication.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* beacon */
 
@@ -2799,7 +2716,7 @@ Test8 = (function() {
 				passed:	false
 			});
 			
-			this.testResponseTypeText(item);
+			testResponseTypeText(item);
 
 
 			/* xmlhttprequest response document */
@@ -2809,7 +2726,7 @@ Test8 = (function() {
 				passed:	false
 			});
 			
-			this.testResponseTypeDocument(item);
+			testResponseTypeDocument(item);
 
 
 			/* xmlhttprequest response array */
@@ -2819,7 +2736,7 @@ Test8 = (function() {
 				passed:	false
 			});
 			
-			this.testResponseTypeArrayBuffer(item);
+			testResponseTypeArrayBuffer(item);
 
 
 			/* xmlhttprequest response blob */
@@ -2829,7 +2746,7 @@ Test8 = (function() {
 				passed:	false
 			});
 			
-			this.testResponseTypeBlob(item);
+			testResponseTypeBlob(item);
 
 
 			/* websockets */
@@ -2865,158 +2782,154 @@ Test8 = (function() {
 				key:	'communication-websocket.binary',
 				passed:	passed
 			});
+
+		
+			function testResponseTypeDocument(item) {
+				if (!window.XMLHttpRequest) return;
+				
+				var xhr = new window.XMLHttpRequest();
+				
+				if (typeof xhr.responseType == 'undefined') return;
+									
+				var done = false;
+
+				xhr.onreadystatechange = function() {
+					if (this.readyState == 4 && !done) {
+						done = true;
+						passed = false;
+						
+						try {
+							passed = !!(this.responseXML && this.responseXML.title && this.responseXML.title == "&&<");									
+						} catch(e) {
+						}							
+
+						item.stopBackground();
+						item.update({
+							'passed': passed
+						});
+					}
+				}
+				
+				try {
+					item.startBackground();
+					xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
+					xhr.responseType = "document";
+					xhr.send();
+				} catch (e) {
+					item.stopBackground();
+				}
+			}
+
+			function testResponseTypeText(item) {
+				if (!window.XMLHttpRequest) return;
+				
+				var xhr = new window.XMLHttpRequest();
+				
+				if (typeof xhr.responseType == 'undefined') return;
+									
+				var done = false;
+
+				xhr.onreadystatechange = function() {
+					if (this.readyState == 4 && !done) {
+						done = true;
+						passed = false;
+						
+						try {
+							passed = !!(this.responseText); // && this.responseText == '<title>&amp;&<</title>');
+						} catch(e) {
+						}							
+
+						item.stopBackground();
+						item.update({
+							'passed': passed
+						});
+					}
+				}
+				
+				try {
+					item.startBackground();
+					xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
+					xhr.responseType = "text";
+					xhr.send();
+				} catch (e) {
+					item.stopBackground();
+				}
+			}
+
+			function testResponseTypeBlob(item) {
+				if (!window.XMLHttpRequest || !window.Blob) return;
+				
+				var xhr = new window.XMLHttpRequest();
+
+				if (typeof xhr.responseType == 'undefined') return;
+									
+				var done = false;
+
+				xhr.onreadystatechange = function() {
+					if (this.readyState == 4 && !done) {
+						done = true;
+						passed = false;
+						
+						try {
+							passed = !!(this.response && this.response instanceof Blob);
+						} catch(e) {
+						}							
+
+						item.stopBackground();
+						item.update({
+							'passed': passed
+						});
+					}
+				}
+				
+				try {
+					item.startBackground();
+					xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
+					xhr.responseType = "blob";
+					xhr.send();
+				} catch (e) {
+					item.stopBackground();
+				}
+			}
+
+			function testResponseTypeArrayBuffer(item) {
+				if (!window.XMLHttpRequest || !window.ArrayBuffer) return;
+				
+				var xhr = new window.XMLHttpRequest();
+				
+				if (typeof xhr.responseType == 'undefined') return;
+									
+				var done = false;
+
+				xhr.onreadystatechange = function() {
+					if (this.readyState == 4 && !done) {
+						done = true;
+						passed = false;
+						
+						try {
+							passed = !!(this.response && this.response instanceof ArrayBuffer);
+						} catch(e) {
+						}							
+
+						item.stopBackground();
+						item.update({
+							'passed': passed
+						});
+					}
+				}
+				
+				try {
+					item.startBackground();
+					xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
+					xhr.responseType = "arraybuffer";
+					xhr.send();
+				} catch (e) {
+					item.stopBackground();
+				}
+			}
 		},
 		
-		testResponseTypeDocument: function(item) {
-			if (!window.XMLHttpRequest) return;
-			
-			var xhr = new window.XMLHttpRequest();
-			
-			if (typeof xhr.responseType == 'undefined') return;
-								
-			var done = false;
-
-			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && !done) {
-					done = true;
-					passed = false;
-					
-					try {
-						passed = !!(this.responseXML && this.responseXML.title && this.responseXML.title == "&&<");									
-					} catch(e) {
-					}							
-
-					item.stopBackground();
-					item.update({
-						'passed': passed
-					});
-				}
-			}
-			
-			try {
-				item.startBackground();
-				xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
-				xhr.responseType = "document";
-				xhr.send();
-			} catch (e) {
-				item.stopBackground();
-			}
-		},
-
-		testResponseTypeText: function(item) {
-			if (!window.XMLHttpRequest) return;
-			
-			var xhr = new window.XMLHttpRequest();
-			
-			if (typeof xhr.responseType == 'undefined') return;
-								
-			var done = false;
-
-			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && !done) {
-					done = true;
-					passed = false;
-					
-					try {
-						passed = !!(this.responseText); // && this.responseText == '<title>&amp;&<</title>');
-					} catch(e) {
-					}							
-
-					item.stopBackground();
-					item.update({
-						'passed': passed
-					});
-				}
-			}
-			
-			try {
-				item.startBackground();
-				xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
-				xhr.responseType = "text";
-				xhr.send();
-			} catch (e) {
-				item.stopBackground();
-			}
-		},
-
-		testResponseTypeBlob: function(item) {
-			if (!window.XMLHttpRequest || !window.Blob) return;
-			
-			var xhr = new window.XMLHttpRequest();
-
-			if (typeof xhr.responseType == 'undefined') return;
-								
-			var done = false;
-
-			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && !done) {
-					done = true;
-					passed = false;
-					
-					try {
-						passed = !!(this.response && this.response instanceof Blob);
-					} catch(e) {
-					}							
-
-					item.stopBackground();
-					item.update({
-						'passed': passed
-					});
-				}
-			}
-			
-			try {
-				item.startBackground();
-				xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
-				xhr.responseType = "blob";
-				xhr.send();
-			} catch (e) {
-				item.stopBackground();
-			}
-		},
-
-		testResponseTypeArrayBuffer: function(item) {
-			if (!window.XMLHttpRequest || !window.ArrayBuffer) return;
-			
-			var xhr = new window.XMLHttpRequest();
-			
-			if (typeof xhr.responseType == 'undefined') return;
-								
-			var done = false;
-
-			xhr.onreadystatechange = function() {
-				if (this.readyState == 4 && !done) {
-					done = true;
-					passed = false;
-					
-					try {
-						passed = !!(this.response && this.response instanceof ArrayBuffer);
-					} catch(e) {
-					}							
-
-					item.stopBackground();
-					item.update({
-						'passed': passed
-					});
-				}
-			}
-			
-			try {
-				item.startBackground();
-				xhr.open("GET", "/detect.html?" + Math.random().toString(36).substr(2, 5));
-				xhr.responseType = "arraybuffer";
-				xhr.send();
-			} catch (e) {
-				item.stopBackground();
-			}
-		}
-	};		
-
-
-
-	function testStreams (results) { this.initialize(results); }			
-	testStreams.prototype = {
-		initialize: function(results) {
+		function(results) {
 
 			/* readable streams */
 
@@ -3032,14 +2945,9 @@ Test8 = (function() {
 				key:	'streams-streams.writeable',
 				passed:	'WriteableStream' in window
 			});
-		}
-	};
-	
-	
-	
-	function testFiles (results) { this.initialize(results); }			
-	testFiles.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* file reader */
 
@@ -3095,14 +3003,9 @@ Test8 = (function() {
 				key:	'files-getFileSystem',
 				passed:	!! navigator.getFileSystem ? YES : !! navigator.webkitGetFileSystem || !! navigator.mozGetFileSystem || !! window.msGetFileSystem ? YES | PREFIX : NO
 			});
-		}
-	};
-	
-	
-	
-	function testStorage (results) { this.initialize(results); }			
-	testStorage.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 			
 			/* session storage */
 			
@@ -3239,14 +3142,9 @@ Test8 = (function() {
 				key:	'storage-sqlDatabase',
 				passed:	!!window.openDatabase
 			});
-		}
-	};
-	
-	
-
-	function testPerformance (results) { this.initialize(results); }			
-	testPerformance.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* webworker */
 
@@ -3320,14 +3218,9 @@ Test8 = (function() {
 				key:	'performance-datatypes-DataView',
 				passed:	typeof DataView != 'undefined'
 			});
-		}
-	};
-	
-	
-	
-	function testOutput (results) { this.initialize(results); }			
-	testOutput.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* fullscreen */
 
@@ -3343,14 +3236,9 @@ Test8 = (function() {
 				key:	'output-notifications',
 				passed:	'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO
 			});
-		}
-	};			
-	
-
-
-	function testOther (results) { this.initialize(results); }			
-	testOther.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* async scripts */
 
@@ -3505,14 +3393,9 @@ Test8 = (function() {
 				key:	'other-scrollIntoView',
 				passed:	'scrollIntoView' in document.createElement('div')
 			});
-		}
-	};			
-	
-	
-	
-	function testAnimation (results) { this.initialize(results); }			
-	testAnimation.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* animation api */
 
@@ -3528,14 +3411,9 @@ Test8 = (function() {
 				key:	'animation-requestAnimationFrame',
 				passed:	!! window.requestAnimationFrame ? YES : !! window.webkitRequestAnimationFrame || !! window.mozRequestAnimationFrame || !! window.msRequestAnimationFrame || !! window.oRequestAnimationFrame ? YES | PREFIX : NO
 			});
-		}
-	};
-	
-	
-	
-	function testComponents (results) { this.initialize(results); }			
-	testComponents.prototype = {
-		initialize: function(results) {
+		},
+		
+		function(results) {
 
 			/* custom elements */
 
@@ -3575,25 +3453,12 @@ Test8 = (function() {
 				passed:	'import' in document.createElement('link')
 			});
 		}
-	};
+	];
 	
 	
 	
 	function test (callback, error) { this.initialize(callback, error); }
 	test.prototype = {
-		tests: [
-
-			/* Semantics */						testParsing, testElements, testForm, testMicrodata,
-			/* Offline & Storage */				testOffline, testStorage, testFiles, testStreams,
-			/* Device Access */					testGeolocation, testOutput, testInput,
-			/* Connectivity */					testCommunication, testWebRTC,
-			/* Multimedia */					testVideo, testAudio,
-			/* 3D, Graphics & Effects */		testResponsive, testCanvas, testWebGL, testAnimation,
-			/* Performance & Integration */		testInteraction, testPerformance, testSecurity, testHistory, testComponents,
-			
-			testOther
-		],
-		
 		initialize: function(callback, error) {
 			blacklists = [
 				[
@@ -3680,8 +3545,8 @@ Test8 = (function() {
 				
 				this.results = new results(this);
 				
-				for (var s = 0; s < this.tests.length; s++) {
-					new (this.tests[s])(this.results);
+				for (var s = 0; s < testsuite.length; s++) {
+					testsuite[s](this.results);
 				}
 	
 				this.waitForBackground();
