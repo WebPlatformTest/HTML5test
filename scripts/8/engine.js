@@ -3559,8 +3559,8 @@ Test8 = (function () {
             this.items = [];
         },
 
-        addItem: function (result) {
-            var i = new item(this, result);
+        addItem: function (data) {
+            var i = new item(this, data);
             this.items.push(i);
             return i;
         },
