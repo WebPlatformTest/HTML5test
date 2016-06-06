@@ -16,199 +16,8 @@ Test8 = (function() {
 	var blacklists = [];
 	
 	
-
-
-	function results (parent) { this.initialize(parent); }
-	results.prototype = {
-		initialize: function(parent) {
-			this.parent = parent;
-			this.items = [];
-		},
-		
-		setItem: function(result) {
-			var i = new item(this, result);
-			this.items.push(i);
-			return i;
-		},
-
-		startBackground: function(key) {
-			this.parent.startBackground(key);
-		},
-		
-		stopBackground: function(key) {
-			this.parent.stopBackground(key);
-		},
-		
-		toString: function() {
-			var results = [];
-			
-			for (var i = 0; i < this.items.length; i++) {
-				if (typeof this.items[i].data.passed != 'undefined') results.push(this.items[i].data.key + '=' + (+this.items[i].data.passed));
-			}
-			
-			return results.join(',');
-		}
-	};
-
-	function item (parent, data) { this.initialize(parent, data); }
-	item.prototype = {
-		initialize: function(parent, data) {
-			this.parent = parent;
-			this.data = data;
-
-			if (typeof this.data.passed == 'undefined') this.data.passed = false;
-
-			if (this.data.passed) {
-				var blacklist = this.isOnBlacklist();
-				if (blacklist) {
-					this.data.passed = blacklist;
-				}
-			}
-		},
-		
-		update: function(data) {
-			for (var key in data) {
-				this.data[key] = data[key];
-			}
-
-			if (typeof this.data.passed == 'undefined') this.data.passed = false;
-
-			if (this.data.passed) {
-				var blacklist = this.isOnBlacklist();
-				if (blacklist) {
-					this.data.passed = blacklist;
-				}
-			}
-		},
-		
-		isOnBlacklist: function() {
-			var part = '';
-			var parts = this.data.key.split('.');
-			for (var i = 0; i < parts.length; i++) {
-				part += (i == 0 ? '' : '.') + parts[i];
-
-				for (var k = 0; k < blacklists.length; k++) {
-					if (typeof blacklists[k][1][part] != 'undefined') {
-						if (blacklists[k][1][part]) {
-							if (console && console.log) console.log('BLOCKED TEST: ' + part + '!');
-							return blacklists[k][0];
-						}
-					}
-				}
-			}
-			
-			return false;
-		},
-			
-		startBackground: function() {
-			this.parent.startBackground(this.data.key);
-		},
-		
-		stopBackground: function() {
-			this.parent.stopBackground(this.data.key);
-		}
-	};
-
-	
-	
-	var isEventSupported = (function(){
-	  
-		var TAGNAMES = {
-			'select':'input','change':'input','input':'input',
-			'submit':'form','reset':'form','forminput':'form','formchange':'form',
-			'error':'img','load':'img','abort':'img'
-		}
-		
-		function isEventSupported(eventName, element) {
-			element = element || document.createElement(TAGNAMES[eventName] || 'div');
-			eventName = 'on' + eventName;
-			
-			var isSupported = (eventName in element);
-			
-			if (!isSupported) {
-				if (!element.setAttribute) {
-					element = document.createElement('div');
-				}
-				if (element.setAttribute && element.removeAttribute) {
-					element.setAttribute(eventName, '');
-					isSupported = typeof element[eventName] == 'function';
-				
-					if (typeof element[eventName] != 'undefined') {
-						element[eventName] = void 0;
-					}
-					element.removeAttribute(eventName);
-				}
-			}
-				
-			element = null;
-			return isSupported;
-		}
-
-		return isEventSupported;
-	})();
-
-
-	var log = function(m){
-		if (console && console.log) {
-			console.log(m);
-		}
-	};
-
-
-	var canPlayType = function(element, type) {
-		/*
-			There is a bug in iOS 4.1 or earlier where probably and maybe are switched around.
-			This bug was reported and fixed in iOS 4.2 
-		*/
-			
-		if (Browsers.isOs('iOS', '<', '4.2'))
-			return element.canPlayType(type) == 'probably' || element.canPlayType(type) == 'maybe';
-		else 
-			return element.canPlayType(type) == 'probably';
-	};
-
-
-	var closesImplicitly = function(name) {
-		var foo = document.createElement('div');
-		foo.innerHTML = '<p><' + name + '></' + name + '>';
-		return foo.childNodes.length == 2;
-	};
-	
-	var getStyle = function(element, name) {
-		function camelCase(str){
-			return str.replace(/-\D/g, function(match){
-			return match.charAt(1).toUpperCase()
-			})
-		}
-
-		if (element.style[name]) {
-			return element.style[name];
-		} else if (element.currentStyle) {
-			return element.currentStyle[camelCase(name)];
-		}
-		else if (document.defaultView && document.defaultView.getComputedStyle) {
-			s = document.defaultView.getComputedStyle(element, "");
-			return s && s.getPropertyValue(name);
-		} else {
-			return null;
-		}
-	};
-		
-	var isBlock = function(element) {
-		return getStyle(element, 'display') == 'block';
-	};
-		
-	var isHidden = function(element) {
-		return getStyle(element, 'display') == 'none';
-	};
-
-
-
-
-
-
-
 	var testsuite = [
+		
 		function(results) {
 			
 			/* doctype */
@@ -3455,7 +3264,193 @@ Test8 = (function() {
 		}
 	];
 	
+
+
+
+	/* Helper functions */
+
+	var isEventSupported = (function(){
+		var TAGNAMES = {
+			'select':'input','change':'input','input':'input',
+			'submit':'form','reset':'form','forminput':'form','formchange':'form',
+			'error':'img','load':'img','abort':'img'
+		}
+		
+		function isEventSupported(eventName, element) {
+			element = element || document.createElement(TAGNAMES[eventName] || 'div');
+			eventName = 'on' + eventName;
+			
+			var isSupported = (eventName in element);
+			
+			if (!isSupported) {
+				if (!element.setAttribute) {
+					element = document.createElement('div');
+				}
+				if (element.setAttribute && element.removeAttribute) {
+					element.setAttribute(eventName, '');
+					isSupported = typeof element[eventName] == 'function';
+				
+					if (typeof element[eventName] != 'undefined') {
+						element[eventName] = void 0;
+					}
+					element.removeAttribute(eventName);
+				}
+			}
+				
+			element = null;
+			return isSupported;
+		}
+
+		return isEventSupported;
+	})();
+
+	var log = function(m){
+		if (console && console.log) {
+			console.log(m);
+		}
+	};
+
+	var canPlayType = function(element, type) {
+		/*
+			There is a bug in iOS 4.1 or earlier where probably and maybe are switched around.
+			This bug was reported and fixed in iOS 4.2 
+		*/
+			
+		if (Browsers.isOs('iOS', '<', '4.2'))
+			return element.canPlayType(type) == 'probably' || element.canPlayType(type) == 'maybe';
+		else 
+			return element.canPlayType(type) == 'probably';
+	};
+
+	var closesImplicitly = function(name) {
+		var foo = document.createElement('div');
+		foo.innerHTML = '<p><' + name + '></' + name + '>';
+		return foo.childNodes.length == 2;
+	};
 	
+	var getStyle = function(element, name) {
+		function camelCase(str){
+			return str.replace(/-\D/g, function(match){
+			return match.charAt(1).toUpperCase()
+			})
+		}
+
+		if (element.style[name]) {
+			return element.style[name];
+		} else if (element.currentStyle) {
+			return element.currentStyle[camelCase(name)];
+		}
+		else if (document.defaultView && document.defaultView.getComputedStyle) {
+			s = document.defaultView.getComputedStyle(element, "");
+			return s && s.getPropertyValue(name);
+		} else {
+			return null;
+		}
+	};
+		
+	var isBlock = function(element) {
+		return getStyle(element, 'display') == 'block';
+	};
+		
+	var isHidden = function(element) {
+		return getStyle(element, 'display') == 'none';
+	};
+	
+
+
+
+	/* Classes */
+
+	function results (parent) { this.initialize(parent); }
+	results.prototype = {
+		initialize: function(parent) {
+			this.parent = parent;
+			this.items = [];
+		},
+		
+		setItem: function(result) {
+			var i = new item(this, result);
+			this.items.push(i);
+			return i;
+		},
+
+		startBackground: function(key) {
+			this.parent.startBackground(key);
+		},
+		
+		stopBackground: function(key) {
+			this.parent.stopBackground(key);
+		},
+		
+		toString: function() {
+			var results = [];
+			
+			for (var i = 0; i < this.items.length; i++) {
+				if (typeof this.items[i].data.passed != 'undefined') results.push(this.items[i].data.key + '=' + (+this.items[i].data.passed));
+			}
+			
+			return results.join(',');
+		}
+	};
+
+	function item (parent, data) { this.initialize(parent, data); }
+	item.prototype = {
+		initialize: function(parent, data) {
+			this.parent = parent;
+			this.data = data;
+
+			if (typeof this.data.passed == 'undefined') this.data.passed = false;
+
+			if (this.data.passed) {
+				var blacklist = this.isOnBlacklist();
+				if (blacklist) {
+					this.data.passed = blacklist;
+				}
+			}
+		},
+		
+		update: function(data) {
+			for (var key in data) {
+				this.data[key] = data[key];
+			}
+
+			if (typeof this.data.passed == 'undefined') this.data.passed = false;
+
+			if (this.data.passed) {
+				var blacklist = this.isOnBlacklist();
+				if (blacklist) {
+					this.data.passed = blacklist;
+				}
+			}
+		},
+		
+		isOnBlacklist: function() {
+			var part = '';
+			var parts = this.data.key.split('.');
+			for (var i = 0; i < parts.length; i++) {
+				part += (i == 0 ? '' : '.') + parts[i];
+
+				for (var k = 0; k < blacklists.length; k++) {
+					if (typeof blacklists[k][1][part] != 'undefined') {
+						if (blacklists[k][1][part]) {
+							if (console && console.log) console.log('BLOCKED TEST: ' + part + '!');
+							return blacklists[k][0];
+						}
+					}
+				}
+			}
+			
+			return false;
+		},
+			
+		startBackground: function() {
+			this.parent.startBackground(this.data.key);
+		},
+		
+		stopBackground: function() {
+			this.parent.stopBackground(this.data.key);
+		}
+	};	
 	
 	function test (callback, error) { this.initialize(callback, error); }
 	test.prototype = {
