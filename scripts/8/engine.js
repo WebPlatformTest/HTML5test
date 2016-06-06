@@ -152,9 +152,55 @@ Test8 = (function() {
 		if (console && console.log) {
 			console.log(m);
 		}
+	};
+
+
+	var canPlayType = function(element, type) {
+		/*
+			There is a bug in iOS 4.1 or earlier where probably and maybe are switched around.
+			This bug was reported and fixed in iOS 4.2 
+		*/
+			
+		if (Browsers.isOs('iOS', '<', '4.2'))
+			return element.canPlayType(type) == 'probably' || element.canPlayType(type) == 'maybe';
+		else 
+			return element.canPlayType(type) == 'probably';
+	};
+
+
+	var closesImplicitly = function(name) {
+		var foo = document.createElement('div');
+		foo.innerHTML = '<p><' + name + '></' + name + '>';
+		return foo.childNodes.length == 2;
+	};
+	
+	var getStyle = function(element, name) {
+		function camelCase(str){
+			return str.replace(/-\D/g, function(match){
+			return match.charAt(1).toUpperCase()
+			})
+		}
+
+		if (element.style[name]) {
+			return element.style[name];
+		} else if (element.currentStyle) {
+			return element.currentStyle[camelCase(name)];
+		}
+		else if (document.defaultView && document.defaultView.getComputedStyle) {
+			s = document.defaultView.getComputedStyle(element, "");
+			return s && s.getPropertyValue(name);
+		} else {
+			return null;
+		}
+	};
 		
-		return function() {};
-	})();
+	var isBlock = function(element) {
+		return getStyle(element, 'display') == 'block';
+	};
+		
+	var isHidden = function(element) {
+		return getStyle(element, 'display') == 'none';
+	};
 
 
 
@@ -654,7 +700,7 @@ Test8 = (function() {
 			
 			results.setItem({
 				key:	'video-mpeg4',
-				passed:	!!this.element.canPlayType && this.canPlayType('video/mp4; codecs="mp4v.20.8"')
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/mp4; codecs="mp4v.20.8"')
 			});
 		
 		
@@ -664,7 +710,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'video-h264',
-				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="avc1.42E01E"') || this.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))				
+				passed:	!!this.element.canPlayType && (canPlayType(this.element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(this.element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))				
 			});
 
 
@@ -672,7 +718,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'video-h265',
-				passed:	!!this.element.canPlayType && (this.canPlayType('video/mp4; codecs="hvc1.1.L0.0"') || this.canPlayType('video/mp4; codecs="hev1.1.L0.0"'))
+				passed:	!!this.element.canPlayType && (canPlayType(this.element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(this.element, 'video/mp4; codecs="hev1.1.L0.0"'))
 			});
 
 
@@ -680,7 +726,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'video-theora',
-				passed:	!!this.element.canPlayType && this.canPlayType('video/ogg; codecs="theora"')
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/ogg; codecs="theora"')
 			});
 
 
@@ -688,7 +734,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'video-webmvp8',
-				passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp8"')
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/webm; codecs="vp8"')
 			});
 
 
@@ -696,7 +742,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'video-webmvp9',
-				passed:	!!this.element.canPlayType && this.canPlayType('video/webm; codecs="vp9"')
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'video/webm; codecs="vp9"')
 			});
 		
 		
@@ -735,18 +781,6 @@ Test8 = (function() {
 				key:	'video-canplaytype',
 				passed:	this.element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
 			});
-		},
-		
-		canPlayType: function(t) {
-			/*
-				There is a bug in iOS 4.1 or earlier where probably and maybe are switched around.
-				This bug was reported and fixed in iOS 4.2 
-			*/
-				
-			if (Browsers.isOs('iOS', '<', '4.2'))
-				return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
-			else 
-				return this.element.canPlayType(t) == 'probably';
 		}
 	};
 	
@@ -786,7 +820,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'audio-pcm',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/wav; codecs="1"')
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/wav; codecs="1"')
 			});
 
 
@@ -814,7 +848,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'audio-aac',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="mp4a.40.2"')
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="mp4a.40.2"')
 			});
 
 
@@ -822,7 +856,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'audio-ac3',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="ac-3"')
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="ac-3"')
 			});
 
 
@@ -830,7 +864,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'audio-ec3',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/mp4; codecs="ec-3"')
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/mp4; codecs="ec-3"')
 			});
 
 
@@ -838,7 +872,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'audio-vorbis',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="vorbis"') 
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/ogg; codecs="vorbis"') 
 			});
 
 
@@ -846,7 +880,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'audio-opus',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/ogg; codecs="opus"') 
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/ogg; codecs="opus"') 
 			});
 
 
@@ -854,7 +888,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'audio-webm',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="vorbis"') 
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/webm; codecs="vorbis"') 
 			});
 
 
@@ -862,7 +896,7 @@ Test8 = (function() {
 
 			results.setItem({
 				key:	'audio-webmopus',
-				passed:	!!this.element.canPlayType && this.canPlayType('audio/webm; codecs="opus"') 
+				passed:	!!this.element.canPlayType && canPlayType(this.element, 'audio/webm; codecs="opus"') 
 			});
 
 
@@ -912,18 +946,6 @@ Test8 = (function() {
 					}, 1000);
 				}
 			}
-		},
-		
-		canPlayType: function(t) {
-			/*
-				There is a bug in iOS 4.1 or earlier where probably and maybe are switched around.
-				This bug was reported and fixed in iOS 4.2 
-			*/
-				
-			if (Browsers.isOs('iOS', '<', '4.2'))
-				return this.element.canPlayType(t) == 'probably' || this.element.canPlayType(t) == 'maybe';
-			else 
-				return this.element.canPlayType(t) == 'probably';
 		}
 	};
 	
@@ -1034,7 +1056,7 @@ Test8 = (function() {
 					document.body.appendChild(element);
 
 					try { 
-						passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isBlock(element) && this.closesImplicitly(elements[e]);
+						passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && isBlock(element) && closesImplicitly(elements[e]);
 					} catch(error) {
 					}
 					
@@ -1062,7 +1084,7 @@ Test8 = (function() {
 					document.body.appendChild(element);
 	
 					try { 
-						passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isBlock(element) && (elements[e] != 'figure' || this.closesImplicitly(elements[e]));
+						passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && isBlock(element) && (elements[e] != 'figure' || closesImplicitly(elements[e]));
 					} catch(error) {
 					}
 
@@ -1110,7 +1132,7 @@ Test8 = (function() {
 				document.body.appendChild(element);
 	
 				try { 
-					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && (color = this.getStyle(element, 'background-color')) && (color != 'transparent');
+					passed = element instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && (color = getStyle(element, 'background-color')) && (color != 'transparent');
 				} catch(error) {
 				}
 
@@ -1140,7 +1162,7 @@ Test8 = (function() {
 			try {
 				rubySupport = rubyElement && rubyElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
 				rtSupport = rtElement && rtElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement);
-				rpSupport = rpElement && rpElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && this.isHidden(rpElement);
+				rpSupport = rpElement && rpElement instanceof HTMLElement && !(element instanceof HTMLUnknownElement) && isHidden(rpElement);
 			} catch(error) {				
 			}
 			
@@ -1466,40 +1488,6 @@ Test8 = (function() {
 				key:	'elements-dynamic-insertAdjacentHTML',
 				passed:	'insertAdjacentHTML' in document.createElement('div')
 			});
-		},
-		
-		getStyle: function(elem, name) {
-			function camelCase(str){
-			  return str.replace(/-\D/g, function(match){
-				return match.charAt(1).toUpperCase()
-			  })
-			}
-
-			if (elem.style[name]) {
-		        return elem.style[name];
-		    } else if (elem.currentStyle) {
-		        return elem.currentStyle[camelCase(name)];
-		    }
-		    else if (document.defaultView && document.defaultView.getComputedStyle) {
-		    	s = document.defaultView.getComputedStyle(elem, "");
-		        return s && s.getPropertyValue(name);
-		    } else {
-		        return null;
-		    }
-		},
-		
-		isBlock: function(element) {
-			return this.getStyle(element, 'display') == 'block';
-		},
-		
-		closesImplicitly: function(name) {
-			var foo = document.createElement('div');
-			foo.innerHTML = '<p><' + name + '></' + name + '>';
-			return foo.childNodes.length == 2;
-		},
-		
-		isHidden: function(element) {
-			return this.getStyle(element, 'display') == 'none';
 		}
 	};		
 	
