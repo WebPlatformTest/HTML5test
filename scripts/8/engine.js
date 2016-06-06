@@ -3552,15 +3552,15 @@ Test8 = (function () {
 
     /* Classes */
 
-    function list(parent) { this.initialize(parent); }
-    list.prototype = {
+    function List(parent) { this.initialize(parent); }
+    List.prototype = {
         initialize: function (parent) {
             this.parent = parent;
             this.items = [];
         },
 
         addItem: function (data) {
-            var i = new item(this, data);
+            var i = new Item(this, data);
             this.items.push(i);
             return i;
         },
@@ -3576,8 +3576,8 @@ Test8 = (function () {
         }
     };
 
-    function item(list, data) { this.initialize(list, data); }
-    item.prototype = {
+    function Item(list, data) { this.initialize(list, data); }
+    Item.prototype = {
         initialize: function (list, data) {
             this.list = list;
             this.data = data;
@@ -3635,8 +3635,8 @@ Test8 = (function () {
         }
     };
 
-    function test(callback, error) { this.initialize(callback, error); }
-    test.prototype = {
+    function Test(callback, error) { this.initialize(callback, error); }
+    Test.prototype = {
         initialize: function (callback, error) {
             blacklists = [
                 [
@@ -3721,7 +3721,7 @@ Test8 = (function () {
 
                 this.callback = callback;
 
-                this.list = new list(this);
+                this.list = new List(this);
 
                 for (var s = 0; s < testsuite.length; s++) {
                     testsuite[s](this.list);
@@ -3775,5 +3775,5 @@ Test8 = (function () {
         }
     };
 
-    return test;
+    return Test;
 })();
