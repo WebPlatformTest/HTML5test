@@ -3552,8 +3552,8 @@ Test8 = (function () {
 
     /* Classes */
 
-    function results(parent) { this.initialize(parent); }
-    results.prototype = {
+    function list(parent) { this.initialize(parent); }
+    list.prototype = {
         initialize: function (parent) {
             this.parent = parent;
             this.items = [];
@@ -3565,29 +3565,21 @@ Test8 = (function () {
             return i;
         },
 
-        startBackground: function (key) {
-            this.parent.startBackground(key);
-        },
-
-        stopBackground: function (key) {
-            this.parent.stopBackground(key);
-        },
-
         toString: function () {
-            var results = [];
+            var value = [];
 
             for (var i = 0; i < this.items.length; i++) {
-                if (typeof this.items[i].data.passed != 'undefined') results.push(this.items[i].data.key + '=' + (+this.items[i].data.passed));
+                if (typeof this.items[i].data.passed != 'undefined') value.push(this.items[i].data.key + '=' + (+this.items[i].data.passed));
             }
 
-            return results.join(',');
+            return value.join(',');
         }
     };
 
-    function item(parent, data) { this.initialize(parent, data); }
+    function item(list, data) { this.initialize(list, data); }
     item.prototype = {
-        initialize: function (parent, data) {
-            this.parent = parent;
+        initialize: function (list, data) {
+            this.list = list;
             this.data = data;
 
             if (typeof this.data.passed == 'undefined') this.data.passed = false;
@@ -3635,11 +3627,11 @@ Test8 = (function () {
         },
 
         startBackground: function () {
-            this.parent.startBackground(this.data.key);
+            this.list.parent.startBackground(this.data.key);
         },
 
         stopBackground: function () {
-            this.parent.stopBackground(this.data.key);
+            this.list.parent.stopBackground(this.data.key);
         }
     };
 
@@ -3729,10 +3721,10 @@ Test8 = (function () {
 
                 this.callback = callback;
 
-                this.results = new results(this);
+                this.list = new list(this);
 
                 for (var s = 0; s < testsuite.length; s++) {
-                    testsuite[s](this.results);
+                    testsuite[s](this.list);
                 }
 
                 this.waitForBackground();
@@ -3778,7 +3770,7 @@ Test8 = (function () {
                 version: version,
                 revision: revision,
                 uniqueid: uniqueid,
-                results: this.results.toString(),
+                results: this.list.toString(),
             });
         }
     };
