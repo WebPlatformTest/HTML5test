@@ -18,18 +18,19 @@ Test8 = (function() {
 	
 	var testsuite = [
 		
+		/* doctype */
+		
 		function(results) {
-			
-			/* doctype */
-
 			results.setItem({
 				key:	'parsing-doctype',
 				passed:	document.compatMode == 'CSS1Compat'
 			});
-
-
-			/* tokenizer */
-
+		},
+		
+		
+		/* tokenizer */
+		
+		function(results) {
 			var result = true;
 			var e = document.createElement('div');	
 			
@@ -98,10 +99,12 @@ Test8 = (function() {
 				key:	'parsing-tokenizer',
 				passed:	result
 			});
-
-
-			/* tree builder */
-
+		},
+		
+		
+		/* tree builder */
+		
+		function(results) {
 			var result = true;
 			var e = document.createElement('div');	
 			
@@ -164,10 +167,12 @@ Test8 = (function() {
 				key:	'parsing-tree',
 				passed:	result
 			});
-
-
-			/* svg in html */
-
+		},
+		
+		
+		/* svg in html */
+		
+		function(results) {
 			var e = document.createElement('div');
 			e.innerHTML = '<svg></svg>';
 			var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/2000/svg';
@@ -176,10 +181,12 @@ Test8 = (function() {
 				key:	'parsing-svg',
 				passed:	passed
 			});
-
-
-			/* svg in html */
-
+		},
+		
+		
+		/* svg in html */
+		
+		function(results) {
 			var e = document.createElement('div');
 			e.innerHTML = '<math></math>';
 			var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/1998/Math/MathML';
@@ -188,8 +195,13 @@ Test8 = (function() {
 				key:	'parsing-mathml',
 				passed:	passed
 			});
-
 		},
+
+
+
+
+
+
 		
 		function(results) {
 			
