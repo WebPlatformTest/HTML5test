@@ -2176,6 +2176,15 @@ var tests = [
 										value:		2,
 										url:		'https://w3c.github.io/webauthn/'
 									},
+
+									{
+										id:			'credential',
+										name: 		'Credential Management',
+										status:		'experimental',
+										value:		2,
+										url:		'http://w3c.github.io/webappsec-credential-management/'
+									},
+
 									'<strong>Iframes</strong>',
 
 									{

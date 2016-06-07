@@ -2335,6 +2335,16 @@ Test8 = (function () {
         },
 
 
+        /* credential management */
+
+        function (results) {
+            results.addItem({
+                key: 'security-credential',
+                passed: 'credentials' in navigator
+            });
+        },
+
+
         /* sandboxed iframe */
 
         function (results) {
