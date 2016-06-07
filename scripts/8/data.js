@@ -2197,6 +2197,18 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'payments',
+						status:	'experimental',
+						name: 	'Payments',
+						items:	[
+									{
+										id:			'payments',
+										name: 		'Web Payments',
+										value:		2,
+										url:		'https://w3c.github.io/browser-payment-api/specs/paymentrequest.html'
+									}
+								]
+					}, {
 						id:		'history',
 						name: 	'History and navigation',
 						status:	'stable',

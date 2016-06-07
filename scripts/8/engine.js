@@ -2355,6 +2355,16 @@ Test8 = (function () {
         },
 
 
+        /* web payments */
+
+        function (results) {
+            results.addItem({
+                key: 'payments-payments',
+                passed: 'PaymentRequest' in window
+            });
+        },
+
+
         /* history */
 
         function (results) {
