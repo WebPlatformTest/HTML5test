@@ -2935,8 +2935,37 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'webgl-context',
+                key: '3d-webgl',
                 passed: passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
+            });
+        },
+
+
+        /* webgl2 */
+
+        function (results) {
+            var element = document.createElement('canvas');
+            var passed = false;
+
+            try {
+                if (element.getContext('webgl2')) {
+                    passed = true;
+                };
+            } catch (e) { }
+
+            results.addItem({
+                key: '3d-webgl2',
+                passed: passed
+            });
+        },
+
+
+        /* webvr */
+
+        function (results) {
+            results.addItem({
+                key: '3d-webvr',
+                passed: 'getVRDisplays' in navigator ? YES : 'mozGetVRDevices' in navigator ? YES | PREFIX : NO
             });
         },
 

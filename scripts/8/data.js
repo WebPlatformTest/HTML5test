@@ -1604,19 +1604,41 @@ var tests = [
 									}
 								]
 					}, {
-						id:		'webgl',
+						id:		'3d',
 						status:	'stable',
-						name:	'3D Graphics',
+						name:	'3D and VR',
 						items:	[
+									'<strong>3D Graphics</strong>',
+
 									{
-										id:			'context',
-										name: 		'WebGL 3D graphics',
-										value:		{ maximum: 20, award: { PREFIX: 15 } },
+										id:			'webgl',
+										name: 		'WebGL',
+										value:		{ maximum: 15, award: { PREFIX: 10 } },
 										urls:		[
 														[ 'khronos', 'https://www.khronos.org/registry/webgl/specs/latest/1.0/' ],
 														[ 'wp',  '/webgl' ],
 														[ 'mdn', '/Web/API/WebGL_API' ]
 													]
+
+									}, {
+										id:			'webgl2',
+										name: 		'WebGL 2',
+										value:		5,
+										urls:		[
+														[ 'khronos', 'https://www.khronos.org/registry/webgl/specs/latest/2.0/' ],
+														[ 'wp',  '/webgl' ],
+														[ 'mdn', '/Web/API/WebGL_API' ]
+													]
+
+									},
+
+									'<strong>VR Headset</strong>',
+
+									{
+										id:			'webvr',
+										name: 		'WebVR',
+										value:		2,
+										urls:		'https://w3c.github.io/webvr/'
 
 									}
 								]
