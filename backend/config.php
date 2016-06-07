@@ -1,11 +1,10 @@
 <?php
 
-	$readonly = false;
-	$version = '6.00';
-	
+	$readonly = true;
+	$version = '8.00';
+
 	$mysql['server'] = 'localhost';
 	$mysql['username'] = '******';
 	$mysql['password'] = '******';
 	$mysql['database'] = '******';
 
-	
