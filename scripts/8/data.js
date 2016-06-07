@@ -2157,6 +2157,12 @@ var tests = [
 														[ 'mdn', '/Web/HTTP/Access_control_CORS' ]
 													]
 									}, {
+										id:			'integrity',
+										name: 		'Subresource Integrity',
+										status:		'experimental',
+										value:		2,
+										urls:		'http://www.w3.org/TR/SRI/'
+									}, {
 										id:			'postMessage',
 										name: 		'Cross-document messaging',
 										value:		5,

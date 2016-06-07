@@ -2315,6 +2315,16 @@ Test8 = (function () {
         },
 
 
+        /* subresource integrity */
+
+        function (results) {
+            results.addItem({
+                key: 'security-integrity',
+                passed: 'integrity' in document.createElement('link')
+            });
+        },
+
+
         /* postMessage */
 
         function (results) {
