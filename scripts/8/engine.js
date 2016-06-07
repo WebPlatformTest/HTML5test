@@ -11,7 +11,8 @@ Test8 = (function () {
         PREFIX = 8,
         BLOCKED = 16,
         DISABLED = 32,
-        UNCONFIRMED = 64;
+        UNCONFIRMED = 64,
+        UNKNOWN = 128;
 
     var blacklists = [];
 
