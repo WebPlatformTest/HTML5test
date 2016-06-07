@@ -4,6 +4,8 @@ This is a website for testing web standards in the browser. The HTML5 test score
 of how well your browser supports the HTML5 standard and related specifications. Find out which 
 parts of HTML5 are supported by your browser today and compare the results with other browsers.
 
+[![Twitter Follow](https://img.shields.io/twitter/follow/html5test.svg?style=social)](https://twitter.com/html5test)
+
 The HTML5 test does not try to test all of the new features offered by HTML5, nor does it try to 
 test the functionality of each feature it does detect. Despite these shortcomings we hope that 
 by quantifying the level of support users and web developers will get an idea of how hard the browser 
