@@ -2167,6 +2167,15 @@ var tests = [
 													]
 									},
 
+									'<strong>Authentication</strong>',
+
+									{
+										id:			'authentication',
+										name: 		'Web Authentication / FIDO 2',
+										status:		'experimental',
+										value:		2,
+										url:		'https://w3c.github.io/webauthn/'
+									},
 									'<strong>Iframes</strong>',
 
 									{
