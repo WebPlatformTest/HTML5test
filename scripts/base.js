@@ -189,6 +189,9 @@
 					if (result & PREFIX && typeof value.award == 'object' && typeof value.award.PREFIX != 'undefined') {
 						this.score += value.award.PREFIX;
 					}
+					else if (result & BUGGY && typeof value.award == 'object' && typeof value.award.BUGGY != 'undefined') {
+						this.score += value.award.BUGGY;
+					}
 					else if (result & OLD && typeof value.award == 'object' && typeof value.award.OLD != 'undefined') {
 						this.score += value.award.OLD;
 					}
