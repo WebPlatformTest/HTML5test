@@ -102,15 +102,15 @@
 
 
 
-	var NO = 0, 
-		YES = 1, 
-		OLD = 2, 
-		BUGGY = 4, 
-		PREFIX = 8, 
+	var NO = 0,
+		YES = 1,
+		OLD = 2,
+		BUGGY = 4,
+		PREFIX = 8,
 		BLOCKED = 16,
-		DISABLED = 32,	
-		UNCONFIRMED = 64;	
-		UNKNOWN = 128;	
+		DISABLED = 32,
+		UNCONFIRMED = 64;
+		UNKNOWN = 128;
 
 
 	var Calculate = function() { this.initialize.apply(this, arguments) };
@@ -120,18 +120,18 @@
 				test: 		test,
 				data:		data
 			};
-			
+
 			this.maximum = 0;
 			this.score = 0;
 			this.points = [];
-			
+
 			for (var i = 0; i < this.parameters.data.length; i++) {
 				this.iterate(this.parameters.data[i].items, '');
 			}
-			
+
 			this.points = this.points.join(',');
 		},
-		
+
 		iterate: function(data, prefix) {
 			for (var i = 0; i < data.length; i++) {
 				if (typeof data[i].id != 'undefined') {
@@ -139,7 +139,7 @@
 						var score = this.score;
 						var maximum = this.maximum;
 					}
-					
+
 					if (typeof data[i].value != 'undefined') {
 						this.calculate(prefix + (prefix == '' ? '' : '.') + data[i].id, data[i]);
 					}
@@ -154,15 +154,15 @@
 				}
 			}
 		},
-		
+
 		calculate: function(key, data) {
-			var result = true;			
-			var value = typeof data.value == 'object' ? data.value : { maximum: data.value };  
-			
+			var result = true;
+			var value = typeof data.value == 'object' ? data.value : { maximum: data.value };
+
 			if (typeof data.value.conditional == 'undefined') {
 				this.maximum += value.maximum;
 			}
-			
+
 			if (typeof data.items == 'object') {
 				for (var i = 0; i < data.items.length; i++) {
 					result &= this.getResult(key + '.' + data.items[i].id) & YES;
@@ -171,31 +171,42 @@
 			else {
 				result = this.getResult(key);
 			}
-						
+
 			if (result & YES) {
-				var valid = true;	
-				
+				var valid = true;
+
 				if (typeof data.value.conditional == 'string') {
 					if (data.value.conditional.substr(0, 1) == '!') {
 						var conditional = this.getResult(data.value.conditional.substr(1));
-						
+
 						if (conditional & YES) {
 							valid = false;
 						}
 					}
 				}
-				
+
 				if (valid) {
-					this.score += value.maximum;
-				}	
+					if (result & PREFIX && typeof value.award == 'object' && typeof value.award.PREFIX != 'undefined') {
+						this.score += value.award.PREFIX;
+					}
+					else if (result & BUGGY && typeof value.award == 'object' && typeof value.award.BUGGY != 'undefined') {
+						this.score += value.award.BUGGY;
+					}
+					else if (result & OLD && typeof value.award == 'object' && typeof value.award.OLD != 'undefined') {
+						this.score += value.award.OLD;
+					}
+					else {
+						this.score += value.maximum;
+					}
+				}
 			}
 		},
-		
+
 		getResult: function(key) {
 			if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.parameters.test.results)) {
 				return parseInt(match[1], 10);
 			}
-			
+
 			return null;
 		}
 	};
@@ -213,7 +224,7 @@
 			var menu = document.createElement('div');
 			menu.id = 'indexmenu';
 			options.index.appendChild(menu);
-			
+
 			var categories = document.createElement('ul');
 			menu.appendChild(categories);
 
@@ -221,7 +232,7 @@
 				var category = document.createElement('li');
 				category.className = 'category ' + options.tests[i].id;
 				categories.appendChild(category);
-				
+
 				var link = document.createElement('a');
 				link.href = '#category-' + options.tests[i].id;
 				link.onclick = function () { that.closeIndex(); };
@@ -231,11 +242,11 @@
 				if (options.tests[i].items.length) {
 					var items = document.createElement('ul');
 					category.appendChild(items);
-				
+
 					for (var j = 0; j < options.tests[i].items.length; j++) {
 						var item = document.createElement('li');
 						items.appendChild(item);
-	
+
 						var link = document.createElement('a');
 						link.href = '#table-' + options.tests[i].items[j].id;
 						link.onclick = function () { that.closeIndex(); };
@@ -244,13 +255,13 @@
 					}
 				}
 			}
-						
+
 			var button = document.createElement('button');
 			button.innerHTML = '';
 			button.id = 'indexbutton';
 			button.onclick = this.toggleIndex;
 			options.index.appendChild(button);
-			
+
 			options.wrapper.onclick = this.closeIndex;
 		},
 
@@ -266,8 +277,8 @@
 			document.body.className = document.body.className.replace(' indexVisible', '');
 		}
 	}
-	
-	
+
+
 	var Confirm = function() { this.initialize.apply(this, arguments) };
 	Confirm.prototype = {
 		initialize: function(parent, options) {
@@ -307,14 +318,14 @@
 
 		reportUseragent: function() {
 			this.options.onReport();
-			
+
 			new Feedback(this.confirm, {
 				suggestion:	t('I am using') + ' ' + Browsers,
-				
+
 				onFeedback:	function(value) {
 								this.options.onFeedback(value);
 							}.bind(this),
-				
+
 				onClose:	function() {
 								this.showThanks();
 							}.bind(this)
@@ -445,7 +456,7 @@
 				"</p>" +
 				"<p>The unique id for this test is:<br><code>" + this.options.id + "</code></p>" +
 				"</div>";
-				
+
 			if (this.options.onSave) {
 				this.options.onSave();
 			}
@@ -498,7 +509,7 @@
 
 			document.addEventListener('click', this.close.bind(this), false)
 			document.addEventListener('touchstart', this.close.bind(this), false)
-			
+
 			this.create();
 		},
 
@@ -513,7 +524,7 @@
 				"</div>";
 
 			this.popup.style.display = 'block';
-			
+
 			var button = document.getElementById('sendCorrection')
 			button.addEventListener('click', this.send.bind(this), false);
 		},
@@ -527,13 +538,13 @@
 				}
 			}
 
-			this.close();	
+			this.close();
 		},
 
 		close: function(e) {
 			this.popup.style.display = 'none';
 			this.popup.parentNode.removeChild(this.popup);
-			
+
 			if (this.options.onClose) {
 				this.options.onClose();
 			}
@@ -670,8 +681,8 @@
 
 							if (result & YES) {
 								switch(true) {
-									case !! (result & BUGGY):		cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;								
-									case !! (result & OLD):			cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; count[1]++; break;								
+									case !! (result & BUGGY):		cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;
+									case !! (result & OLD):			cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; count[1]++; break;
 									case !! (result & PREFIX):		cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; count[1]++; break;
 									default:						cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; count[1]++; break;
 								}
@@ -925,16 +936,15 @@
 			this.panel.className = 'linksPanel popupPanel pointsLeft';
 			this.panel.innerHTML = content;
 			parent.appendChild(this.panel);
-			
+
 			FeaturePopup.current = this;
 		},
-		
+
 		close: function() {
 			this.panel.parentNode.removeChild(this.panel);
 			FeaturePopup.current = null;
 		}
 	}
-	
+
 	document.addEventListener('click', function() { if (FeaturePopup.current) FeaturePopup.current.close() }, true)
 	document.addEventListener('touchstart', function() { if (FeaturePopup.current) FeaturePopup.current.close() }, true)
-	
