@@ -1623,6 +1623,7 @@ var tests = [
 									}, {
 										id:			'webgl2',
 										name: 		'WebGL 2',
+										status:		'experimental',
 										value:		5,
 										urls:		[
 														[ 'khronos', 'https://www.khronos.org/registry/webgl/specs/latest/2.0/' ],
@@ -1637,6 +1638,7 @@ var tests = [
 									{
 										id:			'webvr',
 										name: 		'WebVR',
+										status:		'experimental',
 										value:		2,
 										urls:		'https://w3c.github.io/webvr/'
 
