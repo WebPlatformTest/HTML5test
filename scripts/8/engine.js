@@ -2257,6 +2257,16 @@ Test8 = (function () {
         },
 
 
+        /* requestIdleCallback */
+
+        function (results) {
+            results.addItem({
+                key: 'performance-requestIdleCallback',
+                passed: 'requestIdleCallback' in window
+            });
+        },
+
+
         /* crypto */
 
         function (results) {

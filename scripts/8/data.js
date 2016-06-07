@@ -2083,6 +2083,16 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface' ],
 														[ 'mdn', '/Web/API/Web_Workers_API/Using_web_workers' ]
 													]
+									},
+
+									'<strong>Other</strong>',
+
+									{
+										id:			'requestIdleCallback',
+										name: 		'<code>window.requestIdleCallback</code>',
+										status:		'experimental',
+										value:		1,
+										urls:		'https://w3c.github.io/requestidlecallback/'
 									}
 								]
 					}, {
