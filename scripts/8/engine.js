@@ -12,7 +12,8 @@ Test8 = (function () {
         BLOCKED = 16,
         DISABLED = 32,
         UNCONFIRMED = 64,
-        UNKNOWN = 128;
+        UNKNOWN = 128,
+        EXPERIMENTAL = 256;
 
     var blacklists = [];
 
@@ -2980,7 +2981,7 @@ Test8 = (function () {
 
             results.addItem({
                 key: '3d-webgl',
-                passed: passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
+                passed: passed ? (context == 'webgl' ? YES : (context == 'experimental-webgl' ? YES | EXPERIMENTAL : YES | PREFIX)) : NO
             });
         },
 
@@ -3005,7 +3006,7 @@ Test8 = (function () {
 
             results.addItem({
                 key: '3d-webgl2',
-                passed: passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
+                passed: passed ? (context == 'webgl2' ? YES : (context == 'experimental-webgl2' ? YES | EXPERIMENTAL : YES | PREFIX)) : NO
             });
         },
 

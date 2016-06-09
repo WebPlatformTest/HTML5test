@@ -110,7 +110,8 @@
 		BLOCKED = 16,
 		DISABLED = 32,
 		UNCONFIRMED = 64,
-		UNKNOWN = 128;
+		UNKNOWN = 128,
+		EXPERIMENTAL = 256;
 
 
 	var Calculate = function() { this.initialize.apply(this, arguments) };

@@ -1,7 +1,7 @@
 
 	var DeviceTable = function() { this.initialize.apply(this, arguments) };
 	DeviceTable.prototype = {
-	
+
 		initialize: function(options) {
 			this.parent = options.parent;
 
@@ -11,29 +11,29 @@
 			for (var r = 0; r < rows.length; r++) {
 				rows[r].addEventListener("click", this.onShow.bind(this, rows[r]), true);
 			}
-			
+
 			this.popup = null;
 		},
-		
+
 		onClose: function(e) {
 			var child = false;
-			
+
 			var el = e.target;
 			while (el.parentNode) {
 				if (el == this.parent) {
 					child = true;
 					break;
 				}
-				
+
 				el = el.parentNode;
 			}
-			
+
 			if (!child) this.close();
 		},
-		
+
 		onShow: function(row) {
 			this.close();
-			
+
 			var httpRequest;
 			if (window.XMLHttpRequest) {
 				httpRequest = new XMLHttpRequest();
@@ -50,7 +50,7 @@
 				if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
 					var data = JSON.parse(httpRequest.responseText);
 
-					var bb = [ 
+					var bb = [
 						[ 'ie5', 'ie6', 'IE 5'],
 						[ 'ie6', 'ie6', 'IE 6'],
 						[ 'ie7', 'ie7', 'IE 7'],
@@ -73,7 +73,7 @@
 						[ 'bb', 'bb', 'Browser'],
 						[ 'bb10', 'bb10', 'Browser'],
 						[ 'tabletos', 'tabletos', 'Browser'],
-						
+
 						[ 'chrome', 'chrome', 'Chrome'],
 						[ 'coast', 'coast', 'Coast'],
 						[ 'diigo', 'diigo', 'Diigo'],
@@ -91,13 +91,13 @@
 						[ 'uc-iphone', 'uc-iphone', 'UC Web'],
 						[ 'uc-old', 'uc-old', 'UC Web'],
 					]
-					
+
 					var browsers = "<ul class='browsers'>";
-					
+
 					if (data.defaultBrowser || data.defaultFingerprint) {
 						browsers += "<li class='default'>";
 						var stock = true;
-						
+
 						if (data.defaultBrowser) {
 							for (var b = 0; b < bb.length; b++) {
 								if (data.defaultBrowser == bb[b][0]) {
@@ -106,7 +106,7 @@
 								}
 							}
 						}
-						
+
 						if (stock) {
 							browsers += "<span class='stock'>Default browser</span>";
 						}
@@ -114,41 +114,41 @@
 						if (data.defaultFingerprint) {
 							browsers += "<div class='score'><a href='" + document.location.protocol + "//html5te.st/" + data.defaultFingerprint + "'>" +  data.defaultResults.score + "</a></div>";
 						}
-						
+
 						browsers += "</li>";
 					}
-					
-					
+
+
 					for (var b = 0; b < bb.length; b++) {
 						if (data.otherBrowsers[bb[b][0]]) browsers += "<li><img src='/images/browsers/" + bb[b][1] +".png'><span>" + bb[b][2] + "</span></li>";
 					}
 
 					if (data.hasInspect) browsers += "<li><img src='/images/browsers/inspect.png'><span>Inspect</span></li>";
 					browsers += "</ul>";
-					
+
 					this.popup = document.createElement('div');
 					this.popup.className = 'popupPanel pointsLeft deviceInfo';
-					this.popup.innerHTML = 
+					this.popup.innerHTML =
 						"<h2>" + data.deviceManufacturer + " " + data.deviceModel + ( data.url ? "<a class='external' href='" + data.url + "'></a>" : "") + "</h2>" +
 						"<div class='image'" + (data.image ? " style='background-image: url(/images/devices/" + data.image + ");'" : "") + "></div>" +
 						"<div class='information'>" +
 							"<table>" +
-								"<tr><th>Type</th><td>" + data.type + (data.deviceSize ? ", " + data.deviceSize + "&nbsp;inch": "") + "</td></tr>" + 
-								"<tr><th>Display</th><td>" + (data.deviceWidth && data.deviceHeight ? data.deviceWidth + "&nbsp;x&nbsp;" + data.deviceHeight + "&nbsp;pixels" : "") + (data.devicePPI ? ", " + data.devicePPI + "&nbsp;ppi" : "") + "</td></tr>" + 
-								"<tr><th>OS</th><td>" + (data.osName ? data.osName + (data.osVersion ? " " + data.osVersion : "") : "-") + "</td></tr>" + 
-								"<tr><th>Wi-Fi</th><td>" + (data.hasWifi ? "<span class='check'>✔</span> Yes" : "<span class='ballot'>✘</span> No") + "</td></tr>" + 
-								"<tr><th>Cellular</th><td>" + (data.simSize ? "<span class='check'>✔</span> " + data.simSize + " sim" + (data.simLocked ? ', locked' : ', unlocked') : "<span class='ballot'>✘</span> No") + "</td></tr>" + 
+								"<tr><th>Type</th><td>" + data.type + (data.deviceSize ? ", " + data.deviceSize + "&nbsp;inch": "") + "</td></tr>" +
+								"<tr><th>Display</th><td>" + (data.deviceWidth && data.deviceHeight ? data.deviceWidth + "&nbsp;x&nbsp;" + data.deviceHeight + "&nbsp;pixels" : "") + (data.devicePPI ? ", " + data.devicePPI + "&nbsp;ppi" : "") + "</td></tr>" +
+								"<tr><th>OS</th><td>" + (data.osName ? data.osName + (data.osVersion ? " " + data.osVersion : "") : "-") + "</td></tr>" +
+								"<tr><th>Wi-Fi</th><td>" + (data.hasWifi ? "<span class='check'>✔</span> Yes" : "<span class='ballot'>✘</span> No") + "</td></tr>" +
+								"<tr><th>Cellular</th><td>" + (data.simSize ? "<span class='check'>✔</span> " + data.simSize + " sim" + (data.simLocked ? ', locked' : ', unlocked') : "<span class='ballot'>✘</span> No") + "</td></tr>" +
 							"</table>" +
 							browsers +
-							
+
 							(data.comment ? "<div class='comment'>" + data.comment + "</div>" : "" ) +
 						"</div>";
 
 					row.cells[0].appendChild(this.popup);
 				}
-			}			
+			}
 		},
-		
+
 		close: function() {
 			if (this.popup) {
 				this.popup.parentNode.removeChild(this.popup);
@@ -169,70 +169,70 @@
 				onQuery:	options.onQuery || null,
 				onSubmit:	options.onSubmit || null
 			}
-			
+
 			this.interval = null;
-			
+
 			this.container = document.createElement('div');
 			this.container.className = 'search';
 			this.parent.appendChild(this.container);
-			
-			this.container.innerHTML = 
+
+			this.container.innerHTML =
 				"<input type='text' placeholder='Search...' value='" + (this.options.value || "") + "'>" +
 				"<button>×</button>";
-				
+
 			this.container.addEventListener("click", this.onClick.bind(this), false);
 
 			this.container.firstChild.addEventListener("keyup", this.onUpdate.bind(this), true);
 			this.container.firstChild.addEventListener("change", this.onUpdate.bind(this), true);
 			this.container.firstChild.nextSibling.addEventListener("click", this.onClear.bind(this), true);
 		},
-		
+
 		onUpdate: function(e) {
 			if (this.interval) {
 				window.clearTimeout(this.interval);
 			}
-			
+
 			this.interval = window.setTimeout(this.onQuery.bind(this), 250);
-			
+
 			if (e.keyCode == 13) {
 				if (this.options.onSubmit) {
 					this.options.onSubmit(this.container.firstChild.value);
-				}	
+				}
 			}
 		},
-		
+
 		onClick: function(e) {
 			e.stopPropagation();
 		},
-		
+
 		onClear: function(e) {
 			e.stopPropagation();
-			
+
 			this.clear();
 
 			if (this.options.onQuery) {
 				this.options.onQuery('');
-			}	
+			}
 
 			if (this.options.onSubmit) {
 				this.options.onSubmit('');
-			}	
+			}
 		},
-		
+
 		onQuery: function() {
 			var value = this.container.firstChild.value;
 			if (value.length < 3) return;
-			
+
 			if (this.options.onQuery) {
 				this.options.onQuery(value);
-			}	
+			}
 		},
-		
+
 		clear: function() {
 			this.container.firstChild.value = '';
 		}
 	}
-	
+
 	var ToggleSwitch = function() { this.initialize.apply(this, arguments) };
 	ToggleSwitch.prototype = {
 
@@ -243,43 +243,43 @@
 				active:		options.active || '',
 				onChange:	options.onChange || null
 			}
-			
+
 			this.active = false;
-			
+
 			this.container = document.createElement('div');
 			this.container.className = 'toggle';
 			this.parent.appendChild(this.container);
-			
-			this.container.innerHTML = 
+
+			this.container.innerHTML =
 				"<div class='background'></div>" +
 				"<div class='part first'>" + this.options.inactive + "</div>" +
 				"<div class='part second'>" + this.options.active + "</div>";
-				
-			
+
+
 			this.container.addEventListener("click", this.onToggle.bind(this), true);
 		},
-		
+
 		onToggle: function() {
 			this.active = ! this.active;
-			
+
 			if (this.active) {
 				this.container.className += ' selected';
 			} else {
 				this.container.className = this.container.className.replace(' selected', '');
 			}
-			
+
 			if (this.options.onChange) {
 				this.options.onChange(this.active);
 			}
 		},
-		
+
 		activate: function() {
 			if (!this.active) {
 				this.active = true;
 				this.container.className += ' selected';
 			}
 		},
-		
+
 		deactivate: function() {
 			if (this.active) {
 				this.active = false;
@@ -291,7 +291,7 @@
 
 	var FeatureTable = function() { this.initialize.apply(this, arguments) };
 	FeatureTable.prototype = {
-	
+
 		initialize: function(options) {
 			this.parent = options.parent;
 			this.tests = options.tests;
@@ -306,57 +306,57 @@
 				features:		options.features || false,
 				explainations:	options.explainations || false,
 				filter:			null,
-				
+
 				onChange:		options.onChange || false
 			}
 
 			this.panel = null;
-			
+
 			this.diff = [];
 
 			this.data = [];
 			for (var i = 0; i < this.options.columns; i++) {
 				this.data[i] = null;
 			}
-			
+
 			this.createCategories(this.parent, this.tests)
 			this.results = document.createElement('div');
 			this.parent.appendChild(this.results);
-			
+
 			this.filter(options.filter || '');
 		},
-		
+
 		filter: function(filter, force) {
 			var that = this;
-						
+
 			if (!force && this.options.filter == filter) {
 				return;
 			}
-			
+
 			this.options.filter = filter;
-		
+
 			if (filter == '') {
 				this.results.innerHTML = '';
 				for (var i = 0; i < this.tests.length; i++) {
 					this.createSections(this.results, this.tests[i].items);
 				}
-				
+
 				this.update();
 				return;
 			}
-			
+
 			var result = [];
 			var path = [];
 			var status = [];
 			var name = [];
-		
+
 			function retrieveItems(items, level) {
 				for (var i = 0; i < items.length; i++) {
 					if (typeof items[i] == 'object') {
 						path[level] = items[i].id;
 						name[level] = items[i].name;
-						status[level] = items[i].status || null; 
-				
+						status[level] = items[i].status || null;
+
 						if (!filterItem(items[i], level)) {
 							if (items[i].items) {
 								retrieveItems(items[i].items, level + 1);
@@ -365,14 +365,14 @@
 					}
 				}
 			}
-			
+
 			function addItems(items, level) {
 				for (var i = 0; i < items.length; i++) {
 					if (typeof items[i] == 'object') {
 						path[level] = items[i].id;
 						name[level] = items[i].name;
-						status[level] = items[i].status || null; 
-						
+						status[level] = items[i].status || null;
+
 						if (level > 1) {
 							var s = "";
 							for (var l = level; l >= 0; l--) {
@@ -391,7 +391,7 @@
 							if (items[i].url) r.url = items[i].url;
 							if (items[i].urls) r.urls = items[i].urls;
 							if (items[i].items) r.items = items[i].items;
-	
+
 							result.push(r);
 						}
 						else if (items[i].items) {
@@ -399,15 +399,15 @@
 						}
 					}
 				}
-				
+
 				return true;
 			}
-			
+
 			function filterItem(item, level) {
 				path[level] = item.id;
 				name[level] = item.name;
-				status[level] = item.status || null; 
-				
+				status[level] = item.status || null;
+
 				var selected = true;
 				if (filter == ':diff')
 					selected = level > 1 ? that.diff[path.slice(1, level + 1).join('-')] : false;
@@ -424,7 +424,7 @@
 								break;
 							}
 						}
-						
+
 						var r = {
 							id:		path.slice(1, level + 1).join('-'),
 							name:	name.slice(2, level + 1).join(' ▸ '),
@@ -440,26 +440,26 @@
 					else if (item.items) {
 						return addItems(item.items, level + 1);
 					}
-				}		
+				}
 			}
 
 			retrieveItems(this.tests, 0);
-			
+
 			this.results.innerHTML = '';
 			this.createSections(this.results, [{ name: filter == ':diff' ? 'Difference' : filter, items: result }]);
-			
+
 			this.update();
 		},
-		
+
 		loadColumn: function(column, browser) {
 			var id = browser;
-			
+
 			if (typeof browser == 'object') {
-				id = browser.variant + (browser.version ? '-' + browser.version : '');	
+				id = browser.variant + (browser.version ? '-' + browser.version : '');
 			}
-			
+
 			var that = this;
-			
+
 			var httpRequest;
 			if (window.XMLHttpRequest) {
 				httpRequest = new XMLHttpRequest();
@@ -475,20 +475,20 @@
 			function process() {
 				if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
 					var data = JSON.parse(httpRequest.responseText);
-					
+
 					var f = that.options.filter;
-					that.filter('');			
+					that.filter('');
 					that.updateColumn(column, data);
-					that.filter(f);			
+					that.filter(f);
 				}
 			}
 		},
-		
+
 		calculateColumn: function(column) {
 			var that = this;
 
 			new Test(process);
-			
+
 			function process(r) {
 				that.updateColumn(column, {
 					id:				'mybrowser',
@@ -499,112 +499,13 @@
 				})
 			}
 		},
-		
+
 		clearColumn: function(column) {
 			this.data[column] = null;
 			this.diff = [];
-			
-			if (this.options.onChange) {
-				var ids = [];
-				for (var i = 0; i < this.options.columns; i++) {
-					if (this.data[i]) {
-						if (this.data[i].id)
-							ids.push(this.data[i].id);
-						else if (this.data[i].version)
-							ids.push(this.data[i].variant + '-' + this.data[i].version);
-						else 
-							ids.push(this.data[i].variant);
-					}
-				}
-
-				this.options.onChange(ids);
-			}
-
-			var row = document.getElementById('row-header');
-			var cell = row.childNodes[column + 1];
-			cell.className = 'empty';
-			cell.firstChild.firstChild.innerHTML = '';
-			cell.firstChild.childNodes[1].selectedIndex = 0;
-			
-			for (var c = 0; c < this.tests.length; c++)
-			for (var i = 0; i < this.tests[c].items.length; i++) {
-				var test = this.tests[c].items[i];
-
-				if (typeof test != 'string') {
-					if (typeof test.items != 'undefined') {
-						var row = document.getElementById('head-' + test.id);
-						if (row) {
-							var cell = row.childNodes[column + 1];
-							cell.innerHTML = '';
-						}
-						
-						this.clearItems(column, test.id, test.items);
-					}
-				}
-			}	
-			
-			this.filter(this.options.filter, true);			
-		},
-		
-		clearItems: function(column, id, tests) {
-			for (var i = 0; i < tests.length; i++) {
-				if (typeof tests[i] != 'string') {
-					var key = id + '-' + tests[i].id;
-
-					var row = document.getElementById('row-' + key);
-					if (row) {
-						var cell = row.childNodes[column + 1];
-						cell.innerHTML = '';
-						cell.className = '';
-					}
-					
-					if (typeof tests[i].items != 'undefined') {
-						this.clearItems(column, key, tests[i].items);
-					}
-
-
-					var base = null;
-					var diff = false;
-					
-					for (var c = 0; c < this.options.columns; c++) {
-						if (this.data[c]) {
-							if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.data[c].results)) {
-								var result = parseInt(match[1], 10);
-								
-								if (base === null) {
-									base = result;
-								}
-								else {
-									if (result != base) {
-										diff = true;
-										break;
-									}
-								}
-							}
-						}
-					}
-					
-					this.diff[key] = diff;
-				}
-			}
-		},
-		
-		update: function() {
-			for (var i = 0; i < this.options.columns; i++) {
-				if (this.data[i]) {
-					this.updateColumn(i, this.data[i]);
-				}
-			}
-		},
-		
-		updateColumn: function(column, data) {
-			this.data[column] = data;
-			this.diff = [];
 
 			if (this.options.onChange) {
 				var ids = [];
-				
-				
 				for (var i = 0; i < this.options.columns; i++) {
 					if (this.data[i]) {
 						if (this.data[i].id)
@@ -618,21 +519,120 @@
 
 				this.options.onChange(ids);
 			}
-		
+
+			var row = document.getElementById('row-header');
+			var cell = row.childNodes[column + 1];
+			cell.className = 'empty';
+			cell.firstChild.firstChild.innerHTML = '';
+			cell.firstChild.childNodes[1].selectedIndex = 0;
+
+			for (var c = 0; c < this.tests.length; c++)
+			for (var i = 0; i < this.tests[c].items.length; i++) {
+				var test = this.tests[c].items[i];
+
+				if (typeof test != 'string') {
+					if (typeof test.items != 'undefined') {
+						var row = document.getElementById('head-' + test.id);
+						if (row) {
+							var cell = row.childNodes[column + 1];
+							cell.innerHTML = '';
+						}
+
+						this.clearItems(column, test.id, test.items);
+					}
+				}
+			}
+
+			this.filter(this.options.filter, true);
+		},
+
+		clearItems: function(column, id, tests) {
+			for (var i = 0; i < tests.length; i++) {
+				if (typeof tests[i] != 'string') {
+					var key = id + '-' + tests[i].id;
+
+					var row = document.getElementById('row-' + key);
+					if (row) {
+						var cell = row.childNodes[column + 1];
+						cell.innerHTML = '';
+						cell.className = '';
+					}
+
+					if (typeof tests[i].items != 'undefined') {
+						this.clearItems(column, key, tests[i].items);
+					}
+
+
+					var base = null;
+					var diff = false;
+
+					for (var c = 0; c < this.options.columns; c++) {
+						if (this.data[c]) {
+							if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.data[c].results)) {
+								var result = parseInt(match[1], 10);
+
+								if (base === null) {
+									base = result;
+								}
+								else {
+									if (result != base) {
+										diff = true;
+										break;
+									}
+								}
+							}
+						}
+					}
+
+					this.diff[key] = diff;
+				}
+			}
+		},
+
+		update: function() {
+			for (var i = 0; i < this.options.columns; i++) {
+				if (this.data[i]) {
+					this.updateColumn(i, this.data[i]);
+				}
+			}
+		},
+
+		updateColumn: function(column, data) {
+			this.data[column] = data;
+			this.diff = [];
+
+			if (this.options.onChange) {
+				var ids = [];
+
+
+				for (var i = 0; i < this.options.columns; i++) {
+					if (this.data[i]) {
+						if (this.data[i].id)
+							ids.push(this.data[i].id);
+						else if (this.data[i].version)
+							ids.push(this.data[i].variant + '-' + this.data[i].version);
+						else
+							ids.push(this.data[i].variant);
+					}
+				}
+
+				this.options.onChange(ids);
+			}
+
 			var row = document.getElementById('row-header');
 			var cell = row.childNodes[column + 1];
 			cell.className = '';
 			cell.firstChild.firstChild.innerHTML = '<span class="nickname">' + t(data.nickname) + '</span><span class="score">' + data.score + '</span>';
-			
+
 			for (var c = 0; c < this.tests.length; c++)
 			for (var i = 0; i < this.tests[c].items.length; i++) {
 				var test = this.tests[c].items[i];
-				
+
 				if (typeof test != 'string') {
 					if (typeof test != 'undefined') {
 						var points = 0;
-						var maximum = 0; 
-						
+						var maximum = 0;
+
 						if (match = (new RegExp(test.id + "=([0-9]+)(?:\\/([0-9]+))?(?:\\+([0-9]+))?")).exec(data.points)) {
 							points = match[1];
 							if (match[2]) maximum = match[2];
@@ -641,9 +641,9 @@
 						var row = document.getElementById('head-' + test.id);
 						if (row) {
 							var cell = row.childNodes[column + 1];
-							
+
 							var content = "<div><div class='grade'>";
-							
+
 							if (this.options.grading) {
 								var grade = '';
 								var percent = parseInt(points / maximum * 100, 10);
@@ -654,7 +654,7 @@
 									case percent <= 95: grade = 'good'; break;
 									default:			grade = 'great'; break;
 								}
-							
+
 								if (points == maximum)
 									content += "<span class='" + grade + "'>" + points + "</span>";
 								else
@@ -662,7 +662,7 @@
 							} else {
 								content += "<span>" + points + "</span>";
 							}
-	
+
 							content += "</div></div>";
 							cell.innerHTML = content;
 						}
@@ -670,68 +670,69 @@
 						this.updateItems(column, data, 0, test.id, test.items);
 					}
 				}
-			}			
+			}
 		},
 
 		updateItems: function(column, data, level, id, tests) {
 			var count = [ 0, 0 ];
-					
+
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] != 'string') {
 					var row = document.getElementById('row-' + id + '-' + tests[i].id);
 					if (row) {
 						var key = id + '-' + tests[i].id;
 						var cell = row.childNodes[column + 1];
-	
+
 						cell.className = 'used';
-	
+
 						if (typeof tests[i].items != 'undefined') {
 							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
-						
+
 							if (results[0] == results[1])
 								cell.innerHTML = '<div>' + 'Yes' + ' <span class="check">✔</span></div>';
 							else if (results[1] == 0)
 								cell.innerHTML = '<div>' + 'No' + ' <span class="ballot">✘</span></div>';
 							else
 								cell.innerHTML = '<div><span class="partially">' + 'Partial' + '</span> <span class="partial">○</span></div>';
-						} 
-						
+						}
+
 						else {
-							
-								
+
+
 							if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(data.results)) {
 								var result = parseInt(match[1], 10);
-								
+
 								if (result & YES) {
 									switch(true) {
-										case !! (result & BUGGY):		cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;								
-										case !! (result & OLD):			cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; count[1]++; break;								
-										case !! (result & PREFIX):		cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; count[1]++; break;
-										default:						cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; count[1]++; break;
+										case !! (result & BUGGY):			cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;
+										case !! (result & OLD):				cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; count[1]++; break;
+										case !! (result & PREFIX):			cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; count[1]++; break;
+										case !! (result & EXPERIMENTAL):	cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; count[1]++; break;
+										default:							cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; count[1]++; break;
 									}
 								}
 								else {
 									switch(true) {
-										case !! (result & UNKNOWN):		cell.innerHTML = '<div>Unknown <span class="buggy">?</span></div>'; break;
-										case !! (result & BLOCKED):		cell.innerHTML = '<div>Broken <span class="buggy">!</span></div>'; break;
-										case !! (result & DISABLED):	cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
-										default:						cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
+										case !! (result & UNKNOWN):			cell.innerHTML = '<div>Unknown <span class="buggy">?</span></div>'; break;
+										case !! (result & BLOCKED):			cell.innerHTML = '<div>Broken <span class="buggy">!</span></div>'; break;
+										case !! (result & DISABLED):		cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
+										default:							cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
 									}
 								}
 							} else {
 								cell.innerHTML = '<div><span class="partially">Unknown</span> <span class="partial">?</span></div>';
 							}
 						}
-						
+
 
 						var base = null;
 						var diff = false;
-						
+
 						for (var c = 0; c < this.options.columns; c++) {
 							if (this.data[c]) {
 								if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(this.data[c].results)) {
 									var result = parseInt(match[1], 10);
-									
+
 									if (base === null) {
 										base = result;
 									}
@@ -744,36 +745,36 @@
 								}
 							}
 						}
-						
+
 						this.diff[key] = diff;
 					} else {
 						if (typeof tests[i].items != 'undefined') {
-							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);					
+							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
 						}
 					}
-					
+
 					count[0]++;
 				}
 			}
-			
-			return count;	
+
+			return count;
 		},
-		
+
 		askForUniqueId: function(c) {
 			var id = prompt(t('Enter the unique id of the results you want to see'))
 			if (id) {
 				this.loadColumn(c, 'custom:' + id);
 			}
 		},
-			
+
 		createCategories: function(parent, tests) {
 			var table = document.createElement('table');
 			table.id = 'table-header';
 			parent.appendChild(table);
-			
+
 			var tbody = document.createElement('tbody');
 			table.appendChild(tbody);
-			
+
 			var tr = document.createElement('tr');
 			tr.id = 'row-header';
 			tbody.appendChild(tr);
@@ -784,22 +785,22 @@
 
 			for (var c = 0; c < this.options.columns; c++) {
 				var that = this;
-				
+
 				var td = document.createElement('td');
 				td.className = 'empty';
 				tr.appendChild(td);
-				
+
 				var wrapper = document.createElement('div');
 				td.appendChild(wrapper);
-							
+
 				var div = document.createElement('div');
 				div.className = 'name';
 				wrapper.appendChild(div);
-							
+
 				var menu = document.createElement('div');
 				menu.className = 'popup popupPanel pointsRight hasSearch';
 				wrapper.appendChild(menu);
-				
+
 				var header = document.createElement('div');
 				header.className = 'toolbar';
 				menu.appendChild(header);
@@ -807,9 +808,9 @@
 				var scroll = document.createElement('div');
 				scroll.className = 'scroll';
 				menu.appendChild(scroll);
-				
+
 				var list = document.createElement('ul');
-				scroll.appendChild(list);	
+				scroll.appendChild(list);
 
 
 				(function(c, menu, list, header) {
@@ -819,13 +820,13 @@
 										build(list, that.options.browsers, query != "", query);
 									}
 					});
-					
-	
-					document.body.addEventListener('click', function(e) { 
+
+
+					document.body.addEventListener('click', function(e) {
 						menu.className = menu.className.replace(' visible', '');
 					}, false);
-					
-					div.addEventListener('click', function(e) { 
+
+					div.addEventListener('click', function(e) {
 						if (that.data[c] == null) {
 							if (e.altKey) {
 								that.askForUniqueId(c);
@@ -839,13 +840,13 @@
 						e.stopPropagation();
 					}, true);
 
-					list.addEventListener('click', function(e) { 
+					list.addEventListener('click', function(e) {
 						var close = true;
 
 						if (e.target) {
 							if (e.target.hasAttribute('data-action')) {
 								var action = e.target.getAttribute('data-action');
-								
+
 								if (action == 'more') {
 									build(list, that.options.browsers, true);
 									close = false;
@@ -872,22 +873,22 @@
 								}
 							}
 						}
-						
+
 						if (close) {
 							menu.className = menu.className.replace(' visible', '');
 						}
-						
+
 						e.stopPropagation();
 					}, true);
 				})(c, menu, list, header);
 
-				
+
 				build(list, this.options.browsers, false);
 
 
 				function build(list, browsers, all, filter) {
 					list.innerHTML = '';
-									
+
 					if (!filter) {
 						var item = document.createElement('li');
 						item.setAttribute('data-action', 'calculate');
@@ -899,7 +900,7 @@
 						item.innerHTML = 'Enter unique id...';
 						list.appendChild(item);
 					}
-					
+
 					var type = null;
 
 					for (var i = 0; i < browsers.length; i++) {
@@ -909,7 +910,7 @@
 									var item = document.createElement('li');
 									item.className = 'indent-0 title';
 									list.appendChild(item);
-									
+
 									switch(browsers[i].type) {
 										case 'desktop':		item.innerHTML = 'Desktop browsers'; break;
 										case 'gaming':		item.innerHTML = 'Gaming'; break;
@@ -918,18 +919,18 @@
 										case 'television':	item.innerHTML = 'Television'; break;
 									}
 								}
-	
+
 								var item = document.createElement('li');
 								item.setAttribute('data-action', 'load');
 								item.setAttribute('data-id', i);
 								item.innerHTML = browsers[i].nickname + (browsers[i].details ? ' <em>(' + browsers[i].details + ')</em>' : '');
 								list.appendChild(item);
-	
+
 								type = browsers[i].type;
 							}
 						}
-					}	
-					
+					}
+
 					if (!filter) {
 						if (!all) {
 							var item = document.createElement('li');
@@ -948,7 +949,7 @@
 				}
 			}
 		},
-				
+
 		createSections: function(parent, tests) {
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] == 'string') {
@@ -959,14 +960,14 @@
 					var table = document.createElement('table');
 					if (tests[i].id) table.id = 'table-' + tests[i].id;
 					parent.appendChild(table);
-	
+
 					var thead = document.createElement('thead');
 					table.appendChild(thead);
-					
+
 					var tr = document.createElement('tr');
 					if (tests[i].id) tr.id = 'head-' + tests[i].id;
 					thead.appendChild(tr);
-					
+
 					var th = document.createElement('th');
 					if (tests[i].name) th.innerHTML = t(tests[i].name);
 					tr.appendChild(th);
@@ -975,13 +976,13 @@
 						var td = document.createElement('td');
 						tr.appendChild(td);
 					}
-					
+
 					if (typeof tests[i].items != 'undefined') {
 						var tbody = document.createElement('tbody');
 						table.appendChild(tbody);
-	
+
 						var status = typeof tests[i].status != 'undefined' ? tests[i].status : '';
-	
+
 						this.createItems(tbody, 0, tests[i].items, {
 							id:		tests[i].id,
 							status:	status,
@@ -991,21 +992,21 @@
 				}
 			}
 		},
-		
+
 		createItems: function(parent, level, tests, data) {
 			var ids = [];
-			
+
 			for (var i = 0; i < tests.length; i++) {
 				var tr = document.createElement('tr');
 				parent.appendChild(tr);
-	
+
 				if (typeof tests[i] == 'string') {
 					if (this.options.explainations || tests[i].substr(0, 4) != '<em>') {
 						var th = document.createElement('th');
 						th.colSpan = this.options.columns + 1;
 						th.className = 'details';
 						tr.appendChild(th);
-	
+
 						th.innerHTML = t(tests[i]);
 					}
 				} else {
@@ -1017,20 +1018,20 @@
 						var td = document.createElement('td');
 						tr.appendChild(td);
 					}
-					
+
 					tr.id = 'row-' + (data.id ? data.id + '-' : '') + tests[i].id;
-					
+
 					if (level > 0) {
 						tr.className = 'isChild';
 					}
-					
+
 					if (typeof tests[i].items != 'undefined') {
 						var urls = null;
 
 						if (this.options.links) {
 							if (typeof tests[i].urls != 'undefined') {
-								urls = tests[i].urls;	
-							}						
+								urls = tests[i].urls;
+							}
 							else if (typeof tests[i].url != 'undefined') {
 								urls = { 'w3c': tests[i].url };
 							}
@@ -1045,11 +1046,11 @@
 						});
 
 						this.hideChildren(tr, children);
-						
+
 						(function(that, tr, th, children) {
 							th.onclick = function() {
 								that.toggleChildren(tr, children);
-							};		
+							};
 						})(this, tr, th, children);
 					} else {
 						var urls;
@@ -1072,7 +1073,7 @@
 							th.onclick = function() {
 								new FeaturePopup(th, data);
 							};
-						})(th, { 
+						})(th, {
 							id:		(data.id ? data.id + '-' : '') + tests[i].id,
 							name:	tests[i].name,
 							value:	value,
@@ -1080,14 +1081,14 @@
 							urls:	(urls || []).concat(data.urls || [])
 						});
 					}
-					
+
 					ids.push(tr.id);
 				}
-			}	
-			
+			}
+
 			return ids;
 		},
-	
+
 		toggleChildren: function(element, ids) {
 			if (element.className.indexOf(' hidden') == -1) {
 				this.hideChildren(element, ids);
@@ -1095,20 +1096,20 @@
 				this.showChildren(element, ids);
 			}
 		},
-		
+
 		showChildren: function(element, ids) {
 			element.className = element.className.replace(' hidden', '');
-			
+
 			for (var i = 0; i < ids.length; i++) {
 				var e = document.getElementById(ids[i]);
 				e.style.display = '';
 			}
 		},
-	
+
 		hideChildren: function(element, ids) {
 			element.className = element.className.replace(' hidden', '');
 			element.className += ' hidden';
-			
+
 			for (var i = 0; i < ids.length; i++) {
 				var e = document.getElementById(ids[i]);
 				e.style.display = 'none';
@@ -1120,7 +1121,7 @@
 
 	var BrowserTable = function() { this.initialize.apply(this, arguments) };
 	BrowserTable.prototype = {
-	
+
 		initialize: function(options) {
 			this.parent = options.parent;
 			this.browsers = options.browsers;
@@ -1133,7 +1134,7 @@
 				grading:		options.grading || false,
 				explainations:	options.explainations || false,
 				filter:			'',
-				
+
 				onChange:		options.onChange || false
 			}
 
@@ -1141,37 +1142,37 @@
 			for (var i = 0; i < this.options.columns; i++) {
 				this.data[i] = null;
 			}
-			
+
 			this.createSections(this.parent);
-			
+
 			this.filter(options.filter || '');
 		},
-		
+
 		filter: function(filter) {
 			if (this.options.filter != filter) {
-				this.options.filter = filter;	
-				
+				this.options.filter = filter;
+
 				filter = filter.toLowerCase();
-				
+
 				for (var i = 0; i < this.browsers.length; i++) {
 					var row = document.getElementById('row-' + this.browsers[i].uid);
 					var visible = true;
-					
+
 					if (filter != '') {
 						if (filter == ':mostused') {
-							visible = this.browsers[i].listed;	
+							visible = this.browsers[i].listed;
 						}
-						
+
 						else {
 							visible = this.browsers[i].nickname.toLowerCase().indexOf(filter) != -1
 						}
 					}
-					
+
 					row.style.display = visible ? '' : 'none';
-				}	
+				}
 			}
 		},
-		
+
 		loadColumn: function(column, id) {
 			var httpRequest;
 			if (window.XMLHttpRequest) {
@@ -1186,7 +1187,7 @@
 			httpRequest.send('id=' + encodeURIComponent(id));
 
 			var that = this;
-			
+
 			function process() {
 				if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
 					var data = JSON.parse(httpRequest.responseText);
@@ -1194,14 +1195,14 @@
 				}
 			}
 		},
-		
+
 		clearColumn: function(column) {
 			this.data[column] = null;
-			
+
 			if (this.options.onChange) {
 				var ids = [];
 				for (var i = 0; i < this.options.columns; i++) {
-					if (this.data[i]) 
+					if (this.data[i])
 						ids.push(this.data[i].id);
 				}
 
@@ -1215,7 +1216,7 @@
 				cell.firstChild.firstChild.innerHTML = '';
 				cell.firstChild.childNodes[1].selectedIndex = 0;
 			}
-			
+
 			for (var i = 0; i < this.browsers.length; i++) {
 				var row = document.getElementById('row-' + this.browsers[i].uid);
 				var cell = row.childNodes[column + 1];
@@ -1223,25 +1224,25 @@
 				cell.innerHTML = '';
 			}
 		},
-		
+
 		updateColumn: function(column, data) {
 			this.data[column] = data;
-			
+
 			if (this.options.onChange) {
 				var ids = [];
 				for (var i = 0; i < this.options.columns; i++) {
-					if (this.data[i]) 
+					if (this.data[i])
 						ids.push(this.data[i].id);
 				}
 
 				this.options.onChange(ids);
 			}
-		
+
 			if (this.options.header) {
 				var row = document.getElementById('row-header');
 				var cell = row.childNodes[column + 1];
 				cell.className = '';
-				
+
 				var item, parent;
 				if (item = this.getItemById(this.options.tests, data.id)) {
 					if (data.id.split('-').length > 2) {
@@ -1254,30 +1255,31 @@
 					}
 				}
 			}
-			
+
 			for (var i = 0; i < this.browsers.length; i++) {
 				var row = document.getElementById('row-' + this.browsers[i].uid);
 				var cell = row.childNodes[column + 1];
-				
+
 				cell.className = 'used';
 
 				if (match = (new RegExp(this.browsers[i].variant + '-' + this.browsers[i].version + '=(-?[0-9]+)')).exec(data.supported)) {
 					var result = parseInt(match[1], 10);
-							
+
 					if (result & YES) {
 						switch(true) {
-							case !! (result & BUGGY):		cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;								
-							case !! (result & OLD):			cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; break;								
-							case !! (result & PREFIX):		cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; break;
-							default:						cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; break;
+							case !! (result & BUGGY):			cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;
+							case !! (result & OLD):				cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; break;
+							case !! (result & PREFIX):			cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; break;
+							case !! (result & EXPERIMENTAL):	cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; break;
+							default:							cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; break;
 						}
 					}
 					else {
 						switch(true) {
-							case !! (result & UNKNOWN):		cell.innerHTML = '<div>Unknown <span class="partial">?</span></div>'; break;
-							case !! (result & BLOCKED):		cell.innerHTML = '<div>Not functional <span class="buggy">!</span></div>'; break;
-							case !! (result & DISABLED):	cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
-							default:						cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
+							case !! (result & UNKNOWN):			cell.innerHTML = '<div>Unknown <span class="partial">?</span></div>'; break;
+							case !! (result & BLOCKED):			cell.innerHTML = '<div>Not functional <span class="buggy">!</span></div>'; break;
+							case !! (result & DISABLED):		cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
+							default:							cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
 						}
 					}
 				}
@@ -1294,10 +1296,10 @@
 				var table = document.createElement('table');
 				table.id = 'table-header';
 				parent.appendChild(table);
-				
+
 				var tbody = document.createElement('tbody');
 				table.appendChild(tbody);
-				
+
 				var tr = document.createElement('tr');
 				tr.id = 'row-header';
 				tbody.appendChild(tr);
@@ -1310,30 +1312,30 @@
 					var td = document.createElement('td');
 					td.className = 'empty';
 					tr.appendChild(td);
-					
+
 					var wrapper = document.createElement('div');
 					td.appendChild(wrapper);
-								
+
 					var div = document.createElement('div');
 					div.className = 'name';
 					wrapper.appendChild(div);
-								
+
 					var menu = document.createElement('div');
 					menu.className = 'popup popupPanel pointsRight hasSearch';
 					wrapper.appendChild(menu);
-					
+
 					var header = document.createElement('div');
 					header.className = 'toolbar';
 					menu.appendChild(header);
-	
+
 					var scroll = document.createElement('div');
 					scroll.className = 'scroll';
 					menu.appendChild(scroll);
-					
+
 					var list = document.createElement('ul');
-					scroll.appendChild(list);	
-	
-	
+					scroll.appendChild(list);
+
+
 					(function(c, menu, list, header) {
 						var search = new SearchField({
 							parent:		header,
@@ -1341,73 +1343,73 @@
 											build(list, tests, query);
 										}
 						});
-						
-		
-						document.body.addEventListener('click', function(e) { 
+
+
+						document.body.addEventListener('click', function(e) {
 							menu.className = menu.className.replace(' visible', '');
 						}, false);
-						
-						div.addEventListener('click', function(e) { 
+
+						div.addEventListener('click', function(e) {
 							if (that.data[c] == null)
 								menu.className += ' visible';
 							else
 								that.clearColumn(c);
-	
+
 							e.stopPropagation();
 						}, true);
-	
-						list.addEventListener('click', function(e) { 
+
+						list.addEventListener('click', function(e) {
 							var close = true;
-	
+
 							if (e.target) {
 								if (e.target.hasAttribute('data-action')) {
 									var action = e.target.getAttribute('data-action');
-									
+
 									if (action == 'load') {
 										var id = e.target.getAttribute('data-id');
 										that.loadColumn(c, id);
 									}
 								}
 							}
-							
+
 							if (close) {
 								menu.className = menu.className.replace(' visible', '');
 							}
-							
+
 							e.stopPropagation();
 						}, true);
 					})(c, menu, list, header);
 
 
 					build(list, tests);
-	
-	
+
+
 					function build(list, tests, filter) {
 						list.innerHTML = '';
-										
+
 						var type = null;
-	
+
 						for (var i = 0; i < tests.length; i++) {
 							if (!filter || (typeof tests[i].id != 'undefined' && tests[i].name.toLowerCase().indexOf(filter.toLowerCase()) != -1)) {
 								var item = document.createElement('li');
-								
+
 								if (!filter) item.className = 'indent-' + tests[i].indent;
-								
+
 								if (typeof tests[i].id != 'undefined') {
 									item.setAttribute('data-action', 'load');
 									item.setAttribute('data-id', tests[i].id);
 								} else {
 									item.className += ' title';
 								}
-								
+
 								item.innerHTML = t(tests[i].name);
 								list.appendChild(item);
 							}
-						}	
+						}
 					}
 				}
 			}
-		
+
 			var table = document.createElement('table');
 			parent.appendChild(table);
 
@@ -1419,12 +1421,12 @@
 				if (type != this.browsers[i].type) {
 					var tr = document.createElement('tr');
 					tbody.appendChild(tr);
-		
-					var th = document.createElement('th');	
+
+					var th = document.createElement('th');
 					th.className = 'details';
-					th.colSpan = this.options.columns + 1;				
+					th.colSpan = this.options.columns + 1;
 					tr.appendChild(th);
-					
+
 					switch(this.browsers[i].type) {
 						case 'desktop':		th.innerHTML = '<h3>Desktop browsers</h3>'; break;
 						case 'gaming':		th.innerHTML = '<h3>Gaming</h3>'; break;
@@ -1433,21 +1435,21 @@
 						case 'television':	th.innerHTML = '<h3>Television</h3>'; break;
 					}
 				}
-	
+
 				var tr = document.createElement('tr');
 				tr.id = 'row-' + this.browsers[i].uid;
 				tbody.appendChild(tr);
-	
-				var th = document.createElement('th');		
-				th.className = 'hasLink';			
+
+				var th = document.createElement('th');
+				th.className = 'hasLink';
 				th.innerHTML =  this.browsers[i].nickname + (this.browsers[i].details ? ' <em>(' + this.browsers[i].details + ')</em>' : '');
 				tr.appendChild(th);
-				
+
 				(function(th, type, data){
 					th.onclick = function() {
 						new BrowserPopup(th, type, data);
 					};
-				})(th, type, { 
+				})(th, type, {
 					variant:	this.browsers[i].variant,
 					version:	this.browsers[i].version,
 					id:			this.browsers[i].id,
@@ -1460,17 +1462,17 @@
 					var td = document.createElement('td');
 					tr.appendChild(td);
 				}
-				
+
 				type = this.browsers[i].type;
-			}	
+			}
 		},
-		
+
 		getList: function(items, level, prefix) {
 			if (typeof level == 'undefined') level = 0;
 			if (typeof prefix == 'undefined') prefix = '';
 
 			var result = [];
-		
+
 			for (var i = 0; i < items.length; i++) {
 				if (typeof items[i] == 'object') {
 					if (typeof items[i].items == 'undefined') {
@@ -1482,7 +1484,7 @@
 							})
 						}
 					}
-					
+
 					if (typeof items[i].items != 'undefined') {
 						if (level > 0) {
 							result.push({
@@ -1490,7 +1492,7 @@
 								indent:	level
 							})
 						}
-						
+
 						if (children = this.getList(items[i].items, level + 1, level > 0 ? prefix + items[i].id + '-' : prefix)) {
 							for (var c = 0; c < children.length; c++) {
 								result.push(children[c]);
@@ -1499,14 +1501,14 @@
 					}
 				}
 			}
-			
-			return result;	
+
+			return result;
 		},
-		
+
 		getItemById: function(items, id, level, prefix) {
 			if (typeof level == 'undefined') level = 0;
 			if (typeof prefix == 'undefined') prefix = '';
-			
+
 			for (var i = 0; i < items.length; i++) {
 				if (typeof items[i] == 'object') {
 					if (prefix + items[i].id == id) return items[i];
@@ -1526,11 +1528,11 @@
 
 	var DiffTable = function() { this.initialize.apply(this, arguments) };
 	DiffTable.prototype = {
-	
+
 		initialize: function(options) {
 			this.parent = options.parent;
 			this.data = options.data;
-			
+
 			this.createSections(this.parent);
 		},
 
@@ -1540,21 +1542,21 @@
 
 			var tbody = document.createElement('tbody');
 			table.appendChild(tbody);
-			
+
 			for (var i = 0; i < this.data.length; i++) {
 				var tr = document.createElement('tr');
 				tbody.appendChild(tr);
-	
-				var th = document.createElement('th');					
+
+				var th = document.createElement('th');
 				th.innerHTML = "<a href='/compare/feature/" + this.data[i].id + ".html'>" + this.getName(this.data[i].id) + "</a>";
 				tr.appendChild(th);
-				
+
 				var td = document.createElement('td');
 				td.innerHTML = this.getStatus(this.data[i].from) + " <span>→</span> " + this.getStatus(this.data[i].to);
 				tr.appendChild(td);
 			}
 		},
-		
+
 		getName: function(id) {
 			var names = [];
 			var ids = id.split('-');
@@ -1569,50 +1571,51 @@
 
 			for (var i = 0; i < ids.length; i++) {
 				var found = false;
-				
+
 				for (var b = 0; b < base.length; b++) {
 					if (base[b].id == ids[i]) {
 						names.push(base[b].name);
-						
+
 						if (typeof base[b].items != 'undefined') {
 							base = base[b].items;
 						}
-						
+
 						found = true;
 						continue;
 					}
 				}
-				
+
 				if (!found) {
 					names.push('?');
 					break;
 				}
 			}
-			
+
 			return names.join (' ▸ ');
 		},
-		
+
 		getStatus: function(status) {
 			html = '';
 			status = parseInt(status, 10);
 
 			if (status & YES) {
 				switch(true) {
-					case !! (status & BUGGY):		html = '<div>Buggy <span class="buggy"></span></div>'; break;
-					case !! (status & OLD):			html = '<div>Partial <span class="partial">○</span></div>'; break;
-					case !! (status & PREFIX):		html = '<div>Prefixed <span class="check">✔</span></div>'; break;
-					default:						html = '<div>Yes <span class="check">✔</span></div>'; break;
+					case !! (status & BUGGY):			html = '<div>Buggy <span class="buggy"></span></div>'; break;
+					case !! (status & OLD):				html = '<div>Partial <span class="partial">○</span></div>'; break;
+					case !! (status & PREFIX):			html = '<div>Prefixed <span class="check">✔</span></div>'; break;
+					case !! (status & EXPERIMENTAL):	html = '<div>Prefixed <span class="check">✔</span></div>'; break;
+					default:							html = '<div>Yes <span class="check">✔</span></div>'; break;
 				}
 			}
 			else {
 				switch(true) {
-					case !! (status & UNKNOWN):		html = '<div>Unknown <span class="partial">?</span></div>'; break;
-					case !! (status & BLOCKED):		html = '<div>Not functional <span class="buggy">!</span></div>'; break;
-					case !! (status & DISABLED):	html = '<div>Disabled <span class="ballot">✘</span></div>'; break;
-					default:						html = '<div>No <span class="ballot">✘</span></div>'; break;
+					case !! (status & UNKNOWN):			html = '<div>Unknown <span class="partial">?</span></div>'; break;
+					case !! (status & BLOCKED):			html = '<div>Not functional <span class="buggy">!</span></div>'; break;
+					case !! (status & DISABLED):		html = '<div>Disabled <span class="ballot">✘</span></div>'; break;
+					default:							html = '<div>No <span class="ballot">✘</span></div>'; break;
 				}
 			}
-			
+
 			return html;
 		}
 	}
@@ -1635,30 +1638,29 @@
 			content += "<div class='column middle'><a href='/results/" + type + "/timeline/" + data.id +".html' class='timeline'><span>Timeline</span></a></div>";
 			content += "<div class='column right'><a href='/compare/browser/" + browser +".html' class='compare'><span>Compare</span></a></div>";
 			content += "</div>";
-			
+
 			if (typeof data.urls != 'undefined') {
 				content += "<div class='links'>";
-	
+
 				for (var i = 0; i < data.urls.length; i++) {
 				}
-	
+
 				content += "</div>";
 			}
-			
+
 			this.panel = document.createElement('div');
 			this.panel.className = 'linksPanel popupPanel pointsLeft';
 			this.panel.innerHTML = content;
 			parent.appendChild(this.panel);
-			
+
 			BrowserPopup.current = this;
 		},
-		
+
 		close: function() {
 			this.panel.parentNode.removeChild(this.panel);
 			BrowserPopup.current = null;
 		}
 	}
-	
+
 	document.addEventListener('click', function() { if (BrowserPopup.current) BrowserPopup.current.close() }, true)
 	document.addEventListener('touchstart', function() { if (BrowserPopup.current) BrowserPopup.current.close() }, true)
-	
