@@ -3743,7 +3743,7 @@ Test8 = (function () {
                         'output.notifications': Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
                         'output.requestFullScreen': Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
                         'video.subtitle': Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-                        'webgl.context': Browsers.isBrowser('Baidu Browser'),
+                        '3d.webgl': Browsers.isBrowser('Baidu Browser'),
                     }
                 ],
 
