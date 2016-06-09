@@ -2964,7 +2964,7 @@ Test8 = (function () {
 
         function (results) {
             var element = document.createElement('canvas');
-            var contexts = ['webgl', 'ms-webgl', 'experimental-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d'];
+            var contexts = ['webgl', 'experimental-webgl', 'ms-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d'];
             var context = '';
             var passed = false;
 
@@ -2989,17 +2989,23 @@ Test8 = (function () {
 
         function (results) {
             var element = document.createElement('canvas');
+            var contexts = ['webgl2', 'experimental-webgl2'];
+            var context = '';
             var passed = false;
 
-            try {
-                if (element.getContext('webgl2')) {
-                    passed = true;
-                };
-            } catch (e) { }
+            for (var b = -1, len = contexts.length; ++b < len;) {
+                try {
+                    if (element.getContext(contexts[b])) {
+                        context = contexts[b];
+                        passed = true;
+                        break;
+                    };
+                } catch (e) { }
+            }
 
             results.addItem({
                 key: '3d-webgl2',
-                passed: passed
+                passed: passed ? (context == 'webgl' ? YES : YES | PREFIX) : NO
             });
         },
 
