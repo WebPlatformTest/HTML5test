@@ -3692,7 +3692,8 @@ Test8 = (function () {
 
         isOnBlacklist: function () {
             var part = '';
-            var parts = this.data.key.split('.');
+            var parts = this.data.key.replace(/\-/g, '.').split('.');
+
             for (var i = 0; i < parts.length; i++) {
                 part += (i == 0 ? '' : '.') + parts[i];
 
