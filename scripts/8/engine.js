@@ -987,6 +987,7 @@ Test8 = (function () {
         function (results) {
             var element = createInput('image');
             element.style.display = 'inline-block';
+            document.body.appendChild(element);
 
             var supportsWidth = 'width' in element;
             var supportsHeight = 'height' in element;
@@ -1008,6 +1009,8 @@ Test8 = (function () {
                 key: 'form-image-height',
                 passed: supportsHeight && element.offsetHeight == 100
             });
+
+            document.body.removeChild(element);
         },
 
 
