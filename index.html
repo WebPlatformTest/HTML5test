@@ -128,7 +128,7 @@
 
 								<p>
 									The HTML5 test score is an indication of how well your browser supports the
-									HTML5 standard and related specifications. Find out which parts of HTML5 are 
+									HTML5 standard and related specifications. Find out which parts of HTML5 are
 									supported by your browser today and compare the results with other browsers.
 								</p>
 
@@ -144,7 +144,7 @@
 									specifications.
 								</p>
 								<p>
-									Please be aware that although the HTML5 specification is now an official recommendation, other specifications that are being tested are still in development 
+									Please be aware that although the HTML5 specification is now an official recommendation, other specifications that are being tested are still in development
 									and could change before receiving an official status.
 									In the future new tests will be added for new specifications and existing tests will be updated when the specifications change.
 								</p>
@@ -199,14 +199,14 @@
 
 			function waitForWhichBrowser(cb) {
 				var callback = cb;
-				
+
 				function wait() {
-					if (typeof WhichBrowser == 'undefined') 
+					if (typeof WhichBrowser == 'undefined')
 						window.setTimeout(wait, 100)
-					else 
+					else
 						callback();
 				}
-				
+
 				wait();
 			}
 
@@ -247,7 +247,7 @@
 
 				start();
 			});
-			
+
 
 			function start() {
 				var params = {};

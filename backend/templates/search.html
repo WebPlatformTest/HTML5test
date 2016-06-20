@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>HTML5test - How well does your browser support HTML5?</title>	
+		<title>HTML5test - How well does your browser support HTML5?</title>
 
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		<link rel="stylesheet" href="/css/main.css" type="text/css">
 		<link rel="stylesheet" href="/css/reporting.css" type="text/css">
 
@@ -32,7 +32,7 @@
 		<meta name="msapplication-TileColor" content="#0092bf" />
 		<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png" />
 	</head>
-	
+
 	<body>
 		<div class='header'>
 			<h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
@@ -49,7 +49,7 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class='page'>
 			<div class='column'>
 				<div class='paper hasNavigation'>
@@ -72,7 +72,7 @@
 
 							<div id='searchResults' style="display: none;">
 								<hr>
-								
+
 								<div class='searchResults' style="display: none;">
 									<table class='scoreTable latestTable'>
 										<thead>
@@ -87,10 +87,10 @@
 									</table>
 									<p>
 										Please note that all data shown above are unconfirmed test results. They could be fake or
-										belong to a different browser than the one listed. 
+										belong to a different browser than the one listed.
 									</p>
 								</div>
-								
+
 								<div class='searchMessage notFound' style="display: none;">
 									No test results found that match your search criteria
 								</div>
@@ -116,32 +116,32 @@
 								if (window.history && window.history.replaceState) {
 									window.history.replaceState([], document.title, '/results/search.html');
 								}
-								
+
 								var b = document.querySelector("#searchBusy");
 								b.className = "";
 
 								var t = document.querySelector("#searchResults");
 								t.style.display = "none";
-								
+
 								var o = document.querySelector(".scoreTable tbody");
 								o.innerHTML = "";
 							}
-							
+
 							function searchResults(query) {
 								var b = document.querySelector("#searchBusy");
 								b.className = "visible";
-							
+
 								if (window.history && window.history.replaceState) {
 									window.history.replaceState([], document.title, '/results/search.html?query=' + encodeURIComponent(query));
 								}
-								
+
 								var httpRequest;
 								if (window.XMLHttpRequest) {
 									httpRequest = new XMLHttpRequest();
 								} else if (window.ActiveXObject) {
 									httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 								}
-					
+
 							   	httpRequest.open('POST','/api/searchResults', true);
 								httpRequest.onreadystatechange = process;
 							   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -158,7 +158,7 @@
 							function refreshTable(data) {
 								var contents = "";
 								for (var i = 0; i < data.length; i++) {
-									contents += 
+									contents +=
 										"<tr>" +
 											"<td class='points'><a href='//html5te.st/" + data[i].uniqueid + "'>" + data[i].score + "</a></td>" +
 											"<th class='nickname'><a href='//html5te.st/" + data[i].uniqueid + "'>" + data[i].humanReadable + "</a></th>" +
@@ -166,7 +166,7 @@
 										"</tr>";
 
 								}
-								
+
 								var b = document.querySelector("#searchBusy");
 								b.className = "";
 
@@ -175,10 +175,10 @@
 
 								var o = document.querySelector(".searchMessage.notFound");
 								o.style.display = data.length ? 'none' : 'block';
-																
+
 								var o = document.querySelector(".searchResults");
 								o.style.display = data.length ? 'block' : 'none';
-																
+
 								var o = document.querySelector(".scoreTable tbody");
 								o.innerHTML = contents;
 							}
@@ -192,35 +192,35 @@
 						</script>
 
 						<hr>
-	
+
 						<h3>Examples</h3>
 						<div class='text no-columns'>
 							<dl>
 								<dt><a href='?query=deviceType:mobile osName:Windows'><code>deviceType:mobile osName:Windows</code></a></dt>
 								<dd>All mobile devices running Windows</dd>
-								
+
 								<dt><a href='?query=deviceManufacturer:Samsung -osName:Android'><code>deviceManufacturer:Samsung -osName:Android</code></a></dt>
 								<dd>All non-Android devices created by Samsung</dd>
-								
+
 								<dt><a href='?query=osName:Android osVersion:4.4'><code>osName:Android osVersion:4.4</code></a></dt>
 								<dd>All devices running Android 4.4</dd>
-								
+
 								<dt><a href='?query=browserName:Chrome osName:"Mac OS X"'><code>browserName:Chrome osName:"Mac OS X"</code></a></dt>
 								<dd>Chrome running on OS X</dd>
-								
+
 								<dt><a href='?query=deviceModel:iPhone'><code>deviceModel:iPhone</code></a></dt>
 								<dd>All iPhones</dd>
-								
+
 								<dt><a href='?query=engineName:Gecko -browserName:Firefox'><code>engineName:Gecko -browserName:Firefox</code></a></dt>
 								<dd>All Gecko based browser except for Firefox</dd>
-								
+
 								<dt><a href='?query=score:500+'><code>score:500+</code></a></dt>
 								<dd>All results with a score higher than or equal to 500</dd>
 							</dd>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class='footer'>
 					<div>
 						<div class='copyright'>
@@ -230,14 +230,14 @@
 								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
 								Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
 							</p>
-							
+
 							<div id='cloudvps'>
 								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
 		</div>
 
 		<script src='//www.google-analytics.com/ga.js'></script>

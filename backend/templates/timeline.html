@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>HTML5test - How well does your browser support HTML5?</title>	
+		<title>HTML5test - How well does your browser support HTML5?</title>
 
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		<link rel="stylesheet" href="/css/main.css" type="text/css">
 		<link rel="stylesheet" href="/css/reporting.css" type="text/css">
 
@@ -33,7 +33,7 @@
 		<meta name="msapplication-TileColor" content="#0092bf" />
 		<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png" />
 	</head>
-	
+
 	<body>
 		<div class='header'>
 			<h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
@@ -50,14 +50,14 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class='page saved'>
 			<div id='contents' class='column'>
 				<div class='paper'>
 					<div>
 						<h2>Timeline <span> for <?php echo htmlentities($variant->name); ?></span></h2>
 						<hr>
-						
+
 						<?php foreach($timeline as $item): ?>
 							<div class='diffHeader'>
 								<div class='points'><?php echo $item->score; ?></div>
@@ -72,30 +72,30 @@
 								<p>Not yet released</p>
 								<?php endif; ?>
 							</div>
-							
+
 							<?php if(count($item->changes)): ?>
 							<div id="changes_<?php echo md5($item->variant . '-' . $item->version); ?>" class="detailsTable diffTable"></div>
-							
+
 							<script>
-								
+
 								new DiffTable({
-									parent:	document.getElementById("changes_<?php echo md5($item->variant . '-' . $item->version); ?>"), 
+									parent:	document.getElementById("changes_<?php echo md5($item->variant . '-' . $item->version); ?>"),
 									data:	<?php echo json_encode($item->changes); ?>
 								});
-								
+
 							</script>
 							<?php endif; ?>
 							<hr>
 						<?php endforeach; ?>
 
 						<div class='text'>
-							These results are collected from many thousands of visitors using all kinds of devices. 
-							Excluded from this timeline are changes in video and audio codecs, because they are often 
-							dependant on operating system and device hardware. 
+							These results are collected from many thousands of visitors using all kinds of devices.
+							Excluded from this timeline are changes in video and audio codecs, because they are often
+							dependant on operating system and device hardware.
 						</div>
 					</div>
 				</div>
-				
+
 				<div class='footer'>
 					<div>
 						<div class='copyright'>
@@ -105,14 +105,14 @@
 								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
 								Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
 							</p>
-							
+
 							<div id='cloudvps'>
 								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
 		</div>
 
 		<script src='//www.google-analytics.com/ga.js'></script>

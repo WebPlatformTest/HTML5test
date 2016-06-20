@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>HTML5test - How well does your browser support HTML5?</title>	
+		<title>HTML5test - How well does your browser support HTML5?</title>
 
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<link rel="stylesheet" href="css/main.css" type="text/css">
 
+		<link rel="stylesheet" href="css/main.css" type="text/css">
 
 		<script src='/scripts/template.js' type='text/javascript'></script>
 
@@ -31,7 +30,7 @@
 		<meta name="msapplication-TileColor" content="#0092bf" />
 		<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png" />
 	</head>
-	
+
 	<body>
 		<div class='header'>
 			<h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
@@ -48,7 +47,7 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class='page'>
 			<div class='column'>
 				<div class='paper hasNavigation'>
@@ -56,10 +55,10 @@
 						<li class='selected'><a href='about.html'>Frequently asked questions</a></li>
 						<li><a href='donate.html'>Donate</a></li>
 					</ul>
-				
+
 					<div>
 						<h2>Specifications</h2>
-	
+
 						<h3>Why do you include specifications that are not part of HTML5?</h3>
 						<div class='text'>
 							<p>
@@ -67,66 +66,66 @@
 								defined in the W3C HTML5 specification. Or you could argue that it includes every specification, draft or
 								experimental feature that is added to browsers in the last couple of years. We decided to take the middle
 								ground and split the test into three parts: the official HTML5 specification, specifications that are related
-								to HTML5 and some experimental new features that are extensions of HTML5. 
+								to HTML5 and some experimental new features that are extensions of HTML5.
 							</p>
 							<p>
 								Many of the related specifications were at one time part of HTML5. During the development of the specification
 								they were moved to separate specifications.
 							</p>
 						</div>
-	
+
 						<h3>But WebGL isn't even a W3C specification!</h3>
 						<div class='text'>
-							The W3C isn't the only organization that creates open specifications for the web. The WebGL specification is 
+							The W3C isn't the only organization that creates open specifications for the web. The WebGL specification is
 							published by Kronos, the same group that is also responsible for OpenGL. WebGL is related to HTML5 though and
-							listed as one of the HTML5 technologies on the W3C HTML5 logo page. The W3C HTML5 specification allows the 
+							listed as one of the HTML5 technologies on the W3C HTML5 logo page. The W3C HTML5 specification allows the
 							canvas element to be extended by new drawing methods and WebGL is one of them.
 						</div>
-	
+
 						<h3>Why do you test for Web SQL?</h3>
 						<div class='text'>
 							The Web SQL specification has been deprecated and replaced by the IndexedDB specification. It is however
 							still commonly used on mobile phones and at least three vendors have shipped desktop browsers supporting Web SQL. We've decided to include
-							this specification, but make it a special case. Web SQL is worth 5 points, but only if IndexedDB is not supported. 
+							this specification, but make it a special case. Web SQL is worth 5 points, but only if IndexedDB is not supported.
 							IndexedDB is worth 10 points. If a browser supports both, only 10 points are awarded. This way browsers
 							that only included IndexedDB are not penalized, but browsers that only support Web SQL do get some points.
 						</div>
-	
+
 						<hr>
-	
-	
+
+
 						<h2>Scoring</h2>
-	
+
 						<h3>What is the maximum number of points you can score?</h3>
 						<div class='text'>
 							If a browser passes all tests it would receive the maximum score of 555. Previous
 							versions of the HTML5test had less tests and therefore also a lower maximum score, such as 160, 300, 450, 475 and 500 points.
 							Previous versions of this test also awarded bonus points for some features, but as of version 5, we
-							no longer do. 
+							no longer do.
 						</div>
-	
+
 						<h3>The scoring seems arbitrary, who decides how many points are awarded?</h3>
 						<div class='text'>
 							We decided to award points for each feature depending on how important that feature is for web developers
 							and how difficult it is to implement that feature. A small and simple feature would be worth less points than a
 							large and complicated feature. We think this is the most honest way to grade browsers, because otherwise a browser
 							that only supports the small and simple features would score as high or higher than a browser that went the
-							extra mile and decided to tackle the big features. But in the end it is based on personal preference, 
-							but I doubt there is a truly objective alternative. 
+							extra mile and decided to tackle the big features. But in the end it is based on personal preference,
+							but I doubt there is a truly objective alternative.
 						</div>
-	
+
 						<hr>
-	
-	
+
+
 						<h2>Reporting</h2>
-	
+
 						<h3>Can my browser be included on the 'other browser' and 'compare' pages?</h3>
 						<div class='text'>
 							<p>
-								We would love to add new browsers, but not all browsers are eligible. First of all we only accept browsers that 
+								We would love to add new browsers, but not all browsers are eligible. First of all we only accept browsers that
 								are publicly available, either in beta form or a final release. We do not accept scores for internal development builds.
 								Secondly we only accept browsers that are available in English. We want to check browsers before including them and
-								unfortunately we do not speak Chinese, Japanese, Korean or Russian. And finally we only accept browsers which have a 
+								unfortunately we do not speak Chinese, Japanese, Korean or Russian. And finally we only accept browsers which have a
 								unique score. There are many browsers that are forks or modified versions of Chromium or Firefox. Similarly there
 								are many browser that embed Internet Explorer or Webkit as provided by the operating system. These browser
 								do not qualify. For comparisons, simply choose the original browser on which the browser was based instead.
@@ -136,13 +135,13 @@
 								necessary.
 							</p>
 						</div>
-	
+
 						<h3>What happens when a browser cheats?</h3>
 						<div class='text'>
 							<p>
 								We cannot distinguish between a browser that supports a particular feature and a browser that lies about supporting
 								that feature. The only way to deal with these situations it to manually confirm the test results. And if a browser
-								is found to be overly confident about claiming support for certain features we can put that browser on a blacklist. 
+								is found to be overly confident about claiming support for certain features we can put that browser on a blacklist.
 								That means that that even though the browser claims to support a particular feature, we ignore what the browser says and do
 								not give any points. This is usually just a temporary problem and once the browser has been fixed we will remove
 								the new version from the blacklist.
@@ -155,26 +154,26 @@
 								If you claim to support features that you don't, you are breaking the web.
 							</p>
 							<p>
-								If we find that a browser is structurally lying about which features they support - deliberately or not - we will 
-								usually give a warning to the developers of the browser and if the problem hasn't been fixed in the next version 
+								If we find that a browser is structurally lying about which features they support - deliberately or not - we will
+								usually give a warning to the developers of the browser and if the problem hasn't been fixed in the next version
 								we will remove the browser from the 'other browser' and 'compare' pages and/or give other penalties. In extreme
 								cases we may block the browser from showing test results and show a warning instead.
 							</p>
 						</div>
-						
-						
+
+
 						<hr>
-	
-	
+
+
 						<h2>Methods</h2>
-	
+
 						<h3>Why are you using browser sniffing?</h3>
 						<div class='text'>
 							<p>
 								Unfortunately, in two very specific cases we are forced to use browser sniffing. The first case is <code>contentEditable</code>
 								which was not supported on many older mobile devices. Yet almost all mobile browsers claim to support <code>contentEditable</code>.
 								Fortunately modern mobile devices are starting to support <code>contentEditable</code>, but this left us with a problem. We
-								cannot reliably detect if a browser has proper support. The only way around this is to use a whitelist of 
+								cannot reliably detect if a browser has proper support. The only way around this is to use a whitelist of
 								mobile browsers that do support this feature, otherwise you risk awarding points to mobile browsers that they
 								do not deserve. The second case is drag and drop, which is also not supported on mobile phones and tablets.								</p>
 							<p>
@@ -182,30 +181,30 @@
 								browser should be included on the whitelist.
 							</p>
 						</div>
-	
-	
+
+
 						<hr>
-	
-	
+
+
 						<h2>Privacy</h2>
-	
+
 						<h3>What kind of data is collected from visitors?</h3>
 						<div class='text'>
 							<p>
 								Each time you visit this website your score and test results are logged on our servers.
 								We also store the user agent of your browser which contains information about the browser,
-								operating system and device you are using. The collected information is solely used to 
+								operating system and device you are using. The collected information is solely used to
 								generated anonymized reports about HTML5 support in browsers and improve the quality of
 								our software.
 							</p>
 							<p>
-								We do not store cookies in your browser, but we do use several external components that do, 
+								We do not store cookies in your browser, but we do use several external components that do,
 								including: Google Analytics, BuySellAds, Facebook, Twitter and Google+.
 							</p>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class='footer'>
 					<div>
 						<div class='copyright'>
@@ -215,16 +214,16 @@
 								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
 								Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
 							</p>
-							
+
 							<div id='cloudvps'>
 								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
 		</div>
-		
+
 		<script src='//www.google-analytics.com/ga.js'></script>
 		<script>
 		<!--

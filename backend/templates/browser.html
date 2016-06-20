@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>HTML5test - How well does your browser support HTML5?</title>	
+		<title>HTML5test - How well does your browser support HTML5?</title>
 
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+
 		<link rel="stylesheet" href="/css/main.css" type="text/css">
 		<link rel="stylesheet" href="/css/reporting.css" type="text/css">
 
@@ -43,7 +43,7 @@
 		<meta name="msapplication-TileColor" content="#0092bf" />
 		<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png" />
 	</head>
-	
+
 	<body>
 		<div class='header'>
 			<h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
@@ -60,14 +60,14 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<div class='page'>
 			<div class='message'>
 				We've just updated our test suite. We've not been able to collect reliable scores of some older browsers
 				yet. As more results come in we will add the remaining old scores. This will probably take a couple of days.
 			</div>
 		</div>
-		
+
 		<div class='page'>
 			<div class='column'>
 				<div class='paper hasNavigation'>
@@ -75,7 +75,7 @@
 						<li class='selected'><a href='/compare/browser/index.html'>Browsers</a></li>
 						<li><a href='/compare/feature/index.html'>Features</a></li>
 					</ul>
-	
+
 					<div>
 						<div id='comparison' class='comparisonTable detailsTable'>
 							<div class='filters'>
@@ -84,46 +84,46 @@
 							</div>
 							<hr>
 						</div>
-	
+
 						<hr>
-		
+
 						<h3>About these scores</h3>
 						<div class='text'>
-							The data above is compiled from automatically submitted test results. It is possible your results 
+							The data above is compiled from automatically submitted test results. It is possible your results
 							may differ slightly due to external factors such as settings and which operating system is used.
 							If you believe the data above is incorrect, or if you think we are missing an important browser
 							or device, please open a bug report at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>.
 						</div>
 					</div>
-	
+
 					<script>
 					<!--
-					
+
 						window.addEventListener('load', function() {
-						
+
 							Browsers = new WhichBrowser({
 								useFeatures:		true,
 								detectCamouflage:	true
 							});
-				
+
 							var table = new FeatureTable({
 								title:			'<h2>Browsers</h2><p>Select up to five browsers and compare their test results in detail</p>',
-								parent:			document.getElementById('comparison'), 
+								parent:			document.getElementById('comparison'),
 								tests:			tests,
 								browsers:		<?php echo json_encode($results); ?>,
 								header:			true,
 								explainations: 	false,
 								features:		true,
 								columns:		5,
-								
+
 								onChange:		function(ids) {
 													if (window.history && window.history.replaceState) {
-														if (ids.length) 
+														if (ids.length)
 															window.history.replaceState([], document.title, '/compare/browser/' + ids.join('/') + '.html');
 														else
 															window.history.replaceState([], document.title, '/compare/browser/index.html');
 													}
-												}	
+												}
 							});
 
 							var search = new SearchField({
@@ -143,10 +143,10 @@
 												table.filter(active ? ':diff' : '');
 											}
 							});
-	
-							
-						<?php if (isset($one)): ?> 
-							<?php if ($one != ''): ?> 
+
+
+						<?php if (isset($one)): ?>
+							<?php if ($one != ''): ?>
 								table.updateColumn(0, <?php echo $one; ?>);
 							<?php else: ?>
 								new Test(function(r) {
@@ -163,10 +163,10 @@
 								});
 							<?php endif; ?>
 						<?php endif; ?>
-	
-	
-						<?php if (isset($two)): ?> 
-							<?php if ($two != ''): ?> 
+
+
+						<?php if (isset($two)): ?>
+							<?php if ($two != ''): ?>
 								table.updateColumn(1, <?php echo $two; ?>);
 							<?php else: ?>
 								new Test(function(r) {
@@ -183,10 +183,10 @@
 								});
 							<?php endif; ?>
 						<?php endif; ?>
-	
-	
-						<?php if (isset($three)): ?> 
-							<?php if ($three != ''): ?> 
+
+
+						<?php if (isset($three)): ?>
+							<?php if ($three != ''): ?>
 								table.updateColumn(2, <?php echo $three; ?>);
 							<?php else: ?>
 								new Test(function(r) {
@@ -203,10 +203,10 @@
 								});
 							<?php endif; ?>
 						<?php endif; ?>
-	
-	
-						<?php if (isset($four)): ?> 
-							<?php if ($four != ''): ?> 
+
+
+						<?php if (isset($four)): ?>
+							<?php if ($four != ''): ?>
 								table.updateColumn(3, <?php echo $four; ?>);
 							<?php else: ?>
 								new Test(function(r) {
@@ -223,10 +223,10 @@
 								});
 							<?php endif; ?>
 						<?php endif; ?>
-	
-	
-						<?php if (isset($five)): ?> 
-							<?php if ($five != ''): ?> 
+
+
+						<?php if (isset($five)): ?>
+							<?php if ($five != ''): ?>
 								table.updateColumn(4, <?php echo $five; ?>);
 							<?php else: ?>
 								new Test(function(r) {
@@ -243,13 +243,13 @@
 								});
 							<?php endif; ?>
 						<?php endif; ?>
-	
+
 						}, false);
-						
+
 					-->
 					</script>
 				</div>
-					
+
 				<div class='footer'>
 					<div>
 						<div class='copyright'>
@@ -259,14 +259,14 @@
 								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
 								Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
 							</p>
-							
+
 							<div id='cloudvps'>
 								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
 		</div>
 
 		<script src='//www.google-analytics.com/ga.js'></script>

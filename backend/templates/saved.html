@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>HTML5test - How well does your browser support HTML5?</title>	
+		<title>HTML5test - How well does your browser support HTML5?</title>
 
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<link rel="stylesheet" href="/css/main.css" type="text/css">
 
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
 
 		<script src='/scripts/base.js' type='text/javascript'></script>
 		<script src='/scripts/<?php echo $version; ?>/data.js' type='text/javascript'></script>
@@ -52,7 +51,7 @@
 			</div>
 		</div>
 
-		<?php if (isset($legacy) && $legacy): ?> 
+		<?php if (isset($legacy) && $legacy): ?>
 		<div class='page'>
 			<div class='message'>
 				The following results were created in an older version of the test suite. If you test the same browser
@@ -61,7 +60,7 @@
 		</div>
 		<?php endif; ?>
 
-		
+
 		<div class='page saved'>
 			<div id='contents' class='column'>
 				<div id='score'></div>
@@ -76,7 +75,7 @@
 								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
 								Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
 							</p>
-							
+
 							<div id='cloudvps'>
 								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
 							</div>
@@ -85,14 +84,15 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 		<script>
 		<!--
 
-			<?php if (isset($one) && $one != ''): ?> 
+			<?php if (isset($one) && $one != ''): ?>
 				var r = <?php echo $one; ?>;
-				
+				var c = new Calculate(r, tests);
+
 				var container = document.getElementById('score');
 				container.innerHTML =
 					"<div class='pointsPanel'>" +
@@ -119,8 +119,8 @@
 					else
 						useragent.className = useragent.className.replace(' expanded', '');
 				}, true);
-	
-				
+
+
 				var wrapper = document.createElement('div');
 				wrapper.className = 'wrapper';
 				container.appendChild(wrapper);
@@ -145,26 +145,26 @@
 				button.className = 'button share';
 				button.innerHTML = '<span>Share</span>';
 				buttons.appendChild(button);
-				
+
 				new Share(button, {
 					score: 		r.score,
 					browser:	r.humanReadable
 				});
-				
+
 				var button = document.createElement('a');
 				button.className = 'button donate';
 				button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
 				button.innerHTML = '<span>Donate</span>';
 				buttons.appendChild(button);
-				
-			
+
+
 				var container = document.getElementById('results');
 				var div = document.createElement('div');
 				div.className = 'resultsTable detailsTable';
 				container.appendChild(div);
-				
+
 				var table = new ResultsTable({
-					parent:			div, 
+					parent:			div,
 					tests:			tests,
 					header:			false,
 					links:			true,
@@ -174,7 +174,7 @@
 					distribute:		true,
 					columns:		1
 				});
-	
+
 				table.updateColumn(0, r);
 			<?php endif; ?>
 
@@ -182,14 +182,14 @@
 				var _gaq = _gaq || [];
 				_gaq.push(['_setAccount', 'UA-68192-4']);
 				_gaq.push(['_trackPageview']);
-				
+
 				(function() {
 					var ga = document.createElement('script');
 					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 					ga.setAttribute('async', 'true');
 					document.documentElement.firstChild.appendChild(ga);
 				})();
-				
+
 		//-->
 		</script>
 	</body>
