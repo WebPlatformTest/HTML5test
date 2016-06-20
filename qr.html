@@ -78,7 +78,23 @@ code {
 			});
 			
 			function start() {
-					
+				var params = {};
+
+				if (location.search) {
+					var parts = location.search.substring(1).split('&');
+
+					for (var i = 0; i < parts.length; i++) {
+						var nv = parts[i].split('=');
+						if (!nv[0]) continue;
+						params[nv[0]] = nv[1] || true;
+					}
+				}
+
+				var identifier = typeof params.identifier != 'undefined' ? params.identifier : null;
+				var source = typeof params.source != 'undefined' ? params.source : null;
+				var task = typeof params.task != 'undefined' ? params.task : null;
+
+
 				new Test(function(r) {
 					var c = new Calculate(r, tests);
 
@@ -93,37 +109,42 @@ code {
 			
 	
 					var payload = '{' +
-								  '"version": "8",' +
-								  '"revision": "' + (r.revision || '0') + '",' +
-								  '"uniqueid": "' + r.uniqueid + '",' +
-								  '"score": ' + r.score + ',' +
-								  '"maximum": ' + r.maximum + ',' +
-								  '"camouflage": "' + (Browsers.camouflage ? '1' : '0') + '",' +
-								  '"features": "' + (Browsers.features.join(',')) + '",' +
-								  '"browserName": "' + (Browsers.browser.name ? Browsers.browser.name : '') + '",' +
-								  '"browserChannel": "' + (Browsers.browser.channel ? Browsers.browser.channel : '') + '",' +
-								  '"browserVersion": "' + (Browsers.browser.version ? Browsers.browser.version.toString() : '') + '",' +
-								  '"browserVersionType": "' + (Browsers.browser.version ? Browsers.browser.version.type : '') + '",' +
-								  '"browserVersionMajor": "' + (Browsers.browser.version ? Browsers.browser.version.major : '') + '",' +
-								  '"browserVersionMinor": "' + (Browsers.browser.version ? Browsers.browser.version.minor : '') + '",' +
-								  '"browserVersionOriginal": "' + (Browsers.browser.version ? Browsers.browser.version.original : '') + '",' +
-								  '"browserMode": "' + (Browsers.browser.mode ? Browsers.browser.mode : '') + '",' +
-								  '"engineName": "' + (Browsers.engine.name ? Browsers.engine.name : '') + '",' +
-								  '"engineVersion": "' + (Browsers.engine.version ? Browsers.engine.version.toString() : '') + '",' +
-								  '"osName": "' + (Browsers.os.name ? Browsers.os.name : '') + '",' +
-								  '"osVersion": "' + (Browsers.os.version ? Browsers.os.version.toString() : '') + '",' +
-								  '"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
-								  '"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
-								  '"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
-								  '"deviceIdentified": "' + (Browsers.device.identified ? '1' : '0' ) + '",' +
-								  '"deviceWidth": "' + (screen.width) + '",' +
-								  '"deviceHeight": "' + (screen.height) + '",' +
-								  '"useragent": "' + navigator.userAgent + '",' +
-								  '"humanReadable": "' + Browsers.toString() + '",' +
-								  '"points": "' + r.points + '",' +
-								  '"results": "' + r.results + '"' +
-								  '}';
-					
+									'"version": "' + r.version + '",' +
+									'"revision": "' + r.revision + '",' +
+									'"source": "' + source + '",' +
+									'"identifier": "' + identifier + '",' +
+									'"task": "' + task + '",' +
+									'"uniqueid": "' + r.uniqueid + '",' +
+									'"score": ' + c.score + ',' +
+									'"maximum": ' + c.maximum + ',' +
+									'"camouflage": "' + (Browsers.camouflage ? '1' : '0') + '",' +
+									'"features": "' + (Browsers.features.join(',')) + '",' +
+									'"browserName": "' + (Browsers.browser.name ? Browsers.browser.name : '') + '",' +
+									'"browserChannel": "' + (Browsers.browser.channel ? Browsers.browser.channel : '') + '",' +
+									'"browserVersion": "' + (Browsers.browser.version ? Browsers.browser.version.toString() : '') + '",' +
+									'"browserVersionType": "' + (Browsers.browser.version ? Browsers.browser.version.type : '') + '",' +
+									'"browserVersionMajor": "' + (Browsers.browser.version ? Browsers.browser.version.major : '') + '",' +
+									'"browserVersionMinor": "' + (Browsers.browser.version ? Browsers.browser.version.minor : '') + '",' +
+									'"browserVersionOriginal": "' + (Browsers.browser.version ? Browsers.browser.version.original : '') + '",' +
+									'"browserMode": "' + (Browsers.browser.mode ? Browsers.browser.mode : '') + '",' +
+									'"engineName": "' + (Browsers.engine.name ? Browsers.engine.name : '') + '",' +
+									'"engineVersion": "' + (Browsers.engine.version ? Browsers.engine.version.toString() : '') + '",' +
+									'"osName": "' + (Browsers.os.name ? Browsers.os.name : '') + '",' +
+									'"osFamily": "' + (Browsers.os.family ? Browsers.os.family : '') + '",' +
+									'"osVersion": "' + (Browsers.os.version ? Browsers.os.version.toString() : '') + '",' +
+									'"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
+									'"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
+									'"deviceSeries": "' + (Browsers.device.series ? Browsers.device.series : '') + '",' +
+									'"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
+									'"deviceIdentified": "' + (Browsers.device.identified ? '1' : '0' ) + '",' +
+									'"deviceWidth": "' + (screen.width) + '",' +
+									'"deviceHeight": "' + (screen.height) + '",' +
+									'"useragent": "' + navigator.userAgent + '",' +
+									'"humanReadable": "' + Browsers.toString() + '",' +
+									'"points": "' + c.points + '",' +
+									'"results": "' + r.results + '"' +
+									'}';
+
 					submit('submit', payload);
 					
 					function submit(method, payload) {

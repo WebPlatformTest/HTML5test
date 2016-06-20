@@ -250,15 +250,34 @@
 			
 
 			function start() {
-				
+				var params = {};
+
+				if (location.search) {
+					var parts = location.search.substring(1).split('&');
+
+					for (var i = 0; i < parts.length; i++) {
+						var nv = parts[i].split('=');
+						if (!nv[0]) continue;
+						params[nv[0]] = nv[1] || true;
+					}
+				}
+
+				var identifier = typeof params.identifier != 'undefined' ? params.identifier : null;
+				var source = typeof params.source != 'undefined' ? params.source : null;
+				var task = typeof params.task != 'undefined' ? params.task : null;
+
 				new Test(function(r) {
+
 					var c = new Calculate(r, tests);
-				
+
 					/* Submit results */
 					try {
 						var payload = '{' +
 									  '"version": "' + r.version + '",' +
 									  '"revision": "' + r.revision + '",' +
+									  '"source": "' + source + '",' +
+									  '"identifier": "' + identifier + '",' +
+									  '"task": "' + task + '",' +
 									  '"uniqueid": "' + r.uniqueid + '",' +
 									  '"score": ' + c.score + ',' +
 									  '"maximum": ' + c.maximum + ',' +
