@@ -1,4 +1,5 @@
 
+Test =
 Test8 = (function () {
 
     var version = 8;
