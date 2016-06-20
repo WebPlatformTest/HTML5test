@@ -36,40 +36,46 @@
 		
 		return $ip;
 	}
-	
-	function opt_explode($echar, $str) { 
-	     if (strlen($echar) != 1 || strlen($str) == 0) { 
-	         return 0; 
-	     } 
-	     $str = trim($str); 
-	 
-	     // input string index counter 
-	     $idx=0; 
-	     // output array element counter 
-	     $arr=0; 
-	     while($idx < strlen($str)) { 
-	         if($str[$idx] == '"') { 
-	             // quoted field 
-	             $idx++; 
-	             while ($idx < strlen($str)) { 
-	                 // look for ending quote 
-	                 if($str[$idx] == '"') { 
-	                     $idx++; 
-	                     $arr++; 
-	                     break; 
-	                 } 
-	                 $newstrarr[$arr] = $newstrarr[$arr] . $str[$idx]; 
-	                 $idx++; 
-	             } 
-	         } elseif ($str[$idx] == $echar) { 
-	             // normal delimiter, advance element 
-	             $arr++; 
-	         } else { 
-	             // must be normal char, tack onto current element 
-	             $newstrarr[$arr] = $newstrarr[$arr] . $str[$idx]; 
-	         } 
-	         $idx++; 
-	     } 
-	 
-	     return $newstrarr; 
-	 } 	
+
+	function opt_explode($echar, $str) {
+		$newstrarr = [];
+
+		if (strlen($echar) != 1 || strlen($str) == 0) {
+			return 0;
+		}
+
+		$str = trim($str);
+
+		$idx=0;
+		$arr=0;
+
+		while($idx < strlen($str)) {
+			if($str[$idx] == '"') {
+				// quoted field
+				$idx++;
+				while ($idx < strlen($str)) {
+					// look for ending quote
+					if($str[$idx] == '"') {
+						$idx++;
+						$arr++;
+						break;
+					}
+					$newstrarr[$arr] = $newstrarr[$arr] . $str[$idx];
+					$idx++;
+				}
+			} elseif ($str[$idx] == $echar) {
+				// normal delimiter, advance element
+				$arr++;
+			} else {
+				// must be normal char, tack onto current element
+				if (isset($newstrarr[$arr])) {
+					$newstrarr[$arr] = $newstrarr[$arr] . $str[$idx];
+				} else {
+					$newstrarr[$arr] = $str[$idx];
+				}
+			}
+			$idx++;
+		}
+
+		return $newstrarr;
+	}
