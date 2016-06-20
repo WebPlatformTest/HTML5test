@@ -13,6 +13,9 @@
 	}
 
 	include('config.php');
+
+	require __DIR__ . '/../vendor/autoload.php';
+
 	include('libraries/database.php');
 	include('libraries/tools.php');
 	include('models/lab.php');
@@ -20,10 +23,33 @@
 	include('models/browsers.php');
 	include('models/results.php');
 
-	
+	use Ramsey\Uuid\Uuid;
+
 	$method = $_REQUEST['method'];
 	switch($method) {
-	
+
+		case 'getIdentifiers':
+			$data = array();
+
+			$db = Factory::Database();
+			$result = $db->query('SELECT DISTINCT identifier FROM results WHERE version = "' . intval($version) . '" AND revision = "' . intval($revision) . '" AND source = "' . $db->escape_string($_REQUEST['source']) . '"');
+			while ($row = $result->fetch_object()) {
+				$data[] = $row->identifier;
+			}
+
+			echo json_encode($data);
+			break;
+
+		case 'getTask':
+			echo json_encode(array('task' => Uuid::uuid4()));
+			break;
+
+		case 'hasTask':
+			$db = Factory::Database();
+			$result = $db->query('SELECT * FROM results WHERE task = "' . $db->escape_string($_REQUEST['task']) . '"');
+			echo $result->num_rows ? 'true' : 'false';
+			break;
+
 		case 'exportResults':
 			echo json_encode(Results::export($version));
 			break;
