@@ -10,7 +10,6 @@
 		
 		<link rel="stylesheet" href="/css/main.css" type="text/css">
 
-		<script src='/translation.js' type='text/javascript'></script>
 
 		<script src='/scripts/base.js' type='text/javascript'></script>
 		<script src='/scripts/<?php echo $version; ?>/data.js' type='text/javascript'></script>
@@ -95,27 +94,25 @@
 				var r = <?php echo $one; ?>;
 				
 				var container = document.getElementById('score');
-				container.innerHTML = tim(
-					"<div class='pointsPanel'>" + 
-					"<h2><span>This browser scored</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" + 
-					"</div>",
-				r);
-					
+				container.innerHTML =
+					"<div class='pointsPanel'>" +
+					"<h2><span>This browser scored</span> <strong>" + c.score + "</strong> <span>out of " + c.maximum + " points</span></h2>" +
+					"</div>";
+
 				var useragent = document.createElement('div');
 				useragent.className = 'useragent';
 				container.appendChild(useragent);
-	
-				useragent.innerHTML = tim(
-					"<p>This score was recorded using" {{humanReadable}}</p>" +
-					"<div class='expandWidget'>▼</div>" + 
-					"<div class='expandedPanel'>" + 
-					"<table><tbody>" + 
-					"<tr><th>Useragent:</th><td>{{useragent}}</td></tr>" +
-					(r.deviceHeight > 0 && r.deviceWidth > 0 ? "<tr><th>Screen size:</th><td>{{deviceWidth}} x {{deviceHeight}} px</td></tr>" : "") +
+
+				useragent.innerHTML =
+					"<p>This score was recorded using " + r.humanReadable + "</p>" +
+					"<div class='expandWidget'>▼</div>" +
+					"<div class='expandedPanel'>" +
+					"<table><tbody>" +
+					"<tr><th>Useragent:</th><td>" + r.useragent + "</td></tr>" +
+					(r.deviceHeight > 0 && r.deviceWidth > 0 ? "<tr><th>Screen size:</th><td>" + r.deviceWidth + " x " + r.deviceHeight + " px</td></tr>" : "") +
 					"</tbody></table>" +
-					"</div>",
-				r);
-	
+					"</div>";
+
 				useragent.addEventListener('click', function() {
 					if (useragent.className.indexOf(' expanded') == -1)
 						useragent.className += ' expanded';

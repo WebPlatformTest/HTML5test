@@ -492,9 +492,9 @@
 			function process(r) {
 				that.updateColumn(column, {
 					id:				'mybrowser',
-					nickname:		t('My browser'),
 					score:			r.score,
 					points:			r.points,
+					nickname:		'My browser',
 					results:		r.results
 				})
 			}
@@ -622,7 +622,7 @@
 			var row = document.getElementById('row-header');
 			var cell = row.childNodes[column + 1];
 			cell.className = '';
-			cell.firstChild.firstChild.innerHTML = '<span class="nickname">' + t(data.nickname) + '</span><span class="score">' + data.score + '</span>';
+			cell.firstChild.firstChild.innerHTML = '<span class="nickname">' + data.nickname + '</span><span class="score">' + data.score + '</span>';
 
 			for (var c = 0; c < this.tests.length; c++)
 			for (var i = 0; i < this.tests[c].items.length; i++) {
@@ -954,7 +954,7 @@
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] == 'string') {
 					var h2 = document.createElement('h2');
-					h2.innerHTML = t(tests[i]);
+					h2.innerHTML = tests[i];
 					parent.appendChild(h2);
 				} else {
 					var table = document.createElement('table');
@@ -969,7 +969,7 @@
 					thead.appendChild(tr);
 
 					var th = document.createElement('th');
-					if (tests[i].name) th.innerHTML = t(tests[i].name);
+					if (tests[i].name) th.innerHTML = tests[i].name;
 					tr.appendChild(th);
 
 					for (var c = 0; c < this.options.columns; c++) {
@@ -1007,11 +1007,11 @@
 						th.className = 'details';
 						tr.appendChild(th);
 
-						th.innerHTML = t(tests[i]);
+						th.innerHTML = tests[i];
 					}
 				} else {
 					var th = document.createElement('th');
-					th.innerHTML = "<div><span>" + t(tests[i].name) + "</span></div>";
+					th.innerHTML = "<div><span>" + tests[i].name + "</span></div>";
 					tr.appendChild(th);
 
 					for (var c = 0; c < this.options.columns; c++) {
@@ -1247,11 +1247,11 @@
 				if (item = this.getItemById(this.options.tests, data.id)) {
 					if (data.id.split('-').length > 2) {
 						if (parent = this.getItemById(this.options.tests, data.id.split('-').slice(0,-1).join('-'))) {
-							cell.firstChild.firstChild.innerHTML = '<span class="feature">' + t(parent.name) + '<hr>' + t(item.name) + '</span>';
+							cell.firstChild.firstChild.innerHTML = '<span class="feature">' + parent.name + '<hr>' + item.name + '</span>';
 						}
 					}
 					else {
-						cell.firstChild.firstChild.innerHTML = '<span class="feature">' + t(item.name) + '</span>';
+						cell.firstChild.firstChild.innerHTML = '<span class="feature">' + item.name + '</span>';
 					}
 				}
 			}
@@ -1402,7 +1402,7 @@
 									item.className += ' title';
 								}
 
-								item.innerHTML = t(tests[i].name);
+								item.innerHTML = tests[i].name;
 								list.appendChild(item);
 							}
 						}
