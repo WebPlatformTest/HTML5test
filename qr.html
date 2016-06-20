@@ -80,6 +80,8 @@ code {
 			function start() {
 					
 				new Test(function(r) {
+					var c = new Calculate(r, tests);
+
 					document.getElementById('qr').innerHTML +=
 						"<p>You can see the results here:</p>" +
 						"<p><a href='http://html5te.st/" + r.uniqueid + "'>html5te.st/" + r.uniqueid + "</a></p>" + 

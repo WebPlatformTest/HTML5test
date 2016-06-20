@@ -490,11 +490,13 @@
 			new Test(process);
 
 			function process(r) {
+				var c = new Calculate(r, tests);
+
 				that.updateColumn(column, {
 					id:				'mybrowser',
-					score:			r.score,
-					points:			r.points,
 					nickname:		'My browser',
+					score:			c.score,
+					points:			c.points,
 					results:		r.results
 				})
 			}

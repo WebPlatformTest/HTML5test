@@ -150,12 +150,14 @@
 								table.updateColumn(0, <?php echo $one; ?>);
 							<?php else: ?>
 								new Test(function(r) {
+									var c = new Calculate(r, tests);
+
 									table.updateColumn(0, {
 										id:				'mybrowser',
-										score:			r.score,
-										bonus:			r.bonus,
-										points:			r.points,
 										nickname:		'My browser',
+										score:			c.score,
+										bonus:			c.bonus,
+										points:			c.points,
 										results:		r.results
 									});
 								});
@@ -168,12 +170,14 @@
 								table.updateColumn(1, <?php echo $two; ?>);
 							<?php else: ?>
 								new Test(function(r) {
+									var c = new Calculate(r, tests);
+
 									table.updateColumn(1, {
 										id:				'mybrowser',
-										score:			r.score,
-										bonus:			r.bonus,
-										points:			r.points,
 										nickname:		'My browser',
+										score:			c.score,
+										bonus:			c.bonus,
+										points:			c.points,
 										results:		r.results
 									});
 								});
@@ -186,12 +190,14 @@
 								table.updateColumn(2, <?php echo $three; ?>);
 							<?php else: ?>
 								new Test(function(r) {
+									var c = new Calculate(r, tests);
+
 									table.updateColumn(2, {
 										id:				'mybrowser',
-										score:			r.score,
-										bonus:			r.bonus,
-										points:			r.points,
 										nickname:		'My browser',
+										score:			c.score,
+										bonus:			c.bonus,
+										points:			c.points,
 										results:		r.results
 									});
 								});
@@ -204,12 +210,14 @@
 								table.updateColumn(3, <?php echo $four; ?>);
 							<?php else: ?>
 								new Test(function(r) {
+									var c = new Calculate(r, tests);
+
 									table.updateColumn(3, {
 										id:				'mybrowser',
-										score:			r.score,
-										bonus:			r.bonus,
-										points:			r.points,
 										nickname:		'My browser',
+										score:			c.score,
+										bonus:			c.bonus,
+										points:			c.points,
 										results:		r.results
 									});
 								});
@@ -222,12 +230,14 @@
 								table.updateColumn(4, <?php echo $five; ?>);
 							<?php else: ?>
 								new Test(function(r) {
+									var c = new Calculate(r, tests);
+
 									table.updateColumn(4, {
 										id:				'mybrowser',
-										score:			r.score,
-										bonus:			r.bonus,
-										points:			r.points,
 										nickname:		'My browser',
+										score:			c.score,
+										bonus:			c.bonus,
+										points:			c.points,
 										results:		r.results
 									});
 								});
