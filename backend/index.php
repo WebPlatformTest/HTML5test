@@ -32,7 +32,7 @@
 			$data = array();
 
 			$db = Factory::Database();
-			$result = $db->query('SELECT DISTINCT identifier FROM results WHERE version = "' . intval($version) . '" AND revision = "' . intval($revision) . '" AND source = "' . $db->escape_string($_REQUEST['source']) . '"');
+			$result = $db->query('SELECT DISTINCT identifier FROM results WHERE version = "' . $GLOBALS['configuration']['version'] . '" AND revision = "' . $GLOBALS['configuration']['revision'] . '" AND source = "' . $db->escape_string($_REQUEST['source']) . '"');
 			while ($row = $result->fetch_object()) {
 				$data[] = $row->identifier;
 			}
@@ -51,7 +51,7 @@
 			break;
 
 		case 'exportResults':
-			echo json_encode(Results::export($version));
+			echo json_encode(Results::export($GLOBALS['configuration']['version']));
 			break;
 
 		case 'myResults':
@@ -76,7 +76,7 @@
 		case 'loadFeature':
 			echo json_encode(array(
 				'id'		=> $_REQUEST['id'],
-				'supported' => implode(',', Results::getByFeature($_REQUEST['id'], $version))
+				'supported' => implode(',', Results::getByFeature($_REQUEST['id'], $GLOBALS['configuration']['version']))
 			));
 
 			break;
@@ -88,7 +88,7 @@
 				}
 
 			} else {
-				if ($data = Results::getByBrowser($_REQUEST['id'], $version)) {
+				if ($data = Results::getByBrowser($_REQUEST['id'], $GLOBALS['configuration']['version'])) {
 					echo json_encode($data);
 				}
 			}

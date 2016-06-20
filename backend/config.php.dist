@@ -1,10 +1,10 @@
 <?php
 
-	$version = '8.00';
-	$revision = 0;
-
 	$GLOBALS['configuration'] = [
 		'readonly' => false,
+
+		'version' => 8,
+		'revision' => 0,
 
 		'database' => [
 			'server' => 'localhost',
