@@ -115,7 +115,7 @@
 				}
 			}
 
-			if (!$readonly && intval($payload->version) >= 5) {
+			if (!$GLOBALS['configuration']['readonly'] && intval($payload->version) >= 5) {
 				$useragentHeader = $_SERVER['HTTP_USER_AGENT'];
 				$useragentId = preg_replace("/(; ?)[a-z][a-z](?:-[a-zA-Z][a-zA-Z])?([;)])/", '$1xx$2', $useragentHeader);
 
@@ -206,7 +206,7 @@
 		case 'feedback':
 			$payload = json_decode($_REQUEST['payload']);
 
-			if (!$readonly) {
+			if (!$GLOBALS['configuration']['readonly']) {
 				$db = Factory::Database();
 
 				$db->query('
@@ -225,7 +225,7 @@
 		case 'save':
 			$payload = json_decode($_REQUEST['payload']);
 
-			if (!$readonly) {
+			if (!$GLOBALS['configuration']['readonly']) {
 				$db = Factory::Database();
 
 				$db->query('
@@ -244,7 +244,7 @@
 		case 'confirm':
 			$payload = json_decode($_REQUEST['payload']);
 
-			if (!$readonly) {
+			if (!$GLOBALS['configuration']['readonly']) {
 				$db = Factory::Database();
 
 				$db->query('
@@ -262,7 +262,7 @@
 		case 'report':
 			$payload = json_decode($_REQUEST['payload']);
 
-			if (!$readonly) {
+			if (!$GLOBALS['configuration']['readonly']) {
 				$db = Factory::Database();
 
 				$db->query('

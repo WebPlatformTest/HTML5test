@@ -1,11 +1,11 @@
 <?php
 
-	$readonly = false;
-
 	$version = '8.00';
 	$revision = 0;
 
 	$GLOBALS['configuration'] = [
+		'readonly' => false,
+
 		'database' => [
 			'server' => 'localhost',
 			'username' => '******';
