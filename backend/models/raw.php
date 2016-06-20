@@ -1,91 +1,90 @@
 <?php
 
 	class Raw {
-		
-		
-		function search($query) {
+
+		static function search($query) {
+			$db = Factory::Database();
+
 			$parts = opt_explode(' ', $query);
 			$where = array();
-			
+
 			for ($p = 0; $p < count($parts); $p++) {
 				$components = preg_split("/[:=]/", $parts[$p]);
 				$negative = false;
-				
+
 				if (substr($components[0], 0, 1) == '-') {
 					$negative = true;
 					$components[0] = substr($components[0], 1);
 				}
-				
+
 				if (count($components) > 1) {
 					if ($components[0] == 'score') {
 						$comparison = $negative ? '!=' : '=';
-						
+
 						if (substr($components[1], -1) == '+') {
 							$comparison = $negative ? '<=' : '>';
 							$components[1] = substr($components[1], 0, -1);
 						}
-					
+
 						if (substr($components[1], -1) == '-') {
 							$comparison = $negative ? '>=' : '<';
 							$components[1] = substr($components[1], 0, -1);
 						}
-					
-						$where[] = 'score ' . $comparison . ' ' . intval($components[1]);	
+
+						$where[] = 'score ' . $comparison . ' ' . intval($components[1]);
 					}
-					
+
 					if (in_array($components[0], array('browserVersion', 'engineVersion', 'osVersion', 'browserName', 'engineName', 'osName', 'deviceManufacturer', 'deviceType', 'deviceModel'))) {
 						if ($components[1] == "") {
-							$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';	
+							$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';
 						} else {
-							$where[] = $components[0] . ($negative ? ' NOT' : '') . ' LIKE "' . mysql_real_escape_string($components[1]) . '%"';	
+							$where[] = $components[0] . ($negative ? ' NOT' : '') . ' LIKE "' . $db->escape_string($components[1]) . '%"';
 						}
 					}
 
 					if (in_array($components[0], array('useragent'))) {
 						if ($components[1] == "") {
-							$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';	
+							$where[] = $components[0] . ($negative ? ' !=' : ' =') . ' ""';
 						} else {
-							$where[] = $components[0] . ($negative ? ' NOT' : '') . ' LIKE "%' . mysql_real_escape_string($components[1]) . '%"';	
+							$where[] = $components[0] . ($negative ? ' NOT' : '') . ' LIKE "%' . $db->escape_string($components[1]) . '%"';
 						}
 					}
 				}
-				
+
 				else {
-					$where[] = ($negative ? '!' : '') . 'MATCH(humanReadable) AGAINST ("\"' . mysql_real_escape_string($components[0]) . '\"")';
+					$where[] = ($negative ? '!' : '') . 'MATCH(humanReadable) AGAINST ("\"' . $db->escape_string($components[0]) . '\"")';
 				}
 			}
-	
-			
-			
-			mysql_query('
+
+
+
+			$result = $db->query('
 				INSERT INTO
 					queries
 				SET
-					query = "' . mysql_real_escape_string($query) . '",
-					compiledQuery = "' . mysql_real_escape_string(implode(' AND ', $where)) . '"
+					query = "' . $db->escape_string($query) . '",
+					compiledQuery = "' . $db->escape_string(implode(' AND ', $where)) . '"
 			');
-			
-			$id = mysql_insert_id();
+
+			$id = $db->insert_id;
 			$start = time();
 
 
 			$results = array();
-			
-			$res = mysql_query('
+
+			$result = $db->query('
 				SELECT
 					timestamp, uniqueid, score, humanReadable
-				FROM 
+				FROM
 					indices
 				WHERE
 					' . implode(' AND ', $where) . '
-				ORDER BY 
+				ORDER BY
 					timestamp DESC
 				LIMIT 100
 			');
-			
-			echo mysql_error();
-			
-			while ($row = mysql_fetch_object($res)) {
+
+			while ($row = $result->fetch_object()) {
 				$results[] = (object) array(
 					'uniqueid'		=>	$row->uniqueid,
 					'score'			=>	intval($row->score),
@@ -95,35 +94,35 @@
 			}
 
 
-			mysql_query('
+			$db->query('
 				UPDATE
 					queries
 				SET
 					elapsedTime = ' . (time() - $start) . '
 				WHERE
-					id = ' . mysql_real_escape_string($id) . '
+					id = ' . $db->escape_string($id) . '
 			');
-			
-			
+
+
 			return $results;
 		}
-		
-		function getAll() {
+
+		static function getAll() {
+			$db = Factory::Database();
+
 			$results = array();
-			
-			$res = mysql_query('
+
+			$result = $db->query('
 				SELECT
 					timestamp, uniqueid, score, humanReadable
-				FROM 
+				FROM
 					results
-				ORDER BY 
+				ORDER BY
 					timestamp DESC
 				LIMIT 100
 			');
-			
-			echo mysql_error();
-			
-			while ($row = mysql_fetch_object($res)) {
+
+			while ($row = $result->fetch_object()) {
 				$results[] = (object) array(
 					'uniqueid'		=>	$row->uniqueid,
 					'score'			=>	intval($row->score),
@@ -131,28 +130,28 @@
 					'ago'			=>	time_ago(strtotime($row->timestamp))
 				);
 			}
-			
+
 			return $results;
 		}
-		
-		function getMine() {
+
+		static function getMine() {
+			$db = Factory::Database();
+
 			$results = array();
-			
-			$res = mysql_query('
+
+			$result = $db->query('
 				SELECT
 					timestamp, uniqueid, score, humanReadable
-				FROM 
+				FROM
 					results
 				WHERE
-					ip = "' . mysql_real_escape_string(get_ip_address()) . '"
-				ORDER BY 
+					ip = "' . $db->escape_string(get_ip_address()) . '"
+				ORDER BY
 					timestamp DESC
 				LIMIT 100
 			');
-			
-			echo mysql_error();
-			
-			while ($row = mysql_fetch_object($res)) {
+
+			while ($row = $result->fetch_object()) {
 				$results[] = (object) array(
 					'uniqueid'		=>	$row->uniqueid,
 					'score'			=>	intval($row->score),
@@ -160,9 +159,7 @@
 					'ago'			=>	time_ago(strtotime($row->timestamp))
 				);
 			}
-			
+
 			return $results;
 		}
-		
-		
 	}

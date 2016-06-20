@@ -5,29 +5,31 @@
 	include('../libraries/template.php');
 	include('../libraries/tools.php');
 	include('../models/results.php');
-	
-	
+
+
 	$tpl = new Template('../templates/timeline.html');
-		
+
+	$db = Factory::Database();
+
 	if (isset($_REQUEST['id'])) {
-		
-		$res = mysql_query("
-			SELECT 
+
+		$result = $db->query("
+			SELECT
 				*
-			FROM 
+			FROM
 				browserVariants
-			WHERE 
-				id = '" . mysql_real_escape_string($_REQUEST['id']) . "' AND
-				FIND_IN_SET('" . mysql_real_escape_string($_REQUEST['type']) . "',type)
+			WHERE
+				id = '" . $db->escape_string($_REQUEST['id']) . "' AND
+				FIND_IN_SET('" . $db->escape_string($_REQUEST['type']) . "',type)
 		");
-		
-		if ($row = mysql_fetch_object($res)) {
+
+		if ($row = $result->fetch_object()) {
 			$tpl->set('variant', $row);
-		}		
-		
+		}
+
 		if ($timeline = Results::getTimeline($_REQUEST['id'], $_REQUEST['type'], $version)) {
 			$tpl->set('timeline', $timeline);
 		}
 	}
-	
+
 	echo $tpl->fetch();

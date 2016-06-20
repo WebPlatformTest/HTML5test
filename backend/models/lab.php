@@ -1,27 +1,27 @@
 <?php
 
 	class Lab {
-		
+
 		function getDevice($id) {
-			$res = mysql_query("
-				SELECT 
+			$db = Factory::Database();
+
+			$res = $db->query("
+				SELECT
 					*
-				FROM 
+				FROM
 					labDevices
-				WHERE 
+				WHERE
 					id = '" . intval($id) . "'
 			");
-			
-			echo mysql_error();
-			
-			if ($row = mysql_fetch_object($res)) {
+
+			if ($row = $res->fetch_object()) {
 				$row->simSize = ucfirst($row->simSize);
 				$row->simLocked = !! $row->simLocked;
 				$row->hasInspect = !! $row->hasInspect;
 				$row->hasWifi = !! $row->hasWifi;
 				$row->otherBrowsers = explode(',', $row->otherBrowsers);
 				$row->otherBrowsers = array_combine($row->otherBrowsers, $row->otherBrowsers);
-	
+
 				switch($row->deviceType) {
 					case 'mobile': 		$row->type = 'Phone'; break;
 					case 'tablet': 		$row->type = 'Tablet'; break;
@@ -34,13 +34,13 @@
 					case 'television': 	$row->type = 'Television'; break;
 					default:			$row->type = 'Other';
 				}
-	
+
 				if ($row->defaultFingerprint) {
 					$row->defaultResults = Results::getByUniqueId($row->defaultFingerprint);
 				}
-	
+
 				return $row;
 			}
 		}
-		
+
 	}

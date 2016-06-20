@@ -1,0 +1,15 @@
+<?php
+
+	$readonly = false;
+
+	$version = '8.00';
+	$revision = 0;
+
+	$GLOBALS['configuration'] = [
+		'database' => [
+			'server' => 'localhost',
+			'username' => '******';
+			'password' => '******';
+			'database' => 'html5test'
+		]
+	];
