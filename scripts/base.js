@@ -910,10 +910,15 @@
 				FeaturePopup.current.close();
 			}
 
+			var maximum = data.value;
+			if (typeof maximum == 'object') {
+				maximum = maximum.maximum;
+			}
+
 			var content = "";
 			content += "<div class='info'>";
 			content += "<div class='column left status " + data.status + "'><span>" + data.status + "</span></div>";
-			content += "<div class='column middle" + (data.value ? '' : ' none') + "'><em>" + ( data.value || '✘' ) + "</em> <span>" + (data.value != 1 ? 'Points' : 'Point') + "</span></div>";
+			content += "<div class='column middle" + (maximum ? '' : ' none') + "'><em>" + ( maximum || '✘' ) + "</em> <span>" + (maximum != 1 ? 'Points' : 'Point') + "</span></div>";
 			content += "<div class='column right'><a href='/compare/feature/" + data.id +".html' class='compare'><span>Compare</span></a></div>";
 			content += "</div>";
 			content += "<div class='links'>";
