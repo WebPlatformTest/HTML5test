@@ -41,13 +41,42 @@
 			break;
 
 		case 'getTask':
-			echo json_encode(array('task' => Uuid::uuid4()));
+			$task = Uuid::uuid4();
+			$identifier = $_REQUEST['identifier'];
+
+			$url = (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://') .
+					$_SERVER['HTTP_HOST'] .
+					'/index.html' .
+					'?source=browserstack' .
+					'&task=' . $task .
+					'&identifier=' . rawurlencode($identifier);
+
+			echo json_encode(array('task' => $task, 'url' => $url));
 			break;
 
 		case 'hasTask':
 			$db = Factory::Database();
 			$result = $db->query('SELECT * FROM results WHERE task = "' . $db->escape_string($_REQUEST['task']) . '"');
-			echo $result->num_rows ? 'true' : 'false';
+
+			if ($result->num_rows) {
+				if ($row = $result->fetch_object()) {
+					$url = (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://') .
+							$_SERVER['HTTP_HOST'] .
+							'/s/' .
+							$row->uniqueid .
+							'.html';
+
+					echo json_encode(array(
+						'source' => $row->source,
+						'identifier' => $row->identifier,
+						'score' => intval($row->score),
+						'fingerprint' => $row->fingerprint,
+						'url' => $url,
+					));
+				}
+			} else {
+				echo 'false';
+			}
 			break;
 
 		case 'exportResults':
