@@ -814,7 +814,7 @@ Test8 = (function () {
 
                 results.addItem({
                     key: 'form-' + types[t] + '-ui',
-                    passed: minimal && sanitization, 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
+                    passed: minimal && sanitization 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
                 });
 
                 results.addItem({
@@ -894,7 +894,7 @@ Test8 = (function () {
 
                 results.addItem({
                     key: 'form-' + types[t] + '-ui',
-                    passed: minimal && sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
+                    passed: minimal && sanitization		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
                 });
 
                 results.addItem({
@@ -957,7 +957,7 @@ Test8 = (function () {
 
             results.addItem({
                 key: 'form-color-ui',
-                passed: sanitization,		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
+                passed: sanitization		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
             });
 
             results.addItem({
@@ -2704,7 +2704,7 @@ Test8 = (function () {
                         voices = speechSynthesis.getVoices().length;
 
                         speechItem.update({
-                            passed: voices ? available : NO,
+                            passed: voices ? available : NO
                         });
 
                         speechItem.stopBackground();
@@ -3751,7 +3751,7 @@ Test8 = (function () {
                         'output.notifications': Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
                         'output.requestFullScreen': Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
                         'video.subtitle': Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-                        '3d.webgl': Browsers.isBrowser('Baidu Browser'),
+                        '3d.webgl': Browsers.isBrowser('Baidu Browser')
                     }
                 ],
 
@@ -3862,7 +3862,7 @@ Test8 = (function () {
                 version: version,
                 revision: revision,
                 uniqueid: uniqueid,
-                results: this.list.toString(),
+                results: this.list.toString()
             });
         }
     };
