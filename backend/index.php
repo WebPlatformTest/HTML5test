@@ -42,13 +42,14 @@
 
 		case 'getTask':
 			$task = Uuid::uuid4();
+			$source = $_REQUEST['source'];
 			$identifier = $_REQUEST['identifier'];
 
 			$url = (!empty($_SERVER['HTTPS']) ? 'https://' : 'http://') .
 					$_SERVER['HTTP_HOST'] .
 					'/index.html' .
-					'?source=browserstack' .
-					'&task=' . $task .
+					'?task=' . $task .
+					'&source=' . rawurlencode($source) .
 					'&identifier=' . rawurlencode($identifier);
 
 			echo json_encode(array('task' => $task, 'url' => $url));
