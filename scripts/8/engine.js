@@ -3576,7 +3576,7 @@ Test8 = (function () {
     })();
 
     var log = function (m) {
-        if (console && console.log) {
+        if (typeof console != 'undefined') {
             console.log(m);
         }
     };
@@ -3708,7 +3708,7 @@ Test8 = (function () {
                 for (var k = 0; k < blacklists.length; k++) {
                     if (typeof blacklists[k][1][part] != 'undefined') {
                         if (blacklists[k][1][part]) {
-                            if (console && console.log) console.log('BLOCKED TEST: ' + part + '!');
+                            log('BLOCKED TEST: ' + part + '!');
                             return blacklists[k][0];
                         }
                     }
