@@ -3363,9 +3363,9 @@ Test8 = (function () {
 
             item.startBackground();
 
-            var callback = item.getGlobalCallback(function() {
+            var callback = item.getGlobalCallback(function(scoped) {
                 item.update({
-                    passed: true
+                    passed: scoped ? YES : YES | BUGGY
                 });
 
                 item.stopBackground();
@@ -3373,7 +3373,7 @@ Test8 = (function () {
 
             var s = document.createElement('script');
             s.type = 'module';
-            s.src = "data:text/javascript;charset=utf-8,window." + callback + "()";
+            s.src = "data:text/javascript;charset=utf-8,var test_module_scope = true; window." + callback + "(typeof window.test_module_scope === 'undefined')";
             document.body.appendChild(s);
 
             window.setTimeout(function () {
