@@ -3353,6 +3353,35 @@ Test8 = (function () {
         },
 
 
+        /* ES6 modules */
+
+        function (results) {
+            var item = results.addItem({
+                key: 'other-modules',
+                passed: false
+            });
+
+            item.startBackground();
+
+            var callback = item.getGlobalCallback(function() {
+                item.update({
+                    passed: true
+                });
+
+                item.stopBackground();
+            });
+
+            var s = document.createElement('script');
+            s.type = 'module';
+            s.src = "data:text/javascript;charset=utf-8,window." + callback + "()";
+            document.body.appendChild(s);
+
+            window.setTimeout(function () {
+                item.stopBackground();
+            }, 500);
+        },
+
+
         /* async scripts */
 
         function (results) {
@@ -3724,6 +3753,17 @@ Test8 = (function () {
 
         stopBackground: function () {
             this.list.parent.stopBackground(this.data.key);
+        },
+
+        getGlobalCallback(callback) {
+            var uniqueid = (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
+
+            var that = this;
+            window['callback_' + uniqueid] = function() {
+                callback.apply(that, arguments);
+            };
+
+            return 'callback_' + uniqueid;
         }
     };
 

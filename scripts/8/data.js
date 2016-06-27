@@ -2512,6 +2512,14 @@ var tests = [
 									'<strong>Scripts</strong>',
 
 									{
+										id:			'modules',
+										name: 		'JavaScript Modules',
+										value:		2,
+										urls:		[
+														[ 'ecma', 'https://tc39.github.io/ecma262/#prod-Module' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-type' ],
+													]
+									}, {
 										id:			'async',
 										name: 		'Asynchronous script execution',
 										value:		3,
