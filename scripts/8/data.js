@@ -1209,6 +1209,13 @@ var tests = [
 														[ 'mdn', '/Web/Guide/API/WebRTC' ]
 													]
 									}, {
+										id:			'getDisplayMedia',
+										name: 		'Screen Capture',
+										value:		5,
+										urls:		[
+														[ 'w3c', 'https://w3c.github.io/mediacapture-screen-share/' ]
+													]
+									}, {
 										id:			'getGamepads',
 										name: 		'Gamepad control',
 										value:		{ maximum: 2, award: { PREFIX: 1 } },

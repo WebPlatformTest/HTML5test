@@ -1653,6 +1653,16 @@ Test8 = (function () {
         },
 
 
+        /* getDisplayMedia */
+
+        function (results) {
+            results.addItem({
+                key: 'input-getDisplayMedia',
+                passed: !!navigator.mediaDevices && !!navigator.mediaDevices.getDisplayMedia ? YES : NO
+            });
+        },
+
+
         /* getGamepads */
 
         function (results) {
