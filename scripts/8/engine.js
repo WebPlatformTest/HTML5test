@@ -2986,15 +2986,18 @@ Test8 = (function () {
 
         function (results) {
             var element = document.createElement('canvas');
+
+            var passed = 'WebGLRenderingContext' in window;
+
             var contexts = ['webgl', 'experimental-webgl', 'ms-webgl', 'moz-webgl', 'opera-3d', 'webkit-3d', 'ms-3d', '3d'];
             var context = '';
-            var passed = false;
+            var enabled = false;
 
             for (var b = -1, len = contexts.length; ++b < len;) {
                 try {
                     if (element.getContext(contexts[b])) {
                         context = contexts[b];
-                        passed = true;
+                        enabled = true;
                         break;
                     };
                 } catch (e) { }
@@ -3002,7 +3005,7 @@ Test8 = (function () {
 
             results.addItem({
                 key: '3d.webgl',
-                passed: passed ? (context == 'webgl' ? YES : (context == 'experimental-webgl' ? YES | EXPERIMENTAL : YES | PREFIX)) : NO
+                passed: enabled ? (context == 'webgl' ? YES : (context == 'experimental-webgl' ? YES | EXPERIMENTAL : YES | PREFIX)) : (passed ? YES | DISABLED : NO)
             });
         },
 
@@ -3013,13 +3016,15 @@ Test8 = (function () {
             var element = document.createElement('canvas');
             var contexts = ['webgl2', 'experimental-webgl2'];
             var context = '';
-            var passed = false;
+            var enabled = false;
+
+            var passed = 'WebGL2RenderingContext' in window;
 
             for (var b = -1, len = contexts.length; ++b < len;) {
                 try {
                     if (element.getContext(contexts[b])) {
                         context = contexts[b];
-                        passed = true;
+                        enabled = true;
                         break;
                     };
                 } catch (e) { }
@@ -3027,7 +3032,7 @@ Test8 = (function () {
 
             results.addItem({
                 key: '3d.webgl2',
-                passed: passed ? (context == 'webgl2' ? YES : (context == 'experimental-webgl2' ? YES | EXPERIMENTAL : YES | PREFIX)) : NO
+                passed: enabled ? (context == 'webgl2' ? YES : (context == 'experimental-webgl2' ? YES | EXPERIMENTAL : YES | PREFIX)) : (passed ? YES | DISABLED : NO)
             });
         },
 
