@@ -3765,7 +3765,7 @@ Test8 = (function () {
             this.list.parent.stopBackground(this.data.key);
         },
 
-        getGlobalCallback(callback) {
+        getGlobalCallback: function(callback) {
             var uniqueid = (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
 
             var that = this;
