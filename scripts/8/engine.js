@@ -1587,7 +1587,7 @@ Test8 = (function () {
             document.body.removeChild(container);
 
             results.addItem({
-                key: 'microdata.microdata',
+                key: 'microdata',
                 passed: passed
             });
         },
@@ -1952,7 +1952,7 @@ Test8 = (function () {
             /* webrtc */
 
             results.addItem({
-                key: 'webrtc.webrtc',
+                key: 'rtc.webrtc',
                 passed: !!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO
             });
         },
@@ -1963,7 +1963,7 @@ Test8 = (function () {
             /* objectrtc */
 
             results.addItem({
-                key: 'webrtc.objectrtc',
+                key: 'rtc.objectrtc',
                 passed: !!window.RTCIceTransport ? YES : !!window.webkitRTCIceTransport || !!window.mozRTCIceTransport || !!window.msRTCIceTransport || !!window.oRTCIceTransport ? YES | PREFIX : NO
             });
         },
@@ -1982,7 +1982,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'webrtc.datachannel',
+                key: 'rtc.datachannel',
                 passed: passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO
             });
         },
@@ -2487,7 +2487,7 @@ Test8 = (function () {
             /* mpeg-4 codec */
 
             results.addItem({
-                key: 'video.mpeg4',
+                key: 'video.codecs.mpeg4',
                 passed: !!element.canPlayType && canPlayType(element, 'video/mp4; codecs="mp4v.20.8"')
             });
 
@@ -2496,35 +2496,35 @@ Test8 = (function () {
             /* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 
             results.addItem({
-                key: 'video.h264',
+                key: 'video.codecs.h264',
                 passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
             });
 
             /* h.265 codec */
 
             results.addItem({
-                key: 'video.h265',
+                key: 'video.codecs.h265',
                 passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"'))
             });
 
             /* theora codec */
 
             results.addItem({
-                key: 'video.theora',
+                key: 'video.codecs.theora',
                 passed: !!element.canPlayType && canPlayType(element, 'video/ogg; codecs="theora"')
             });
 
             /* vp8 in webm codec */
 
             results.addItem({
-                key: 'video.webmvp8',
+                key: 'video.codecs.webm.vp8',
                 passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp8"')
             });
 
             /* vp9 in webm codec */
 
             results.addItem({
-                key: 'video.webmvp9',
+                key: 'video.codecs.webm.vp9',
                 passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp9"')
             });
 
@@ -2600,7 +2600,7 @@ Test8 = (function () {
             /* pcm codec */
 
             results.addItem({
-                key: 'audio.pcm',
+                key: 'audio.codecs.pcm',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/wav; codecs="1"')
             });
 
@@ -2619,56 +2619,56 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'audio.mp3',
+                key: 'audio.codecs.mp3',
                 passed: r
             });
 
             /* aac codec */
 
             results.addItem({
-                key: 'audio.aac',
+                key: 'audio.codecs.aac',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="mp4a.40.2"')
             });
 
             /* ac3 codec */
 
             results.addItem({
-                key: 'audio.ac3',
+                key: 'audio.codecs.ac3',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ac-3"')
             });
 
             /* enhanced ac3 codec */
 
             results.addItem({
-                key: 'audio.ec3',
+                key: 'audio.codecs.ec3',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ec-3"')
             });
 
             /* ogg vorbis codec */
 
             results.addItem({
-                key: 'audio.vorbis',
+                key: 'audio.codecs.vorbis',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="vorbis"')
             });
 
             /* ogg opus codec */
 
             results.addItem({
-                key: 'audio.opus',
+                key: 'audio.codecs.opus',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="opus"')
             });
 
             /* webm vorbis codec */
 
             results.addItem({
-                key: 'audio.webm',
+                key: 'audio.codecs.webm.vorbis',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/webm; codecs="vorbis"')
             });
 
             /* webm opus codec */
 
             results.addItem({
-                key: 'audio.webmopus',
+                key: 'audio.codecs.webm.opus',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/webm; codecs="opus"')
             });
         },

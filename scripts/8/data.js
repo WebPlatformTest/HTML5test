@@ -1125,7 +1125,7 @@ var tests = [
 						status:	'rejected',
 						items:	[
 									{
-										id:			'microdata',
+										key:		'microdata',
 										name: 		'Microdata',
 										value:		0,
 										url:    	'http://www.w3.org/TR/microdata/'
@@ -1317,29 +1317,29 @@ var tests = [
 									'<strong>Codecs</strong>',
 
 									{
-										id:		'mpeg4',
+										id:		'codecs.mpeg4',
 										name: 	'MPEG-4 ASP support',
 										status:	'optional'
 									}, {
-										id:		'h264',
+										id:		'codecs.h264',
 										name: 	'H.264 support',
 										status:	'optional',
 										urls:	[
 													[ 'other', 'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf' ]
 												]
 									}, {
-										id:		'h265',
+										id:		'codecs.h265',
 										name: 	'H.265 support',
 										status:	'optional'
 									}, {
-										id:		'theora',
+										id:		'codecs.theora',
 										name: 	'Ogg Theora support',
 										status:	'optional',
 										urls:	[
 													[ 'xiph', 'http://theora.org/doc/Theora.pdf' ]
 												]
 									}, {
-										id:		'webmvp8',
+										id:		'codecs.webm.vp8',
 										name: 	'WebM with VP8 support',
 										status:	'optional',
 										urls:	[
@@ -1347,7 +1347,7 @@ var tests = [
 													[ 'ietf', 'http://www.rfc-editor.org/rfc/rfc6386.txt' ]
 												]
 									}, {
-										id:		'webmvp9',
+										id:		'codecs.webm.vp9',
 										name: 	'WebM with VP9 support',
 										status:	'optional',
 										urls:	[
@@ -1414,39 +1414,39 @@ var tests = [
 									'<strong>Codecs</strong>',
 
 									{
-										id:		'pcm',
+										id:		'codecs.pcm',
 										name: 	'PCM audio support',
 										status:	'optional'
 									}, {
-										id:		'mp3',
+										id:		'codecs.mp3',
 										name: 	'MP3 support',
 										status:	'optional'
 									}, {
-										id:		'aac',
+										id:		'codecs.aac',
 										name: 	'AAC support',
 										status:	'optional'
 									}, {
-										id:		'ac3',
+										id:		'codecs.ac3',
 										name: 	'Dolby Digital support',
 										status:	'optional'
 									}, {
-										id:		'ec3',
+										id:		'codecs.ec3',
 										name: 	'Dolby Digital Plus support',
 										status:	'optional'
 									}, {
-										id:		'vorbis',
+										id:		'codecs.vorbis',
 										name: 	'Ogg Vorbis support',
 										status:	'optional'
 									}, {
-										id:		'opus',
+										id:		'codecs.opus',
 										name: 	'Ogg Opus support',
 										status:	'optional'
 									}, {
-										id:		'webm',
+										id:		'codecs.webm.vorbis',
 										name: 	'WebM with Vorbis support',
 										status:	'optional'
 									}, {
-                                        id:             'webmopus',
+                                        id:     'codecs.webm.opus',
                                         name:   'WebM with Opus support',
                                         status: 'optional'
 									}
@@ -1765,7 +1765,7 @@ var tests = [
 									}
 								]
 					}, {
-						id:		'webrtc',
+						id:		'rtc',
 						name:	'Peer To Peer',
 						status:	'proposal',
 						items:	[
