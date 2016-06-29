@@ -579,50 +579,6 @@ var tests = [
 													}
 												]
 									}, {
-										id:		'datetime',
-										name:	'<code>input type=datetime</code>',
-										status: 'rejected',
-										items:	[
-													{
-														id:			'element',
-														name: 		'Minimal element support',
-														value:		0,
-														url:		'http://www.w3.org/TR/html5/forms.html#date-and-time-state-(type=datetime)'
-													}, {
-														id:			'ui',
-														name: 		'Custom user-interface',
-														value:		0
-													}, {
-														id:			'sanitization',
-														name: 		'Value sanitization',
-														url:		'http://www.w3.org/TR/html5/forms.html#value-sanitization-algorithm'
-													}, {
-														id:			'min',
-														name: 		'<code>min</code> attribute',
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-min'
-													}, {
-														id:			'max',
-														name: 		'<code>max</code> attribute',
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-max'
-													}, {
-														id:			'step',
-														name: 		'<code>step</code> attribute',
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-step'
-													}, {
-														id:			'stepDown',
-														name: 		'<code>stepDown()</code> method',
-														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepdown'
-													}, {
-														id:			'stepUp',
-														name: 		'<code>stepUp()</code> method',
-														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-stepup'
-													}, {
-														id:			'valueAsNumber',
-														name: 		'<code>valueAsNumber()</code> method',
-														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-valueasnumber'
-													}
-												]
-									}, {
 										id:		'datetime-local',
 										name:	'<code>input type=datetime-local</code>',
 										items:	[
@@ -901,26 +857,6 @@ var tests = [
 													}
 												]
 									}, {
-										id:		'keygen',
-										name:	'<code>keygen</code>',
-										status:	'rejected',
-										items:	[
-													{
-														id:			'element',
-														name: 		'Minimal element support',
-														value:		0,
-														url:		'http://www.w3.org/TR/html5/forms.html#the-keygen-element'
-													}, {
-														id:			'challenge',
-														name: 		'<code>challenge</code> attribute',
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-keygen-challenge'
-													}, {
-														id:			'keytype',
-														name: 		'<code>keytype</code> attribute',
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-keygen-keytype'
-													}
-												]
-									}, {
 										id:		'output',
 										name:	'<code>output</code>',
 										items:	[
@@ -1117,18 +1053,6 @@ var tests = [
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-fs-novalidate'
 													}
 												]
-									}
-								]
-					}, {
-						id:		'microdata',
-						name:	'Microdata',
-						status:	'rejected',
-						items:	[
-									{
-										key:		'microdata',
-										name: 		'Microdata',
-										value:		0,
-										url:    	'http://www.w3.org/TR/microdata/'
 									}
 								]
 					}
