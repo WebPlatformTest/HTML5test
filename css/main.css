@@ -299,7 +299,7 @@ body > div#index div#indexmenu {
 	background-color: rgb(0, 146, 191);
 	color: #FFFFFF;
 	z-index: 1;
-	
+
 	-webkit-overflow-scrolling: touch;
 	overflow-y: auto;
 
@@ -382,7 +382,7 @@ body > div#index button#indexbutton {
 	outline: none;
 	z-index: 100000;
 	cursor: pointer;
-	
+
 	-webkit-transition: -webkit-transform .4s, color .5s, text-indent .5s;
 	transition: transform .4s, color .5s, text-indent .5s;
 }
@@ -721,7 +721,7 @@ body.indexVisible > div#index button#indexbutton {
 }
 .paper > div .text dl dt {
 	margin: 1em 0 0;
-	
+
 }
 .paper > div .text dl dd {
 	font-size: 0.9em;
@@ -914,7 +914,7 @@ body.indexVisible > div#index button#indexbutton {
 	min-height: inherit;
 	height: 0px;
 	overflow: hidden;
-	
+
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-ms-transition: all .3s ease-in-out;
@@ -1344,20 +1344,20 @@ body.indexVisible > div#index button#indexbutton {
 	margin: 10px 0;
 
 	font-size: 1em;
-	
+
 	border: none;
 	background: #eee;
 }
 .popupPanel.feedback button {
 	width: 100%;
 	border: none;
-	background: #33af33; 
-	
+	background: #33af33;
+
 	text-align: left;
 	font-size: 1em;
 	color: #fff;
 	padding: 10px;
-	
+
 	cursor: pointer;
 }
 .popupPanel.feedback button span {
@@ -1421,7 +1421,7 @@ body.indexVisible > div#index button#indexbutton {
  */
 
 .popupPanel.share {
-	width: 210px;
+	width: 210px !important;
 	margin-top: 21px;
 }
 #share {
