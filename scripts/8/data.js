@@ -68,7 +68,7 @@ var tests = [
 									{
 										id:		'dataset',
 										name: 	'Embedding custom non-visible data',
-										value:	3,
+										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
@@ -345,7 +345,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		2,
+														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#text-(type=text)-state-and-search-state-(type=search)'
 													}
 												]
@@ -356,7 +356,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		2,
+														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#telephone-state-(type=tel)'
 													}
 												]
@@ -367,7 +367,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		2,
+														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#url-state-(type=url)'
 													}, {
 														id:			'validation',
@@ -382,7 +382,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		2,
+														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#e-mail-state-(type=email)'
 													}, {
 														id:			'validation',
@@ -628,7 +628,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		2,
+														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#number-state-(type=number)'
 													}, {
 														id:			'ui',
@@ -675,7 +675,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		2,
+														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#range-state-(type=range)'
 													}, {
 														id:			'ui',
@@ -718,7 +718,7 @@ var tests = [
 													{
 														id:			'element',
 														name: 		'Minimal element support',
-														value:		2,
+														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#color-state-(type=color)'
 													}, {
 														id:			'ui',
@@ -1223,7 +1223,7 @@ var tests = [
 									}, {
 										id:		'mediasource',
 										name: 	'Media Source extensions',
-										value:	{ maximum: 2, award: { PREFIX: 1 } },
+										value:	{ maximum: 5, award: { PREFIX: 2 } },
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
 													[ 'wp',  '/apis/media_source_extensions' ]
@@ -1554,7 +1554,7 @@ var tests = [
 										id:			'webvr',
 										name: 		'WebVR',
 										status:		'experimental',
-										value:		2,
+										value:		3,
 										urls:		'https://w3c.github.io/webvr/'
 
 									}
@@ -1568,7 +1568,7 @@ var tests = [
 										id:			'webanimation',
 										name: 		'Web Animations API',
 										status:		'experimental',
-										value:		2,
+										value:		3,
 										urls:		[
 														[ 'w3c', 'https://w3c.github.io/web-animations/' ]
 													]
@@ -1743,7 +1743,7 @@ var tests = [
 									}, {
 										key:		'media.enumerateDevices',
 										name: 		'Enumerate devices',
-										value:		2,
+										value:		3,
 										urls:		[
 														[ 'w3c', 'https://w3c.github.io/mediacapture-main/#mediadevices' ]
 													]
@@ -1939,12 +1939,12 @@ var tests = [
 									{
 										id:			'datatypes',
 										name:		'Native binary data',
+										value:		7,
 										status:		'stable',
 										items:		[
 														{
 															id:			'ArrayBuffer',
 															name: 		'<code>ArrayBuffer</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#5' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-arraybuffer-constructor' ]
@@ -1952,7 +1952,6 @@ var tests = [
 														}, {
 															id:			'Int8Array',
 															name: 		'<code>Int8Array</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -1960,7 +1959,6 @@ var tests = [
 														}, {
 															id:			'Uint8Array',
 															name: 		'<code>Uint8Array</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -1968,7 +1966,6 @@ var tests = [
 														}, {
 															id:			'Uint8ClampedArray',
 															name: 		'<code>Uint8ClampedArray</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7.1' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -1976,7 +1973,6 @@ var tests = [
 														}, {
 															id:			'Int16Array',
 															name: 		'<code>Int16Array</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -1984,7 +1980,6 @@ var tests = [
 														}, {
 															id:			'Uint16Array',
 															name: 		'<code>Uint16Array</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -1992,7 +1987,6 @@ var tests = [
 														}, {
 															id:			'Int32Array',
 															name: 		'<code>Int32Array</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -2000,7 +1994,6 @@ var tests = [
 														}, {
 															id:			'Uint32Array',
 															name: 		'<code>Uint32Array</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -2008,7 +2001,6 @@ var tests = [
 														}, {
 															id:			'Float32Array',
 															name: 		'<code>Float32Array</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -2016,7 +2008,6 @@ var tests = [
 														}, {
 															id:			'Float64Array',
 															name: 		'<code>Float64Array</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
@@ -2024,7 +2015,6 @@ var tests = [
 														}, {
 															id:			'DataView',
 															name: 		'<code>DataView</code>',
-															value:		1,
 															urls:    	[
 																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
 																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-dataview-constructor' ]
@@ -2096,7 +2086,7 @@ var tests = [
 									}, {
 										id:			'cors',
 										name: 		'Cross-Origin Resource Sharing',
-										value:		5,
+										value:		4,
 										urls:		[
 														[ 'mdn', '/Web/HTTP/Access_control_CORS' ]
 													]
@@ -2109,7 +2099,7 @@ var tests = [
 									}, {
 										id:			'postMessage',
 										name: 		'Cross-document messaging',
-										value:		5,
+										value:		2,
 										urls:    	[
 														[ 'w3c', 'http://dev.w3.org/html5/postmsg/' ],
 														[ 'wp',  '/apis/web-messaging' ],
@@ -2123,7 +2113,7 @@ var tests = [
 										id:			'authentication',
 										name: 		'Web Authentication / FIDO 2',
 										status:		'experimental',
-										value:		2,
+										value:		3,
 										url:		'https://w3c.github.io/webauthn/'
 									},
 
@@ -2131,7 +2121,7 @@ var tests = [
 										id:			'credential',
 										name: 		'Credential Management',
 										status:		'experimental',
-										value:		2,
+										value:		3,
 										url:		'http://w3c.github.io/webappsec-credential-management/'
 									},
 
@@ -2140,7 +2130,7 @@ var tests = [
 									{
 										id:			'sandbox',
 										name: 		'Sandboxed <code>iframe</code>',
-										value:		5,
+										value:		4,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-sandbox' ],
 														[ 'mdn', '/Web/HTML/Element/iframe' ]
@@ -2148,7 +2138,7 @@ var tests = [
 									}, {
 										id:			'srcdoc',
 										name: 		'<code>iframe</code> with inline contents',
-										value:		5,
+										value:		4,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-srcdoc' ],
 														[ 'mdn', '/Web/HTML/Element/iframe' ]
@@ -2163,7 +2153,7 @@ var tests = [
 									{
 										id:			'payments',
 										name: 		'Web Payments',
-										value:		2,
+										value:		5,
 										url:		'https://w3c.github.io/browser-payment-api/specs/paymentrequest.html'
 									}
 								]
@@ -2175,7 +2165,7 @@ var tests = [
 									{
 										id:			'history',
 										name: 		'Session history',
-										value:		10,
+										value:		4,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#the-history-interface' ],
 														[ 'wp',  '/dom/History' ],
@@ -2202,7 +2192,7 @@ var tests = [
 									{
 										id:			'applicationCache',
 										name: 		'Application Cache',
-										value:		10,
+										value:		5,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#offline' ],
 														[ 'wp',  '/apis/appcache/ApplicationCache' ],
@@ -2224,7 +2214,7 @@ var tests = [
 									{
 										id:			'registerProtocolHandler',
 										name: 		'Custom scheme handlers',
-										value:		2,
+										value:		1,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
 														[ 'mdn', '/Web-based_protocol_handlers' ]
@@ -2232,7 +2222,7 @@ var tests = [
 									}, {
 										id:			'registerContentHandler',
 										name: 		'Custom content handlers',
-										value:		2,
+										value:		1,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
 														[ 'mdn', '/Web/API/Navigator/registerContentHandler' ]
@@ -2388,7 +2378,7 @@ var tests = [
 									{
 										id:			'streams.readable',
 										name: 		'Readable streams',
-										value:		3,
+										value:		4,
 										urls:		[
 														[ 'whatwg', 'https://streams.spec.whatwg.org/' ]
 													]
@@ -2425,7 +2415,7 @@ var tests = [
 									}, {
 										id:			'shadowdom',
 										name: 		'Shadow DOM',
-										value:		{ maximum: 2, award: { OLD: 1 } },
+										value:		{ maximum: 4, award: { OLD: 2 } },
 										urls:		[
 														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/shadow/' ]
 													]
@@ -2442,7 +2432,6 @@ var tests = [
 									}, {
 										id:			'imports',
 										name: 		'HTML imports',
-										value:		2,
 										urls:		[
 														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/imports/' ]
 													]
@@ -2458,7 +2447,7 @@ var tests = [
 									{
 										id:			'modules',
 										name: 		'JavaScript Modules',
-										value:		2,
+										value:		3,
 										urls:		[
 														[ 'ecma', 'https://tc39.github.io/ecma262/#prod-Module' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-type' ],
@@ -2495,7 +2484,6 @@ var tests = [
 									}, {
 										id:			'executionevents',
 										name: 		'Script execution events',
-										value:		1,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#the-script-element' ],
 														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element' ],
