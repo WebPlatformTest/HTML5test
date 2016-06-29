@@ -2136,7 +2136,8 @@ body.indexVisible > div#index button#indexbutton {
 	padding: 10px;
 	text-align: center;
 }
-#footerad > div a {
+#footerad > div a,
+#footerad > div iframe {
 	width: 125px;
 	height: 125px;
 	overflow: hidden;
