@@ -91,7 +91,8 @@
 
 			<?php if (isset($one) && $one != ''): ?>
 				var r = <?php echo $one; ?>;
-				var c = new Calculate(r, tests);
+				var m = new Metadata(tests);
+				var c = new Calculate(r, m.data);
 
 				var container = document.getElementById('score');
 				container.innerHTML =
@@ -165,7 +166,7 @@
 
 				var table = new ResultsTable({
 					parent:			div,
-					tests:			tests,
+					tests:			m.data,
 					header:			false,
 					links:			true,
 					explainations: 	true,

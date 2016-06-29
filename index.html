@@ -267,8 +267,9 @@
 				var task = typeof params.task != 'undefined' ? params.task : '';
 
 				new Test(function(r) {
+					var m = new Metadata(tests);
 
-					var c = new Calculate(r, tests);
+					var c = new Calculate(r, m.data);
 
 					/* Submit results */
 					try {
@@ -382,7 +383,7 @@
 
 					var table = new ResultsTable({
 						parent:			div,
-						tests:			tests,
+						tests:			m.data,
 						header:			false,
 						links:			true,
 						explainations: 	true,

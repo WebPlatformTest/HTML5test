@@ -346,14 +346,12 @@
 			}
 
 			var result = [];
-			var path = [];
 			var status = [];
 			var name = [];
 
 			function retrieveItems(items, level) {
 				for (var i = 0; i < items.length; i++) {
 					if (typeof items[i] == 'object') {
-						path[level] = items[i].id;
 						name[level] = items[i].name;
 						status[level] = items[i].status || null;
 
@@ -369,7 +367,6 @@
 			function addItems(items, level) {
 				for (var i = 0; i < items.length; i++) {
 					if (typeof items[i] == 'object') {
-						path[level] = items[i].id;
 						name[level] = items[i].name;
 						status[level] = items[i].status || null;
 
@@ -383,7 +380,7 @@
 							}
 
 							var r = {
-								id:		path.slice(1, level + 1).join('-'),
+								key:	items[i].key,
 								name:	items[i].name,
 								status:	s
 							}
@@ -404,13 +401,12 @@
 			}
 
 			function filterItem(item, level) {
-				path[level] = item.id;
 				name[level] = item.name;
 				status[level] = item.status || null;
 
 				var selected = true;
 				if (filter == ':diff')
-					selected = level > 1 ? that.diff[path.slice(1, level + 1).join('-')] : false;
+					selected = level > 1 ? that.diff[item.key] : false;
 				else
 					selected = item.name.toLowerCase().indexOf(filter) != -1;
 
@@ -426,7 +422,7 @@
 						}
 
 						var r = {
-							id:		path.slice(1, level + 1).join('-'),
+							key:	item.key,
 							name:	name.slice(2, level + 1).join(' ▸ '),
 							status:	s
 						}
@@ -442,6 +438,7 @@
 					}
 				}
 			}
+
 
 			retrieveItems(this.tests, 0);
 
@@ -551,7 +548,7 @@
 		clearItems: function(column, id, tests) {
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] != 'string') {
-					var key = id + '-' + tests[i].id;
+					var key = tests[i].key;
 
 					var row = document.getElementById('row-' + key);
 					if (row) {
@@ -669,26 +666,27 @@
 							cell.innerHTML = content;
 						}
 
-						this.updateItems(column, data, 0, test.id, test.items);
+						this.updateItems(column, data, test.items);
 					}
 				}
 			}
 		},
 
-		updateItems: function(column, data, level, id, tests) {
+		updateItems: function(column, data, tests) {
 			var count = [ 0, 0 ];
 
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] != 'string') {
-					var row = document.getElementById('row-' + id + '-' + tests[i].id);
+					var key = tests[i].key;
+
+					var row = document.getElementById('row-' + key);
 					if (row) {
-						var key = id + '-' + tests[i].id;
 						var cell = row.childNodes[column + 1];
 
 						cell.className = 'used';
 
 						if (typeof tests[i].items != 'undefined') {
-							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
+							var results = this.updateItems(column, data, tests[i].items);
 
 							if (results[0] == results[1])
 								cell.innerHTML = '<div>' + 'Yes' + ' <span class="check">✔</span></div>';
@@ -751,7 +749,7 @@
 						this.diff[key] = diff;
 					} else {
 						if (typeof tests[i].items != 'undefined') {
-							var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
+							var results = this.updateItems(column, data, tests[i].items);
 						}
 					}
 
@@ -763,7 +761,7 @@
 		},
 
 		askForUniqueId: function(c) {
-			var id = prompt(t('Enter the unique id of the results you want to see'))
+			var id = prompt('Enter the unique id of the results you want to see')
 			if (id) {
 				this.loadColumn(c, 'custom:' + id);
 			}
@@ -1012,6 +1010,8 @@
 						th.innerHTML = tests[i];
 					}
 				} else {
+					var key = tests[i].key;
+
 					var th = document.createElement('th');
 					th.innerHTML = "<div><span>" + tests[i].name + "</span></div>";
 					tr.appendChild(th);
@@ -1021,7 +1021,7 @@
 						tr.appendChild(td);
 					}
 
-					tr.id = 'row-' + (data.id ? data.id + '-' : '') + tests[i].id;
+					tr.id = 'row-' + key;
 
 					if (level > 0) {
 						tr.className = 'isChild';
@@ -1042,7 +1042,7 @@
 						tr.className += 'hasChild';
 
 						var children = this.createItems(parent, level + 1, tests[i].items, {
-							id: 	(data.id ? data.id + '-' : '') + tests[i].id,
+							id: 	key,
 							status:	typeof tests[i].status != 'undefined' ? tests[i].status : data.status,
 							urls:	urls
 						});
@@ -1076,7 +1076,7 @@
 								new FeaturePopup(th, data);
 							};
 						})(th, {
-							id:		(data.id ? data.id + '-' : '') + tests[i].id,
+							id:		key,
 							name:	tests[i].name,
 							value:	value,
 							status:	typeof tests[i].status != 'undefined' ? tests[i].status : data.status,
@@ -1175,7 +1175,7 @@
 			}
 		},
 
-		loadColumn: function(column, id) {
+		loadColumn: function(column, key) {
 			var httpRequest;
 			if (window.XMLHttpRequest) {
 				httpRequest = new XMLHttpRequest();
@@ -1186,7 +1186,7 @@
 		   	httpRequest.open('POST','/api/loadFeature', true);
 			httpRequest.onreadystatechange = process;
 		   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			httpRequest.send('id=' + encodeURIComponent(id));
+			httpRequest.send('key=' + encodeURIComponent(key));
 
 			var that = this;
 
@@ -1231,13 +1231,13 @@
 			this.data[column] = data;
 
 			if (this.options.onChange) {
-				var ids = [];
+				var keys = [];
 				for (var i = 0; i < this.options.columns; i++) {
 					if (this.data[i])
-						ids.push(this.data[i].id);
+						keys.push(this.data[i].key);
 				}
 
-				this.options.onChange(ids);
+				this.options.onChange(keys);
 			}
 
 			if (this.options.header) {
@@ -1246,10 +1246,12 @@
 				cell.className = '';
 
 				var item, parent;
-				if (item = this.getItemById(this.options.tests, data.id)) {
-					if (data.id.split('-').length > 2) {
-						if (parent = this.getItemById(this.options.tests, data.id.split('-').slice(0,-1).join('-'))) {
+				if (item = this.getItemByKey(this.options.tests, data.key)) {
+					if (data.key.split('.').length > 2) {
+						if (parent = this.getItemByKey(this.options.tests, data.key.split('.').slice(0,-1).join('.'))) {
 							cell.firstChild.firstChild.innerHTML = '<span class="feature">' + parent.name + '<hr>' + item.name + '</span>';
+						} else {
+							cell.firstChild.firstChild.innerHTML = '<span class="feature">' + item.name + '</span>';
 						}
 					}
 					else {
@@ -1368,8 +1370,8 @@
 									var action = e.target.getAttribute('data-action');
 
 									if (action == 'load') {
-										var id = e.target.getAttribute('data-id');
-										that.loadColumn(c, id);
+										var key = e.target.getAttribute('data-key');
+										that.loadColumn(c, key);
 									}
 								}
 							}
@@ -1397,9 +1399,9 @@
 
 								if (!filter) item.className = 'indent-' + tests[i].indent;
 
-								if (typeof tests[i].id != 'undefined') {
+								if (typeof tests[i].key != 'undefined') {
 									item.setAttribute('data-action', 'load');
-									item.setAttribute('data-id', tests[i].id);
+									item.setAttribute('data-key', tests[i].key);
 								} else {
 									item.className += ' title';
 								}
@@ -1469,9 +1471,8 @@
 			}
 		},
 
-		getList: function(items, level, prefix) {
+		getList: function(items, level) {
 			if (typeof level == 'undefined') level = 0;
-			if (typeof prefix == 'undefined') prefix = '';
 
 			var result = [];
 
@@ -1480,7 +1481,7 @@
 					if (typeof items[i].items == 'undefined') {
 						if (level > 0) {
 							result.push({
-								id:		prefix + items[i].id,
+								key: 	items[i].key,
 								name:	items[i].name,
 								indent:	level
 							})
@@ -1495,7 +1496,7 @@
 							})
 						}
 
-						if (children = this.getList(items[i].items, level + 1, level > 0 ? prefix + items[i].id + '-' : prefix)) {
+						if (children = this.getList(items[i].items, level + 1)) {
 							for (var c = 0; c < children.length; c++) {
 								result.push(children[c]);
 							}
@@ -1507,15 +1508,14 @@
 			return result;
 		},
 
-		getItemById: function(items, id, level, prefix) {
+		getItemByKey: function(items, key, level) {
 			if (typeof level == 'undefined') level = 0;
-			if (typeof prefix == 'undefined') prefix = '';
 
 			for (var i = 0; i < items.length; i++) {
 				if (typeof items[i] == 'object') {
-					if (prefix + items[i].id == id) return items[i];
+					if (items[i].key == key) return items[i];
 					if (typeof items[i].items != 'undefined') {
-						if (result = this.getItemById(items[i].items, id, level + 1, level > 0 ? prefix + items[i].id + '-' : prefix)) {
+						if (result = this.getItemByKey(items[i].items, key, level + 1)) {
 							return result;
 						}
 					}

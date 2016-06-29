@@ -89,20 +89,22 @@
 					<script>
 					<!--
 
+						var m = new Metadata(tests);
+
 						var table = new BrowserTable({
 							title:			'<h2>Features</h2><p>Select up to five features and immediately see how well it is supported by each browser</p>',
 							parent:			document.getElementById('comparison'),
-							tests:			tests,
+							tests:			m.data,
 							browsers:		<?php echo json_encode($results); ?>,
 							header:			true,
 							explainations: 	false,
 							columns:		5,
 							filter:			':mostused',
 
-							onChange:		function(ids) {
+							onChange:		function(keys) {
 												if (window.history && window.history.replaceState) {
-													if (ids.length)
-														window.history.replaceState([], document.title, '/compare/feature/' + ids.join('/') + '.html');
+													if (keys.length)
+														window.history.replaceState([], document.title, '/compare/feature/' + keys.join('/') + '.html');
 													else
 														window.history.replaceState([], document.title, '/compare/feature/index.html');
 												}

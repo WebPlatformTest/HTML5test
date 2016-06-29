@@ -124,6 +124,42 @@
 		EXPERIMENTAL = 256;
 
 
+
+	var Metadata = function() { this.initialize.apply(this, arguments) };
+	Metadata.prototype = {
+		initialize: function(data) {
+			this.data = data;
+
+			for (var i = 0; i < this.data.length; i++) {
+				this.iterate(this.data[i].items, '');
+			}
+		},
+
+		iterate: function(data, prefix) {
+			for (var i = 0; i < data.length; i++) {
+				var key;
+
+				if (typeof data[i].id != 'undefined') {
+					key = prefix + (prefix == '' ? '' : '.') + data[i].id;
+				}
+
+				if (typeof data[i].key != 'undefined') {
+					key = data[i].key;
+				}
+
+				if (key) {
+					if (typeof data[i].key == 'undefined') {
+						data[i].key = key;
+					}
+
+					if (typeof data[i].items != 'undefined') {
+						this.iterate(data[i].items, key);
+					}
+				}
+			}
+		}
+	}
+
 	var Calculate = function() { this.initialize.apply(this, arguments) };
 	Calculate.prototype = {
 		initialize: function(test, data) {
@@ -145,18 +181,18 @@
 
 		iterate: function(data, prefix) {
 			for (var i = 0; i < data.length; i++) {
-				if (typeof data[i].id != 'undefined') {
+				if (data[i].key) {
 					if (prefix == '') {
 						var score = this.score;
 						var maximum = this.maximum;
 					}
 
 					if (typeof data[i].value != 'undefined') {
-						this.calculate(prefix + (prefix == '' ? '' : '.') + data[i].id, data[i]);
+						this.calculate(data[i].key, data[i]);
 					}
 
 					if (typeof data[i].items != 'undefined') {
-						this.iterate(data[i].items, prefix + (prefix == '' ? '' : '.') + data[i].id);
+						this.iterate(data[i].items, data[i].key);
 					}
 
 					if (prefix == '') {
@@ -166,7 +202,7 @@
 			}
 		},
 
-		calculate: function(key, data) {
+		calculate: function(prefix, data) {
 			var result = true;
 			var value = typeof data.value == 'object' ? data.value : { maximum: data.value };
 
@@ -176,11 +212,13 @@
 
 			if (typeof data.items == 'object') {
 				for (var i = 0; i < data.items.length; i++) {
-					result &= this.getResult(key + '.' + data.items[i].id) & YES;
+					if (data.items[i].key) {
+						result &= this.getResult(data.items[i].key) & YES;
+					}
 				}
 			}
 			else {
-				result = this.getResult(key);
+				result = this.getResult(prefix);
 			}
 
 			if (result & YES) {
@@ -659,22 +697,24 @@
 						content += "</div>";
 
 						cell.innerHTML = content;
-						this.updateItems(column, data, 0, test.id, test.items);
+						this.updateItems(column, data, test.items);
 					}
 				}
 			}
 		},
 
-		updateItems: function(column, data, level, id, tests) {
+		updateItems: function(column, data, tests) {
 			var count = [ 0, 0 ];
 
 			for (var i = 0; i < tests.length; i++) {
 				if (typeof tests[i] != 'string') {
-					var row = document.getElementById('row-' + id + '-' + tests[i].id);
+					var key = tests[i].key;
+
+					var row = document.getElementById('row-' + key);
 					var cell = row.childNodes[column + 1];
 
 					if (typeof tests[i].items != 'undefined') {
-						var results = this.updateItems(column, data, level + 1, id + '-' + tests[i].id, tests[i].items);
+						var results = this.updateItems(column, data, tests[i].items);
 
 						if (results[0] == results[1])
 							cell.innerHTML = '<div>Yes <span class="check">✔</span></div>';
@@ -685,8 +725,6 @@
 					}
 
 					else {
-						var key = id + '-' + tests[i].id;
-
 						if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(data.results)) {
 							var result = parseInt(match[1], 10);
 
@@ -800,6 +838,8 @@
 						th.innerHTML = tests[i];
 					}
 				} else {
+					var key = tests[i].key;
+
 					var th = document.createElement('th');
 					th.innerHTML = "<div><span>" + tests[i].name + "</span></div>";
 					tr.appendChild(th);
@@ -809,7 +849,7 @@
 						tr.appendChild(td);
 					}
 
-					tr.id = 'row-' + data.id + '-' + tests[i].id;
+					tr.id = 'row-' + key;
 
 					if (level > 0) {
 						tr.className = 'isChild';
@@ -830,7 +870,7 @@
 						tr.className += 'hasChild';
 
 						var children = this.createItems(parent, level + 1, tests[i].items, {
-							id: 	data.id + '-' + tests[i].id,
+							id: 	key,
 							status:	typeof tests[i].status != 'undefined' ? tests[i].status : data.status,
 							urls:	urls
 						});
@@ -867,7 +907,7 @@
 								new FeaturePopup(th, data);
 							};
 						})(this, th, {
-							id:		data.id + '-' + tests[i].id,
+							id:		key,
 							name:	tests[i].name,
 							value:	value,
 							status:	typeof tests[i].status != 'undefined' ? tests[i].status : data.status,

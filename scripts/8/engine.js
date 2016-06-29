@@ -25,7 +25,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'parsing-doctype',
+                key: 'parsing.doctype',
                 passed: document.compatMode == 'CSS1Compat'
             });
         },
@@ -99,7 +99,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'parsing-tokenizer',
+                key: 'parsing.tokenizer',
                 passed: result
             });
         },
@@ -167,7 +167,7 @@ Test8 = (function () {
             result &= e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == "http://www.w3.org/1999/xhtml";
 
             results.addItem({
-                key: 'parsing-tree',
+                key: 'parsing.tree',
                 passed: result
             });
         },
@@ -181,7 +181,7 @@ Test8 = (function () {
             var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/2000/svg';
 
             results.addItem({
-                key: 'parsing-svg',
+                key: 'parsing.svg',
                 passed: passed
             });
         },
@@ -195,7 +195,7 @@ Test8 = (function () {
             var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/1998/Math/MathML';
 
             results.addItem({
-                key: 'parsing-mathml',
+                key: 'parsing.mathml',
                 passed: passed
             });
         },
@@ -207,7 +207,7 @@ Test8 = (function () {
             element.setAttribute('data-test', 'test');
 
             results.addItem({
-                key: 'elements-dataset',
+                key: 'elements.dataset',
                 passed: 'dataset' in element
             });
         },
@@ -235,7 +235,7 @@ Test8 = (function () {
                 }
 
                 results.addItem({
-                    key: 'elements-section-' + elements[e],
+                    key: 'elements.section.' + elements[e],
                     passed: passed,
                     value: 1
                 });
@@ -266,7 +266,7 @@ Test8 = (function () {
                 }
 
                 results.addItem({
-                    key: 'elements-grouping-' + elements[e],
+                    key: 'elements.grouping.' + elements[e],
                     passed: passed
                 });
             }
@@ -278,7 +278,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'elements-grouping-ol',
+                key: 'elements.grouping.ol',
                 passed: 'reversed' in document.createElement('ol')
             });
 
@@ -289,7 +289,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'elements-semantic-download',
+                key: 'elements.semantic.download',
                 passed: 'download' in document.createElement('a')
             });
         },
@@ -299,7 +299,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'elements-semantic-ping',
+                key: 'elements.semantic.ping',
                 passed: 'ping' in document.createElement('a')
             });
         },
@@ -324,7 +324,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-semantic-mark',
+                key: 'elements.semantic.mark',
                 passed: passed
             });
         },
@@ -354,7 +354,7 @@ Test8 = (function () {
             document.body.removeChild(container);
 
             results.addItem({
-                key: 'elements-semantic-ruby',
+                key: 'elements.semantic.ruby',
                 passed: rubySupport && rtSupport && rpSupport
             });
         },
@@ -376,7 +376,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-semantic-time',
+                key: 'elements.semantic.time',
                 passed: passed
             });
         },
@@ -398,7 +398,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-semantic-data',
+                key: 'elements.semantic.data',
                 passed: passed
             });
         },
@@ -420,7 +420,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-semantic-wbr',
+                key: 'elements.semantic.wbr',
                 passed: passed
             });
         },
@@ -446,7 +446,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-interactive-details',
+                key: 'elements.interactive.details',
                 passed: passed
             });
         },
@@ -471,7 +471,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-interactive-summary',
+                key: 'elements.interactive.summary',
                 passed: passed
             });
         },
@@ -549,7 +549,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-interactive-menutoolbar',
+                key: 'elements.interactive.menutoolbar',
                 passed: passed ? YES : legacy ? YES | OLD : NO
             });
         },
@@ -640,7 +640,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-interactive-menupopup',
+                key: 'elements.interactive.menupopup',
                 passed: passed ? YES : legacy ? YES | OLD : NO
             });
         },
@@ -662,7 +662,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements-interactive-dialog',
+                key: 'elements.interactive.dialog',
                 passed: passed
             });
         },
@@ -672,7 +672,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'elements-hidden',
+                key: 'elements.hidden',
                 passed: 'hidden' in document.createElement('div')
             });
         },
@@ -682,7 +682,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'elements-dynamic-outerHTML',
+                key: 'elements.dynamic.outerHTML',
                 passed: 'outerHTML' in document.createElement('div')
             });
         },
@@ -692,7 +692,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'elements-dynamic-insertAdjacentHTML',
+                key: 'elements.dynamic.insertAdjacentHTML',
                 passed: 'insertAdjacentHTML' in document.createElement('div')
             });
         },
@@ -704,12 +704,12 @@ Test8 = (function () {
             var element = createInput('text');
 
             results.addItem({
-                key: 'form-text-element',
+                key: 'form.text.element',
                 passed: element.type == 'text'
             });
 
             results.addItem({
-                key: 'form-text-selection',
+                key: 'form.text.selection',
                 passed: 'selectionDirection' in element
             });
         },
@@ -721,7 +721,7 @@ Test8 = (function () {
             var element = createInput('search');
 
             results.addItem({
-                key: 'form-search-element',
+                key: 'form.search.element',
                 passed: element.type == 'search'
             });
         },
@@ -733,7 +733,7 @@ Test8 = (function () {
             var element = createInput('tel');
 
             results.addItem({
-                key: 'form-tel-element',
+                key: 'form.tel.element',
                 passed: element.type == 'tel'
             });
         },
@@ -756,12 +756,12 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-url-element',
+                key: 'form.url.element',
                 passed: element.type == 'url'
             });
 
             results.addItem({
-                key: 'form-url-validation',
+                key: 'form.url.validation',
                 passed: validation
             });
         },
@@ -784,12 +784,12 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-email-element',
+                key: 'form.email.element',
                 passed: element.type == 'email'
             });
 
             results.addItem({
-                key: 'form-email-validation',
+                key: 'form.email.validation',
                 passed: validation
             });
         },
@@ -808,54 +808,54 @@ Test8 = (function () {
                 var minimal = element.type == types[t];
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-element',
+                    key: 'form.' + types[t] + '.element',
                     passed: minimal
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-ui',
+                    key: 'form.' + types[t] + '.ui',
                     passed: minimal && sanitization 	// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-sanitization',
+                    key: 'form.' + types[t] + '.sanitization',
                     passed: minimal && sanitization
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-min',
+                    key: 'form.' + types[t] + '.min',
                     passed: minimal && 'min' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-max',
+                    key: 'form.' + types[t] + '.max',
                     passed: minimal && 'max' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-step',
+                    key: 'form.' + types[t] + '.step',
                     passed: minimal && 'step' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-stepDown',
+                    key: 'form.' + types[t] + '.stepDown',
                     passed: minimal && 'stepDown' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-stepUp',
+                    key: 'form.' + types[t] + '.stepUp',
                     passed: minimal && 'stepUp' in element
                 });
 
-                if (t != 'datetime-local' && t != 'datetime') {
+                if (types[t] != 'datetime-local' && types[t] != 'datetime') {
                     results.addItem({
-                        key: 'form-' + types[t] + '-valueAsDate',
+                        key: 'form.' + types[t] + '.valueAsDate',
                         passed: minimal && 'valueAsDate' in element
                     });
                 }
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-valueAsNumber',
+                    key: 'form.' + types[t] + '.valueAsNumber',
                     passed: minimal && 'valueAsNumber' in element
                 });
             }
@@ -888,54 +888,54 @@ Test8 = (function () {
                 var minimal = element.type == types[t];
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-element',
+                    key: 'form.' + types[t] + '.element',
                     passed: minimal
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-ui',
+                    key: 'form.' + types[t] + '.ui',
                     passed: minimal && sanitization		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-sanitization',
+                    key: 'form.' + types[t] + '.sanitization',
                     passed: minimal && sanitization
                 });
 
                 if (types[t] != 'range') {
                     results.addItem({
-                        key: 'form-' + types[t] + '-validation',
+                        key: 'form.' + types[t] + '.validation',
                         passed: minimal && validation
                     });
                 }
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-min',
+                    key: 'form.' + types[t] + '.min',
                     passed: minimal && 'min' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-max',
+                    key: 'form.' + types[t] + '.max',
                     passed: minimal && 'max' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-step',
+                    key: 'form.' + types[t] + '.step',
                     passed: minimal && 'step' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-stepDown',
+                    key: 'form.' + types[t] + '.stepDown',
                     passed: minimal && 'stepDown' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-stepUp',
+                    key: 'form.' + types[t] + '.stepUp',
                     passed: minimal && 'stepUp' in element
                 });
 
                 results.addItem({
-                    key: 'form-' + types[t] + '-valueAsNumber',
+                    key: 'form.' + types[t] + '.valueAsNumber',
                     passed: minimal && 'valueAsNumber' in element
                 });
             }
@@ -951,17 +951,17 @@ Test8 = (function () {
             var sanitization = element.value != 'foobar';
 
             results.addItem({
-                key: 'form-color-element',
+                key: 'form.color.element',
                 passed: element.type == 'color'
             });
 
             results.addItem({
-                key: 'form-color-ui',
+                key: 'form.color.ui',
                 passed: sanitization		// Testing UI reliably is not possible, so we assume if sanitization is support we also have a UI and use the blacklist to make corrections
             });
 
             results.addItem({
-                key: 'form-color-sanitization',
+                key: 'form.color.sanitization',
                 passed: sanitization
             });
         },
@@ -973,12 +973,12 @@ Test8 = (function () {
             var element = createInput('checkbox');
 
             results.addItem({
-                key: 'form-checkbox-element',
+                key: 'form.checkbox.element',
                 passed: element.type == 'checkbox'
             });
 
             results.addItem({
-                key: 'form-checkbox-indeterminate',
+                key: 'form.checkbox.indeterminate',
                 passed: 'indeterminate' in element
             });
         },
@@ -998,17 +998,17 @@ Test8 = (function () {
             element.setAttribute('height', '100');
 
             results.addItem({
-                key: 'form-image-element',
+                key: 'form.image.element',
                 passed: element.type == 'image'
             });
 
             results.addItem({
-                key: 'form-image-width',
+                key: 'form.image.width',
                 passed: supportsWidth && element.offsetWidth == 100
             });
 
             results.addItem({
-                key: 'form-image-height',
+                key: 'form.image.height',
                 passed: supportsHeight && element.offsetHeight == 100
             });
 
@@ -1022,17 +1022,17 @@ Test8 = (function () {
             var element = createInput('file');
 
             results.addItem({
-                key: 'form-file-element',
+                key: 'form.file.element',
                 passed: element.type == 'file'
             });
 
             results.addItem({
-                key: 'form-file-files',
+                key: 'form.file.files',
                 passed: element.files && element.files instanceof FileList
             });
 
             results.addItem({
-                key: 'form-file-directory',
+                key: 'form.file.directory',
                 passed: 'directory' in element && window.Directory
             });
         },
@@ -1050,17 +1050,17 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-textarea-element',
+                key: 'form.textarea.element',
                 passed: passed
             });
 
             results.addItem({
-                key: 'form-textarea-maxlength',
+                key: 'form.textarea.maxlength',
                 passed: 'maxLength' in element
             });
 
             results.addItem({
-                key: 'form-textarea-wrap',
+                key: 'form.textarea.wrap',
                 passed: 'wrap' in element
             });
         },
@@ -1078,12 +1078,12 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-select-element',
+                key: 'form.select.element',
                 passed: passed
             });
 
             results.addItem({
-                key: 'form-select-required',
+                key: 'form.select.required',
                 passed: 'required' in element
             });
         },
@@ -1101,17 +1101,17 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-fieldset-element',
+                key: 'form.fieldset.element',
                 passed: passed
             });
 
             results.addItem({
-                key: 'form-fieldset-elements',
+                key: 'form.fieldset.elements',
                 passed: 'elements' in element
             });
 
             results.addItem({
-                key: 'form-fieldset-disabled',
+                key: 'form.fieldset.disabled',
                 passed: 'disabled' in element
             });
         },
@@ -1133,14 +1133,14 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-datalist-element',
+                key: 'form.datalist.element',
                 passed: passed
             });
 
             var element = document.createElement('input');
 
             results.addItem({
-                key: 'form-datalist-list',
+                key: 'form.datalist.list',
                 passed: !!("list" in element)
             });
         },
@@ -1159,17 +1159,17 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-keygen-element',
+                key: 'form.keygen.element',
                 passed: passed
             });
 
             results.addItem({
-                key: 'form-keygen-challenge',
+                key: 'form.keygen.challenge',
                 passed: element.firstChild && 'challenge' in element.firstChild
             });
 
             results.addItem({
-                key: 'form-keygen-keytype',
+                key: 'form.keygen.keytype',
                 passed: element.firstChild && 'keytype' in element.firstChild
             });
         },
@@ -1191,7 +1191,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-output-element',
+                key: 'form.output.element',
                 passed: passed
             });
         },
@@ -1213,7 +1213,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-progress-element',
+                key: 'form.progress.element',
                 passed: passed
             });
         },
@@ -1235,7 +1235,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'form-meter-element',
+                key: 'form.meter.element',
                 passed: passed
             });
         },
@@ -1250,7 +1250,7 @@ Test8 = (function () {
 
             for (var p = 0; p < props.length; p++) {
                 results.addItem({
-                    key: 'form-validation-' + props[p],
+                    key: 'form.validation.' + props[p],
                     passed: !!(props[p] in element)
                 });
             }
@@ -1269,7 +1269,7 @@ Test8 = (function () {
             document.body.appendChild(label);
 
             results.addItem({
-                key: 'form-association-control',
+                key: 'form.association.control',
                 passed: label.control == field
             });
 
@@ -1286,7 +1286,7 @@ Test8 = (function () {
             element.innerHTML = '<form id="form"></form><input form="form">';
 
             results.addItem({
-                key: 'form-association-form',
+                key: 'form.association.form',
                 passed: element.lastChild.form == element.firstChild
             });
 
@@ -1303,7 +1303,7 @@ Test8 = (function () {
 
             for (var p = 0; p < props.length; p++) {
                 results.addItem({
-                    key: 'form-association-' + props[p],
+                    key: 'form.association.' + props[p],
                     passed: !!(props[p] in element)
                 });
             }
@@ -1322,7 +1322,7 @@ Test8 = (function () {
             document.body.appendChild(label);
 
             results.addItem({
-                key: 'form-association-labels',
+                key: 'form.association.labels',
                 passed: (!!element.labels && element.labels.length == 1 && element.labels[0] == label)
             });
 
@@ -1337,7 +1337,7 @@ Test8 = (function () {
             var element = document.createElement('input');
 
             results.addItem({
-                key: 'form-other-autofocus',
+                key: 'form.other.autofocus',
                 passed: !!('autofocus' in element)
             });
         },
@@ -1353,7 +1353,7 @@ Test8 = (function () {
             for (var p = 0; p < props.length; p++) {
                 var prop = props[p].toLowerCase();
                 results.addItem({
-                    key: 'form-other-' + prop,
+                    key: 'form.other.' + prop,
                     passed: !!(props[p] in element)
                 });
             }
@@ -1465,7 +1465,7 @@ Test8 = (function () {
 
             for (var i = 0; i < selectors.length; i++) {
                 results.addItem({
-                    key: 'form-selectors-' + selectors[i],
+                    key: 'form.selectors.' + selectors[i],
                     passed: passed[i]
                 });
             }
@@ -1476,17 +1476,17 @@ Test8 = (function () {
 
         function (results) {
             var inputItem = results.addItem({
-                key: 'form-events-oninput',
+                key: 'form.events.oninput',
                 passed: isEventSupported('input')
             });
 
             var changeItem = results.addItem({
-                key: 'form-events-onchange',
+                key: 'form.events.onchange',
                 passed: isEventSupported('change')
             });
 
             var invalidItem = results.addItem({
-                key: 'form-events-oninvalid',
+                key: 'form.events.oninvalid',
                 passed: isEventSupported('invalid')
             });
 
@@ -1545,7 +1545,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'form-formvalidation-checkValidity',
+                key: 'form.formvalidation.checkValidity',
                 passed: 'checkValidity' in document.createElement('form')
             });
         },
@@ -1555,7 +1555,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'form-formvalidation-noValidate',
+                key: 'form.formvalidation.noValidate',
                 passed: 'noValidate' in document.createElement('form')
             });
         },
@@ -1587,7 +1587,7 @@ Test8 = (function () {
             document.body.removeChild(container);
 
             results.addItem({
-                key: 'microdata-microdata',
+                key: 'microdata.microdata',
                 passed: passed
             });
         },
@@ -1597,7 +1597,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'location-geolocation',
+                key: 'location.geolocation',
                 passed: !!navigator.geolocation
             });
         },
@@ -1607,7 +1607,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'location-orientation',
+                key: 'location.orientation',
                 passed: !!window.DeviceOrientationEvent
             });
         },
@@ -1617,7 +1617,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'location-motion',
+                key: 'location.motion',
                 passed: !!window.DeviceMotionEvent
             });
         },
@@ -1627,7 +1627,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'output-requestFullScreen',
+                key: 'output.requestFullScreen',
                 passed: !!document.documentElement.requestFullscreen ? YES : !!document.documentElement.webkitRequestFullScreen || !!document.documentElement.mozRequestFullScreen || !!document.documentElement.msRequestFullscreen ? YES | PREFIX : NO
             });
         },
@@ -1637,7 +1637,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'output-notifications',
+                key: 'output.notifications',
                 passed: 'Notification' in window ? YES : 'webkitNotifications' in window || 'mozNotification' in window.navigator || 'oNotification' in window || 'msNotification' in window ? YES | PREFIX : NO
             });
         },
@@ -1647,7 +1647,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'input-getUserMedia',
+                key: 'input.getUserMedia',
                 passed: !!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia ? YES : !!navigator.getUserMedia ? YES | OLD : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO
             });
         },
@@ -1657,7 +1657,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'input-getDisplayMedia',
+                key: 'input.getDisplayMedia',
                 passed: !!navigator.mediaDevices && !!navigator.mediaDevices.getDisplayMedia ? YES : NO
             });
         },
@@ -1667,7 +1667,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'input-getGamepads',
+                key: 'input.getGamepads',
                 passed: !!navigator.getGamepads ? YES : !!navigator.webkitGetGamepads || !!navigator.mozGetGamepads || !!navigator.msGetGamepads || !!navigator.oGetGamepads ? YES | PREFIX : NO
             });
         },
@@ -1677,7 +1677,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'input-pointerLock',
+                key: 'input.pointerLock',
                 passed: 'pointerLockElement' in document ? YES : 'oPointerLockElement' in document || 'msPointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document ? YES | PREFIX : NO
             });
         },
@@ -1687,7 +1687,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'input-pointerevents',
+                key: 'input.pointerevents',
                 passed: !!window.PointerEvent ? YES : !!window.webkitPointerEvent || !!window.mozPointerEvent || !!window.msPointerEvent || !!window.oPointerEvent ? YES | PREFIX : NO
             });
         },
@@ -1697,7 +1697,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'communication-beacon',
+                key: 'communication.beacon',
                 passed: 'sendBeacon' in navigator
             });
         },
@@ -1707,7 +1707,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'communication-eventSource',
+                key: 'communication.eventSource',
                 passed: 'EventSource' in window
             });
         },
@@ -1717,7 +1717,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'communication-fetch',
+                key: 'communication.fetch',
                 passed: 'Promise' in window && typeof window.fetch === 'function' && window.fetch('') instanceof Promise
             });
         },
@@ -1727,7 +1727,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'communication-xmlhttprequest2.upload',
+                key: 'communication.xmlhttprequest2.upload',
                 passed: window.XMLHttpRequest && 'upload' in new XMLHttpRequest()
             });
         },
@@ -1737,7 +1737,7 @@ Test8 = (function () {
 
         function (results) {
             var item = results.addItem({
-                key: 'communication-xmlhttprequest2.response-text',
+                key: 'communication.xmlhttprequest2.response.text',
                 passed: false
             });
 
@@ -1781,7 +1781,7 @@ Test8 = (function () {
 
         function (results) {
             var item = results.addItem({
-                key: 'communication-xmlhttprequest2.response-document',
+                key: 'communication.xmlhttprequest2.response.document',
                 passed: false
             });
 
@@ -1825,7 +1825,7 @@ Test8 = (function () {
 
         function (results) {
             var item = results.addItem({
-                key: 'communication-xmlhttprequest2.response-array',
+                key: 'communication.xmlhttprequest2.response.array',
                 passed: false
             });
 
@@ -1869,7 +1869,7 @@ Test8 = (function () {
 
         function (results) {
             var item = results.addItem({
-                key: 'communication-xmlhttprequest2.response-blob',
+                key: 'communication.xmlhttprequest2.response.blob',
                 passed: false
             });
 
@@ -1917,7 +1917,7 @@ Test8 = (function () {
             if (websocket && websocket.CLOSING !== 2) passed |= OLD;
 
             results.addItem({
-                key: 'communication-websocket.basic',
+                key: 'communication.websocket.basic',
                 passed: passed
             });
         },
@@ -1942,7 +1942,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'communication-websocket.binary',
+                key: 'communication.websocket.binary',
                 passed: passed
             });
         },
@@ -1952,7 +1952,7 @@ Test8 = (function () {
             /* webrtc */
 
             results.addItem({
-                key: 'webrtc-webrtc',
+                key: 'webrtc.webrtc',
                 passed: !!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO
             });
         },
@@ -1963,7 +1963,7 @@ Test8 = (function () {
             /* objectrtc */
 
             results.addItem({
-                key: 'webrtc-objectrtc',
+                key: 'webrtc.objectrtc',
                 passed: !!window.RTCIceTransport ? YES : !!window.webkitRTCIceTransport || !!window.mozRTCIceTransport || !!window.msRTCIceTransport || !!window.oRTCIceTransport ? YES | PREFIX : NO
             });
         },
@@ -1982,7 +1982,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'webrtc-datachannel',
+                key: 'webrtc.datachannel',
                 passed: passed ? (window.RTCPeerConnection ? YES : YES | PREFIX) : NO
             });
         },
@@ -1992,7 +1992,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'interaction-dragdrop.attributes-draggable',
+                key: 'interaction.dragdrop.attributes.draggable',
                 passed: 'draggable' in document.createElement('div')
             });
         },
@@ -2004,7 +2004,7 @@ Test8 = (function () {
             var element = document.createElement('div');
 
             results.addItem({
-                key: 'interaction-dragdrop.attributes-dropzone',
+                key: 'interaction.dragdrop.attributes.dropzone',
                 passed: 'dropzone' in element ? YES : 'webkitdropzone' in element || 'mozdropzone' in element || 'msdropzone' in element || 'odropzone' in element ? YES | PREFIX : NO
             });
         },
@@ -2021,37 +2021,37 @@ Test8 = (function () {
 
 
             results.addItem({
-                key: 'interaction-dragdrop.events-ondrag',
+                key: 'interaction.dragdrop.events.ondrag',
                 passed: isEventSupported('drag') && passed
             });
 
             results.addItem({
-                key: 'interaction-dragdrop.events-ondragstart',
+                key: 'interaction.dragdrop.events.ondragstart',
                 passed: isEventSupported('dragstart') && passed
             });
 
             results.addItem({
-                key: 'interaction-dragdrop.events-ondragenter',
+                key: 'interaction.dragdrop.events.ondragenter',
                 passed: isEventSupported('dragenter') && passed
             });
 
             results.addItem({
-                key: 'interaction-dragdrop.events-ondragover',
+                key: 'interaction.dragdrop.events.ondragover',
                 passed: isEventSupported('dragover') && passed
             });
 
             results.addItem({
-                key: 'interaction-dragdrop.events-ondragleave',
+                key: 'interaction.dragdrop.events.ondragleave',
                 passed: isEventSupported('dragleave') && passed
             });
 
             results.addItem({
-                key: 'interaction-dragdrop.events-ondragend',
+                key: 'interaction.dragdrop.events.ondragend',
                 passed: isEventSupported('dragend') && passed
             });
 
             results.addItem({
-                key: 'interaction-dragdrop.events-ondrop',
+                key: 'interaction.dragdrop.events.ondrop',
                 passed: isEventSupported('drop') && passed
             });
         },
@@ -2061,7 +2061,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'interaction-editing.elements-contentEditable',
+                key: 'interaction.editing.elements.contentEditable',
                 passed: 'contentEditable' in document.createElement('div')
             });
         },
@@ -2071,7 +2071,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'interaction-editing.elements-isContentEditable',
+                key: 'interaction.editing.elements.isContentEditable',
                 passed: 'isContentEditable' in document.createElement('div')
             });
         },
@@ -2081,7 +2081,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'interaction-editing.documents-designMode',
+                key: 'interaction.editing.documents.designMode',
                 passed: 'designMode' in document
             });
         },
@@ -2091,32 +2091,32 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'interaction-editing.apis-execCommand',
+                key: 'interaction.editing.apis.execCommand',
                 passed: 'execCommand' in document
             });
 
             results.addItem({
-                key: 'interaction-editing.apis-queryCommandEnabled',
+                key: 'interaction.editing.apis.queryCommandEnabled',
                 passed: 'queryCommandEnabled' in document
             });
 
             results.addItem({
-                key: 'interaction-editing.apis-queryCommandIndeterm',
+                key: 'interaction.editing.apis.queryCommandIndeterm',
                 passed: 'queryCommandIndeterm' in document
             });
 
             results.addItem({
-                key: 'interaction-editing.apis-queryCommandState',
+                key: 'interaction.editing.apis.queryCommandState',
                 passed: 'queryCommandState' in document
             });
 
             results.addItem({
-                key: 'interaction-editing.apis-queryCommandSupported',
+                key: 'interaction.editing.apis.queryCommandSupported',
                 passed: 'queryCommandSupported' in document
             });
 
             results.addItem({
-                key: 'interaction-editing.apis-queryCommandValue',
+                key: 'interaction.editing.apis.queryCommandValue',
                 passed: 'queryCommandValue' in document
             });
         },
@@ -2166,7 +2166,7 @@ Test8 = (function () {
 
             for (var i = 0; i < selectors.length; i++) {
                 results.addItem({
-                    key: 'interaction-editing.selectors-' + selectors[i],
+                    key: 'interaction.editing.selectors.' + selectors[i],
                     passed: passed[i]
                 });
             }
@@ -2177,7 +2177,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'interaction-clipboard',
+                key: 'interaction.clipboard',
                 passed: 'ClipboardEvent' in window
             });
         },
@@ -2187,7 +2187,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'interaction-spellcheck',
+                key: 'interaction.spellcheck',
                 passed: 'spellcheck' in document.createElement('div')
             });
         },
@@ -2197,7 +2197,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'performance-worker',
+                key: 'performance.worker',
                 passed: !!window.Worker
             });
         },
@@ -2207,7 +2207,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'performance-sharedWorker',
+                key: 'performance.sharedWorker',
                 passed: !!window.SharedWorker
             });
         },
@@ -2217,57 +2217,57 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'performance-datatypes-ArrayBuffer',
+                key: 'performance.datatypes.ArrayBuffer',
                 passed: typeof ArrayBuffer != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Int8Array',
+                key: 'performance.datatypes.Int8Array',
                 passed: typeof Int8Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Uint8Array',
+                key: 'performance.datatypes.Uint8Array',
                 passed: typeof Uint8Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Uint8ClampedArray',
+                key: 'performance.datatypes.Uint8ClampedArray',
                 passed: typeof Uint8ClampedArray != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Int16Array',
+                key: 'performance.datatypes.Int16Array',
                 passed: typeof Int16Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Uint16Array',
+                key: 'performance.datatypes.Uint16Array',
                 passed: typeof Uint16Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Int32Array',
+                key: 'performance.datatypes.Int32Array',
                 passed: typeof Int32Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Uint32Array',
+                key: 'performance.datatypes.Uint32Array',
                 passed: typeof Uint32Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Float32Array',
+                key: 'performance.datatypes.Float32Array',
                 passed: typeof Float32Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-Float64Array',
+                key: 'performance.datatypes.Float64Array',
                 passed: typeof Float64Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance-datatypes-DataView',
+                key: 'performance.datatypes.DataView',
                 passed: typeof DataView != 'undefined'
             });
         },
@@ -2277,7 +2277,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'performance-requestIdleCallback',
+                key: 'performance.requestIdleCallback',
                 passed: 'requestIdleCallback' in window
             });
         },
@@ -2295,7 +2295,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'security-crypto',
+                key: 'security.crypto',
                 passed: passed
             });
         },
@@ -2305,7 +2305,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-csp10',
+                key: 'security.csp10',
                 passed: !(function () { try { return eval('true'); } catch (e) { } return false; })()
             });
         },
@@ -2315,7 +2315,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-csp11',
+                key: 'security.csp11',
                 passed: 'SecurityPolicyViolationEvent' in window
             });
         },
@@ -2325,7 +2325,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-cors',
+                key: 'security.cors',
                 passed: window.XMLHttpRequest && 'withCredentials' in new XMLHttpRequest()
             });
         },
@@ -2335,7 +2335,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-integrity',
+                key: 'security.integrity',
                 passed: 'integrity' in document.createElement('link')
             });
         },
@@ -2345,7 +2345,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-postMessage',
+                key: 'security.postMessage',
                 passed: !!window.postMessage
             });
         },
@@ -2355,7 +2355,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-authentication',
+                key: 'security.authentication',
                 passed: 'webauthn' in window ? YES : 'msCredentials' in window ? YES | OLD : NO
             });
         },
@@ -2365,7 +2365,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-credential',
+                key: 'security.credential',
                 passed: 'credentials' in navigator
             });
         },
@@ -2375,7 +2375,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-sandbox',
+                key: 'security.sandbox',
                 passed: 'sandbox' in document.createElement('iframe')
             });
         },
@@ -2385,7 +2385,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'security-srcdoc',
+                key: 'security.srcdoc',
                 passed: 'srcdoc' in document.createElement('iframe')
             });
         },
@@ -2395,7 +2395,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'payments-payments',
+                key: 'payments.payments',
                 passed: 'PaymentRequest' in window
             });
         },
@@ -2405,7 +2405,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'history-history',
+                key: 'history.history',
                 passed: !!(window.history && history.pushState)
             });
         },
@@ -2417,7 +2417,7 @@ Test8 = (function () {
             var element = document.createElement('video');
 
             results.addItem({
-                key: 'video-element',
+                key: 'video.element',
                 passed: !!element.canPlayType
             });
 
@@ -2425,7 +2425,7 @@ Test8 = (function () {
             /* audioTracks property */
 
             results.addItem({
-                key: 'video-audiotracks',
+                key: 'video.audiotracks',
                 passed: 'audioTracks' in element
             });
 
@@ -2433,7 +2433,7 @@ Test8 = (function () {
             /* videoTracks property */
 
             results.addItem({
-                key: 'video-videotracks',
+                key: 'video.videotracks',
                 passed: 'videoTracks' in element
             });
 
@@ -2441,7 +2441,7 @@ Test8 = (function () {
             /* subtitles */
 
             results.addItem({
-                key: 'video-subtitle',
+                key: 'video.subtitle',
                 passed: 'track' in document.createElement('track')
             });
 
@@ -2449,7 +2449,7 @@ Test8 = (function () {
             /* poster */
 
             results.addItem({
-                key: 'video-poster',
+                key: 'video.poster',
                 passed: 'poster' in element
             });
 
@@ -2457,7 +2457,7 @@ Test8 = (function () {
             /* drm */
 
             results.addItem({
-                key: 'video-drm',
+                key: 'video.drm',
                 passed: 'setMediaKeys' in element ? YES : 'webkitAddKey' in element || 'webkitSetMediaKeys' in element || 'mozSetMediaKeys' in element || 'msSetMediaKeys' in element ? YES | PREFIX : NO
             });
 
@@ -2465,7 +2465,7 @@ Test8 = (function () {
             /* mediasource */
 
             results.addItem({
-                key: 'video-mediasource',
+                key: 'video.mediasource',
                 passed: 'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
             });
 
@@ -2473,7 +2473,7 @@ Test8 = (function () {
             /* recorder */
 
             results.addItem({
-                key: 'video-recorder',
+                key: 'video.recorder',
                 passed: 'MediaRecorder' in window
             });
         },
@@ -2487,7 +2487,7 @@ Test8 = (function () {
             /* mpeg-4 codec */
 
             results.addItem({
-                key: 'video-mpeg4',
+                key: 'video.mpeg4',
                 passed: !!element.canPlayType && canPlayType(element, 'video/mp4; codecs="mp4v.20.8"')
             });
 
@@ -2496,35 +2496,35 @@ Test8 = (function () {
             /* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 
             results.addItem({
-                key: 'video-h264',
+                key: 'video.h264',
                 passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
             });
 
             /* h.265 codec */
 
             results.addItem({
-                key: 'video-h265',
+                key: 'video.h265',
                 passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"'))
             });
 
             /* theora codec */
 
             results.addItem({
-                key: 'video-theora',
+                key: 'video.theora',
                 passed: !!element.canPlayType && canPlayType(element, 'video/ogg; codecs="theora"')
             });
 
             /* vp8 in webm codec */
 
             results.addItem({
-                key: 'video-webmvp8',
+                key: 'video.webmvp8',
                 passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp8"')
             });
 
             /* vp9 in webm codec */
 
             results.addItem({
-                key: 'video-webmvp9',
+                key: 'video.webmvp9',
                 passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp9"')
             });
 
@@ -2560,7 +2560,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'video-canplaytype',
+                key: 'video.canplaytype',
                 passed: element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
             });
         },
@@ -2572,21 +2572,21 @@ Test8 = (function () {
             var element = document.createElement('audio');
 
             results.addItem({
-                key: 'audio-element',
+                key: 'audio.element',
                 passed: !!element.canPlayType
             });
 
             /* loop property */
 
             results.addItem({
-                key: 'audio-loop',
+                key: 'audio.loop',
                 passed: 'loop' in element
             });
 
             /* preload property */
 
             results.addItem({
-                key: 'audio-preload',
+                key: 'audio.preload',
                 passed: 'preload' in element
             });
         },
@@ -2600,7 +2600,7 @@ Test8 = (function () {
             /* pcm codec */
 
             results.addItem({
-                key: 'audio-pcm',
+                key: 'audio.pcm',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/wav; codecs="1"')
             });
 
@@ -2619,56 +2619,56 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'audio-mp3',
+                key: 'audio.mp3',
                 passed: r
             });
 
             /* aac codec */
 
             results.addItem({
-                key: 'audio-aac',
+                key: 'audio.aac',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="mp4a.40.2"')
             });
 
             /* ac3 codec */
 
             results.addItem({
-                key: 'audio-ac3',
+                key: 'audio.ac3',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ac-3"')
             });
 
             /* enhanced ac3 codec */
 
             results.addItem({
-                key: 'audio-ec3',
+                key: 'audio.ec3',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ec-3"')
             });
 
             /* ogg vorbis codec */
 
             results.addItem({
-                key: 'audio-vorbis',
+                key: 'audio.vorbis',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="vorbis"')
             });
 
             /* ogg opus codec */
 
             results.addItem({
-                key: 'audio-opus',
+                key: 'audio.opus',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="opus"')
             });
 
             /* webm vorbis codec */
 
             results.addItem({
-                key: 'audio-webm',
+                key: 'audio.webm',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/webm; codecs="vorbis"')
             });
 
             /* webm opus codec */
 
             results.addItem({
-                key: 'audio-webmopus',
+                key: 'audio.webmopus',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/webm; codecs="opus"')
             });
         },
@@ -2678,7 +2678,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'audio-webaudio',
+                key: 'audio.webaudio',
                 passed: 'AudioContext' in window ? YES : 'webkitAudioContext' in window || 'mozAudioContext' in window || 'oAudioContext' in window || 'msAudioContext' in window ? YES | PREFIX : NO
             });
         },
@@ -2688,7 +2688,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'audio-speechrecognition',
+                key: 'audio.speechrecognition',
                 passed: 'SpeechRecognition' in window ? YES : 'webkitSpeechRecognition' in window || 'mozSpeechRecognition' in window || 'oSpeechRecognition' in window || 'msSpeechRecognition' in window ? YES | PREFIX : NO
             });
         },
@@ -2702,7 +2702,7 @@ Test8 = (function () {
             var voices = speechSynthesis ? speechSynthesis.getVoices().length : 0;
 
             var speechItem = results.addItem({
-                key: 'audio-speechsynthesis',
+                key: 'audio.speechsynthesis',
                 passed: speechSynthesis && voices ? available : NO
             });
 
@@ -2732,7 +2732,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'responsive-picture',
+                key: 'responsive.picture',
                 passed: 'HTMLPictureElement' in window
             });
         },
@@ -2742,7 +2742,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'responsive-srcset',
+                key: 'responsive.srcset',
                 passed: 'srcset' in document.createElement('img')
             });
         },
@@ -2752,7 +2752,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'responsive-sizes',
+                key: 'responsive.sizes',
                 passed: 'sizes' in document.createElement('img')
             });
         },
@@ -2764,7 +2764,7 @@ Test8 = (function () {
             var canvas = document.createElement('canvas');
 
             results.addItem({
-                key: 'canvas-context',
+                key: 'canvas.context',
                 passed: !!(canvas.getContext && typeof CanvasRenderingContext2D != 'undefined' && canvas.getContext('2d') instanceof CanvasRenderingContext2D)
             });
         },
@@ -2787,7 +2787,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-text',
+                key: 'canvas.text',
                 passed: passed
             });
 
@@ -2803,7 +2803,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-ellipse',
+                key: 'canvas.ellipse',
                 passed: passed
             });
 
@@ -2819,7 +2819,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-dashed',
+                key: 'canvas.dashed',
                 passed: passed
             });
 
@@ -2835,7 +2835,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-focusring',
+                key: 'canvas.focusring',
                 passed: passed
             });
 
@@ -2851,7 +2851,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-hittest',
+                key: 'canvas.hittest',
                 passed: passed
             });
         },
@@ -2861,7 +2861,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'canvas-path',
+                key: 'canvas.path',
                 passed: typeof Path2D != "undefined" ? YES : typeof Path != "undefined" ? YES | OLD : NO
             });
         },
@@ -2895,7 +2895,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-blending',
+                key: 'canvas.blending',
                 passed: passed
             });
         },
@@ -2918,7 +2918,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-png',
+                key: 'canvas.png',
                 passed: passed
             });
 
@@ -2934,7 +2934,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-jpeg',
+                key: 'canvas.jpeg',
                 passed: passed
             });
 
@@ -2950,7 +2950,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-jpegxr',
+                key: 'canvas.jpegxr',
                 passed: passed
             });
 
@@ -2966,7 +2966,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'canvas-webp',
+                key: 'canvas.webp',
                 passed: passed
             });
         },
@@ -2991,7 +2991,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: '3d-webgl',
+                key: '3d.webgl',
                 passed: passed ? (context == 'webgl' ? YES : (context == 'experimental-webgl' ? YES | EXPERIMENTAL : YES | PREFIX)) : NO
             });
         },
@@ -3016,7 +3016,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: '3d-webgl2',
+                key: '3d.webgl2',
                 passed: passed ? (context == 'webgl2' ? YES : (context == 'experimental-webgl2' ? YES | EXPERIMENTAL : YES | PREFIX)) : NO
             });
         },
@@ -3026,7 +3026,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: '3d-webvr',
+                key: '3d.webvr',
                 passed: 'getVRDisplays' in navigator ? YES : 'mozGetVRDevices' in navigator ? YES | PREFIX : NO
             });
         },
@@ -3036,7 +3036,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'animation-webanimation',
+                key: 'animation.webanimation',
                 passed: 'animate' in document.createElement('div')
             });
         },
@@ -3046,7 +3046,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'animation-requestAnimationFrame',
+                key: 'animation.requestAnimationFrame',
                 passed: !!window.requestAnimationFrame ? YES : !!window.webkitRequestAnimationFrame || !!window.mozRequestAnimationFrame || !!window.msRequestAnimationFrame || !!window.oRequestAnimationFrame ? YES | PREFIX : NO
             });
         },
@@ -3056,7 +3056,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'offline-applicationCache',
+                key: 'offline.applicationCache',
                 passed: !!window.applicationCache
             });
         },
@@ -3066,7 +3066,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'offline-serviceWorkers',
+                key: 'offline.serviceWorkers',
                 passed: !!window.navigator.serviceWorker
             });
         },
@@ -3076,7 +3076,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'offline-registerProtocolHandler',
+                key: 'offline.registerProtocolHandler',
                 passed: !!window.navigator.registerProtocolHandler
             });
         },
@@ -3086,7 +3086,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'offline-registerContentHandler',
+                key: 'offline.registerContentHandler',
                 passed: !!window.navigator.registerContentHandler
             });
         },
@@ -3096,7 +3096,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'storage-sessionStorage',
+                key: 'storage.sessionStorage',
                 passed: 'sessionStorage' in window && window.sessionStorage != null
             });
 
@@ -3117,7 +3117,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'storage-localStorage',
+                key: 'storage.localStorage',
                 passed: passed
             });
         },
@@ -3131,19 +3131,19 @@ Test8 = (function () {
             if (indexedDB && ! 'deleteDatabase' in indexedDB) passed != BUGGY;
 
             results.addItem({
-                key: 'storage-indexedDB.basic',
+                key: 'storage.indexedDB.basic',
                 passed: passed
             });
 
             /* indexeddb blob and arraybuffer storage */
 
             var blobitem = results.addItem({
-                key: 'storage-indexedDB.blob',
+                key: 'storage.indexedDB.blob',
                 passed: false
             });
 
             var arrayitem = results.addItem({
-                key: 'storage-indexedDB.arraybuffer',
+                key: 'storage.indexedDB.arraybuffer',
                 passed: false
             });
 
@@ -3231,7 +3231,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'storage-sqlDatabase',
+                key: 'storage.sqlDatabase',
                 passed: !!window.openDatabase
             });
         },
@@ -3241,35 +3241,35 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'files-fileReader',
+                key: 'files.fileReader',
                 passed: 'FileReader' in window
             });
 
             /* file reader as blob */
 
             results.addItem({
-                key: 'files-fileReader.blob',
+                key: 'files.fileReader.blob',
                 passed: 'Blob' in window
             });
 
             /* file reader as data url */
 
             results.addItem({
-                key: 'files-fileReader.dataURL',
+                key: 'files.fileReader.dataURL',
                 passed: 'FileReader' in window && 'readAsDataURL' in (new FileReader())
             });
 
             /* file reader as array buffer */
 
             results.addItem({
-                key: 'files-fileReader.arraybuffer',
+                key: 'files.fileReader.arraybuffer',
                 passed: 'FileReader' in window && 'readAsArrayBuffer' in (new FileReader())
             });
 
             /* file reader as object url */
 
             results.addItem({
-                key: 'files-fileReader.objectURL',
+                key: 'files.fileReader.objectURL',
                 passed: 'URL' in window && 'createObjectURL' in URL
             });
         },
@@ -3279,7 +3279,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'files-fileSystem',
+                key: 'files.fileSystem',
                 passed: !!window.requestFileSystem ? YES : !!window.webkitRequestFileSystem || !!window.mozRequestFileSystem || !!window.oRequestFileSystem || !!window.msRequestFileSystem ? YES | PREFIX : NO
             });
         },
@@ -3289,7 +3289,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'files-getFileSystem',
+                key: 'files.getFileSystem',
                 passed: !!navigator.getFileSystem ? YES : !!navigator.webkitGetFileSystem || !!navigator.mozGetFileSystem || !!window.msGetFileSystem ? YES | PREFIX : NO
             });
         },
@@ -3299,7 +3299,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'streams-streams.readable',
+                key: 'streams.streams.readable',
                 passed: 'ReadableStream' in window
             });
 
@@ -3310,7 +3310,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'streams-streams.writeable',
+                key: 'streams.streams.writeable',
                 passed: 'WriteableStream' in window
             });
         },
@@ -3320,7 +3320,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'components-custom',
+                key: 'components.custom',
                 passed: 'registerElement' in document
             });
         },
@@ -3330,7 +3330,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'components-shadowdom',
+                key: 'components.shadowdom',
                 passed: 'attachShadow' in document.createElement('div') ? YES : 'createShadowRoot' in document.createElement('div') || 'webkitCreateShadowRoot' in document.createElement('div') ? YES | OLD : NO
             });
         },
@@ -3347,7 +3347,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'components-template',
+                key: 'components.template',
                 passed: passed
             });
         },
@@ -3357,7 +3357,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'components-imports',
+                key: 'components.imports',
                 passed: 'import' in document.createElement('link')
             });
         },
@@ -3367,7 +3367,7 @@ Test8 = (function () {
 
         function (results) {
             var item = results.addItem({
-                key: 'other-modules',
+                key: 'other.modules',
                 passed: false
             });
 
@@ -3396,7 +3396,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-async',
+                key: 'other.async',
                 passed: 'async' in document.createElement('script')
             });
         },
@@ -3406,7 +3406,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-defer',
+                key: 'other.defer',
                 passed: 'defer' in document.createElement('script')
             });
         },
@@ -3416,7 +3416,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-onerror',
+                key: 'other.onerror',
                 passed: isEventSupported('error')
             });
         },
@@ -3426,7 +3426,7 @@ Test8 = (function () {
 
         function (results) {
             var executionevents = results.addItem({
-                key: 'other-executionevents',
+                key: 'other.executionevents',
                 passed: false
             });
 
@@ -3463,7 +3463,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-base64',
+                key: 'other.base64',
                 passed: 'btoa' in window && 'atob' in window
             });
         },
@@ -3473,7 +3473,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-json',
+                key: 'other.json',
                 passed: 'JSON' in window && 'parse' in JSON
             });
         },
@@ -3483,7 +3483,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-mutationObserver',
+                key: 'other.mutationObserver',
                 passed: 'MutationObserver' in window ? YES : 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window ? YES | PREFIX : NO
             });
         },
@@ -3493,7 +3493,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-url',
+                key: 'other.url',
                 passed: 'URL' in window ? YES : 'WebKitURL' in window || 'MozURL' in window || 'oURL' in window || 'msURL' in window ? YES | PREFIX : NO
             });
         },
@@ -3503,7 +3503,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-encoding',
+                key: 'other.encoding',
                 passed: 'TextEncoder' in window && 'TextDecoder' in window ? YES : NO
             });
         },
@@ -3513,7 +3513,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-i18n',
+                key: 'other.i18n',
                 passed: 'Intl' in window ? YES : NO
             });
         },
@@ -3538,7 +3538,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'other-promises',
+                key: 'other.promises',
                 passed: passed
             });
         },
@@ -3548,7 +3548,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-pagevisiblity',
+                key: 'other.pagevisiblity',
                 passed: 'visibilityState' in document ? YES : 'webkitVisibilityState' in document || 'mozVisibilityState' in document || 'oVisibilityState' in document || 'msVisibilityState' in document ? YES | PREFIX : NO
             });
         },
@@ -3558,7 +3558,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-getSelection',
+                key: 'other.getSelection',
                 passed: !!window.getSelection
             });
         },
@@ -3568,7 +3568,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other-scrollIntoView',
+                key: 'other.scrollIntoView',
                 passed: 'scrollIntoView' in document.createElement('div')
             });
         }
@@ -3794,7 +3794,7 @@ Test8 = (function () {
                         'form.range.ui': Browsers.isBrowser('UC Browser', '<', '9.8'),
                         'form.progress.element': Browsers.isBrowser('Baidu Browser'),
                         'files.fileSystem': Browsers.isOs('BlackBerry Tablet OS'),
-                        'input.getUserMedia': Browsers.isDevice('webOS TV') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8') || Browsers.isBrowser('Dolphin'),
+                        'input.getUserMedia': Browsers.isDevice('webOS TV') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('UC Browser', '<', '9.8') || Browsers.isBrowser('Dolphin') || Browsers.isBrowser('Safari', '=', '9'),
                         'input.getGamepads': Browsers.isDevice('webOS TV') || Browsers.isDevice('Playstation 4') || Browsers.isDevice('Wii U'),
                         'location.geolocation': Browsers.isDevice('webOS TV') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser') || Browsers.isOs('Google TV'),
                         'location.orientation': Browsers.isBrowser('Baidu Browser'),

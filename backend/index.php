@@ -105,8 +105,8 @@
 
 		case 'loadFeature':
 			echo json_encode(array(
-				'id'		=> $_REQUEST['id'],
-				'supported' => implode(',', Results::getByFeature($_REQUEST['id'], $GLOBALS['configuration']['version']))
+				'key'		=> $_REQUEST['key'],
+				'supported' => implode(',', Results::getByFeature($_REQUEST['key'], $GLOBALS['configuration']['version']))
 			));
 
 			break;

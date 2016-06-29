@@ -106,10 +106,13 @@
 								detectCamouflage:	true
 							});
 
+							var m = new Metadata(tests);
+
+
 							var table = new FeatureTable({
 								title:			'<h2>Browsers</h2><p>Select up to five browsers and compare their test results in detail</p>',
 								parent:			document.getElementById('comparison'),
-								tests:			tests,
+								tests:			m.data,
 								browsers:		<?php echo json_encode($results); ?>,
 								header:			true,
 								explainations: 	false,
@@ -150,7 +153,7 @@
 								table.updateColumn(0, <?php echo $one; ?>);
 							<?php else: ?>
 								new Test(function(r) {
-									var c = new Calculate(r, tests);
+									var c = new Calculate(r, m.data);
 
 									table.updateColumn(0, {
 										id:				'mybrowser',
@@ -170,7 +173,7 @@
 								table.updateColumn(1, <?php echo $two; ?>);
 							<?php else: ?>
 								new Test(function(r) {
-									var c = new Calculate(r, tests);
+									var c = new Calculate(r, m.data);
 
 									table.updateColumn(1, {
 										id:				'mybrowser',
@@ -190,7 +193,7 @@
 								table.updateColumn(2, <?php echo $three; ?>);
 							<?php else: ?>
 								new Test(function(r) {
-									var c = new Calculate(r, tests);
+									var c = new Calculate(r, m.data);
 
 									table.updateColumn(2, {
 										id:				'mybrowser',
@@ -210,7 +213,7 @@
 								table.updateColumn(3, <?php echo $four; ?>);
 							<?php else: ?>
 								new Test(function(r) {
-									var c = new Calculate(r, tests);
+									var c = new Calculate(r, m.data);
 
 									table.updateColumn(3, {
 										id:				'mybrowser',
@@ -230,7 +233,7 @@
 								table.updateColumn(4, <?php echo $five; ?>);
 							<?php else: ?>
 								new Test(function(r) {
-									var c = new Calculate(r, tests);
+									var c = new Calculate(r, m.data);
 
 									table.updateColumn(4, {
 										id:				'mybrowser',
