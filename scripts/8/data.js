@@ -1200,22 +1200,6 @@ var tests = [
 						status:	'proposal',
 						items:	[
 									{
-										id:			'getUserMedia',
-										name: 		'Access the webcam',
-										value:		{ maximum: 15, award: { PREFIX: 10, OLD: 10 } },
-										urls:		[
-														[ 'w3c', 'http://dev.w3.org/2011/webrtc/editor/getusermedia.html' ],
-														[ 'wp',  '/dom/Navigator/getUserMedia' ],
-														[ 'mdn', '/Web/Guide/API/WebRTC' ]
-													]
-									}, {
-										id:			'getDisplayMedia',
-										name: 		'Screen Capture',
-										value:		5,
-										urls:		[
-														[ 'w3c', 'https://w3c.github.io/mediacapture-screen-share/' ]
-													]
-									}, {
 										id:			'getGamepads',
 										name: 		'Gamepad control',
 										value:		{ maximum: 2, award: { PREFIX: 1 } },
@@ -1785,6 +1769,8 @@ var tests = [
 						name:	'Peer To Peer',
 						status:	'proposal',
 						items:	[
+									'<strong>Connectivity</strong>',
+
 									{
 										id:		'webrtc',
 										name: 	'WebRTC 1.0',
@@ -1810,6 +1796,26 @@ var tests = [
 													[ 'wp',  '/apis/webrtc/RTCDataChannel' ],
 													[ 'mdn', '/Web/Guide/API/WebRTC' ]
 												]
+									},
+
+									'<strong>Input</strong>',
+
+									{
+										key:		'input.getUserMedia',
+										name: 		'Access the webcam',
+										value:		{ maximum: 15, award: { PREFIX: 10, OLD: 10 } },
+										urls:		[
+														[ 'w3c', 'http://dev.w3.org/2011/webrtc/editor/getusermedia.html' ],
+														[ 'wp',  '/dom/Navigator/getUserMedia' ],
+														[ 'mdn', '/Web/Guide/API/WebRTC' ]
+													]
+									}, {
+										key:		'input.getDisplayMedia',
+										name: 		'Screen Capture',
+										value:		5,
+										urls:		[
+														[ 'w3c', 'https://w3c.github.io/mediacapture-screen-share/' ]
+													]
 									}
 								]
 					}
