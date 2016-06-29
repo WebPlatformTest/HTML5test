@@ -92,7 +92,15 @@
 			<?php if (isset($one) && $one != ''): ?>
 				var r = <?php echo $one; ?>;
 				var m = new Metadata(tests);
-				var c = new Calculate(r, m.data);
+
+				var c = {};
+
+				if (<?php echo $version; ?> < 8) {
+					c.score = r.score;
+					c.maximum = r.maximum;
+				} else {
+					c  = new Calculate(r, m.data);
+				}
 
 				var container = document.getElementById('score');
 				container.innerHTML =
