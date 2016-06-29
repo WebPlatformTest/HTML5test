@@ -1647,7 +1647,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'input.getUserMedia',
+                key: 'media.getUserMedia',
                 passed: !!navigator.mediaDevices && !!navigator.mediaDevices.getUserMedia ? YES : !!navigator.getUserMedia ? YES | OLD : !!navigator.webkitGetUserMedia || !!navigator.mozGetUserMedia || !!navigator.msGetUserMedia || !!navigator.oGetUserMedia ? YES | PREFIX : NO
             });
         },
@@ -1657,7 +1657,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'input.getDisplayMedia',
+                key: 'media.getDisplayMedia',
                 passed: !!navigator.mediaDevices && !!navigator.mediaDevices.getDisplayMedia ? YES : NO
             });
         },

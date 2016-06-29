@@ -1725,7 +1725,7 @@ var tests = [
 									'<strong>Input</strong>',
 
 									{
-										key:		'input.getUserMedia',
+										key:		'media.getUserMedia',
 										name: 		'Access the webcam',
 										value:		{ maximum: 15, award: { PREFIX: 10, OLD: 10 } },
 										urls:		[
@@ -1734,7 +1734,7 @@ var tests = [
 														[ 'mdn', '/Web/Guide/API/WebRTC' ]
 													]
 									}, {
-										key:		'input.getDisplayMedia',
+										key:		'media.getDisplayMedia',
 										name: 		'Screen Capture',
 										value:		5,
 										urls:		[
