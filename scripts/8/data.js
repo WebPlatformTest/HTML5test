@@ -1740,6 +1740,13 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'https://w3c.github.io/mediacapture-screen-share/' ]
 													]
+									}, {
+										key:		'media.enumerateDevices',
+										name: 		'Enumerate devices',
+										value:		2,
+										urls:		[
+														[ 'w3c', 'https://w3c.github.io/mediacapture-main/#mediadevices' ]
+													]
 									}
 								]
 					}

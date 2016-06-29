@@ -1663,6 +1663,16 @@ Test8 = (function () {
         },
 
 
+        /* enumerateDevices */
+
+        function (results) {
+            results.addItem({
+                key: 'media.enumerateDevices',
+                passed: !!navigator.mediaDevices && !!navigator.mediaDevices.enumerateDevices ? YES : NO
+            });
+        },
+
+
         /* getGamepads */
 
         function (results) {
