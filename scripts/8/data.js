@@ -1251,14 +1251,9 @@ var tests = [
 												]
 									},
 
-									'<strong>Advanced</strong>',
+									'<strong>Streaming</strong>',
 
 									{
-										id:		'drm',
-										name: 	'DRM support',
-										status:	'controversial',
-										url:	'http://www.w3.org/TR/encrypted-media/'
-									}, {
 										id:		'mediasource',
 										name: 	'Media Source extensions',
 										value:	{ maximum: 5, award: { PREFIX: 2 } },
@@ -1266,6 +1261,11 @@ var tests = [
 													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
 													[ 'wp',  '/apis/media_source_extensions' ]
 												]
+									}, {
+										id:		'drm',
+										name: 	'DRM support',
+										status:	'controversial',
+										url:	'http://www.w3.org/TR/encrypted-media/'
 									}, {
 										id:		'mediasource.codecs',
 										name:	'Streaming video codecs',
@@ -1301,7 +1301,7 @@ var tests = [
 												]
 									},
 
-									'<strong>Codecs</strong>',
+									'<strong>Video codecs</strong>',
 
 									{
 										id:		'codecs.mpeg4',
@@ -1398,7 +1398,7 @@ var tests = [
 										url:	'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html'
 									},
 
-									'<strong>Codecs</strong>',
+									'<strong>Audio codecs</strong>',
 
 									{
 										id:		'codecs.pcm',
