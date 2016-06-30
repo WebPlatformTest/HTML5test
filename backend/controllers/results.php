@@ -23,7 +23,7 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
 			FROM
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
@@ -46,7 +46,7 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
 			FROM
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
@@ -69,7 +69,7 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
 			FROM
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
@@ -92,7 +92,7 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
 			FROM
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
@@ -115,7 +115,7 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
 			FROM
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
@@ -197,7 +197,7 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.description, b.listed, f.score, f.points, f.results
+				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
 			FROM
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
