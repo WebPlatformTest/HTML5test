@@ -554,7 +554,7 @@ Test8 = (function () {
         },
 
 
-        /* menu popup */
+        /* menu context */
 
         function (results) {
             var passed = legacy = false;
@@ -570,12 +570,12 @@ Test8 = (function () {
 
                 // Check if correct type sticks
                 try {
-                    element.type = 'context';
+                    element.type = 'popup';
                 } catch (error) {
                     legacy = false;
                 }
 
-                if (legacy && element.type != 'context') legacy = false;
+                if (legacy && element.type != 'popup') legacy = false;
 
 
                 if (legacy) {
@@ -599,14 +599,15 @@ Test8 = (function () {
                 }
 
                 try {
-                    element.type = 'popup';
+                    element.type = 'context';
                 } catch (error) {
                 }
 
                 // Check default type
                 var second = document.createElement('menu');
                 element.appendChild(second);
-                if (passed && second.type != 'popup') passed = false;
+                if (passed && second.type == 'list') legacy = true;
+                if (passed && second.type != 'context') passed = false;
                 element.removeChild(second);
 
                 // Check type sanitization
@@ -619,12 +620,12 @@ Test8 = (function () {
 
                 // Check if correct type sticks
                 try {
-                    element.type = 'popup';
+                    element.type = 'context';
                 } catch (error) {
                     passed = false;
                 }
 
-                if (passed && element.type != 'popup') passed = false;
+                if (passed && element.type != 'context') passed = false;
 
 
                 if (passed) {
@@ -639,7 +640,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'elements.interactive.menupopup',
+                key: 'elements.interactive.menucontext',
                 passed: passed ? YES : legacy ? YES | OLD : NO
             });
         },

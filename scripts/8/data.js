@@ -261,15 +261,15 @@ var tests = [
 														id:		'menutoolbar',
 														name: 	'<code>menu</code> element of type <code>toolbar</code>',
 														status:	'proposal',
-														value:	1,
+														value:	{ maximum: 1, award: { OLD: 0 } },
 														urls:	[
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
 																]
 													}, {
-														id:		'menupopup',
-														name: 	'<code>menu</code> element of type <code>popup</code>',
+														id:		'menucontext',
+														name: 	'<code>menu</code> element of type <code>context</code>',
 														status:	'proposal',
-														value:	2,
+														value:	{ maximum: 2, award: { OLD: 1 } },
 														urls:	[
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
 																]
