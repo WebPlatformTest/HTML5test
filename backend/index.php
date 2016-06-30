@@ -32,7 +32,7 @@
 			$data = array();
 
 			$db = Factory::Database();
-			$result = $db->query('SELECT DISTINCT identifier FROM results WHERE version = "' . $GLOBALS['configuration']['version'] . '" AND revision = "' . $GLOBALS['configuration']['revision'] . '" AND source = "' . $db->escape_string($_REQUEST['source']) . '"');
+			$result = $db->query('SELECT DISTINCT identifier FROM results WHERE release = "' . $GLOBALS['configuration']['release'] . '" AND source = "' . $db->escape_string($_REQUEST['source']) . '"');
 			while ($row = $result->fetch_object()) {
 				$data[] = $row->identifier;
 			}
@@ -81,7 +81,7 @@
 			break;
 
 		case 'exportResults':
-			echo json_encode(Results::export($GLOBALS['configuration']['version']));
+			echo json_encode(Results::export($GLOBALS['configuration']['release']));
 			break;
 
 		case 'myResults':
@@ -106,7 +106,7 @@
 		case 'loadFeature':
 			echo json_encode(array(
 				'key'		=> $_REQUEST['key'],
-				'supported' => implode(',', Results::getByFeature($_REQUEST['key'], $GLOBALS['configuration']['version']))
+				'supported' => implode(',', Results::getByFeature($_REQUEST['key'], $GLOBALS['configuration']['release']))
 			));
 
 			break;
@@ -118,7 +118,7 @@
 				}
 
 			} else {
-				if ($data = Results::getByBrowser($_REQUEST['id'], $GLOBALS['configuration']['version'])) {
+				if ($data = Results::getByBrowser($_REQUEST['id'], $GLOBALS['configuration']['release'])) {
 					echo json_encode($data);
 				}
 			}
@@ -145,7 +145,7 @@
 				}
 			}
 
-			if (!$GLOBALS['configuration']['readonly'] && intval($payload->version) >= 5) {
+			if (!$GLOBALS['configuration']['readonly'] && intval($payload->release) >= 5) {
 				$useragentHeader = $_SERVER['HTTP_USER_AGENT'];
 				$useragentId = preg_replace("/(; ?)[a-z][a-z](?:-[a-zA-Z][a-zA-Z])?([;)])/", '$1xx$2', $useragentHeader);
 
@@ -155,79 +155,80 @@
 					INSERT INTO
 						results
 					SET
-						version = "' . $db->escape_string($payload->version) . '",
-						revision = "' . $db->escape_string($payload->revision) . '",
-						timestamp = NOW(),
-						ip = "' . $db->escape_string(get_ip_address()) . '",
-						source = ' . (is_null($payload->source) ? 'NULL' : '"' . $db->escape_string($payload->source) . '"') . ',
-						identifier = ' . (is_null($payload->identifier) ? 'NULL' : '"' . $db->escape_string($payload->identifier) . '"') . ',
-						task = ' . (is_null($payload->task) ? 'NULL' : '"' . $db->escape_string($payload->task) . '"') . ',
-						uniqueid = "' . $db->escape_string($payload->uniqueid) . '",
-						score = "' . $db->escape_string($payload->score) . '",
-						maximum = "' . $db->escape_string($payload->maximum) . '",
-						fingerprint = "' . $db->escape_string(md5($payload->results.$payload->points)) . '",
-						camouflage = "' . $db->escape_string($payload->camouflage) . '",
-						features = "' . $db->escape_string($payload->features) . '",
-						browserName = "' . $db->escape_string($payload->browserName) . '",
-						browserChannel = "' . $db->escape_string($payload->browserChannel) . '",
-						browserVersion = "' . $db->escape_string($payload->browserVersion) . '",
-						browserVersionType = "' . $db->escape_string($payload->browserVersionType) . '",
-						browserVersionMajor = "' . intval($payload->browserVersionMajor) . '",
-						browserVersionMinor = "' . intval($payload->browserVersionMinor) . '",
-						browserVersionOriginal = "' . $db->escape_string($payload->browserVersionOriginal) . '",
-						browserMode = "' . $db->escape_string($payload->browserMode) . '",
-						engineName = "' . $db->escape_string($payload->engineName) . '",
-						engineVersion = "' . $db->escape_string($payload->engineVersion) . '",
-						osName = "' . $db->escape_string($payload->osName) . '",
-						osFamily = "' . $db->escape_string($payload->osFamily) . '",
-						osVersion = "' . $db->escape_string($payload->osVersion) . '",
-						deviceManufacturer = "' . $db->escape_string($payload->deviceManufacturer) . '",
-						deviceModel = "' . $db->escape_string($payload->deviceModel) . '",
-						deviceSeries = "' . $db->escape_string($payload->deviceSeries) . '",
-						deviceWidth = "' . $db->escape_string($payload->deviceWidth) . '",
-						deviceHeight = "' . $db->escape_string($payload->deviceHeight) . '",
-						deviceType = "' . $db->escape_string($payload->deviceType) . '",
-						useragent = "' . $db->escape_string($payload->useragent) . '",
-						useragentHeader = "' . $db->escape_string($useragentHeader) . '",
-						useragentId = "' . $db->escape_string(md5($useragentId)) . '",
-						humanReadable = "' . $db->escape_string($payload->humanReadable) . '",
-						headers = "' . $db->escape_string($filteredHeaders) . '",
-						status = 0
+						`release` = "' . $db->escape_string($payload->release) . '",
+						`timestamp` = NOW(),
+						`ip` = "' . $db->escape_string(get_ip_address()) . '",
+						`source` = ' . (is_null($payload->source) ? 'NULL' : '"' . $db->escape_string($payload->source) . '"') . ',
+						`identifier` = ' . (is_null($payload->identifier) ? 'NULL' : '"' . $db->escape_string($payload->identifier) . '"') . ',
+						`task` = ' . (is_null($payload->task) ? 'NULL' : '"' . $db->escape_string($payload->task) . '"') . ',
+						`uniqueid` = "' . $db->escape_string($payload->uniqueid) . '",
+						`score` = "' . $db->escape_string($payload->score) . '",
+						`maximum` = "' . $db->escape_string($payload->maximum) . '",
+						`fingerprint` = "' . $db->escape_string(md5($payload->results.$payload->points)) . '",
+						`camouflage` = "' . $db->escape_string($payload->camouflage) . '",
+						`features` = "' . $db->escape_string($payload->features) . '",
+						`browserName` = "' . $db->escape_string($payload->browserName) . '",
+						`browserChannel` = "' . $db->escape_string($payload->browserChannel) . '",
+						`browserVersion` = "' . $db->escape_string($payload->browserVersion) . '",
+						`browserVersionType` = "' . $db->escape_string($payload->browserVersionType) . '",
+						`browserVersionMajor` = "' . intval($payload->browserVersionMajor) . '",
+						`browserVersionMinor` = "' . intval($payload->browserVersionMinor) . '",
+						`browserVersionOriginal` = "' . $db->escape_string($payload->browserVersionOriginal) . '",
+						`browserMode` = "' . $db->escape_string($payload->browserMode) . '",
+						`engineName` = "' . $db->escape_string($payload->engineName) . '",
+						`engineVersion` = "' . $db->escape_string($payload->engineVersion) . '",
+						`osName` = "' . $db->escape_string($payload->osName) . '",
+						`osFamily` = "' . $db->escape_string($payload->osFamily) . '",
+						`osVersion` = "' . $db->escape_string($payload->osVersion) . '",
+						`deviceManufacturer` = "' . $db->escape_string($payload->deviceManufacturer) . '",
+						`deviceModel` = "' . $db->escape_string($payload->deviceModel) . '",
+						`deviceSeries` = "' . $db->escape_string($payload->deviceSeries) . '",
+						`deviceWidth` = "' . $db->escape_string($payload->deviceWidth) . '",
+						`deviceHeight` = "' . $db->escape_string($payload->deviceHeight) . '",
+						`deviceType` = "' . $db->escape_string($payload->deviceType) . '",
+						`useragent` = "' . $db->escape_string($payload->useragent) . '",
+						`useragentHeader` = "' . $db->escape_string($useragentHeader) . '",
+						`useragentId` = "' . $db->escape_string(md5($useragentId)) . '",
+						`humanReadable` = "' . $db->escape_string($payload->humanReadable) . '",
+						`headers` = "' . $db->escape_string($filteredHeaders) . '",
+						`status` = 0
 				');
+
+				echo $db->error;
 
 				$db->query('
 					REPLACE INTO
 						indices
 					SET
-						fingerprint = "' . $db->escape_string(md5($payload->results.$payload->points)) . '",
-						version = "' . $db->escape_string($payload->version) . '",
-						score = "' . $db->escape_string($payload->score) . '",
-						humanReadable = "' . $db->escape_string($payload->humanReadable) . '",
-						browserName = "' . $db->escape_string($payload->browserName) . '",
-						browserVersion = "' . $db->escape_string($payload->browserVersion) . '",
-						engineName = "' . $db->escape_string($payload->engineName) . '",
-						engineVersion = "' . $db->escape_string($payload->engineVersion) . '",
-						osName = "' . $db->escape_string($payload->osName) . '",
-						osFamily = "' . $db->escape_string($payload->osFamily) . '",
-						osVersion = "' . $db->escape_string($payload->osVersion) . '",
-						deviceManufacturer = "' . $db->escape_string($payload->deviceManufacturer) . '",
-						deviceModel = "' . $db->escape_string($payload->deviceModel) . '",
-						deviceSeries = "' . $db->escape_string($payload->deviceSeries) . '",
-						deviceType = "' . $db->escape_string($payload->deviceType) . '",
-						timestamp = NOW(),
-						uniqueid = "' . $db->escape_string($payload->uniqueid) . '"
+						`release` = "' . $db->escape_string($payload->release) . '",
+						`fingerprint` = "' . $db->escape_string(md5($payload->results.$payload->points)) . '",
+						`score` = "' . $db->escape_string($payload->score) . '",
+						`humanReadable` = "' . $db->escape_string($payload->humanReadable) . '",
+						`browserName` = "' . $db->escape_string($payload->browserName) . '",
+						`browserVersion` = "' . $db->escape_string($payload->browserVersion) . '",
+						`engineName` = "' . $db->escape_string($payload->engineName) . '",
+						`engineVersion` = "' . $db->escape_string($payload->engineVersion) . '",
+						`osName` = "' . $db->escape_string($payload->osName) . '",
+						`osFamily` = "' . $db->escape_string($payload->osFamily) . '",
+						`osVersion` = "' . $db->escape_string($payload->osVersion) . '",
+						`deviceManufacturer` = "' . $db->escape_string($payload->deviceManufacturer) . '",
+						`deviceModel` = "' . $db->escape_string($payload->deviceModel) . '",
+						`deviceSeries` = "' . $db->escape_string($payload->deviceSeries) . '",
+						`deviceType` = "' . $db->escape_string($payload->deviceType) . '",
+						`timestamp` = NOW(),
+						`uniqueid` = "' . $db->escape_string($payload->uniqueid) . '"
 				');
 
 				$db->query('
 					INSERT INTO
 						fingerprints
 					SET
-						fingerprint = "' . $db->escape_string(md5($payload->results.$payload->points)) . '",
-						version = "' . $db->escape_string($payload->version) . '",
-						score = "' . $db->escape_string($payload->score) . '",
-						maximum = "' . $db->escape_string($payload->maximum) . '",
-						results = "' . $db->escape_string($payload->results) . '",
-						points = "' . $db->escape_string($payload->points) . '"
+						`release` = "' . $db->escape_string($payload->release) . '",
+						`fingerprint` = "' . $db->escape_string(md5($payload->results.$payload->points)) . '",
+						`score` = "' . $db->escape_string($payload->score) . '",
+						`maximum` = "' . $db->escape_string($payload->maximum) . '",
+						`results` = "' . $db->escape_string($payload->results) . '",
+						`points` = "' . $db->escape_string($payload->points) . '"
 				');
 			}
 

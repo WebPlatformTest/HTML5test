@@ -4,7 +4,7 @@
 
 
 
-		static function getTimeline($id, $type, $version) {
+		static function getTimeline($id, $type, $release) {
 			$db = Factory::Database();
 
 			$results = array();
@@ -21,7 +21,7 @@
 					(v.id = '" . $db->escape_string($id) . "' OR v.replaced = '" . $db->escape_string($id) . "') AND
 					FIND_IN_SET('" . $db->escape_string($type) . "',v.type) AND
 					FIND_IN_SET('" . $db->escape_string($type) . "',b.type) AND
-					s.release = '" . $version . "'
+					s.release = '" . $release . "'
 				ORDER BY
 					IF(b.status='development',1,0) DESC, b.release DESC, v.replaced, b.version DESC
 			");
@@ -82,7 +82,7 @@
 		}
 
 
-		static function getByFeature($id, $version) {
+		static function getByFeature($id, $release) {
 			$db = Factory::Database();
 
 			$results = array();
@@ -96,7 +96,7 @@
 					LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
-					s.release = '" . $version . "'
+					s.release = '" . $release . "'
 			");
 
 			while ($row = $result->fetch_object()) {
@@ -106,7 +106,7 @@
 			return $results;
 		}
 
-		static function getByBrowser($browser, $version) {
+		static function getByBrowser($browser, $release) {
 			$db = Factory::Database();
 
 			$browser = explode('-', $browser);
@@ -122,7 +122,7 @@
 						LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE
-						s.release = '" . $version . "' AND
+						s.release = '" . $release . "' AND
 						b.variant = '" . $db->escape_string($browserVariant) . "' AND
 						b.version = '" . $db->escape_string($browserVersion) . "'
 				");
@@ -145,7 +145,7 @@
 					LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
-					s.release = '" . $version . "' AND
+					s.release = '" . $release . "' AND
 					b.variant = '" . $db->escape_string($browserVariant) . "'
 				ORDER BY
 					b.release DESC, b.id DESC
@@ -163,7 +163,7 @@
 
 			$result = $db->query("
 				SELECT
-					r.version, r.uniqueid AS id, 'Unique id' AS nickname, f.score, f.maximum, f.points, f.results, humanReadable, useragentHeader AS useragent, deviceWidth, deviceHeight, f.fingerprint
+					r.release, r.uniqueid AS id, 'Unique id' AS nickname, f.score, f.maximum, f.points, f.results, humanReadable, useragentHeader AS useragent, deviceWidth, deviceHeight, f.fingerprint
 				FROM
 					results AS r
 					LEFT JOIN fingerprints AS f ON (r.fingerprint = f.fingerprint)

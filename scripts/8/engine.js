@@ -2,8 +2,7 @@
 Test =
 Test8 = (function () {
 
-    var version = 8;
-    var revision = 0;
+    var release = 8;
 
     var NO = 0,
         YES = 1,
@@ -3924,8 +3923,7 @@ Test8 = (function () {
             var uniqueid = (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1) + ("0000000000" + (new Date().getTime() - new Date(2010, 0, 1).getTime()).toString(16)).slice(-10);
 
             this.callback({
-                version: version,
-                revision: revision,
+                release: release,
                 uniqueid: uniqueid,
                 results: this.list.toString()
             });

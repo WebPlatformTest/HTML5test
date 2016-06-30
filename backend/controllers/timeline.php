@@ -27,7 +27,7 @@
 			$tpl->set('variant', $row);
 		}
 
-		if ($timeline = Results::getTimeline($_REQUEST['id'], $_REQUEST['type'], $GLOBALS['configuration']['version'])) {
+		if ($timeline = Results::getTimeline($_REQUEST['id'], $_REQUEST['type'], $GLOBALS['configuration']['release'])) {
 			$tpl->set('timeline', $timeline);
 		}
 	}

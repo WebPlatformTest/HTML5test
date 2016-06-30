@@ -3,8 +3,7 @@
 	$GLOBALS['configuration'] = [
 		'readonly' => false,
 
-		'version' => 8,
-		'revision' => 0,
+		'release' => 8,
 
 		'database' => [
 			'server' => 'localhost',

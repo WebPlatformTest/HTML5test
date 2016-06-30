@@ -2,7 +2,7 @@
 
 	class Browsers {
 
-		static function getAll($version) {
+		static function getAll($release) {
 			$results = array();
 
 			$types = array('desktop', 'tablet', 'mobile', 'television', 'gaming');
@@ -20,7 +20,7 @@
 						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE
 						FIND_IN_SET('" . $type . "',b.type) AND
-						s.release = '" . $version . "' AND
+						s.release = '" . $release . "' AND
 						f.points != ''
 					ORDER BY
 						b.variant, ISNULL(b.release), b.release, b.version

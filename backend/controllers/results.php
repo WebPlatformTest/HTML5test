@@ -30,7 +30,7 @@
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				s.release = '" . $GLOBALS['configuration']['version'] . "' AND
+				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('gaming-console',b.type)
 			ORDER BY
 				score DESC
@@ -53,7 +53,7 @@
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				s.release = '" . $GLOBALS['configuration']['version'] . "' AND
+				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('gaming-portable',b.type)
 			ORDER BY
 				score DESC
@@ -76,7 +76,7 @@
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				s.release = '" . $GLOBALS['configuration']['version'] . "' AND
+				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('television-smart',b.type)
 			ORDER BY
 				score DESC
@@ -99,7 +99,7 @@
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				s.release = '" . $GLOBALS['configuration']['version'] . "' AND
+				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('television-box',b.type)
 			ORDER BY
 				score DESC
@@ -122,7 +122,7 @@
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				s.release = '" . $GLOBALS['configuration']['version'] . "' AND
+				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('ereader',b.type)
 			ORDER BY
 				score DESC
@@ -157,7 +157,7 @@
 			WHERE
 				v.importance > 0 AND
 				b.listed = 1 AND
-				s.release = '" . $GLOBALS['configuration']['version'] . "' AND
+				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',b.type)
 			ORDER BY
 				IFNULL(v.nickname,v.name), !ISNULL(b.release), b.release DESC
@@ -204,7 +204,7 @@
 				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				s.release = '" . $GLOBALS['configuration']['version'] . "' AND
+				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',b.type)
 			ORDER BY
 				score DESC
@@ -235,7 +235,7 @@
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				(!ISNULL(b.release) OR b.status = 'development') AND
-				s.release = '" . $GLOBALS['configuration']['version'] . "' AND
+				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',v.type) AND
 				!ISNULL(f.score)
 			ORDER BY

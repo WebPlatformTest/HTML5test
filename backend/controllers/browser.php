@@ -13,7 +13,7 @@
 
 	$tpl = new Template('../templates/browser.html');
 
-	$tpl->set('results', Browsers::getAll($GLOBALS['configuration']['version']));
+	$tpl->set('results', Browsers::getAll($GLOBALS['configuration']['release']));
 
 	if (isset($_REQUEST['show'])) {
 		$show = explode('/', $_REQUEST['show']);
@@ -30,7 +30,7 @@
 			}
 
 			else {
-				if ($row = Results::getByBrowser($show[0], $GLOBALS['configuration']['version'])) {
+				if ($row = Results::getByBrowser($show[0], $GLOBALS['configuration']['release'])) {
 					$tpl->set('one', json_encode($row));
 				}
 			}
@@ -48,7 +48,7 @@
 			}
 
 			else {
-				if ($row = Results::getByBrowser($show[1], $GLOBALS['configuration']['version'])) {
+				if ($row = Results::getByBrowser($show[1], $GLOBALS['configuration']['release'])) {
 					$tpl->set('two', json_encode($row));
 				}
 			}
@@ -66,7 +66,7 @@
 			}
 
 			else {
-				if ($row = Results::getByBrowser($show[2], $GLOBALS['configuration']['version'])) {
+				if ($row = Results::getByBrowser($show[2], $GLOBALS['configuration']['release'])) {
 					$tpl->set('three', json_encode($row));
 				}
 			}
@@ -84,7 +84,7 @@
 			}
 
 			else {
-				if ($row = Results::getByBrowser($show[3], $GLOBALS['configuration']['version'])) {
+				if ($row = Results::getByBrowser($show[3], $GLOBALS['configuration']['release'])) {
 					$tpl->set('four', json_encode($row));
 				}
 			}
@@ -102,7 +102,7 @@
 			}
 
 			else {
-				if ($row = Results::getByBrowser($show[4], $GLOBALS['configuration']['version'])) {
+				if ($row = Results::getByBrowser($show[4], $GLOBALS['configuration']['release'])) {
 					$tpl->set('five', json_encode($row));
 				}
 			}
