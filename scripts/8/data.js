@@ -2107,22 +2107,6 @@ var tests = [
 										url:		'https://w3c.github.io/browser-payment-api/specs/paymentrequest.html'
 									}
 								]
-					}, {
-						id:		'history',
-						name: 	'History and navigation',
-						status:	'stable',
-						items:	[
-									{
-										id:			'history',
-										name: 		'Session history',
-										value:		4,
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#the-history-interface' ],
-														[ 'wp',  '/dom/History' ],
-														[ 'mdn', '/Web/Guide/API/DOM/Manipulating_the_browser_history' ]
-													]
-									}
-								]
 					}
 				]
 	},
@@ -2564,6 +2548,15 @@ var tests = [
 						status:	'stable',
 						items:	[
 									{
+										id:			'history',
+										name: 		'Session history',
+										value:		4,
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#the-history-interface' ],
+														[ 'wp',  '/dom/History' ],
+														[ 'mdn', '/Web/Guide/API/DOM/Manipulating_the_browser_history' ]
+													]
+									}, {
 										id:			'pagevisiblity',
 										name: 		'Page Visibility',
 										value:		2,

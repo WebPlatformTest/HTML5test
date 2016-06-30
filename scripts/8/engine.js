@@ -2414,7 +2414,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'history.history',
+                key: 'other.history',
                 passed: !!(window.history && history.pushState)
             });
         },
