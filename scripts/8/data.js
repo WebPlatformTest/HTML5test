@@ -1057,7 +1057,7 @@ var tests = [
 								]
 					}, {
 						id:		'components',
-						status:	'experimental',
+						status:	'stable',
 						name: 	'Web Components',
 						items:	[
 									{
@@ -1070,6 +1070,7 @@ var tests = [
 									}, {
 										id:			'shadowdom',
 										name: 		'Shadow DOM',
+										status: 	'experimental',
 										value:		{ maximum: 4, award: { OLD: 2 } },
 										urls:		[
 														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/shadow/' ]
@@ -1077,7 +1078,6 @@ var tests = [
 									}, {
 										id:			'template',
 										name: 		'HTML templates',
-										status: 	'stable',
 										value:		2,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
@@ -1087,6 +1087,7 @@ var tests = [
 									}, {
 										id:			'imports',
 										name: 		'HTML imports',
+										status: 	'rejected',
 										urls:		[
 														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/imports/' ]
 													]
@@ -1423,7 +1424,7 @@ var tests = [
 		items:	[
 					{
 						id:		'responsive',
-						status:	'proposal',
+						status:	'stable',
 						name: 	'Responsive images',
 						items:	[
 									{
@@ -1484,7 +1485,6 @@ var tests = [
 									}, {
 										id:		'path',
 										name: 	'Path support',
-										status:	'proposal',
 										value:	{ maximum: 2, award: { OLD: 1 } },
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#path-objects' ],
@@ -1493,7 +1493,6 @@ var tests = [
 									}, {
 										id:		'ellipse',
 										name: 	'Ellipse support',
-										status:	'proposal',
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-ellipse' ],
@@ -1502,7 +1501,6 @@ var tests = [
 									}, {
 										id:		'dashed',
 										name: 	'Dashed line support',
-										status:	'proposal',
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#dom-context-2d-setlinedash' ],
@@ -1511,7 +1509,6 @@ var tests = [
 									}, {
 										id:		'focusring',
 										name: 	'System focus ring support',
-										status:	'proposal',
 										value:	1,
 										urls:	[
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-drawfocusifneeded' ]
@@ -1543,16 +1540,20 @@ var tests = [
 
 									{
 										id:		'png',
-										name: 	'PNG support'
+										name: 	'PNG support',
+										status:	'optional'
 									}, {
 										id:		'jpeg',
-										name: 	'JPEG support'
+										name: 	'JPEG support',
+										status:	'optional'
 									}, {
 										id:		'jpegxr',
-										name: 	'JPEG-XR support'
+										name: 	'JPEG-XR support',
+										status:	'optional'
 									}, {
 										id:		'webp',
-										name: 	'WebP support'
+										name: 	'WebP support',
+										status:	'optional'
 									}
 								]
 					}, {
@@ -1647,7 +1648,7 @@ var tests = [
 									{
 										id:			'beacon',
 										name: 		'Beacon',
-										status:		'experimental',
+										status:		'proposal',
 										value:		2,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/beacon/' ],
@@ -1658,7 +1659,7 @@ var tests = [
 									{
 										id:			'fetch',
 										name: 		'Fetch',
-										status:		'experimental',
+										status:		'proposal',
 										value:		6,
 										urls:		[
 														[ 'whatwg', 'https://fetch.spec.whatwg.org/' ],
@@ -1728,7 +1729,7 @@ var tests = [
 					}, {
 						id:		'rtc',
 						name:	'Peer To Peer',
-						status:	'proposal',
+						status:	'stable',
 						items:	[
 									'<strong>Connectivity</strong>',
 
@@ -1744,6 +1745,7 @@ var tests = [
 									}, {
 										id:		'objectrtc',
 										name: 	'ObjectRTC API for WebRTC',
+										status:	'proposal',
 										value:	{ maximum: 15, award: { PREFIX: 10 }, conditional: '!webrtc.webrtc' },
 										urls:	[
 													[ 'w3c', 'http://ortc.org/wp-content/uploads/2014/10/ortc.html' ]
@@ -1773,6 +1775,7 @@ var tests = [
 									}, {
 										key:		'media.getDisplayMedia',
 										name: 		'Screen Capture',
+										status:		'experimental',
 										value:		5,
 										urls:		[
 														[ 'w3c', 'https://w3c.github.io/mediacapture-screen-share/' ]
@@ -1780,6 +1783,7 @@ var tests = [
 									}, {
 										key:		'media.enumerateDevices',
 										name: 		'Enumerate devices',
+										status:		'proposal',
 										value:		3,
 										urls:		[
 														[ 'w3c', 'https://w3c.github.io/mediacapture-main/#mediadevices' ]
@@ -2011,7 +2015,7 @@ var tests = [
 									{
 										id:			'crypto',
 										name: 		'Web Cryptography API',
-										status:		'experimental',
+										status:		'proposal',
 										value:		{ maximum: 5, award: { PREFIX: 3 } },
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/WebCryptoAPI/' ]
@@ -2043,7 +2047,7 @@ var tests = [
 									}, {
 										id:			'integrity',
 										name: 		'Subresource Integrity',
-										status:		'experimental',
+										status:		'proposal',
 										value:		2,
 										urls:		'http://www.w3.org/TR/SRI/'
 									}, {
@@ -2135,7 +2139,7 @@ var tests = [
 									}, {
 										id:			'serviceWorkers',
 										name: 		'Service Workers',
-										status:		'experimental',
+										status:		'proposal',
 										value:		10,
 										urls:		[
 														[ 'w3c', 'https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#service-worker-obj' ],
@@ -2195,7 +2199,6 @@ var tests = [
 									{
 										id:			'indexedDB.basic',
 										name: 		'IndexedDB',
-										status:		'proposal',
 										value:		{ maximum: 21, award: { PREFIX: 16 } },
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
@@ -2205,7 +2208,6 @@ var tests = [
 									}, {
 										id:			'indexedDB.blob',
 										name: 		'Objectstore <code>Blob</code> support',
-										status:		'proposal',
 										value:		2,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
@@ -2215,7 +2217,6 @@ var tests = [
 									}, {
 										id:			'indexedDB.arraybuffer',
 										name: 		'Objectstore <code>ArrayBuffer</code> support',
-										status:		'proposal',
 										value:		2,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
@@ -2364,6 +2365,7 @@ var tests = [
 									}, {
 										id:			'executionevents',
 										name: 		'Script execution events',
+										status:		'rejected',
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#the-script-element' ],
 														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element' ],
