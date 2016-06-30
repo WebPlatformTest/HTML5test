@@ -1936,93 +1936,6 @@ var tests = [
 						status:	'stable',
 						name:	'Performance',
 						items:	[
-									{
-										id:			'datatypes',
-										name:		'Native binary data',
-										value:		7,
-										status:		'stable',
-										items:		[
-														{
-															id:			'ArrayBuffer',
-															name: 		'<code>ArrayBuffer</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#5' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-arraybuffer-constructor' ]
-																		]
-														}, {
-															id:			'Int8Array',
-															name: 		'<code>Int8Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Uint8Array',
-															name: 		'<code>Uint8Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Uint8ClampedArray',
-															name: 		'<code>Uint8ClampedArray</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7.1' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Int16Array',
-															name: 		'<code>Int16Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Uint16Array',
-															name: 		'<code>Uint16Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Int32Array',
-															name: 		'<code>Int32Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Uint32Array',
-															name: 		'<code>Uint32Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Float32Array',
-															name: 		'<code>Float32Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Float64Array',
-															name: 		'<code>Float64Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'DataView',
-															name: 		'<code>DataView</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-dataview-constructor' ]
-																		]
-														}
-													]
-									},
-
 									'<strong>Workers</strong>',
 
 									{
@@ -2438,21 +2351,13 @@ var tests = [
 									}
 								]
 					}, {
-						id:		'other',
-						name: 	'Other',
+						id:		'scripting',
+						name: 	'Scripting',
 						status:	'stable',
 						items:	[
-									'<strong>Scripts</strong>',
+									'<strong>Script execution</strong>',
 
 									{
-										id:			'modules',
-										name: 		'JavaScript Modules',
-										value:		3,
-										urls:		[
-														[ 'ecma', 'https://tc39.github.io/ecma262/#prod-Module' ],
-														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-type' ],
-													]
-									}, {
 										id:			'async',
 										name: 		'Asynchronous script execution',
 										value:		3,
@@ -2473,15 +2378,6 @@ var tests = [
 														[ 'wp',  '/html/elements/script' ]
 													]
 									}, {
-										id:			'onerror',
-										name: 		'Runtime script error reporting',
-										value:		1,
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#runtime-script-errors' ],
-														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/webappapis.html#runtime-script-errors' ],
-														[ 'mdn', '/Web/API/GlobalEventHandlers/onerror' ]
-													]
-									}, {
 										id:			'executionevents',
 										name: 		'Script execution events',
 										urls:		[
@@ -2490,6 +2386,145 @@ var tests = [
 														[ 'mdn', '/Web/Events/beforescriptexecute' ]
 													]
 									}, {
+										id:			'onerror',
+										name: 		'Runtime script error reporting',
+										value:		1,
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#runtime-script-errors' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/webappapis.html#runtime-script-errors' ],
+														[ 'mdn', '/Web/API/GlobalEventHandlers/onerror' ]
+													]
+									},
+
+									'<strong>ECMAScript 5</strong>',
+
+									{
+										id:			'es5.json',
+										name: 		'JSON encoding and decoding',
+										value:		2,
+										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-json-object' ],
+														[ 'mdn', '/JSON' ],
+														[ 'wp',	 '/apis/json' ]
+													]
+									},
+
+									'<strong>ECMAScript 6</strong>',
+
+									{
+										id:			'es6.modules',
+										name: 		'Modules',
+										value:		3,
+										urls:		[
+														[ 'ecma', 'https://tc39.github.io/ecma262/#prod-Module' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-type' ],
+													]
+									}, {
+										id: 		'es6.i18n',
+										name:   	'Internationalization',
+										value:		2,
+										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-402/1.0/' ],
+														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Intl' ]
+													]
+									}, {
+										id: 		'es6.promises',
+										name:   	'Promises',
+										value:		3,
+										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects' ],
+														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Promise' ]
+													]
+									}, {
+										key:		'es6.datatypes',
+										name:		'Typed arrays',
+										value:		7,
+										status:		'stable',
+										items:		[
+														{
+															id:			'ArrayBuffer',
+															name: 		'<code>ArrayBuffer</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#5' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-arraybuffer-constructor' ]
+																		]
+														}, {
+															id:			'Int8Array',
+															name: 		'<code>Int8Array</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'Uint8Array',
+															name: 		'<code>Uint8Array</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'Uint8ClampedArray',
+															name: 		'<code>Uint8ClampedArray</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7.1' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'Int16Array',
+															name: 		'<code>Int16Array</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'Uint16Array',
+															name: 		'<code>Uint16Array</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'Int32Array',
+															name: 		'<code>Int32Array</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'Uint32Array',
+															name: 		'<code>Uint32Array</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'Float32Array',
+															name: 		'<code>Float32Array</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'Float64Array',
+															name: 		'<code>Float64Array</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
+																		]
+														}, {
+															id:			'DataView',
+															name: 		'<code>DataView</code>',
+															urls:    	[
+																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
+																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-dataview-constructor' ]
+																		]
+														}
+													]
+									},
+
+									'<strong>Other API\'s</strong>',
+
+									{
 										id:			'base64',
 										name: 		'Base64 encoding and decoding',
 										value:		1,
@@ -2499,13 +2534,12 @@ var tests = [
 														[ 'mdn', '/Web/API/WindowBase64/atob' ]
 													]
 									}, {
-										id:			'json',
-										name: 		'JSON encoding and decoding',
-										value:		2,
+										id: 		'mutationObserver',
+										name:   	'Mutation Observer',
+										value:		{ maximum: 2, award: { PREFIX: 1 } },
 										urls:		[
-														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-json-object' ],
-														[ 'mdn', '/JSON' ],
-														[ 'wp',	 '/apis/json' ]
+														[ 'w3c', 'http://www.w3.org/TR/dom/#mutation-observers' ],
+														[ 'mdn', '/Web/API/MutationObserver' ]
 													]
 									}, {
 										id: 		'url',
@@ -2522,34 +2556,13 @@ var tests = [
 														[ 'whatwg', 'https://encoding.spec.whatwg.org' ],
 														[ 'mdn', '/Web/API/TextDecoder' ]
 													]
-									}, {
-										id: 		'i18n',
-										name:   	'Internationalization API',
-										value:		2,
-										urls:		[
-														[ 'ecma', 'http://www.ecma-international.org/ecma-402/1.0/' ],
-														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Intl' ]
-													]
-									}, {
-										id: 		'mutationObserver',
-										name:   	'Mutation Observer',
-										value:		{ maximum: 2, award: { PREFIX: 1 } },
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/dom/#mutation-observers' ],
-														[ 'mdn', '/Web/API/MutationObserver' ]
-													]
-									}, {
-										id: 		'promises',
-										name:   	'Promises',
-										value:		3,
-										urls:		[
-														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects' ],
-														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Promise' ]
-													]
-									},
-
-									'<strong>Other</strong>',
-
+									}
+								]
+					}, {
+						id:		'other',
+						name: 	'Other',
+						status:	'stable',
+						items:	[
 									{
 										id:			'pagevisiblity',
 										name: 		'Page Visibility',

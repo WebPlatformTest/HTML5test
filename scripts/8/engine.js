@@ -2226,57 +2226,57 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'performance.datatypes.ArrayBuffer',
+                key: 'scripting.es6.datatypes.ArrayBuffer',
                 passed: typeof ArrayBuffer != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Int8Array',
+                key: 'scripting.es6.datatypes.Int8Array',
                 passed: typeof Int8Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Uint8Array',
+                key: 'scripting.es6.datatypes.Uint8Array',
                 passed: typeof Uint8Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Uint8ClampedArray',
+                key: 'scripting.es6.datatypes.Uint8ClampedArray',
                 passed: typeof Uint8ClampedArray != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Int16Array',
+                key: 'scripting.es6.datatypes.Int16Array',
                 passed: typeof Int16Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Uint16Array',
+                key: 'scripting.es6.datatypes.Uint16Array',
                 passed: typeof Uint16Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Int32Array',
+                key: 'scripting.es6.datatypes.Int32Array',
                 passed: typeof Int32Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Uint32Array',
+                key: 'scripting.es6.datatypes.Uint32Array',
                 passed: typeof Uint32Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Float32Array',
+                key: 'scripting.es6.datatypes.Float32Array',
                 passed: typeof Float32Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.Float64Array',
+                key: 'scripting.es6.datatypes.Float64Array',
                 passed: typeof Float64Array != 'undefined'
             });
 
             results.addItem({
-                key: 'performance.datatypes.DataView',
+                key: 'scripting.es6.datatypes.DataView',
                 passed: typeof DataView != 'undefined'
             });
         },
@@ -3381,7 +3381,7 @@ Test8 = (function () {
 
         function (results) {
             var item = results.addItem({
-                key: 'other.modules',
+                key: 'scripting.es6.modules',
                 passed: false
             });
 
@@ -3410,7 +3410,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.async',
+                key: 'scripting.async',
                 passed: 'async' in document.createElement('script')
             });
         },
@@ -3420,7 +3420,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.defer',
+                key: 'scripting.defer',
                 passed: 'defer' in document.createElement('script')
             });
         },
@@ -3430,7 +3430,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.onerror',
+                key: 'scripting.onerror',
                 passed: isEventSupported('error')
             });
         },
@@ -3440,7 +3440,7 @@ Test8 = (function () {
 
         function (results) {
             var executionevents = results.addItem({
-                key: 'other.executionevents',
+                key: 'scripting.executionevents',
                 passed: false
             });
 
@@ -3477,7 +3477,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.base64',
+                key: 'scripting.base64',
                 passed: 'btoa' in window && 'atob' in window
             });
         },
@@ -3487,7 +3487,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.json',
+                key: 'scripting.es5.json',
                 passed: 'JSON' in window && 'parse' in JSON
             });
         },
@@ -3497,7 +3497,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.mutationObserver',
+                key: 'scripting.mutationObserver',
                 passed: 'MutationObserver' in window ? YES : 'WebKitMutationObserver' in window || 'MozMutationObserver' in window || 'oMutationObserver' in window || 'msMutationObserver' in window ? YES | PREFIX : NO
             });
         },
@@ -3507,7 +3507,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.url',
+                key: 'scripting.url',
                 passed: 'URL' in window ? YES : 'WebKitURL' in window || 'MozURL' in window || 'oURL' in window || 'msURL' in window ? YES | PREFIX : NO
             });
         },
@@ -3517,7 +3517,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.encoding',
+                key: 'scripting.encoding',
                 passed: 'TextEncoder' in window && 'TextDecoder' in window ? YES : NO
             });
         },
@@ -3527,7 +3527,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'other.i18n',
+                key: 'scripting.es6.i18n',
                 passed: 'Intl' in window ? YES : NO
             });
         },
@@ -3552,7 +3552,7 @@ Test8 = (function () {
             }
 
             results.addItem({
-                key: 'other.promises',
+                key: 'scripting.es6.promises',
                 passed: passed
             });
         },
