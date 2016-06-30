@@ -1055,6 +1055,43 @@ var tests = [
 												]
 									}
 								]
+					}, {
+						id:		'components',
+						status:	'experimental',
+						name: 	'Web Components',
+						items:	[
+									{
+										id:			'custom',
+										name: 		'Custom elements',
+										value:		4,
+										urls:		[
+														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/custom/' ]
+													]
+									}, {
+										id:			'shadowdom',
+										name: 		'Shadow DOM',
+										value:		{ maximum: 4, award: { OLD: 2 } },
+										urls:		[
+														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/shadow/' ]
+													]
+									}, {
+										id:			'template',
+										name: 		'HTML templates',
+										status: 	'stable',
+										value:		2,
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#the-template-element' ],
+														[ 'wp', '/tutorials/webcomponents/htmlimports' ]
+													]
+									}, {
+										id:			'imports',
+										name: 		'HTML imports',
+										urls:		[
+														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/imports/' ]
+													]
+									}
+								]
 					}
 				]
 	},
@@ -2314,43 +2351,6 @@ var tests = [
 		column:	'right',
 		items:	[
 					{
-						id:		'components',
-						status:	'experimental',
-						name: 	'Web Components',
-						items:	[
-									{
-										id:			'custom',
-										name: 		'Custom elements',
-										value:		4,
-										urls:		[
-														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/custom/' ]
-													]
-									}, {
-										id:			'shadowdom',
-										name: 		'Shadow DOM',
-										value:		{ maximum: 4, award: { OLD: 2 } },
-										urls:		[
-														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/shadow/' ]
-													]
-									}, {
-										id:			'template',
-										name: 		'HTML templates',
-										status: 	'stable',
-										value:		2,
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
-														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#the-template-element' ],
-														[ 'wp', '/tutorials/webcomponents/htmlimports' ]
-													]
-									}, {
-										id:			'imports',
-										name: 		'HTML imports',
-										urls:		[
-														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/imports/' ]
-													]
-									}
-								]
-					}, {
 						id:		'scripting',
 						name: 	'Scripting',
 						status:	'stable',
