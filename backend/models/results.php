@@ -66,6 +66,7 @@
 			$changes = array();
 
 			foreach ($previous AS $p => $value) {
+				if (preg_match("/\.codecs\./", $p)) continue;
 				if (in_array($p, $ignore)) continue;
 
 				if ($previous[$p] != $current[$p]) {

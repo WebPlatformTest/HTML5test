@@ -1533,6 +1533,7 @@
 
 		initialize: function(options) {
 			this.parent = options.parent;
+			this.metadata = options.metadata;
 			this.data = options.data;
 
 			this.createSections(this.parent);
@@ -1550,50 +1551,13 @@
 				tbody.appendChild(tr);
 
 				var th = document.createElement('th');
-				th.innerHTML = "<a href='/compare/feature/" + this.data[i].id + ".html'>" + this.getName(this.data[i].id) + "</a>";
+				th.innerHTML = "<a href='/compare/feature/" + this.data[i].id + ".html'>" + this.metadata.getTrail(this.data[i].id, ' ▸ ') + "</a>";
 				tr.appendChild(th);
 
 				var td = document.createElement('td');
 				td.innerHTML = this.getStatus(this.data[i].from) + " <span>→</span> " + this.getStatus(this.data[i].to);
 				tr.appendChild(td);
 			}
-		},
-
-		getName: function(id) {
-			var names = [];
-			var ids = id.split('-');
-
-			var base = [];
-			for (var i = 0; i < tests.length; i++) {
-				for (var j = 0; j < tests[i].items.length; j++) {
-					base.push(tests[i].items[j]);
-				}
-			}
-
-
-			for (var i = 0; i < ids.length; i++) {
-				var found = false;
-
-				for (var b = 0; b < base.length; b++) {
-					if (base[b].id == ids[i]) {
-						names.push(base[b].name);
-
-						if (typeof base[b].items != 'undefined') {
-							base = base[b].items;
-						}
-
-						found = true;
-						continue;
-					}
-				}
-
-				if (!found) {
-					names.push('?');
-					break;
-				}
-			}
-
-			return names.join (' ▸ ');
 		},
 
 		getStatus: function(status) {

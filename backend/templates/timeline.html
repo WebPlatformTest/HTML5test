@@ -55,6 +55,12 @@
 			<div id='contents' class='column'>
 				<div class='paper'>
 					<div>
+						<script>
+
+							var m = new Metadata(tests);
+
+						</script>
+
 						<h2>Timeline <span> for <?php echo htmlentities($variant->name); ?></span></h2>
 						<hr>
 
@@ -79,8 +85,9 @@
 							<script>
 
 								new DiffTable({
-									parent:	document.getElementById("changes_<?php echo md5($item->variant . '-' . $item->version); ?>"),
-									data:	<?php echo json_encode($item->changes); ?>
+									parent:		document.getElementById("changes_<?php echo md5($item->variant . '-' . $item->version); ?>"),
+									metadata:	m,
+									data: 		<?php echo json_encode($item->changes); ?>
 								});
 
 							</script>

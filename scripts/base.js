@@ -129,13 +129,14 @@
 	Metadata.prototype = {
 		initialize: function(data) {
 			this.data = data;
+			this.list = {};
 
 			for (var i = 0; i < this.data.length; i++) {
-				this.iterate(this.data[i].items, '');
+				this.iterate(this.data[i].items, '', -1, []);
 			}
 		},
 
-		iterate: function(data, prefix) {
+		iterate: function(data, prefix, level, path) {
 			for (var i = 0; i < data.length; i++) {
 				var key;
 
@@ -148,15 +149,46 @@
 				}
 
 				if (key) {
+					path[level + 1] = key;
+
 					if (typeof data[i].key == 'undefined') {
 						data[i].key = key;
 					}
 
+					if (typeof data[i].name != 'undefined') {
+						this.list[key] = {
+							name: data[i].name,
+							path: path.slice(0, level + 1)
+						};
+					}
+
 					if (typeof data[i].items != 'undefined') {
-						this.iterate(data[i].items, key);
+						this.iterate(data[i].items, key, level + 1, path);
 					}
 				}
 			}
+		},
+
+		getTrail: function(key, separator) {
+			var item = this.list[key];
+
+			if (item) {
+				var trail = [];
+
+				for (var i = 0; i < item.path.length; i++) {
+					if (typeof this.list[item.path[i]] != 'undefined') {
+						trail.push(this.list[item.path[i]].name);
+					} else {
+						trail.push('?');
+					}
+				}
+
+				trail.push(item.name);
+
+				return trail.join(separator);
+			}
+
+			return '?';
 		}
 	}
 
