@@ -1957,32 +1957,30 @@ Test8 = (function () {
             });
         },
 
+
+        /* WebRTC */
+
         function (results) {
-
-            /* webrtc */
-
             results.addItem({
                 key: 'rtc.webrtc',
                 passed: !!window.RTCPeerConnection ? YES : !!window.webkitRTCPeerConnection || !!window.mozRTCPeerConnection || !!window.msRTCPeerConnection || !!window.oRTCPeerConnection ? YES | PREFIX : NO
             });
         },
 
+
+        /* ObjectRTC */
+
         function (results) {
-
-
-            /* objectrtc */
-
             results.addItem({
                 key: 'rtc.objectrtc',
                 passed: !!window.RTCIceTransport ? YES : !!window.webkitRTCIceTransport || !!window.mozRTCIceTransport || !!window.msRTCIceTransport || !!window.oRTCIceTransport ? YES | PREFIX : NO
             });
         },
 
+
+        /* Datachannel */
+
         function (results) {
-
-
-            /* datachannel */
-
             var passed = false;
             try {
                 o = new (window.RTCPeerConnection || window.msRTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection)(null);
