@@ -2576,6 +2576,54 @@ Test8 = (function () {
         },
 
 
+        /* video codecs */
+
+        function (results) {
+
+            /* mpeg-4 codec */
+
+            results.addItem({
+                key: 'video.mediasource.codecs.mpeg4',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/mp4; codecs="mp4v.20.8"')
+            });
+
+            /* h.264 codec */
+
+            results.addItem({
+                key: 'video.mediasource.codecs.h264',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E"')
+            });
+
+            /* h.265 codec */
+
+            results.addItem({
+                key: 'video.mediasource.codecs.h265',
+                passed: 'MediaSource' in window && (MediaSource.isTypeSupported('video/mp4; codecs="hvc1.1.L0.0"') || MediaSource.isTypeSupported('video/mp4; codecs="hev1.1.L0.0"'))
+            });
+
+            /* theora codec */
+
+            results.addItem({
+                key: 'video.mediasource.codecs.theora',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/ogg; codecs="theora"')
+            });
+
+            /* vp8 in webm codec */
+
+            results.addItem({
+                key: 'video.mediasource.codecs.webm.vp8',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="vp8"')
+            });
+
+            /* vp9 in webm codec */
+
+            results.addItem({
+                key: 'video.mediasource.codecs.webm.vp9',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="vp9"')
+            });
+        },
+
+
         /* audio element */
 
         function (results) {

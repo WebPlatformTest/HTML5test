@@ -1273,6 +1273,37 @@ var tests = [
 										value:	2,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/mediastream-recording/' ]
+										id:		'mediasource.codecs',
+										name:	'Streaming video codecs',
+										items:	[
+													{
+														id:		'h264',
+														name: 	'H.264 support',
+														status:	'optional',
+														urls:	[
+																	[ 'other', 'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf' ]
+																]
+													}, {
+														id:		'h265',
+														name: 	'H.265 support',
+														status:	'optional'
+													}, {
+														id:		'webm.vp8',
+														name: 	'WebM with VP8 support',
+														status:	'optional',
+														urls:	[
+																	[ 'webm', 'http://www.webmproject.org/' ],
+																	[ 'ietf', 'http://www.rfc-editor.org/rfc/rfc6386.txt' ]
+																]
+													}, {
+														id:		'webm.vp9',
+														name: 	'WebM with VP9 support',
+														status:	'optional',
+														urls:	[
+																	[ 'webm', 'http://www.webmproject.org/' ],
+																	[ 'ietf', 'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt' ]
+																]
+													}
 												]
 									},
 
