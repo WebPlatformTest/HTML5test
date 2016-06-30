@@ -1998,6 +1998,17 @@ Test8 = (function () {
         },
 
 
+        /* MediaRecorder */
+
+        function (results) {
+            results.addItem({
+                key: 'rtc.recorder',
+                passed: 'MediaRecorder' in window
+            });
+        },
+
+
+
         /* Draggable */
 
         function (results) {
@@ -2477,14 +2488,6 @@ Test8 = (function () {
             results.addItem({
                 key: 'video.mediasource',
                 passed: 'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
-            });
-
-
-            /* recorder */
-
-            results.addItem({
-                key: 'video.recorder',
-                passed: 'MediaRecorder' in window
             });
         },
 

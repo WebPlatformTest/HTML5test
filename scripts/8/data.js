@@ -1267,12 +1267,6 @@ var tests = [
 													[ 'wp',  '/apis/media_source_extensions' ]
 												]
 									}, {
-										id:		'recorder',
-										name: 	'Media Stream recorder',
-										status:	'proposal',
-										value:	2,
-										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/mediastream-recording/' ]
 										id:		'mediasource.codecs',
 										name:	'Streaming video codecs',
 										items:	[
@@ -1819,6 +1813,18 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'https://w3c.github.io/mediacapture-main/#mediadevices' ]
 													]
+									},
+
+									'<strong>Recording</strong>',
+
+									{
+										id:		'recorder',
+										name: 	'Media Stream recorder',
+										status:	'proposal',
+										value:	2,
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/mediastream-recording/' ]
+												]
 									}
 								]
 					}
