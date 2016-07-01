@@ -2178,7 +2178,7 @@ var tests = [
 										status:		'proposal',
 										value:		10,
 										urls:		[
-														[ 'w3c', 'https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#service-worker-obj' ],
+														[ 'w3c', 'https://www.w3.org/TR/service-workers/' ],
 														[ 'mdn', '/Web/API/Service_Worker_API' ]
 													]
 									}, {
