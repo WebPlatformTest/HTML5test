@@ -243,10 +243,19 @@
 			}
 
 			if (typeof data.items == 'object') {
+				result = 0;
+				passed = true;
+
 				for (var i = 0; i < data.items.length; i++) {
 					if (data.items[i].key) {
-						result &= this.getResult(data.items[i].key) & YES;
+						var r = this.getResult(data.items[i].key);
+						passed &= r | YES;
+						result |= r;
 					}
+				}
+
+				if (!passed) {
+					result = false;
 				}
 			}
 			else {

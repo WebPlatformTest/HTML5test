@@ -1939,6 +1939,7 @@ var tests = [
 									}, {
 										id:		'editing.selectors',
 										name:	'CSS selectors',
+										value:	{ maximum: 2, award: { PREFIX: 1 } },
 										urls:	[
 													[ 'mdn', '/Web/Guide/HTML/Content_Editable' ]
 												],
@@ -1946,12 +1947,10 @@ var tests = [
 													{
 														id:			'read-write',
 														name: 		'<code>:read-write</code> selector',
-														value:		1,
 														url:		'http://www.w3.org/TR/html5/links.html#selector-read-write'
 													}, {
 														id:			'read-only',
 														name: 		'<code>:read-only</code> selector',
-														value:		1,
 														url:		'http://www.w3.org/TR/html5/links.html#selector-read-only'
 													}
 												]
