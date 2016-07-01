@@ -410,7 +410,7 @@
 			this.options.onReport();
 
 			new Feedback(this.confirm, {
-				suggestion:	t('I am using') + ' ' + Browsers,
+				suggestion:	'I am using' + ' ' + Browsers,
 
 				onFeedback:	function(value) {
 								this.options.onFeedback(value);
