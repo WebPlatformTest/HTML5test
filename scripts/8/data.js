@@ -2166,7 +2166,7 @@ var tests = [
 									{
 										id:			'applicationCache',
 										name: 		'Application Cache',
-										value:		5,
+										value:		3,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#offline' ],
 														[ 'wp',  '/apis/appcache/ApplicationCache' ],
@@ -2180,6 +2180,15 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#service-worker-obj' ],
 														[ 'mdn', '/Web/API/Service_Worker_API' ]
+													]
+									}, {
+										id:			'pushMessages',
+										name: 		'Push Messages',
+										status:		'proposal',
+										value:		2,
+										urls:		[
+														[ 'w3c', 'https://w3c.github.io/push-api/' ],
+														[ 'mdn', '/Web/API/Push_API' ]
 													]
 									},
 

@@ -3136,6 +3136,16 @@ Test8 = (function () {
         },
 
 
+        /* serviceWorker */
+
+        function (results) {
+            results.addItem({
+                key: 'offline.pushMessages',
+                passed: 'PushManager' in window && 'PushSubscription' in window
+            });
+        },
+
+
         /* registerProtocolHandler */
 
         function (results) {
