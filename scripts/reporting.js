@@ -1399,7 +1399,7 @@
 						var type = null;
 
 						for (var i = 0; i < tests.length; i++) {
-							if (!filter || (typeof tests[i].id != 'undefined' && tests[i].name.toLowerCase().indexOf(filter.toLowerCase()) != -1)) {
+							if (!filter || (typeof tests[i].key != 'undefined' && tests[i].name.toLowerCase().indexOf(filter.toLowerCase()) != -1)) {
 								var item = document.createElement('li');
 
 								if (!filter) item.className = 'indent-' + tests[i].indent;
