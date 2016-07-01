@@ -321,6 +321,12 @@ div:-moz-full-screen #timelineGraph {
 .comparisonTable table td.used {
 	background-color: #eee;
 }
+.comparisonTable table td.used.yes {
+	background-color: rgba(28, 140, 29, 0.1);
+}
+.comparisonTable table td.used.no {
+	background-color: rgba(133, 51, 51, 0.1);
+}
 .comparisonTable table th em {
 	font-style: normal;
 	font-size: 90%;
@@ -351,7 +357,7 @@ div:-moz-full-screen #timelineGraph {
 	font-size: 11px;
 	content: '▼';
 	color: #888;
-	
+
 	-webkit-transition: -webkit-transform 200ms ease;
 	-moz-transition: -moz-transform 200ms ease;
 	-ms-transition: -ms-transform 200ms ease;
@@ -842,7 +848,7 @@ div:-moz-full-screen #timelineGraph {
 	font-style: normal;
 	font-size: 4em;
 	color: #0092bf;
-	
+
 	position: absolute;
 	top: 10px;
 	left: 0;
@@ -850,7 +856,7 @@ div:-moz-full-screen #timelineGraph {
 .diffHeader h3 {
 	font-size: 1.3em;
 	margin: 0 !important;
-	
+
 	position: absolute;
 	top: -0.3em;
 	left: 70px;

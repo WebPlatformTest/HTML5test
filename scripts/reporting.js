@@ -682,23 +682,23 @@
 					var row = document.getElementById('row-' + key);
 					if (row) {
 						var cell = row.childNodes[column + 1];
-
-						cell.className = 'used';
+						var classes = [ 'used' ];
 
 						if (typeof tests[i].items != 'undefined') {
 							var results = this.updateItems(column, data, tests[i].items);
 
-							if (results[0] == results[1])
+							if (results[0] == results[1]) {
 								cell.innerHTML = '<div>' + 'Yes' + ' <span class="check">✔</span></div>';
-							else if (results[1] == 0)
+								classes.push('yes');
+							} else if (results[1] == 0) {
 								cell.innerHTML = '<div>' + 'No' + ' <span class="ballot">✘</span></div>';
-							else
+								classes.push('no');
+							} else {
 								cell.innerHTML = '<div><span class="partially">' + 'Partial' + '</span> <span class="partial">○</span></div>';
+							}
 						}
 
 						else {
-
-
 							if (match = (new RegExp(key + '=(-?[0-9]+)')).exec(data.results)) {
 								var result = parseInt(match[1], 10);
 
@@ -706,23 +706,25 @@
 									switch(true) {
 										case !! (result & BUGGY):			cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;
 										case !! (result & OLD):				cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; count[1]++; break;
-										case !! (result & PREFIX):			cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; count[1]++; break;
-										case !! (result & EXPERIMENTAL):	cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; count[1]++; break;
-										default:							cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; count[1]++; break;
+										case !! (result & PREFIX):			cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; classes.push('yes'); count[1]++; break;
+										case !! (result & EXPERIMENTAL):	cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; classes.push('yes'); count[1]++; break;
+										default:							cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; classes.push('yes'); count[1]++; break;
 									}
 								}
 								else {
 									switch(true) {
 										case !! (result & UNKNOWN):			cell.innerHTML = '<div>Unknown <span class="buggy">?</span></div>'; break;
-										case !! (result & BLOCKED):			cell.innerHTML = '<div>Broken <span class="buggy">!</span></div>'; break;
-										case !! (result & DISABLED):		cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
-										default:							cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
+										case !! (result & BLOCKED):			cell.innerHTML = '<div>Broken <span class="buggy">!</span></div>'; classes.push('no'); break;
+										case !! (result & DISABLED):		cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; classes.push('no'); break;
+										default:							cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; classes.push('no'); break;
 									}
 								}
 							} else {
 								cell.innerHTML = '<div><span class="partially">Unknown</span> <span class="partial">?</span></div>';
 							}
 						}
+
+						cell.className = classes.join(' ');
 
 
 						var base = null;
@@ -1263,6 +1265,7 @@
 			for (var i = 0; i < this.browsers.length; i++) {
 				var row = document.getElementById('row-' + this.browsers[i].uid);
 				var cell = row.childNodes[column + 1];
+				var classes = [ 'used' ];
 
 				cell.className = 'used';
 
@@ -1273,22 +1276,24 @@
 						switch(true) {
 							case !! (result & BUGGY):			cell.innerHTML = '<div>Buggy <span class="buggy"></span></div>'; break;
 							case !! (result & OLD):				cell.innerHTML = '<div>Partial <span class="partial">○</span></div>'; break;
-							case !! (result & PREFIX):			cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; break;
-							case !! (result & EXPERIMENTAL):	cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; break;
-							default:							cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; break;
+							case !! (result & PREFIX):			cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; classes.push('yes'); break;
+							case !! (result & EXPERIMENTAL):	cell.innerHTML = '<div>Prefixed <span class="check">✔</span></div>'; classes.push('yes'); break;
+							default:							cell.innerHTML = '<div>Yes <span class="check">✔</span></div>'; classes.push('yes'); break;
 						}
 					}
 					else {
 						switch(true) {
 							case !! (result & UNKNOWN):			cell.innerHTML = '<div>Unknown <span class="partial">?</span></div>'; break;
-							case !! (result & BLOCKED):			cell.innerHTML = '<div>Not functional <span class="buggy">!</span></div>'; break;
-							case !! (result & DISABLED):		cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
-							default:							cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
+							case !! (result & BLOCKED):			cell.innerHTML = '<div>Broken <span class="buggy">!</span></div>'; classes.push('no'); break;
+							case !! (result & DISABLED):		cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; classes.push('no'); break;
+							default:							cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; classes.push('no'); break;
 						}
 					}
 				}
 				else
 					cell.innerHTML = '<div><span class="partially">Unknown</span> <span class="partial">?</span></div>';
+
+				cell.className = classes.join(' ');
 			}
 		},
 
