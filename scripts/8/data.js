@@ -1153,7 +1153,10 @@ var tests = [
 										id:			'notifications',
 										name: 		'Web Notifications',
 										value:		{ maximum: 5, award: { PREFIX: 3 } },
-										url:		'http://www.w3.org/TR/notifications/'
+										urls:		[
+														[ 'w3c', 'http://www.w3.org/TR/notifications/' ],
+														[ 'whatwg', 'https://notifications.spec.whatwg.org' ]
+													]
 									}
 								]
 					}, {
