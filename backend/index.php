@@ -32,7 +32,7 @@
 			$data = array();
 
 			$db = Factory::Database();
-			$result = $db->query('SELECT DISTINCT identifier FROM results WHERE release = "' . $GLOBALS['configuration']['release'] . '" AND source = "' . $db->escape_string($_REQUEST['source']) . '"');
+			$result = $db->query('SELECT DISTINCT identifier FROM results WHERE `release` = "' . $GLOBALS['configuration']['release'] . '" AND source = "' . $db->escape_string($_REQUEST['source']) . '"');
 			while ($row = $result->fetch_object()) {
 				$data[] = $row->identifier;
 			}
