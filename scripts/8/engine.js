@@ -3212,7 +3212,7 @@ Test8 = (function () {
             try {
                 indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.moz_indexedDB || window.oIndexedDB || window.msIndexedDB;
                 passed = !!window.indexedDB ? YES : !!window.webkitIndexedDB || !!window.mozIndexedDB || !!window.moz_indexedDB || !!window.oIndexedDB || !!window.msIndexedDB ? YES | PREFIX : NO;
-                if (indexedDB && ! 'deleteDatabase' in indexedDB) passed != BUGGY;
+                if (indexedDB && ! 'deleteDatabase' in indexedDB) passed |= BUGGY;
             } catch (e) {
                 /* If we get a security exception we know the feature exists, but cookies are disabled */
                 if (e.name == 'NS_ERROR_DOM_SECURITY_ERR' || e.name == 'SecurityError') {
