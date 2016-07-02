@@ -3191,8 +3191,8 @@ Test8 = (function () {
                 passed = 'localStorage' in window && window.localStorage != null
             } catch (e) {
                 /* If we get a security exception we know the feature exists, but cookies are disabled */
-                if (e.name == 'NS_ERROR_DOM_SECURITY_ERR') {
-                    passed = true;
+                if (e.name == 'NS_ERROR_DOM_SECURITY_ERR' || e.name == 'SecurityError') {
+                    passed = YES | DISABLED;
                 }
             }
 
