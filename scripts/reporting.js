@@ -1382,7 +1382,6 @@
 
 									if (action == 'load') {
 										var key = target.getAttribute('data-key');
-										console.log(key);
 										that.loadColumn(c, key);
 									}
 								}
