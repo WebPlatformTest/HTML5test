@@ -55,7 +55,7 @@ RewriteRule ^scripts/useragents				http://api.whichbrowser.net/warning.js
 
 SetEnvIf User-Agent .*Bada.* BROKEN_CSP
 
-<FilesMatch "[index|qr].html">
+<FilesMatch "csp.html">
 <IfModule mod_headers.c>
     Header set Content-Security-Policy "default-src 'unsafe-inline' data: *; frame-src *; options inline-script;" env=!BROKEN_CSP
 </IfModule>

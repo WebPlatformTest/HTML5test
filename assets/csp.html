@@ -1,0 +1,19 @@
+<!doctype html>
+
+<html>
+    <body>
+        <script>
+
+            var passed = false;
+
+            try {
+                eval('true');
+            } catch(e) {
+                passed = true;
+            }
+
+            window.top.postMessage('csp10:' + (passed ? 'passed' : 'failed'), '*');
+
+        </script>
+    </body>
+</html>

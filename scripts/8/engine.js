@@ -2323,16 +2323,42 @@ Test8 = (function () {
         /* csp 1.0 */
 
         function (results) {
-            var passed = !(function () { try { return eval('true'); } catch (e) { } return false; })();
+            var passed = false;
 
             if (navigator.webdriver && Browsers.isBrowser('Firefox', '>', 22)) {
                 passed = YES | DISABLED;
             }
 
-            results.addItem({
+            var item = results.addItem({
                 key: 'security.csp10',
                 passed: passed
             });
+
+            window.addEventListener('message', function(e) {
+                if (e.data === 'csp10:passed') {
+                    item.update({
+                        passed: true
+                    });
+
+                    item.stopBackground();
+                }
+
+                if (e.data === 'csp10:failed') {
+                    item.stopBackground();
+                }
+            });
+
+            item.startBackground();
+
+            var iframe = document.createElement('iframe');
+            iframe.src = '/assets/csp.html';
+            iframe.style.visibility = 'hidden';
+            document.body.appendChild(iframe);
+
+            window.setTimeout(function () {
+                item.stopBackground();
+                document.body.removeChild(iframe);
+            }, 1000);
         },
 
 
