@@ -3206,9 +3206,19 @@ Test8 = (function () {
         /* indexeddb */
 
         function (results) {
-            var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.moz_indexedDB || window.oIndexedDB || window.msIndexedDB;
-            var passed = !!window.indexedDB ? YES : !!window.webkitIndexedDB || !!window.mozIndexedDB || !!window.moz_indexedDB || !!window.oIndexedDB || !!window.msIndexedDB ? YES | PREFIX : NO;
-            if (indexedDB && ! 'deleteDatabase' in indexedDB) passed != BUGGY;
+            var indexedDB;
+            var passed = false;
+
+            try {
+                indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.moz_indexedDB || window.oIndexedDB || window.msIndexedDB;
+                passed = !!window.indexedDB ? YES : !!window.webkitIndexedDB || !!window.mozIndexedDB || !!window.moz_indexedDB || !!window.oIndexedDB || !!window.msIndexedDB ? YES | PREFIX : NO;
+                if (indexedDB && ! 'deleteDatabase' in indexedDB) passed != BUGGY;
+            } catch (e) {
+                /* If we get a security exception we know the feature exists, but cookies are disabled */
+                if (e.name == 'NS_ERROR_DOM_SECURITY_ERR' || e.name == 'SecurityError') {
+                    passed = YES | DISABLED;
+                }
+            }
 
             results.addItem({
                 key: 'storage.indexedDB.basic',
@@ -3219,12 +3229,12 @@ Test8 = (function () {
 
             var blobitem = results.addItem({
                 key: 'storage.indexedDB.blob',
-                passed: false
+                passed: passed === YES | DISABLED ? NO | UNKNOWN : NO
             });
 
             var arrayitem = results.addItem({
                 key: 'storage.indexedDB.arraybuffer',
-                passed: false
+                passed: passed === YES | DISABLED ? NO | UNKNOWN : NO
             });
 
             if (indexedDB && 'deleteDatabase' in indexedDB) {
