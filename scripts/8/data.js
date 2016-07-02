@@ -2470,7 +2470,7 @@ var tests = [
 														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Promise' ]
 													]
 									}, {
-										key:		'es6.datatypes',
+										key:		'scripting.es6.datatypes',
 										name:		'Typed arrays',
 										value:		7,
 										status:		'stable',
