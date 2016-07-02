@@ -3229,12 +3229,12 @@ Test8 = (function () {
 
             var blobitem = results.addItem({
                 key: 'storage.indexedDB.blob',
-                passed: passed === YES | DISABLED ? NO | UNKNOWN : NO
+                passed: passed & DISABLED || passed & BUGGY ? NO | UNKNOWN : NO
             });
 
             var arrayitem = results.addItem({
                 key: 'storage.indexedDB.arraybuffer',
-                passed: passed === YES | DISABLED ? NO | UNKNOWN : NO
+                passed: passed & DISABLED || passed & BUGGY ? NO | UNKNOWN : NO
             });
 
             if (indexedDB && 'deleteDatabase' in indexedDB) {
