@@ -63,6 +63,9 @@
 			foreach ($previous AS $p => $value) {
 				if (preg_match("/\.codecs\./", $p)) continue;
 
+				if ($previous[$p] == 33) $previous[$p] = 1;
+				if ($current[$p] == 33) $current[$p] = 1;
+
 				if ($previous[$p] != $current[$p]) {
 					$changes[] = (object) array(
 						'id'	=> $p,
