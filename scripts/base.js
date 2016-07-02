@@ -784,6 +784,7 @@
 							}
 							else {
 								switch(true) {
+									case !! (result & UNKNOWN):		cell.innerHTML = '<div>Unknown <span class="partial">?</span></div>'; break;
 									case !! (result & BLOCKED):		cell.innerHTML = '<div>Not functional <span class="buggy">!</span></div>'; break;
 									case !! (result & DISABLED):	cell.innerHTML = '<div>Disabled <span class="ballot">✘</span></div>'; break;
 									default:						cell.innerHTML = '<div>No <span class="ballot">✘</span></div>'; break;
