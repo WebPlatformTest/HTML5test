@@ -80,9 +80,9 @@
 								<tbody>
 									<?php foreach($results as $item): ?>
 									<tr>
-										<td class='points'><a href='/s/<?php echo $item->uniqueid; ?>'><?php echo $item->score; ?></a></td>
-										<th class='nickname'><a href='/s/<?php echo $item->uniqueid; ?>'><?php echo $item->humanReadable; ?></a></th>
-										<td class='ago'><a href='/s/<?php echo $item->uniqueid; ?>'><?php echo $item->ago; ?> ago</a></td>
+										<td class='points'><a href='/s/<?php echo $item->uniqueid; ?>.html'><?php echo $item->score; ?></a></td>
+										<th class='nickname'><a href='/s/<?php echo $item->uniqueid; ?>.html'><?php echo $item->humanReadable; ?></a></th>
+										<td class='ago'><a href='/s/<?php echo $item->uniqueid; ?>.html'><?php echo $item->ago; ?> ago</a></td>
 									</tr>
 									<?php endforeach; ?>
 								</tbody>
@@ -131,9 +131,9 @@
 								for (var i = 0; i < data.length; i++) {
 									contents +=
 										"<tr>" +
-											"<td class='points'><a href='/s/" + data[i].uniqueid + "'>" + data[i].score + "</a></td>" +
-											"<th class='nickname'><a href='/s/" + data[i].uniqueid + "'>" + data[i].humanReadable + "</a></th>" +
-											"<td class='ago'><a href='/s/" + data[i].uniqueid + "'>" + data[i].ago + " ago</a></td>" +
+											"<td class='points'><a href='/s/" + data[i].uniqueid + ".html'>" + data[i].score + "</a></td>" +
+											"<th class='nickname'><a href='/s/" + data[i].uniqueid + ".html'>" + data[i].humanReadable + "</a></th>" +
+											"<td class='ago'><a href='/s/" + data[i].uniqueid + ".html'>" + data[i].ago + " ago</a></td>" +
 										"</tr>";
 
 								}
