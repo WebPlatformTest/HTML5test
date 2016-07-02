@@ -2323,9 +2323,15 @@ Test8 = (function () {
         /* csp 1.0 */
 
         function (results) {
+            var passed = !(function () { try { return eval('true'); } catch (e) { } return false; })();
+
+            if (navigator.webdriver && Browsers.isBrowser('Firefox', '>', 22)) {
+                passed = YES | DISABLED;
+            }
+
             results.addItem({
                 key: 'security.csp10',
-                passed: !(function () { try { return eval('true'); } catch (e) { } return false; })()
+                passed: passed
             });
         },
 
