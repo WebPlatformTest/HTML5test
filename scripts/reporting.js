@@ -1371,11 +1371,18 @@
 							var close = true;
 
 							if (e.target) {
-								if (e.target.hasAttribute('data-action')) {
-									var action = e.target.getAttribute('data-action');
+								var target = e.target;
+
+								while (target.tagName != 'LI' && target.parentNode) {
+									target = target.parentNode;
+								}
+
+								if (target.hasAttribute('data-action')) {
+									var action = target.getAttribute('data-action');
 
 									if (action == 'load') {
-										var key = e.target.getAttribute('data-key');
+										var key = target.getAttribute('data-key');
+										console.log(key);
 										that.loadColumn(c, key);
 									}
 								}
