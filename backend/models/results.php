@@ -55,11 +55,6 @@
 		}
 
 		static function getDiff($current, $previous) {
-			$ignore = array(
-				'audio-pcm', 'audio-mp3', 'audio-aac', 'audio-vorbis', 'audio-webm', 'audio-webmopus', 'audio-opus',
-				'video-mpeg4', 'video-h264', 'video-theora', 'video-webmvp8', 'video-webmvp9'
-			);
-
 			$current = Results::getArray($current);
 			$previous = Results::getArray($previous);
 
@@ -67,7 +62,6 @@
 
 			foreach ($previous AS $p => $value) {
 				if (preg_match("/\.codecs\./", $p)) continue;
-				if (in_array($p, $ignore)) continue;
 
 				if ($previous[$p] != $current[$p]) {
 					$changes[] = (object) array(
