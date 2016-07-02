@@ -1558,16 +1558,18 @@
 			table.appendChild(tbody);
 
 			for (var i = 0; i < this.data.length; i++) {
-				var tr = document.createElement('tr');
-				tbody.appendChild(tr);
+				if (this.metadata.getItem(this.data[i].id)) {
+					var tr = document.createElement('tr');
+					tbody.appendChild(tr);
 
-				var th = document.createElement('th');
-				th.innerHTML = "<a href='/compare/feature/" + this.data[i].id + ".html'>" + this.metadata.getTrail(this.data[i].id, ' ▸ ') + "</a>";
-				tr.appendChild(th);
+					var th = document.createElement('th');
+					th.innerHTML = "<a href='/compare/feature/" + this.data[i].id + ".html'>" + this.metadata.getTrail(this.data[i].id, ' ▸ ') + "</a>";
+					tr.appendChild(th);
 
-				var td = document.createElement('td');
-				td.innerHTML = this.getStatus(this.data[i].from) + " <span>→</span> " + this.getStatus(this.data[i].to);
-				tr.appendChild(td);
+					var td = document.createElement('td');
+					td.innerHTML = this.getStatus(this.data[i].from) + " <span>→</span> " + this.getStatus(this.data[i].to);
+					tr.appendChild(td);
+				}
 			}
 		},
 

@@ -169,6 +169,11 @@
 			}
 		},
 
+		getItem: function(key) {
+			var item = this.list[key];
+			return item;
+		},
+
 		getTrail: function(key, separator) {
 			var item = this.list[key];
 
