@@ -2454,12 +2454,18 @@ var tests = [
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-type' ],
 													]
 									}, {
-										id: 		'es6.i18n',
-										name:   	'Internationalization',
-										value:		2,
+										id: 		'es6.class',
+										name:   	'Classes',
+										value:		1,
 										urls:		[
-														[ 'ecma', 'http://www.ecma-international.org/ecma-402/1.0/' ],
-														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Intl' ]
+														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-class-definitions' ],
+													]
+									}, {
+										id: 		'es6.arrow',
+										name:   	'Arrow functions',
+										value:		1,
+										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions' ],
 													]
 									}, {
 										id: 		'es6.promises',
@@ -2470,14 +2476,39 @@ var tests = [
 														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Promise' ]
 													]
 									}, {
-										key:		'scripting.es6.datatypes',
+										id: 		'es6.template',
+										name:   	'Template strings',
+										value:		1,
+										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-template-literals' ],
+													]
+									}, {
+										id:			'es6.datatypes',
 										name:		'Typed arrays',
-										value:		7,
+										value:		2,
 										status:		'stable',
 										urls:		[
 														[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/' ],
 														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-structured-data' ]
 													]
+									}, {
+										id: 		'es6.i18n',
+										name:   	'Internationalization',
+										value:		2,
+										urls:		[
+														[ 'ecma', 'http://www.ecma-international.org/ecma-402/1.0/' ],
+														[ 'mdn', '/Web/JavaScript/Reference/Global_Objects/Intl' ]
+													]
+									},
+
+									'<strong>ECMAScript 7</strong>',
+
+									{
+										id:			'es7.async',
+										name: 		'Async and Await',
+										value:		3,
+										urls:		[
+														[ 'ecma', 'https://tc39.github.io/ecmascript-asyncawait/' ]
 													]
 									},
 
