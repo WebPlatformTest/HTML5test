@@ -2474,85 +2474,10 @@ var tests = [
 										name:		'Typed arrays',
 										value:		7,
 										status:		'stable',
-										items:		[
-														{
-															id:			'ArrayBuffer',
-															name: 		'<code>ArrayBuffer</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#5' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-arraybuffer-constructor' ]
-																		]
-														}, {
-															id:			'Int8Array',
-															name: 		'<code>Int8Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Uint8Array',
-															name: 		'<code>Uint8Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Uint8ClampedArray',
-															name: 		'<code>Uint8ClampedArray</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7.1' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Int16Array',
-															name: 		'<code>Int16Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Uint16Array',
-															name: 		'<code>Uint16Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Int32Array',
-															name: 		'<code>Int32Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Uint32Array',
-															name: 		'<code>Uint32Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Float32Array',
-															name: 		'<code>Float32Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'Float64Array',
-															name: 		'<code>Float64Array</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-constructors' ]
-																		]
-														}, {
-															id:			'DataView',
-															name: 		'<code>DataView</code>',
-															urls:    	[
-																			[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/#7' ],
-																			[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-dataview-constructor' ]
-																		]
-														}
+										urls:		[
+														[ 'khronos', 'http://www.khronos.org/registry/typedarray/specs/latest/' ],
+														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-structured-data' ]
+													]
 													]
 									},
 

@@ -4005,6 +4005,24 @@ Test8 = (function () {
                 key: 'scripting.es6.datatypes.DataView',
                 passed: typeof DataView != 'undefined'
             });
+
+
+            var passed = typeof ArrayBuffer != 'undefined' &&
+                typeof Int8Array != 'undefined' &&
+                typeof Uint8Array != 'undefined' &&
+                typeof Uint8ClampedArray != 'undefined' &&
+                typeof Int16Array != 'undefined' &&
+                typeof Uint16Array != 'undefined' &&
+                typeof Int32Array != 'undefined' &&
+                typeof Uint32Array != 'undefined' &&
+                typeof Float32Array != 'undefined' &&
+                typeof Float64Array != 'undefined' &&
+                typeof DataView != 'undefined';
+
+            results.addItem({
+                key: 'scripting.es6.datatypes',
+                passed: passed ? YES : NO
+            });
         },
 
 
