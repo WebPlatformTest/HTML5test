@@ -4065,7 +4065,7 @@ Test8 = (function () {
             var passed = YES;
 
             try {
-                eval('async function(){ await Promise.resolve() }');
+                eval('async function(){ return await Promise.resolve() }');
             } catch (e) {
                 passed = NO;
             }
