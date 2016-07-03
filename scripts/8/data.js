@@ -2029,7 +2029,7 @@ var tests = [
 									}, {
 										id:			'sharedWorker',
 										name: 		'Shared Workers',
-										value:		2,
+										value:		1,
 										urls:    	[
 														[ 'w3c', 'http://www.w3.org/TR/workers/#shared-workers-and-the-sharedworker-interface' ],
 														[ 'mdn', '/Web/API/Web_Workers_API/Using_web_workers' ]
