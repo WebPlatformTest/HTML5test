@@ -3208,66 +3208,49 @@ Test8 = (function () {
             });
 
             if (indexedDB && 'deleteDatabase' in indexedDB) {
-                log('IndexedDB: starting tests');
-
                 try {
                     blobitem.startBackground();
                     arrayitem.startBackground();
 
-                    log('IndexedDB: delete existing database (if exists)');
                     var request = indexedDB.deleteDatabase('html5test');
 
                     request.onerror = function (e) {
-                        log('IndexedDB: error, could not delete database', e);
-
                         blobitem.stopBackground();
                         arrayitem.stopBackground();
                     };
 
                     request.onsuccess = function () {
                         var request = indexedDB.open('html5test', 1);
-                        log('IndexedDB: opening new database');
 
                         request.onupgradeneeded = function () {
-                            log('IndexedDB: creating objectStore');
                             request.result.createObjectStore("store");
                         };
 
                         request.onerror = function (event) {
-                            log('IndexedDB: error opening database', event);
-
                             blobitem.stopBackground();
                             arrayitem.stopBackground();
                         };
 
                         request.onsuccess = function () {
-                            log('IndexedDB: database opened');
-
                             var db = request.result;
 
                             try {
                                 db.transaction("store", "readwrite").objectStore("store").put(new Blob(), "key");
 
-                                log('IndexedDB: objectStore with Blob passed');
-
                                 blobitem.update({
                                     passed: true
                                 });
                             } catch (e) {
-                                log('IndexedDB: objectStore with Blob failed');
                             }
 
                             try {
                                 db.transaction("store", "readwrite").objectStore("store").put(new ArrayBuffer(), "key");
-
-                                log('IndexedDB: objectStore with ArrayBuffer passed');
 
                                 arrayitem.update({
                                     passed: true
                                 });
 
                             } catch (e) {
-                                log('IndexedDB: objectStore with ArrayBuffer failed');
                             }
 
                             blobitem.stopBackground();
@@ -3278,8 +3261,6 @@ Test8 = (function () {
                         };
                     };
                 } catch (e) {
-                    log('IndexedDB: exception reached during test', e);
-
                     blobitem.stopBackground();
                     arrayitem.stopBackground();
                 }
