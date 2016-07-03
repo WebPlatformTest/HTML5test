@@ -2518,27 +2518,27 @@ Test8 = (function () {
             if (!!element.canPlayType) {
                 if (element.canPlayType('video/nonsense') == 'no') {
                     passed = false;
-                    log('Codec detection is buggy: known bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string')
+                    log('BUGGY: Codec detection bug in Firefox 3.5.0 - 3.5.1 and Safari 4.0.0 - 4.0.4 that answer "no" to unknown codecs instead of an empty string')
                 }
 
                 if (element.canPlayType('video/webm') == 'probably') {
                     passed = false;
-                    log('Codec detection is buggy: known bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present')
+                    log('BUGGY: Codec detection bug that Firefox 27 and earlier always says "probably" when asked about WebM, even when the codecs string is not present')
                 }
 
                 if (element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && element.canPlayType('video/mp4') == 'probably') {
                     passed = false;
-                    log('Codec detection is buggy: known bug in iOS 4.1 and earlier that switches "maybe" and "probably" around')
+                    log('BUGGY: Codec detection bug in iOS 4.1 and earlier that switches "maybe" and "probably" around')
                 }
 
                 if (element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'maybe' && element.canPlayType('video/mp4') == 'maybe') {
                     passed = false;
-                    log('Codec detection is buggy: known bug in Android where no better answer than "maybe" is given')
+                    log('BUGGY: Codec detection bug in Android where no better answer than "maybe" is given')
                 }
 
                 if (element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably' && element.canPlayType('video/mp4; codecs="avc1.42E01E"') != 'probably') {
                     passed = false;
-                    log('Codec detection is buggy: known bug in Internet Explorer 9 that requires both audio and video codec on test')
+                    log('BUGGY: Codec detection bug in Internet Explorer 9 that requires both audio and video codec on test')
                 }
             }
 
@@ -3178,7 +3178,11 @@ Test8 = (function () {
             try {
                 indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.moz_indexedDB || window.oIndexedDB || window.msIndexedDB;
                 passed = !!window.indexedDB ? YES : !!window.webkitIndexedDB || !!window.mozIndexedDB || !!window.moz_indexedDB || !!window.oIndexedDB || !!window.msIndexedDB ? YES | PREFIX : NO;
-                if (indexedDB && ! 'deleteDatabase' in indexedDB) passed |= BUGGY;
+
+                if (indexedDB && ! 'deleteDatabase' in indexedDB) {
+                    passed |= BUGGY;
+                    log('BUGGY: missing deleteDatabase function on indexedDB');
+                }
             } catch (e) {
                 /* If we get a security exception we know the feature exists, but cookies are disabled */
                 if (e.name == 'NS_ERROR_DOM_SECURITY_ERR' || e.name == 'SecurityError') {
@@ -4038,6 +4042,10 @@ Test8 = (function () {
                     passed: scoped ? YES : YES | BUGGY
                 });
 
+                if (!scoped) {
+                    log('BUGGY: Non-exported variables are not scoped to the ES6 module');
+                }
+
                 item.stopBackground();
             });
 
@@ -4273,7 +4281,7 @@ Test8 = (function () {
                 for (var k = 0; k < blacklists.length; k++) {
                     if (typeof blacklists[k][1][part] != 'undefined') {
                         if (blacklists[k][1][part]) {
-                            log('BLOCKED TEST: ' + part + '!');
+                            log('BLOCKED: ' + part + ' is on the blacklist for this browser!');
                             return blacklists[k][0];
                         }
                     }
