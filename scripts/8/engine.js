@@ -2232,66 +2232,6 @@ Test8 = (function () {
         },
 
 
-        /* datatypes */
-
-        function (results) {
-            results.addItem({
-                key: 'scripting.es6.datatypes.ArrayBuffer',
-                passed: typeof ArrayBuffer != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Int8Array',
-                passed: typeof Int8Array != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Uint8Array',
-                passed: typeof Uint8Array != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Uint8ClampedArray',
-                passed: typeof Uint8ClampedArray != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Int16Array',
-                passed: typeof Int16Array != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Uint16Array',
-                passed: typeof Uint16Array != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Int32Array',
-                passed: typeof Int32Array != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Uint32Array',
-                passed: typeof Uint32Array != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Float32Array',
-                passed: typeof Float32Array != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.Float64Array',
-                passed: typeof Float64Array != 'undefined'
-            });
-
-            results.addItem({
-                key: 'scripting.es6.datatypes.DataView',
-                passed: typeof DataView != 'undefined'
-            });
-        },
-
-
         /* requestIdleCallback */
 
         function (results) {
@@ -3479,35 +3419,6 @@ Test8 = (function () {
         },
 
 
-        /* ES6 modules */
-
-        function (results) {
-            var item = results.addItem({
-                key: 'scripting.es6.modules',
-                passed: false
-            });
-
-            item.startBackground();
-
-            var callback = item.getGlobalCallback(function(scoped) {
-                item.update({
-                    passed: scoped ? YES : YES | BUGGY
-                });
-
-                item.stopBackground();
-            });
-
-            var s = document.createElement('script');
-            s.type = 'module';
-            s.src = "data:text/javascript;charset=utf-8,var test_module_scope = true; window." + callback + "(typeof window.test_module_scope === 'undefined')";
-            document.body.appendChild(s);
-
-            window.setTimeout(function () {
-                item.stopBackground();
-            }, 500);
-        },
-
-
         /* async scripts */
 
         function (results) {
@@ -3585,16 +3496,6 @@ Test8 = (function () {
         },
 
 
-        /* json encoding and decoding */
-
-        function (results) {
-            results.addItem({
-                key: 'scripting.es5.json',
-                passed: 'JSON' in window && 'parse' in JSON
-            });
-        },
-
-
         /* mutation observer */
 
         function (results) {
@@ -3621,6 +3522,121 @@ Test8 = (function () {
             results.addItem({
                 key: 'scripting.encoding',
                 passed: 'TextEncoder' in window && 'TextDecoder' in window ? YES : NO
+            });
+        },
+
+
+        /* json encoding and decoding */
+
+        function (results) {
+            results.addItem({
+                key: 'scripting.es5.json',
+                passed: 'JSON' in window && 'parse' in JSON
+            });
+        },
+
+
+        /* array functions */
+
+        function (results) {
+            var passed = !!(Array.prototype &&
+                Array.prototype.every &&
+                Array.prototype.filter &&
+                Array.prototype.forEach &&
+                Array.prototype.indexOf &&
+                Array.prototype.lastIndexOf &&
+                Array.prototype.map &&
+                Array.prototype.some &&
+                Array.prototype.reduce &&
+                Array.prototype.reduceRight &&
+                Array.isArray)
+
+            results.addItem({
+                key: 'scripting.es5.array',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* date functions */
+
+        function (results) {
+            var canParseISODate = false;
+
+            try {
+                canParseISODate = !!Date.parse('2013-04-12T06:06:37.307Z');
+            } catch (e) {
+            }
+
+            var passed = !!(Date.now &&
+                Date.prototype &&
+                Date.prototype.toISOString &&
+                Date.prototype.toJSON &&
+                canParseISODate);
+
+            results.addItem({
+                key: 'scripting.es5.date',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* function functions */
+
+        function (results) {
+            var passed = !!(Function.prototype && Function.prototype.bind);
+
+            results.addItem({
+                key: 'scripting.es5.function',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* object functions */
+
+        function (results) {
+            var passed = !!(Object.keys &&
+                Object.create &&
+                Object.getPrototypeOf &&
+                Object.getOwnPropertyNames &&
+                Object.isSealed &&
+                Object.isFrozen &&
+                Object.isExtensible &&
+                Object.getOwnPropertyDescriptor &&
+                Object.defineProperty &&
+                Object.defineProperties &&
+                Object.seal &&
+                Object.freeze &&
+                Object.preventExtensions);
+
+            results.addItem({
+                key: 'scripting.es5.object',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* strict */
+
+        function (results) {
+            var passed = (function() {'use strict'; return !this; })()
+
+            results.addItem({
+                key: 'scripting.es5.strict',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* string functions */
+
+        function (results) {
+            var passed = !!(String.prototype && String.prototype.trim)
+
+            results.addItem({
+                key: 'scripting.es5.string',
+                passed: passed ? YES : NO
             });
         },
 
@@ -3655,6 +3671,400 @@ Test8 = (function () {
 
             results.addItem({
                 key: 'scripting.es6.promises',
+                passed: passed
+            });
+        },
+
+
+        /* const */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('const a = 1');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.const',
+                passed: passed
+            });
+        },
+
+
+        /* let */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('let a = 1');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.let',
+                passed: passed
+            });
+        },
+
+
+        /* arrow functions */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('()=>{}');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.arrow',
+                passed: passed
+            });
+        },
+
+
+        /* classes */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('class Something {}');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.class',
+                passed: passed
+            });
+        },
+
+
+        /* generators */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('function* test() {}');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.generators',
+                passed: passed
+            });
+        },
+
+
+        /* template strings */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('var a = `a`');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.template',
+                passed: passed
+            });
+        },
+
+
+        /* destructuring */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('var { first: f, last: l } = { first: "Jane", last: "Doe" }');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.destructuring',
+                passed: passed
+            });
+        },
+
+
+        /* spread */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('Math.max(...[ 5, 10 ])');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.spread',
+                passed: passed
+            });
+        },
+
+
+        /* default params */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('function test (one = 1) {}');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es6.defaultparams',
+                passed: passed
+            });
+        },
+
+
+        /* symbols */
+
+        function (results) {
+            results.addItem({
+                key: 'scripting.es6.symbol',
+                passed: typeof Symbol !== 'undefined' ? YES : NO
+            });
+        },
+
+
+        /* collections */
+
+        function (results) {
+            var passed = typeof Map !== 'undefined' &&
+                typeof WeakMap !== 'undefined' &&
+                typeof Set !== 'undefined' &&
+                typeof WeakSet !== 'undefined';
+
+            results.addItem({
+                key: 'scripting.es6.collections',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* array functions */
+
+        function (results) {
+            var passed = typeof Array.prototype.find !== 'undefined' &&
+                typeof Array.prototype.findIndex !== 'undefined' &&
+                typeof Array.from !== 'undefined' &&
+                typeof Array.of !== 'undefined' &&
+                typeof Array.prototype.entries !== 'undefined' &&
+                typeof Array.prototype.keys !== 'undefined' &&
+                typeof Array.prototype.copyWithin !== 'undefined' &&
+                typeof Array.prototype.fill !== 'undefined';
+
+            results.addItem({
+                key: 'scripting.es6.array',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* string functions */
+
+        function (results) {
+            var passed = typeof String.fromCodePoint !== 'undefined' &&
+                typeof String.raw !== 'undefined' &&
+                typeof String.prototype.codePointAt !== 'undefined' &&
+                typeof String.prototype.repeat !== 'undefined' &&
+                typeof String.prototype.startsWith !== 'undefined' &&
+                typeof String.prototype.endsWith !== 'undefined' &&
+                typeof String.prototype.includes !== 'undefined';
+
+            results.addItem({
+                key: 'scripting.es6.string',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* number functions */
+
+        function (results) {
+            var passed = !!(Number.isFinite &&
+                Number.isInteger &&
+                Number.isSafeInteger &&
+                Number.isNaN &&
+                Number.parseInt &&
+                Number.parseFloat &&
+                Number.isInteger(Number.MAX_SAFE_INTEGER) &&
+                Number.isInteger(Number.MIN_SAFE_INTEGER) &&
+                Number.isFinite(Number.EPSILON));
+
+            results.addItem({
+                key: 'scripting.es6.number',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* object functions */
+
+        function (results) {
+            var passed = !!(Object.assign &&
+                Object.is &&
+                Object.setPrototypeOf);
+
+            results.addItem({
+                key: 'scripting.es6.object',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* math functions */
+
+        function (results) {
+            var passed = !!(Math &&
+                Math.clz32 &&
+                Math.cbrt &&
+                Math.imul &&
+                Math.sign &&
+                Math.log10 &&
+                Math.log2 &&
+                Math.log1p &&
+                Math.expm1 &&
+                Math.cosh &&
+                Math.sinh &&
+                Math.tanh &&
+                Math.acosh &&
+                Math.asinh &&
+                Math.atanh &&
+                Math.hypot &&
+                Math.trunc &&
+                Math.fround);
+
+            results.addItem({
+                key: 'scripting.es6.math',
+                passed: passed ? YES : NO
+            });
+        },
+
+
+        /* datatypes */
+
+        function (results) {
+            results.addItem({
+                key: 'scripting.es6.datatypes.ArrayBuffer',
+                passed: typeof ArrayBuffer != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Int8Array',
+                passed: typeof Int8Array != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Uint8Array',
+                passed: typeof Uint8Array != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Uint8ClampedArray',
+                passed: typeof Uint8ClampedArray != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Int16Array',
+                passed: typeof Int16Array != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Uint16Array',
+                passed: typeof Uint16Array != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Int32Array',
+                passed: typeof Int32Array != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Uint32Array',
+                passed: typeof Uint32Array != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Float32Array',
+                passed: typeof Float32Array != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.Float64Array',
+                passed: typeof Float64Array != 'undefined'
+            });
+
+            results.addItem({
+                key: 'scripting.es6.datatypes.DataView',
+                passed: typeof DataView != 'undefined'
+            });
+        },
+
+
+        /* modules */
+
+        function (results) {
+            var item = results.addItem({
+                key: 'scripting.es6.modules',
+                passed: false
+            });
+
+            item.startBackground();
+
+            var callback = item.getGlobalCallback(function(scoped) {
+                item.update({
+                    passed: scoped ? YES : YES | BUGGY
+                });
+
+                item.stopBackground();
+            });
+
+            var s = document.createElement('script');
+            s.type = 'module';
+            s.src = "data:text/javascript;charset=utf-8,var test_module_scope = true; window." + callback + "(typeof window.test_module_scope === 'undefined')";
+            document.body.appendChild(s);
+
+            window.setTimeout(function () {
+                item.stopBackground();
+            }, 500);
+        },
+
+
+        /* async await api */
+
+        function (results) {
+            var passed = YES;
+
+            try {
+                eval('async function(){}');
+            } catch (e) {
+                passed = NO;
+            }
+
+            results.addItem({
+                key: 'scripting.es7.async',
                 passed: passed
             });
         },
