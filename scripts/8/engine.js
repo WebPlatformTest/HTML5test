@@ -4140,9 +4140,9 @@ Test8 = (function () {
         return isEventSupported;
     })();
 
-    var log = function (m) {
+    var log = function () {
         if (typeof console != 'undefined') {
-            console.log(m);
+            console.log.apply(console, arguments);
         }
     };
 
