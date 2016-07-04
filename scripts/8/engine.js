@@ -2286,7 +2286,7 @@ Test8 = (function () {
                 if (e.data === 'csp10:failed') {
                     item.stopBackground();
                 }
-            });
+            }, false);
 
             item.startBackground();
 
