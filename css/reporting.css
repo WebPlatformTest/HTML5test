@@ -830,12 +830,41 @@ div:-moz-full-screen #timelineGraph {
 	text-align: right;
     white-space: nowrap;
 }
-.diffTable table td div {
+.diffTable table td > div div {
 	display: inline-block;
 	margin: 0 1em;
 	width: 70px;
 	text-align: center;
 }
+@media (max-width: 680px) {
+	.diffTable {
+		padding-left: 0;
+	}
+	.diffTable table th,
+	.diffTable table td {
+		font-size: 0.9em;
+		padding-bottom: 30px;
+	}
+	.diffTable table td > div div {
+		margin: 0 0.5em;
+		width: 60px;
+	}
+
+
+
+	.diffTable table td {
+		position: relative;
+		padding-top: 2em;
+		padding-bottom: 4em;
+	}
+	.diffTable table td > div {
+		position: absolute;
+		bottom: 1.3em;
+		right: 0;
+	}
+}
+
+
 
 .diffHeader {
 	position: relative;

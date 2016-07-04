@@ -1567,7 +1567,7 @@
 					tr.appendChild(th);
 
 					var td = document.createElement('td');
-					td.innerHTML = this.getStatus(this.data[i].from) + " <span>→</span> " + this.getStatus(this.data[i].to);
+					td.innerHTML = "<div>" + this.getStatus(this.data[i].from) + " <span>→</span> " + this.getStatus(this.data[i].to) + "</div>";
 					tr.appendChild(td);
 				}
 			}
