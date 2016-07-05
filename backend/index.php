@@ -28,6 +28,27 @@
 	$method = $_REQUEST['method'];
 	switch($method) {
 
+		case 'getFingerprint':
+			$data = array();
+
+			$db = Factory::Database();
+
+			if (isset($_REQUEST['identifier']) && isset($_REQUEST['source'])) {
+				$result = $db->query('SELECT * FROM results WHERE `release` = "' . $GLOBALS['configuration']['release'] . '" AND identifier = "' . $db->escape_string($_REQUEST['identifier']) . '" AND source = "' . $db->escape_string($_REQUEST['source']) . '"');
+				if ($row = $result->fetch_object()) {
+					echo json_encode($row->fingerprint);
+				}
+			}
+
+			if (isset($_REQUEST['uniqueid'])) {
+				$result = $db->query('SELECT * FROM results WHERE `release` = "' . $GLOBALS['configuration']['release'] . '" AND uniqueid = "' . $db->escape_string($_REQUEST['uniqueid']) . '"');
+				if ($row = $result->fetch_object()) {
+					echo json_encode($row->fingerprint);
+				}
+			}
+
+			break;
+
 		case 'getIdentifiers':
 			$data = array();
 
