@@ -148,7 +148,7 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, IFNULL(v.nickname,v.name) AS name, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, f.score
+				b.status, v.grouped AS name, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, f.score
 			FROM
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
@@ -160,7 +160,7 @@
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',b.type)
 			ORDER BY
-				IFNULL(v.nickname,v.name), !ISNULL(b.release), b.release DESC
+				v.importance DESC, v.grouped, !ISNULL(b.release), b.release DESC
 		");
 
 		$count = 0;
@@ -216,10 +216,6 @@
 
 
 		$tpl->set('results', $results);
-		if (isset($results['current']) && count($results['current']) > 0) $tpl->set('first', $results['current'][0]);
-		if (isset($results['current']) && count($results['current']) > 1) $tpl->set('runnerup', $results['current'][1]);
-		if (isset($results['development']) && count($results['development']) > 0) $tpl->set('upcoming', $results['development'][0]);
-
 
 
 
@@ -227,7 +223,7 @@
 
 		$result = $db->query("
 			SELECT
-				v.importance, IFNULL(v.nickname,v.name) AS name, b.grouped, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
+				v.importance, v.grouped, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
 			FROM
 				browserVersions AS b
 				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
@@ -239,7 +235,7 @@
 				FIND_IN_SET('" . $type . "',v.type) AND
 				!ISNULL(f.score)
 			ORDER BY
-				b.grouped, `release`
+				v.grouped, `release`
 		");
 
 		while ($row = $result->fetch_object()) {
