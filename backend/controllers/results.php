@@ -23,15 +23,15 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
+				v.status, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, v.nickname, v.details, v.visible, f.score, f.points, f.results
 			FROM
-				data_versions AS b
-				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
-				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS v
+				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
+				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
-				FIND_IN_SET('gaming-console',b.type)
+				FIND_IN_SET('gaming-console',v.type)
 			ORDER BY
 				score DESC
 		");
@@ -46,15 +46,15 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
+				v.status, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, v.nickname, v.details, v.visible, f.score, f.points, f.results
 			FROM
-				data_versions AS b
-				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
-				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS v
+				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
+				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
-				FIND_IN_SET('gaming-portable',b.type)
+				FIND_IN_SET('gaming-portable',v.type)
 			ORDER BY
 				score DESC
 		");
@@ -69,15 +69,15 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
+				v.status, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, v.nickname, v.details, v.visible, f.score, f.points, f.results
 			FROM
-				data_versions AS b
-				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
-				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS v
+				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
+				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
-				FIND_IN_SET('television-smart',b.type)
+				FIND_IN_SET('television-smart',v.type)
 			ORDER BY
 				score DESC
 		");
@@ -92,15 +92,15 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
+				v.status, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, v.nickname, v.details, v.visible, f.score, f.points, f.results
 			FROM
-				data_versions AS b
-				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
-				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS v
+				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
+				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
-				FIND_IN_SET('television-box',b.type)
+				FIND_IN_SET('television-box',v.type)
 			ORDER BY
 				score DESC
 		");
@@ -115,15 +115,15 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
+				v.status, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, v.nickname, v.details, v.visible, f.score, f.points, f.results
 			FROM
-				data_versions AS b
-				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
-				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS v
+				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
+				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
-				FIND_IN_SET('ereader',b.type)
+				FIND_IN_SET('ereader',v.type)
 			ORDER BY
 				score DESC
 		");
@@ -148,20 +148,20 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, v2.name, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, f.score
+				v.status, pp.name, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, f.score
 			FROM
-				data_versions AS b
-				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
-				LEFT JOIN data_platforms AS v2 ON (v2.platform = IFNULL(v.related,v.platform))
-				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS v
+				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
+				LEFT JOIN data_platforms AS pp ON (pp.platform = IFNULL(p.related,p.platform))
+				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				v.order > 0 AND
-				b.visible = 1 AND
+				p.order > 0 AND
+				v.visible = 1 AND
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
-				FIND_IN_SET('" . $type . "',b.type)
+				FIND_IN_SET('" . $type . "',v.type)
 			ORDER BY
-				v.order DESC, v2.name, !ISNULL(b.releasedate), b.releasedate DESC
+				p.order DESC, pp.name, !ISNULL(v.releasedate), v.releasedate DESC
 		");
 
 		$count = 0;
@@ -198,15 +198,15 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
+				v.status, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, v.nickname, v.details, v.visible, f.score, f.points, f.results
 			FROM
-				data_versions AS b
-				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
-				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS v
+				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
+				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
-				FIND_IN_SET('" . $type . "',b.type)
+				FIND_IN_SET('" . $type . "',v.type)
 			ORDER BY
 				score DESC
 		");
@@ -224,20 +224,20 @@
 
 		$result = $db->query("
 			SELECT
-				v.order, v2.name AS grouped, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.releasedate),DATE(NOW()),b.releasedate) AS `releasedate`, b.status, f.score
+				p.order, pp.name AS grouped, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, v.nickname, v.details, IF(ISNULL(v.releasedate),DATE(NOW()),v.releasedate) AS `releasedate`, v.status, f.score
 			FROM
-				data_versions AS b
-				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
-				LEFT JOIN data_platforms AS v2 ON (v2.platform = IFNULL(v.related,v.platform))
-				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS v
+				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
+				LEFT JOIN data_platforms AS pp ON (pp.platform = IFNULL(p.related,p.platform))
+				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				(!ISNULL(b.releasedate) OR b.status = 'development') AND
+				(!ISNULL(v.releasedate) OR v.status = 'development') AND
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
-				FIND_IN_SET('" . $type . "',v.type) AND
+				FIND_IN_SET('" . $type . "',p.type) AND
 				!ISNULL(f.score)
 			ORDER BY
-				v2.name, `releasedate`
+				pp.name, `releasedate`
 		");
 
 		while ($row = $result->fetch_object()) {

@@ -12,18 +12,18 @@
 			foreach($types AS $type) {
 				$result = $db->query("
 					SELECT
-						b.platform, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, IFNULL(v.related,v.platform) AS id, f.score
+						v.platform, IFNULL(v.version,'') AS version, v.nickname, v.details, v.visible, IFNULL(p.related,p.platform) AS id, f.score
 					FROM
-						data_platforms AS v
-						LEFT JOIN data_versions AS b ON (v.platform = b.platform)
-						LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+						data_platforms AS p
+						LEFT JOIN data_versions AS v ON (p.platform = v.platform)
+						LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE
-						FIND_IN_SET('" . $type . "',b.type) AND
+						FIND_IN_SET('" . $type . "',v.type) AND
 						s.release = '" . $release . "' AND
 						f.points != ''
 					ORDER BY
-						b.platform, ISNULL(b.releasedate), b.releasedate, b.version
+						v.platform, ISNULL(v.releasedate), v.releasedate, v.version
 				");
 
 				while ($row = $result->fetch_object()) {

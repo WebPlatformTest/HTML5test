@@ -11,19 +11,19 @@
 
 			$result = $db->query("
 				SELECT
-					b.platform, IFNULL(b.version,'') AS version, b.nickname, b.releasedate, b.status, f.score, f.results
+					v.platform, IFNULL(v.version,'') AS version, v.nickname, v.releasedate, v.status, f.score, f.results
 				FROM
-					data_platforms AS v
-					LEFT JOIN data_versions AS b ON (v.platform = b.platform)
-					LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					data_platforms AS p
+					LEFT JOIN data_versions AS v ON (p.platform = v.platform)
+					LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (s.fingerprint = f.fingerprint)
 				WHERE
-					(v.platform = '" . $db->escape_string($id) . "' OR v.related = '" . $db->escape_string($id) . "') AND
+					(p.platform = '" . $db->escape_string($id) . "' OR p.related = '" . $db->escape_string($id) . "') AND
+					FIND_IN_SET('" . $db->escape_string($type) . "',p.type) AND
 					FIND_IN_SET('" . $db->escape_string($type) . "',v.type) AND
-					FIND_IN_SET('" . $db->escape_string($type) . "',b.type) AND
 					s.release = '" . $release . "'
 				ORDER BY
-					IF(b.status='development',1,0) DESC, b.releasedate DESC, v.related, b.version DESC
+					IF(v.status='development',1,0) DESC, v.releasedate DESC, p.related, v.version DESC
 			");
 
 			while ($row = $result->fetch_object()) {
@@ -87,10 +87,10 @@
 			$result = $db->query("
 				SELECT
 					IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(f.results,'" . $db->escape_string($id) . "=',-1),',',1),0) as supported,
-					b.platform, IFNULL(b.version,'') AS version
+					v.platform, IFNULL(v.version,'') AS version
 				FROM
-					data_versions AS b
-					LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					data_versions AS v
+					LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
 					s.release = '" . $release . "'
@@ -113,15 +113,15 @@
 
 				$result = $db->query("
 					SELECT
-						b.platform, IFNULL(b.version,'') AS version, b.nickname, f.score, f.points, f.results
+						v.platform, IFNULL(v.version,'') AS version, v.nickname, f.score, f.points, f.results
 					FROM
-						data_versions AS b
-						LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+						data_versions AS v
+						LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE
 						s.release = '" . $release . "' AND
-						b.platform = '" . $db->escape_string($browserPlatform) . "' AND
-						b.version = '" . $db->escape_string($browserVersion) . "'
+						v.platform = '" . $db->escape_string($browserPlatform) . "' AND
+						v.version = '" . $db->escape_string($browserVersion) . "'
 				");
 
 				if ($row = $result->fetch_object()) {
@@ -136,16 +136,16 @@
 
 			$result = $db->query("
 				SELECT
-					b.platform, IFNULL(b.version,'') AS version, b.nickname, f.score, f.points, f.results
+					v.platform, IFNULL(v.version,'') AS version, v.nickname, f.score, f.points, f.results
 				FROM
-					data_versions AS b
-					LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					data_versions AS v
+					LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
 					s.release = '" . $release . "' AND
-					b.platform = '" . $db->escape_string($browserPlatform) . "'
+					v.platform = '" . $db->escape_string($browserPlatform) . "'
 				ORDER BY
-					b.releasedate DESC, b.id DESC
+					v.releasedate DESC, v.id DESC
 			");
 
 			if ($row = $result->fetch_object()) {
@@ -257,15 +257,15 @@
 
 			$res = $db->query("
 				SELECT
-					b.platform, IFNULL(b.version,'') AS version, f.results
+					v.platform, IFNULL(v.version,'') AS version, f.results
 				FROM
-					data_versions AS b
-					LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					data_versions AS v
+					LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
 					s.release = '" . $release . "'
 				ORDER BY
-					b.platform, b.version
+					v.platform, v.version
 			");
 
 			while ($row = $res->fetch_object()) {
