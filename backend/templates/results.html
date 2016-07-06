@@ -246,8 +246,8 @@
 										for (var j = 0; j < sets[i].data.length; j++) {
 											var ts = new Date().getTime();
 
-											if (sets[i].data[j].release) {
-												var date = sets[i].data[j].release.split('-');
+											if (sets[i].data[j].releasedate) {
+												var date = sets[i].data[j].releasedate.split('-');
 												var ts = Date.UTC(date[0], parseInt(date[1], 10) - 1, date[2]);
 											}
 

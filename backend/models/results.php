@@ -11,7 +11,7 @@
 
 			$result = $db->query("
 				SELECT
-					b.platform, IFNULL(b.version,'') AS version, b.nickname, b.release, b.status, f.score, f.results
+					b.platform, IFNULL(b.version,'') AS version, b.nickname, b.releasedate, b.status, f.score, f.results
 				FROM
 					data_platforms AS v
 					LEFT JOIN data_versions AS b ON (v.platform = b.platform)
@@ -23,7 +23,7 @@
 					FIND_IN_SET('" . $db->escape_string($type) . "',b.type) AND
 					s.release = '" . $release . "'
 				ORDER BY
-					IF(b.status='development',1,0) DESC, b.release DESC, v.related, b.version DESC
+					IF(b.status='development',1,0) DESC, b.releasedate DESC, v.related, b.version DESC
 			");
 
 			while ($row = $result->fetch_object()) {
@@ -145,7 +145,7 @@
 					s.release = '" . $release . "' AND
 					b.platform = '" . $db->escape_string($browserPlatform) . "'
 				ORDER BY
-					b.release DESC, b.id DESC
+					b.releasedate DESC, b.id DESC
 			");
 
 			if ($row = $result->fetch_object()) {

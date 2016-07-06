@@ -161,7 +161,7 @@
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',b.type)
 			ORDER BY
-				v.order DESC, v2.name, !ISNULL(b.release), b.release DESC
+				v.order DESC, v2.name, !ISNULL(b.releasedate), b.releasedate DESC
 		");
 
 		$count = 0;
@@ -224,7 +224,7 @@
 
 		$result = $db->query("
 			SELECT
-				v.order, v2.name AS grouped, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
+				v.order, v2.name AS grouped, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.releasedate),DATE(NOW()),b.releasedate) AS `releasedate`, b.status, f.score
 			FROM
 				data_versions AS b
 				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
@@ -232,12 +232,12 @@
 				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				(!ISNULL(b.release) OR b.status = 'development') AND
+				(!ISNULL(b.releasedate) OR b.status = 'development') AND
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',v.type) AND
 				!ISNULL(f.score)
 			ORDER BY
-				v2.name, `release`
+				v2.name, `releasedate`
 		");
 
 		while ($row = $result->fetch_object()) {
