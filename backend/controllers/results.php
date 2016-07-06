@@ -23,11 +23,11 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
+				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
 			FROM
-				browserVersions AS b
-				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS b
+				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
@@ -46,11 +46,11 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
+				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
 			FROM
-				browserVersions AS b
-				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS b
+				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
@@ -69,11 +69,11 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
+				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
 			FROM
-				browserVersions AS b
-				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS b
+				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
@@ -92,11 +92,11 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
+				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
 			FROM
-				browserVersions AS b
-				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS b
+				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
@@ -115,11 +115,11 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
+				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
 			FROM
-				browserVersions AS b
-				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS b
+				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
@@ -148,19 +148,19 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, v.grouped AS name, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, f.score
+				b.status, v.grouped AS name, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, f.score
 			FROM
-				browserVersions AS b
-				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS b
+				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				v.importance > 0 AND
-				b.listed = 1 AND
+				v.order > 0 AND
+				b.visible = 1 AND
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',b.type)
 			ORDER BY
-				v.importance DESC, v.grouped, !ISNULL(b.release), b.release DESC
+				v.order DESC, v.grouped, !ISNULL(b.release), b.release DESC
 		");
 
 		$count = 0;
@@ -197,11 +197,11 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, f.score, f.points, f.results
+				b.status, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, f.score, f.points, f.results
 			FROM
-				browserVersions AS b
-				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS b
+				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
@@ -223,11 +223,11 @@
 
 		$result = $db->query("
 			SELECT
-				v.importance, v.grouped, b.variant, IFNULL(v.replaced,v.id) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
+				v.order, v.grouped, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
 			FROM
-				browserVersions AS b
-				LEFT JOIN browserVariants AS v ON (b.variant = v.id)
-				LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+				data_versions AS b
+				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
 				(!ISNULL(b.release) OR b.status = 'development') AND

@@ -11,19 +11,19 @@
 
 			$result = $db->query("
 				SELECT
-					b.variant, IFNULL(b.version,'') AS version, b.nickname, b.release, b.status, f.score, f.results
+					b.platform, IFNULL(b.version,'') AS version, b.nickname, b.release, b.status, f.score, f.results
 				FROM
-					browserVariants AS v
-					LEFT JOIN browserVersions AS b ON (v.id = b.variant)
-					LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					data_platforms AS v
+					LEFT JOIN data_versions AS b ON (v.platform = b.platform)
+					LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (s.fingerprint = f.fingerprint)
 				WHERE
-					(v.id = '" . $db->escape_string($id) . "' OR v.replaced = '" . $db->escape_string($id) . "') AND
+					(v.platform = '" . $db->escape_string($id) . "' OR v.related = '" . $db->escape_string($id) . "') AND
 					FIND_IN_SET('" . $db->escape_string($type) . "',v.type) AND
 					FIND_IN_SET('" . $db->escape_string($type) . "',b.type) AND
 					s.release = '" . $release . "'
 				ORDER BY
-					IF(b.status='development',1,0) DESC, b.release DESC, v.replaced, b.version DESC
+					IF(b.status='development',1,0) DESC, b.release DESC, v.related, b.version DESC
 			");
 
 			while ($row = $result->fetch_object()) {
@@ -87,17 +87,17 @@
 			$result = $db->query("
 				SELECT
 					IFNULL(SUBSTRING_INDEX(SUBSTRING_INDEX(f.results,'" . $db->escape_string($id) . "=',-1),',',1),0) as supported,
-					b.variant, IFNULL(b.version,'') AS version
+					b.platform, IFNULL(b.version,'') AS version
 				FROM
-					browserVersions AS b
-					LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					data_versions AS b
+					LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
 					s.release = '" . $release . "'
 			");
 
 			while ($row = $result->fetch_object()) {
-				$results[] = $row->variant . '-' . $row->version . '=' . $row->supported;
+				$results[] = $row->platform . '-' . $row->version . '=' . $row->supported;
 			}
 
 			return $results;
@@ -109,18 +109,18 @@
 			$browser = explode('-', $browser);
 
 			if (count($browser) > 1) {
-				list($browserVariant, $browserVersion) = $browser;
+				list($browserPlatform, $browserVersion) = $browser;
 
 				$result = $db->query("
 					SELECT
-						b.variant, IFNULL(b.version,'') AS version, b.nickname, f.score, f.points, f.results
+						b.platform, IFNULL(b.version,'') AS version, b.nickname, f.score, f.points, f.results
 					FROM
-						browserVersions AS b
-						LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+						data_versions AS b
+						LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE
 						s.release = '" . $release . "' AND
-						b.variant = '" . $db->escape_string($browserVariant) . "' AND
+						b.platform = '" . $db->escape_string($browserPlatform) . "' AND
 						b.version = '" . $db->escape_string($browserVersion) . "'
 				");
 
@@ -131,19 +131,19 @@
 				return;
 			}
 			else {
-				$browserVariant = $browser[0];
+				$browserPlatform = $browser[0];
 			}
 
 			$result = $db->query("
 				SELECT
-					b.variant, IFNULL(b.version,'') AS version, b.nickname, f.score, f.points, f.results
+					b.platform, IFNULL(b.version,'') AS version, b.nickname, f.score, f.points, f.results
 				FROM
-					browserVersions AS b
-					LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					data_versions AS b
+					LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
 					s.release = '" . $release . "' AND
-					b.variant = '" . $db->escape_string($browserVariant) . "'
+					b.platform = '" . $db->escape_string($browserPlatform) . "'
 				ORDER BY
 					b.release DESC, b.id DESC
 			");
@@ -213,7 +213,7 @@
 				SELECT
 					*
 				FROM
-					browserVariants
+					data_platforms
 				ORDER BY
 					name
 			");
@@ -231,16 +231,16 @@
 					SELECT
 						*
 					FROM
-						browserVersions
+						data_versions
 					WHERE
-						variant = '" . addslashes($row->id) . "'
+						platform = '" . addslashes($row->id) . "'
 					ORDER BY
 						version
 				");
 
 				while ($vrow = $vres->fetch_object()) {
 					$version = (object) array(
-						'id'		=> is_null($vrow->version) ? $vrow->variant : $vrow->variant . '-' . $vrow->version,
+						'id'		=> is_null($vrow->version) ? $vrow->platform : $vrow->platform . '-' . $vrow->version,
 						'version'	=> $vrow->version,
 						'nickname'	=> $vrow->nickname,
 						'release'	=> $vrow->release
@@ -257,15 +257,15 @@
 
 			$res = $db->query("
 				SELECT
-					b.variant, IFNULL(b.version,'') AS version, f.results
+					b.platform, IFNULL(b.version,'') AS version, f.results
 				FROM
-					browserVersions AS b
-					LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+					data_versions AS b
+					LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
 					s.release = '" . $release . "'
 				ORDER BY
-					b.variant, b.version
+					b.platform, b.version
 			");
 
 			while ($row = $res->fetch_object()) {
@@ -278,21 +278,21 @@
 						$results[$key] = array();
 					}
 
-					$variant = $row->version == '' ? $row->variant : $row->variant . '-' . $row->version;
+					$platform = $row->version == '' ? $row->platform : $row->platform . '-' . $row->version;
 					$value = intval($value);
 
 					if ($value & 1) {
 						switch(true) {
-							case !! ($value & 2):	$results[$key][$variant] = 'yes:old';
-							case !! ($value & 4):	$results[$key][$variant] = 'yes:buggy';
-							case !! ($value & 8):	$results[$key][$variant] = 'yes:prefix';
-							default:				$results[$key][$variant] = 'yes';
+							case !! ($value & 2):	$results[$key][$platform] = 'yes:old';
+							case !! ($value & 4):	$results[$key][$platform] = 'yes:buggy';
+							case !! ($value & 8):	$results[$key][$platform] = 'yes:prefix';
+							default:				$results[$key][$platform] = 'yes';
 						}
 					}
 					else {
 						switch(true) {
-							case !! ($value & 16):	$results[$key][$variant] = 'no:blocked';
-							default:				$results[$key][$variant] = 'no';
+							case !! ($value & 16):	$results[$key][$platform] = 'no:blocked';
+							default:				$results[$key][$platform] = 'no';
 						}
 					}
 				}

@@ -12,24 +12,24 @@
 			foreach($types AS $type) {
 				$result = $db->query("
 					SELECT
-						b.variant, IFNULL(b.version,'') AS version, b.nickname, b.details, b.listed, IFNULL(v.replaced,v.id) AS id, f.score
+						b.platform, IFNULL(b.version,'') AS version, b.nickname, b.details, b.visible, IFNULL(v.related,v.platform) AS id, f.score
 					FROM
-						browserVariants AS v
-						LEFT JOIN browserVersions AS b ON (v.id = b.variant)
-						LEFT JOIN scores AS s ON (b.variant = s.variant AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
+						data_platforms AS v
+						LEFT JOIN data_versions AS b ON (v.platform = b.platform)
+						LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 						LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 					WHERE
 						FIND_IN_SET('" . $type . "',b.type) AND
 						s.release = '" . $release . "' AND
 						f.points != ''
 					ORDER BY
-						b.variant, ISNULL(b.release), b.release, b.version
+						b.platform, ISNULL(b.release), b.release, b.version
 				");
 
 				while ($row = $result->fetch_object()) {
-					$row->uid = $type . '-' . $row->variant . '-' . $row->version;
+					$row->uid = $type . '-' . $row->platform . '-' . $row->version;
 					$row->type = $type;
-					$row->listed = $row->listed == '1';
+					$row->visible = $row->visible == '1';
 
 					$results[] = $row;
 				}

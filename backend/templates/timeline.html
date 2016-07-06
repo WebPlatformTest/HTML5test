@@ -61,13 +61,13 @@
 
 						</script>
 
-						<h2>Timeline <span> for <?php echo htmlentities($variant->name); ?></span></h2>
+						<h2>Timeline <span> for <?php echo htmlentities($platform->name); ?></span></h2>
 						<hr>
 
 						<?php foreach($timeline as $item): ?>
 							<div class='diffHeader'>
 								<div class='points'><?php echo $item->score; ?></div>
-								<h3><a href='/compare/browser/<?php echo $item->variant . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a></h3>
+								<h3><a href='/compare/browser/<?php echo $item->platform . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a></h3>
 								<?php if ($item->status != 'development'): ?>
 									<?php if (!is_null($item->release)): ?>
 									<p>Release date: <?php echo date('d-m-Y', strtotime($item->release)); ?></p>
@@ -80,12 +80,12 @@
 							</div>
 
 							<?php if(count($item->changes)): ?>
-							<div id="changes_<?php echo md5($item->variant . '-' . $item->version); ?>" class="detailsTable diffTable"></div>
+							<div id="changes_<?php echo md5($item->platform . '-' . $item->version); ?>" class="detailsTable diffTable"></div>
 
 							<script>
 
 								new DiffTable({
-									parent:		document.getElementById("changes_<?php echo md5($item->variant . '-' . $item->version); ?>"),
+									parent:		document.getElementById("changes_<?php echo md5($item->platform . '-' . $item->version); ?>"),
 									metadata:	m,
 									data: 		<?php echo json_encode($item->changes); ?>
 								});

@@ -17,14 +17,14 @@
 			SELECT
 				*
 			FROM
-				browserVariants
+				data_platforms
 			WHERE
-				id = '" . $db->escape_string($_REQUEST['id']) . "' AND
+				platform = '" . $db->escape_string($_REQUEST['id']) . "' AND
 				FIND_IN_SET('" . $db->escape_string($_REQUEST['type']) . "',type)
 		");
 
 		if ($row = $result->fetch_object()) {
-			$tpl->set('variant', $row);
+			$tpl->set('platform', $row);
 		}
 
 		if ($timeline = Results::getTimeline($_REQUEST['id'], $_REQUEST['type'], $GLOBALS['configuration']['release'])) {

@@ -452,7 +452,7 @@
 			var id = browser;
 
 			if (typeof browser == 'object') {
-				id = browser.variant + (browser.version ? '-' + browser.version : '');
+				id = browser.platform + (browser.version ? '-' + browser.version : '');
 			}
 
 			var that = this;
@@ -510,9 +510,9 @@
 						if (this.data[i].id)
 							ids.push(this.data[i].id);
 						else if (this.data[i].version)
-							ids.push(this.data[i].variant + '-' + this.data[i].version);
+							ids.push(this.data[i].platform + '-' + this.data[i].version);
 						else
-							ids.push(this.data[i].variant);
+							ids.push(this.data[i].platform);
 					}
 				}
 
@@ -609,9 +609,9 @@
 						if (this.data[i].id)
 							ids.push(this.data[i].id);
 						else if (this.data[i].version)
-							ids.push(this.data[i].variant + '-' + this.data[i].version);
+							ids.push(this.data[i].platform + '-' + this.data[i].version);
 						else
-							ids.push(this.data[i].variant);
+							ids.push(this.data[i].platform);
 					}
 				}
 
@@ -907,7 +907,7 @@
 
 					for (var i = 0; i < browsers.length; i++) {
 						if (!filter || browsers[i].nickname.toLowerCase().indexOf(filter.toLowerCase()) != -1) {
-							if (all || browsers[i].listed) {
+							if (all || browsers[i].visible) {
 								if (type != browsers[i].type) {
 									var item = document.createElement('li');
 									item.className = 'indent-0 title';
@@ -1164,7 +1164,7 @@
 
 					if (filter != '') {
 						if (filter == ':mostused') {
-							visible = this.browsers[i].listed;
+							visible = this.browsers[i].visible;
 						}
 
 						else {
@@ -1269,7 +1269,7 @@
 
 				cell.className = 'used';
 
-				if (match = (new RegExp(this.browsers[i].variant + '-' + this.browsers[i].version + '=(-?[0-9]+)')).exec(data.supported)) {
+				if (match = (new RegExp(this.browsers[i].platform + '-' + this.browsers[i].version + '=(-?[0-9]+)')).exec(data.supported)) {
 					var result = parseInt(match[1], 10);
 
 					if (result & YES) {
@@ -1465,7 +1465,7 @@
 						new BrowserPopup(th, type, data);
 					};
 				})(th, type, {
-					variant:	this.browsers[i].variant,
+					platform:	this.browsers[i].platform,
 					version:	this.browsers[i].version,
 					id:			this.browsers[i].id,
 					name:		this.browsers[i].nickname,
@@ -1609,7 +1609,7 @@
 				BrowserPopup.current.close();
 			}
 
-			var browser = data.variant + (data.version ? "-" + data.version : "");
+			var browser = data.platform + (data.version ? "-" + data.version : "");
 
 			var content = "";
 			content += "<div class='info'>";

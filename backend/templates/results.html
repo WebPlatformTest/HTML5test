@@ -126,9 +126,9 @@
 										</thead>
 										<tbody>
 											<?php foreach($results['current'] as $item): ?>
-											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
+											<tr class='<?php echo $item->visible == 0 ? 'secondary' :''; ?>'>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
 													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
@@ -152,9 +152,9 @@
 										</thead>
 										<tbody>
 											<?php foreach($results['development'] as $item): ?>
-											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
+											<tr class='<?php echo $item->visible == 0 ? 'secondary' :''; ?>'>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
 													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
@@ -180,9 +180,9 @@
 										</thead>
 										<tbody>
 											<?php foreach($results['legacy'] as $item): ?>
-											<tr class='<?php echo $item->listed == 0 ? 'secondary' :''; ?>'>
+											<tr class='<?php echo $item->visible == 0 ? 'secondary' :''; ?>'>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
 													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
@@ -256,7 +256,7 @@
 											s.data.push({
 												name:		sets[i].data[j].nickname,
 												status:		sets[i].data[j].status,
-												importance:	sets[i].data[j].importance,
+												order:		sets[i].data[j].order,
 												x: 			ts,
 												y: 			parseInt(sets[i].data[j].score, 10)
 											});
@@ -321,7 +321,7 @@
 									});
 
 									for (var s = 0; s < chart.series.length; s++) {
-										if (chart.series[s].data[0].importance < 1) {
+										if (chart.series[s].data[0].order < 1) {
 											chart.series[s].hide();
 										}
 										/*

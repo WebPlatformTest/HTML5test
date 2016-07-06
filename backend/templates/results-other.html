@@ -88,7 +88,7 @@
 											<?php foreach($consoles as $item): ?>
 											<tr>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname' onclick="new BrowserPopup(this, 'gaming', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+												<th class='nickname' onclick="new BrowserPopup(this, 'gaming', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
 													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
@@ -116,7 +116,7 @@
 											<?php foreach($portables as $item): ?>
 											<tr>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname' onclick="new BrowserPopup(this, 'gaming', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+												<th class='nickname' onclick="new BrowserPopup(this, 'gaming', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
 													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
@@ -150,7 +150,7 @@
 											<?php foreach($smarttvs['current'] as $item): ?>
 											<tr>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname' onclick="new BrowserPopup(this, 'television', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+												<th class='nickname' onclick="new BrowserPopup(this, 'television', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
 													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
@@ -178,7 +178,7 @@
 											<?php foreach($settopboxes as $item): ?>
 											<tr>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname' onclick="new BrowserPopup(this, 'television', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+												<th class='nickname' onclick="new BrowserPopup(this, 'television', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
 													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
@@ -212,7 +212,7 @@
 											<?php foreach($ereaders as $item): ?>
 											<tr>
 												<td class='points'><?php echo $item->score; ?></td>
-												<th class='nickname' onclick="new BrowserPopup(this, 'ereader', { variant: '<?php echo $item->variant; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+												<th class='nickname' onclick="new BrowserPopup(this, 'ereader', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
 													<?php echo $item->nickname; ?>
 												</th>
 												<th class='details'><?php echo $item->details; ?></th>
