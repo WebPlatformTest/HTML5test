@@ -148,10 +148,11 @@
 
 		$result = $db->query("
 			SELECT
-				b.status, v.grouped AS name, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, f.score
+				b.status, v2.name, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, f.score
 			FROM
 				data_versions AS b
 				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN data_platforms AS v2 ON (v2.platform = IFNULL(v.related,v.platform))
 				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
@@ -160,7 +161,7 @@
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',b.type)
 			ORDER BY
-				v.order DESC, v.grouped, !ISNULL(b.release), b.release DESC
+				v.order DESC, v2.name, !ISNULL(b.release), b.release DESC
 		");
 
 		$count = 0;
@@ -223,10 +224,11 @@
 
 		$result = $db->query("
 			SELECT
-				v.order, v.grouped, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
+				v.order, v2.name AS grouped, b.platform, IFNULL(v.related,v.platform) AS id, IFNULL(b.version,'') AS version, b.nickname, b.details, IF(ISNULL(b.release),DATE(NOW()),b.release) AS `release`, b.status, f.score
 			FROM
 				data_versions AS b
 				LEFT JOIN data_platforms AS v ON (b.platform = v.platform)
+				LEFT JOIN data_platforms AS v2 ON (v2.platform = IFNULL(v.related,v.platform))
 				LEFT JOIN scores AS s ON (b.platform = s.platform AND (b.version = s.version OR (b.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
@@ -235,7 +237,7 @@
 				FIND_IN_SET('" . $type . "',v.type) AND
 				!ISNULL(f.score)
 			ORDER BY
-				v.grouped, `release`
+				v2.name, `release`
 		");
 
 		while ($row = $result->fetch_object()) {
