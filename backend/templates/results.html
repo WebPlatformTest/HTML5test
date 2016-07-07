@@ -164,7 +164,32 @@
 									</table>
 								</div>
 								<?php endif; ?>
-							</div>
+
+								<?php if (isset($results['experimental'])): ?>
+								<div>
+									<h3>Experimental</h3>
+									<table class='scoreTable'>
+										<thead>
+											<tr>
+												<th class='points'>Score</th>
+												<th class='nickname'>Browser</th>
+												<th class='details'></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($results['experimental'] as $item): ?>
+											<tr class='<?php echo $item->visible == 0 ? 'secondary' :''; ?>'>
+												<td class='points'><?php echo $item->score; ?></td>
+												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
+													<?php echo $item->nickname; ?>
+												</th>
+												<th class='details'><?php echo $item->details; ?></th>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+								<?php endif; ?>							</div>
 
 							<div class='right'>
 								<?php if (isset($results['legacy'])): ?>
