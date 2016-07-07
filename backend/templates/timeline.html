@@ -68,7 +68,7 @@
 							<div class='diffHeader'>
 								<div class='points'><?php echo $item->score; ?></div>
 								<h3><a href='/compare/browser/<?php echo $item->platform . ($item->version ? '-' . $item->version : ''); ?>.html'><?php echo $item->nickname; ?> <span>»</span></a></h3>
-								<?php if ($item->status != 'development'): ?>
+								<?php if ($item->status != 'upcoming'): ?>
 									<?php if (!is_null($item->releasedate)): ?>
 									<p>Release date: <?php echo date('d-m-Y', strtotime($item->releasedate)); ?></p>
 									<?php else: ?>

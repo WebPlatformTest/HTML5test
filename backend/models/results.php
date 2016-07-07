@@ -23,7 +23,7 @@
 					FIND_IN_SET('" . $db->escape_string($type) . "',v.type) AND
 					s.release = '" . $release . "'
 				ORDER BY
-					IF(v.status='development',1,0) DESC, v.releasedate DESC, p.related, v.version DESC
+					IF(v.status='upcoming',1,0) DESC, v.releasedate DESC, p.related, v.version DESC
 			");
 
 			while ($row = $result->fetch_object()) {

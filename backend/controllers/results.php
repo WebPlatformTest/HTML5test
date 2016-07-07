@@ -173,7 +173,7 @@
 				$main[$row->name] = array(null, null);
 			}
 
-			if ($row->status == 'development') {
+			if ($row->status == 'upcoming') {
 				$main[$row->name][0] = $row;
 			}
 
@@ -232,7 +232,7 @@
 				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				(!ISNULL(v.releasedate) OR v.status = 'development') AND
+				(!ISNULL(v.releasedate) OR v.status = 'upcoming') AND
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',p.type) AND
 				!ISNULL(f.score)

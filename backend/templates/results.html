@@ -85,12 +85,12 @@
 									<tbody>
 										<?php for ($r = 0; $r < $mainRows; $r++): ?>
 										<tr>
-											<th class='<?php echo $r == 0 ? 'development' : ''; ?><?php echo $r == 1 ? 'current' : ''; ?>'>
+											<th class='<?php echo $r == 0 ? 'upcoming' : ''; ?><?php echo $r == 1 ? 'current' : ''; ?>'>
 												<?php echo $r == 0 ? 'Upcoming' : ''; ?><?php echo $r == 1 ? 'Current' : ''; ?><?php echo $r == 2 ? 'Older' : ''; ?>
 											</th>
 
 											<?php foreach($main as $d): ?>
-												<td class='<?php echo $r == 0 ? 'development' : ''; ?><?php echo $r == 1 ? 'current' : ''; ?>'><?php
+												<td class='<?php echo $r == 0 ? 'upcoming' : ''; ?><?php echo $r == 1 ? 'current' : ''; ?>'><?php
 													if (isset($d[$r]) && !is_null($d[$r])) {
 														echo '<span class="version"><span><span>' . $d[$r]->version . '</span></span></span> <span class="points">' . $d[$r]->score . '</span>';
 													}
@@ -139,7 +139,7 @@
 								</div>
 								<?php endif; ?>
 
-								<?php if (isset($results['development'])): ?>
+								<?php if (isset($results['upcoming'])): ?>
 								<div>
 									<h3>Upcoming</h3>
 									<table class='scoreTable'>
@@ -151,7 +151,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php foreach($results['development'] as $item): ?>
+											<?php foreach($results['upcoming'] as $item): ?>
 											<tr class='<?php echo $item->visible == 0 ? 'secondary' :''; ?>'>
 												<td class='points'><?php echo $item->score; ?></td>
 												<th class='nickname' onclick="new BrowserPopup(this, '<?php echo $type; ?>', { platform: '<?php echo $item->platform; ?>', version: '<?php echo $item->version; ?>', id: '<?php echo $item->id; ?>', score: '<?php echo $item->score; ?>' }); ">
@@ -307,7 +307,7 @@
 										tooltip: {
 											formatter: function() {
 													return '<b>'+ this.key +'</b><br/>'+
-													(this.point.status != 'development' ? Highcharts.dateFormat('%b %Y', this.x) : 'Unreleased')  +'<br>' +
+													(this.point.status != 'upcoming' ? Highcharts.dateFormat('%b %Y', this.x) : 'Unreleased')  +'<br>' +
 													this.y +' points';
 											}
 										},
