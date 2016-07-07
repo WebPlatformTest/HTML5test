@@ -148,7 +148,7 @@
 
 		$result = $db->query("
 			SELECT
-				v.status, pp.name, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, f.score
+				v.status, IFNULL(pp.nickname,pp.name) as name, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, f.score
 			FROM
 				data_versions AS v
 				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
@@ -161,7 +161,7 @@
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',v.type)
 			ORDER BY
-				p.order DESC, pp.name, !ISNULL(v.releasedate), v.releasedate DESC
+				p.order DESC, IFNULL(pp.nickname,pp.name), !ISNULL(v.releasedate), v.releasedate DESC
 		");
 
 		$count = 0;
