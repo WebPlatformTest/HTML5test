@@ -1755,6 +1755,27 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'streams',
+						status:	'experimental',
+						name: 	'Streams',
+						items:	[
+									{
+										id:			'streams.readable',
+										name: 		'Readable streams',
+										value:		4,
+										urls:		[
+														[ 'whatwg', 'https://streams.spec.whatwg.org/' ]
+													]
+									}, {
+										id:			'streams.writeable',
+										name: 		'Writable streams',
+										value:		2,
+										urls:		[
+														[ 'whatwg', 'https://streams.spec.whatwg.org/' ]
+													]
+									}
+								]
+					}, {
 						id:		'rtc',
 						name:	'Peer To Peer',
 						status:	'stable',
@@ -2350,27 +2371,6 @@ var tests = [
 										urls:    	[
 														[ 'w3c', 'http://www.w3.org/TR/file-system-api/' ],
 														[ 'wp',  '/apis/filesystem' ]
-													]
-									}
-								]
-					}, {
-						id:		'streams',
-						status:	'experimental',
-						name: 	'Streams',
-						items:	[
-									{
-										id:			'streams.readable',
-										name: 		'Readable streams',
-										value:		4,
-										urls:		[
-														[ 'whatwg', 'https://streams.spec.whatwg.org/' ]
-													]
-									}, {
-										id:			'streams.writeable',
-										name: 		'Writable streams',
-										value:		2,
-										urls:		[
-														[ 'whatwg', 'https://streams.spec.whatwg.org/' ]
 													]
 									}
 								]
