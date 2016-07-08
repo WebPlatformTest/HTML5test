@@ -1307,22 +1307,22 @@ var tests = [
 									'<strong>Video codecs</strong>',
 
 									{
-										id:		'codecs.mpeg4',
+										id:		'codecs.mp4.mpeg4',
 										name: 	'MPEG-4 ASP support',
 										status:	'optional'
 									}, {
-										id:		'codecs.h264',
+										id:		'codecs.mp4.h264',
 										name: 	'H.264 support',
 										status:	'optional',
 										urls:	[
 													[ 'other', 'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf' ]
 												]
 									}, {
-										id:		'codecs.h265',
+										id:		'codecs.mp4.h265',
 										name: 	'H.265 support',
 										status:	'optional'
 									}, {
-										id:		'codecs.theora',
+										id:		'codecs.ogg.theora',
 										name: 	'Ogg Theora support',
 										status:	'optional',
 										urls:	[
@@ -1412,23 +1412,23 @@ var tests = [
 										name: 	'MP3 support',
 										status:	'optional'
 									}, {
-										id:		'codecs.aac',
+										id:		'codecs.mp4.aac',
 										name: 	'AAC support',
 										status:	'optional'
 									}, {
-										id:		'codecs.ac3',
+										id:		'codecs.mp4.ac3',
 										name: 	'Dolby Digital support',
 										status:	'optional'
 									}, {
-										id:		'codecs.ec3',
+										id:		'codecs.mp4.ec3',
 										name: 	'Dolby Digital Plus support',
 										status:	'optional'
 									}, {
-										id:		'codecs.vorbis',
+										id:		'codecs.ogg.vorbis',
 										name: 	'Ogg Vorbis support',
 										status:	'optional'
 									}, {
-										id:		'codecs.opus',
+										id:		'codecs.ogg.opus',
 										name: 	'Ogg Opus support',
 										status:	'optional'
 									}, {

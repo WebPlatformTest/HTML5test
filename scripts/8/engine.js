@@ -2470,7 +2470,7 @@ Test8 = (function () {
             /* mpeg-4 codec */
 
             results.addItem({
-                key: 'video.codecs.mpeg4',
+                key: 'video.codecs.mp4.mpeg4',
                 passed: !!element.canPlayType && canPlayType(element, 'video/mp4; codecs="mp4v.20.8"')
             });
 
@@ -2479,21 +2479,21 @@ Test8 = (function () {
             /* I added a workaround for IE9, which only detects H.264 if you also provide an audio codec. Bug filed @ connect.microsoft.com */
 
             results.addItem({
-                key: 'video.codecs.h264',
+                key: 'video.codecs.mp4.h264',
                 passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="avc1.42E01E"') || canPlayType(element, 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'))
             });
 
             /* h.265 codec */
 
             results.addItem({
-                key: 'video.codecs.h265',
+                key: 'video.codecs.mp4.h265',
                 passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"'))
             });
 
             /* theora codec */
 
             results.addItem({
-                key: 'video.codecs.theora',
+                key: 'video.codecs.ogg.theora',
                 passed: !!element.canPlayType && canPlayType(element, 'video/ogg; codecs="theora"')
             });
 
@@ -2657,35 +2657,35 @@ Test8 = (function () {
             /* aac codec */
 
             results.addItem({
-                key: 'audio.codecs.aac',
+                key: 'audio.codecs.mp4.aac',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="mp4a.40.2"')
             });
 
             /* ac3 codec */
 
             results.addItem({
-                key: 'audio.codecs.ac3',
+                key: 'audio.codecs.mp4.ac3',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ac-3"')
             });
 
             /* enhanced ac3 codec */
 
             results.addItem({
-                key: 'audio.codecs.ec3',
+                key: 'audio.codecs.mp4.ec3',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/mp4; codecs="ec-3"')
             });
 
             /* ogg vorbis codec */
 
             results.addItem({
-                key: 'audio.codecs.vorbis',
+                key: 'audio.codecs.ogg.vorbis',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="vorbis"')
             });
 
             /* ogg opus codec */
 
             results.addItem({
-                key: 'audio.codecs.opus',
+                key: 'audio.codecs.ogg.opus',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="opus"')
             });
 
