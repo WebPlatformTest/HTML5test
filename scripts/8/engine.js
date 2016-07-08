@@ -3340,7 +3340,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'streams.streams.readable',
+                key: 'streams.readable',
                 passed: 'ReadableStream' in window
             });
 
@@ -3351,7 +3351,7 @@ Test8 = (function () {
 
         function (results) {
             results.addItem({
-                key: 'streams.streams.writeable',
+                key: 'streams.writeable',
                 passed: 'WriteableStream' in window
             });
         },

@@ -1760,14 +1760,14 @@ var tests = [
 						name: 	'Streams',
 						items:	[
 									{
-										id:			'streams.readable',
+										id:			'readable',
 										name: 		'Readable streams',
 										value:		4,
 										urls:		[
 														[ 'whatwg', 'https://streams.spec.whatwg.org/' ]
 													]
 									}, {
-										id:			'streams.writeable',
+										id:			'writeable',
 										name: 		'Writable streams',
 										value:		2,
 										urls:		[
