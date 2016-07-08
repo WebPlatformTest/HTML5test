@@ -1411,7 +1411,7 @@ var tests = [
 										url:	'http://www.w3.org/TR/encrypted-media/'
 									},
 
-									'<strong>Adaptive streaming</strong>',
+									'<strong>Adaptive bit rate</strong>',
 
 									{
 										id:		'type.dash',
