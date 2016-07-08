@@ -2443,22 +2443,6 @@ Test8 = (function () {
                 key: 'video.poster',
                 passed: 'poster' in element
             });
-
-
-            /* drm */
-
-            results.addItem({
-                key: 'video.drm',
-                passed: 'setMediaKeys' in element ? YES : 'webkitAddKey' in element || 'webkitSetMediaKeys' in element || 'mozSetMediaKeys' in element || 'msSetMediaKeys' in element ? YES | PREFIX : NO
-            });
-
-
-            /* mediasource */
-
-            results.addItem({
-                key: 'video.mediasource',
-                passed: 'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
-            });
         },
 
 
@@ -2545,54 +2529,6 @@ Test8 = (function () {
             results.addItem({
                 key: 'video.canplaytype',
                 passed: element.canPlayType ? (passed ? YES : YES | BUGGY) : NO
-            });
-        },
-
-
-        /* video codecs */
-
-        function (results) {
-
-            /* mpeg-4 codec */
-
-            results.addItem({
-                key: 'video.mediasource.codecs.mpeg4',
-                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/mp4; codecs="mp4v.20.8"')
-            });
-
-            /* h.264 codec */
-
-            results.addItem({
-                key: 'video.mediasource.codecs.h264',
-                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E"')
-            });
-
-            /* h.265 codec */
-
-            results.addItem({
-                key: 'video.mediasource.codecs.h265',
-                passed: 'MediaSource' in window && (MediaSource.isTypeSupported('video/mp4; codecs="hvc1.1.L0.0"') || MediaSource.isTypeSupported('video/mp4; codecs="hev1.1.L0.0"'))
-            });
-
-            /* theora codec */
-
-            results.addItem({
-                key: 'video.mediasource.codecs.theora',
-                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/ogg; codecs="theora"')
-            });
-
-            /* vp8 in webm codec */
-
-            results.addItem({
-                key: 'video.mediasource.codecs.webm.vp8',
-                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="vp8"')
-            });
-
-            /* vp9 in webm codec */
-
-            results.addItem({
-                key: 'video.mediasource.codecs.webm.vp9',
-                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="vp9"')
             });
         },
 
@@ -2705,6 +2641,7 @@ Test8 = (function () {
         },
 
 
+
         /* webaudio */
 
         function (results) {
@@ -2756,6 +2693,179 @@ Test8 = (function () {
                     }, 1000);
                 }
             }
+        },
+
+
+        /* streaming */
+
+        function (results) {
+            var element = document.createElement('video');
+
+            /* mediasource */
+
+            results.addItem({
+                key: 'streaming.mediasource',
+                passed: 'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
+            });
+
+            /* drm */
+
+            results.addItem({
+                key: 'streaming.drm',
+                passed: 'setMediaKeys' in element ? YES : 'webkitAddKey' in element || 'webkitSetMediaKeys' in element || 'mozSetMediaKeys' in element || 'msSetMediaKeys' in element ? YES | PREFIX : NO
+            });
+
+            /* dash streaming */
+
+            results.addItem({
+                key: 'streaming.type.dash',
+                passed: !!element.canPlayType && element.canPlayType('application/dash+xml') != ''
+            });
+
+            /* hls streaming */
+
+            results.addItem({
+                key: 'streaming.type.hls',
+                passed: !!element.canPlayType && (element.canPlayType('application/vnd.apple.mpegURL') != '' || element.canPlayType('audio/mpegurl') != '')
+            });
+        },
+
+
+        /* streaming video codecs */
+
+        function (results) {
+
+            /* mpeg-4 in mp4 codec */
+
+            results.addItem({
+                key: 'streaming.video.codecs.mp4.mpeg4',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/mp4; codecs="mp4v.20.8"')
+            });
+
+            /* h.264 in mp4 codec */
+
+            results.addItem({
+                key: 'streaming.video.codecs.mp4.h264',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E"')
+            });
+
+            /* h.265 in mp4 codec */
+
+            results.addItem({
+                key: 'streaming.video.codecs.mp4.h265',
+                passed: 'MediaSource' in window && (MediaSource.isTypeSupported('video/mp4; codecs="hvc1.1.L0.0"') || MediaSource.isTypeSupported('video/mp4; codecs="hev1.1.L0.0"'))
+            });
+
+            /* h.264 in ts codec */
+
+            results.addItem({
+                key: 'streaming.video.codecs.ts.h264',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/mp2t; codecs="avc1.42E01E"')
+            });
+
+            /* h.265 in ts codec */
+
+            results.addItem({
+                key: 'streaming.video.codecs.ts.h265',
+                passed: 'MediaSource' in window && (MediaSource.isTypeSupported('video/mp2t; codecs="hvc1.1.L0.0"') || MediaSource.isTypeSupported('video/mp2t; codecs="hev1.1.L0.0"'))
+            });
+
+            /* theora codec */
+
+            results.addItem({
+                key: 'streaming.video.codecs.ogg.theora',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/ogg; codecs="theora"')
+            });
+
+            /* vp8 in webm codec */
+
+            results.addItem({
+                key: 'streaming.video.codecs.webm.vp8',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="vp8"')
+            });
+
+            /* vp9 in webm codec */
+
+            results.addItem({
+                key: 'streaming.video.codecs.webm.vp9',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="vp9"')
+            });
+        },
+
+
+        /* streaming audio codecs */
+
+        function (results) {
+
+            /* aac codec in mp4 */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.mp4.aac',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/mp4; codecs="mp4a.40.2"')
+            });
+
+            /* ac3 codec in mp4 */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.mp4.ac3',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/mp4; codecs="ac-3"')
+            });
+
+            /* enhanced ac3 codec in mp4 */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.mp4.ec3',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/mp4; codecs="ec-3"')
+            });
+
+            /* aac codec in mp4 */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.ts.aac',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/mp2t; codecs="mp4a.40.2"')
+            });
+
+            /* ac3 codec in mp4 */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.ts.ac3',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/mp2t; codecs="ac-3"')
+            });
+
+            /* enhanced ac3 codec in mp4 */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.ts.ec3',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/mp2t; codecs="ec-3"')
+            });
+
+            /* vorbis in ogg codec */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.ogg.vorbis',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/ogg; codecs="vorbis"')
+            });
+
+            /* opus in ogg codec */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.ogg.opus',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/ogg; codecs="opus"')
+            });
+
+            /* vorbis in webm codec */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.webm.vorbis',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/webm; codecs="vorbis"')
+            });
+
+            /* opus in webm codec */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.webm.opus',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/webm; codecs="opus"')
+            });
         },
 
 

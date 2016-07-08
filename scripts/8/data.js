@@ -1254,56 +1254,6 @@ var tests = [
 												]
 									},
 
-									'<strong>Streaming</strong>',
-
-									{
-										id:		'mediasource',
-										name: 	'Media Source extensions',
-										value:	{ maximum: 5, award: { PREFIX: 2 } },
-										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
-													[ 'wp',  '/apis/media_source_extensions' ]
-												]
-									}, {
-										id:		'drm',
-										name: 	'DRM support',
-										status:	'controversial',
-										url:	'http://www.w3.org/TR/encrypted-media/'
-									}, {
-										id:		'mediasource.codecs',
-										name:	'Streaming video codecs',
-										items:	[
-													{
-														id:		'h264',
-														name: 	'H.264 support',
-														status:	'optional',
-														urls:	[
-																	[ 'other', 'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf' ]
-																]
-													}, {
-														id:		'h265',
-														name: 	'H.265 support',
-														status:	'optional'
-													}, {
-														id:		'webm.vp8',
-														name: 	'WebM with VP8 support',
-														status:	'optional',
-														urls:	[
-																	[ 'webm', 'http://www.webmproject.org/' ],
-																	[ 'ietf', 'http://www.rfc-editor.org/rfc/rfc6386.txt' ]
-																]
-													}, {
-														id:		'webm.vp9',
-														name: 	'WebM with VP9 support',
-														status:	'optional',
-														urls:	[
-																	[ 'webm', 'http://www.webmproject.org/' ],
-																	[ 'ietf', 'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt' ]
-																]
-													}
-												]
-									},
-
 									'<strong>Video codecs</strong>',
 
 									{
@@ -1439,6 +1389,122 @@ var tests = [
                                         id:     'codecs.webm.opus',
                                         name:   'WebM with Opus support',
                                         status: 'optional'
+									}
+								]
+					}, {
+						id:		'streaming',
+						name:	'Streaming',
+						status:	'stable',
+						items:	[
+									{
+										id:		'mediasource',
+										name: 	'Media Source extensions',
+										value:	{ maximum: 5, award: { PREFIX: 2 } },
+										urls:	[
+													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
+													[ 'wp',  '/apis/media_source_extensions' ]
+												]
+									}, {
+										id:		'drm',
+										name: 	'DRM support',
+										status:	'controversial',
+										url:	'http://www.w3.org/TR/encrypted-media/'
+									},
+
+									'<strong>Adaptive streaming</strong>',
+
+									{
+										id:		'type.dash',
+										name: 	'Dynamic Adaptive Streaming / MPEG-DASH'
+									}, {
+										id:		'type.hls',
+										name: 	'HTTP Live Streaming / HLS'
+									},
+
+									'<strong>Codecs</strong>',
+
+									{
+										id:		'video.codecs',
+										name:	'Video codecs',
+										items:	[
+													{
+														id:		'mp4.h264',
+														name: 	'MP4 with H.264 support',
+														status:	'optional',
+														urls:	[
+																	[ 'other', 'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf' ]
+																]
+													}, {
+														id:		'mp4.h265',
+														name: 	'MP4 with H.265 support',
+														status:	'optional'
+													}, {
+														id:		'ts.h264',
+														name: 	'TS with H.264 support',
+														status:	'optional',
+														urls:	[
+																	[ 'other', 'http://ip.hhi.de/imagecom_G1/assets/pdfs/csvt_overview_0305.pdf' ]
+																]
+													}, {
+														id:		'ts.h265',
+														name: 	'TS with H.265 support',
+														status:	'optional'
+													}, {
+														id:		'webm.vp8',
+														name: 	'WebM with VP8 support',
+														status:	'optional',
+														urls:	[
+																	[ 'webm', 'http://www.webmproject.org/' ],
+																	[ 'ietf', 'http://www.rfc-editor.org/rfc/rfc6386.txt' ]
+																]
+													}, {
+														id:		'webm.vp9',
+														name: 	'WebM with VP9 support',
+														status:	'optional',
+														urls:	[
+																	[ 'webm', 'http://www.webmproject.org/' ],
+																	[ 'ietf', 'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt' ]
+																]
+													}
+												]
+									}, {
+										id:		'audio.codecs',
+										name:	'Audio codecs',
+										items:	[
+													{
+														id:		'mp4.aac',
+														name: 	'MP4 with AAC support',
+														status:	'optional'
+													}, {
+														id:		'mp4.ac3',
+														name: 	'MP4 with Dolby Digital support',
+														status:	'optional'
+													}, {
+														id:		'mp4.ec3',
+														name: 	'MP4 with Dolby Digital Plus support',
+														status:	'optional'
+													}, {
+														id:		'ts.aac',
+														name: 	'TS with AAC support',
+														status:	'optional'
+													}, {
+														id:		'ts.ac3',
+														name: 	'TS with Dolby Digital support',
+														status:	'optional'
+													}, {
+														id:		'ts.ec3',
+														name: 	'TS with Dolby Digital Plus support',
+														status:	'optional'
+													}, {
+														id:		'webm.vorbis',
+														name: 	'WebM with Vorbis support',
+														status:	'optional'
+													}, {
+														id:		'webm.opus',
+														name: 	'WebM with Opus support',
+														status:	'optional'
+													}
+												]
 									}
 								]
 					}
