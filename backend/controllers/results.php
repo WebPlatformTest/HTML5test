@@ -208,7 +208,7 @@
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',v.type)
 			ORDER BY
-				score DESC
+				score DESC, platform ASC, version DESC
 		");
 
 		while ($row = $result->fetch_object()) {
