@@ -846,8 +846,14 @@
 						var close = true;
 
 						if (e.target) {
-							if (e.target.hasAttribute('data-action')) {
-								var action = e.target.getAttribute('data-action');
+							var target = e.target;
+
+							while (target.tagName != 'LI' && target.parentNode) {
+								target = target.parentNode;
+							}
+
+							if (target.hasAttribute('data-action')) {
+								var action = target.getAttribute('data-action');
 
 								if (action == 'more') {
 									build(list, that.options.browsers, true);
@@ -870,7 +876,7 @@
 								}
 
 								if (action == 'load') {
-									var id = e.target.getAttribute('data-id');
+									var id = target.getAttribute('data-id');
 									that.loadColumn(c, that.options.browsers[id]);
 								}
 							}
