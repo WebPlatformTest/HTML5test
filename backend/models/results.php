@@ -183,6 +183,35 @@
 
 				return $row;
 			}
+
+
+			/*  Quick hack to make older ids work again */
+
+			$result = $db->query("
+				SELECT
+					r.version as `release`, r.uniqueid AS id, 'Unique id' AS nickname, f.score, f.maximum, f.points, f.results, humanReadable, useragentHeader AS useragent, deviceWidth, deviceHeight, f.fingerprint
+				FROM
+					html5test5.results AS r
+					LEFT JOIN html5test5.fingerprints AS f ON (r.fingerprint = f.fingerprint)
+				WHERE
+					r.uniqueid ='" . $db->escape_string($id) . "'
+			");
+
+			if ($row = $result->fetch_object()) {
+
+				// Update use counter
+				$db->query('
+					UPDATE
+						html5test5.results
+					SET
+						used = used + 1,
+						lastUsed = NOW()
+					WHERE
+						uniqueid = "' . $db->escape_string($id) . '"
+				');
+
+				return $row;
+			}
 		}
 
 
