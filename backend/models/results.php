@@ -21,6 +21,7 @@
 					(p.platform = '" . $db->escape_string($id) . "' OR p.related = '" . $db->escape_string($id) . "') AND
 					FIND_IN_SET('" . $db->escape_string($type) . "',p.type) AND
 					FIND_IN_SET('" . $db->escape_string($type) . "',v.type) AND
+					v.status != 'experimental' AND
 					s.release = '" . $release . "'
 				ORDER BY
 					IF(v.status='upcoming',1,0) DESC, v.releasedate DESC, p.related, v.version DESC
