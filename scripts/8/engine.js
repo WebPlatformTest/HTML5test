@@ -1033,7 +1033,7 @@ Test8 = (function () {
 
             results.addItem({
                 key: 'form.file.directory',
-                passed: 'directory' in element && window.Directory
+                passed: 'directory' in element && window.Directory ? YES : 'webkitDirectory' in element && 'webkitEntries' in element ? YES | PREFIX : NO
             });
         },
 
