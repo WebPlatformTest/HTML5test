@@ -92,7 +92,13 @@
 											<?php foreach($main as $d): ?>
 												<td class='<?php echo $r == 0 ? 'upcoming' : ''; ?><?php echo $r == 1 ? 'current' : ''; ?>'><?php
 													if (isset($d[$r]) && !is_null($d[$r])) {
-														echo '<span class="version"><span><span>' . $d[$r]->version . '</span></span></span> <span class="points">' . $d[$r]->score . '</span>';
+														if (is_object($d[$r])) {
+															echo '<span class="version"><span><span>' . $d[$r]->version . '</span></span></span> <span class="points">' . $d[$r]->score . '</span>';
+														}
+
+														if (is_string($d[$r])) {
+															echo "<span class='heading'>" . $d[$r] . "</span>";
+														}
 													}
 												?></td>
 											<?php endforeach; ?>

@@ -148,7 +148,7 @@
 
 		$result = $db->query("
 			SELECT
-				v.status, IFNULL(pp.nickname,pp.name) as name, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, f.score
+				v.status, IFNULL(pp.nickname,pp.name) as name, IFNULL(p.nickname,p.name) as alternative, v.platform, IFNULL(p.related,p.platform) AS id, IFNULL(v.version,'') AS version, f.score
 			FROM
 				data_versions AS v
 				LEFT JOIN data_platforms AS p ON (v.platform = p.platform)
@@ -156,15 +156,18 @@
 				LEFT JOIN scores AS s ON (v.platform = s.platform AND (v.version = s.version OR (v.version IS NULL AND s.version IS NULL)))
 				LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 			WHERE
-				p.order > 0 AND
+				pp.order > 0 AND
 				v.visible = 1 AND
 				s.release = '" . $GLOBALS['configuration']['release'] . "' AND
 				FIND_IN_SET('" . $type . "',v.type)
 			ORDER BY
-				p.order DESC, IFNULL(pp.nickname,pp.name), !ISNULL(v.releasedate), v.releasedate DESC
+				pp.order DESC, IFNULL(p.related,p.platform), v.status = 'upcoming' DESC, v.status = 'current' DESC, v.status = 'legacy' DESC, !ISNULL(v.releasedate), v.releasedate DESC
 		");
 
 		$count = 0;
+
+		$previousPlatform = '';
+		$previousId = '';
 
 		while ($row = $result->fetch_object()) {
 			$names[$row->name] = array($row->name, $row->id);
@@ -182,8 +185,15 @@
 			}
 
 			if ($row->status == 'legacy' && count($main[$row->name]) < 8) {
+				if ($row->id == $previousId && $row->platform != $previousPlatform) {
+					$main[$row->name][] = $row->alternative;
+				}
+
 				$main[$row->name][] = $row;
 			}
+
+			$previousPlatform = $row->platform;
+			$previousId = $row->id;
 
 			$count = max($count, count($main[$row->name]));
 		}

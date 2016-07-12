@@ -754,6 +754,13 @@ div:-moz-full-screen #timelineGraph {
 	text-align: right;
 	font-size: 0.8em;
 }
+.overviewTable span.heading {
+    position: relative;
+    top: 2px;
+	font-weight: bold;
+    font-size: 0.85em;
+    color: #444;
+}
 .overviewTable span.version span {
 }
 .overviewTable span.version span span {
