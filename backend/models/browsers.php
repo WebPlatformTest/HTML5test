@@ -23,7 +23,7 @@
 						s.release = '" . $release . "' AND
 						f.points != ''
 					ORDER BY
-						v.platform, ISNULL(v.releasedate), v.releasedate, v.version
+						v.platform, v.status='experimental', v.status='upcoming', ISNULL(v.releasedate), v.releasedate, v.version
 				");
 
 				while ($row = $result->fetch_object()) {
