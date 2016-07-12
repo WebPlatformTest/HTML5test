@@ -144,7 +144,8 @@
 					LEFT JOIN fingerprints AS f ON (f.fingerprint = s.fingerprint)
 				WHERE
 					s.release = '" . $release . "' AND
-					v.platform = '" . $db->escape_string($browserPlatform) . "'
+					v.platform = '" . $db->escape_string($browserPlatform) . "' AND
+					v.version IS NULL
 				ORDER BY
 					v.releasedate DESC
 			");
