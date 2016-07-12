@@ -79,7 +79,7 @@
 								<?php endif; ?>
 							</div>
 
-							<?php if(count($item->changes)): ?>
+							<?php if(isset($item->changes) && count($item->changes)): ?>
 							<div id="changes_<?php echo md5($item->platform . '-' . $item->version); ?>" class="detailsTable diffTable"></div>
 
 							<script>
