@@ -146,7 +146,7 @@
 					s.release = '" . $release . "' AND
 					v.platform = '" . $db->escape_string($browserPlatform) . "'
 				ORDER BY
-					v.releasedate DESC, v.id DESC
+					v.releasedate DESC
 			");
 
 			if ($row = $result->fetch_object()) {
