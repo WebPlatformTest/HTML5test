@@ -2213,7 +2213,7 @@ var tests = [
 										value:		4,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-sandbox' ],
-														[ 'mdn', '/Web/HTML/Element/iframe' ]
+														[ 'mdn', '/Web/HTML/Element/iframe#attr-sandbox' ]
 													]
 									}, {
 										id:			'srcdoc',
@@ -2221,7 +2221,7 @@ var tests = [
 										value:		4,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-iframe-srcdoc' ],
-														[ 'mdn', '/Web/HTML/Element/iframe' ]
+														[ 'mdn', '/Web/HTML/Element/iframe#attr-srcdoc' ]
 													]
 									}
 								]
