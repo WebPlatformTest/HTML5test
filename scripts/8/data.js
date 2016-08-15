@@ -1861,7 +1861,7 @@ var tests = [
 										id:		'objectrtc',
 										name: 	'ObjectRTC API for WebRTC',
 										status:	'proposal',
-										value:	{ maximum: 15, award: { PREFIX: 10 }, conditional: '!webrtc.webrtc' },
+										value:	{ maximum: 15, award: { PREFIX: 10 }, conditional: '!rtc.webrtc' },
 										urls:	[
 													[ 'w3c', 'http://ortc.org/wp-content/uploads/2014/10/ortc.html' ]
 												]
