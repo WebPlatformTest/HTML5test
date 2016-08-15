@@ -960,7 +960,7 @@ var tests = [
 													}, {
 														id:			'autocomplete',
 														name: 		'<code>autocomplete</code> attribute',
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-autocomplete'
+														url:		'http://www.w3.org/TR/html5/forms.html#attr-fe-autocomplete'
 													}, {
 														id:			'placeholder',
 														name: 		'<code>placeholder</code> attribute',
@@ -971,8 +971,8 @@ var tests = [
 														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-multiple'
 													}, {
 														id:			'dirname',
-														name: 		'<code>dirName</code> attribute',
-														url:		'http://www.w3.org/TR/html5/forms.html#attr-input-dirname'
+														name: 		'<code>dirname</code> attribute',
+														url:		'https://www.w3.org/TR/html5/forms.html#attr-fe-dirname'
 													}
 												]
 									}, {
