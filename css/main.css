@@ -2046,7 +2046,7 @@ body.indexVisible > div#index button#indexbutton {
 	text-indent: 32px;
 }
 .linksPanel .links a.mdn {
-	background-image: url(/images/external/mdn.png);
+	background-image: url(/images/external/mdn.svg);
 	text-indent: 32px;
 }
 .linksPanel .links a.ecma {
