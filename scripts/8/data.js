@@ -783,7 +783,7 @@ var tests = [
 														status:		'experimental',
 														name: 		'Directory upload support',
 														value:		1,
-														urls:		'https://wicg.github.io/directory-upload/proposal.html'
+														url:		'https://wicg.github.io/directory-upload/proposal.html'
 													}
 												]
 									}, {
@@ -1687,7 +1687,7 @@ var tests = [
 										name: 		'WebVR',
 										status:		'experimental',
 										value:		3,
-										urls:		'https://w3c.github.io/webvr/'
+										url:		'https://w3c.github.io/webvr/'
 
 									}
 								]
@@ -2130,7 +2130,7 @@ var tests = [
 										name: 		'<code>window.requestIdleCallback</code>',
 										status:		'experimental',
 										value:		1,
-										urls:		'https://w3c.github.io/requestidlecallback/'
+										url:		'https://w3c.github.io/requestidlecallback/#the-requestidlecallback-method'
 									}
 								]
 					}, {
@@ -2175,7 +2175,7 @@ var tests = [
 										name: 		'Subresource Integrity',
 										status:		'proposal',
 										value:		2,
-										urls:		'http://www.w3.org/TR/SRI/'
+										url:		'http://www.w3.org/TR/SRI/'
 									}, {
 										id:			'postMessage',
 										name: 		'Cross-document messaging',
