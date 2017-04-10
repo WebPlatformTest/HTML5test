@@ -3472,7 +3472,7 @@ Test8 = (function () {
         function (results) {
             results.addItem({
                 key: 'components.custom',
-                passed: 'registerElement' in document
+                passed: 'customElements' in window
             });
         },
 
