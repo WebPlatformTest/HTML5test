@@ -276,6 +276,7 @@
 						var payload = '{' +
 									  '"release": "' + r.release + '",' +
 									  '"source": "' + source + '",' +
+									  '"protocol": "' + location.protocol + '",' +
 									  '"identifier": "' + escapeSlashes(identifier) + '",' +
 									  '"task": "' + task + '",' +
 									  '"uniqueid": "' + r.uniqueid + '",' +
@@ -323,7 +324,6 @@
 						"<h2><span>Your browser scores</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" +
 						"</div>",
 					c);
-
 
 					/* Show box for confirming useragent detection */
 					new Confirm(container, {
@@ -373,6 +373,23 @@
 					button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
 					button.innerHTML = '<span>Donate</span>';
 					buttons.appendChild(button);
+
+
+					if (location.protocol == "http:") {
+						var warning = document.createElement('div');
+						warning.className = 'upgradeWarning';
+						warning.innerHTML =
+							"<h4>Your browser may support even more features on a secure connection</h4>" +
+							"<p>Modern browsers only support some advanced features using on websites that uses a secure connection. " +
+							"This is because these features expose privacy sensitive data. Because you are now using an insecure connection, " +
+							"these features may not be available and are not detected.</p>" +
+							"<a href='https://html5test.com'>Try again, but using a secure connection</a>";
+
+						container.appendChild(warning);
+					}
+
+
+
 
 					/* Show detailed report of scores */
 					var container = document.getElementById('results');

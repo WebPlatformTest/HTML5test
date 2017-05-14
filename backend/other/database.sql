@@ -88,6 +88,7 @@ CREATE TABLE `results` (
   `revision` int(11) NOT NULL DEFAULT '0',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip` varchar(16) CHARACTER SET latin1 NOT NULL,
+  `protocol` varchar(8) CHARACTER SET latin1 NOT NULL,
   `uniqueid` varchar(20) CHARACTER SET latin1 NOT NULL,
   `score` int(11) NOT NULL,
   `maximum` int(11) NOT NULL DEFAULT '0',

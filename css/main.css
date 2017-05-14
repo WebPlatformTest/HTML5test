@@ -2161,4 +2161,24 @@ body.indexVisible > div#index button#indexbutton {
 
 
 
+.upgradeWarning {
+	background: #ec6534;
+	color: #fff;
 
+	padding: 20px;
+	margin-top: 10px;
+	margin-bottom: 40px;
+}
+.upgradeWarning p {
+	font-size: 0.8em;
+}
+
+.upgradeWarning a {
+	display: inline-block;
+	background: #fff;
+	margin-top: 16px;
+	padding: 8px 12px;
+	font-size: 0.85em;
+	text-decoration: none;
+	color: #000;
+}

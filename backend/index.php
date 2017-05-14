@@ -158,6 +158,7 @@
 						`release` = "' . $db->escape_string($payload->release) . '",
 						`timestamp` = NOW(),
 						`ip` = "' . $db->escape_string(get_ip_address()) . '",
+						`protocol` = "' . $db->escape_string($payload->protocol) . '",
 						`source` = ' . (is_null($payload->source) ? 'NULL' : '"' . $db->escape_string($payload->source) . '"') . ',
 						`identifier` = ' . (is_null($payload->identifier) ? 'NULL' : '"' . $db->escape_string($payload->identifier) . '"') . ',
 						`task` = ' . (is_null($payload->task) ? 'NULL' : '"' . $db->escape_string($payload->task) . '"') . ',
