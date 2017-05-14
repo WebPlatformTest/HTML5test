@@ -1948,7 +1948,8 @@ var tests = [
 													}, {
 														id:			'dropzone',
 														name: 		'<code>dropzone</code> attribute',
-														value:		1,
+														status:		'rejected',
+														value:		0,
 														url:		'http://www.w3.org/TR/html5/editing.html#the-dropzone-attribute	'
 													}
 												]
