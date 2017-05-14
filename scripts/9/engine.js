@@ -3462,7 +3462,7 @@ Test9 = (function () {
         function (results) {
             results.addItem({
                 key: 'streams.writeable',
-                passed: 'WriteableStream' in window
+                passed: 'WritableStream' in window
             });
         },
 
