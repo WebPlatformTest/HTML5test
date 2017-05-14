@@ -4146,7 +4146,7 @@ Test9 = (function () {
 
             item.startBackground();
 
-            var callback = item.getGlobalCallback(function(scoped) {
+            var callback = item.getGlobalCallback("es6_modules", function(scoped) {
                 item.update({
                     passed: scoped ? YES : YES | BUGGY
                 });
@@ -4160,7 +4160,7 @@ Test9 = (function () {
 
             var s = document.createElement('script');
             s.type = 'module';
-            s.src = "data:text/javascript;charset=utf-8,var test_module_scope = true; window." + callback + "(typeof window.test_module_scope === 'undefined')";
+            s.src = '/assets/modules.js';
             document.body.appendChild(s);
 
             window.setTimeout(function () {
@@ -4408,8 +4408,11 @@ Test9 = (function () {
             this.list.parent.stopBackground(this.data.key);
         },
 
-        getGlobalCallback: function(callback) {
-            var uniqueid = (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
+        getGlobalCallback: function(uniqueid, callback) {
+            if (typeof uniqueid == "function") {
+                callback = uniqueid;
+                uniqueid = (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
+            }
 
             var that = this;
             window['callback_' + uniqueid] = function() {
