@@ -1,7 +1,8 @@
 
-Test8 = (function () {
+Test =
+Test9 = (function () {
 
-    var release = 8;
+    var release = 9;
 
     var NO = 0,
         YES = 1,
