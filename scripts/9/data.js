@@ -2725,6 +2725,15 @@ var tests = [
 														[ 'mdn', '/Web/API/MutationObserver' ]
 													]
 									}, {
+										id: 		'intersectionObserver',
+										name:   	'Intersection Observer',
+										value:		{ maximum: 1, award: { PREFIX: 1 } },
+										status:		'experimental',
+										urls:		[
+														[ 'w3c', 'https://wicg.github.io/IntersectionObserver/' ],
+														[ 'mdn', '/Web/API/Intersection_Observer_API' ]
+													]
+									}, {
 										id: 		'url',
 										name:   	'URL API',
 										value:		{ maximum: 2, award: { PREFIX: 1 } },

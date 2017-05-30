@@ -3776,6 +3776,16 @@ Test9 = (function () {
         },
 
 
+        /* intersection observer */
+
+        function (results) {
+            results.addItem({
+                key: 'scripting.intersectionObserver',
+                passed: 'IntersectionObserver' in window ? YES : 'WebKitIntersectionObserver' in window || 'MozIntersectionObserver' in window || 'msIntersectionObserver' in window ? YES | PREFIX : NO
+            });
+        },
+
+
         /* url api */
 
         function (results) {
