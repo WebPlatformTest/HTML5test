@@ -3113,6 +3113,64 @@ Test9 = (function () {
         },
 
 
+        /* offscreen */
+
+        function (results) {
+            var canvas = document.createElement('canvas');
+
+            /* bitmap */
+
+            results.addItem({
+                key: 'offscreen.context',
+                passed: !!(canvas.getContext && typeof ImageBitmapRenderingContext != 'undefined' && canvas.getContext('bitmaprenderer') instanceof ImageBitmapRenderingContext)
+            });
+
+            results.addItem({
+                key: 'offscreen.bitmap',
+                passed: 'ImageBitmap' in window
+            });
+
+            /* offscreen canvas */
+
+            var passed;
+
+            results.addItem({
+                key: 'offscreen.canvas',
+                passed: 'OffscreenCanvas' in window
+            });
+
+            passed = false;
+
+            if ('OffscreenCanvas' in window) {
+                try {
+                    var offscreen = new OffscreenCanvas(16, 16);
+                    var context = offscreen.getContext('webgl');
+                    passed = context instanceof WebGLRenderingContext;
+                } catch (e) { }
+            }
+
+            results.addItem({
+                key: 'offscreen.webgl',
+                passed: passed
+            });
+
+            passed = false;
+
+            if ('OffscreenCanvas' in window) {
+                try {
+                    var offscreen = new OffscreenCanvas(16, 16);
+                    var context = offscreen.getContext('2d');
+                    passed = context instanceof CanvasRenderingContext2D;
+                } catch (e) { }
+            }
+
+            results.addItem({
+                key: 'offscreen.2d',
+                passed: passed
+            });
+        },
+
+
         /* webgl */
 
         function (results) {

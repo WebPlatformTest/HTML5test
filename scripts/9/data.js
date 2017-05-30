@@ -1701,6 +1701,52 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'offscreen',
+						status:	'experimental',
+						name: 	'Offscreen',
+						items:	[
+									{
+										id:			'context',
+										name: 		'Bitmap Renderer Context',
+										value:		1,
+										urls:		[
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#imagebitmaprenderingcontext' ]
+													]
+									}, {
+										id:			'bitmap',
+										name: 		'Bitmap Data',
+										value:		1,
+										urls:		[
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/webappapis.html#imagebitmap' ]
+													]
+									},
+
+									'<strong>Offscreen Canvas</strong>',
+
+									{
+										id:			'canvas',
+										name: 		'Offscreen Canvas API',
+										value:		1,
+										urls:		[
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#offscreencanvas' ]
+													]
+									}, {
+										id:			'2d',
+										name: 		'2D support',
+										value:		0,
+										urls:		[
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#dom-offscreencanvas-getcontext' ]
+													]
+									}, {
+										id:			'webgl',
+										name: 		'3D support',
+										value:		0,
+										urls:		[
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#dom-offscreencanvas-getcontext' ]
+													]
+									}
+								]
+					}, {
 						id:		'animation',
 						status:	'stable',
 						name: 	'Animation',
