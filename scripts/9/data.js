@@ -2190,6 +2190,50 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'resource',
+						status:	'stable',
+						name:	'Resource Loading',
+						items:	[
+									'<strong>Resource hints</strong>',
+
+									{
+										id:			'dns-prefetch',
+										name: 		'<code>link rel=dns-prefetch</code>',
+										value:		1,
+										urls:		[
+														[ 'w3c', 'https://www.w3.org/TR/resource-hints/' ]
+													]
+									}, {
+										id:			'prefetch',
+										name: 		'<code>link rel=prefetch</code>',
+										value:		1,
+										urls:		[
+														[ 'w3c', 'https://www.w3.org/TR/resource-hints/' ]
+													]
+									}, {
+										id:			'preconnect',
+										name: 		'<code>link rel=preconnect</code>',
+										value:		1,
+										urls:		[
+														[ 'w3c', 'https://www.w3.org/TR/resource-hints/' ]
+													]
+									}, {
+										id:			'prerender',
+										name: 		'<code>link rel=prerender</code>',
+										value:		1,
+										urls:    	[
+														[ 'w3c', 'https://www.w3.org/TR/resource-hints/' ]
+													]
+									}, {
+										id:			'preload',
+										name: 		'<code>link rel=preload</code>',
+										value:		1,
+										urls:    	[
+														[ 'w3c', 'https://w3c.github.io/preload/' ]
+													]
+									},
+								]
+					}, {
 						id:		'security',
 						status:	'stable',
 						name:	'Security',

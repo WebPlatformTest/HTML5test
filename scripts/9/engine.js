@@ -2212,6 +2212,66 @@ Test9 = (function () {
         },
 
 
+        /* link rel=dns-prefetch */
+
+        function (results) {
+            var link = document.createElement('link');
+
+            results.addItem({
+                key: 'resource.dns-prefetch',
+                passed: link.relList && link.relList.supports && link.relList.supports('dns-prefetch')
+            });
+        },
+
+
+        /* link rel=prefetch */
+
+        function (results) {
+            var link = document.createElement('link');
+
+            results.addItem({
+                key: 'resource.prefetch',
+                passed: link.relList && link.relList.supports && link.relList.supports('prefetch')
+            });
+        },
+
+
+        /* link rel=preconnect */
+
+        function (results) {
+            var link = document.createElement('link');
+
+            results.addItem({
+                key: 'resource.preconnect',
+                passed: link.relList && link.relList.supports && link.relList.supports('preconnect')
+            });
+        },
+
+
+        /* link rel=preload */
+
+        function (results) {
+            var link = document.createElement('link');
+
+            results.addItem({
+                key: 'resource.preload',
+                passed: link.relList && link.relList.supports && link.relList.supports('preload')
+            });
+        },
+
+
+        /* link rel=prerender */
+
+        function (results) {
+            var link = document.createElement('link');
+
+            results.addItem({
+                key: 'resource.prerender',
+                passed: link.relList && link.relList.supports && link.relList.supports('prerender')
+            });
+        },
+
+
         /* webworker */
 
         function (results) {
