@@ -2282,6 +2282,26 @@ Test9 = (function () {
         },
 
 
+        /* performance timing */
+
+        function (results) {
+            results.addItem({
+                key: 'resource.performance-timing',
+                passed: 'performance' in window
+            });
+        },
+
+
+        /* performance observer */
+
+        function (results) {
+            results.addItem({
+                key: 'resource.performance-observer',
+                passed: 'PerformanceObserver' in window
+            });
+        },
+
+
         /* webworker */
 
         function (results) {

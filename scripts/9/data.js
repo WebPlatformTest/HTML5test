@@ -2241,6 +2241,24 @@ var tests = [
 														[ 'w3c', 'https://w3c.github.io/preload/' ]
 													]
 									},
+
+									'<strong>Measurement</strong>',
+
+									{
+										id:			'performance-timing',
+										name: 		'Performance Timing',
+										value:		1,
+										urls:    	[
+														[ 'w3c', 'https://w3c.github.io/perf-timing-primer/' ]
+													]
+									}, {
+										id:			'performance-observer',
+										name: 		'Performance Observer',
+										value:		1,
+										urls:    	[
+														[ 'w3c', 'https://www.w3.org/TR/performance-timeline-2/' ]
+													]
+									},
 								]
 					}, {
 						id:		'security',
