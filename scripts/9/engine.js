@@ -3786,6 +3786,16 @@ Test9 = (function () {
         },
 
 
+        /* resize observer */
+
+        function (results) {
+            results.addItem({
+                key: 'scripting.resizeObserver',
+                passed: 'ResizeObserver' in window ? YES : 'WebKitResizeObserver' in window || 'MozResizeObserver' in window || 'msResizeObserver' in window ? YES | PREFIX : NO
+            });
+        },
+
+
         /* url api */
 
         function (results) {
