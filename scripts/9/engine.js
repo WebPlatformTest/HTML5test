@@ -3168,6 +3168,33 @@ Test9 = (function () {
         },
 
 
+        /* webgpu */
+
+        function (results) {
+            var element = document.createElement('canvas');
+            var contexts = ['webgpu', 'experimental-webgpu'];
+            var context = '';
+            var enabled = false;
+
+            var passed = 'WebGPURenderingContext' in window;
+
+            for (var b = -1, len = contexts.length; ++b < len;) {
+                try {
+                    if (element.getContext(contexts[b])) {
+                        context = contexts[b];
+                        enabled = true;
+                        break;
+                    };
+                } catch (e) { }
+            }
+
+            results.addItem({
+                key: '3d.webgpu',
+                passed: enabled ? (context == 'webgpu' ? YES : (context == 'experimental-webgpu' ? YES | EXPERIMENTAL : YES | PREFIX)) : (passed ? YES | DISABLED : NO)
+            });
+        },
+
+
         /* webvr */
 
         function (results) {

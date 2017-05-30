@@ -1678,6 +1678,15 @@ var tests = [
 														[ 'mdn', '/Web/API/WebGL_API' ]
 													]
 
+									}, {
+										id:			'webgpu',
+										name: 		'WebGPU',
+										status:		'experimental',
+										value:		0,
+										urls:		[
+														[ 'other', 'https://webkit.org/wp-content/uploads/webgpu-api-proposal.html' ]
+													]
+
 									},
 
 									'<strong>VR Headset</strong>',
