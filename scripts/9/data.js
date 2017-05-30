@@ -2194,6 +2194,15 @@ var tests = [
 						status:	'stable',
 						name:	'Resource Loading',
 						items:	[
+									{
+										id:			'fontloader',
+										name: 		'Font Loader API',
+										value:		1,
+										urls:    	[
+														[ 'w3c', 'https://www.w3.org/TR/css-font-loading/' ]
+													]
+									},
+
 									'<strong>Resource hints</strong>',
 
 									{

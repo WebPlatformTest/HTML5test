@@ -2272,6 +2272,16 @@ Test9 = (function () {
         },
 
 
+        /* font loader */
+
+        function (results) {
+            results.addItem({
+                key: 'resource.fontloader',
+                passed: document.fonts && 'FontFace' in window
+            });
+        },
+
+
         /* webworker */
 
         function (results) {
