@@ -12,7 +12,9 @@
                 passed = true;
             }
 
-            window.top.postMessage('csp10:' + (passed ? 'passed' : 'failed'), '*');
+            if (window.top.postMessage) {
+                window.top.postMessage('csp10:' + (passed ? 'passed' : 'failed'), '*');
+            }
 
         </script>
     </body>
