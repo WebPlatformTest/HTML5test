@@ -1551,6 +1551,45 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'svg',
+						status:	'stable',
+						name: 	'Vector graphics',
+						items:	[
+									{
+										id:			'image',
+										name: 		'SVG as an image',
+										value:		1,
+										urls:		[
+														[ 'w3c', 'https://www.w3.org/TR/SVG/' ]
+													]
+									}, {
+										id:			'inline',
+										name: 		'SVG inline in the document',
+										value:		1,
+										urls:		[
+														[ 'w3c', 'https://www.w3.org/TR/SVG/' ]
+													]
+									},
+
+									'<strong>Features</strong>',
+
+									{
+										id:			'foreignobject',
+										name: 		'HTML in SVG using foreignObject',
+										value:		1,
+										urls:		[
+														[ 'w3c', 'https://www.w3.org/TR/SVG/extend.html#ForeignObjectElement' ]
+													]
+									}, {
+										id:			'filters',
+										name: 		'SVG Filters',
+										value:		1,
+										urls:		[
+														[ 'w3c', 'https://www.w3.org/TR/SVG/filters.html' ],
+													]
+									}
+								]
+					}, {
 						id:		'canvas',
 						name:	'2D Graphics',
 						status:	'stable',

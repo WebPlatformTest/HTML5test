@@ -2989,6 +2989,67 @@ Test9 = (function () {
         },
 
 
+        /* svg as image */
+
+        function (results) {
+            var item = results.addItem({
+                key: 'svg.image',
+                passed: false
+            });
+
+            var img = new Image();
+
+            img.onerror = function () {
+                item.stopBackground();
+            };
+
+            img.onload = function () {
+                item.stopBackground();
+                item.update({
+                    'passed': img.width == 42 && img.height == 42
+                });
+            };
+
+            img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDIiIGhlaWdodD0iNDIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PC9zdmc+';
+        },
+
+
+        /* svg rendering */
+
+        function (results) {
+            var element = document.createElement('div');
+            element.innerHTML = '<svg width="42" height="42" xmlns="http://www.w3.org/2000/svg"></svg>';
+            document.body.appendChild(element);
+
+            results.addItem({
+                key: 'svg.inline',
+                passed: element.firstChild && element.firstChild.clientWidth == 42 && element.firstChild.clientHeight == 42
+            });
+
+            document.body.removeChild(element);
+        },
+
+
+        /* svg foreign object */
+
+        function (results) {
+            results.addItem({
+                key: 'svg.foreignobject',
+                passed: !!(document.createElementNS && typeof SVGForeignObjectElement != 'undefined' && document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject') instanceof SVGForeignObjectElement)
+            });
+        },
+
+
+        /* svg filters */
+
+        function (results) {
+            results.addItem({
+                key: 'svg.filters',
+                passed: 'SVGFEColorMatrixElement' in window && SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2
+            });
+        },
+
+
         /* canvas element and 2d context */
 
         function (results) {
