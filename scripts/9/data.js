@@ -2258,7 +2258,7 @@ var tests = [
 										urls:    	[
 														[ 'w3c', 'https://www.w3.org/TR/performance-timeline-2/' ]
 													]
-									},
+									}
 								]
 					}, {
 						id:		'security',
