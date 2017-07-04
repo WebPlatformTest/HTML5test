@@ -2578,7 +2578,7 @@ var tests = [
 													]
 									},
 
-									'<strong>Other API\'s</strong>',
+									'<strong>Other APIs</strong>',
 
 									{
 										id:			'base64',
