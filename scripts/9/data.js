@@ -258,22 +258,6 @@ var tests = [
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-summary-element' ]
 																]
 													}, {
-														id:		'menutoolbar',
-														name: 	'<code>menu</code> element of type <code>toolbar</code>',
-														status:	'proposal',
-														value:	{ maximum: 1, award: { OLD: 0 } },
-														urls:	[
-																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
-																]
-													}, {
-														id:		'menucontext',
-														name: 	'<code>menu</code> element of type <code>context</code>',
-														status:	'proposal',
-														value:	{ maximum: 2, award: { OLD: 1 } },
-														urls:	[
-																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
-																]
-													}, {
 														id:		'dialog',
 														name: 	'<code>dialog</code> element',
 														status:	'proposal',
