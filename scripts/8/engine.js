@@ -1658,7 +1658,7 @@ Test8 = (function () {
         function (results) {
             results.addItem({
                 key: 'media.getDisplayMedia',
-                passed: !!navigator.mediaDevices && !!navigator.mediaDevices.getDisplayMedia ? YES : NO
+                passed: !!navigator.getDisplayMedia || (!!navigator.mediaDevices && !!navigator.mediaDevices.getDisplayMedia) ? YES : NO
             });
         },
 
