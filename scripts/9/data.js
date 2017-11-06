@@ -762,12 +762,6 @@ var tests = [
 														name: 		'<code>files</code> property',
 														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-files'
-													}, {
-														id:			'directory',
-														status:		'experimental',
-														name: 		'Directory upload support',
-														value:		1,
-														url:		'https://wicg.github.io/directory-upload/proposal.html'
 													}
 												]
 									}, {

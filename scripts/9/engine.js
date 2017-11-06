@@ -859,11 +859,6 @@ Test9 = (function () {
                 key: 'form.file.files',
                 passed: element.files && element.files instanceof FileList
             });
-
-            results.addItem({
-                key: 'form.file.directory',
-                passed: 'directory' in element && window.Directory
-            });
         },
 
 
