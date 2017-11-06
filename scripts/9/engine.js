@@ -3473,17 +3473,6 @@ Test9 = (function () {
             });
         },
 
-
-        /* registerContentHandler */
-
-        function (results) {
-            results.addItem({
-                key: 'offline.registerContentHandler',
-                passed: !!window.navigator.registerContentHandler
-            });
-        },
-
-
         /* session storage */
 
         function (results) {

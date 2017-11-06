@@ -2448,7 +2448,7 @@ var tests = [
 													]
 									},
 
-									'<strong>Content and Scheme handlers</strong>',
+									'<strong>Scheme handlers</strong>',
 
 									{
 										id:			'registerProtocolHandler',
@@ -2457,14 +2457,6 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
 														[ 'mdn', '/Web-based_protocol_handlers' ]
-													]
-									}, {
-										id:			'registerContentHandler',
-										name: 		'Custom content handlers',
-										value:		1,
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
-														[ 'mdn', '/Web/API/Navigator/registerContentHandler' ]
 													]
 									}
 								]
