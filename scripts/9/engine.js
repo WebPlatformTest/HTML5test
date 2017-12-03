@@ -2854,10 +2854,11 @@ Test9 = (function () {
             var element = document.createElement('div');
             element.innerHTML = '<svg width="42" height="42" xmlns="http://www.w3.org/2000/svg"></svg>';
             document.body.appendChild(element);
+            var box = element.firstChild ? element.firstChild.getBoundingClientRect() : null;
 
             results.addItem({
                 key: 'svg.inline',
-                passed: element.firstChild && element.firstChild.clientWidth == 42 && element.firstChild.clientHeight == 42
+                passed: box && box.width == 42 && box.height == 42
             });
 
             document.body.removeChild(element);
