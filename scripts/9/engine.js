@@ -1514,6 +1514,16 @@ Test9 = (function () {
         },
 
 
+        /* web nfc */
+
+        function (results) {
+            results.addItem({
+                key: 'hardware.nfc',
+                passed: 'nfc' in navigator && "NFCMessage" in window
+            });
+        },
+
+
         /* fullscreen */
 
         function (results) {

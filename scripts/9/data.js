@@ -1180,6 +1180,13 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'https://wicg.github.io/webusb/' ]
 													]
+									}, {
+										id:			'nfc',
+										name: 		'Web NFC',
+										value:		0,
+										urls:		[
+														[ 'w3c', 'https://w3c.github.io/web-nfc/' ]
+													]
 									}
 								]
 					}, {
