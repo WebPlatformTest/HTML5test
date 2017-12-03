@@ -1,3 +1,4 @@
 backend/config.php
 composer.lock
 vendor/
+.DS_Store
