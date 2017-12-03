@@ -258,22 +258,6 @@ var tests = [
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-summary-element' ]
 																]
 													}, {
-														id:		'menutoolbar',
-														name: 	'<code>menu</code> element of type <code>toolbar</code>',
-														status:	'proposal',
-														value:	{ maximum: 1, award: { OLD: 0 } },
-														urls:	[
-																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
-																]
-													}, {
-														id:		'menucontext',
-														name: 	'<code>menu</code> element of type <code>context</code>',
-														status:	'proposal',
-														value:	{ maximum: 2, award: { OLD: 1 } },
-														urls:	[
-																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
-																]
-													}, {
 														id:		'dialog',
 														name: 	'<code>dialog</code> element',
 														status:	'proposal',
@@ -778,12 +762,6 @@ var tests = [
 														name: 		'<code>files</code> property',
 														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-files'
-													}, {
-														id:			'directory',
-														status:		'experimental',
-														name: 		'Directory upload support',
-														value:		1,
-														url:		'https://wicg.github.io/directory-upload/proposal.html'
 													}
 												]
 									}, {
@@ -2462,7 +2440,7 @@ var tests = [
 													]
 									},
 
-									'<strong>Content and Scheme handlers</strong>',
+									'<strong>Scheme handlers</strong>',
 
 									{
 										id:			'registerProtocolHandler',
@@ -2471,14 +2449,6 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
 														[ 'mdn', '/Web-based_protocol_handlers' ]
-													]
-									}, {
-										id:			'registerContentHandler',
-										name: 		'Custom content handlers',
-										value:		1,
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
-														[ 'mdn', '/Web/API/Navigator/registerContentHandler' ]
 													]
 									}
 								]
