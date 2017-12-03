@@ -208,6 +208,51 @@
 				wait();
 			}
 
+			function submit(method, payload) {
+				var httpRequest;
+				if (window.XMLHttpRequest) {
+					httpRequest = new XMLHttpRequest();
+				} else if (window.ActiveXObject) {
+					httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+
+				httpRequest.open('POST','/api/' + method, true);
+				httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				httpRequest.send('payload=' + encodeURIComponent(payload));
+			}
+
+			function upgradeConnection(success, failure) {
+				if (location.protocol == "http:") {
+					var httpRequest;
+
+					if (window.XMLHttpRequest) {
+						httpRequest = new XMLHttpRequest();
+					} else if (window.ActiveXObject) {
+						httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					
+					httpRequest.onreadystatechange = function() {
+						if (httpRequest.readyState == 4) {
+							if (httpRequest.status >= 200 && httpRequest.status < 400) {
+								success();
+							} else {
+								failure();
+							}
+						}
+					}
+
+					httpRequest.open('GET','https://' + location.hostname + '/assets/upgrade', true);
+					httpRequest.send();
+
+					return;
+				}
+				
+				failure();
+			}
+
+
+
+
 
 			waitForWhichBrowser(function() {
 
@@ -314,128 +359,111 @@
 					}
 
 
-					/* Update total score */
-					var container = document.getElementById('score');
 
-					container.innerHTML = tim(
-						"<div class='pointsPanel'>" +
-						"<h2><span>Your browser scores</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" +
-						"</div>",
-					c);
+					
 
-					/* Show box for confirming useragent detection */
-					new Confirm(container, {
-						id:			r.uniqueid,
-						onConfirm:	function() { submit('confirm', '{"uniqueid": "' + r.uniqueid + '"}'); },
-						onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); },
-						onFeedback:	function(value) { submit('feedback', JSON.stringify({ uniqueid: r.uniqueid, value: value })); }
-					});
+					
+					upgradeConnection(
+						function() {
+							location.protocol = 'https:';
+						}, 
+						function() {
 
-					/* Show action buttons */
-					var wrapper = document.createElement('div');
-					wrapper.className = 'wrapper';
-					container.appendChild(wrapper);
+							/* Update total score */
+							var container = document.getElementById('score');
 
-					var buttons = document.createElement('div');
-					buttons.className = 'buttons';
-					wrapper.appendChild(buttons);
+							container.innerHTML = tim(
+								"<div class='pointsPanel'>" +
+								"<h2><span>Your browser scores</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" +
+								"</div>",
+							c);
 
-					var button = document.createElement('span');
-					button.className = 'button save';
-					button.innerHTML = '<span>Save results</span>';
-					buttons.appendChild(button);
+							/* Show box for confirming useragent detection */
+							new Confirm(container, {
+								id:			r.uniqueid,
+								onConfirm:	function() { submit('confirm', '{"uniqueid": "' + r.uniqueid + '"}'); },
+								onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); },
+								onFeedback:	function(value) { submit('feedback', JSON.stringify({ uniqueid: r.uniqueid, value: value })); }
+							});
 
-					new Save(button, {
-						id:			r.uniqueid,
-						onSave:		function() { submit('save', '{"uniqueid": "' + r.uniqueid + '"}'); }
-					});
+							/* Show action buttons */
+							var wrapper = document.createElement('div');
+							wrapper.className = 'wrapper';
+							container.appendChild(wrapper);
 
-					var button = document.createElement('a');
-					button.className = 'button compare';
-					button.href = '/compare/browser/mybrowser.html';
-					button.innerHTML = '<span>Compare to...</span>';
-					buttons.appendChild(button);
+							var buttons = document.createElement('div');
+							buttons.className = 'buttons';
+							wrapper.appendChild(buttons);
 
-					var button = document.createElement('span');
-					button.className = 'button share';
-					button.innerHTML = '<span>Share</span>';
-					buttons.appendChild(button);
+							var button = document.createElement('span');
+							button.className = 'button save';
+							button.innerHTML = '<span>Save results</span>';
+							buttons.appendChild(button);
 
-					new Share(button, {
-						score: 		c.score,
-						browser:	Browsers.toString()
-					});
+							new Save(button, {
+								id:			r.uniqueid,
+								onSave:		function() { submit('save', '{"uniqueid": "' + r.uniqueid + '"}'); }
+							});
 
-					var button = document.createElement('a');
-					button.className = 'button donate';
-					button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
-					button.innerHTML = '<span>Donate</span>';
-					buttons.appendChild(button);
+							var button = document.createElement('a');
+							button.className = 'button compare';
+							button.href = '/compare/browser/mybrowser.html';
+							button.innerHTML = '<span>Compare to...</span>';
+							buttons.appendChild(button);
 
+							var button = document.createElement('span');
+							button.className = 'button share';
+							button.innerHTML = '<span>Share</span>';
+							buttons.appendChild(button);
 
-					if (location.protocol == "http:") {
-						var warning = document.createElement('div');
-						warning.className = 'upgradeWarning';
-						warning.innerHTML =
-							"<h4>Your browser may support even more features on a secure connection</h4>" +
-							"<p>Modern browsers only support some advanced features using on websites that uses a secure connection. " +
-							"This is because these features expose privacy sensitive data. Because you are now using an insecure connection, " +
-							"these features may not be available and are not detected.</p>" +
-							"<a href='https://html5test.com'>Try again, but using a secure connection</a>";
+							new Share(button, {
+								score: 		c.score,
+								browser:	Browsers.toString()
+							});
 
-						container.appendChild(warning);
-					}
+							var button = document.createElement('a');
+							button.className = 'button donate';
+							button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
+							button.innerHTML = '<span>Donate</span>';
+							buttons.appendChild(button);
 
 
+							/* Show detailed report of scores */
+							var container = document.getElementById('results');
+							var div = document.createElement('div');
+							div.className = 'resultsTable detailsTable';
+							container.appendChild(div);
 
+							var table = new ResultsTable({
+								parent:			div,
+								tests:			m.data,
+								header:			false,
+								links:			true,
+								explainations: 	true,
+								grading:		true,
+								bonus:			true,
+								distribute:		true,
+								columns:		1
+							});
 
-					/* Show detailed report of scores */
-					var container = document.getElementById('results');
-					var div = document.createElement('div');
-					div.className = 'resultsTable detailsTable';
-					container.appendChild(div);
+							table.updateColumn(0, { points: c.points, maximum: c.maximum, score: c.score, results: r.results });
 
-					var table = new ResultsTable({
-						parent:			div,
-						tests:			m.data,
-						header:			false,
-						links:			true,
-						explainations: 	true,
-						grading:		true,
-						bonus:			true,
-						distribute:		true,
-						columns:		1
-					});
+							new Index({
+								tests:			tests,
+								index:			document.getElementById('index'),
+								wrapper:		document.getElementById('contentwrapper')
+							});
 
-					table.updateColumn(0, { points: c.points, maximum: c.maximum, score: c.score, results: r.results });
+							window.setTimeout(function() {
+								var contents = document.getElementById('contents');
+								contents.style.visibility = 'visible';
 
-					new Index({
-						tests:			tests,
-						index:			document.getElementById('index'),
-						wrapper:		document.getElementById('contentwrapper')
-					});
+								var loading = document.getElementById('loading');
+								loading.style.display = 'none';
+							}, 100);
 
-
-					function submit(method, payload) {
-						var httpRequest;
-						if (window.XMLHttpRequest) {
-							httpRequest = new XMLHttpRequest();
-						} else if (window.ActiveXObject) {
-							httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 						}
-
-					   	httpRequest.open('POST','/api/' + method, true);
-					   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	   					httpRequest.send('payload=' + encodeURIComponent(payload));
-					}
-
-					window.setTimeout(function() {
-						var contents = document.getElementById('contents');
-						contents.style.visibility = 'visible';
-
-						var loading = document.getElementById('loading');
-						loading.style.display = 'none';
-					}, 100);
+					);
 				},
 
 				function(e) {

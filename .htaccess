@@ -50,6 +50,12 @@ RewriteRule ^scripts/useragents				http://api.whichbrowser.net/warning.js
 </IfModule>
 </FilesMatch>
 
+<FilesMatch "upgrade">
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatch>
+
 
 SetEnvIf User-Agent .*Bada.* BROKEN_CSP
 
