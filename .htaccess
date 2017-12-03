@@ -29,8 +29,6 @@ RewriteRule ^results/search.html$			/backend/controllers/search.php
 RewriteRule ^results/related/(.+).html$ 	/backend/controllers/fingerprint.php?id=$1
 RewriteRule ^results/(.+)/timeline/(.+).html$ 	/backend/controllers/timeline.php?id=$2&type=$1
 RewriteRule ^results/timeline/(.+).html$ 	/backend/controllers/timeline.php?id=$1&type=mobile
-RewriteRule ^devicelab/inventory.html$		/backend/controllers/lab-inventory.php
-RewriteRule ^devicelab/?$					/backend/controllers/lab.php
 
 RewriteRule ^favicon(.*)$					/images/icons/favicon$1
 RewriteRule ^apple-touch-icon(.*)$			/images/icons/apple-touch-icon$1
