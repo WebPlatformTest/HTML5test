@@ -1447,6 +1447,53 @@ Test9 = (function () {
         },
 
 
+        /* generic sensor api */
+
+        function (results) {
+            results.addItem({
+                key: 'sensors.api',
+                passed: "Sensor" in window
+            });
+
+
+            results.addItem({
+                key: 'sensors.low.accelerometer',
+                passed: "Sensor" in window && "Accelerometer" in window
+            });
+
+            results.addItem({
+                key: 'sensors.low.gyroscope',
+                passed: "Sensor" in window && "Gyroscope" in window
+            });
+
+            results.addItem({
+                key: 'sensors.low.magnetometer',
+                passed: "Sensor" in window && "Magnetometer" in window
+            });
+
+
+            results.addItem({
+                key: 'sensors.high.linearacceleration',
+                passed: "Sensor" in window && "LinearAccelerationSensor" in window
+            });
+
+            results.addItem({
+                key: 'sensors.high.absoluteorientation',
+                passed: "Sensor" in window && "AbsoluteOrientationSensor" in window
+            });
+
+            results.addItem({
+                key: 'sensors.high.relativeorientation',
+                passed: "Sensor" in window && "RelativeOrientationSensor" in window
+            });
+
+            results.addItem({
+                key: 'sensors.high.ambientlight',
+                passed: "Sensor" in window && "AmbientLightSensor" in window
+            });
+        },
+
+
         /* web bluetooth */
 
         function (results) {

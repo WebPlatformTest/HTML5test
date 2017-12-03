@@ -1112,6 +1112,56 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'sensors',
+						name:	'Sensors',
+						status:	'experimental',
+						items:	[
+							{
+								id:			'api',
+								name: 		'Generic Sensor API',
+								value:		5,
+								urls:		[
+												[ 'w3c', 'https://www.w3.org/TR/generic-sensor/' ]
+											]
+							}, 
+							
+							'<strong>Low level sensors</strong>',
+							
+							{
+								id:			'low.accelerometer',
+								name: 		'Accelerometer',
+								value:		0
+							}, {
+								id:			'low.gyroscope',
+								name: 		'Gyroscope',
+								value:		0
+							}, {
+								id:			'low.magnetometer',
+								name: 		'Magnetometer',
+								value:		0
+							}, 
+							
+							'<strong>High level sensors</strong>',
+							
+							{
+								id:			'high.linearacceleration',
+								name: 		'Linear Acceleration',
+								value:		0
+							}, {
+								id:			'high.absoluteorientation',
+								name: 		'Absolute Orientation',
+								value:		0
+							}, {
+								id:			'high.relativeorientation',
+								name: 		'Relative Orientation',
+								value:		0
+							}, {
+								id:			'high.ambientlight',
+								name: 		'Ambient Light',
+								value:		0
+							}, 
+						]
+					}, {
 						id:		'hardware',
 						name:	'Hardware',
 						status:	'proposal',
