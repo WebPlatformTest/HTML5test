@@ -1447,6 +1447,16 @@ Test9 = (function () {
         },
 
 
+        /* web bluetooth */
+
+        function (results) {
+            results.addItem({
+                key: 'hardware.bluetooth',
+                passed: 'bluetooth' in navigator && "BluetoothDevice" in window
+            });
+        },
+
+
         /* fullscreen */
 
         function (results) {

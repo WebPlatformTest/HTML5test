@@ -1112,6 +1112,18 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'hardware',
+						name:	'Hardware',
+						status:	'proposal',
+						items:	[
+									{
+										id:			'bluetooth',
+										name: 		'Web Bluetooth',
+										value:		5,
+										urls:		[
+														[ 'w3c', 'https://webbluetoothcg.github.io/web-bluetooth/' ],
+													]
+					}, {
 						id:		'output',
 						name:	'Output',
 						status:	'proposal',
