@@ -2272,6 +2272,16 @@ Test9 = (function () {
         },
 
 
+        /* webassembly */
+
+        function (results) {
+            results.addItem({
+                key: 'native.webassembly',
+                passed: 'WebAssembly' in window
+            });
+        },
+
+
         /* font loader */
 
         function (results) {

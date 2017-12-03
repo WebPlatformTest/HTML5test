@@ -2229,6 +2229,20 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'native',
+						status:	'experimental',
+						name:	'Web Assembly',
+						items:	[
+									{
+										id:			'webassembly',
+										name: 		'Web Assembly',
+										value:		1,
+										urls:		[
+														[ 'other', 'http://webassembly.org/docs/js/' ],
+													]
+									}
+								]
+					}, {
 						id:		'resource',
 						status:	'stable',
 						name:	'Resource Loading',
