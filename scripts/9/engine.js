@@ -2496,6 +2496,13 @@ Test9 = (function () {
                 passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp9"')
             });
 
+            /* av1 in webm codec */
+
+            results.addItem({
+                key: 'video.codecs.webm.av1',
+                passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="av1.experimental.e87fb2378f01103d5d6e477a4ef6892dc714e614"')
+            });
+
             /* does codec detection work properly? */
 
             var passed = true;
@@ -2790,6 +2797,11 @@ Test9 = (function () {
             results.addItem({
                 key: 'streaming.video.codecs.webm.vp9',
                 passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="vp9"')
+            });
+
+            results.addItem({
+                key: 'streaming.video.codecs.webm.av1',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="av1.experimental.e87fb2378f01103d5d6e477a4ef6892dc714e614"')
             });
         },
 

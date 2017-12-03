@@ -1340,6 +1340,14 @@ var tests = [
 													[ 'webm', 'http://www.webmproject.org/' ],
 													[ 'ietf', 'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt' ]
 												]
+									}, {
+										id:		'codecs.webm.av1',
+										name: 	'WebM with AV1 support',
+										status:	'optional',
+										urls:	[
+													[ 'webm', 'http://www.webmproject.org/' ],
+													[ 'other', 'http://aomedia.org' ]
+												]
 									}
 								]
 					}, {
@@ -1507,6 +1515,14 @@ var tests = [
 														urls:	[
 																	[ 'webm', 'http://www.webmproject.org/' ],
 																	[ 'ietf', 'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt' ]
+																]
+													}, {
+														id:		'webm.av1',
+														name: 	'WebM with AV1 support',
+														status:	'optional',
+														urls:	[
+																	[ 'webm', 'http://www.webmproject.org/' ],
+																	[ 'other', 'http://aomedia.org' ]
 																]
 													}
 												]
