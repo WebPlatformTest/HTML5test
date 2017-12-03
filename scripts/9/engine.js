@@ -1457,6 +1457,16 @@ Test9 = (function () {
         },
 
 
+        /* web usb */
+
+        function (results) {
+            results.addItem({
+                key: 'hardware.usb',
+                passed: 'usb' in navigator && "USBDevice" in window
+            });
+        },
+
+
         /* fullscreen */
 
         function (results) {

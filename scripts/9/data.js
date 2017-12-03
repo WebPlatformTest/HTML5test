@@ -1123,6 +1123,15 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'https://webbluetoothcg.github.io/web-bluetooth/' ],
 													]
+									}, {
+										id:			'usb',
+										name: 		'Web USB',
+										value:		5,
+										urls:		[
+														[ 'w3c', 'https://wicg.github.io/webusb/' ]
+													]
+									}
+								]
 					}, {
 						id:		'output',
 						name:	'Output',
