@@ -185,265 +185,130 @@
 		<script>
 		<!--
 
-			function submit(method, payload) {
-				var httpRequest;
-				if (window.XMLHttpRequest) {
-					httpRequest = new XMLHttpRequest();
-				} else if (window.ActiveXObject) {
-					httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-
-				httpRequest.open('POST','/api/' + method, true);
-				httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-				httpRequest.send('payload=' + encodeURIComponent(payload));
-			}
-
-			function upgradeConnection(success, failure) {
-				if (location.protocol == "http:") {
-					var httpRequest;
-
-					if (window.XMLHttpRequest) {
-						httpRequest = new XMLHttpRequest();
-					} else if (window.ActiveXObject) {
-						httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-					}
-					
-					httpRequest.onreadystatechange = function() {
-						if (httpRequest.readyState == 4) {
-							if (httpRequest.status >= 200 && httpRequest.status < 400) {
-								success();
-							} else {
-								failure();
-							}
-						}
-					}
-
-					httpRequest.open('GET','https://' + location.hostname + '/assets/upgrade', true);
-					httpRequest.send();
-
-					return;
-				}
-				
-				failure();
-			}
-
-
-
-			
 			loadWhichBrowser(function() {
-
 				Browsers = new WhichBrowser({
 					useFeatures:		true,
 					detectCamouflage:	true
 				});
 
-				Blacklist = { 'OneBrowser' : { blocked: true, identifier: Browsers.browser.toString() } };
-
-				if (typeof Blacklist[Browsers.browser.name] != 'undefined')
-				{
-					if (Blacklist[Browsers.browser.name].blocked)
-					{
-						var contents = document.getElementById('contents');
-						contents.style.visibility = 'visible';
-
-						var warning = document.getElementById('warning');
-						warning.innerHTML =
-							"<div class='blocked'>" +
-								"<h2>" + Blacklist[Browsers.browser.name].identifier + " has been blocked!</h2>" +
-								"<p>It appears that your browser is too buggy to test or is deliberately attempting to get higher scores " +
-								"by claiming it supports features that it does not. In any case consider switching to a different browser, " +
-								"because this will also cause problems for websites that attempt to use these features.</p>" +
-								"<button onclick='this.style.display=\"none\"; start();'>Show results anyway</button>" +
- 							"</div>"
-
-						var loading = document.getElementById('loading');
-						loading.style.display = 'none';
-
-						this.load();
-						return;
-					}
-				}
-
-				start();
-			});
-
-
-			function start() {
-				var params = {};
-
-				if (location.search) {
-					var parts = location.search.substring(1).split('&');
-
-					for (var i = 0; i < parts.length; i++) {
-						var nv = parts[i].split('=');
-						if (!nv[0]) continue;
-						params[nv[0]] = decodeURIComponent(nv[1]) || true;
-					}
-				}
-
-				var identifier = typeof params.identifier != 'undefined' ? params.identifier : '';
-				var source = typeof params.source != 'undefined' ? params.source : '';
-				var task = typeof params.task != 'undefined' ? params.task : '';
-
 				new Test(function(r) {
 					var m = new Metadata(tests);
-
 					var c = new Calculate(r, m.data);
 
-					/* Submit results */
-					try {
-						var payload = '{' +
-									  '"release": "' + r.release + '",' +
-									  '"source": "' + source + '",' +
-									  '"protocol": "' + location.protocol + '",' +
-									  '"identifier": "' + escapeSlashes(identifier) + '",' +
-									  '"task": "' + task + '",' +
-									  '"uniqueid": "' + r.uniqueid + '",' +
-									  '"score": ' + c.score + ',' +
-									  '"maximum": ' + c.maximum + ',' +
-									  '"camouflage": "' + (Browsers.camouflage ? '1' : '0') + '",' +
-									  '"features": "' + (Browsers.features.join(',')) + '",' +
-									  '"browserName": "' + (Browsers.browser.name ? Browsers.browser.name : '') + '",' +
-									  '"browserChannel": "' + (Browsers.browser.channel ? Browsers.browser.channel : '') + '",' +
-									  '"browserVersion": "' + (Browsers.browser.version ? Browsers.browser.version.toString() : '') + '",' +
-									  '"browserVersionType": "' + (Browsers.browser.version ? Browsers.browser.version.type : '') + '",' +
-									  '"browserVersionMajor": "' + (Browsers.browser.version ? Browsers.browser.version.major : '') + '",' +
-									  '"browserVersionMinor": "' + (Browsers.browser.version ? Browsers.browser.version.minor : '') + '",' +
-									  '"browserVersionOriginal": "' + (Browsers.browser.version ? Browsers.browser.version.original : '') + '",' +
-									  '"browserMode": "' + (Browsers.browser.mode ? Browsers.browser.mode : '') + '",' +
-									  '"engineName": "' + (Browsers.engine.name ? Browsers.engine.name : '') + '",' +
-									  '"engineVersion": "' + (Browsers.engine.version ? Browsers.engine.version.toString() : '') + '",' +
-									  '"osName": "' + (Browsers.os.name ? Browsers.os.name : '') + '",' +
-									  '"osFamily": "' + (Browsers.os.family ? Browsers.os.family : '') + '",' +
-									  '"osVersion": "' + (Browsers.os.version ? Browsers.os.version.toString() : '') + '",' +
-									  '"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
-									  '"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
-									  '"deviceSeries": "' + (Browsers.device.series ? Browsers.device.series : '') + '",' +
-									  '"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
-									  '"deviceIdentified": "' + (Browsers.device.identified ? '1' : '0' ) + '",' +
-									  '"deviceWidth": "' + (screen.width) + '",' +
-									  '"deviceHeight": "' + (screen.height) + '",' +
-									  '"useragent": "' + navigator.userAgent + '",' +
-									  '"humanReadable": "' + Browsers.toString() + '",' +
-									  '"points": "' + c.points + '",' +
-									  '"results": "' + r.results + '"' +
-									  '}';
+					submitResults(r, c);
 
-						submit('submit', payload);
-					} catch(e) {
-						alert('Could not submit results: ' + e.message);
-					}
-
-
-
-					
-
-					
 					upgradeConnection(
 						function() {
 							location.protocol = 'https:';
 						}, 
 						function() {
-
-							/* Update total score */
-							var container = document.getElementById('score');
-
-							container.innerHTML = tim(
-								"<div class='pointsPanel'>" +
-								"<h2><span>Your browser scores</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" +
-								"</div>",
-							c);
-
-							/* Show box for confirming useragent detection */
-							new Confirm(container, {
-								id:			r.uniqueid,
-								onConfirm:	function() { submit('confirm', '{"uniqueid": "' + r.uniqueid + '"}'); },
-								onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); },
-								onFeedback:	function(value) { submit('feedback', JSON.stringify({ uniqueid: r.uniqueid, value: value })); }
-							});
-
-							/* Show action buttons */
-							var wrapper = document.createElement('div');
-							wrapper.className = 'wrapper';
-							container.appendChild(wrapper);
-
-							var buttons = document.createElement('div');
-							buttons.className = 'buttons';
-							wrapper.appendChild(buttons);
-
-							var button = document.createElement('span');
-							button.className = 'button save';
-							button.innerHTML = '<span>Save results</span>';
-							buttons.appendChild(button);
-
-							new Save(button, {
-								id:			r.uniqueid,
-								onSave:		function() { submit('save', '{"uniqueid": "' + r.uniqueid + '"}'); }
-							});
-
-							var button = document.createElement('a');
-							button.className = 'button compare';
-							button.href = '/compare/browser/mybrowser.html';
-							button.innerHTML = '<span>Compare to...</span>';
-							buttons.appendChild(button);
-
-							var button = document.createElement('span');
-							button.className = 'button share';
-							button.innerHTML = '<span>Share</span>';
-							buttons.appendChild(button);
-
-							new Share(button, {
-								score: 		c.score,
-								browser:	Browsers.toString()
-							});
-
-							var button = document.createElement('a');
-							button.className = 'button donate';
-							button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
-							button.innerHTML = '<span>Donate</span>';
-							buttons.appendChild(button);
-
-
-							/* Show detailed report of scores */
-							var container = document.getElementById('results');
-							var div = document.createElement('div');
-							div.className = 'resultsTable detailsTable';
-							container.appendChild(div);
-
-							var table = new ResultsTable({
-								parent:			div,
-								tests:			m.data,
-								header:			false,
-								links:			true,
-								explainations: 	true,
-								grading:		true,
-								bonus:			true,
-								distribute:		true,
-								columns:		1
-							});
-
-							table.updateColumn(0, { points: c.points, maximum: c.maximum, score: c.score, results: r.results });
-
-							new Index({
-								tests:			tests,
-								index:			document.getElementById('index'),
-								wrapper:		document.getElementById('contentwrapper')
-							});
-
-							window.setTimeout(function() {
-								var contents = document.getElementById('contents');
-								contents.style.visibility = 'visible';
-
-								var loading = document.getElementById('loading');
-								loading.style.display = 'none';
-							}, 100);
-
+							showResults(r, c, m);
 						}
 					);
-				},
+				}, showError);
 
-				function(e) {
-					if (typeof console != 'undefined') console.log(e);
+				finalizePage();
+			});
+
+			
+			function showResults(r, c, m) {
+				/* Update total score */
+				var container = document.getElementById('score');
+
+				container.innerHTML = tim(
+					"<div class='pointsPanel'>" +
+					"<h2><span>Your browser scores</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" +
+					"</div>",
+				c);
+
+				/* Show box for confirming useragent detection */
+				new Confirm(container, {
+					id:			r.uniqueid,
+					onConfirm:	function() { submit('confirm', '{"uniqueid": "' + r.uniqueid + '"}'); },
+					onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); },
+					onFeedback:	function(value) { submit('feedback', JSON.stringify({ uniqueid: r.uniqueid, value: value })); }
+				});
+
+				/* Show action buttons */
+				var wrapper = document.createElement('div');
+				wrapper.className = 'wrapper';
+				container.appendChild(wrapper);
+
+				var buttons = document.createElement('div');
+				buttons.className = 'buttons';
+				wrapper.appendChild(buttons);
+
+				var button = document.createElement('span');
+				button.className = 'button save';
+				button.innerHTML = '<span>Save results</span>';
+				buttons.appendChild(button);
+
+				new Save(button, {
+					id:			r.uniqueid,
+					onSave:		function() { submit('save', '{"uniqueid": "' + r.uniqueid + '"}'); }
+				});
+
+				var button = document.createElement('a');
+				button.className = 'button compare';
+				button.href = '/compare/browser/mybrowser.html';
+				button.innerHTML = '<span>Compare to...</span>';
+				buttons.appendChild(button);
+
+				var button = document.createElement('span');
+				button.className = 'button share';
+				button.innerHTML = '<span>Share</span>';
+				buttons.appendChild(button);
+
+				new Share(button, {
+					score: 		c.score,
+					browser:	Browsers.toString()
+				});
+
+				var button = document.createElement('a');
+				button.className = 'button donate';
+				button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
+				button.innerHTML = '<span>Donate</span>';
+				buttons.appendChild(button);
+
+
+				/* Show detailed report of scores */
+				var container = document.getElementById('results');
+				var div = document.createElement('div');
+				div.className = 'resultsTable detailsTable';
+				container.appendChild(div);
+
+				var table = new ResultsTable({
+					parent:			div,
+					tests:			m.data,
+					header:			false,
+					links:			true,
+					explainations: 	true,
+					grading:		true,
+					bonus:			true,
+					distribute:		true,
+					columns:		1
+				});
+
+				table.updateColumn(0, { points: c.points, maximum: c.maximum, score: c.score, results: r.results });
+
+				new Index({
+					tests:			tests,
+					index:			document.getElementById('index'),
+					wrapper:		document.getElementById('contentwrapper')
+				});
+
+				window.setTimeout(function() {
+					var contents = document.getElementById('contents');
+					contents.style.visibility = 'visible';
+
+					var loading = document.getElementById('loading');
+					loading.style.display = 'none';
+				}, 100);
+			}
+
+
+			function showError(e) {
+				if (typeof console != 'undefined') console.log(e);
 
 					alert('Test has failed: ' + e.message);
 
@@ -452,12 +317,10 @@
 
 					var loading = document.getElementById('loading');
 					loading.style.display = 'none';
-				});
-
-				this.load();
 			}
 
-			function load() {
+
+			function finalizePage() {
 				(function(){
 				  	var bsa = document.createElement('script');
 					 bsa.type = 'text/javascript';
