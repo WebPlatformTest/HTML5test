@@ -2633,6 +2633,13 @@ Test9 = (function () {
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="opus"')
             });
 
+            /* ogg flac codec */
+
+            results.addItem({
+                key: 'audio.codecs.ogg.flac',
+                passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="flac"')
+            });
+
             /* webm vorbis codec */
 
             results.addItem({
@@ -2864,6 +2871,13 @@ Test9 = (function () {
             results.addItem({
                 key: 'streaming.audio.codecs.ogg.opus',
                 passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/ogg; codecs="opus"')
+            });
+
+            /* flac in ogg codec */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.ogg.flac',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/ogg; codecs="flac"')
             });
 
             /* vorbis in webm codec */

@@ -1434,6 +1434,10 @@ var tests = [
 										name: 	'Ogg Opus support',
 										status:	'optional'
 									}, {
+										id:		'codecs.ogg.flac',
+										name: 	'Ogg FLAC support',
+										status:	'optional'
+									}, {
 										id:		'codecs.webm.vorbis',
 										name: 	'WebM with Vorbis support',
 										status:	'optional'
