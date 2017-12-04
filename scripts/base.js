@@ -215,43 +215,6 @@
 			alert('Could not submit results: ' + e.message);
 		}
 	}
-	
-	var tim = (function(){
-	    var starts  = "\\{\\{",
-	        ends    = "\\}\\}",
-	        path    = "[a-z0-9_][\\.a-z0-9_]*", // e.g. config.person.name
-	        pattern = new RegExp(starts + "("+ path +")" + ends, "gim"),
-	        undef;
-
-	    return function(template, data, notFound){
-	        // Merge the data into the template string
-	        return template.replace(pattern, function(tag, ref){
-	            var path = ref.split("."),
-	                len = path.length,
-	                lookup = data,
-	                i = 0;
-
-	            for (; i < len; i++){
-	                lookup = lookup[path[i]];
-
-	                // Error handling for when the property is not found
-	                if (lookup === undef){
-	                    // If specified, substitute with the "not found" arg
-	                    if (notFound !== undef){
-	                        return notFound;
-	                    }
-	                    // Throw error
-	                    throw "Tim: '" + path[i] + "' not found in " + tag;
-	                }
-
-	                // Success! Return the required value
-	                if (i === len - 1){
-	                    return lookup;
-	                }
-	            }
-	        });
-	    };
-	}());
 
 	function escapeSlashes(string) {
 		return string.replace(/\\/g, '\\\\').

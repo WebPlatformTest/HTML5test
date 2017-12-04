@@ -210,16 +210,15 @@
 				finalizePage();
 			});
 
-			
+
 			function showResults(r, c, m) {
 				/* Update total score */
 				var container = document.getElementById('score');
 
-				container.innerHTML = tim(
+				container.innerHTML = 
 					"<div class='pointsPanel'>" +
-					"<h2><span>Your browser scores</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" +
-					"</div>",
-				c);
+					"<h2><span>Your browser scores</span> <strong>" + c.score + "</strong> <span>out of " + c.maximum + " points</span></h2>" +
+					"</div>";
 
 				/* Show box for confirming useragent detection */
 				new Confirm(container, {
