@@ -2094,12 +2094,6 @@ var tests = [
 														name: 		'<code>draggable</code> attribute',
 														value:		1,
 														url:		'http://www.w3.org/TR/html5/editing.html#the-draggable-attribute'
-													}, {
-														id:			'dropzone',
-														name: 		'<code>dropzone</code> attribute',
-														status:		'rejected',
-														value:		0,
-														url:		'http://www.w3.org/TR/html5/editing.html#the-dropzone-attribute	'
 													}
 												]
 									}, {
