@@ -3667,16 +3667,6 @@ Test9 = (function () {
         },
 
 
-        /* html imports */
-
-        function (results) {
-            results.addItem({
-                key: 'components.imports',
-                passed: 'import' in document.createElement('link')
-            });
-        },
-
-
         /* async scripts */
 
         function (results) {

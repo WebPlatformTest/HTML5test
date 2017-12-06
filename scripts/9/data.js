@@ -1061,13 +1061,6 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#the-template-element' ]
 													]
-									}, {
-										id:			'imports',
-										name: 		'HTML imports',
-										status: 	'rejected',
-										urls:		[
-														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/imports/' ]
-													]
 									}
 								]
 					}
