@@ -1123,10 +1123,10 @@ var tests = [
 								urls:		[
 												[ 'w3c', 'https://www.w3.org/TR/generic-sensor/' ]
 											]
-							}, 
-							
+							},
+
 							'<strong>Low level sensors</strong>',
-							
+
 							{
 								id:			'low.accelerometer',
 								name: 		'Accelerometer',
@@ -1139,10 +1139,10 @@ var tests = [
 								id:			'low.magnetometer',
 								name: 		'Magnetometer',
 								value:		0
-							}, 
-							
+							},
+
 							'<strong>High level sensors</strong>',
-							
+
 							{
 								id:			'high.linearacceleration',
 								name: 		'Linear Acceleration',
@@ -1159,7 +1159,7 @@ var tests = [
 								id:			'high.ambientlight',
 								name: 		'Ambient Light',
 								value:		0
-							}, 
+							},
 						]
 					}, {
 						id:		'hardware',
@@ -2326,13 +2326,6 @@ var tests = [
 										name: 		'<code>link rel=preconnect</code>',
 										value:		1,
 										urls:		[
-														[ 'w3c', 'https://www.w3.org/TR/resource-hints/' ]
-													]
-									}, {
-										id:			'prerender',
-										name: 		'<code>link rel=prerender</code>',
-										value:		1,
-										urls:    	[
 														[ 'w3c', 'https://www.w3.org/TR/resource-hints/' ]
 													]
 									}, {

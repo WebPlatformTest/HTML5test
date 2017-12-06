@@ -2161,18 +2161,6 @@ Test9 = (function () {
         },
 
 
-        /* link rel=prerender */
-
-        function (results) {
-            var link = document.createElement('link');
-
-            results.addItem({
-                key: 'resource.prerender',
-                passed: link.relList && link.relList.supports && link.relList.supports('prerender')
-            });
-        },
-
-
         /* webassembly */
 
         function (results) {
