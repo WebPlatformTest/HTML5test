@@ -1123,10 +1123,10 @@ var tests = [
 								urls:		[
 												[ 'w3c', 'https://www.w3.org/TR/generic-sensor/' ]
 											]
-							}, 
-							
+							},
+
 							'<strong>Low level sensors</strong>',
-							
+
 							{
 								id:			'low.accelerometer',
 								name: 		'Accelerometer',
@@ -1139,10 +1139,10 @@ var tests = [
 								id:			'low.magnetometer',
 								name: 		'Magnetometer',
 								value:		0
-							}, 
-							
+							},
+
 							'<strong>High level sensors</strong>',
-							
+
 							{
 								id:			'high.linearacceleration',
 								name: 		'Linear Acceleration',
@@ -1159,7 +1159,7 @@ var tests = [
 								id:			'high.ambientlight',
 								name: 		'Ambient Light',
 								value:		0
-							}, 
+							},
 						]
 					}, {
 						id:		'hardware',
@@ -2685,15 +2685,6 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-defer' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer' ],
 														[ 'mdn', '/Web/HTML/Element/script' ]
-													]
-									}, {
-										id:			'executionevents',
-										name: 		'Script execution events',
-										status:		'rejected',
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#the-script-element' ],
-														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element' ],
-														[ 'mdn', '/Web/Events/beforescriptexecute' ]
 													]
 									}, {
 										id:			'onerror',

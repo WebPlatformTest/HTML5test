@@ -3707,42 +3707,6 @@ Test9 = (function () {
         },
 
 
-        /* script execution events */
-
-        function (results) {
-            var executionevents = results.addItem({
-                key: 'scripting.executionevents',
-                passed: false
-            });
-
-            executionevents.startBackground();
-
-            var before = false;
-
-            var s = document.createElement('script');
-            s.src = "data:text/javascript;charset=utf-8,window"
-
-            s.addEventListener('beforescriptexecute', function () {
-                before = true;
-            }, true);
-
-            s.addEventListener('afterscriptexecute', function () {
-                if (before) {
-                    executionevents.update({
-                        passed: true
-                    });
-                }
-
-                executionevents.stopBackground();
-            }, true);
-
-            document.body.appendChild(s);
-
-            window.setTimeout(function () {
-                executionevents.stopBackground();
-            }, 500);
-        },
-
 
         /* base64 encoding and decoding */
 
