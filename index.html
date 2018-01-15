@@ -17,15 +17,6 @@
 		<script src='/scripts/9/engine.js' type='text/javascript'></script>
 		<script src='/scripts/9/data.js' type='text/javascript'></script>
 
-		<script>
-			(function(){var p=[],w=window,d=document,e=f=0;p.push('ua='+encodeURIComponent(navigator.userAgent));e|=w.ActiveXObject?1:0;e|=w.opera?2:0;e|=w.chrome?4:0;
-			e|='getBoxObjectFor' in d || 'mozInnerScreenX' in w?8:0;e|=('WebKitCSSMatrix' in w||'WebKitPoint' in w||'webkitStorageInfo' in w||'webkitURL' in w)?16:0;
-			e|=(e&16&&({}.toString).toString().indexOf("\n")===-1)?32:0;p.push('e='+e);f|='sandbox' in d.createElement('iframe')?1:0;f|='WebSocket' in w?2:0;
-			f|=w.Worker?4:0;f|=w.applicationCache?8:0;f|=w.history && history.pushState?16:0;f|=d.documentElement.webkitRequestFullScreen?32:0;f|='FileReader' in w?64:0;
-			p.push('f='+f);p.push('r='+Math.random().toString(36).substring(7));p.push('w='+screen.width);p.push('h='+screen.height);var s=d.createElement('script');
-			s.src='//api.whichbrowser.net/rel/detect.js?' + p.join('&');d.getElementsByTagName('head')[0].appendChild(s);})();
-		</script>
-
 		<meta name="application-name" content="HTML5test"/>
 
 		<link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png" />
@@ -91,8 +82,6 @@
 						<li><a href='/compare/browser/index.html'>Compare</a></li>
 					</ul>
 					<ul class='right'>
-						<li><a href='http://blog.html5test.com/'>News</a></li>
-						<li><a href='/devicelab'>Device Lab</a></li>
 						<li><a href='/about.html'>About the test</a></li>
 					</ul>
 				</div>
@@ -196,252 +185,129 @@
 		<script>
 		<!--
 
-
-			function waitForWhichBrowser(cb) {
-				var callback = cb;
-
-				function wait() {
-					if (typeof WhichBrowser == 'undefined')
-						window.setTimeout(wait, 100)
-					else
-						callback();
-				}
-
-				wait();
-			}
-
-
-			waitForWhichBrowser(function() {
-
+			loadWhichBrowser(function() {
 				Browsers = new WhichBrowser({
 					useFeatures:		true,
 					detectCamouflage:	true
 				});
 
-				Blacklist = { 'OneBrowser' : { blocked: true, identifier: Browsers.browser.toString() } };
+				new Test(function(r) {
+					var m = new Metadata(tests);
+					var c = new Calculate(r, m.data);
 
-				if (typeof Blacklist[Browsers.browser.name] != 'undefined')
-				{
-					if (Blacklist[Browsers.browser.name].blocked)
-					{
-						var contents = document.getElementById('contents');
-						contents.style.visibility = 'visible';
+					submitResults(r, c);
 
-						var warning = document.getElementById('warning');
-						warning.innerHTML =
-							"<div class='blocked'>" +
-								"<h2>" + Blacklist[Browsers.browser.name].identifier + " has been blocked!</h2>" +
-								"<p>It appears that your browser is too buggy to test or is deliberately attempting to get higher scores " +
-								"by claiming it supports features that it does not. In any case consider switching to a different browser, " +
-								"because this will also cause problems for websites that attempt to use these features.</p>" +
-								"<button onclick='this.style.display=\"none\"; start();'>Show results anyway</button>" +
- 							"</div>"
+					upgradeConnection(
+						function() {
+							location.protocol = 'https:';
+						}, 
+						function() {
+							showResults(r, c, m);
+						}
+					);
+				}, showError);
 
-						var loading = document.getElementById('loading');
-						loading.style.display = 'none';
-
-						this.load();
-						return;
-					}
-				}
-
-				start();
+				finalizePage();
 			});
 
 
-			function start() {
-				var params = {};
+			function showResults(r, c, m) {
+				/* Update total score */
+				var container = document.getElementById('score');
 
-				if (location.search) {
-					var parts = location.search.substring(1).split('&');
+				container.innerHTML = 
+					"<div class='pointsPanel'>" +
+					"<h2><span>Your browser scores</span> <strong>" + c.score + "</strong> <span>out of " + c.maximum + " points</span></h2>" +
+					"</div>";
 
-					for (var i = 0; i < parts.length; i++) {
-						var nv = parts[i].split('=');
-						if (!nv[0]) continue;
-						params[nv[0]] = decodeURIComponent(nv[1]) || true;
-					}
-				}
+				/* Show box for confirming useragent detection */
+				new Confirm(container, {
+					id:			r.uniqueid,
+					onConfirm:	function() { submit('confirm', '{"uniqueid": "' + r.uniqueid + '"}'); },
+					onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); },
+					onFeedback:	function(value) { submit('feedback', JSON.stringify({ uniqueid: r.uniqueid, value: value })); }
+				});
 
-				var identifier = typeof params.identifier != 'undefined' ? params.identifier : '';
-				var source = typeof params.source != 'undefined' ? params.source : '';
-				var task = typeof params.task != 'undefined' ? params.task : '';
+				/* Show action buttons */
+				var wrapper = document.createElement('div');
+				wrapper.className = 'wrapper';
+				container.appendChild(wrapper);
 
-				new Test(function(r) {
-					var m = new Metadata(tests);
+				var buttons = document.createElement('div');
+				buttons.className = 'buttons';
+				wrapper.appendChild(buttons);
 
-					var c = new Calculate(r, m.data);
+				var button = document.createElement('span');
+				button.className = 'button save';
+				button.innerHTML = '<span>Save results</span>';
+				buttons.appendChild(button);
 
-					/* Submit results */
-					try {
-						var payload = '{' +
-									  '"release": "' + r.release + '",' +
-									  '"source": "' + source + '",' +
-									  '"protocol": "' + location.protocol + '",' +
-									  '"identifier": "' + escapeSlashes(identifier) + '",' +
-									  '"task": "' + task + '",' +
-									  '"uniqueid": "' + r.uniqueid + '",' +
-									  '"score": ' + c.score + ',' +
-									  '"maximum": ' + c.maximum + ',' +
-									  '"camouflage": "' + (Browsers.camouflage ? '1' : '0') + '",' +
-									  '"features": "' + (Browsers.features.join(',')) + '",' +
-									  '"browserName": "' + (Browsers.browser.name ? Browsers.browser.name : '') + '",' +
-									  '"browserChannel": "' + (Browsers.browser.channel ? Browsers.browser.channel : '') + '",' +
-									  '"browserVersion": "' + (Browsers.browser.version ? Browsers.browser.version.toString() : '') + '",' +
-									  '"browserVersionType": "' + (Browsers.browser.version ? Browsers.browser.version.type : '') + '",' +
-									  '"browserVersionMajor": "' + (Browsers.browser.version ? Browsers.browser.version.major : '') + '",' +
-									  '"browserVersionMinor": "' + (Browsers.browser.version ? Browsers.browser.version.minor : '') + '",' +
-									  '"browserVersionOriginal": "' + (Browsers.browser.version ? Browsers.browser.version.original : '') + '",' +
-									  '"browserMode": "' + (Browsers.browser.mode ? Browsers.browser.mode : '') + '",' +
-									  '"engineName": "' + (Browsers.engine.name ? Browsers.engine.name : '') + '",' +
-									  '"engineVersion": "' + (Browsers.engine.version ? Browsers.engine.version.toString() : '') + '",' +
-									  '"osName": "' + (Browsers.os.name ? Browsers.os.name : '') + '",' +
-									  '"osFamily": "' + (Browsers.os.family ? Browsers.os.family : '') + '",' +
-									  '"osVersion": "' + (Browsers.os.version ? Browsers.os.version.toString() : '') + '",' +
-									  '"deviceManufacturer": "' + (Browsers.device.manufacturer ? Browsers.device.manufacturer : '') + '",' +
-									  '"deviceModel": "' + (Browsers.device.model ? Browsers.device.model : '') + '",' +
-									  '"deviceSeries": "' + (Browsers.device.series ? Browsers.device.series : '') + '",' +
-									  '"deviceType": "' + (Browsers.device.type ? Browsers.device.type : '') + '",' +
-									  '"deviceIdentified": "' + (Browsers.device.identified ? '1' : '0' ) + '",' +
-									  '"deviceWidth": "' + (screen.width) + '",' +
-									  '"deviceHeight": "' + (screen.height) + '",' +
-									  '"useragent": "' + navigator.userAgent + '",' +
-									  '"humanReadable": "' + Browsers.toString() + '",' +
-									  '"points": "' + c.points + '",' +
-									  '"results": "' + r.results + '"' +
-									  '}';
+				new Save(button, {
+					id:			r.uniqueid,
+					onSave:		function() { submit('save', '{"uniqueid": "' + r.uniqueid + '"}'); }
+				});
 
-						submit('submit', payload);
-					} catch(e) {
-						alert('Could not submit results: ' + e.message);
-					}
+				var button = document.createElement('a');
+				button.className = 'button compare';
+				button.href = '/compare/browser/mybrowser.html';
+				button.innerHTML = '<span>Compare to...</span>';
+				buttons.appendChild(button);
+
+				var button = document.createElement('span');
+				button.className = 'button share';
+				button.innerHTML = '<span>Share</span>';
+				buttons.appendChild(button);
+
+				new Share(button, {
+					score: 		c.score,
+					browser:	Browsers.toString()
+				});
+
+				var button = document.createElement('a');
+				button.className = 'button donate';
+				button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
+				button.innerHTML = '<span>Donate</span>';
+				buttons.appendChild(button);
 
 
-					/* Update total score */
-					var container = document.getElementById('score');
+				/* Show detailed report of scores */
+				var container = document.getElementById('results');
+				var div = document.createElement('div');
+				div.className = 'resultsTable detailsTable';
+				container.appendChild(div);
 
-					container.innerHTML = tim(
-						"<div class='pointsPanel'>" +
-						"<h2><span>Your browser scores</span> <strong>{{score}}</strong> <span>out of {{maximum}} points</span></h2>" +
-						"</div>",
-					c);
+				var table = new ResultsTable({
+					parent:			div,
+					tests:			m.data,
+					header:			false,
+					links:			true,
+					explainations: 	true,
+					grading:		true,
+					bonus:			true,
+					distribute:		true,
+					columns:		1
+				});
 
-					/* Show box for confirming useragent detection */
-					new Confirm(container, {
-						id:			r.uniqueid,
-						onConfirm:	function() { submit('confirm', '{"uniqueid": "' + r.uniqueid + '"}'); },
-						onReport:	function() { submit('report', '{"uniqueid": "' + r.uniqueid + '"}'); },
-						onFeedback:	function(value) { submit('feedback', JSON.stringify({ uniqueid: r.uniqueid, value: value })); }
-					});
+				table.updateColumn(0, { points: c.points, maximum: c.maximum, score: c.score, results: r.results });
 
-					/* Show action buttons */
-					var wrapper = document.createElement('div');
-					wrapper.className = 'wrapper';
-					container.appendChild(wrapper);
+				new Index({
+					tests:			tests,
+					index:			document.getElementById('index'),
+					wrapper:		document.getElementById('contentwrapper')
+				});
 
-					var buttons = document.createElement('div');
-					buttons.className = 'buttons';
-					wrapper.appendChild(buttons);
+				window.setTimeout(function() {
+					var contents = document.getElementById('contents');
+					contents.style.visibility = 'visible';
 
-					var button = document.createElement('span');
-					button.className = 'button save';
-					button.innerHTML = '<span>Save results</span>';
-					buttons.appendChild(button);
-
-					new Save(button, {
-						id:			r.uniqueid,
-						onSave:		function() { submit('save', '{"uniqueid": "' + r.uniqueid + '"}'); }
-					});
-
-					var button = document.createElement('a');
-					button.className = 'button compare';
-					button.href = '/compare/browser/mybrowser.html';
-					button.innerHTML = '<span>Compare to...</span>';
-					buttons.appendChild(button);
-
-					var button = document.createElement('span');
-					button.className = 'button share';
-					button.innerHTML = '<span>Share</span>';
-					buttons.appendChild(button);
-
-					new Share(button, {
-						score: 		c.score,
-						browser:	Browsers.toString()
-					});
-
-					var button = document.createElement('a');
-					button.className = 'button donate';
-					button.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9DNBJPQFEHYSC';
-					button.innerHTML = '<span>Donate</span>';
-					buttons.appendChild(button);
+					var loading = document.getElementById('loading');
+					loading.style.display = 'none';
+				}, 100);
+			}
 
 
-					if (location.protocol == "http:") {
-						var warning = document.createElement('div');
-						warning.className = 'upgradeWarning';
-						warning.innerHTML =
-							"<h4>Your browser may support even more features on a secure connection</h4>" +
-							"<p>Modern browsers only support some advanced features using on websites that uses a secure connection. " +
-							"This is because these features expose privacy sensitive data. Because you are now using an insecure connection, " +
-							"these features may not be available and are not detected.</p>" +
-							"<a href='https://html5test.com'>Try again, but using a secure connection</a>";
-
-						container.appendChild(warning);
-					}
-
-
-
-
-					/* Show detailed report of scores */
-					var container = document.getElementById('results');
-					var div = document.createElement('div');
-					div.className = 'resultsTable detailsTable';
-					container.appendChild(div);
-
-					var table = new ResultsTable({
-						parent:			div,
-						tests:			m.data,
-						header:			false,
-						links:			true,
-						explainations: 	true,
-						grading:		true,
-						bonus:			true,
-						distribute:		true,
-						columns:		1
-					});
-
-					table.updateColumn(0, { points: c.points, maximum: c.maximum, score: c.score, results: r.results });
-
-					new Index({
-						tests:			tests,
-						index:			document.getElementById('index'),
-						wrapper:		document.getElementById('contentwrapper')
-					});
-
-
-					function submit(method, payload) {
-						var httpRequest;
-						if (window.XMLHttpRequest) {
-							httpRequest = new XMLHttpRequest();
-						} else if (window.ActiveXObject) {
-							httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-						}
-
-					   	httpRequest.open('POST','/api/' + method, true);
-					   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	   					httpRequest.send('payload=' + encodeURIComponent(payload));
-					}
-
-					window.setTimeout(function() {
-						var contents = document.getElementById('contents');
-						contents.style.visibility = 'visible';
-
-						var loading = document.getElementById('loading');
-						loading.style.display = 'none';
-					}, 100);
-				},
-
-				function(e) {
-					if (typeof console != 'undefined') console.log(e);
+			function showError(e) {
+				if (typeof console != 'undefined') console.log(e);
 
 					alert('Test has failed: ' + e.message);
 
@@ -450,12 +316,10 @@
 
 					var loading = document.getElementById('loading');
 					loading.style.display = 'none';
-				});
-
-				this.load();
 			}
 
-			function load() {
+
+			function finalizePage() {
 				(function(){
 				  	var bsa = document.createElement('script');
 					 bsa.type = 'text/javascript';

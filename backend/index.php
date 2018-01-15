@@ -18,7 +18,6 @@
 
 	include('libraries/database.php');
 	include('libraries/tools.php');
-	include('models/lab.php');
 	include('models/raw.php');
 	include('models/browsers.php');
 	include('models/results.php');
@@ -94,13 +93,6 @@
 
 		case 'searchResults':
 			echo json_encode(Raw::search($_REQUEST['query']));
-			break;
-
-		case 'loadLabDevice':
-			if ($data = Lab::getDevice($_REQUEST['id'])) {
-				echo json_encode($data);
-			}
-
 			break;
 
 		case 'loadFeature':

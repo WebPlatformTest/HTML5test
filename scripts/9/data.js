@@ -258,22 +258,6 @@ var tests = [
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-summary-element' ]
 																]
 													}, {
-														id:		'menutoolbar',
-														name: 	'<code>menu</code> element of type <code>toolbar</code>',
-														status:	'proposal',
-														value:	{ maximum: 1, award: { OLD: 0 } },
-														urls:	[
-																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
-																]
-													}, {
-														id:		'menucontext',
-														name: 	'<code>menu</code> element of type <code>context</code>',
-														status:	'proposal',
-														value:	{ maximum: 2, award: { OLD: 1 } },
-														urls:	[
-																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/forms.html#the-menu-element' ]
-																]
-													}, {
 														id:		'dialog',
 														name: 	'<code>dialog</code> element',
 														status:	'proposal',
@@ -778,12 +762,6 @@ var tests = [
 														name: 		'<code>files</code> property',
 														value:		1,
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-input-files'
-													}, {
-														id:			'directory',
-														status:		'experimental',
-														name: 		'Directory upload support',
-														value:		1,
-														url:		'https://wicg.github.io/directory-upload/proposal.html'
 													}
 												]
 									}, {
@@ -1081,8 +1059,7 @@ var tests = [
 										value:		2,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
-														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#the-template-element' ],
-														[ 'wp', '/tutorials/webcomponents/htmlimports' ]
+														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#the-template-element' ]
 													]
 									}, {
 										id:			'imports',
@@ -1114,7 +1091,6 @@ var tests = [
 										value:		15,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/geolocation-API/' ],
-														[ 'wp',  '/apis/geolocation' ],
 														[ 'mdn', '/Web/API/Geolocation/Using_geolocation' ]
 													]
 									}, {
@@ -1136,6 +1112,84 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'sensors',
+						name:	'Sensors',
+						status:	'experimental',
+						items:	[
+							{
+								id:			'api',
+								name: 		'Generic Sensor API',
+								value:		5,
+								urls:		[
+												[ 'w3c', 'https://www.w3.org/TR/generic-sensor/' ]
+											]
+							},
+
+							'<strong>Low level sensors</strong>',
+
+							{
+								id:			'low.accelerometer',
+								name: 		'Accelerometer',
+								value:		0
+							}, {
+								id:			'low.gyroscope',
+								name: 		'Gyroscope',
+								value:		0
+							}, {
+								id:			'low.magnetometer',
+								name: 		'Magnetometer',
+								value:		0
+							},
+
+							'<strong>High level sensors</strong>',
+
+							{
+								id:			'high.linearacceleration',
+								name: 		'Linear Acceleration',
+								value:		0
+							}, {
+								id:			'high.absoluteorientation',
+								name: 		'Absolute Orientation',
+								value:		0
+							}, {
+								id:			'high.relativeorientation',
+								name: 		'Relative Orientation',
+								value:		0
+							}, {
+								id:			'high.ambientlight',
+								name: 		'Ambient Light',
+								value:		0
+							},
+						]
+					}, {
+						id:		'hardware',
+						name:	'Hardware',
+						status:	'proposal',
+						items:	[
+									{
+										id:			'bluetooth',
+										name: 		'Web Bluetooth',
+										value:		5,
+										urls:		[
+														[ 'w3c', 'https://webbluetoothcg.github.io/web-bluetooth/' ],
+													]
+									}, {
+										id:			'usb',
+										name: 		'Web USB',
+										value:		5,
+										urls:		[
+														[ 'w3c', 'https://wicg.github.io/webusb/' ]
+													]
+									}, {
+										id:			'nfc',
+										name: 		'Web NFC',
+										value:		0,
+										urls:		[
+														[ 'w3c', 'https://w3c.github.io/web-nfc/' ]
+													]
+									}
+								]
+					}, {
 						id:		'output',
 						name:	'Output',
 						status:	'proposal',
@@ -1146,7 +1200,6 @@ var tests = [
 										value:		{ maximum: 5, award: { PREFIX: 3 } },
 										urls:		[
 														[ 'w3c', 'http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api' ],
-														[ 'wp',	 '/dom/Element/requestFullscreen' ],
 														[ 'mdn', '/Web/Guide/API/DOM/Using_full_screen_mode' ]
 													]
 									}, {
@@ -1169,16 +1222,14 @@ var tests = [
 										name: 		'Gamepad control',
 										value:		{ maximum: 2, award: { PREFIX: 1 } },
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/gamepad/' ],
-														[ 'wp',  '/apis/gamepad' ]
+														[ 'w3c', 'http://www.w3.org/TR/gamepad/' ]
 													]
 									}, {
 										id:			'pointerevents',
 										name: 		'Pointer Events',
 										value:		{ maximum: 5, award: { PREFIX: 3 } },
 										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/pointerevents/' ],
-														[ 'wp',  '/concepts/Pointer_Events' ]
+														[ 'w3c', 'http://www.w3.org/TR/pointerevents/' ]
 													]
 									}, {
 										id:			'pointerLock',
@@ -1186,7 +1237,6 @@ var tests = [
 										value:		{ maximum: 3, award: { PREFIX: 2 } },
 										urls:		[
 														[ 'w3c', 'http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html' ],
-														[ 'wp',	 '/dom/Element/requestPointerLock' ],
 														[ 'mdn', '/Web/API/Pointer_Lock_API' ]
 													]
 									}
@@ -1211,7 +1261,6 @@ var tests = [
 										value:	16,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-video-element' ],
-													[ 'wp',  '/html/elements/video' ],
 													[ 'mdn', '/Web/Guide/HTML/Using_HTML5_audio_and_video' ]
 												]
 									}, {
@@ -1219,8 +1268,7 @@ var tests = [
 										name: 	'Subtitles',
 										value:	8,
 										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-track-element' ],
-													[ 'wp',  '/html/elements/track' ]
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-track-element' ]
 												]
 									}, {
 										id:		'audiotracks',
@@ -1241,16 +1289,14 @@ var tests = [
 										name: 	'Poster images',
 										value:	1,
 										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-video-poster' ],
-													[ 'wp',  '/dom/HTMLVideoElement/poster' ]
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#attr-video-poster' ]
 												]
 									}, {
 										id:		'canplaytype',
 										name: 	'Codec detection',
 										value:	4,
 										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#dom-navigator-canplaytype' ],
-													[ 'wp',  '/dom/HTMLMediaElement/canPlayType' ]
+													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#dom-navigator-canplaytype' ]
 												]
 									},
 
@@ -1294,6 +1340,14 @@ var tests = [
 													[ 'webm', 'http://www.webmproject.org/' ],
 													[ 'ietf', 'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt' ]
 												]
+									}, {
+										id:		'codecs.webm.av1',
+										name: 	'WebM with AV1 support',
+										status:	'optional',
+										urls:	[
+													[ 'webm', 'http://www.webmproject.org/' ],
+													[ 'other', 'http://aomedia.org' ]
+												]
 									}
 								]
 					}, {
@@ -1307,7 +1361,6 @@ var tests = [
 										value:	18,
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element' ],
-													[ 'wp',  '/html/elements/audio' ],
 													[ 'mdn', '/Web/Guide/HTML/Using_HTML5_audio_and_video' ]
 												]
 									}, {
@@ -1330,8 +1383,7 @@ var tests = [
 										name: 	'Web Audio API',
 										value:	{ maximum: 5, award: { PREFIX: 3 } },
 										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/webaudio/' ],
-													[ 'wp',  '/apis/webaudio' ]
+													[ 'w3c', 'http://www.w3.org/TR/webaudio/' ]
 												]
 									},
 
@@ -1382,6 +1434,10 @@ var tests = [
 										name: 	'Ogg Opus support',
 										status:	'optional'
 									}, {
+										id:		'codecs.ogg.flac',
+										name: 	'Ogg FLAC support',
+										status:	'optional'
+									}, {
 										id:		'codecs.webm.vorbis',
 										name: 	'WebM with Vorbis support',
 										status:	'optional'
@@ -1401,8 +1457,7 @@ var tests = [
 										name: 	'Media Source extensions',
 										value:	{ maximum: 5, award: { PREFIX: 2 } },
 										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/media-source/' ],
-													[ 'wp',  '/apis/media_source_extensions' ]
+													[ 'w3c', 'http://www.w3.org/TR/media-source/' ]
 												]
 									}, {
 										id:		'drm',
@@ -1464,6 +1519,14 @@ var tests = [
 														urls:	[
 																	[ 'webm', 'http://www.webmproject.org/' ],
 																	[ 'ietf', 'http://tools.ietf.org/id/draft-grange-vp9-bitstream-00.txt' ]
+																]
+													}, {
+														id:		'webm.av1',
+														name: 	'WebM with AV1 support',
+														status:	'optional',
+														urls:	[
+																	[ 'webm', 'http://www.webmproject.org/' ],
+																	[ 'other', 'http://aomedia.org' ]
 																]
 													}
 												]
@@ -1600,7 +1663,6 @@ var tests = [
 										value:	10,
 										urls:   [
 													[ 'w3c', 'http://www.w3.org/TR/2dcontext/' ],
-													[ 'wp',  '/apis/canvas' ],
 													[ 'mdn', '/Web/API/Canvas_API' ]
 												]
 									},
@@ -1612,8 +1674,7 @@ var tests = [
 										name: 	'Text support',
 										value:	2,
 										urls:	[
-													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#drawing-text-to-the-canvas' ],
-													[ 'wp',  '/apis/canvas/CanvasRenderingContext2D/fillText' ]
+													[ 'w3c', 'http://www.w3.org/TR/2dcontext/#drawing-text-to-the-canvas' ]
 												]
 									}, {
 										id:		'path',
@@ -1702,7 +1763,6 @@ var tests = [
 										value:		{ maximum: 15, award: { PREFIX: 10 } },
 										urls:		[
 														[ 'khronos', 'https://www.khronos.org/registry/webgl/specs/latest/1.0/' ],
-														[ 'wp',  '/webgl' ],
 														[ 'mdn', '/Web/API/WebGL_API' ]
 													]
 
@@ -1713,7 +1773,6 @@ var tests = [
 										value:		5,
 										urls:		[
 														[ 'khronos', 'https://www.khronos.org/registry/webgl/specs/latest/2.0/' ],
-														[ 'wp',  '/webgl' ],
 														[ 'mdn', '/Web/API/WebGL_API' ]
 													]
 
@@ -1804,7 +1863,6 @@ var tests = [
 										value:		{ maximum: 5, award: { PREFIX: 3 } },
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/animation-timing/#requestAnimationFrame' ],
-														[ 'wp',  '/dom/Window/requestAnimationFrame' ],
 														[ 'mdn', '/Web/API/window/requestAnimationFrame' ]
 													]
 									}
@@ -1948,7 +2006,6 @@ var tests = [
 										value:	{ maximum: 15, award: { PREFIX: 10 } },
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/webrtc/' ],
-													[ 'wp',  '/apis/webrtc/RTCPeerConnection' ],
 													[ 'mdn', '/Web/Guide/API/WebRTC' ]
 												]
 									}, {
@@ -1965,7 +2022,6 @@ var tests = [
 										value:	{ maximum: 5, award: { PREFIX: 3 } },
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/webrtc/#peer-to-peer-data-api' ],
-													[ 'wp',  '/apis/webrtc/RTCDataChannel' ],
 													[ 'mdn', '/Web/Guide/API/WebRTC' ]
 												]
 									},
@@ -1978,7 +2034,6 @@ var tests = [
 										value:		{ maximum: 15, award: { PREFIX: 10, OLD: 10 } },
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/2011/webrtc/editor/getusermedia.html' ],
-														[ 'wp',  '/dom/Navigator/getUserMedia' ],
 														[ 'mdn', '/Web/Guide/API/WebRTC' ]
 													]
 									}, {
@@ -2039,12 +2094,6 @@ var tests = [
 														name: 		'<code>draggable</code> attribute',
 														value:		1,
 														url:		'http://www.w3.org/TR/html5/editing.html#the-draggable-attribute'
-													}, {
-														id:			'dropzone',
-														name: 		'<code>dropzone</code> attribute',
-														status:		'rejected',
-														value:		0,
-														url:		'http://www.w3.org/TR/html5/editing.html#the-dropzone-attribute	'
 													}
 												]
 									}, {
@@ -2229,6 +2278,20 @@ var tests = [
 									}
 								]
 					}, {
+						id:		'native',
+						status:	'experimental',
+						name:	'Web Assembly',
+						items:	[
+									{
+										id:			'webassembly',
+										name: 		'Web Assembly',
+										value:		1,
+										urls:		[
+														[ 'other', 'http://webassembly.org/docs/js/' ],
+													]
+									}
+								]
+					}, {
 						id:		'resource',
 						status:	'stable',
 						name:	'Resource Loading',
@@ -2263,13 +2326,6 @@ var tests = [
 										name: 		'<code>link rel=preconnect</code>',
 										value:		1,
 										urls:		[
-														[ 'w3c', 'https://www.w3.org/TR/resource-hints/' ]
-													]
-									}, {
-										id:			'prerender',
-										name: 		'<code>link rel=prerender</code>',
-										value:		1,
-										urls:    	[
 														[ 'w3c', 'https://www.w3.org/TR/resource-hints/' ]
 													]
 									}, {
@@ -2348,7 +2404,6 @@ var tests = [
 										value:		2,
 										urls:    	[
 														[ 'w3c', 'http://dev.w3.org/html5/postmsg/' ],
-														[ 'wp',  '/apis/web-messaging' ],
 														[ 'mdn', '/Web/API/Window/postMessage' ]
 													]
 									},
@@ -2425,7 +2480,6 @@ var tests = [
 										value:		3,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#offline' ],
-														[ 'wp',  '/apis/appcache/ApplicationCache' ],
 														[ 'mdn', '/Web/HTML/Using_the_application_cache' ]
 													]
 									}, {
@@ -2448,7 +2502,7 @@ var tests = [
 													]
 									},
 
-									'<strong>Content and Scheme handlers</strong>',
+									'<strong>Scheme handlers</strong>',
 
 									{
 										id:			'registerProtocolHandler',
@@ -2457,14 +2511,6 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
 														[ 'mdn', '/Web-based_protocol_handlers' ]
-													]
-									}, {
-										id:			'registerContentHandler',
-										name: 		'Custom content handlers',
-										value:		1,
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/webappapis.html#custom-handlers' ],
-														[ 'mdn', '/Web/API/Navigator/registerContentHandler' ]
 													]
 									}
 								]
@@ -2481,7 +2527,6 @@ var tests = [
 										value:		5,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/webstorage/#the-sessionstorage-attribute' ],
-														[ 'wp',  '/apis/web-storage' ],
 														[ 'mdn', '/Web/API/Web_Storage_API' ]
 													]
 									}, {
@@ -2490,7 +2535,6 @@ var tests = [
 										value:		5,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/webstorage/#the-localstorage-attribute' ],
-														[ 'wp',  '/apis/web-storage' ],
 														[ 'mdn', '/Web/API/Web_Storage_API' ]
 													]
 									},
@@ -2503,7 +2547,6 @@ var tests = [
 										value:		{ maximum: 21, award: { PREFIX: 16 } },
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
-														[ 'wp',  '/apis/indexeddb' ],
 														[ 'mdn', '/Web/API/IndexedDB_API' ]
 													]
 									}, {
@@ -2512,7 +2555,6 @@ var tests = [
 										value:		2,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
-														[ 'wp',  '/apis/indexeddb' ],
 														[ 'mdn', '/Web/API/IndexedDB_API' ]
 													]
 									}, {
@@ -2521,7 +2563,6 @@ var tests = [
 										value:		2,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/IndexedDB/' ],
-														[ 'wp',  '/apis/indexeddb' ],
 														[ 'mdn', '/Web/API/IndexedDB_API' ]
 													]
 									},
@@ -2550,7 +2591,6 @@ var tests = [
 										value:		7,
 										urls:		[
 														[ 'w3c', 'http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface' ],
-														[ 'wp',  '/apis/file' ],
 														[ 'mdn', '/Using_files_from_web_applications' ]
 													]
 									}, {
@@ -2601,8 +2641,7 @@ var tests = [
 										name: 		'File API: Directories and System',
 										status:		'rejected',
 										urls:    	[
-														[ 'w3c', 'http://www.w3.org/TR/file-system-api/' ],
-														[ 'wp',  '/apis/filesystem' ]
+														[ 'w3c', 'http://www.w3.org/TR/file-system-api/' ]
 													]
 									}
 								]
@@ -2629,8 +2668,7 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-async' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-async' ],
-														[ 'mdn', '/Web/HTML/Element/script' ],
-														[ 'wp',  '/html/elements/script' ]
+														[ 'mdn', '/Web/HTML/Element/script' ]
 													]
 									}, {
 										id:			'defer',
@@ -2639,8 +2677,7 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-defer' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer' ],
-														[ 'mdn', '/Web/HTML/Element/script' ],
-														[ 'wp',  '/html/elements/script' ]
+														[ 'mdn', '/Web/HTML/Element/script' ]
 													]
 									}, {
 										id:			'executionevents',
@@ -2670,8 +2707,7 @@ var tests = [
 										value:		2,
 										urls:		[
 														[ 'ecma', 'http://www.ecma-international.org/ecma-262/6.0/#sec-json-object' ],
-														[ 'mdn', '/JSON' ],
-														[ 'wp',	 '/apis/json' ]
+														[ 'mdn', '/JSON' ]
 													]
 									},
 
@@ -2744,7 +2780,7 @@ var tests = [
 													]
 									},
 
-									'<strong>Other API\'s</strong>',
+									'<strong>Other APIs</strong>',
 
 									{
 										id:			'base64',
@@ -2808,7 +2844,6 @@ var tests = [
 										value:		4,
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html5/browsers.html#the-history-interface' ],
-														[ 'wp',  '/dom/History' ],
 														[ 'mdn', '/Web/Guide/API/DOM/Manipulating_the_browser_history' ]
 													]
 									}, {

@@ -475,177 +475,6 @@ Test9 = (function () {
             });
         },
 
-
-        /* menu toolbar */
-
-        function (results) {
-            var passed = legacy = false;
-
-            try {
-                var element = document.createElement('menu');
-                document.body.appendChild(element);
-
-                try {
-                    legacy = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
-                } catch (error) {
-                }
-
-                // Check default type
-                if (legacy && element.type != 'list') legacy = false;
-
-                // Check type sanitization
-                try {
-                    element.type = 'foobar';
-                } catch (error) {
-                }
-
-                if (legacy && element.type == 'foobar') legacy = false;
-
-                // Check if correct type sticks
-                try {
-                    element.type = 'list';
-                } catch (error) {
-                    legacy = false;
-                }
-
-                if (legacy && element.type != 'list') legacy = false;
-
-                document.body.removeChild(element);
-            } catch (error) {
-            }
-
-            try {
-                var element = document.createElement('menu');
-                document.body.appendChild(element);
-
-                try {
-                    passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
-                } catch (error) {
-                }
-
-                // Check default type
-                if (passed && element.type != 'toolbar') passed = false;
-
-                // Check type sanitization
-                try {
-                    element.type = 'foobar';
-                } catch (error) {
-                }
-
-                if (passed && element.type == 'foobar') passed = false;
-
-                // Check if correct type sticks
-                try {
-                    element.type = 'toolbar';
-                } catch (error) {
-                    passed = false;
-                }
-
-                if (passed && element.type != 'toolbar') passed = false;
-
-                document.body.removeChild(element);
-            } catch (error) {
-            }
-
-            results.addItem({
-                key: 'elements.interactive.menutoolbar',
-                passed: passed ? YES : legacy ? YES | OLD : NO
-            });
-        },
-
-
-        /* menu context */
-
-        function (results) {
-            var passed = legacy = false;
-
-            try {
-                var element = document.createElement('menu');
-                document.body.appendChild(element);
-
-                try {
-                    legacy = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
-                } catch (error) {
-                }
-
-                // Check if correct type sticks
-                try {
-                    element.type = 'popup';
-                } catch (error) {
-                    legacy = false;
-                }
-
-                if (legacy && element.type != 'popup') legacy = false;
-
-
-                if (legacy) {
-                    var item = document.createElement('menuitem');
-                    element.appendChild(item);
-
-                    if (typeof HTMLMenuItemElement == 'undefined' || !item instanceof HTMLMenuItemElement) legacy = false;
-                }
-
-                document.body.removeChild(element);
-            } catch (error) {
-            }
-
-            try {
-                var element = document.createElement('menu');
-                document.body.appendChild(element);
-
-                try {
-                    passed = typeof HTMLMenuElement != 'undefined' && element instanceof HTMLMenuElement && 'type' in element;
-                } catch (error) {
-                }
-
-                try {
-                    element.type = 'context';
-                } catch (error) {
-                }
-
-                // Check default type
-                var second = document.createElement('menu');
-                element.appendChild(second);
-                if (passed && second.type == 'list') legacy = true;
-                if (passed && second.type != 'context') passed = false;
-                element.removeChild(second);
-
-                // Check type sanitization
-                try {
-                    element.type = 'foobar';
-                } catch (error) {
-                }
-
-                if (passed && element.type == 'foobar') passed = false;
-
-                // Check if correct type sticks
-                try {
-                    element.type = 'context';
-                } catch (error) {
-                    passed = false;
-                }
-
-                if (passed && element.type != 'context') passed = false;
-
-
-                if (passed) {
-                    var item = document.createElement('menuitem');
-                    element.appendChild(item);
-
-                    if (typeof HTMLMenuItemElement == 'undefined' || !item instanceof HTMLMenuItemElement) passed = false;
-                }
-
-                document.body.removeChild(element);
-            } catch (error) {
-            }
-
-            results.addItem({
-                key: 'elements.interactive.menucontext',
-                passed: passed ? YES : legacy ? YES | OLD : NO
-            });
-        },
-
-
         /* dialog element */
 
         function (results) {
@@ -1029,11 +858,6 @@ Test9 = (function () {
             results.addItem({
                 key: 'form.file.files',
                 passed: element.files && element.files instanceof FileList
-            });
-
-            results.addItem({
-                key: 'form.file.directory',
-                passed: 'directory' in element && window.Directory
             });
         },
 
@@ -1623,6 +1447,83 @@ Test9 = (function () {
         },
 
 
+        /* generic sensor api */
+
+        function (results) {
+            results.addItem({
+                key: 'sensors.api',
+                passed: "Sensor" in window
+            });
+
+
+            results.addItem({
+                key: 'sensors.low.accelerometer',
+                passed: "Sensor" in window && "Accelerometer" in window
+            });
+
+            results.addItem({
+                key: 'sensors.low.gyroscope',
+                passed: "Sensor" in window && "Gyroscope" in window
+            });
+
+            results.addItem({
+                key: 'sensors.low.magnetometer',
+                passed: "Sensor" in window && "Magnetometer" in window
+            });
+
+
+            results.addItem({
+                key: 'sensors.high.linearacceleration',
+                passed: "Sensor" in window && "LinearAccelerationSensor" in window
+            });
+
+            results.addItem({
+                key: 'sensors.high.absoluteorientation',
+                passed: "Sensor" in window && "AbsoluteOrientationSensor" in window
+            });
+
+            results.addItem({
+                key: 'sensors.high.relativeorientation',
+                passed: "Sensor" in window && "RelativeOrientationSensor" in window
+            });
+
+            results.addItem({
+                key: 'sensors.high.ambientlight',
+                passed: "Sensor" in window && "AmbientLightSensor" in window
+            });
+        },
+
+
+        /* web bluetooth */
+
+        function (results) {
+            results.addItem({
+                key: 'hardware.bluetooth',
+                passed: 'bluetooth' in navigator && "BluetoothDevice" in window
+            });
+        },
+
+
+        /* web usb */
+
+        function (results) {
+            results.addItem({
+                key: 'hardware.usb',
+                passed: 'usb' in navigator && "USBDevice" in window
+            });
+        },
+
+
+        /* web nfc */
+
+        function (results) {
+            results.addItem({
+                key: 'hardware.nfc',
+                passed: 'nfc' in navigator && "NFCMessage" in window
+            });
+        },
+
+
         /* fullscreen */
 
         function (results) {
@@ -1658,7 +1559,7 @@ Test9 = (function () {
         function (results) {
             results.addItem({
                 key: 'media.getDisplayMedia',
-                passed: !!navigator.mediaDevices && !!navigator.mediaDevices.getDisplayMedia ? YES : NO
+                passed: !!navigator.getDisplayMedia || (!!navigator.mediaDevices && !!navigator.mediaDevices.getDisplayMedia) ? YES : NO
             });
         },
 
@@ -2260,14 +2161,12 @@ Test9 = (function () {
         },
 
 
-        /* link rel=prerender */
+        /* webassembly */
 
         function (results) {
-            var link = document.createElement('link');
-
             results.addItem({
-                key: 'resource.prerender',
-                passed: link.relList && link.relList.supports && link.relList.supports('prerender')
+                key: 'native.webassembly',
+                passed: 'WebAssembly' in window
             });
         },
 
@@ -2585,6 +2484,13 @@ Test9 = (function () {
                 passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="vp9"')
             });
 
+            /* av1 in webm codec */
+
+            results.addItem({
+                key: 'video.codecs.webm.av1',
+                passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="av1.experimental.e87fb2378f01103d5d6e477a4ef6892dc714e614"')
+            });
+
             /* does codec detection work properly? */
 
             var passed = true;
@@ -2713,6 +2619,13 @@ Test9 = (function () {
             results.addItem({
                 key: 'audio.codecs.ogg.opus',
                 passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="opus"')
+            });
+
+            /* ogg flac codec */
+
+            results.addItem({
+                key: 'audio.codecs.ogg.flac',
+                passed: !!element.canPlayType && canPlayType(element, 'audio/ogg; codecs="flac"')
             });
 
             /* webm vorbis codec */
@@ -2880,6 +2793,11 @@ Test9 = (function () {
                 key: 'streaming.video.codecs.webm.vp9',
                 passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="vp9"')
             });
+
+            results.addItem({
+                key: 'streaming.video.codecs.webm.av1',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="av1.experimental.e87fb2378f01103d5d6e477a4ef6892dc714e614"')
+            });
         },
 
 
@@ -2941,6 +2859,13 @@ Test9 = (function () {
             results.addItem({
                 key: 'streaming.audio.codecs.ogg.opus',
                 passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/ogg; codecs="opus"')
+            });
+
+            /* flac in ogg codec */
+
+            results.addItem({
+                key: 'streaming.audio.codecs.ogg.flac',
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('audio/ogg; codecs="flac"')
             });
 
             /* vorbis in webm codec */
@@ -3020,10 +2945,11 @@ Test9 = (function () {
             var element = document.createElement('div');
             element.innerHTML = '<svg width="42" height="42" xmlns="http://www.w3.org/2000/svg"></svg>';
             document.body.appendChild(element);
+            var box = element.firstChild ? element.firstChild.getBoundingClientRect() : null;
 
             results.addItem({
                 key: 'svg.inline',
-                passed: element.firstChild && element.firstChild.clientWidth == 42 && element.firstChild.clientHeight == 42
+                passed: box && box.width == 42 && box.height == 42
             });
 
             document.body.removeChild(element);
@@ -3472,17 +3398,6 @@ Test9 = (function () {
                 passed: !!window.navigator.registerProtocolHandler
             });
         },
-
-
-        /* registerContentHandler */
-
-        function (results) {
-            results.addItem({
-                key: 'offline.registerContentHandler',
-                passed: !!window.navigator.registerContentHandler
-            });
-        },
-
 
         /* session storage */
 
