@@ -505,6 +505,15 @@ Test9 = (function () {
                 passed: 'hidden' in document.createElement('div')
             });
         },
+        
+        /* translate attribute */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.translate',
+                passed: 'translate' in document.createElement('div')
+            });
+        },
 
 
         /* outerHTML property */
