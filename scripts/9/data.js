@@ -794,6 +794,11 @@ var tests = [
 														name: 		'Minimal element support',
 														url:		'http://www.w3.org/TR/html5/forms.html#the-textarea-element'
 													}, {
+														id:			'minlength',
+														name:		'<code>minlength</code> attribute',
+														value:		1,
+														url:		'http://www.w3.org/TR/html5/forms.html#attr-textarea-minlength'
+													}, {
 														id:			'maxlength',
 														name:		'<code>maxlength</code> attribute',
 														value:		1,

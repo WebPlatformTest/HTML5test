@@ -907,6 +907,11 @@ Test9 = (function () {
             });
 
             results.addItem({
+                key: 'form.textarea.minlength',
+                passed: 'minLength' in element
+            });
+
+            results.addItem({
                 key: 'form.textarea.maxlength',
                 passed: 'maxLength' in element
             });
