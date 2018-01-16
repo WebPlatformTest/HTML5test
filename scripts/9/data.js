@@ -198,6 +198,13 @@ var tests = [
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#ping' ]
 																]
 													}, {
+														id:		'relList',
+														name: 	'<code>relList</code> attribute on the <code>a</code> element',
+														value:	1,
+														urls:	[
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/text-level-semantics.html#dom-a-rellist' ]
+																]
+													}, {
 														id:		'mark',
 														name: 	'<code>mark</code> element',
 														value:	1,
@@ -1038,6 +1045,11 @@ var tests = [
 														name: 		'<code>checkValidity</code> method',
 														value:		3,
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-form-checkvalidity'
+													}, {
+														id:			'reportValidity',
+														name: 		'<code>reportValidity</code> method',
+														value:		1,
+														url:		'https://html.spec.whatwg.org/multipage/forms.html#dom-form-reportvalidity'
 													}, {
 														id:			'noValidate',
 														name: 		'<code>noValidate</code> attribute',

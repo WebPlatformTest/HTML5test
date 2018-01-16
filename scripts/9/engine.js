@@ -304,6 +304,16 @@ Test9 = (function () {
         },
 
 
+        /* a relList */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.semantic.relList',
+                passed: 'relList' in document.createElement('a')
+            });
+        },
+
+
         /* mark element */
 
         function (results) {
@@ -1389,6 +1399,15 @@ Test9 = (function () {
             results.addItem({
                 key: 'form.formvalidation.checkValidity',
                 passed: 'checkValidity' in document.createElement('form')
+            });
+        },
+
+        /* reportValidity property */
+
+        function (results) {
+            results.addItem({
+                key: 'form.formvalidation.reportValidity',
+                passed: 'reportValidity' in document.createElement('form')
             });
         },
 
