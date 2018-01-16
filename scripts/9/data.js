@@ -288,6 +288,13 @@ var tests = [
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#the-translate-attribute' ]
 												]
 									}, {
+										id:		'accessKeyLabel',
+										name: 	'<code>accessKeyLabel</code> attribute',
+										value:	1,
+										urls:	[
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/interaction.html#introduction-9:dom-accesskeylabel' ]
+												]
+									}, {
 										id:		'dynamic',
 										name:	'Dynamic markup insertion',
 										items:	[

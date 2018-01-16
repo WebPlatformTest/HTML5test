@@ -515,6 +515,15 @@ Test9 = (function () {
             });
         },
 
+        /* accessKeyLabel attribute */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.accessKeyLabel',
+                passed: 'accessKeyLabel' in document.createElement('div')
+            });
+        },
+
 
         /* outerHTML property */
 
