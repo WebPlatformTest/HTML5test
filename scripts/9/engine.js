@@ -3339,6 +3339,15 @@ Test9 = (function () {
             });
         },
 
+        /* webxr */
+
+        function (results) {
+            results.addItem({
+                key: '3d.webxr',
+                passed: 'xr' in navigator
+            });
+        },
+
 
         /* animation api */
 
