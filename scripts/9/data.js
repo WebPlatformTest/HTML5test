@@ -1787,7 +1787,7 @@ var tests = [
 
 									},
 
-									'<strong>VR Headset</strong>',
+									'<strong>VR and AR Headsets</strong>',
 
 									{
 										id:			'webvr',
@@ -1795,6 +1795,13 @@ var tests = [
 										status:		'experimental',
 										value:		3,
 										url:		'https://w3c.github.io/webvr/'
+
+									}, {
+										id:			'webxr',
+										name: 		'WebXR',
+										status:		'experimental',
+										value:		5,
+										url:		'https://immersive-web.github.io/webxr/'
 
 									}
 								]
