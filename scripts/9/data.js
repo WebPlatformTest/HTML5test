@@ -76,6 +76,20 @@ var tests = [
 												]
 									},
 
+									'<em>The next test checks if the browser makes any effort at rendering MathML, it does not stress test MathML support</em>',
+									/* We might want to expand the test to check for support of specific elements though, at least Content vs Presentation markup */
+
+									{
+										id:		'mathml',
+										name: 	'MathML support',
+										value:	2 /* 1 for Content, 1 for Presentation */,
+										urls:	[
+													[ 'w3c', 'https://www.w3.org/TR/MathML/' ],
+													[ 'mdn', '/Web/MathML' ]
+												]
+									},
+
+
 									'<strong>New or modified elements</strong>',
 
 									{
