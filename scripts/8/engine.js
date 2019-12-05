@@ -4434,16 +4434,16 @@ Test8 = (function () {
                         'form.datetime-local.ui': Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || (Browsers.isBrowser('UC Browser', '<', '8.6') && Browsers.isType('mobile', 'tablet')),
                         'form.color.ui': Browsers.isBrowser('Sogou Explorer') || (Browsers.isBrowser('UC Browser', '<', '9.8') && Browsers.isType('mobile', 'tablet')),
                         'form.range.ui': (Browsers.isBrowser('UC Browser', '<', '9.8') && Browsers.isType('mobile', 'tablet')),
-                        'form.progress.element': Browsers.isBrowser('Baidu Browser'),
+                        'form.progress.element': Browsers.isBrowser('Baidu Browser', '<', '11.16'),
                         'files.fileSystem': Browsers.isOs('BlackBerry Tablet OS'),
-                        'input.getUserMedia': Browsers.isDevice('webOS TV') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || (Browsers.isBrowser('UC Browser', '<', '9.8') && Browsers.isType('mobile', 'tablet')) || Browsers.isBrowser('Dolphin') || Browsers.isBrowser('Safari', '=', '9'),
+                        'input.getUserMedia': Browsers.isDevice('webOS TV') || Browsers.isBrowser('Baidu Browser', '<', '11.16') || Browsers.isBrowser('Sogou Explorer') || (Browsers.isBrowser('UC Browser', '<', '9.8') && Browsers.isType('mobile', 'tablet')) || Browsers.isBrowser('Dolphin') || Browsers.isBrowser('Safari', '=', '9'),
                         'input.getGamepads': Browsers.isDevice('webOS TV') || Browsers.isDevice('Playstation 4') || Browsers.isDevice('Wii U'),
-                        'location.geolocation': Browsers.isDevice('webOS TV') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser') || Browsers.isOs('Google TV'),
-                        'location.orientation': Browsers.isBrowser('Baidu Browser'),
-                        'output.notifications': Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+                        'location.geolocation': Browsers.isDevice('webOS TV') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser', '<', '11.16') || Browsers.isOs('Google TV'),
+                        'location.orientation': Browsers.isBrowser('Baidu Browser', '<', '11.16'),
+                        'output.notifications': Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser', '<', '11.16') || Browsers.isBrowser('Sogou Explorer'),
                         'output.requestFullScreen': Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
-                        'video.subtitle': Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-                        '3d.webgl': Browsers.isBrowser('Baidu Browser')
+                        'video.subtitle': Browsers.isBrowser('Baidu Browser', '<', '11.16') || Browsers.isBrowser('Sogou Explorer'),
+                        '3d.webgl': Browsers.isBrowser('Baidu Browser', '<', '11.16')
                     }
                 ],
 
