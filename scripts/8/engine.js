@@ -2710,7 +2710,7 @@ Test8 = (function () {
             /* drm */
 
             results.addItem({
-                key: 'streaming.drm',
+                key: 'streaming.eme',
                 passed: 'setMediaKeys' in element ? YES : 'webkitAddKey' in element || 'webkitSetMediaKeys' in element || 'mozSetMediaKeys' in element || 'msSetMediaKeys' in element ? YES | PREFIX : NO
             });
 
