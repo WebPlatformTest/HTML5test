@@ -1187,7 +1187,7 @@ var tests = [
 													[ 'mdn', '/Using_HTML5_audio_and_video' ]
 												]
 									}, {
-										id:		'drm',
+										id:		'eme',
 										name: 	'Encrypted Media Extensions',
 										status:	'controversial',
 										url:	'http://www.w3.org/TR/encrypted-media/'
