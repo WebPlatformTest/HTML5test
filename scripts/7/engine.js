@@ -845,7 +845,7 @@ Test7 = (function() {
 
 
 			this.section.setItem({
-				id:		'drm',
+				id:		'eme',
 				passed:	'setMediaKeys' in this.element ? YES : 'webkitAddKey' in this.element || 'webkitSetMediaKeys' in this.element || 'mozSetMediaKeys' in this.element || 'msSetMediaKeys' in this.element ? YES | PREFIX : NO
 			});
 
