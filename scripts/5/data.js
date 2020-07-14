@@ -1188,7 +1188,7 @@ var tests = [
 												]
 									}, {
 										id:		'drm',
-										name: 	'DRM support',
+										name: 	'Encrypted Media Extensions',
 										status:	'controversial',
 										url:	'http://www.w3.org/TR/encrypted-media/'
 									}, {
