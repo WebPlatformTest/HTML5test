@@ -1405,8 +1405,8 @@ var tests = [
 													[ 'wp',  '/apis/media_source_extensions' ]
 												]
 									}, {
-										id:		'drm',
-										name: 	'DRM support',
+										id:		'eme',
+										name: 	'Encrypted Media Extensions',
 										status:	'controversial',
 										url:	'http://www.w3.org/TR/encrypted-media/'
 									},
