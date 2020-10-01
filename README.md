@@ -19,7 +19,7 @@ an official status. In the future new tests will be added for new specifications
 tests will be updated when the specifications change.
 
 
-**Thanks to:**  
+**THANKS TO:**  
 
 <a href="https://www.browserstack.com"><img src="https://html5te.st/assets/browserstack.svg" width="180"></a> &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://www.cloudvps.nl"><img src="https://html5test.com/images/sponsors/cloudvps@2x.png" width="59"></a>
