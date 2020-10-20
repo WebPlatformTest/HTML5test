@@ -2462,7 +2462,7 @@ var tests = [
 										id:			'payments',
 										name: 		'Web Payments',
 										value:		5,
-										url:		'https://w3c.github.io/browser-payment-api/specs/paymentrequest.html'
+										url:		'https://w3c.github.io/payment-request/'
 									}
 								]
 					}
