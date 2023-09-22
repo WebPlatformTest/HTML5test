@@ -74,12 +74,7 @@ var tests = [
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
 													[ 'mdn', '/Web/API/HTMLElement/dataset' ]
 												]
-									},
-
-									'<em>The next test checks if the browser makes any effort at rendering MathML, it does not stress test MathML support</em>',
-									/* We might want to expand the test to check for support of specific elements though, at least Content vs Presentation markup */
-
-									{
+									}, {
 										id:		'mathml',
 										name: 	'MathML support',
 										value:	2 /* 1 for Content, 1 for Presentation */,
@@ -88,7 +83,6 @@ var tests = [
 													[ 'mdn', '/Web/MathML' ]
 												]
 									},
-
 
 									'<strong>New or modified elements</strong>',
 
@@ -307,6 +301,13 @@ var tests = [
 										value:	1,
 										urls:	[
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#the-translate-attribute' ]
+												]
+									}, {
+										id:		'accessKey',
+										name: 	'<code>accessKey</code> attribute',
+										value:	1,
+										urls:	[
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/interaction.html#the-accesskey-attribute' ]
 												]
 									}, {
 										id:		'accessKeyLabel',

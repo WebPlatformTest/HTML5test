@@ -542,6 +542,15 @@ Test9 = (function () {
             });
         },
 
+        /* accessKey attribute */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.accessKey',
+                passed: 'accessKey' in document.createElement('div')
+            });
+        },
+
         /* accessKeyLabel attribute */
 
         function (results) {
@@ -550,7 +559,6 @@ Test9 = (function () {
                 passed: 'accessKeyLabel' in document.createElement('div')
             });
         },
-
 
         /* outerHTML property */
 
