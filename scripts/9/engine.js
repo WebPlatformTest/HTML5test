@@ -2297,7 +2297,7 @@ Test9 = (function () {
             item.startBackground();
 
             var iframe = document.createElement('iframe');
-            iframe.src = 'https://html5test.com/assets/csp.html';
+            iframe.src = 'assets/csp.html';
             iframe.style.visibility = 'hidden';
             document.body.appendChild(iframe);
 
