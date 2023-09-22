@@ -2336,7 +2336,7 @@ Test9 = (function () {
         function (results) {
             results.addItem({
                 key: 'security.authentication',
-                passed: 'PublicKeyCredential' in window ? YES : 'msCredentials' in window ? YES | OLD : NO
+                passed: 'credentials' in navigator ? YES : 'msCredentials' in window ? YES | OLD : NO
             });
         },
 
