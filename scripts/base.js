@@ -116,7 +116,7 @@
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('POST','/api/' + method, true);
+		httpRequest.open('POST','https://html5test.com/api/' + method, true);
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		httpRequest.send('payload=' + encodeURIComponent(payload));
 	}
@@ -157,7 +157,7 @@
 				}
 			}
 
-			httpRequest.open('GET','https://' + location.hostname + '/assets/upgrade', true);
+			httpRequest.open('GET','https://html5test.com/assets/upgrade', true);
 			httpRequest.send();
 
 			return;
@@ -552,73 +552,6 @@
 			}.bind(this), 2500);
 		}
 	}
-
-
-	var Share = function() { this.initialize.apply(this, arguments) };
-	Share.prototype = {
-		initialize: function(parent, options) {
-			var that = this;
-
-			this.parent = parent;
-			this.options = options;
-			this.created = false;
-
-			this.popup = document.createElement('div');
-			this.popup.className = 'popupPanel pointsLeft share';
-			this.popup.style.display = 'none';
-			this.parent.appendChild(this.popup);
-
-			this.parent.addEventListener('click', this.open.bind(this), true)
-			this.parent.addEventListener('touchstart', this.open.bind(this), true)
-
-			document.addEventListener('click', this.close.bind(this), true)
-			document.addEventListener('touchstart', this.close.bind(this), true)
-		},
-
-		create: function() {
-			this.created = true;
-
-			this.popup.innerHTML +=
-				"<div id='share'><div>" +
-
-				"<div id='twitter'>" +
-				"<a href='https://twitter.com/share' class='twitter-share-button' " +
-					"data-url='https://html5test.com' " +
-					"data-related='rakaz' " +
-					"data-text='" + this.options.browser + " scored " + this.options.score + " points. How well does your browser support HTML5?' " +
-					"data-lang='en' "+
-					"data-count='vertical'"+
-					">Tweet</a>" +
-				"</div>" +
-
-				"<div id='facebook'>" +
-				"<iframe src='//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fhtml5test.com&amp;width=60&amp;height=65&amp;colorscheme=light&amp;layout=box_count&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=202643099847776' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:The pixel width of the pluginpx; height:65px;' allowTransparency='true'></iframe>" +
-				"</div>" +
-
-				"</div></div>";
-
-
-
-			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
-			{js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}
-			(document,"script","twitter-wjs");
-		},
-
-		open: function(e) {
-			e.preventDefault();
-
-			if (!this.created) {
-				this.create();
-			}
-
-			this.popup.style.display = 'block';
-		},
-
-		close: function() {
-			this.popup.style.display = 'none';
-		}
-	}
-
 
 	var Save = function() { this.initialize.apply(this, arguments) };
 	Save.prototype = {

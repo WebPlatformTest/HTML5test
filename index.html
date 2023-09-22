@@ -216,16 +216,6 @@
 				button.innerHTML = '<span>Compare to...</span>';
 				buttons.appendChild(button);
 
-				var button = document.createElement('span');
-				button.className = 'button share';
-				button.innerHTML = '<span>Share</span>';
-				buttons.appendChild(button);
-
-				new Share(button, {
-					score: 		c.score,
-					browser:	Browsers.toString()
-				});
-
 				/* Show detailed report of scores */
 				var container = document.getElementById('results');
 				var div = document.createElement('div');

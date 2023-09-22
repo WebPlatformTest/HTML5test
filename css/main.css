@@ -1071,8 +1071,6 @@ body.indexVisible > div#index button#indexbutton {
 .button.website > span::before { content: ''; }
 .button.followme { background: #0092bf; color: #fff; }
 .button.followme > span::before { content: ''; }
-.button.donate { background: #ffd500; color: #000; }
-.button.donate > span::before { content: ''; }
 .button.developed { background: #ccc; color: #000; }
 .button.developed > span::before { content: ''; }
 .button.compare { background: #33af33; color: #fff; }
@@ -1081,8 +1079,6 @@ body.indexVisible > div#index button#indexbutton {
 .button.save > span::before { content: '☁'; }
 .button.latest { background: #0092bf; color: #fff; }
 .button.latest > span::before { content: ''; }
-.button.share { background: #ec6534; color: #fff; }
-.button.share > span::before { content: ''; }
 .button.contact { background: #ec6534; color: #fff; }
 .button.contact > span::before { content: '☎'; }
 .button.schedule { background: #ec6534; color: #fff; }
@@ -1414,40 +1410,6 @@ body.indexVisible > div#index button#indexbutton {
 }
 
 
-
-/********************************************
- *
- *   Your Browser: Share
- */
-
-.popupPanel.share {
-	width: 210px !important;
-	margin-top: 21px;
-}
-#share {
-	display: block;
-	height: 94px;
-	position: relative;
-	overflow: hidden;
-}
-#share #twitter {
-	position: absolute;
-	top: 15px;
-	left: 15px;
-}
-#share #facebook {
-	position: absolute;
-	top: 15px;
-	left: 82px;
-}
-#share #google {
-	position: absolute;
-	top: 15px;
-	left: 141px;
-}
-
-
-
 /********************************************
  *
  *   Your Browser: Action buttons
@@ -1472,10 +1434,6 @@ body.indexVisible > div#index button#indexbutton {
 @media (max-width: 280px) {
 	.wrapper .buttons > * {
 		width: 100%;
-	}
-
-	.wrapper .buttons .donate {
-		display: none;
 	}
 }
 
