@@ -6,22 +6,22 @@
 
 @font-face {
 	font-family: 'html5test';
-	src:url('/fonts/html5test.eot');
-	src:url('/fonts/html5test.eot?#iefix') format('embedded-opentype'),
-		url('/fonts/html5test.woff') format('woff'),
-		url('/fonts/html5test.ttf') format('truetype'),
-		url('/fonts/html5test.svg#html5test') format('svg');
+	src:url('../fonts/html5test.eot');
+	src:url('../fonts/html5test.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/html5test.woff') format('woff'),
+		url('../fonts/html5test.ttf') format('truetype'),
+		url('../fonts/html5test.svg#html5test') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
     font-family: 'League Gothic';
-    src: url('/fonts/leaguegothic-regular-webfont.eot');
-    src: url('/fonts/leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/leaguegothic-regular-webfont.woff') format('woff'),
-         url('/fonts/leaguegothic-regular-webfont.ttf') format('truetype'),
-         url('/fonts/leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
+    src: url('../fonts/leaguegothic-regular-webfont.eot');
+    src: url('../fonts/leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/leaguegothic-regular-webfont.woff') format('woff'),
+         url('../fonts/leaguegothic-regular-webfont.ttf') format('truetype'),
+         url('../fonts/leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -444,7 +444,7 @@ body.indexVisible > div#index button#indexbutton {
 	border-left: 1px solid #ccc;
 
 	display: block;
-	background: url(/images/sponsors/cloudvps.png) no-repeat 10px top;
+	background: url(../images/sponsors/cloudvps.png) no-repeat 10px top;
 	background-size: 59px 43px;
 	padding-top: 0px;
 	padding-left: 80px;
@@ -459,7 +459,7 @@ body.indexVisible > div#index button#indexbutton {
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	#cloudvps a {
-		background-image: url(/images/sponsors/cloudvps@2x.png);
+		background-image: url(../images/sponsors/cloudvps@2x.png);
 		background-size: 59px 43px;
 	}
 }
@@ -2026,35 +2026,35 @@ body.indexVisible > div#index button#indexbutton {
 }
 */
 .linksPanel .links a.w3c {
-	background-image: url(/images/external/w3c.png);
+	background-image: url(../images/external/w3c.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
 .linksPanel .links a.whatwg {
-	background-image: url(/images/external/whatwg.svg);
+	background-image: url(../images/external/whatwg.svg);
 	background-size: 20px 20px;
 	text-indent: 32px;
 }
 .linksPanel .links a.khronos {
-	background-image: url(/images/external/khronos.png);
+	background-image: url(../images/external/khronos.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
 .linksPanel .links a.wp {
-	background-image: url(/images/external/wp.png);
+	background-image: url(../images/external/wp.png);
 	background-size: 24px 24px;
 	text-indent: 32px;
 }
 .linksPanel .links a.mdn {
-	background-image: url(/images/external/mdn.svg);
+	background-image: url(../images/external/mdn.svg);
 	text-indent: 32px;
 }
 .linksPanel .links a.ecma {
-	background-image: url(/images/external/ecma.png);
+	background-image: url(../images/external/ecma.png);
 	text-indent: 32px;
 }
 .linksPanel .links a.ricg {
-	background-image: url(/images/external/ricg.svg);
+	background-image: url(../images/external/ricg.svg);
 	background-size: 30px 30px;
 	text-indent: 32px;
 }
@@ -2070,13 +2070,13 @@ body.indexVisible > div#index button#indexbutton {
 	width: 74px;
 	height: 102px;
 	margin: 16px 0 10px 10px;
-	background: url(/images/html5.png);
+	background: url(../images/html5.png);
 	background-size: 74px 102px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	#html5 {
-		background-image: url(/images/html5@2x.png);
+		background-image: url(../images/html5@2x.png);
 	}
 }
 
@@ -2103,63 +2103,6 @@ body.indexVisible > div#index button#indexbutton {
 		width: 100%;
 	}
 }
-
-
-/********************************************
- *
- *   Your Browser: Ads
- */
-
-#headerad {
-	position: absolute;
-	top: 0;
-	right: 0;
-
-	width: 125px;
-	height: 125px;
-	background: #eee;
-	overflow: hidden;
-	padding: 10px;
-	border-bottom: 8px solid #d9d9d9;
-	border-left: 8px solid #d9d9d9;
-}
-#headerad div {
-	width: 125px;
-	height: 125px;
-	display: inline-block;
-}
-
-#footerad {
-	margin-top: 30px;
-	overflow: hidden;
-	background: #eee;
-	padding: 10px;
-	text-align: center;
-}
-#footerad > div a,
-#footerad > div iframe {
-	width: 125px;
-	height: 125px;
-	overflow: hidden;
-	margin: 0 5px;
-	display: inline-block;
-	float: none;
-	vertical-align: middle;
-}
-
-@media (max-width: 680px) {
-	#headerad {
-		position: static;
-		border: none;
-		width: 100%;
-		padding: 10px 0;
-		text-align: center;
-		margin-bottom: 30px;
-	}
-}
-
-
-
 
 .upgradeWarning {
 	background: #ec6534;

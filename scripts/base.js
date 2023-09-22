@@ -595,13 +595,6 @@
 				"<iframe src='//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fhtml5test.com&amp;width=60&amp;height=65&amp;colorscheme=light&amp;layout=box_count&amp;action=like&amp;show_faces=false&amp;send=false&amp;appId=202643099847776' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:The pixel width of the pluginpx; height:65px;' allowTransparency='true'></iframe>" +
 				"</div>" +
 
-				"<div id='google'>" +
-				"<div class='g-plusone' " +
-					"data-href='https://html5test.com' " +
-					"data-size='tall'" +
-					"></div>" +
-				"</div>" +
-
 				"</div></div>";
 
 
@@ -609,12 +602,6 @@
 			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
 			{js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}
 			(document,"script","twitter-wjs");
-
-			(function() {
-			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-			po.src = 'https://apis.google.com/js/plusone.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-			})();
 		},
 
 		open: function(e) {
