@@ -2711,10 +2711,10 @@ Test9 = (function () {
                 passed: 'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
             });
 
-            /* drm */
+            /* eme */
 
             results.addItem({
-                key: 'streaming.drm',
+                key: 'streaming.eme',
                 passed: 'setMediaKeys' in element ? YES : 'webkitAddKey' in element || 'webkitSetMediaKeys' in element || 'mozSetMediaKeys' in element || 'msSetMediaKeys' in element ? YES | PREFIX : NO
             });
 
