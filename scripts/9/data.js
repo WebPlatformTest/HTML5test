@@ -1061,13 +1061,6 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#the-template-element' ]
 													]
-									}, {
-										id:			'imports',
-										name: 		'HTML imports',
-										status: 	'rejected',
-										urls:		[
-														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/imports/' ]
-													]
 									}
 								]
 					}
@@ -2685,15 +2678,6 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-defer' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer' ],
 														[ 'mdn', '/Web/HTML/Element/script' ]
-													]
-									}, {
-										id:			'executionevents',
-										name: 		'Script execution events',
-										status:		'rejected',
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#the-script-element' ],
-														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element' ],
-														[ 'mdn', '/Web/Events/beforescriptexecute' ]
 													]
 									}, {
 										id:			'onerror',
