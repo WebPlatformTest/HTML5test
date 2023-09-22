@@ -211,6 +211,23 @@ Test9 = (function () {
             });
         },
 
+        /* mathml support */
+
+        function (results) {
+            var element = document.createElement('div');
+            element.innerHTML = "<math><mspace height='23px' width='77px'/></math>";
+            document.body.appendChild(element);
+            var box = element.firstChild.firstChild.getBoundingClientRect();
+            console.log(box);
+
+            results.addItem({
+                key: 'elements.mathml',
+                passed: box.height == 23 && box.width == 77
+            });
+
+            document.body.removeChild(element);
+        },
+
 
         /* section, nav, article, header and footer */
 
