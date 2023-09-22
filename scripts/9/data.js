@@ -1779,13 +1779,33 @@ var tests = [
 										id:		'jpeg',
 										name: 	'JPEG support',
 										status:	'optional'
-									}, {
+}, {
 										id:		'jpegxr',
 										name: 	'JPEG-XR support',
 										status:	'optional'
 									}, {
 										id:		'webp',
 										name: 	'WebP support',
+										status:	'optional'
+									},
+
+									'<strong>New image formats</strong>',
+
+									{
+										id:		'webpLoad',
+										name: 	'WebP support',
+										status:	'optional'
+									}, {
+										id:		'jxl',
+										name: 	'JPEG XL support',
+										status:	'optional'
+									}, {
+										id:		'avif',
+										name: 	'AVIF support',
+										status:	'optional'
+									}, {
+										id:		'heic',
+										name: 	'HEIC support',
 										status:	'optional'
 									}
 								]

@@ -218,7 +218,6 @@ Test9 = (function () {
             element.innerHTML = "<math><mspace height='23px' width='77px'/></math>";
             document.body.appendChild(element);
             var box = element.firstChild.firstChild.getBoundingClientRect();
-            console.log(box);
 
             results.addItem({
                 key: 'elements.mathml',
@@ -3254,6 +3253,93 @@ Test9 = (function () {
                 key: 'canvas.webp',
                 passed: passed
             });
+        },
+
+
+        /* new image formats */
+
+        function (results) {
+            var image;
+
+            /* webp support */
+
+            var webp = results.addItem({
+                key: 'canvas.webpLoad',
+                passed: false
+            });
+            webp.startBackground();
+
+            image = new Image();
+            image.src = "data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==";
+            image.onload = function() {
+                webp.update({
+                    passed: true
+                });
+                webp.stopBackground();
+            };
+            image.onerror = function() {
+                webp.stopBackground();
+            };
+
+            /* jxl support */
+
+            var jxl = results.addItem({
+                key: 'canvas.jxl',
+                passed: false
+            });
+            jxl.startBackground();
+
+            image = new Image();
+            image.src = "data:image/jxl;base64,/woIELASCAgQAFwASxLFgkWAHL0xqnCBCV0qDp901Te/5QM=";
+            image.onload = function() {
+                jxl.update({
+                    passed: true
+                });
+                jxl.stopBackground();
+            };
+            image.onerror = function() {
+                jxl.stopBackground();
+            };
+
+            /* avif support */
+
+            var avif = results.addItem({
+                key: 'canvas.avif',
+                passed: false
+            });
+            avif.startBackground();
+
+            image = new Image();
+            image.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=";
+            image.onload = function() {
+                avif.update({
+                    passed: true
+                });
+                avif.stopBackground();
+            };
+            image.onerror = function() {
+                avif.stopBackground();
+            };
+
+            /* heic support */
+
+            var heic = results.addItem({
+                key: 'canvas.heic',
+                passed: false
+            });
+            heic.startBackground();
+
+            image = new Image();
+            image.src = "data:image/heic;base64,AAAAGGZ0eXBoZWljAAAAAG1pZjFoZWljAAAC/G1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAHBpY3QAAAAAAAAAAAAAAAAAAAAADnBpdG0AAAAAAAIAAAAYaWRhdAAAAAAAAQABAAAAAAABAAEAAABgaWxvYwEAAABEQAAEAAEAAAAAAAADHAABAAAAAAAAACIAAgABAAAAAAAAAAEAAAAAAAAACAADAAAAAAAAAz4AAQAAAAAAAAAgAAQAAQAAAAAAAAABAAAACAAAAAgAAABiaWluZgAAAAAABAAAABVpbmZlAgAAAQABAABodmMxAAAAABVpbmZlAgAAAAACAABncmlkAAAAABVpbmZlAgAAAQADAABodmMxAAAAABVpbmZlAgAAAAAEAABncmlkAAAAAbFpcHJwAAABhGlwY28AAAB2aHZjQwEDcAAAAAAAAAAAAB7wAPz9+PgAAA8DIAABABhAAQwB//8DcAAAAwCQAAADAAADAB66AkAhAAEAKkIBAQNwAAADAJAAAAMAAAMAHqAggQWW6q6a5uBAQMCAAAADAIAAAAMAhCIAAQAGRAHBc8GJAAAAFGlzcGUAAAAAAAAAQAAAAEAAAAAUaXNwZQAAAAAAAAABAAAAAQAAABBwaXhpAAAAAAMICAgAAABxaHZjQwEECAAAAAAAAAAAAB7wAPz8+PgAAA8DIAABABdAAQwB//8ECAAAAwCf+AAAAwAAHroCQCEAAQAmQgEBBAgAAAMAn/gAAAMAAB7AggQWW6q6a5sCAAADAAIAAAMAAhAiAAEABkQBwXPBiQAAABRpc3BlAAAAAAAAAEAAAABAAAAAFGlzcGUAAAAAAAAAAQAAAAEAAAAOcGl4aQAAAAABCAAAACdhdXhDAAAAAHVybjptcGVnOmhldmM6MjAxNTphdXhpZDoxAAAAACVpcG1hAAAAAAAAAAQAAQKBAgACAgOEAAMChQYABAMHiIkAAAA2aXJlZgAAAAAAAAAOZGltZwACAAEAAQAAAA5kaW1nAAQAAQADAAAADmF1eGwABAABAAIAAABKbWRhdAAAAB4oAa8FEhJM4PoDvef+6D6IWYCvu2VYo5lcYJNTt4AAAAAcKAGuCiQkGcDhnoA/9bdzylCzhNKQp7VBQJa1Aw==";
+            image.onload = function() {
+                heic.update({
+                    passed: true
+                });
+                heic.stopBackground();
+            };
+            image.onerror = function() {
+                heic.stopBackground();
+            };
         },
 
 
