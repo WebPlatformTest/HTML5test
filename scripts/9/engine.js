@@ -321,6 +321,16 @@ Test9 = (function () {
         },
 
 
+        /* a relList */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.semantic.relList',
+                passed: 'relList' in document.createElement('a')
+            });
+        },
+
+
         /* mark element */
 
         function (results) {
@@ -520,6 +530,24 @@ Test9 = (function () {
             results.addItem({
                 key: 'elements.hidden',
                 passed: 'hidden' in document.createElement('div')
+            });
+        },
+        
+        /* translate attribute */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.translate',
+                passed: 'translate' in document.createElement('div')
+            });
+        },
+
+        /* accessKeyLabel attribute */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.accessKeyLabel',
+                passed: 'accessKeyLabel' in document.createElement('div')
             });
         },
 
@@ -893,6 +921,11 @@ Test9 = (function () {
             results.addItem({
                 key: 'form.textarea.element',
                 passed: passed
+            });
+
+            results.addItem({
+                key: 'form.textarea.minlength',
+                passed: 'minLength' in element
             });
 
             results.addItem({
@@ -1388,6 +1421,15 @@ Test9 = (function () {
             results.addItem({
                 key: 'form.formvalidation.checkValidity',
                 passed: 'checkValidity' in document.createElement('form')
+            });
+        },
+
+        /* reportValidity property */
+
+        function (results) {
+            results.addItem({
+                key: 'form.formvalidation.reportValidity',
+                passed: 'reportValidity' in document.createElement('form')
             });
         },
 

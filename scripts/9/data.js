@@ -212,6 +212,13 @@ var tests = [
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#ping' ]
 																]
 													}, {
+														id:		'relList',
+														name: 	'<code>relList</code> attribute on the <code>a</code> element',
+														value:	1,
+														urls:	[
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/text-level-semantics.html#dom-a-rellist' ]
+																]
+													}, {
 														id:		'mark',
 														name: 	'<code>mark</code> element',
 														value:	1,
@@ -293,6 +300,20 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute' ],
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute' ]
+												]
+									}, {
+										id:		'translate',
+										name: 	'<code>translate</code> attribute',
+										value:	1,
+										urls:	[
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#the-translate-attribute' ]
+												]
+									}, {
+										id:		'accessKeyLabel',
+										name: 	'<code>accessKeyLabel</code> attribute',
+										value:	1,
+										urls:	[
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/interaction.html#introduction-9:dom-accesskeylabel' ]
 												]
 									}, {
 										id:		'dynamic',
@@ -787,6 +808,11 @@ var tests = [
 														name: 		'Minimal element support',
 														url:		'http://www.w3.org/TR/html5/forms.html#the-textarea-element'
 													}, {
+														id:			'minlength',
+														name:		'<code>minlength</code> attribute',
+														value:		1,
+														url:		'http://www.w3.org/TR/html5/forms.html#attr-textarea-minlength'
+													}, {
 														id:			'maxlength',
 														name:		'<code>maxlength</code> attribute',
 														value:		1,
@@ -1038,6 +1064,11 @@ var tests = [
 														name: 		'<code>checkValidity</code> method',
 														value:		3,
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-form-checkvalidity'
+													}, {
+														id:			'reportValidity',
+														name: 		'<code>reportValidity</code> method',
+														value:		1,
+														url:		'https://html.spec.whatwg.org/multipage/forms.html#dom-form-reportvalidity'
 													}, {
 														id:			'noValidate',
 														name: 		'<code>noValidate</code> attribute',
