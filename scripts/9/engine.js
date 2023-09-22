@@ -1679,7 +1679,7 @@ Test9 = (function () {
 
             try {
                 item.startBackground();
-                xhr.open("GET", "https://html5test.com/assets/detect.html?" + Math.random().toString(36).substr(2, 5));
+                xhr.open("GET", "assets/detect.html?" + Math.random().toString(36).substr(2, 5));
                 xhr.responseType = "text";
                 xhr.send();
             } catch (e) {
@@ -1723,7 +1723,7 @@ Test9 = (function () {
 
             try {
                 item.startBackground();
-                xhr.open("GET", "https://html5test.com/assets/detect.html?" + Math.random().toString(36).substr(2, 5));
+                xhr.open("GET", "assets/detect.html?" + Math.random().toString(36).substr(2, 5));
                 xhr.responseType = "document";
                 xhr.send();
             } catch (e) {
@@ -1767,7 +1767,7 @@ Test9 = (function () {
 
             try {
                 item.startBackground();
-                xhr.open("GET", "https://html5test.com/assets/detect.html?" + Math.random().toString(36).substr(2, 5));
+                xhr.open("GET", "assets/detect.html?" + Math.random().toString(36).substr(2, 5));
                 xhr.responseType = "arraybuffer";
                 xhr.send();
             } catch (e) {
@@ -1811,7 +1811,7 @@ Test9 = (function () {
 
             try {
                 item.startBackground();
-                xhr.open("GET", "https://html5test.com/assets/detect.html?" + Math.random().toString(36).substr(2, 5));
+                xhr.open("GET", "assets/detect.html?" + Math.random().toString(36).substr(2, 5));
                 xhr.responseType = "blob";
                 xhr.send();
             } catch (e) {
@@ -4340,7 +4340,7 @@ Test9 = (function () {
 
             var s = document.createElement('script');
             s.type = 'module';
-            s.src = 'https://html5test.com/assets/modules.js';
+            s.src = 'assets/modules.js';
             document.body.appendChild(s);
 
             window.setTimeout(function () {
