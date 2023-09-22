@@ -2505,7 +2505,7 @@ Test9 = (function () {
 
             results.addItem({
                 key: 'video.codecs.webm.av1',
-                passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="av1.experimental.e87fb2378f01103d5d6e477a4ef6892dc714e614"')
+                passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="av01.0.05M.08"')
             });
 
             /* does codec detection work properly? */
@@ -2813,7 +2813,7 @@ Test9 = (function () {
 
             results.addItem({
                 key: 'streaming.video.codecs.webm.av1',
-                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="av1.experimental.e87fb2378f01103d5d6e477a4ef6892dc714e614"')
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="av01.0.05M.08"')
             });
         },
 
