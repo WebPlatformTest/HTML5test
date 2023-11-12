@@ -107,9 +107,9 @@
 								onChange:		function(ids) {
 													if (window.history && window.history.replaceState) {
 														if (ids.length)
-															window.history.replaceState([], document.title, '/compare/browser/?' + ids.join('/'));
+															window.history.replaceState([], document.title, './?' + ids.join('/'));
 														else
-															window.history.replaceState([], document.title, '/compare/browser/');
+															window.history.replaceState([], document.title, './');
 													}
 												}
 							});
