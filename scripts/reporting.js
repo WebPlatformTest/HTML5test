@@ -303,7 +303,7 @@
 				httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 
-		   	httpRequest.open('POST','/api/loadBrowser', true);
+		   	httpRequest.open('POST','https://html5test.com/api/loadBrowser', true);
 			httpRequest.onreadystatechange = process;
 		   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			httpRequest.send('id=' + encodeURIComponent(id));
@@ -1030,7 +1030,7 @@
 				httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 
-		   	httpRequest.open('POST','/api/loadFeature', true);
+		   	httpRequest.open('POST','https://html5test.com/api/loadFeature', true);
 			httpRequest.onreadystatechange = process;
 		   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			httpRequest.send('key=' + encodeURIComponent(key));
