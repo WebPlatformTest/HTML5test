@@ -135,10 +135,11 @@
 							var ids = location.search.substring(1).split('/');
 							for (var i = 0; i < ids.length; i++) {
 								if (ids[i] == 'mybrowser') {
+									var column = i;
 									new Test(function(r) {
 										var c = new Calculate(r, m.data);
 
-										table.updateColumn(i, {
+										table.updateColumn(column, {
 											id:				'mybrowser',
 											nickname:		'My browser',
 											score:			c.score,

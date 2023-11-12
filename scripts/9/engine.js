@@ -2346,7 +2346,7 @@ Test9 = (function () {
             item.startBackground();
 
             var iframe = document.createElement('iframe');
-            iframe.src = 'assets/csp.html';
+            iframe.src = '/html5test/assets/csp.html';
             iframe.style.visibility = 'hidden';
             document.body.appendChild(iframe);
 
@@ -4447,7 +4447,7 @@ Test9 = (function () {
 
             var s = document.createElement('script');
             s.type = 'module';
-            s.src = 'assets/modules.js';
+            s.src = '/html5test/assets/modules.js';
             document.body.appendChild(s);
 
             window.setTimeout(function () {
