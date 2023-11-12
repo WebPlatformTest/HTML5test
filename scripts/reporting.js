@@ -1408,7 +1408,7 @@
 					tbody.appendChild(tr);
 
 					var th = document.createElement('th');
-					th.innerHTML = "<a href='/compare/feature/" + this.data[i].id + ".html'>" + this.metadata.getTrail(this.data[i].id, ' ▸ ') + "</a>";
+					th.innerHTML = "<a href='/compare/feature/?" + this.data[i].id + "'>" + this.metadata.getTrail(this.data[i].id, ' ▸ ') + "</a>";
 					tr.appendChild(th);
 
 					var td = document.createElement('td');
@@ -1460,7 +1460,7 @@
 			content += "<div class='info'>";
 			content += "<div class='column left score'><h2>" + data.score + "</h2><span>Points</span></div>";
 			content += "<div class='column middle'><a href='/results/" + type + "/timeline/" + data.id +".html' class='timeline'><span>Timeline</span></a></div>";
-			content += "<div class='column right'><a href='/compare/browser/" + browser +".html' class='compare'><span>Compare</span></a></div>";
+			content += "<div class='column right'><a href='/compare/browser/?" + browser +"' class='compare'><span>Compare</span></a></div>";
 			content += "</div>";
 
 			if (typeof data.urls != 'undefined') {
