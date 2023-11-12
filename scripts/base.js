@@ -575,10 +575,10 @@
 			this.popup.innerHTML +=
 				"<div id='save'>" +
 				"<p>You can see the results here:</p>" +
-				"<p><a href='" + document.location.protocol + "//html5te.st/" + this.options.id + "'>html5te.st/" + this.options.id + "</a></p>" +
+				"<p><a href='" + document.location.href + "s/?" + this.options.id + "'>" + document.location.href + "s/?" + this.options.id + "</a></p>" +
 				"<p>Or scan this QR-code:</p>" +
 				"<p>" +
-				"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(document.location.protocol + "//html5te.st/" + this.options.id) + "&choe=UTF-8' width='200' height='200'>" +
+				"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent(document.location.href + "s/?" + this.options.id) + "&choe=UTF-8' width='200' height='200'>" +
 				"</p>" +
 				"<p>The unique id for this test is:<br><code>" + this.options.id + "</code></p>" +
 				"</div>";
