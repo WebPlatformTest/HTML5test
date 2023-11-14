@@ -27,9 +27,9 @@ code {
 	font-size: 1.2em;
 }
 		</style>
-		<script src='scripts/base.js' type='text/javascript'></script>
-		<script src='scripts/9/engine.js' type='text/javascript'></script>
-		<script src='scripts/9/data.js' type='text/javascript'></script>
+		<script src='/scripts/base.js' type='text/javascript'></script>
+		<script src='/scripts/9/engine.js' type='text/javascript'></script>
+		<script src='/scripts/9/data.js' type='text/javascript'></script>
 	</head>
 	<body>
 		<div id="qr"></div>
@@ -48,10 +48,10 @@ code {
 
 					document.getElementById('qr').innerHTML +=
 						"<p>You can see the results here:</p>" +
-						"<p><a href='http://html5te.st/" + r.uniqueid + "'>html5te.st/" + r.uniqueid + "</a></p>" +
+						"<p><a href='https://html5test.co/s/?" + r.uniqueid + "'>html5test.co/s/?" + r.uniqueid + "</a></p>" +
 						"<p>Or scan this QR-code:</p>" +
 						"<p>" +
-						"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent("http://html5te.st/" + r.uniqueid) + "&choe=UTF-8' width='200' height='200'>" +
+						"<img src='https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + encodeURIComponent("https://html5test.co/s/?" + r.uniqueid) + "&choe=UTF-8' width='200' height='200'>" +
 						"</p>" +
 						"<p>The unique id for this test is:<br><code>" + r.uniqueid + "</code></p>";
 
