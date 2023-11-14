@@ -116,7 +116,9 @@
 
                         var ids = location.search.substring(1).split('/');
                         for (var i = 0; i < ids.length; i++) {
-                            table.loadColumn(i, ids[i]);
+                            if (ids[i]) {
+								table.loadColumn(i, ids[i]);
+							}
                         }
 					-->
 					</script>
