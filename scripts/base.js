@@ -80,7 +80,7 @@
 			}
 			
 			var script = document.createElement('script');
-			script.src = 'scripts/detect.js?' + p.join('&');
+			script.src = 'https://backup.whichbrowser.net/rel/detect.js?' + p.join('&');
 			document.getElementsByTagName('head')[0].appendChild(script);
 
 			wait();
