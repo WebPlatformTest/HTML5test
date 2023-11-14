@@ -25,9 +25,11 @@
     <meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
     <script>
         if (location.pathname.indexOf('/s/') == 0) {
-            location.replace('/s/?' + location.pathname.substring(3).replace('.html', ''));
+            location.replace(location.pathname.replace('/s/', '/s/?').replace('.html', ''));
         } else if (location.pathname.indexOf('/compare/browser/') == 0) {
-            location.replace('/compare/browser/?' + location.pathname.substring(17).replace('.html', ''));
+            location.replace(location.pathname.replace('/browser/', '/browser/?').replace('.html', ''));
+        } else if (location.pathname.indexOf('/compare/feature/') == 0) {
+            location.replace(location.pathname.replace('/feature/', '/feature/?').replace('.html', ''));
         } else {
             document.write('Error 404');
         }
