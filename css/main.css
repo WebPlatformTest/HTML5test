@@ -437,48 +437,10 @@ body.indexVisible > div#index button#indexbutton {
 	margin-bottom: 0.8em;
 }
 
-#cloudvps a {
-	position: absolute;
-	top: 0;
-	right: 0;
-	border-left: 1px solid #ccc;
-
-	display: block;
-	background: url(/images/sponsors/cloudvps.png) no-repeat 10px top;
-	background-size: 59px 43px;
-	padding-top: 0px;
-	padding-left: 80px;
-
-	text-decoration: none;
-	color: #04446d;
-	font-size: 90%;
-	min-height: 43px;
-}
-#cloudvps a b {
-	font-size: 110%;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-	#cloudvps a {
-		background-image: url(/images/sponsors/cloudvps@2x.png);
-		background-size: 59px 43px;
-	}
-}
-
 @media (max-width: 680px) {
 	.footer > div {
 		padding-right: 0;
 		padding-bottom: 60px;
-	}
-
-	#cloudvps a {
-		top: auto;
-		left: 0;
-
-		border-left: none;
-		border-top: 1px solid #ccc;
-		padding-top: 12px;
-		padding-left: 70px;
-		background-position: left 12px;
 	}
 }
 

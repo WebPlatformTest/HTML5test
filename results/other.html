@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML5test - How well does your browser support HTML5?</title>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/css/reporting.css" type="text/css">
+    <script src='/scripts/base.js' type='text/javascript'></script>
+    <script src='/scripts/reporting.js' type='text/javascript'></script>
+    <script src='/scripts/jquery/jquery-1.7.2.min.js' type='text/javascript'></script>
+    <script src='/scripts/highcharts/highcharts.src.js' type='text/javascript'></script>
+    <script src="/scripts/highcharts/modules/exporting.js" type="text/javascript"></script>
+    <script src="/scripts/fullscreen.js" type="text/javascript"></script>
+    <meta name="application-name" content="HTML5test">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-196x196.png" sizes="196x196">
+    <meta name="msapplication-TileColor" content="#0092bf">
+    <meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+</head>
+
+<body>
+    <div class='header'>
+        <h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+        <div class='navigation'>
+            <ul class='left'>
+                <li><a href='/'>Your browser</a></li>
+                <li class='selected'><a href='/results/desktop.html'>Other<span> browser</span>s</a></li>
+                <li><a href='/compare/browser/'>Compare</a></li>
+            </ul>
+            <ul class='right'>
+                <li><a href='/about.html'>About<span> the test</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class='page'>
+        <div class='column'>
+            <div class='paper hasNavigation'>
+                <ul class='navigation'>
+                    <li class=''><a href='/results/desktop.html'>Desktop<span> browsers</span></a></li>
+                    <li class=''><a href='/results/tablet.html'>Tablets</a></li>
+                    <li class=''><a href='/results/mobile.html'>Mobiles</a></li>
+                    <li class='selected'><a href='/results/other.html'>Other</a></li>
+                    <li class='more'><a href='/results/search.html'>Search</a></li>
+                    <li class='more'><a href='/results/latest.html'>Latest</a></li>
+                </ul>
+
+                <div>
+                    <div class='scorePanel'>
+                        <h2 id='gaming'>Gaming</h2>
+
+                        <div class='left'>
+                            <div>
+                                <h3>Consoles</h3>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Device</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class='points'>454</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'xbox.one', version: '16.0', id: 'xbox.one', score: '454' }); ">
+                                                Xbox One </th>
+                                            <th class='details'>Edge 16</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>441</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'xbox.one', version: '15.0', id: 'xbox.one', score: '441' }); ">
+                                                Xbox One </th>
+                                            <th class='details'>Edge 15</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>428</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'xbox.one', version: '14.0', id: 'xbox.one', score: '428' }); ">
+                                                Xbox One </th>
+                                            <th class='details'>Edge 14</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>401</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'xbox.one', version: '13.0', id: 'xbox.one', score: '401' }); ">
+                                                Xbox One </th>
+                                            <th class='details'>Edge 13</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>289</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'playstation.4', version: '', id: '', score: '289' }); ">
+                                                Sony Playstation 4 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>256</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'nintendo.wii.u', version: '', id: '', score: '256' }); ">
+                                                Nintendo Wii U </th>
+                                            <th class='details'>NetFront NX</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>113</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'xbox.360', version: '9.0', id: 'xbox.360', score: '113' }); ">
+                                                Xbox 360 </th>
+                                            <th class='details'>Internet Explorer 9</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>65</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'nintendo.wii', version: '', id: '', score: '65' }); ">
+                                                Nintendo Wii </th>
+                                            <th class='details'>Opera</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>57</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'playstation.3', version: '', id: '', score: '57' }); ">
+                                                Sony Playstation 3 </th>
+                                            <th class='details'>NetFront</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class='right'>
+                            <div>
+                                <h3>Portable</h3>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Device</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class='points'>258</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'playstation.vita', version: '', id: '', score: '258' }); ">
+                                                Sony Playstation Vita </th>
+                                            <th class='details'>NetFront NX</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>257</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'nintendo.new.3ds', version: '', id: '', score: '257' }); ">
+                                                Nintendo New 3DS </th>
+                                            <th class='details'>NetFront NX</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>83</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'gaming', { platform: 'nintendo.3ds', version: '', id: '', score: '83' }); ">
+                                                Nintendo 3DS </th>
+                                            <th class='details'>NetFront</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class='scorePanel'>
+                        <h2 id='television'>Television</h2>
+
+                        <div class='left'>
+                            <h3>Smart TVs</h3>
+                            <div>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Device</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class='points'>427</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'television', { platform: 'lg.webos', version: '2016', id: '', score: '427' }); ">
+                                                LG WebOS 2016 </th>
+                                            <th class='details'>WebOS</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>422</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'television', { platform: 'samsung.smarttv', version: '2015', id: '', score: '422' }); ">
+                                                Samsung Smart TV 2015 </th>
+                                            <th class='details'>Tizen</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>371</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'television', { platform: 'panasonicviera', version: '2015', id: '', score: '371' }); ">
+                                                Panasonic Viera 2015 </th>
+                                            <th class='details'>Firefox OS</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class='right'>
+                            <div>
+                                <h3>Set-top boxes</h3>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Device</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class='points'>492</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'television', { platform: 'firefox.fireos', version: '', id: 'firefox.fireos', score: '492' }); ">
+                                                Firefox for Fire TV </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>218</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'television', { platform: 'googletv', version: '', id: '', score: '218' }); ">
+                                                GoogleTV </th>
+                                            <th class='details'>Chrome 11</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class='scorePanel'>
+                        <h2 id='ereaders'>E-readers</h2>
+
+                        <div class='left'>
+                            <div>
+                                <h3>E-paper readers</h3>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Device</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class='points'>224</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'ereader', { platform: 'kobo', version: '', id: '', score: '224' }); ">
+                                                Kobo eReader </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>154</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'ereader', { platform: 'pocketbook', version: '', id: '', score: '154' }); ">
+                                                Pocketbook eReader </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>152</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'ereader', { platform: 'kindle', version: '', id: '', score: '152' }); ">
+                                                Amazon Kindle </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr>
+                                            <td class='points'>147</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'ereader', { platform: 'sony.reader', version: '', id: '', score: '147' }); ">
+                                                Sony Reader </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class='right'>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h3>About these scores</h3>
+                    <div class='text'>
+                        The data above is compiled from automatically submitted test results. It is possible your
+                        results
+                        may differ slightly due to external factors such as settings and which operating system is used.
+                        If you believe the data above is incorrect, or if you think we are missing an important browser
+                        or device, please open a bug report at <a
+                            href='http://github.com/NielsLeenheer/html5test'>Github</a>.
+                    </div>
+                </div>
+            </div>
+
+            <div class='footer'>
+                <div>
+                    <div class='copyright'>
+                        <p>
+                            &copy; 2023 - Created by Niels Leenheer, modified by Jerzy Głowacki.<br>
+                            Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.<br>
+                            HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
+                            Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
