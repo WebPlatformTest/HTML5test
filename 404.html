@@ -25,9 +25,9 @@
     <meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
     <script>
         if (location.pathname.indexOf('/s/') == 0) {
-            location.pathname = '/s/?' + location.pathname.substring(3).replace('.html', '');
+            location.replace('/s/?' + location.pathname.substring(3).replace('.html', ''));
         } else if (location.pathname.indexOf('/compare/browser/') == 0) {
-            location.pathname = '/compare/browser/?' + location.pathname.substring(17).replace('.html', '');
+            location.replace('/compare/browser/?' + location.pathname.substring(17).replace('.html', ''));
         } else {
             document.write('Error 404');
         }
