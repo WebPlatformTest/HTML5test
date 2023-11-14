@@ -149,7 +149,7 @@
 										});
 									});
 								} else {
-									table.loadColumn(i, ids[i]);
+									table.loadColumn(i, (ids[i].indexOf('-') < 0 ? 'custom:' : '') + ids[i]);
 								}
 							}
 						}, false);
