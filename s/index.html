@@ -98,7 +98,8 @@
 
 				var c = {};
 
-				c  = new Calculate(r, m.data);
+				c.score = r.score;
+				c.maximum = r.maximum;
 
 				var container = document.getElementById('score');
 				container.innerHTML =
