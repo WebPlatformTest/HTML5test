@@ -111,7 +111,7 @@
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('POST','https://html5test.com/api/' + method, true);
+		httpRequest.open('POST','https://alpha.html5test.com/api/' + method, true);
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		httpRequest.send('payload=' + encodeURIComponent(payload));
 	}
