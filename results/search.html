@@ -137,7 +137,7 @@
                                 httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
                             }
 
-                            httpRequest.open('POST', 'https://html5test.com/api/searchResults', true);
+                            httpRequest.open('POST', API_BASE + '/searchResults', true);
                             httpRequest.onreadystatechange = process;
                             httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                             httpRequest.send("query=" + encodeURIComponent(query));

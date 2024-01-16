@@ -159,17 +159,7 @@
 				new Test(function(r) {
 					var m = new Metadata(tests);
 					var c = new Calculate(r, m.data);
-
-					submitResults(r, c);
-
-					upgradeConnection(
-						function() {
-							location.protocol = 'https:';
-						}, 
-						function() {
-							showResults(r, c, m);
-						}
-					);
+					showResults(r, c, m);
 				}, showError);
 			});
 

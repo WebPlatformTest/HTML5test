@@ -1,3 +1,5 @@
+var API_BASE = 'https://html5test.eu5.net/api'
+
 /* Polyfills */
 
 if (!Function.prototype.bind) {
@@ -57,10 +59,6 @@ if (!Function.prototype.bind) {
 
 /* Utility functions */
 
-function compress(c) { var b = z = {}, f = c.split(""), d = [], a = f[0], g = 256; for (b = 1; b < f.length; b++)c = f[b], null != z[a + c] ? a += c : (d.push(1 < a.length ? z[a] : a.charCodeAt(0)), z[a + c] = g, g++, a = c); d.push(1 < a.length ? z[a] : a.charCodeAt(0)); for (b = 0; b < d.length; b++)d[b] = String.fromCharCode(d[b]); return d.join("") }
-
-function decompress(b) { var a = e = {}, d = b.split(""), c = f = d[0], g = [c], h = o = 256; for (b = 1; b < d.length; b++)a = d[b].charCodeAt(0), a = h > a ? d[b] : e[a] ? e[a] : f + c, g.push(a), c = a.charAt(0), e[o] = f + c, o++, f = a; return g.join("") }
-
 function loadWhichBrowser(cb) {
 	var callback = cb;
 
@@ -109,7 +107,7 @@ function submit(method, payload) {
 		httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 
-	httpRequest.open('POST', 'https://html5test.com/api/' + method, true);
+	httpRequest.open('POST', API_BASE + '/' + method, true);
 	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	httpRequest.send('payload=' + encodeURIComponent(payload));
 }
@@ -128,35 +126,6 @@ function decodeParameters() {
 	}
 
 	return params;
-}
-
-function upgradeConnection(success, failure) {
-	if (location.protocol == "http:") {
-		var httpRequest;
-
-		if (window.XMLHttpRequest) {
-			httpRequest = new XMLHttpRequest();
-		} else if (window.ActiveXObject) {
-			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		httpRequest.onreadystatechange = function () {
-			if (httpRequest.readyState == 4) {
-				if (httpRequest.status >= 200 && httpRequest.status < 400) {
-					success();
-				} else {
-					failure();
-				}
-			}
-		}
-
-		httpRequest.open('GET', 'https://html5test.com/assets/upgrade', true);
-		httpRequest.send();
-
-		return;
-	}
-
-	failure();
 }
 
 function submitResults(r, c) {
@@ -200,7 +169,7 @@ function submitResults(r, c) {
 			'"useragent": "' + navigator.userAgent + '",' +
 			'"humanReadable": "' + Browsers.toString() + '",' +
 			'"points": "' + c.points + '",' +
-			'"results": "#' + escapeSlashes(compress(r.results)) + '"' +
+			'"results": "#' + escapeSlashes(r.results) + '"' +
 			'}';
 
 		submit('submit', payload);

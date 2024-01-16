@@ -303,7 +303,7 @@ FeatureTable.prototype = {
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('POST', 'https://html5test.com/api/loadBrowser', true);
+		httpRequest.open('POST', API_BASE + '/loadBrowser', true);
 		httpRequest.onreadystatechange = process;
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		httpRequest.send('id=' + encodeURIComponent(id));
@@ -311,10 +311,6 @@ FeatureTable.prototype = {
 		function process() {
 			if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
 				var data = JSON.parse(httpRequest.responseText);
-				if (data.results.indexOf('#') == 0) {
-					data.results = decompress(data.results.substring(1));
-				}
-
 				var f = that.options.filter;
 				that.filter('');
 				that.updateColumn(column, data);
@@ -1033,7 +1029,7 @@ BrowserTable.prototype = {
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('POST', 'https://html5test.com/api/loadFeature', true);
+		httpRequest.open('POST', API_BASE + '/loadFeature', true);
 		httpRequest.onreadystatechange = process;
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		httpRequest.send('key=' + encodeURIComponent(key));

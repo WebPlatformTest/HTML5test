@@ -1,4 +1,4 @@
-<img src="https://html5te.st/assets/html5test.svg" width="250">
+<img src="https://camo.githubusercontent.com/97ad26f95c741618baf1336575a6bd48246d80dc515a8db6353b4ef770ec55e8/68747470733a2f2f68746d6c3574652e73742f6173736574732f68746d6c35746573742e737667" width="250">
 
 ### Updated domain: [html5test.co](https://html5test.co)
 
@@ -19,9 +19,3 @@ Please be aware that although the HTML5 specification is now an official recomme
 specifications that are being tested are still in development and could change before receiving 
 an official status. In the future new tests will be added for new specifications and existing 
 tests will be updated when the specifications change.
-
-
-**Thanks to:**  
-
-<a href="https://www.browserstack.com"><img src="https://html5te.st/assets/browserstack.svg" width="180"></a> &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.cloudvps.nl"><img src="https://html5test.com/images/sponsors/cloudvps@2x.png" width="59"></a>
