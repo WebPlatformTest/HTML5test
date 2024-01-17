@@ -197,7 +197,10 @@
 
 				new Save(button, {
 					id:			r.uniqueid,
-					onSave:		function() { submit('save', '{"uniqueid": "' + r.uniqueid + '"}'); }
+					onSave:		function() {
+						submitResults(r, c);
+						submit('save', '{"uniqueid": "' + r.uniqueid + '"}');
+					}
 				});
 
 				var button = document.createElement('a');

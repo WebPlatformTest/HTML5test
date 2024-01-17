@@ -169,7 +169,7 @@ function submitResults(r, c) {
 			'"useragent": "' + navigator.userAgent + '",' +
 			'"humanReadable": "' + Browsers.toString() + '",' +
 			'"points": "' + c.points + '",' +
-			'"results": "#' + escapeSlashes(r.results) + '"' +
+			'"results": "' + escapeSlashes(r.results) + '"' +
 			'}';
 
 		submit('submit', payload);
