@@ -1,4 +1,4 @@
-var API_BASE = 'https://html5test.eu5.net/api'
+var API_BASE = 'https://api.codetabs.com/v1/proxy/?quest=https://html5test.eu5.net/api'
 
 /* Polyfills */
 
@@ -107,9 +107,9 @@ function submit(method, payload) {
 		httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 
-	httpRequest.open('POST', API_BASE + '/' + method, true);
+	httpRequest.open('GET', API_BASE + '/' + method + '?payload=' + encodeURIComponent(payload), true);
 	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	httpRequest.send('payload=' + encodeURIComponent(payload));
+	httpRequest.send();
 }
 
 function decodeParameters() {
