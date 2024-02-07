@@ -137,10 +137,10 @@
                                 httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
                             }
 
-                            httpRequest.open('GET', API_BASE + '%2FsearchResults%3Fquery%3D' + encodeURIComponent(query), true);
+                            httpRequest.open('POST', API_BASE + '/searchResults', true);
                             httpRequest.onreadystatechange = process;
                             httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                            httpRequest.send();
+                            httpRequest.send('query=' + encodeURIComponent(query));
 
                             function process() {
                                 if (httpRequest.readyState == 4 && httpRequest.responseText != '') {

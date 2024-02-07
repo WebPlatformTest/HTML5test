@@ -79,10 +79,10 @@
 				httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 
-		   	httpRequest.open('GET', API_BASE + '%2FloadBrowser%3Fid%3D' + encodeURIComponent('custom:' + id), true);
+		   	httpRequest.open('POST', API_BASE + '/loadBrowser', true);
 			httpRequest.onreadystatechange = process;
 		   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			httpRequest.send();
+			httpRequest.send('id=' + encodeURIComponent('custom:' + id));
 
 			var that = this;
 

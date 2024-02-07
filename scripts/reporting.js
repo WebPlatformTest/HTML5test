@@ -303,10 +303,10 @@ FeatureTable.prototype = {
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('GET', API_BASE + '%2FloadBrowser%3Fid%3D' + encodeURIComponent(id), true);
+		httpRequest.open('POST', API_BASE + '/loadBrowser', true);
 		httpRequest.onreadystatechange = process;
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		httpRequest.send();
+		httpRequest.send('id=' + encodeURIComponent(id));
 
 		function process() {
 			if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
@@ -1029,10 +1029,10 @@ BrowserTable.prototype = {
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('GET', API_BASE + '%2FloadFeature%3Fkey%3D' + encodeURIComponent(key), true);
+		httpRequest.open('POST', API_BASE + '/loadFeature', true);
 		httpRequest.onreadystatechange = process;
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		httpRequest.send();
+		httpRequest.send('key=' + encodeURIComponent(key));
 
 		var that = this;
 
