@@ -1,4 +1,4 @@
-var API_BASE = 'https://thingproxy.freeboard.io/fetch/http://html5test.eu5.net/api'
+var API_BASE = 'https://corsproxy.org/?http://html5test.eu5.net/api'
 
 /* Polyfills */
 
