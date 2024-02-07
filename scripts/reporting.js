@@ -303,7 +303,7 @@ FeatureTable.prototype = {
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('GET', API_BASE + '/loadBrowser?id=' + encodeURIComponent(id), true);
+		httpRequest.open('GET', API_BASE + '%2FloadBrowserid=' + encodeURIComponent(id), true);
 		httpRequest.onreadystatechange = process;
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		httpRequest.send();
