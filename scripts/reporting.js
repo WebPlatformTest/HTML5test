@@ -303,7 +303,7 @@ FeatureTable.prototype = {
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('GET', API_BASE + '%2FloadBrowserid=' + encodeURIComponent(id), true);
+		httpRequest.open('GET', API_BASE + '%2FloadBrowser%3Fid%3D' + encodeURIComponent(id), true);
 		httpRequest.onreadystatechange = process;
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		httpRequest.send();
@@ -1029,7 +1029,7 @@ BrowserTable.prototype = {
 			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		httpRequest.open('GET', API_BASE + '/loadFeature?key=' + encodeURIComponent(key), true);
+		httpRequest.open('GET', API_BASE + '%2FloadFeature%3Fkey%3D' + encodeURIComponent(key), true);
 		httpRequest.onreadystatechange = process;
 		httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		httpRequest.send();
