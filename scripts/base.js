@@ -107,7 +107,7 @@ function submit(method, payload) {
 		httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 
-	httpRequest.open('GET', API_BASE + '%2F' + method + '%3Fpayload%3D' + encodeURIComponent(payload), true);
+	httpRequest.open('GET', API_BASE + '%2F' + method + '%3Fpayload%3D' + encodeURIComponent(encodeURIComponent(payload)), true);
 	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	httpRequest.send();
 }
