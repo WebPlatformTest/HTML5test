@@ -1655,34 +1655,34 @@ body.indexVisible > div#index button#indexbutton {
 }
 
 .resultsTable table tbody th .status::after {
-	font: 8px 'html5test';
+	font: 10px 'html5test';
 }
 .resultsTable table tbody th .status.recommendation::after {
-	content: '';
+	content: ' ';
 	color: #33af33;
 }
 .resultsTable table tbody th .status.stable::after {
-	content: '';
+	content: ' ';
 	color: #33af33;
 }
 .resultsTable table tbody th .status.proposal::after {
-	content: '';
+	content: ' ';
 	color: #88b038;
 }
 .resultsTable table tbody th .status.experimental::after {
-	content: '';
+	content: ' ';
 	color: #ec6534;
 }
 .resultsTable table tbody th .status.controversial::after {
-	content: '';
+	content: ' ';
 	color: #ec6534;
 }
 .resultsTable table tbody th .status.optional::after {
-	content: '';
+	content: ' ';
 	color: #aaa;
 }
 .resultsTable table tbody th .status.rejected::after {
-	content: '';
+	content: ' ';
 	color: #853333;
 }
 

@@ -886,7 +886,7 @@ ResultsTable.prototype = {
 				var key = tests[i].key;
 
 				var th = document.createElement('th');
-				th.innerHTML = "<div class='status " + data.status + "'><span>" + tests[i].name + "</span></div>";
+				th.innerHTML = "<div class='status " + (typeof tests[i].status != 'undefined' ? tests[i].status : data.status) + "'><span>" + tests[i].name + "</span></div>";
 				tr.appendChild(th);
 
 				for (var c = 0; c < this.options.columns; c++) {
