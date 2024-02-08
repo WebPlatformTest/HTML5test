@@ -1654,6 +1654,38 @@ body.indexVisible > div#index button#indexbutton {
 	padding-bottom: 8px;
 }
 
+.resultsTable table tbody th .status::after {
+	font: 8px 'html5test';
+}
+.resultsTable table tbody th .status.recommendation::after {
+	content: '';
+	color: #33af33;
+}
+.resultsTable table tbody th .status.stable::after {
+	content: '';
+	color: #33af33;
+}
+.resultsTable table tbody th .status.proposal::after {
+	content: '';
+	color: #88b038;
+}
+.resultsTable table tbody th .status.experimental::after {
+	content: '';
+	color: #ec6534;
+}
+.resultsTable table tbody th .status.controversial::after {
+	content: '';
+	color: #ec6534;
+}
+.resultsTable table tbody th .status.optional::after {
+	content: '';
+	color: #aaa;
+}
+.resultsTable table tbody th .status.rejected::after {
+	content: '';
+	color: #853333;
+}
+
 .resultsTable table tbody th code {
 	font-size: 12px;
 }
