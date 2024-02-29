@@ -2526,7 +2526,7 @@ Test9 = (function () {
 
             results.addItem({
                 key: 'video.codecs.mp4.h265',
-                passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"'))
+                passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hvc1.1.6.L93.90"'))
             });
 
             /* theora codec */
