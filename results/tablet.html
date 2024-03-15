@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML5test - How well does your browser support HTML5?</title>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/css/reporting.css" type="text/css">
+    <script src='/scripts/base.js' type='text/javascript'></script>
+    <script src='/scripts/reporting.js' type='text/javascript'></script>
+    <script src='/scripts/jquery/jquery-1.7.2.min.js' type='text/javascript'></script>
+    <script src='/scripts/highcharts/highcharts.src.js' type='text/javascript'></script>
+    <script src="/scripts/highcharts/modules/exporting.js" type="text/javascript"></script>
+    <script src="/scripts/fullscreen.js" type="text/javascript"></script>
+    <meta name="application-name" content="HTML5test">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/images/icons/favicon-196x196.png" sizes="196x196">
+    <meta name="msapplication-TileColor" content="#0092bf">
+    <meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+</head>
+
+<body>
+    <div class='header'>
+        <h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+        <div class='navigation'>
+            <ul class='left'>
+                <li><a href='/'>Your browser</a></li>
+                <li class='selected'><a href='/results/desktop.html'>Other<span> browser</span>s</a></li>
+                <li><a href='/compare/browser/'>Compare</a></li>
+            </ul>
+            <ul class='right'>
+                <li><a href='/about.html'>About<span> the test</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class='page'>
+        <div class='column'>
+            <div class='paper hasNavigation'>
+                <ul class='navigation'>
+                    <li class=''><a href='/results/desktop.html'>Desktop<span> browsers</span></a></li>
+                    <li class='selected'><a href='/results/tablet.html'>Tablets</a></li>
+                    <li class=''><a href='/results/mobile.html'>Mobiles</a></li>
+                    <li class=''><a href='/results/other.html'>Other</a></li>
+                    <li class='more'><a href='/results/search.html'>Search</a></li>
+                    <li class='more'><a href='/results/latest.html'>Latest</a></li>
+                </ul>
+
+                <div>
+                    <div class='overviewPanel'>
+                        <h2>Overview</h2>
+                        <div class='horizontalOverflow'>
+                            <table class='overviewTable'>
+                                <thead>
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th><a href="/results/tablet/timeline/chrome.mobile.html">Chrome</a></th>
+                                        <th><a href="/results/tablet/timeline/opera.mobile.html">Opera Mobile</a></th>
+                                        <th><a href="/results/tablet/timeline/edge.html">Edge</a></th>
+                                        <th><a href="/results/tablet/timeline/ios.html">iOS</a></th>
+                                        <th><a href="/results/tablet/timeline/firefox.mobile.html">Firefox Mobile</a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th class='upcoming'>
+                                            Upcoming </th>
+
+                                        <td class='upcoming'></td>
+                                        <td class='upcoming'></td>
+                                        <td class='upcoming'><span class="version"><span><span>18</span></span></span>
+                                            <span class="points">496</span></td>
+                                        <td class='upcoming'></td>
+                                        <td class='upcoming'></td>
+                                    </tr>
+                                    <tr>
+                                        <th class='current'>
+                                            Current </th>
+
+                                        <td class='current'></td>
+                                        <td class='current'><span class="version"><span><span>37</span></span></span>
+                                            <span class="points">481</span></td>
+                                        <td class='current'><span class="version"><span><span>17</span></span></span>
+                                            <span class="points">492</span></td>
+                                        <td class='current'><span class="version"><span><span>10.3</span></span></span>
+                                            <span class="points">415</span></td>
+                                        <td class='current'></td>
+                                    </tr>
+                                    <tr>
+                                        <th class=''>
+                                            Older </th>
+
+                                        <td class=''><span class="version"><span><span>52</span></span></span> <span
+                                                class="points">486</span></td>
+                                        <td class=''><span class="version"><span><span>12.10</span></span></span> <span
+                                                class="points">289</span></td>
+                                        <td class=''><span class="version"><span><span>16</span></span></span> <span
+                                                class="points">476</span></td>
+                                        <td class=''><span class="version"><span><span>10.2</span></span></span> <span
+                                                class="points">391</span></td>
+                                        <td class=''><span class="version"><span><span>48</span></span></span> <span
+                                                class="points">466</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class=''>
+                                        </th>
+
+                                        <td class=''><span class="version"><span><span>51</span></span></span> <span
+                                                class="points">488</span></td>
+                                        <td class=''></td>
+                                        <td class=''><span class="version"><span><span>15</span></span></span> <span
+                                                class="points">473</span></td>
+                                        <td class=''><span class="version"><span><span>10.0</span></span></span> <span
+                                                class="points">389</span></td>
+                                        <td class=''><span class="version"><span><span>47</span></span></span> <span
+                                                class="points">459</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th class=''>
+                                        </th>
+
+                                        <td class=''></td>
+                                        <td class=''></td>
+                                        <td class=''><span class="version"><span><span>14</span></span></span> <span
+                                                class="points">460</span></td>
+                                        <td class=''><span class="version"><span><span>9.3</span></span></span> <span
+                                                class="points">378</span></td>
+                                        <td class=''></td>
+                                    </tr>
+                                    <tr>
+                                        <th class=''>
+                                        </th>
+
+                                        <td class=''></td>
+                                        <td class=''></td>
+                                        <td class=''><span class="version"><span><span>13</span></span></span> <span
+                                                class="points">433</span></td>
+                                        <td class=''><span class="version"><span><span>9.0</span></span></span> <span
+                                                class="points">368</span></td>
+                                        <td class=''></td>
+                                    </tr>
+                                    <tr>
+                                        <th class=''>
+                                        </th>
+
+                                        <td class=''></td>
+                                        <td class=''></td>
+                                        <td class=''><span class="version"><span><span>12</span></span></span> <span
+                                                class="points">377</span></td>
+                                        <td class=''><span class="version"><span><span>8.0</span></span></span> <span
+                                                class="points">360</span></td>
+                                        <td class=''></td>
+                                    </tr>
+                                    <tr>
+                                        <th class=''>
+                                        </th>
+
+                                        <td class=''></td>
+                                        <td class=''></td>
+                                        <td class=''><span class='heading'>Internet Explorer</span></td>
+                                        <td class=''><span class="version"><span><span>7.0</span></span></span> <span
+                                                class="points">327</span></td>
+                                        <td class=''></td>
+                                    </tr>
+                                    <tr>
+                                        <th class=''>
+                                        </th>
+
+                                        <td class=''></td>
+                                        <td class=''></td>
+                                        <td class=''><span class="version"><span><span>11</span></span></span> <span
+                                                class="points">312</span></td>
+                                        <td class=''></td>
+                                        <td class=''></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class='scorePanel'>
+                        <h2>Scores</h2>
+
+                        <div id='scoreToggle'></div>
+
+                        <div class='left'>
+                            <div>
+                                <h3>Current</h3>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Browser</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class=''>
+                                            <td class='points'>492</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'edge', version: '17', id: 'edge', score: '492' }); ">
+                                                Edge 17 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>481</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'opera.mobile', version: '37', id: 'opera.mobile', score: '481' }); ">
+                                                Opera Mobile 37 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>467</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'kindle.silk', version: '', id: 'kindle.silk', score: '467' }); ">
+                                                Amazon Silk </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>415</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '10.3', id: 'ios', score: '415' }); ">
+                                                iOS 10.3 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div>
+                                <h3>Upcoming</h3>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Browser</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class=''>
+                                            <td class='points'>496</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'edge', version: '18', id: 'edge', score: '496' }); ">
+                                                Edge 18 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div>
+                                <h3>Experimental</h3>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Browser</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class=''>
+                                            <td class='points'>498</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'edge', version: '', id: 'edge', score: '498' }); ">
+                                                Edge </th>
+                                            <th class='details'>All flags enabled</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class='right'>
+                            <div>
+                                <h3>Older</h3>
+                                <table class='scoreTable'>
+                                    <thead>
+                                        <tr>
+                                            <th class='points'>Score</th>
+                                            <th class='nickname'>Browser</th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class=''>
+                                            <td class='points'>488</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'chrome.mobile', version: '51', id: 'chrome.mobile', score: '488' }); ">
+                                                Chrome 51 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>486</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'chrome.mobile', version: '52', id: 'chrome.mobile', score: '486' }); ">
+                                                Chrome 52 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>476</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'chrome.mobile', version: '46', id: 'chrome.mobile', score: '476' }); ">
+                                                Chrome 46 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>476</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'edge', version: '16', id: 'edge', score: '476' }); ">
+                                                Edge 16 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>473</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'edge', version: '15', id: 'edge', score: '473' }); ">
+                                                Edge 15 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>466</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'firefox.mobile', version: '48', id: 'firefox.mobile', score: '466' }); ">
+                                                Firefox Mobile 48 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>460</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'edge', version: '14', id: 'edge', score: '460' }); ">
+                                                Edge 14 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>459</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'firefox.mobile', version: '47', id: 'firefox.mobile', score: '459' }); ">
+                                                Firefox Mobile 47 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>456</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'chrome.mobile', version: '41', id: 'chrome.mobile', score: '456' }); ">
+                                                Chrome 41 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>448</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'chrome.mobile', version: '40', id: 'chrome.mobile', score: '448' }); ">
+                                                Chrome 40 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>433</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'edge', version: '13', id: 'edge', score: '433' }); ">
+                                                Edge 13 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>396</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'firefox.mobile', version: '33', id: 'firefox.mobile', score: '396' }); ">
+                                                Firefox Mobile 33 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>391</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '10.2', id: 'ios', score: '391' }); ">
+                                                iOS 10.2 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>391</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '10.1', id: 'ios', score: '391' }); ">
+                                                iOS 10.1 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>389</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '10.0', id: 'ios', score: '389' }); ">
+                                                iOS 10.0 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>387</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'opera.mobile', version: '18', id: 'opera.mobile', score: '387' }); ">
+                                                Opera Mobile 18 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>378</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '9.3', id: 'ios', score: '378' }); ">
+                                                iOS 9.3 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>377</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'edge', version: '12', id: 'edge', score: '377' }); ">
+                                                Edge 12 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>371</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'firefox.mobile', version: '28', id: 'firefox.mobile', score: '371' }); ">
+                                                Firefox Mobile 28 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>368</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '9.0', id: 'ios', score: '368' }); ">
+                                                iOS 9.0 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>367</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'opera.mobile', version: '16', id: 'opera.mobile', score: '367' }); ">
+                                                Opera Mobile 16 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>360</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '8.0', id: 'ios', score: '360' }); ">
+                                                iOS 8.0 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>327</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '7.0', id: 'ios', score: '327' }); ">
+                                                iOS 7.0 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>312</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ie', version: '11', id: 'edge', score: '312' }); ">
+                                                Internet Explorer 11 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>290</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '6.0', id: 'ios', score: '290' }); ">
+                                                iOS 6.0 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>289</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'opera.mobile', version: '12.10', id: 'opera.mobile', score: '289' }); ">
+                                                Opera Mobile 12.10 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class=''>
+                                            <td class='points'>265</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ie', version: '10', id: 'edge', score: '265' }); ">
+                                                Internet Explorer 10 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>225</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'ios', version: '5.0', id: 'ios', score: '225' }); ">
+                                                iOS 5.0 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                        <tr class='secondary'>
+                                            <td class='points'>201</td>
+                                            <th class='nickname'
+                                                onclick="new BrowserPopup(this, 'tablet', { platform: 'android', version: '4.2', id: 'android', score: '201' }); ">
+                                                Android 4.2 </th>
+                                            <th class='details'></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        new ToggleSwitch({
+                            parent: document.getElementById('scoreToggle'),
+                            inactive: 'Most used',
+                            active: 'All browsers',
+                            onChange: function (active) {
+                                var tables = document.getElementsByClassName('scoreTable');
+
+                                if (active) {
+                                    for (var i = 0; i < tables.length; i++) {
+                                        tables[i].className += ' showAll';
+                                    }
+                                } else {
+                                    for (var i = 0; i < tables.length; i++) {
+                                        tables[i].className = tables[i].className.replace(' showAll', '');
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+
+                    <hr>
+
+                    <div class='timelinePanel'>
+                        <div id='fsCanvas'>
+                            <h2>Timeline</h2>
+                            <button id='fsButton' style='display: none;'></button>
+                            <br>
+                            <div id='timelineGraph' style='height: 500px;'></div>
+
+                            <script>
+                                var sets = [{ "name": "Android", "data": [{ "order": "0", "grouped": "Android", "platform": "android", "id": "android", "version": "4.2", "nickname": "Android 4.2", "details": null, "releasedate": "2012-11-13", "status": "legacy", "score": "201" }] }, { "name": "Chrome for Android", "data": [{ "order": "8", "grouped": "Chrome for Android", "platform": "chrome.mobile", "id": "chrome.mobile", "version": "40", "nickname": "Chrome 40", "details": null, "releasedate": "2015-01-21", "status": "legacy", "score": "448" }, { "order": "8", "grouped": "Chrome for Android", "platform": "chrome.mobile", "id": "chrome.mobile", "version": "41", "nickname": "Chrome 41", "details": null, "releasedate": "2015-03-11", "status": "legacy", "score": "456" }, { "order": "8", "grouped": "Chrome for Android", "platform": "chrome.mobile", "id": "chrome.mobile", "version": "46", "nickname": "Chrome 46", "details": null, "releasedate": "2015-10-14", "status": "legacy", "score": "476" }, { "order": "8", "grouped": "Chrome for Android", "platform": "chrome.mobile", "id": "chrome.mobile", "version": "51", "nickname": "Chrome 51", "details": null, "releasedate": "2016-06-01", "status": "legacy", "score": "488" }, { "order": "8", "grouped": "Chrome for Android", "platform": "chrome.mobile", "id": "chrome.mobile", "version": "52", "nickname": "Chrome 52", "details": null, "releasedate": "2016-07-27", "status": "legacy", "score": "486" }] }, { "name": "Edge", "data": [{ "order": "3", "grouped": "Edge", "platform": "ie", "id": "edge", "version": "6", "nickname": "Internet Explorer 6", "details": null, "releasedate": "2001-08-27", "status": "legacy", "score": "19" }, { "order": "3", "grouped": "Edge", "platform": "ie", "id": "edge", "version": "7", "nickname": "Internet Explorer 7", "details": null, "releasedate": "2006-10-18", "status": "legacy", "score": "19" }, { "order": "3", "grouped": "Edge", "platform": "ie", "id": "edge", "version": "8", "nickname": "Internet Explorer 8", "details": null, "releasedate": "2009-03-19", "status": "legacy", "score": "33" }, { "order": "3", "grouped": "Edge", "platform": "ie", "id": "edge", "version": "9", "nickname": "Internet Explorer 9", "details": null, "releasedate": "2011-03-14", "status": "legacy", "score": "113" }, { "order": "3", "grouped": "Edge", "platform": "ie", "id": "edge", "version": "10", "nickname": "Internet Explorer 10", "details": null, "releasedate": "2012-10-26", "status": "legacy", "score": "265" }, { "order": "3", "grouped": "Edge", "platform": "ie", "id": "edge", "version": "11", "nickname": "Internet Explorer 11", "details": null, "releasedate": "2013-10-17", "status": "legacy", "score": "312" }, { "order": "4", "grouped": "Edge", "platform": "edge", "id": "edge", "version": "12", "nickname": "Edge 12", "details": null, "releasedate": "2015-07-29", "status": "legacy", "score": "377" }, { "order": "4", "grouped": "Edge", "platform": "edge", "id": "edge", "version": "13", "nickname": "Edge 13", "details": null, "releasedate": "2015-11-05", "status": "legacy", "score": "433" }, { "order": "4", "grouped": "Edge", "platform": "edge", "id": "edge", "version": "14", "nickname": "Edge 14", "details": null, "releasedate": "2016-08-02", "status": "legacy", "score": "460" }, { "order": "4", "grouped": "Edge", "platform": "edge", "id": "edge", "version": "15", "nickname": "Edge 15", "details": null, "releasedate": "2017-04-11", "status": "legacy", "score": "473" }, { "order": "4", "grouped": "Edge", "platform": "edge", "id": "edge", "version": "16", "nickname": "Edge 16", "details": null, "releasedate": "2017-10-17", "status": "legacy", "score": "476" }, { "order": "4", "grouped": "Edge", "platform": "edge", "id": "edge", "version": "17", "nickname": "Edge 17", "details": null, "releasedate": "2018-04-30", "status": "current", "score": "492" }, { "order": "4", "grouped": "Edge", "platform": "edge", "id": "edge", "version": "18", "nickname": "Edge 18", "details": null, "releasedate": "2023-11-14", "status": "upcoming", "score": "496" }] }, { "name": "Firefox Mobile", "data": [{ "order": "1", "grouped": "Firefox Mobile", "platform": "firefox.mobile", "id": "firefox.mobile", "version": "28", "nickname": "Firefox Mobile 28", "details": null, "releasedate": "2014-03-18", "status": "legacy", "score": "371" }, { "order": "1", "grouped": "Firefox Mobile", "platform": "firefox.mobile", "id": "firefox.mobile", "version": "33", "nickname": "Firefox Mobile 33", "details": null, "releasedate": "2014-10-13", "status": "legacy", "score": "396" }, { "order": "1", "grouped": "Firefox Mobile", "platform": "firefox.mobile", "id": "firefox.mobile", "version": "47", "nickname": "Firefox Mobile 47", "details": null, "releasedate": "2016-06-07", "status": "legacy", "score": "459" }, { "order": "1", "grouped": "Firefox Mobile", "platform": "firefox.mobile", "id": "firefox.mobile", "version": "48", "nickname": "Firefox Mobile 48", "details": null, "releasedate": "2016-08-02", "status": "legacy", "score": "466" }] }, { "name": "iOS", "data": [{ "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "3.0", "nickname": "iOS 3.0", "details": null, "releasedate": "2009-06-17", "status": "legacy", "score": "109" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "4.0", "nickname": "iOS 4.0", "details": null, "releasedate": "2010-06-21", "status": "legacy", "score": "158" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "5.0", "nickname": "iOS 5.0", "details": null, "releasedate": "2011-10-12", "status": "legacy", "score": "225" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "6.0", "nickname": "iOS 6.0", "details": null, "releasedate": "2012-09-19", "status": "legacy", "score": "290" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "7.0", "nickname": "iOS 7.0", "details": null, "releasedate": "2013-09-18", "status": "legacy", "score": "327" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "8.0", "nickname": "iOS 8.0", "details": null, "releasedate": "2014-09-17", "status": "legacy", "score": "360" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "9.0", "nickname": "iOS 9.0", "details": null, "releasedate": "2015-09-16", "status": "legacy", "score": "368" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "9.3", "nickname": "iOS 9.3", "details": null, "releasedate": "2016-03-21", "status": "legacy", "score": "378" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "10.0", "nickname": "iOS 10.0", "details": null, "releasedate": "2016-09-16", "status": "legacy", "score": "389" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "10.1", "nickname": "iOS 10.1", "details": null, "releasedate": "2016-10-24", "status": "legacy", "score": "391" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "10.2", "nickname": "iOS 10.2", "details": null, "releasedate": "2016-12-12", "status": "legacy", "score": "391" }, { "order": "4", "grouped": "iOS", "platform": "ios", "id": "ios", "version": "10.3", "nickname": "iOS 10.3", "details": null, "releasedate": "2017-03-27", "status": "current", "score": "415" }] }, { "name": "Opera Mobile", "data": [{ "order": "6", "grouped": "Opera Mobile", "platform": "opera.mobile", "id": "opera.mobile", "version": "12.10", "nickname": "Opera Mobile 12.10", "details": null, "releasedate": "2012-10-09", "status": "legacy", "score": "289" }, { "order": "6", "grouped": "Opera Mobile", "platform": "opera.mobile", "id": "opera.mobile", "version": "16", "nickname": "Opera Mobile 16", "details": null, "releasedate": "2013-09-16", "status": "legacy", "score": "367" }, { "order": "6", "grouped": "Opera Mobile", "platform": "opera.mobile", "id": "opera.mobile", "version": "18", "nickname": "Opera Mobile 18", "details": null, "releasedate": "2013-11-19", "status": "legacy", "score": "387" }, { "order": "6", "grouped": "Opera Mobile", "platform": "opera.mobile", "id": "opera.mobile", "version": "37", "nickname": "Opera Mobile 37", "details": null, "releasedate": "2016-06-15", "status": "current", "score": "481" }] }, { "name": "Samsung Internet", "data": [{ "order": "7", "grouped": "Samsung Internet", "platform": "android.samsung", "id": "android.samsung", "version": "4.0", "nickname": "Samsung Internet 4.0", "details": null, "releasedate": "2016-02-17", "status": "legacy", "score": "469" }, { "order": "7", "grouped": "Samsung Internet", "platform": "android.samsung", "id": "android.samsung", "version": "5.0", "nickname": "Samsung Internet 5.0", "details": null, "releasedate": "2016-12-16", "status": "legacy", "score": "484" }, { "order": "7", "grouped": "Samsung Internet", "platform": "android.samsung", "id": "android.samsung", "version": "5.2", "nickname": "Samsung Internet 5.2", "details": null, "releasedate": "2017-04-21", "status": "legacy", "score": "490" }, { "order": "7", "grouped": "Samsung Internet", "platform": "android.samsung", "id": "android.samsung", "version": "5.4", "nickname": "Samsung Internet 5.4", "details": null, "releasedate": "2017-05-16", "status": "legacy", "score": "490" }, { "order": "7", "grouped": "Samsung Internet", "platform": "android.samsung", "id": "android.samsung", "version": "6.2", "nickname": "Samsung Internet 6.2", "details": null, "releasedate": "2017-10-26", "status": "current", "score": "517" }] }];
+                                var series = [];
+
+                                var start = new Date().getTime();
+
+                                for (var i = 0; i < sets.length; i++) {
+                                    var s = {
+                                        name: sets[i].name,
+                                        data: []
+                                    }
+
+                                    for (var j = 0; j < sets[i].data.length; j++) {
+                                        var ts = new Date().getTime();
+
+                                        if (sets[i].data[j].releasedate) {
+                                            var date = sets[i].data[j].releasedate.split('-');
+                                            var ts = Date.UTC(date[0], parseInt(date[1], 10) - 1, date[2]);
+                                        }
+
+                                        start = Math.min(ts, start);
+
+                                        s.data.push({
+                                            name: sets[i].data[j].nickname,
+                                            status: sets[i].data[j].status,
+                                            order: sets[i].data[j].order,
+                                            x: ts,
+                                            y: parseInt(sets[i].data[j].score, 10)
+                                        });
+                                    }
+
+                                    series.push(s);
+                                }
+
+                                Highcharts.setOptions({
+                                    chart: {
+                                        style: {
+                                            fontFamily: '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif'
+                                        }
+                                    }
+                                });
+
+                                var chart = new Highcharts.Chart({
+
+                                    chart: {
+                                        renderTo: 'timelineGraph',
+                                        zoomType: 'x',
+                                        type: 'line'
+                                    },
+                                    credits: {
+                                        enabled: false
+                                    },
+                                    title: {
+                                        text: 'HTML5test.com score over the years'
+                                    },
+                                    legend: {
+                                        borderWidth: 0,
+                                        margin: 40
+                                    },
+                                    xAxis: {
+                                        type: 'datetime',
+                                        min: Math.max(start, Date.UTC(2008, 9, 1)),
+                                        dateTimeLabelFormats: {
+                                            month: '%b %Y',
+                                            year: '%b %Y'
+                                        }
+                                    },
+                                    yAxis: {
+                                        title: {
+                                            text: 'Score (points)'
+                                        },
+                                        min: 0
+                                    },
+                                    tooltip: {
+                                        formatter: function () {
+                                            return '<b>' + this.key + '</b><br/>' +
+                                                (this.point.status != 'upcoming' ? Highcharts.dateFormat('%b %Y', this.x) : 'Unreleased') + '<br>' +
+                                                this.y + ' points';
+                                        }
+                                    },
+
+                                    plotOptions: {
+                                        series: {
+                                            step: 'left'
+                                        }
+                                    },
+                                    series: series
+                                });
+
+                                for (var s = 0; s < chart.series.length; s++) {
+                                    if (chart.series[s].data[0].order < 1) {
+                                        chart.series[s].hide();
+                                    }
+                                }
+
+                                var canvas = document.getElementById('fsCanvas');
+                                var button = document.getElementById('fsButton');
+
+                                if (canvas.requestFullscreen) {
+                                    button.style.display = '';
+                                    button.addEventListener('click', function () {
+                                        if (document.fullscreenElement)
+                                            document.exitFullscreen();
+                                        else
+                                            canvas.requestFullscreen();
+                                    }, true);
+                                }
+                            </script>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h3>About these scores</h3>
+                    <div class='text'>
+                        The data above is compiled from automatically submitted test results. It is possible your
+                        results
+                        may differ slightly due to external factors such as settings and which operating system is used.
+                        If you believe the data above is incorrect, or if you think we are missing an important browser
+                        or device, please open a bug report at <a href='http://github.com/niutech/html5test'>Github</a>.
+                    </div>
+                </div>
+            </div>
+
+            <div class='footer'>
+                <div>
+                    <div class='copyright'>
+                        <p>
+                            &copy; 2023 - Created by Niels Leenheer, modified by Jerzy Głowacki.<br>
+                            Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.<br>
+                            HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
+                            Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

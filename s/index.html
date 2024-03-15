@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HTML5test - How well does your browser support HTML5?</title>
+		<meta charset="UTF-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/main.css" type="text/css">
+		<script src='/scripts/base.js' type='text/javascript'></script>
+		<script src='/scripts/9/data.js' type='text/javascript'></script>
+		<script src='/scripts/9/engine.js' type='text/javascript'></script>
+		<script src='/scripts/reporting.js' type='text/javascript'></script>
+		<meta name="application-name" content="HTML5test">
+		<link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-160x160.png" sizes="160x160">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-196x196.png" sizes="196x196">
+		<meta name="msapplication-TileColor" content="#0092bf">
+		<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+	</head>
+
+	<body>
+		<div class='header'>
+			<h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
+			<div class='navigation'>
+				<ul class='left'>
+					<li><a href='/'>Your browser</a></li>
+					<li class='selected'><a href='/results/desktop.html'>Other browsers</a></li>
+					<li><a href='/compare/browser/'>Compare</a></li>
+				</ul>
+				<ul class='right'>
+					<li><a href='/about.html'>About the test</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class='page saved'>
+			<div id='contents' class='column'>
+				<div id='score'></div>
+				<div id='results'></div>
+
+				<div class='footer'>
+					<div>
+						<div class='copyright'>
+							<p>
+								&copy; 2023 - Created by Niels Leenheer, modified by Jerzy Głowacki.<br>
+								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.<br>
+								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
+								Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script>
+		<!--
+		function loadBrowser(id) {
+			if (!id) {
+				return;
+			}
+
+			var httpRequest;
+			if (window.XMLHttpRequest) {
+				httpRequest = new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+		   	httpRequest.open('POST', API_BASE + '/loadBrowser', true);
+			httpRequest.onreadystatechange = process;
+		   	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			httpRequest.send('id=' + encodeURIComponent('custom:' + id));
+
+			var that = this;
+
+			function process() {
+				if (httpRequest.readyState == 4 && httpRequest.responseText != '') {
+					var data = JSON.parse(httpRequest.responseText);
+					update(data);
+				}
+			}
+
+			function update(r) {
+				var m = new Metadata(tests);
+
+				var c = {};
+
+				c.score = r.score;
+				c.maximum = r.maximum;
+
+				var container = document.getElementById('score');
+				container.innerHTML =
+					"<div class='pointsPanel'>" +
+					"<h2><span>This browser scored</span> <strong>" + c.score + "</strong> <span>out of " + c.maximum + " points</span></h2>" +
+					"</div>";
+
+				var useragent = document.createElement('div');
+				useragent.className = 'useragent';
+				container.appendChild(useragent);
+
+				useragent.innerHTML =
+					"<p>This score was recorded using " + r.humanReadable + "</p>" +
+					"<div class='expandWidget'>▼</div>" +
+					"<div class='expandedPanel'>" +
+					"<table><tbody>" +
+					"<tr><th>Useragent:</th><td>" + r.useragent + "</td></tr>" +
+					(r.deviceHeight > 0 && r.deviceWidth > 0 ? "<tr><th>Screen size:</th><td>" + r.deviceWidth + " x " + r.deviceHeight + " px</td></tr>" : "") +
+					"</tbody></table>" +
+					"</div>";
+
+				useragent.addEventListener('click', function() {
+					if (useragent.className.indexOf(' expanded') == -1)
+						useragent.className += ' expanded';
+					else
+						useragent.className = useragent.className.replace(' expanded', '');
+				}, true);
+
+
+				var wrapper = document.createElement('div');
+				wrapper.className = 'wrapper';
+				container.appendChild(wrapper);
+
+				var buttons = document.createElement('div');
+				buttons.className = 'buttons';
+				wrapper.appendChild(buttons);
+
+				var button = document.createElement('a');
+				button.className = 'button compare';
+				button.href = '/compare/browser/?' + r.id;
+				button.innerHTML = '<span>Compare to...</span>';
+				buttons.appendChild(button);
+
+				var container = document.getElementById('results');
+				var div = document.createElement('div');
+				div.className = 'resultsTable detailsTable';
+				container.appendChild(div);
+
+				var table = new ResultsTable({
+					parent:			div,
+					tests:			m.data,
+					header:			false,
+					links:			true,
+					explainations: 	true,
+					grading:		true,
+					bonus:			true,
+					distribute:		true,
+					columns:		1
+				});
+
+				table.updateColumn(0, r);
+			}
+		}
+		loadBrowser(location.search.substring(1))
+		//-->
+		</script>
+	</body>
+</html>

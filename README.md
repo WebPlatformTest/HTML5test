@@ -1,10 +1,10 @@
-<img src="https://html5te.st/assets/html5test.svg" width="250">
+<img src="https://html5test.co/images/html5test.svg" width="250">
+
+### Updated domain: [html5test.co](https://html5test.co)
 
 This is a website for testing web standards in the browser. The HTML5 test score is an indication 
 of how well your browser supports the HTML5 standard and related specifications. Find out which 
 parts of HTML5 are supported by your browser today and compare the results with other browsers.
-
-[![Twitter Follow](https://img.shields.io/twitter/follow/html5test.svg?style=social)](https://twitter.com/html5test)
 
 The HTML5 test does not try to test all of the new features offered by HTML5, nor does it try to 
 test the functionality of each feature it does detect. Despite these shortcomings we hope that 
@@ -17,9 +17,3 @@ Please be aware that although the HTML5 specification is now an official recomme
 specifications that are being tested are still in development and could change before receiving 
 an official status. In the future new tests will be added for new specifications and existing 
 tests will be updated when the specifications change.
-
-
-**Thanks to:**  
-
-<a href="https://www.browserstack.com"><img src="https://html5te.st/assets/browserstack.svg" width="180"></a> &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="https://www.cloudvps.nl"><img src="https://html5test.com/images/sponsors/cloudvps@2x.png" width="59"></a>

@@ -74,6 +74,14 @@ var tests = [
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes' ],
 													[ 'mdn', '/Web/API/HTMLElement/dataset' ]
 												]
+									}, {
+										id:		'mathml',
+										name: 	'MathML support',
+										value:	2 /* 1 for Content, 1 for Presentation */,
+										urls:	[
+													[ 'w3c', 'https://www.w3.org/TR/MathML/' ],
+													[ 'mdn', '/Web/MathML' ]
+												]
 									},
 
 									'<strong>New or modified elements</strong>',
@@ -198,6 +206,13 @@ var tests = [
 																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/semantics.html#ping' ]
 																]
 													}, {
+														id:		'relList',
+														name: 	'<code>relList</code> attribute on the <code>a</code> element',
+														value:	1,
+														urls:	[
+																	[ 'whatwg', 'https://html.spec.whatwg.org/multipage/text-level-semantics.html#dom-a-rellist' ]
+																]
+													}, {
 														id:		'mark',
 														name: 	'<code>mark</code> element',
 														value:	1,
@@ -279,6 +294,27 @@ var tests = [
 										urls:	[
 													[ 'w3c', 'http://www.w3.org/TR/html5/editing.html#the-hidden-attribute' ],
 													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/interaction.html#the-hidden-attribute' ]
+												]
+									}, {
+										id:		'translate',
+										name: 	'<code>translate</code> attribute',
+										value:	1,
+										urls:	[
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/dom.html#the-translate-attribute' ]
+												]
+									}, {
+										id:		'accessKey',
+										name: 	'<code>accessKey</code> attribute',
+										value:	1,
+										urls:	[
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/interaction.html#the-accesskey-attribute' ]
+												]
+									}, {
+										id:		'accessKeyLabel',
+										name: 	'<code>accessKeyLabel</code> attribute',
+										value:	1,
+										urls:	[
+													[ 'whatwg', 'https://html.spec.whatwg.org/multipage/interaction.html#introduction-9:dom-accesskeylabel' ]
 												]
 									}, {
 										id:		'dynamic',
@@ -773,6 +809,11 @@ var tests = [
 														name: 		'Minimal element support',
 														url:		'http://www.w3.org/TR/html5/forms.html#the-textarea-element'
 													}, {
+														id:			'minlength',
+														name:		'<code>minlength</code> attribute',
+														value:		1,
+														url:		'http://www.w3.org/TR/html5/forms.html#attr-textarea-minlength'
+													}, {
 														id:			'maxlength',
 														name:		'<code>maxlength</code> attribute',
 														value:		1,
@@ -1025,6 +1066,11 @@ var tests = [
 														value:		3,
 														url:		'http://www.w3.org/TR/html5/forms.html#dom-form-checkvalidity'
 													}, {
+														id:			'reportValidity',
+														name: 		'<code>reportValidity</code> method',
+														value:		1,
+														url:		'https://html.spec.whatwg.org/multipage/forms.html#dom-form-reportvalidity'
+													}, {
 														id:			'noValidate',
 														name: 		'<code>noValidate</code> attribute',
 														value:		1,
@@ -1060,13 +1106,6 @@ var tests = [
 										urls:		[
 														[ 'w3c', 'http://www.w3.org/TR/html-templates/' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#the-template-element' ]
-													]
-									}, {
-										id:			'imports',
-										name: 		'HTML imports',
-										status: 	'rejected',
-										urls:		[
-														[ 'w3c', 'http://w3c.github.io/webcomponents/spec/imports/' ]
 													]
 									}
 								]
@@ -1460,8 +1499,8 @@ var tests = [
 													[ 'w3c', 'http://www.w3.org/TR/media-source/' ]
 												]
 									}, {
-										id:		'drm',
-										name: 	'DRM support',
+										id:		'eme',
+										name: 	'Encrypted Media Extensions',
 										status:	'controversial',
 										url:	'http://www.w3.org/TR/encrypted-media/'
 									},
@@ -1740,13 +1779,33 @@ var tests = [
 										id:		'jpeg',
 										name: 	'JPEG support',
 										status:	'optional'
-									}, {
+}, {
 										id:		'jpegxr',
 										name: 	'JPEG-XR support',
 										status:	'optional'
 									}, {
 										id:		'webp',
 										name: 	'WebP support',
+										status:	'optional'
+									},
+
+									'<strong>New image formats</strong>',
+
+									{
+										id:		'webpLoad',
+										name: 	'WebP support',
+										status:	'optional'
+									}, {
+										id:		'jxl',
+										name: 	'JPEG XL support',
+										status:	'optional'
+									}, {
+										id:		'avif',
+										name: 	'AVIF support',
+										status:	'optional'
+									}, {
+										id:		'heic',
+										name: 	'HEIC support',
 										status:	'optional'
 									}
 								]
@@ -2462,7 +2521,7 @@ var tests = [
 										id:			'payments',
 										name: 		'Web Payments',
 										value:		5,
-										url:		'https://w3c.github.io/browser-payment-api/specs/paymentrequest.html'
+										url:		'https://w3c.github.io/payment-request/'
 									}
 								]
 					}
@@ -2685,15 +2744,6 @@ var tests = [
 														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#attr-script-defer' ],
 														[ 'whatwg', 'https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer' ],
 														[ 'mdn', '/Web/HTML/Element/script' ]
-													]
-									}, {
-										id:			'executionevents',
-										name: 		'Script execution events',
-										status:		'rejected',
-										urls:		[
-														[ 'w3c', 'http://www.w3.org/TR/html5/scripting-1.html#the-script-element' ],
-														[ 'whatwg', 'http://www.whatwg.org/specs/web-apps/current-work/multipage/scripting-1.html#the-script-element' ],
-														[ 'mdn', '/Web/Events/beforescriptexecute' ]
 													]
 									}, {
 										id:			'onerror',

@@ -2,36 +2,31 @@
 <html>
 	<head>
 		<title>HTML5test - How well does your browser support HTML5?</title>
-
 		<meta charset="UTF-8">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 		<link rel="stylesheet" href="/css/main.css" type="text/css">
 		<link rel="stylesheet" href="/css/reporting.css" type="text/css">
-
 		<script src='/scripts/base.js' type='text/javascript'></script>
-		<script src='/scripts/8/data.js' type='text/javascript'></script>
+		<script src='/scripts/9/data.js' type='text/javascript'></script>
 		<script src='/scripts/reporting.js' type='text/javascript'></script>
-
-		<meta name="application-name" content="HTML5test"/>
-
-		<link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png" />
-		<link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png" />
-		<link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png" />
-		<link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-touch-icon-144x144.png" />
-		<link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-touch-icon-60x60.png" />
-		<link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png" />
-		<link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png" />
-		<link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png" />
-		<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16" />
-		<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32" />
-		<link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96" />
-		<link rel="icon" type="image/png" href="/images/icons/favicon-160x160.png" sizes="160x160" />
-		<link rel="icon" type="image/png" href="/images/icons/favicon-196x196.png" sizes="196x196" />
-		<meta name="msapplication-TileColor" content="#0092bf" />
-		<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png" />
+		<meta name="application-name" content="HTML5test">
+		<link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-160x160.png" sizes="160x160">
+		<link rel="icon" type="image/png" href="/images/icons/favicon-196x196.png" sizes="196x196">
+		<meta name="msapplication-TileColor" content="#0092bf">
+		<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
 	</head>
 
 	<body>
@@ -39,9 +34,9 @@
 			<h1><span>HTML<strong>5</strong>test</span> <em>how well does your browser support HTML5?</em></h1>
 			<div class='navigation'>
 				<ul class='left'>
-					<li><a href='/index.html'>Your browser</a></li>
+					<li><a href='/'>Your browser</a></li>
 					<li><a href='/results/desktop.html'>Other<span> browser</span>s</a></li>
-					<li class='selected'><a href='/compare/browser/index.html'>Compare</a></li>
+					<li class='selected'><a href='/compare/browser/'>Compare</a></li>
 				</ul>
 				<ul class='right'>
 					<li><a href='/about.html'>About<span> the test</span></a></li>
@@ -53,8 +48,8 @@
 			<div class='column'>
 				<div class='paper hasNavigation'>
 					<ul class='navigation'>
-						<li><a href='/compare/browser/index.html'>Browsers</a></li>
-						<li class='selected'><a href='/compare/feature/index.html'>Features</a></li>
+						<li><a href='/compare/browser/'>Browsers</a></li>
+						<li class='selected'><a href='/compare/feature/'>Features</a></li>
 					</ul>
 
 					<div>
@@ -73,20 +68,19 @@
 							The data above is compiled from automatically submitted test results. It is possible your results
 							may differ slightly due to external factors such as settings and which operating system is used.
 							If you believe the data above is incorrect, or if you think we are missing an important browser
-							or device, please open a bug report at <a href='http://github.com/NielsLeenheer/html5test'>Github</a>.
+							or device, please open a bug report at <a href='http://github.com/niutech/html5test'>Github</a>.
 						</div>
 					</div>
 
 					<script>
 					<!--
-
 						var m = new Metadata(tests);
 
 						var table = new BrowserTable({
 							title:			'<h2>Features</h2><p>Select up to five features and immediately see how well it is supported by each browser</p>',
 							parent:			document.getElementById('comparison'),
 							tests:			m.data,
-							browsers:		<?php echo json_encode($results); ?>,
+							browsers:		[],
 							header:			true,
 							explainations: 	false,
 							columns:		5,
@@ -95,33 +89,12 @@
 							onChange:		function(keys) {
 												if (window.history && window.history.replaceState) {
 													if (keys.length)
-														window.history.replaceState([], document.title, '/compare/feature/' + keys.join('/') + '.html');
+														window.history.replaceState([], document.title, '/compare/feature/?' + keys.join('/'));
 													else
-														window.history.replaceState([], document.title, '/compare/feature/index.html');
+														window.history.replaceState([], document.title, '/compare/feature/');
 												}
 											}
 						});
-
-					<?php if (isset($one) && $one != ''): ?>
-						table.updateColumn(0, <?php echo $one; ?>);
-					<?php endif; ?>
-
-					<?php if (isset($two) && $two != ''): ?>
-						table.updateColumn(1, <?php echo $two; ?>);
-					<?php endif; ?>
-
-					<?php if (isset($three) && $three != ''): ?>
-						table.updateColumn(2, <?php echo $three; ?>);
-					<?php endif; ?>
-
-					<?php if (isset($four) && $four != ''): ?>
-						table.updateColumn(3, <?php echo $four; ?>);
-					<?php endif; ?>
-
-					<?php if (isset($five) && $five != ''): ?>
-						table.updateColumn(4, <?php echo $five; ?>);
-					<?php endif; ?>
-
 
 						var search = new SearchField({
 							parent:		document.getElementById('searchField'),
@@ -141,7 +114,12 @@
 										}
 						});
 
-
+                        var ids = location.search.substring(1).split('/');
+                        for (var i = 0; i < ids.length; i++) {
+                            if (ids[i]) {
+								table.loadColumn(i, ids[i]);
+							}
+                        }
 					-->
 					</script>
 				</div>
@@ -150,29 +128,15 @@
 					<div>
 						<div class='copyright'>
 							<p>
-								Created by Niels Leenheer.<br>
+								&copy; 2023 - Created by Niels Leenheer, modified by Jerzy Głowacki.<br>
 								Please note that the HTML5 test is not affiliated with the W3C or the HTML5 working group.<br>
 								HTML5 Logo by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>.
 								Browser detection by <a href='http://whichbrowser.net'>WhichBrowser</a>.
 							</p>
-
-							<div id='cloudvps'>
-								<a href="http://www.cloudvps.nl" target="_blank" ><b>CloudVPS</b><br> High Availability<br> Cloud Servers</a>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<script src='//www.google-analytics.com/ga.js'></script>
-		<script>
-		<!--
-			try {
-				var pageTracker = _gat._getTracker("UA-68192-4");
-				pageTracker._trackPageview();
-			} catch(err) {}
-		//-->
-		</script>
 	</body>
 </html>

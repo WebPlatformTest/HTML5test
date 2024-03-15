@@ -1,4 +1,4 @@
-(function(doc) {
+(function (doc) {
 
 	var
 		pollute = true,
@@ -9,30 +9,30 @@
 				enabled: "fullscreenEnabled",
 				element: "fullscreenElement",
 				request: "requestFullscreen",
-				exit:    "exitFullscreen",
+				exit: "exitFullscreen",
 				events: {
 					change: "fullscreenchange",
-					error:  "fullscreenerror"
+					error: "fullscreenerror"
 				}
 			},
 			webkit: {
 				enabled: "webkitIsFullScreen",
 				element: "webkitCurrentFullScreenElement",
 				request: "webkitRequestFullScreen",
-				exit:    "webkitCancelFullScreen",
+				exit: "webkitCancelFullScreen",
 				events: {
 					change: "webkitfullscreenchange",
-					error:  "webkitfullscreenerror"
+					error: "webkitfullscreenerror"
 				}
 			},
 			moz: {
 				enabled: "mozFullScreen",
 				element: "mozFullScreenElement",
 				request: "mozRequestFullScreen",
-				exit:    "mozCancelFullScreen",
+				exit: "mozCancelFullScreen",
 				events: {
 					change: "mozfullscreenchange",
-					error:  "mozfullscreenerror"
+					error: "mozfullscreenerror"
 				}
 			}
 		},
@@ -69,7 +69,7 @@
 	if (pollute && api && vendor !== "w3") {
 		// Add listeners for fullscreen events
 		doc.addEventListener(api.events.change, handleChange, false);
-		doc.addEventListener(api.events.error,  handleError,  false);
+		doc.addEventListener(api.events.error, handleError, false);
 
 		// Copy the default value
 		doc[w3.enabled] = doc[api.enabled];
@@ -79,7 +79,7 @@
 		doc[w3.exit] = doc[api.exit];
 
 		// Add the request method to the Element's prototype
-		Element.prototype[w3.request] = function() {
+		Element.prototype[w3.request] = function () {
 			return this[api.request].apply(this, arguments);
 		};
 	}

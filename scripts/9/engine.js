@@ -211,6 +211,22 @@ Test9 = (function () {
             });
         },
 
+        /* mathml support */
+
+        function (results) {
+            var element = document.createElement('div');
+            element.innerHTML = "<math><mspace height='23px' width='77px'/></math>";
+            document.body.appendChild(element);
+            var box = element.firstChild.firstChild.getBoundingClientRect();
+
+            results.addItem({
+                key: 'elements.mathml',
+                passed: box.height == 23 && box.width == 77
+            });
+
+            document.body.removeChild(element);
+        },
+
 
         /* section, nav, article, header and footer */
 
@@ -300,6 +316,16 @@ Test9 = (function () {
             results.addItem({
                 key: 'elements.semantic.ping',
                 passed: 'ping' in document.createElement('a')
+            });
+        },
+
+
+        /* a relList */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.semantic.relList',
+                passed: 'relList' in document.createElement('a')
             });
         },
 
@@ -505,7 +531,33 @@ Test9 = (function () {
                 passed: 'hidden' in document.createElement('div')
             });
         },
+        
+        /* translate attribute */
 
+        function (results) {
+            results.addItem({
+                key: 'elements.translate',
+                passed: 'translate' in document.createElement('div')
+            });
+        },
+
+        /* accessKey attribute */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.accessKey',
+                passed: 'accessKey' in document.createElement('div')
+            });
+        },
+
+        /* accessKeyLabel attribute */
+
+        function (results) {
+            results.addItem({
+                key: 'elements.accessKeyLabel',
+                passed: 'accessKeyLabel' in document.createElement('div')
+            });
+        },
 
         /* outerHTML property */
 
@@ -876,6 +928,11 @@ Test9 = (function () {
             results.addItem({
                 key: 'form.textarea.element',
                 passed: passed
+            });
+
+            results.addItem({
+                key: 'form.textarea.minlength',
+                passed: 'minLength' in element
             });
 
             results.addItem({
@@ -1371,6 +1428,15 @@ Test9 = (function () {
             results.addItem({
                 key: 'form.formvalidation.checkValidity',
                 passed: 'checkValidity' in document.createElement('form')
+            });
+        },
+
+        /* reportValidity property */
+
+        function (results) {
+            results.addItem({
+                key: 'form.formvalidation.reportValidity',
+                passed: 'reportValidity' in document.createElement('form')
             });
         },
 
@@ -2336,7 +2402,7 @@ Test9 = (function () {
         function (results) {
             results.addItem({
                 key: 'security.authentication',
-                passed: 'PublicKeyCredential' in window ? YES : 'msCredentials' in window ? YES | OLD : NO
+                passed: 'credentials' in navigator ? YES : 'msCredentials' in window ? YES | OLD : NO
             });
         },
 
@@ -2460,7 +2526,7 @@ Test9 = (function () {
 
             results.addItem({
                 key: 'video.codecs.mp4.h265',
-                passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"'))
+                passed: !!element.canPlayType && (canPlayType(element, 'video/mp4; codecs="hvc1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hev1.1.L0.0"') || canPlayType(element, 'video/mp4; codecs="hvc1.1.6.L93.90"'))
             });
 
             /* theora codec */
@@ -2488,7 +2554,7 @@ Test9 = (function () {
 
             results.addItem({
                 key: 'video.codecs.webm.av1',
-                passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="av1.experimental.e87fb2378f01103d5d6e477a4ef6892dc714e614"')
+                passed: !!element.canPlayType && canPlayType(element, 'video/webm; codecs="av01.0.05M.08"')
             });
 
             /* does codec detection work properly? */
@@ -2711,10 +2777,10 @@ Test9 = (function () {
                 passed: 'MediaSource' in window ? YES : 'WebKitMediaSource' in window || 'mozMediaSource' in window || 'msMediaSource' in window ? YES | PREFIX : NO
             });
 
-            /* drm */
+            /* eme */
 
             results.addItem({
-                key: 'streaming.drm',
+                key: 'streaming.eme',
                 passed: 'setMediaKeys' in element ? YES : 'webkitAddKey' in element || 'webkitSetMediaKeys' in element || 'mozSetMediaKeys' in element || 'msSetMediaKeys' in element ? YES | PREFIX : NO
             });
 
@@ -2796,7 +2862,7 @@ Test9 = (function () {
 
             results.addItem({
                 key: 'streaming.video.codecs.webm.av1',
-                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="av1.experimental.e87fb2378f01103d5d6e477a4ef6892dc714e614"')
+                passed: 'MediaSource' in window && MediaSource.isTypeSupported('video/webm; codecs="av01.0.05M.08"')
             });
         },
 
@@ -3187,6 +3253,93 @@ Test9 = (function () {
                 key: 'canvas.webp',
                 passed: passed
             });
+        },
+
+
+        /* new image formats */
+
+        function (results) {
+            var image;
+
+            /* webp support */
+
+            var webp = results.addItem({
+                key: 'canvas.webpLoad',
+                passed: false
+            });
+            webp.startBackground();
+
+            image = new Image();
+            image.src = "data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==";
+            image.onload = function() {
+                webp.update({
+                    passed: true
+                });
+                webp.stopBackground();
+            };
+            image.onerror = function() {
+                webp.stopBackground();
+            };
+
+            /* jxl support */
+
+            var jxl = results.addItem({
+                key: 'canvas.jxl',
+                passed: false
+            });
+            jxl.startBackground();
+
+            image = new Image();
+            image.src = "data:image/jxl;base64,/woIELASCAgQAFwASxLFgkWAHL0xqnCBCV0qDp901Te/5QM=";
+            image.onload = function() {
+                jxl.update({
+                    passed: true
+                });
+                jxl.stopBackground();
+            };
+            image.onerror = function() {
+                jxl.stopBackground();
+            };
+
+            /* avif support */
+
+            var avif = results.addItem({
+                key: 'canvas.avif',
+                passed: false
+            });
+            avif.startBackground();
+
+            image = new Image();
+            image.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=";
+            image.onload = function() {
+                avif.update({
+                    passed: true
+                });
+                avif.stopBackground();
+            };
+            image.onerror = function() {
+                avif.stopBackground();
+            };
+
+            /* heic support */
+
+            var heic = results.addItem({
+                key: 'canvas.heic',
+                passed: false
+            });
+            heic.startBackground();
+
+            image = new Image();
+            image.src = "data:image/heic;base64,AAAAGGZ0eXBoZWljAAAAAG1pZjFoZWljAAAC/G1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAHBpY3QAAAAAAAAAAAAAAAAAAAAADnBpdG0AAAAAAAIAAAAYaWRhdAAAAAAAAQABAAAAAAABAAEAAABgaWxvYwEAAABEQAAEAAEAAAAAAAADHAABAAAAAAAAACIAAgABAAAAAAAAAAEAAAAAAAAACAADAAAAAAAAAz4AAQAAAAAAAAAgAAQAAQAAAAAAAAABAAAACAAAAAgAAABiaWluZgAAAAAABAAAABVpbmZlAgAAAQABAABodmMxAAAAABVpbmZlAgAAAAACAABncmlkAAAAABVpbmZlAgAAAQADAABodmMxAAAAABVpbmZlAgAAAAAEAABncmlkAAAAAbFpcHJwAAABhGlwY28AAAB2aHZjQwEDcAAAAAAAAAAAAB7wAPz9+PgAAA8DIAABABhAAQwB//8DcAAAAwCQAAADAAADAB66AkAhAAEAKkIBAQNwAAADAJAAAAMAAAMAHqAggQWW6q6a5uBAQMCAAAADAIAAAAMAhCIAAQAGRAHBc8GJAAAAFGlzcGUAAAAAAAAAQAAAAEAAAAAUaXNwZQAAAAAAAAABAAAAAQAAABBwaXhpAAAAAAMICAgAAABxaHZjQwEECAAAAAAAAAAAAB7wAPz8+PgAAA8DIAABABdAAQwB//8ECAAAAwCf+AAAAwAAHroCQCEAAQAmQgEBBAgAAAMAn/gAAAMAAB7AggQWW6q6a5sCAAADAAIAAAMAAhAiAAEABkQBwXPBiQAAABRpc3BlAAAAAAAAAEAAAABAAAAAFGlzcGUAAAAAAAAAAQAAAAEAAAAOcGl4aQAAAAABCAAAACdhdXhDAAAAAHVybjptcGVnOmhldmM6MjAxNTphdXhpZDoxAAAAACVpcG1hAAAAAAAAAAQAAQKBAgACAgOEAAMChQYABAMHiIkAAAA2aXJlZgAAAAAAAAAOZGltZwACAAEAAQAAAA5kaW1nAAQAAQADAAAADmF1eGwABAABAAIAAABKbWRhdAAAAB4oAa8FEhJM4PoDvef+6D6IWYCvu2VYo5lcYJNTt4AAAAAcKAGuCiQkGcDhnoA/9bdzylCzhNKQp7VBQJa1Aw==";
+            image.onload = function() {
+                heic.update({
+                    passed: true
+                });
+                heic.stopBackground();
+            };
+            image.onerror = function() {
+                heic.stopBackground();
+            };
         },
 
 
@@ -3664,16 +3817,6 @@ Test9 = (function () {
         },
 
 
-        /* html imports */
-
-        function (results) {
-            results.addItem({
-                key: 'components.imports',
-                passed: 'import' in document.createElement('link')
-            });
-        },
-
-
         /* async scripts */
 
         function (results) {
@@ -3703,42 +3846,6 @@ Test9 = (function () {
             });
         },
 
-
-        /* script execution events */
-
-        function (results) {
-            var executionevents = results.addItem({
-                key: 'scripting.executionevents',
-                passed: false
-            });
-
-            executionevents.startBackground();
-
-            var before = false;
-
-            var s = document.createElement('script');
-            s.src = "data:text/javascript;charset=utf-8,window"
-
-            s.addEventListener('beforescriptexecute', function () {
-                before = true;
-            }, true);
-
-            s.addEventListener('afterscriptexecute', function () {
-                if (before) {
-                    executionevents.update({
-                        passed: true
-                    });
-                }
-
-                executionevents.stopBackground();
-            }, true);
-
-            document.body.appendChild(s);
-
-            window.setTimeout(function () {
-                executionevents.stopBackground();
-            }, 500);
-        },
 
 
         /* base64 encoding and decoding */
@@ -4618,16 +4725,16 @@ Test9 = (function () {
                         'form.datetime-local.ui': Browsers.isBrowser('Sogou Explorer') || Browsers.isBrowser('Maxthon', '<', '4.0.5') || (Browsers.isBrowser('UC Browser', '<', '8.6') && Browsers.isType('mobile', 'tablet')),
                         'form.color.ui': Browsers.isBrowser('Sogou Explorer') || (Browsers.isBrowser('UC Browser', '<', '9.8') && Browsers.isType('mobile', 'tablet')),
                         'form.range.ui': (Browsers.isBrowser('UC Browser', '<', '9.8') && Browsers.isType('mobile', 'tablet')),
-                        'form.progress.element': Browsers.isBrowser('Baidu Browser'),
+                        'form.progress.element': Browsers.isBrowser('Baidu Browser', '<', '11.16'),
                         'files.fileSystem': Browsers.isOs('BlackBerry Tablet OS'),
-                        'input.getUserMedia': Browsers.isDevice('webOS TV') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer') || (Browsers.isBrowser('UC Browser', '<', '9.8') && Browsers.isType('mobile', 'tablet')) || Browsers.isBrowser('Dolphin') || Browsers.isBrowser('Safari', '=', '9'),
+                        'input.getUserMedia': Browsers.isDevice('webOS TV') || Browsers.isBrowser('Baidu Browser', '<', '11.16') || Browsers.isBrowser('Sogou Explorer') || (Browsers.isBrowser('UC Browser', '<', '9.8') && Browsers.isType('mobile', 'tablet')) || Browsers.isBrowser('Dolphin') || Browsers.isBrowser('Safari', '=', '9'),
                         'input.getGamepads': Browsers.isDevice('webOS TV') || Browsers.isDevice('Playstation 4') || Browsers.isDevice('Wii U'),
-                        'location.geolocation': Browsers.isDevice('webOS TV') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser') || Browsers.isOs('Google TV'),
-                        'location.orientation': Browsers.isBrowser('Baidu Browser'),
-                        'output.notifications': Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
+                        'location.geolocation': Browsers.isDevice('webOS TV') || Browsers.isDevice('Xbox One') || Browsers.isBrowser('Baidu Browser', '<', '11.16') || Browsers.isOs('Google TV'),
+                        'location.orientation': Browsers.isBrowser('Baidu Browser', '<', '11.16'),
+                        'output.notifications': Browsers.isBrowser('Opera', '=', '18') || Browsers.isBrowser('Baidu Browser', '<', '11.16') || Browsers.isBrowser('Sogou Explorer'),
                         'output.requestFullScreen': Browsers.isBrowser('Sogou Explorer') || Browsers.isOs('BlackBerry Tablet OS') || Browsers.isOs('BlackBerry OS'),
-                        'video.subtitle': Browsers.isBrowser('Baidu Browser') || Browsers.isBrowser('Sogou Explorer'),
-                        '3d.webgl': Browsers.isBrowser('Baidu Browser')
+                        'video.subtitle': Browsers.isBrowser('Baidu Browser', '<', '11.16') || Browsers.isBrowser('Sogou Explorer'),
+                        '3d.webgl': Browsers.isBrowser('Baidu Browser', '<', '11.16')
                     }
                 ],
 
