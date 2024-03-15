@@ -1,4 +1,4 @@
-var API_BASE = 'https://corsproxy.io/?http://html5test.eu5.net/api'
+var API_BASE = 'https://html5test.eu5.net/api'
 
 /* Polyfills */
 
