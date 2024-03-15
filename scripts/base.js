@@ -1,4 +1,4 @@
-var API_BASE = 'https://corsproxy.org/?http://html5test.eu5.net/api'
+var API_BASE = 'https://corsproxy.io/?http://html5test.eu5.net/api'
 
 /* Polyfills */
 
@@ -76,7 +76,7 @@ function loadWhichBrowser(cb) {
 		}
 
 		var script = document.createElement('script');
-		script.src = 'https://corsproxy.org/?http://api.whichbrowser.net/rel/detect.js?' + p.join('&');
+		script.src = 'https://api.whichbrowser.net/rel/detect.js?' + p.join('&');
 		document.getElementsByTagName('head')[0].appendChild(script);
 
 		wait();
